@@ -1,0 +1,11 @@
+.navbar-toggler-icon{
+    background-image: url('../../../public/images/hamburger.svg') !important;
+}
+.header{
+    background-color: black !important;
+    &__tools{
+        @media screen and (min-width: 991px) {
+            display: none;
+        }
+    }
+}

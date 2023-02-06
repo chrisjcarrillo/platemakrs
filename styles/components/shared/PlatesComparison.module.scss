@@ -1,0 +1,49 @@
+.plates{
+    &__container{
+        padding: 4rem 0;
+    }
+    &__title{
+        font-weight: 600;
+        color: white;
+        text-align: center;
+        &-container{
+            margin-bottom: 3rem; 
+        }
+    }
+    &__image{
+        border-radius: 20px;
+        &-container{
+            text-align: center;
+            .plates__image{
+                @media screen and (max-width: 991px) {
+                    width: 275px;
+                    height: 145px;
+                }
+                @media screen and (max-width: 768px) {
+                    width: 200px;
+                    height: 110px;
+                }
+                @media screen and (max-width: 605px) {
+                    width: 195px;
+                    height: 105px;
+                }
+                @media screen and (max-width: 432px) {
+                    width: 145px;
+                    height: 80px;
+                }
+            }
+            :last-child{
+                .plates__image{
+                    -webkit-box-shadow:0px 0px 30px 1px rgba(255,255,255,0.9);
+                    -moz-box-shadow: 0px 0px 30px 1px rgba(255,255,255,0.9);
+                    box-shadow: 0px 0px 30px 1px rgba(255,255,255,0.9);
+                }
+            }
+            
+        }
+        &-type{
+            margin: 1.5rem;
+            color: white;
+        }
+    }
+}

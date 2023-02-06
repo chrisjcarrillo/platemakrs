@@ -1,0 +1,71 @@
+// Swiper adjustments
+.swiper-pagination-bullet{
+    background-color: white !important;
+    opacity: 1 !important;
+}
+.swiper-pagination-bullet-active{
+    background-color: black !important;
+    opacity: 1 !important;
+}
+.swiper-pagination{
+    bottom: 10px !important;
+    @media screen and (max-width: 425px) {
+        bottom: 10px !important;
+    }
+}
+.mySwiper{
+    padding-bottom: 25px !important;
+    .swiper-pagination{
+        bottom: 0px !important;
+    }
+    .swiper-pagination-bullet{
+        background-color: black !important;
+        opacity: 1 !important;
+    }
+    .swiper-pagination-bullet-active{
+        background-color: black !important;
+        opacity: 1 !important;
+    }
+}
+.slider{
+    &__container{
+        padding: 4rem 0;
+    }
+    &__img{
+        display: block !important;
+        object-fit: cover !important;
+        position: relative !important;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        color: transparent;
+        border-radius: 30px;
+    }
+    &__title{
+        color: white;
+        text-align: center;
+        font-weight: 600;
+    }
+    &__row{
+        &-title{
+            margin-bottom: 3rem;
+        }
+    }
+}
+
+.swiper-button-next, .swiper-button-prev{
+    &:after, &:before{
+        color:  black;
+        font-size: 1.5rem !important;
+        font-weight: 800;
+    }
+    background-color: white;
+    border-radius: 10px;
+    width: 6% !important;
+    @media screen and (max-width: 512px) {
+        display: none !important;
+    }
+}

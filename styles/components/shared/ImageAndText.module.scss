@@ -1,0 +1,25 @@
+.it{
+    &__container{
+        padding: 4rem 0;
+        &-title{
+            text-align: center;
+            margin-bottom: 3rem; 
+        }
+        &-image{
+            text-align: center;
+        }
+    }
+    &__title{
+        font-weight: 600;
+        color: white;
+        text-align: center;
+    }
+    &__image{
+        position: relative !important;
+        width: 60% !important;
+        @media screen and (max-width: 991px) {
+            height: 95% !important;
+            width: 85% !important;
+        }
+    }
+}
