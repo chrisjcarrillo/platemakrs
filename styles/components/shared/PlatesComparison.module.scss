@@ -1,6 +1,9 @@
 .plates{
     &__container{
         padding: 4rem 0;
+        @media screen and (max-width: 414px) {
+            padding: 1rem 0;
+        }
     }
     &__title{
         font-weight: 600;
@@ -8,10 +11,17 @@
         text-align: center;
         &-container{
             margin-bottom: 3rem; 
+            @media screen and (max-width: 414px) {
+                margin-bottom: 1.5rem;
+            }
         }
     }
     &__image{
+        
         border-radius: 20px;
+        @media screen and (max-width: 414px) {
+            border-radius: 5px;
+        }
         &-container{
             text-align: center;
             .plates__image{

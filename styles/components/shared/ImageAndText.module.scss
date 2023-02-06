@@ -1,9 +1,16 @@
 .it{
     &__container{
+
         padding: 4rem 0;
+        @media screen and (max-width: 414px) {
+            padding: 1rem 0;
+        }
         &-title{
             text-align: center;
             margin-bottom: 3rem; 
+            @media screen and (max-width: 414px) {
+                margin-bottom: 1.5rem;
+            }
         }
         &-image{
             text-align: center;

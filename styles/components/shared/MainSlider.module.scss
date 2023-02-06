@@ -50,8 +50,15 @@
         font-weight: 600;
     }
     &__row{
+        @media screen and (max-width: 414px) {
+            padding: 0 1rem;
+        }
         &-title{
             margin-bottom: 3rem;
+            @media screen and (max-width: 414px) {
+                margin-bottom: 1.5rem;
+            }
+    
         }
     }
 }

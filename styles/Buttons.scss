@@ -1,5 +1,5 @@
-.main{
-    &__cta{
+.main {
+    &__cta {
         padding: 1rem 2rem;
         background-color: white;
         color: black;
@@ -8,5 +8,16 @@
         border: 3px solid;
         font-size: 1.25rem;
         font-weight: 700;
+
+        @media screen and (max-width: 414px) {
+            padding: 0.5rem 1rem;
+            background-color: white;
+            color: black;
+            text-decoration: none;
+            border-radius: 2rem;
+            border: 3px solid;
+            font-size: .85rem;
+            font-weight: 700;
+        }
     }
 }
