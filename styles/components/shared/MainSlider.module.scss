@@ -30,6 +30,9 @@
 .slider{
     &__container{
         padding: 4rem 0;
+        @media screen and (max-width: 414px) {
+            margin-bottom: 1.5rem;
+        }
     }
     &__img{
         display: block !important;
