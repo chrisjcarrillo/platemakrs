@@ -75,7 +75,7 @@ const Contact = () => {
             })
             const res = await fetch("/api/sendgrid/contact", {
                 body: JSON.stringify({
-                    toEmails: 'johnny@platemakrs.com, clay@platemakrs.com, chris@platemakrs.com',
+                    toEmails: ['johnny@platemakrs.com', 'clay@platemakrs.com', 'chris@platemakrs.com'],
                     email: values.email,
                     firstName: values.firstName,
                     lastName: values.lastName,
