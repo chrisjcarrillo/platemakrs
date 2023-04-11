@@ -4,23 +4,21 @@ import Row from 'react-bootstrap/Row';
 import FormGroup from 'react-bootstrap/FormGroup';
 import FormLabel from 'react-bootstrap/FormLabel';
 import {
-    Form,
     Button,
+    Checkbox,
+    Form,
     Input,
     message,
-    notification,
     Select,
-    Space,
-    Tooltip,
-    Typography,
     Upload
 } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import { app, database, storage } from '../firebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
-import { ref, uploadBytes } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useState } from 'react';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { GetServerSideProps } from 'next';
 
 const dbInstance = collection(database, 'contacts');
 
@@ -33,6 +31,15 @@ interface contactFormProps {
     summary: string
 }
 
+interface ContactAttachment {
+    name: string,
+    url: string
+}
+
+interface referenceProps {
+    ref: string
+}
+
 const Contact = () => {
     const [messageApi, contextHolder] = message.useMessage();
 
@@ -40,6 +47,13 @@ const Contact = () => {
     const [email, setEmail] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
     const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
+    const [files, setFiles] = useState<Array<ContactAttachment>>([])
+    const [licensePlate, setLicensePlate] = useState<ContactAttachment>({
+        name: '', 
+        url: ''
+    });
+    const [disclaimer, setDisclaimer] = useState<boolean>(false);
+
 
     // Form Details START
     const [form] = Form.useForm();
@@ -71,16 +85,19 @@ const Contact = () => {
                 lastName: values.lastName,
                 phone: values.phone,
                 state: values.state,
-                summary: values.summary,
+                summary: values.summary
             })
             const res = await fetch("/api/sendgrid/contact", {
                 body: JSON.stringify({
-                    toEmails: ['johnny@platemakrs.com', 'clay@platemakrs.com', 'chris@platemakrs.com'],
+                    toEmails: ['johnny@platemakrs.com', 'clay@platemakrs.com', 'chris@platemakrs.com', 'victoria@platemakrs.com'],
                     email: values.email,
                     firstName: values.firstName,
                     lastName: values.lastName,
                     phoneNumber: values.phone,
                     message: values.summary,
+                    state: values.state,
+                    licensePlate: licensePlate,
+                    attachments: files,
                 }),
                 headers: {
                     "Content-Type": "application/json",
@@ -110,12 +127,29 @@ const Contact = () => {
         }
     }
 
-    const customUpload = async ({ onError, onSuccess, file }: any) => {
+    const addFile = (file: string, url: string) => {
+        setFiles((files) => [...files, 
+            {
+                name: file,
+                url:  url
+            }
+        ])
+    }
+    
+    const customUpload = async (type: string, { onError: onError, onSuccess, file }: any) => {
         const storageRef = ref(storage, `License Plate Uploads/${email}/${file.name}`);
         try {
-            const upload = await uploadBytes(storageRef, file)
-            console.info('Upload', upload)
+            const upload = await uploadBytes(storageRef, file);
+            const downloadUrl = await getDownloadURL(upload.ref)
+            if(type === "details" ) addFile(file.name, downloadUrl);
+            if(type === "licensePlate") {
+                setLicensePlate({ ...licensePlate, 
+                    name: file.name,
+                    url: downloadUrl
+                })
+            }
             onSuccess(null, upload);
+            return upload;
         } catch (e) {
             onError(e);
         }
@@ -129,6 +163,53 @@ const Contact = () => {
             <Container
                 className="contact-form__container"
             >
+                <Row
+                    style={{
+                        textAlign: 'center'
+                    }}
+                >
+                    <Col>                  
+                        <a 
+                            href='tel:954-639-7331'
+                            style={{
+                                color: 'white',
+                                textDecoration: 'none'
+                            }}
+                        >
+                        Phone: <span style={{
+                                textDecoration: 'underline'
+                            }}>954-639-7331</span>
+                        </a>
+                    </Col>
+                </Row>
+
+                <Row
+                style={{
+                    textAlign: 'center',
+                    paddingTop: '1rem'
+                }}
+                >
+                    <Col>
+                        <a
+                            href="https://www.google.com/maps/dir/26.0236326,-80.1540117/Platemakrs/@26.0182082,-80.1555151,16z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x88d9ab310c7e770b:0xa17dbd0dd84738ad!2m2!1d-80.1471788!2d26.0126495?hl=en"
+                            style={{
+                                color: 'white',
+                                textDecoration: 'none'
+                            }}
+                        >
+                            Address: 
+                            <span style={{
+                                textDecoration: 'underline'
+                            }}>
+                            <br></br>
+                            2001 Tyler St, 
+                            <br></br>Suite #7
+                            <br></br>Hollywood, FL 33020
+                            </span>
+                        </a>
+                    </Col>
+                </Row>
+
                 <Row
                     className="contact-form__row-title"
                 >
@@ -503,14 +584,11 @@ const Contact = () => {
                                     required
                                     label="Upload License Plate Picture"
                                     name="licensePlateUpload"
-                                    rules={[{ type: 'array', min: 1, message: 'Please upload at least one file!' }]}
+                                    rules={[{ required: true, message: 'Please upload at least one file!' }]}
                                 >
-                                    <span className="contact-form__license-container-info">
-                                        Example: Image of your license plate
-                                    </span>
                                     <Upload
                                         name="licensePlateUpload"
-                                        customRequest={customUpload}
+                                        customRequest={(e) => customUpload('licensePlate', e)}
                                         maxCount={1}
                                     >
                                         <Button icon={<UploadOutlined />}>Click to Upload</Button>
@@ -522,23 +600,26 @@ const Contact = () => {
                             >
                                 <Item
                                     required
-                                    rules={[{ min: 1, message: 'Please upload at least one file!' }]}
+                                    rules={[{ required: true, message: 'Please upload at least one file!' }]}
                                     label="Detail Uploads"
                                     name="licensePlateUpload"
                                 >
-                                    <span className="contact-form__summary-info">
-                                        Example: Image of your logo, or design examples
-                                    </span>
                                     <Upload
                                         name="licensePlateUpload"
                                         listType="picture"
                                         className="upload-list-inline"
-                                        customRequest={customUpload}
+                                        customRequest={(e) => customUpload('details', e)}
                                         maxCount={5}
                                     >
                                         <Button icon={<UploadOutlined />}>Upload</Button>
                                     </Upload>
                                 </Item>
+
+                            {/* <Group>
+                                <Item>
+                                    <Checkbox />
+                                </Item>
+                            </Group> */}
 
                             </Group>
                             <FormGroup>
@@ -558,5 +639,15 @@ const Contact = () => {
         </>
     )
 }
+
+// export const getServerSideProps: GetServerSideProps = async (ctx) => {
+//     const query = ctx.query;
+//     console.log(query);
+//     return{
+//         props: {
+//             ref: 'test'
+//         }   
+//     }
+// }
 
 export default Contact;
