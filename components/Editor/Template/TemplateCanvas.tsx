@@ -241,7 +241,7 @@ const TemplateCanvas = (
                                     {
                                         currentLicensePlate?.plateNumber ? 
                                             currentLicensePlate?.plateNumber : 
-                                                currentCustomTemplate?.startPlateText ? currentCustomTemplate.startPlateText : initialLicensePlate
+                                                currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate
                                     }
                                 </a>
                             </div>

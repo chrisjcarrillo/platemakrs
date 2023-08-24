@@ -1,3 +1,3 @@
 export interface checkout {
-    webUrl: string
+    webUrl?: string
 }

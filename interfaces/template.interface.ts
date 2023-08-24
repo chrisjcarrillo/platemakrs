@@ -26,6 +26,7 @@ export interface ITemplate{
     thumbnail?: string;
 
     finish?: 'MATTE' | 'GLOSS'; // Finish Type
+    template?: ITemplate; // Inital Template
     font?: ICustomFont; // Font
 
     // Design Settings

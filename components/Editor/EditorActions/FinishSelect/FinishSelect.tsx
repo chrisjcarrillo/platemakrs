@@ -20,7 +20,7 @@ export const FinishSelect = (
             )
             updateCustomTemplateSelection?.(
                 'selectedVariant',
-                currentCustomTemplate.shopifyVariants[1]
+                currentCustomTemplate?.shopifyVariants?.[1] ?? ''
             )
         }
         if(e.target.value === "GLOSS"){
@@ -29,7 +29,7 @@ export const FinishSelect = (
             )
             updateCustomTemplateSelection?.(
                 'selectedVariant',
-                currentCustomTemplate.shopifyVariants[0]
+                currentCustomTemplate?.shopifyVariants?.[0] ?? ''
             )
         }
     };

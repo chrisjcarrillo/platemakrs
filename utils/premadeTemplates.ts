@@ -5675,7 +5675,7 @@ export const premadeTemplates = [
         mainLogo: {
             enabled: true,
             name: "mercedes.svg",
-            url: '../../images/logos/brands/cars/rolls-royce/rr-orange-shadow.svg',
+            url: '../../images/resources/cars/rolls-royce/logo/rr/rr-orange-shadow.svg',
             leftCoordinates: {
                 x: 30,
                 y: 32

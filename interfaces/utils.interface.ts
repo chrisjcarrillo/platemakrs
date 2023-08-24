@@ -35,7 +35,7 @@ export interface IBackgroundSettings{
 
 export interface IFadeSettings {
     enabled?: boolean
-    fadeStyle: 'left-regular' | 'left-circle' | 'right-regular' | 'right-circle' | 'center-circle' | 'center-circle-wide' | 'center-circle-inverted' | 'top-bottom' | 'bottom-top'
+    fadeStyle?: 'left-regular' | 'left-circle' | 'right-regular' | 'right-circle' | 'center-circle' | 'center-circle-wide' | 'center-circle-inverted' | 'top-bottom' | 'bottom-top'
     fadeColor1?: string
     fadeColor2?: string
 }

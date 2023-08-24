@@ -23,7 +23,7 @@ export const PresetColorSelect = (
     const updateColor = (type: any, value: any) => {
         if (type === "backgroundLogo") {
             updateCustomTemplateSelection?.('backgroundLogo', {
-                ...currentCustomTemplate.backgroundLogo,
+                ...currentCustomTemplate?.backgroundLogo,
                 url: `${currentCustomTemplate?.backgroundLogo?.filePath}/${value}.png`,
             })
         }

@@ -114,10 +114,10 @@ export const BackgroundLogo = (props: ILogo) => {
         }
         if (type === "CANVAS") {
             if (sizeType === "width") {
-                return currentCustomTemplate?.backgroundLogo?.width
+                return currentCustomTemplate?.backgroundLogo?.width! as number
             }
             if (sizeType === "height")
-                return currentCustomTemplate?.backgroundLogo?.height
+                return currentCustomTemplate?.backgroundLogo?.height as number
         }
     }
 
@@ -147,7 +147,6 @@ export const BackgroundLogo = (props: ILogo) => {
                         y={
                             calculateInitialPosition('y')
                         }
-                        dragBoundFunc={(e) => console.info('drag:', e)}
                     />
                     {type === "CANVAS" && moveBackgroundLogo &&
                         <Transformer

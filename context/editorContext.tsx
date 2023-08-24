@@ -61,7 +61,8 @@ export type EditorContextType = {
     selectPresetTemplate?: (handle: string, variantId: string) => void;
 
     // Custom Template
-    createCustomTemplate?: () => void;
+    createCustomTemplate?: (         templateId: string,
+        variant?: any) => void;
     updateCustomTemplateSelection?: (type: any, value: any) => void;
 }
 
@@ -111,7 +112,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 template => template?.templateId === templateId
             );
 
-            const customTemplate = templateFilter[0] as ICustomPlateTemplate;
+            const customTemplate = templateFilter[0] as unknown as ICustomPlateTemplate;
 
             const uploadToFirebase = await createTemplateFirebase(
                  customTemplate
@@ -133,7 +134,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 setCurrentCustomTemplate(template => ({
                     ...template,
                     ...customTemplate,
-                    id: createCustomTemplate?.id,
+                    id: uploadToFirebase?.id,
                     shopifyVariants: variant
                 }))
             }
@@ -227,7 +228,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             // TODO
             // - [DONE] Add logic if it’s a preset to save in sessionStorage on select 
             const templateFilter = premadeTemplates.filter(
-                template => template.shopifyHandle === handle
+                template => template?.shopifyHandle === handle
             );
 
             const customTemplate = templateFilter[0] as ICustomPlateTemplate;
@@ -289,13 +290,13 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 if(createCustomTemplate) {
                     sessionStorage.setItem(
                         'customTemplateId', 
-                        createCustomTemplate.id
+                        createCustomTemplate?.id
                     ); // Save the id in case of reload
         
                     setCurrentCustomTemplate(template => ({
                         ...template,
                         ...currentCustomTemplate,
-                        id: createCustomTemplate.id
+                        id: createCustomTemplate?.id
                     }))
                 }
             }

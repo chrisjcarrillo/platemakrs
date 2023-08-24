@@ -101,10 +101,10 @@ export const BottomLogo = (props: ILogo) => {
         }
         if (type === "CANVAS") {
             if (sizeType === "width") {
-                return currentCustomTemplate?.bottomLogo?.width
+                return currentCustomTemplate?.bottomLogo?.width! as number
             }
             if (sizeType === "height")
-                return currentCustomTemplate?.bottomLogo?.height
+                return currentCustomTemplate?.bottomLogo?.height! as number
         }
     }
 
@@ -149,7 +149,6 @@ export const BottomLogo = (props: ILogo) => {
                             shadowOpacity={1}
                             shadowOffsetX={0}
                             shadowOffsetY={0}
-                            dragBoundFunc={(e) => console.info('drag:', e)}
                         />
                         <Image
                             ref={imageRef}
@@ -175,7 +174,6 @@ export const BottomLogo = (props: ILogo) => {
                             shadowOpacity={1}
                             shadowOffsetX={0}
                             shadowOffsetY={0}
-                            dragBoundFunc={(e) => console.info('drag:', e)}
                         />
                         <Image
                             ref={imageRef}
@@ -201,7 +199,6 @@ export const BottomLogo = (props: ILogo) => {
                             shadowOpacity={1}
                             shadowOffsetX={0}
                             shadowOffsetY={0}
-                            dragBoundFunc={(e) => console.info('drag:', e)}
                         />
                     </Group>
 

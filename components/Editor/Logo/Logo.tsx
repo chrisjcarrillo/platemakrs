@@ -128,10 +128,10 @@ export const Logo = (props: ILogo) => {
         }
         if(type === "CANVAS"){
             if(sizeType === "width"){
-                return currentCustomTemplate?.mainLogo?.width
+                return currentCustomTemplate?.mainLogo?.width! as number
             }
             if(sizeType === "height")
-                return currentCustomTemplate?.mainLogo?.height
+                return currentCustomTemplate?.mainLogo?.height! as number
         }
     }
 
@@ -174,8 +174,8 @@ export const Logo = (props: ILogo) => {
                                 key={1}
                                 ref={imageRef}
                                 image={image}
-                                width={setSize?.('width')}
-                                height={setSize?.('height')}
+                                width={setSize?.('width') ?? 100}
+                                height={setSize?.('height') ?? 100}
                                 x={
                                     calculateInitialPosition('x')
                                 }
@@ -192,14 +192,13 @@ export const Logo = (props: ILogo) => {
                                 shadowOpacity={1}
                                 shadowOffsetX={0}
                                 shadowOffsetY={0}
-                                dragBoundFunc={(e) => console.info('drag:', e)}
                             />
                         <Image
                                 key={2}
                                 ref={imageRef}
                                 image={image}
-                                width={setSize?.('width')}
-                                height={setSize?.('height')}
+                                width={setSize?.('width') ?? 100}
+                                height={setSize?.('height') ?? 100}
                                 x={
                                     calculateInitialPosition('x')
                                 }
@@ -216,7 +215,6 @@ export const Logo = (props: ILogo) => {
                                 shadowOpacity={1}
                                 shadowOffsetX={0}
                                 shadowOffsetY={0}
-                                dragBoundFunc={(e) => console.info('drag:', e)}
                             />
                         <Image
                                 key={3}
@@ -240,7 +238,6 @@ export const Logo = (props: ILogo) => {
                                 shadowOpacity={1}
                                 shadowOffsetX={0}
                                 shadowOffsetY={0}
-                                dragBoundFunc={(e) => console.info('drag:', e)}
                             />
                         <Image
                                 key={4}
@@ -264,7 +261,6 @@ export const Logo = (props: ILogo) => {
                                 shadowOpacity={1}
                                 shadowOffsetX={0}
                                 shadowOffsetY={0}
-                                dragBoundFunc={(e) => console.info('drag:', e)}
                             />
                             <Image
                                 key={5}

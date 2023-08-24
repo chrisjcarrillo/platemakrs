@@ -210,7 +210,7 @@ export const EditorContainer = (
                         <h1
                             className={`editorContainer__order-price`}
                         >
-                            ${(parseInt(currentCustomTemplate?.selectedVariant?.price?.amount).toFixed(2))}
+                            ${(parseInt(currentCustomTemplate?.selectedVariant?.price?.amount ? currentCustomTemplate?.selectedVariant?.price?.amount : 10).toFixed(2))}
                         </h1>
                     </Col>
                     <Col
@@ -219,7 +219,7 @@ export const EditorContainer = (
                     >
                         <Button
                             className={`editorContainer__order-button g-2`}
-                            onClick={() => redirectCheckout?.(currentCustomTemplate)}
+                            onClick={() => redirectCheckout?.()}
                         >
                             Place Order
                         </Button>
