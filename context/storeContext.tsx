@@ -27,7 +27,7 @@ export type StoreContextType = {
     ) => void;
 
     // Checkout
-    redirectCheckout: () => void;
+    redirectCheckout: (currentCustomTemplate: ICustomPlateTemplate) => void;
 }
 
 export const client = Client.buildClient({
@@ -63,9 +63,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         setCheckout(checkout)
     }
 
-    const redirectCheckout = (
-        currentCustomTemplate: ICustomPlateTemplate
-    ) => {
+    const redirectCheckout = () => {
         const queryParams = new URLSearchParams(window.location.search);
         if(queryParams.get("preset") && sessionStorage.getItem('preset') && currentCustomTemplate){
             addVariant(

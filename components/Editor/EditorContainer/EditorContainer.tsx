@@ -219,7 +219,7 @@ export const EditorContainer = (
                     >
                         <Button
                             className={`editorContainer__order-button g-2`}
-                            onClick={() => redirectCheckout?.()}
+                            onClick={() => redirectCheckout?.(currentCustomTemplate)}
                         >
                             Place Order
                         </Button>

@@ -42,9 +42,7 @@ export const Decision = () => {
                         <a 
                             className="decision__actions-checkout-btn"
                             onClick={
-                                () => redirectCheckout(
-                                    currentCustomTemplate
-                                )
+                                () => redirectCheckout(currentCustomTemplate)
                             }
                         >Checkout</a>
                     </div>

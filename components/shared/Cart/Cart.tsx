@@ -4,6 +4,7 @@ import { StoreContext, StoreContextType } from "../../../context/storeContext"
 import { InterfaceContext, InterfaceContextType } from '../../../context/interfaceContext';
 import Image from 'next/image';
 import { returnMoney } from '../../../utils/helpers';
+import { EditorContext, EditorContextType } from '../../../context/editorContext';
 
 export const Cart = () => {
     // [Done] Import Cart Object
@@ -19,6 +20,10 @@ export const Cart = () => {
         removeVariant,
         redirectCheckout,
     } = useContext(StoreContext) as StoreContextType;
+
+    const {
+        currentCustomTemplate
+    } = useContext(EditorContext) as EditorContextType;
 
     const { Header, Body } = Offcanvas;
 
@@ -58,8 +63,8 @@ export const Cart = () => {
                                 </div>
                                 <div className='cart__product-attributes'>
                                     {/* Should Contain Title */}
-                                    <p className="cart__product-attributes-title">{item?.title.replace(' - Template', '')}</p>
-                                    { item.customAttributes?.length > 0 && (item.customAttributes?.map((attribute, index) => {
+                                    <p className="cart__product-attributes-title">{item?.title?.replace(' - Template', '')}</p>
+                                    { item?.customAttributes?.length > 0 && (item.customAttributes?.map((attribute, index) => {
                                         return(
                                             <p className="cart__product-attributes-text" key={index}>{attribute?.key}: {attribute?.value}</p>
                                         )
@@ -91,7 +96,7 @@ export const Cart = () => {
                     <div className='cart__checkout-button-container'>
                         <a 
                             className='cart__checkout-button'
-                            onClick={() => redirectCheckout()}
+                            onClick={() => redirectCheckout(currentCustomTemplate)}
                         >
                             Checkout
                         </a>
