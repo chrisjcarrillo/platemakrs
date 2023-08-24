@@ -12,7 +12,7 @@ type HeroBannerProps = {
 }
 
 const HeroBanner = (
-    {mainText, backgroundUrl, buttonText, buttonLink}: HeroBannerProps
+    { mainText, backgroundUrl, buttonText, buttonLink }: HeroBannerProps
 ) => {
 
     return(
@@ -37,8 +37,15 @@ const HeroBanner = (
                     <div
                         className='hero__container-button'
                     >
-                        <Link className="hero__button main__cta" href={buttonLink}>
-                            {buttonText}
+                        <Link                     style={{
+                        marginRight: '0.5rem'
+                }} className="hero__button main__cta" href='/editor'>
+                        Build your plate
+                        </Link>
+                        <Link                     style={{
+                            marginLeft: '0.5rem'
+                    }} className="hero__button main__cta" href='/products'>
+                        Pre-Made Designs
                         </Link>
                     </div>
 

@@ -1,0 +1,105 @@
+.decision{
+    &__main-container{
+        height: auto !important;
+    }
+    &__container{
+        background-color: #000000;
+        border-radius: 20px;
+        border-top: 2px solid #ffffff !important;
+        height: auto !important;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+    &__actions{
+        overflow-y: auto;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        height: 100%;
+        padding: 2.5rem 0;
+        &-divider{
+            padding: 0.65rem;
+            &-text{
+                text-align: center;
+                color: #ffffff;
+                margin-bottom: 0;
+            }
+        }
+        &-checkout{
+            display: flex;
+            flex: 1 1;
+            width: 100%;
+            &-btn{
+                width: 85%;
+                text-decoration: none;
+                color: #000000;
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;       
+                border-radius: 1rem;
+                padding: 0.5rem;
+                border: 1px solid #000000;
+                font-weight: 600;
+                font-size: 1.25rem;
+                background-color: #FFD800;
+            }
+        }
+        &-customize{
+            display: flex;
+            flex: 1 1;
+            width: 100%;
+            &-btn{
+                width: 85%;
+                text-decoration: none;
+                color: #ffffff;
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;       
+                border-radius: 1rem;
+                padding: 0.5rem;
+                border: 1px solid #ffffff;
+                font-weight: 600;
+                font-size: 1.25rem;
+                background-color: #000000;
+            }
+        }
+    }
+    &__details{
+        width: 100%;
+        display: flex;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        border-top: 1px solid #ffffff;
+        &-text{
+            p{
+                margin-bottom: 0;
+            }
+            color:#ffffff !important;
+            flex: 1 1;
+            padding-left: 1rem;
+            width: 50%;
+        }
+        &-price{
+            p{
+                margin-bottom: 0;
+            }
+            color:#ffffff !important;
+            text-align: right;
+            padding-right: 1rem;
+            flex: 1 1;
+            width: 50%;
+        }
+    }
+}
+
+.zIndexHigh{
+    z-index: 1500 !important;
+}
+
+.offcanvas-backdrop.show {
+    opacity: 0.9 !important;
+}

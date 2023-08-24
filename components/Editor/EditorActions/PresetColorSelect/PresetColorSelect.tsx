@@ -1,0 +1,188 @@
+import { Button, ColorPicker } from 'antd';
+import type { Color } from 'antd/es/color-picker';
+import { useContext } from 'react';
+import { EditorContext, EditorContextType } from '../../../../context/editorContext';
+
+
+export const PresetColorSelect = (
+    props: {
+        type?: string,
+        title?: string,
+    }
+) => {
+    const { type, title } = props;
+    const { currentCustomTemplate, updateCustomTemplateSelection } = useContext(EditorContext) as EditorContextType;
+    // const [colorHex, setColorHex] = useState<Color | string>('#1677ff');
+
+
+    // const updateColor = (Color: Color) => {
+    //     setColorHex(Color)
+
+    // }
+
+    const updateColor = (type: any, value: any) => {
+        if (type === "backgroundLogo") {
+            updateCustomTemplateSelection?.('backgroundLogo', {
+                ...currentCustomTemplate.backgroundLogo,
+                url: `${currentCustomTemplate?.backgroundLogo?.filePath}/${value}.png`,
+            })
+        }
+        if (type === "backgroundSetting") {
+
+            updateCustomTemplateSelection?.('backgroundSettings', {
+                ...currentCustomTemplate?.backgroundSettings,
+                background: {
+                    ...currentCustomTemplate?.backgroundSettings?.background,
+                    file: {                 
+                        ...currentCustomTemplate?.backgroundSettings?.background?.file,
+                        url: `${currentCustomTemplate?.backgroundSettings?.background?.file?.filePath}/${value}.png`,
+                    },
+                },
+            })
+        }
+
+    }
+
+    return (
+        <div className={`presetColorSelect`}>
+            {
+                title !== "" &&
+                <div className={`presetColorSelect__title`}>
+                    <p className={`presetColorSelect__text`}>Select {title} Color</p>
+                </div>
+            }
+            <div className={`presetColorSelect__left`}>
+                <Button
+                    onClick={() => updateColor(type, 'black')}
+                    size="small"
+                    className={`presetColorSelect__preset`}
+                    style={{
+                        backgroundColor: '#000000',
+                        border: '1px solid #ffffff'
+                    }}
+                    shape="circle"
+                >
+                    {/* Black */}
+                </Button>
+                <Button
+                    onClick={() => updateColor(type, 'white')}
+                    size="small"
+                    className={`presetColorSelect__preset`}
+                    style={{
+                        backgroundColor: '#ffffff',
+                        border: '1px solid #000000'
+                    }}
+                    shape="circle"
+                />
+                <Button
+                    onClick={() => updateColor(type, 'red')}
+                    size="small"
+                    className={`presetColorSelect__preset`}
+                    style={{
+                        backgroundColor: '#FF0000',
+                        border: '1px solid #000000'
+                    }}
+                    shape="circle"
+                >
+                    {/* Red */}
+                </Button>
+                <Button
+                    onClick={() => updateColor(type, 'gray')}
+                    size="small"
+                    className={`presetColorSelect__preset`}
+                    style={{
+                        backgroundColor: '#AAA9AD',
+                        border: '1px solid #000000'
+                    }}
+                    shape="circle"
+                >
+                    {/* Gray */}
+                </Button>
+                <Button
+                    onClick={() => updateColor(type, 'dark-blue')}
+                    size="small"
+                    className={`presetColorSelect__preset`}
+                    style={{
+                        backgroundColor: '#0045FF',
+                        border: '1px solid #000000'
+                    }}
+                    shape="circle"
+                >
+                    {/* Blue */}
+                </Button>
+                <Button
+                    onClick={() => updateColor(type, 'orange')}
+                    size="small"
+                    className={`presetColorSelect__preset`}
+                    style={{
+                        backgroundColor: '#FF6C00',
+                        border: '1px solid #000000'
+                    }}
+                    shape="circle"
+                >
+                    {/* Orange */}
+                </Button>
+                <Button
+                    onClick={() => updateColor(type, 'yellow')}
+                    size="small"
+                    className={`presetColorSelect__preset`}
+                    style={{
+                        backgroundColor: '#FFFF00',
+                        border: '1px solid #000000'
+                    }}
+                    shape="circle"
+                >
+                    {/* Yellow */}
+                </Button>
+                <Button
+                    onClick={() => updateColor(type, 'light-blue')}
+                    size="small"
+                    className={`presetColorSelect__preset`}
+                    style={{
+                        backgroundColor: '#0090ff',
+                        border: '1px solid #000000'
+                    }}
+                    shape="circle"
+                >
+                    {/* Yellow */}
+                </Button>
+                <Button
+                    onClick={() => updateColor(type, 'green')}
+                    size="small"
+                    className={`presetColorSelect__preset`}
+                    style={{
+                        backgroundColor: '#2ac700',
+                        border: '1px solid #000000'
+                    }}
+                    shape="circle"
+                >
+                    {/* Yellow */}
+                </Button>
+                <Button
+                    onClick={() => updateColor(type, 'purple')}
+                    size="small"
+                    className={`presetColorSelect__preset`}
+                    style={{
+                        backgroundColor: '#8400e0',
+                        border: '1px solid #000000'
+                    }}
+                    shape="circle"
+                >
+                    {/* Yellow */}
+                </Button>
+                <Button
+                    onClick={() => updateColor(type, 'pink')}
+                    size="small"
+                    className={`presetColorSelect__preset`}
+                    style={{
+                        backgroundColor: '#fd00f4',
+                        border: '1px solid #000000'
+                    }}
+                    shape="circle"
+                >
+                    {/* Yellow */}
+                </Button>
+            </div>
+        </div>
+    )
+}

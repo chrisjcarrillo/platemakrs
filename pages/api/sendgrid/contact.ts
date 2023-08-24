@@ -5,33 +5,26 @@ sendgrid.setApiKey('SG.rHfJ-GUJT7eOQbuVeqCKFg.XvyErNPa4NVwYq9rnJQRfLMl5di6Tk8cg_
 
 async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
 	try {
-		await sendgrid.send({
-			to: req.body.toEmails, // Your email where you'll receive emails
+		// 
+		const message = {
 			from: `info@platemakrs.com`, // your website email address here
-			subject: `License Plate Inquiry`,
-			html: `
-        Hey Admin!
-        <br>
-		<br>
-        Below is the contact form information from the website.
-        <br>
-		<br>
-        FIRST NAME: ${req.body.firstName}
-        <br>
-		<br>
-        LAST NAME: ${req.body.lastName}
-        <br>
-		<br>
-        EMAIL ADDRESS: ${req.body.email}
-        <br>
-		<br>
-        PHONE NUMBER: <a href='tel:${req.body.phoneNumber}'>${req.body.phoneNumber}</a>
-        <br>
-		<br>
-        Summary: ${req.body.message}
-        <br>
-      `,
-		});
+			templateId: 'd-d43719eb35424f24824f2011e443b35c ',
+			personalizations: [{
+				to: req.body.toEmails,
+				subject: `License Plate Inquiry: ${req.body.firstName} ${req.body.lastName}`,
+				dynamic_template_data: {
+					"firstName": req.body.firstName,
+					"lastName": req.body.lastName,
+					"email": req.body.email,
+					"phoneNumber": req.body.phone,
+					"stateCode": req.body.state,
+					"summary": req.body.message,
+					"licensePlate": req.body.licensePlate,
+					"attachments": req.body.attachments
+				},
+			}],
+		}
+		await sendgrid.send(message);
         return res.status(200).json({ success: "ok" });
 	} catch (error: any) {
 		// console.log(error);

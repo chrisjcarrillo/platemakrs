@@ -1,0 +1,52 @@
+.ant-modal-mask{
+    background-color: rgba(0, 0, 0, 95%) !important;
+}
+.previewModal{
+    .ant-modal-header{
+        background-color: #000000;
+    }
+    .ant-modal-title{
+        text-align: center;
+        color: #ffffff;
+    }
+    .ant-modal-close{
+        color: #ffffff;
+    }
+    .ant-modal-body{
+        .container{
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            background-color: #000000 !important;
+            .canvas__state-container{
+                padding-top: 0.5rem;
+            }
+            .canvas__bottomText-space {
+                height: 2.5vh;
+            }
+        }
+    }
+    .ant-modal-content{
+        border: 1px solid #ffffff;
+        background-color: #000000;
+        padding: 20px 0px;
+    }
+    .ant-modal-footer{
+        padding: 0 1rem;
+        text-align: center;
+    }
+    &__container{
+        padding: 0 1rem;
+    }
+    &__name{
+        color: #ffffff;
+        margin-top: 10px;
+        font-size: 1.25rem;
+        font-weight: 800;
+    }
+    &__description{
+        color: #ffffff;
+        font-size: 0.85rem;
+    }
+}

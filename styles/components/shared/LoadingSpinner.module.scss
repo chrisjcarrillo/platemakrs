@@ -1,0 +1,16 @@
+.ant-spin-nested-loading{
+    opacity: 1;
+}
+.ant-spin-nested-loading .ant-spin-container{
+    &::after{
+        // background-color: #000000a3  !important;
+        background: #000000a3 !important;
+    }
+}
+.ant-spin{
+    top: 0;
+    bottom: 0 !important;
+    background-color: #000000a3  !important;
+    max-height: unset !important;
+    // z-index: 0 !important;
+}

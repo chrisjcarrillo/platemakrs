@@ -16,18 +16,82 @@
 @import './components/shared/PlatesComparison.module.scss';
 @import './components/shared/MainSlider.module.scss';
 @import './components/shared/Footer.module.scss';
+@import './components/Contact.module.scss';
+@import './components/shared/Search.module.scss';
+
+// Plate Editor Components
+//// Background Select
+@import './components/editor/EditorActions/BackgroundSelect.module.scss';
+//// Brightness Slider
+@import './components/editor/EditorActions/BrightnessSlider.module.scss';
+//// Canvas
+@import './components/editor/Canvas.module.scss';
+@import './components/editor/PreviewCanvas.module.scss';
+//// Decision
+@import './components/editor/Decision.module.scss';
+// Editor Container
+@import './components/editor/EditorContainer.module.scss';
+// Editor Actions
+@import './components/editor/EditorActions/EditorActionCard.module.scss';
+// Color Select
+@import './components/editor/EditorActions/ColorSelect.module.scss';
+// Finish Select
+@import './components/editor/EditorActions/FinishSelect.module.scss';
+// Gradient Select
+@import './components/editor/EditorActions/GradientSelect.module.scss';
+// Pattern Repeat
+@import './components/editor/EditorActions/PatternRepeatSelect.module.scss';
+// Preset Color Select
+@import './components/editor/EditorActions/PresetColorSelect.module.scss';
+// Position Select
+@import './components/editor/EditorActions/PositionSelect.module.scss';
+// Preview Modal
+@import './components/editor/EditorActions/PreviewModal.module.scss';
+// Switcher
+@import './components/editor/EditorActions/Switcher.module.scss';
+// Uploader
+@import './components/editor/EditorActions/Uploader.module.scss';
+
+/// Form Styles
+@import './components/editor/Form.module.scss';
+/// Template Preview
+@import './components/editor/TemplatePreview.module.scss';
+
+/// Utils
+@import './components/editor/Action.module.scss';
+@import './components/editor/Background.module.scss';
+@import './components/editor/EditorHeader.module.scss';
+@import './components/editor/Logo.module.scss';
+@import './components/editor/Utils.module.scss';
 
 // Page
 @import './components/Contact.module.scss';
+@import './components/shared/LoadingSpinner.module.scss';
+
+// Shared
+@import './components/shared/Cart.module.scss';
 
 html, body {
     background-color: #000000;
     padding: 0;
     margin: 0;
     font-family: 'Poppins', sans-serif !important;
+    height: 100%;
 }
 * {
   box-sizing: border-box;
+}
+.app{
+  &__container{
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 100%;
+    top: 0;
+    right: 0;
+  }
 }
 .container, .container-md, .container-fluid {
 
@@ -43,5 +107,25 @@ html, body {
   @media screen and (max-width: 990px) {
     padding-right: unset; 
     padding-left: unset; 
+  }
+}
+input {
+  font-size: 16px !important;
+}
+input:focus {
+  font-size: 16px !important;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  select,
+  textarea,
+  input {
+    font-size: 16px !important;
+  }
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  select:focus,
+  textarea:focus,
+  input:focus {
+    font-size: 16px !important;
   }
 }

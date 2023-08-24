@@ -1,0 +1,104 @@
+.cart{
+    &__drawer{
+        @media screen and (max-width: 768px) {
+            width: 100% !important;
+        }
+        // z-index: 1020;
+    }
+    &__header{
+        border-bottom: 1px solid #000000;
+    }
+    &__container{
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+    &__products{
+        z-index: 1;
+        padding-bottom: 10px;
+        overflow-y: auto;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        height: 100%;
+    }
+    &__product{
+        flex: 100% 1 1;
+        display: flex;
+        flex-direction: row;
+        flex-flow: nowrap;
+        padding: 1rem 0;
+        border-bottom: 1px solid #000000;
+        &:last-child{
+            border-bottom: unset;
+        }
+        &-image{
+            flex: 1 1 1;
+            object-fit: contain;
+            position: relative;
+        }
+        &-attributes{
+            width: 50%;
+            flex: 1 1 1;
+            margin-left: 0.5rem;
+            &-title{
+                margin-bottom: 0;
+                font-size: 0.95rem;
+                font-weight: 400;
+            }
+            &-text{
+                margin-bottom: 0;
+                font-size: 0.65rem;
+                font-weight: 400;
+            }
+            &-remove{
+                font-size: 0.85rem;
+                color: #000000;
+                // text-decoration: none;
+                font-style: italic;
+            }
+        }
+    }
+    &__checkout{
+        width: 100%;
+        flex-direction: column;
+        display: flex;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        border-top: 1px solid #000000;
+        &-button{
+            &-container{
+                flex: 1 1;
+                display: flex;
+                width: 100%;
+            }     
+            width: 100%;
+            margin-top: 2rem;
+            text-decoration: none;
+            color: #000000;
+            text-align: center;       
+            border-radius: 1rem;
+            padding: 1rem;
+            border: 1px solid #000000;
+            font-weight: 600;
+            font-size: 1.25rem;
+            background-color: #FFD800;
+        }
+        &-price{
+            display: flex;
+            width: 100%;
+            &-text{
+                flex: 1 1;
+                width: 50%;
+            }
+            &-amount{
+                text-align: right;
+                flex: 1 1;
+                width: 50%;
+            }
+        }
+    }
+}

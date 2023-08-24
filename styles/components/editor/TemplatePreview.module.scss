@@ -1,0 +1,105 @@
+.templatePreview{
+    &__container{
+        // padding-top: 3rem;
+        padding-left: 6rem;
+        padding-right: 6rem;
+        @media screen and (max-width: 495px) {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+    }
+    &__row{
+        @media screen and (max-width: 495px) {
+            --bs-gutter-y: 1rem;
+        }
+        
+
+    }
+    &__image{
+        box-shadow: 0 0 5px 0px #ececec;
+        border-radius: 8px;
+    }
+    &__image{
+        position: relative;
+    }
+    &__column{
+        border-bottom: 1px solid #ffffff;
+        // border-left: 1px solid #ffffff;
+        // border
+        // position: relative;
+        // transform: scale(0.85);
+        // @media screen and (max-width: 495px) {
+        //     transform: scale(1);
+        // }
+        // padding-top: 1rem;
+    }
+    &__title{
+        &-container{
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            text-align: center;
+        }
+        &-text{
+            color: #ffffff;
+            @media screen and (max-width: 495px) {
+                font-size: 0.85rem;
+            }
+        }
+        &-action{
+            color: #0093FF;
+        }
+        &-divider{
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            &-text{
+                font-weight: 900;
+                color: #ffffff;
+                @media screen and (max-width: 495px) {
+                    font-size: 0.95rem;
+                }
+            }  
+        }
+        &-select{
+            &-text{
+                font-weight: 600;
+                color: #ffffff;
+                @media screen and (max-width: 495px) {
+                    font-size: 0.95rem;
+                }
+            }  
+        }
+    }
+    &__details{
+        padding-top: 0.5rem;
+    }
+    &__name{
+        color: #ffffff;
+        font-weight: 200;
+        @media screen and (max-width: 495px) {
+            font-size: 0.85rem;
+            margin-bottom: 0.25rem;
+        }
+        // padding-left: 4rem;
+    }
+    &__from{
+        color: #ffffff;
+        @media screen and (max-width: 495px) {
+            font-size: calc((0.85rem) - 5px);
+            margin-right: 5px;
+        }
+        // padding-left: 4rem;
+    }
+    &__price{
+        color: #ffffff;
+        @media screen and (max-width: 495px) {
+            font-size: calc((0.85rem) + 2px);
+        }
+        // padding-left: 4rem;
+    }
+    &--active{
+        .previewCanvas__main-inner-container{
+            box-shadow: 0 0 5px 0px #00ff29;
+            border: 1px solid #00ff29;
+        }
+    }
+}

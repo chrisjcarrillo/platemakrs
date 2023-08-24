@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image Patterns</title>
+    <style>
+      canvas {
+        border: 1px solid #000;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="1000" height="400"></canvas>
+
+    <script>
+      // Get the canvas element
+      const canvas = document.getElementById("myCanvas");
+      const context = canvas.getContext("2d");
+
+      // Define the pattern image
+      const img = new Image();
+      img.src = "/public/images/platemakrs-gold.png";
+
+      // Wait for the image to load
+      img.onload = function () {
+        // Create a pattern from the image
+        const pattern = context.createPattern(img, "repeat");
+
+        // Set the fill style to the pattern
+        context.fillStyle = pattern;
+
+        // Draw a rectangle with the pattern
+        context.fillRect(0, 0, canvas.width, canvas.height);
+      };
+    </script>
+  </body>
+</html>

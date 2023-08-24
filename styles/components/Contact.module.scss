@@ -81,11 +81,12 @@
 }
 .ant-form-item-label{
     padding: 0 !important;
+    text-align: center !important;
     label{
         height: auto !important;
     }
 }
-label{
+label:not(.ant-radio-button-wrapper){
     display: block !important;
     color: white !important;
     font-weight: 500 !important;
@@ -123,5 +124,13 @@ textarea.ant-input{
 }
 .ant-select-selection-placeholder {
   color: #ffffff !important;
+}
+.ant-input-affix-wrapper{
+    background-color: black !important;
+    color: white !important;
+    border: 2px solid white !important;
+}
+.ant-input{
+    color: white !important;
 }
 

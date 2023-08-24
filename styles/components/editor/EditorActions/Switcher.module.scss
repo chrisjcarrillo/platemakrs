@@ -1,0 +1,25 @@
+.switcher{
+    display: flex;
+    flex-flow: row wrap;
+    &__text{
+        font-size: 0.85rem;
+        margin-bottom: 5px;
+        color: #ffffff;
+    }
+    &__left{
+        flex: 1 1 70%;
+    }
+    &__right{
+        flex: 1 1 30%;
+        text-align: right;
+        .ant-switch-checked{
+            background-color: #50bf00;
+        }
+        .ant-switch:not(.ant-switch-checked){
+            background-color: #A2A2A2;
+        }
+        .ant-switch .ant-switch-checked{
+            background-color: #A2A2A2;
+        }
+    }
+}

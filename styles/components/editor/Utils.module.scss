@@ -1,0 +1,21 @@
+.editor{
+    &__title{
+        padding: 1rem;
+        text-align: center;
+        @media screen and (max-width: 495px) {
+            padding: 0.5rem;
+            &-text{
+                font-size: 0.85rem;
+            }
+        }
+        &-text{
+            color: #ffffff;
+        }
+    }
+}
+
+.ant-tooltip{
+    color: #fff;
+    background-color: #000000;
+    box-shadow: 0 0 10px 0px #ececec;
+}

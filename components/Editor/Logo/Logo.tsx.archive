@@ -1,0 +1,10 @@
+        // console.log(y) 
+                    // console.log(canvasReference?.current?.clientHeight - 10)
+            // newY = canvasReference?.current?.clientHeight - 165;
+            // newY = canvasReference?.current?.clientHeight - 165;
+        // if(y < -(canvasReference?.current?.clientHeight) + 25)  
+        //     // y = -(canvasReference?.current?.clientHeight - 45);
+                    // newX = canvasReference?.current?.clientWidth - 85; 
+        //     // x = canvasReference?.current?.clientWidth - 145;
+        // if(x < -(canvasReference?.current?.clientWidth) + 265)
+            // x = -(canvasReference?.current?.clientWidth) + 265
