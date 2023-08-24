@@ -1,9 +1,9 @@
 import type { FormInstance } from 'antd';
 import { useContext, useRef, useState, useEffect } from 'react';
 
-import Col from 'react-bootstrap/col';
-import Container from 'react-bootstrap/container';
-import Row from 'react-bootstrap/row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 import { EditorContext } from '../../../../../context/editorContext';
 
 import {

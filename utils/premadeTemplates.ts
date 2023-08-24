@@ -449,17 +449,15 @@ export const premadeTemplates = [
         startPlatePosition: 'right',
         startPlateText: 'SAMPL',
         fadeSettings: { enabled: false },
-        patternSettings: {
-            enabled: false
-        },
+        patternSettings: { enabled: false },
+        backgroundLogo: { enabled: false },
         bottomLogo: {
             enabled: false
         },
-        backgroundLogo: { enabled: false },
         mainLogo: {
             enabled: true,
             name: "mercedes.svg",
-            url: '../../images/logos/brands/sports/dolphins/dolphins-1.svg',
+            url: '../../images/resources/sports/football/dolphins/logos/dolphins-1.svg',
             leftCoordinates: {
                 x: 10,
                 y: 32
@@ -671,6 +669,9 @@ export const premadeTemplates = [
             enabled: false
         },
         bottomLogo: {
+            enabled: false
+        },
+        backgroundLogo: {
             enabled: false
         },
 
@@ -1074,6 +1075,9 @@ export const premadeTemplates = [
         preset: true,
         startPlatePosition: 'center',
         startPlateText: 'SAM PLE',
+        backgroundLogo: {
+            enabled: false
+        },
         backgroundSettings: {
             color: '#000000',
             background: {
