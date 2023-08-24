@@ -390,8 +390,8 @@ export const premadeTemplates = [
                 enabled: true,
                 file:{
                     name: 'green-hexagons.png',
-                    filePath: '../../images/resources/backgrounds/hexagon/option-1',
-                    url: '../../images/resources/backgrounds/hexagon/option-1/green.png',
+                    filePath: '/images/resources/backgrounds/hexagon/option-1',
+                    url: '/images/resources/backgrounds/hexagon/option-1/green.png',
                 },
                 stroke: {
                     enabled: true,
@@ -480,8 +480,8 @@ export const premadeTemplates = [
                 enabled: true,
                 file:{
                     name: 'green-hexagons.png',
-                    filePath: '../../images/resources/backgrounds/hexagon/option-2',
-                    url: '../../images/resources/backgrounds/hexagon/option-2/dark-blue.png',
+                    filePath: '/images/resources/backgrounds/hexagon/option-2',
+                    url: '/images/resources/backgrounds/hexagon/option-2/dark-blue.png',
                 },
                 stroke: {
                     enabled: false,
@@ -590,7 +590,7 @@ export const premadeTemplates = [
                 enabled: true,
                 file:{
                     name: 'green-hexagons.png',
-                    url: '../../images/bg/carbon-fiber/carbon-fiber-full-with-shadow.png',
+                    url: '/images/bg/carbon-fiber/carbon-fiber-full-with-shadow.png',
                 },
             },
             stroke: {
@@ -1209,7 +1209,7 @@ export const premadeTemplates = [
                 enabled: true,
                 file: {
                     name: 'fade',
-                    url: '../../images/bg/carbon-fiber-fade-up.png'
+                    url: '/images/bg/carbon-fiber-fade-up.png'
                 }
             },
             stroke: {
@@ -1358,7 +1358,7 @@ export const premadeTemplates = [
                 enabled: true,
                 file: {
                     name: 'fade',
-                    url: '../../images/bg/hexagons/hexagon-fade-1.png'
+                    url: '/images/bg/hexagons/hexagon-fade-1.png'
                 }
             },
             stroke: {
@@ -1982,8 +1982,8 @@ export const premadeTemplates = [
             hasPresetColors: false,
             enabled: true,
             name: 'gray.png',
-            filePath: '../../images/resources/cars/bmw/patterns/m/option-1',
-            url: '../../images/resources/cars/bmw/patterns/m/option-1/1.png',
+            filePath: '/images/resources/cars/bmw/patterns/m/option-1',
+            url: '/images/resources/cars/bmw/patterns/m/option-1/1.png',
             leftCoordinates: {
                 x: 2,
                 y: 0
@@ -2572,7 +2572,7 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file: {
-                    url: '../../images/bg/hexagon.svg',
+                    url: '/images/bg/hexagon.svg',
                     color: '#000000'
                 },
                 stroke: { enabled: true, color: "#000000"}
@@ -2664,7 +2664,7 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file: {
-                    url: '../../images/bg/hexagon.svg',
+                    url: '/images/bg/hexagon.svg',
                     color: '#ffffff'
                 },
                 stroke: { enabled: false, color: "#000000"}
@@ -2965,8 +2965,8 @@ export const premadeTemplates = [
                 enabled: true,
                 file:{
                     name: 'green-hexagons.png',
-                    filePath: '../../images/resources/cars/lamborghini/patterns/option-1',
-                    url: '../../images/resources/cars/lamborghini/patterns/option-1/red.png',
+                    filePath: '/images/resources/cars/lamborghini/patterns/option-1',
+                    url: '/images/resources/cars/lamborghini/patterns/option-1/red.png',
                 },
             },
             stroke: {
@@ -3819,7 +3819,7 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file: {
-                    url: '../../images/bg/hexagon.svg',
+                    url: '/images/bg/hexagon.svg',
                     color: '#000000'
                 },
             },
@@ -3900,7 +3900,7 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file: {
-                    url: '../../images/bg/forged-carbon/option-1.png',
+                    url: '/images/bg/forged-carbon/option-1.png',
                     color: '#000000'
                 }
             },
@@ -4099,7 +4099,7 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file: {
-                    url: '../../images/logos/flags/italian-flag-background.png',
+                    url: '/images/logos/flags/italian-flag-background.png',
                     color: '#000000'
                 }
             },
@@ -4350,7 +4350,7 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file: {
-                    url: '../../images/bg/carbon-fiber-fade-up.png',
+                    url: '/images/bg/carbon-fiber-fade-up.png',
                     color: '#000000'
                 }
             },
@@ -4441,7 +4441,7 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file: {
-                    url: '../../images/resources/cars/mercedes/backgrounds/option-1/mercedes-bg.png',
+                    url: '/images/resources/cars/mercedes/backgrounds/option-1/mercedes-bg.png',
                     color: '#000000'
                 }
             },
@@ -4573,7 +4573,7 @@ export const premadeTemplates = [
         mainLogo: {
             enabled: true,
             name: "mercedes.svg",
-            url: '../../images/resources/cars/porsche/logos/logo.png',
+            url: '/images/resources/cars/porsche/logos/logo.png',
             leftCoordinates: {
                 x: 15,
                 y: 50
@@ -4909,7 +4909,7 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file: {
-                    url: '../../images/bg/hexagon.svg',
+                    url: '/images/bg/hexagon.svg',
                     color: '#ffffff'
                 },
             },
@@ -4971,7 +4971,7 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file: {
-                    url: '../../images/bg/forged-carbon/option-2.png',
+                    url: '/images/bg/forged-carbon/option-2.png',
                 },
             },
             stroke: { enabled: false }
@@ -5073,7 +5073,7 @@ export const premadeTemplates = [
                 enabled: true,
                 file:{
                     name: 'green-hexagons.png',
-                    url: '../../images/bg/carbon-fiber/carbon-fiber-full-with-shadow.png',
+                    url: '/images/bg/carbon-fiber/carbon-fiber-full-with-shadow.png',
                 },
             },
             stroke: {
@@ -5170,7 +5170,7 @@ export const premadeTemplates = [
                 enabled: true,
                 file:{
                     name: 'green-hexagons.png',
-                    url: '../../images/bg/carbon-fiber-fade-up.png',
+                    url: '/images/bg/carbon-fiber-fade-up.png',
                 },
             },
             stroke: {
@@ -5361,7 +5361,7 @@ export const premadeTemplates = [
                 enabled: true,
                 file:{
                     name: 'green-hexagons.png',
-                    url: '../../images/bg/carbon-fiber-fade-up.png',
+                    url: '/images/bg/carbon-fiber-fade-up.png',
                 },
             },
             stroke: {
@@ -5440,8 +5440,8 @@ export const premadeTemplates = [
             hasPresetColors: true,
             enabled: true,
             name: 'gray.png',
-            filePath: '../../images/resources/cars/ford/patterns/gt500/option-2',
-            url: '../../images/resources/cars/ford/patterns/gt500/option-2/gray.png',
+            filePath: '/images/resources/cars/ford/patterns/gt500/option-2',
+            url: '/images/resources/cars/ford/patterns/gt500/option-2/gray.png',
             leftCoordinates: {
                 x: 10,
                 y: 5
@@ -5547,7 +5547,7 @@ export const premadeTemplates = [
                 enabled: true,
                 file:{
                     name: 'green-hexagons.png',
-                    url: '../../images/bg/carbon-fiber.png',
+                    url: '/images/bg/carbon-fiber.png',
                 },
             },
             stroke: {
@@ -5633,7 +5633,7 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file: {
-                    url: '../../images/logos/brands/cars/lamborghini/lamborghini-hexagon.png',
+                    url: '/images/logos/brands/cars/lamborghini/lamborghini-hexagon.png',
                     color: '#ffffff'
                 },
             },
@@ -5789,7 +5789,7 @@ export const premadeTemplates = [
                 enabled: true,
                 file:{
                     name: 'green-hexagons.png',
-                    url: '../../images/logos/misc/red-line.png',
+                    url: '/images/logos/misc/red-line.png',
                 },
             },
             stroke: {
@@ -5967,7 +5967,7 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file: {
-                    url: '../../images/resources/backgrounds/hexagon/option-5/red.png',
+                    url: '/images/resources/backgrounds/hexagon/option-5/red.png',
                 },
             },
         },
@@ -6050,7 +6050,7 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file: {
-                    url: '../../images/resources/cars/dodge/patterns/option-1/gray.png',
+                    url: '/images/resources/cars/dodge/patterns/option-1/gray.png',
                 },
             },
         },
@@ -6131,7 +6131,7 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file: {
-                    url: '../../images/bg/carbon-fiber-fade-up.png',
+                    url: '/images/bg/carbon-fiber-fade-up.png',
                     color: '#000000'
                 },
             },

@@ -4,9 +4,9 @@ import { ICustomPlateTemplate } from "../../../interfaces/customTemplate.interfa
 import * as ReactDOMServer from 'react-dom/server';
 import { Pattern } from "../Pattern/Pattern";
 import { Gradient } from "../Gradient/Gradient";
-import { Stage, Layer, Image, Transformer, Rect } from 'react-konva';
 import { Pinstripe } from "../Pinstripe/Pinstripe";
 import { BackgroundLogo } from "../BackgroundLogo/BackgroundLogo";
+import Image from 'next/image';
 
 
 export const Background = (
@@ -77,20 +77,33 @@ export const Background = (
             }
             {
                 template?.backgroundSettings?.background?.enabled &&
-                    <div className="background__image"
+                    <Image 
+                        className="background__image"
+                        fill
+                        alt=""
+                        src={customTemplate === undefined ? template?.backgroundSettings?.background?.file?.url :
+                            customTemplate?.backgroundSettings?.background?.file?.url}
                         style={
-                            customTemplate?.backgroundSettings?.background?.file?.name === "hexagon.svg" ? {
-                                backgroundImage: `url('data:image/svg+xml,${svgString}')`,
-                                backgroundSize: 'contain'
-                            } : {
-                            backgroundImage: `url('${
-                                customTemplate === undefined ? template?.backgroundSettings?.background?.file?.url :
-                                customTemplate?.backgroundSettings?.background?.file?.url
-                            }')`,
-                            backgroundSize: 'cover'
-                            // backgroundImage: "url('../../../../public/images/bg/carbon-fiber-fade-up.png')"
-                        }}
+                            {
+                                objectFit: 'cover',
+                                objectPosition: 'center'
+                            }
+                        }
                     />
+                    // <div className="background__image"
+                    //     style={
+                    //         customTemplate?.backgroundSettings?.background?.file?.name === "hexagon.svg" ? {
+                    //             backgroundImage: `url('data:image/svg+xml,${svgString}')`,
+                    //             backgroundSize: 'contain'
+                    //         } : {
+                    //         backgroundImage: `url('${
+                    //             customTemplate === undefined ? template?.backgroundSettings?.background?.file?.url :
+                    //             customTemplate?.backgroundSettings?.background?.file?.url
+                    //         }')`,
+                    //         backgroundSize: 'cover'
+                    //         // backgroundImage: "url('../../../../public/images/bg/carbon-fiber-fade-up.png')"
+                    //     }}
+                    // />
             }
             {/* {
                 template?.patternSettings?.enabled &&
