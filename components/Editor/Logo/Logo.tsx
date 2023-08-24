@@ -239,7 +239,7 @@ export const Logo = (props: ILogo) => {
                                 shadowOffsetX={0}
                                 shadowOffsetY={0}
                             />
-                        {/* <Image
+                        <Image
                                 key={4}
                                 ref={imageRef}
                                 image={image}
@@ -284,7 +284,7 @@ export const Logo = (props: ILogo) => {
                                 shadowOpacity={1}
                                 shadowOffsetX={0}
                                 shadowOffsetY={0}
-                            /> */}
+                            />
                         </Group>
                         { type === "CANVAS" && moveLogo &&
                             <Transformer
