@@ -29,9 +29,10 @@ export default function Document() {
                         fbq('track', 'PageView');`,
                     }}
                 />
-                <noscript><img height="1" width="1" style={{ display: "none" }}
+                {/* <noscript>
+                    <img height="1" width="1" style={{ display: "none" }}
                     src="https://www.facebook.com/tr?id=1221673915381910&ev=PageView&noscript=1"
-                /></noscript>
+                /></noscript> */}
                 <Main />
                 <NextScript />
             </body>
