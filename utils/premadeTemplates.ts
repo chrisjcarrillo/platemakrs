@@ -5416,26 +5416,46 @@ export const premadeTemplates = [
         patternSettings: { enabled: false },
         fadeSettings: { enabled: false },
         bottomLogo: { enabled: false },
-
         mainLogo: {
             enabled: true,
             name: "mercedes.svg",
-            url: '../../images/resources/cars/ford/logos/cobra/cobra-logo.svg',
+            url: '../../images/resources/cars/ford/logos/cobra/cobra-silver.png',
             leftCoordinates: {
                 x: 30,
-                y: 50
+                y: 60
             },
             centerCoordinates: {
-                x: 135,
-                y: 50
+                x: 145,
+                y: 45
             },
             rightCoordinates: {
                 x: 250,
-                y: 50
+                y: 60
             },
             width: 55,
-            height: 65,
+            height: 85,
             glow:{ enabled: true, color: '#ffffff' }
+        },
+        backgroundLogo:{
+            hasPresetColors: true,
+            enabled: true,
+            name: 'gray.png',
+            filePath: '../../images/resources/cars/ford/patterns/gt500/option-2',
+            url: '../../images/resources/cars/ford/patterns/gt500/option-2/gray.png',
+            leftCoordinates: {
+                x: 10,
+                y: 5
+            },
+            centerCoordinates: {
+                x: 265,
+                y: 5
+            },
+            rightCoordinates: {
+                x: 265,
+                y: 5
+            },
+            width: 75,
+            height: 150,
         },
 
         backgroundSettings: {
@@ -5447,10 +5467,9 @@ export const premadeTemplates = [
                     url: '../../images/bg/carbon-fiber-fade-up.png',
                 },
             },
-            stroke: {
-                enabled: false
-            }
+            stroke: { enabled: false }
         },
+
         state:{
             color: '#ffffff',
             glow: {
@@ -5459,9 +5478,7 @@ export const premadeTemplates = [
             shadow: {
                 enabled: true
             },
-            stroke: {
-                enabled: false,
-            },
+            stroke: { enabled: false }
         },
         plateNumber: {
             color: '#ffffff',
@@ -5471,9 +5488,7 @@ export const premadeTemplates = [
             shadow: {
                 enabled: true,
             },
-            stroke: {
-                enabled: false,
-            },
+            stroke: { enabled: false }
         },
         bottomText: {
             color: '#ffffff',
@@ -5481,13 +5496,12 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: false
+                enabled: true
             },
-            stroke: {
-                enabled: false
-            },
+            stroke: { enabled: false }
         }
-    }, //Shelby #1  - [Done], Resizing Pattern
+    }, //Shelby #1  - [Done]
+
 
     {
         shopifyHandle: 'lamborghini-9-template',
@@ -5903,9 +5917,9 @@ export const premadeTemplates = [
     {
         templateId: '65',
         shopifyHandle: 'corvette-2-template',
-        startPlatePosition: 'center',
-        startPlateText: 'SAM PLE',
-
+        startPlatePosition: 'right',
+        startPlateText: 'SAMPL',
+        preset: true,
         patternSettings: { enabled: false },
         fadeSettings: { enabled: false },
         backgroundLogo: { enabled: false },
@@ -5930,13 +5944,13 @@ export const premadeTemplates = [
             height: 100,
             glow: {
                 enabled: true,
-                color: '#000000'
+                color: '#ffffff'
             }
         },
         bottomLogo: {
             enabled: true,
             name: "mercedes.svg",
-            url: '../../images/logos/brands/cars/corvette/text-white.svg',
+            url: '../../images/logos/brands/cars/corvette/text-red.svg',
             centerCoordinates: {
                 x: 106,
                 y: 10
@@ -5953,13 +5967,12 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file: {
-                    url: '../../images/bg/hexagon.svg',
-                    color: '#000000'
+                    url: '../../images/resources/backgrounds/hexagon/option-5/red.png',
                 },
             },
         },
         state:{
-            color: '#cbcbcb',
+            color: '#ff0000',
             glow: {
                 enabled: false
             },
@@ -5972,7 +5985,7 @@ export const premadeTemplates = [
             },
         },
         plateNumber: {
-            color: '#cbcbcb',
+            color: '#ffffff',
             glow: {
                 enabled: false
             },
@@ -5981,11 +5994,11 @@ export const premadeTemplates = [
             },
             stroke: {
                 enabled: true,
-                color: 'red'
+                color: '#ff0000'
             },
         },
         bottomText: {
-            color: '#cbcbcb',
+            color: '#ff0000',
             glow: {
                 enabled: false
             },
@@ -5998,6 +6011,86 @@ export const premadeTemplates = [
             },
         }
     }, //Corvette #1  - [Done]
+
+    {
+        templateId: '66',
+        shopifyHandle: 'dodge-ram-1-template',
+        startPlatePosition: 'center',
+        startPlateText: 'SAM PLE',
+        preset: true,
+        patternSettings: { enabled: false },
+        fadeSettings: { enabled: false },
+        backgroundLogo: { enabled: false },
+        bottomLogo: { enabled: false },
+        mainLogo: {
+            enabled: true,
+            name: "mercedes.svg",
+            url: '../../images/resources/cars/dodge/logos/ram/1.png',
+            leftCoordinates: {
+                x: 30,
+                y: 55
+            },
+            centerCoordinates: {
+                x: 142,
+                y: 55
+            },
+            rightCoordinates: {
+                x: 245,
+                y: 55
+            },
+            width: 60,
+            height: 60,
+            glow: {
+                enabled: true,
+                color: '#000000'
+            }
+        },
+        backgroundSettings: {
+            color: '#000000',
+            background: {
+                enabled: true,
+                file: {
+                    url: '../../images/resources/cars/dodge/patterns/option-1/gray.png',
+                },
+            },
+        },
+        state:{
+            color: '#a0a0a0',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: true
+            },
+            stroke: {
+                enabled: false,
+            },
+        },
+        plateNumber: {
+            color: '#a0a0a0',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: true
+            },
+            stroke: {
+                enabled: false,
+            },
+        },
+        bottomText: {
+            color: '#a0a0a0',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: true
+            },
+            stroke: {
+                enabled: false,
+            },
+        }
+    }, //Ram #1  - [Done]
 
     {
         templateId: '67',
