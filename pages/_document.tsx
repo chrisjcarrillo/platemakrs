@@ -15,6 +15,7 @@ export default function Document() {
             </Head>
             <body>
                 <Script
+                    id="img"
                     strategy="afterInteractive"
                     dangerouslySetInnerHTML={{
                         __html: `!function(f,b,e,v,n,t,s)
