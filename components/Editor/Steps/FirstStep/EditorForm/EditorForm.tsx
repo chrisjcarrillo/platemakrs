@@ -23,8 +23,6 @@ import {
 } from '../../../../../utils/helpers';
 import { EditorContextType } from '../../../../../context/editorContext';
 import { Action } from '../../../Action/Action';
-
-import { QuestionCircleOutlined } from '@ant-design/icons';
 import { InterfaceContext, InterfaceContextType } from '../../../../../context/interfaceContext';
 
 // ToDo

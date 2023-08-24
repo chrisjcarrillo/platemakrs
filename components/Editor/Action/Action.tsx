@@ -23,7 +23,9 @@ export const Action = (
             htmlType="submit"
             icon={ 
                 disabled ? 
-                    null : <CheckCircleTwoTone twoToneColor="#52c41a" /> 
+                    null : <CheckCircleTwoTone
+                        rev={''} 
+                    twoToneColor="#52c41a" /> 
             }
             loading={loading}
             onClick={action}

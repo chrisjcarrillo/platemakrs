@@ -104,7 +104,7 @@ const TemplateCanvas = (
                                     disabled={currentEditorStep?.currentStep === 1 && !isPreset ? true : false}
                                     className='header__tools-left-back-button'
                                     shape="circle"
-                                    icon={<ArrowLeftOutlined />}
+                                    icon={<ArrowLeftOutlined rev={''}  />}
                                     onClick={() =>
                                         stepDecision('BACK')
                                     }
@@ -126,7 +126,7 @@ const TemplateCanvas = (
                                             || currentEditorStep?.currentStep === 2 && currentTemplate === undefined ? true : false}
                                     className="header__tools-right-forward-button"
                                     shape="circle"
-                                    icon={<ArrowRightOutlined />}
+                                    icon={<ArrowRightOutlined rev={''}  />}
                                     onClick={() => stepDecision('NEXT')}
                                 />
                             </div>
@@ -293,7 +293,7 @@ const TemplateCanvas = (
                                         canvasReference={canvasRef}
                                         type="CANVAS"
                                         logoType="BOTTOM"
-                                    />) : null
+                                    /> ): null
                                 
                             }
                             {/* END Bottom Logo*/}

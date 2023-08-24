@@ -134,7 +134,7 @@ export const Uploader = (
                         onRemove={(e) => removeUpload(e)}
                         listType="picture"
                     >
-                        <Button icon={<UploadOutlined />}>Upload</Button>
+                        <Button icon={<UploadOutlined rev={''} />}>Upload</Button>
                     </Upload>
                 </div>
             )}

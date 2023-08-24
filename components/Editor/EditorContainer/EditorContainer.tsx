@@ -83,7 +83,7 @@ export const EditorContainer = (
                             size='small'
                             className='header__tools-left-back-button'
                             shape="circle"
-                            icon={<ArrowLeftOutlined />}
+                            icon={<ArrowLeftOutlined rev={''} />}
                             onClick={() => updateStep?.(3, "")}
                         //     updateStep?.( 
                         //         currentEditorStep?.currentStep === 1 ? 1 : 
@@ -117,8 +117,6 @@ export const EditorContainer = (
                     <EditorActionContainer
                         licensePlate={currentLicensePlate}
                         step={currentEditorStep}
-                        template={currentTemplate}
-                        customTemplate={currentCustomTemplate}
                     />
                 }
                 {!currentEditorStep?.currentSubStep &&
@@ -221,7 +219,7 @@ export const EditorContainer = (
                     >
                         <Button
                             className={`editorContainer__order-button g-2`}
-                            onClick={() => redirectCheckout(currentCustomTemplate)}
+                            onClick={() => redirectCheckout?.(currentCustomTemplate)}
                         >
                             Place Order
                         </Button>

@@ -591,7 +591,7 @@ const Contact = () => {
                                         customRequest={(e) => customUpload('licensePlate', e)}
                                         maxCount={1}
                                     >
-                                        <Button icon={<UploadOutlined />}>Click to Upload</Button>
+                                        <Button icon={<UploadOutlined rev={''}  />}>Click to Upload</Button>
                                     </Upload>
                                 </Item>
                             </Group>
@@ -611,7 +611,7 @@ const Contact = () => {
                                         customRequest={(e) => customUpload('details', e)}
                                         maxCount={5}
                                     >
-                                        <Button icon={<UploadOutlined />}>Upload</Button>
+                                        <Button icon={<UploadOutlined rev={''}  />}>Upload</Button>
                                     </Upload>
                                 </Item>
 

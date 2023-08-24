@@ -392,7 +392,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         ) {
             Modal.confirm({
                 centered: true,
-                icon: <WarningOutlined />,
+                icon: <WarningOutlined rev={''}  />,
                 title: 'Are you sure you want to go back?',
                 content: 'You will lose your current Design',
                 okText: 'Confirm',
@@ -412,7 +412,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         ){
             Modal.confirm({
                 centered: true,
-                icon: <WarningOutlined />,
+                icon: <WarningOutlined  rev={''} />,
                 title: 'Are you sure you want to go back?',
                 content: 'You will lose your current Design',
                 okText: 'Confirm',
