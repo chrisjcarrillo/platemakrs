@@ -81,8 +81,15 @@ export const Background = (
                         className="background__image"
                         fill
                         alt=""
-                        src={customTemplate === undefined ? template?.backgroundSettings?.background?.file?.url :
-                            customTemplate?.backgroundSettings?.background?.file?.url}
+                        quality={100}
+                        sizes="100vw"
+                        // src={customTemplate === undefined ? template?.backgroundSettings?.background?.file?.url :
+                        //     customTemplate?.backgroundSettings?.background?.file?.url}
+                        src={
+                            customTemplate?.backgroundSettings?.background?.file?.name === "hexagon.svg" ? 
+                            `data:image/svg+xml,${svgString}`: customTemplate === undefined ? template?.backgroundSettings?.background?.file?.url :
+                             customTemplate?.backgroundSettings?.background?.file?.url
+                        }
                         style={
                             {
                                 objectFit: 'cover',

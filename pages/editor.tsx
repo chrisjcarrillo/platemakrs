@@ -13,16 +13,19 @@ import { LoadingSpinner } from '../components/shared/LoadingSpinner/LoadingSpinn
 import { Cart } from '../components/shared/Cart/Cart';
 import { Decision } from '../components/Editor/Decision/Decision';
 import { GetStaticProps } from "next";
-import { client } from '../context/storeContext';
+import { StoreContext, StoreContextType, client } from '../context/storeContext';
 import { Container } from 'react-bootstrap';
+import { EditorPresetContainer } from '../components/Editor/EditorPresetContainer/EditorPresetContainer';
+import { InterfaceContext, InterfaceContextType } from '../context/interfaceContext';
+import { PlaceOrder } from '../components/Editor/BottomButton/PlaceOrder';
 
 
 const MainHead = () => {
-	return(
-		<Head>
-            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-		</Head>
-	)
+    return (
+        <Head>
+            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        </Head>
+    )
 }
 export default function Editor(props: any) {
     const {
@@ -34,19 +37,24 @@ export default function Editor(props: any) {
         currentEditorStep,
     } = useContext(EditorContext) as EditorContextType;
 
+    const {
+        isPreset
+    } = useContext(InterfaceContext) as InterfaceContextType;
+
     return (
         <>
             <LoadingSpinner>
+                <Decision />
+                <Cart />
+                <MainHead />
+                <PreviewModal
+                    product={props?.product}
+                />
+                <EditorHeader
+                />
+                <TemplateCanvas />
                 <Container fluid className="app__container">
-                    <Decision />
-                    <Cart />
-                    <MainHead />
-                    <PreviewModal 
-                        product={props?.product}
-                    />
-                    <EditorHeader
-                    />
-                    <TemplateCanvas />
+
                     {currentEditorStep?.currentStep === 1 &&
                         <EditorForm />
                     }
@@ -55,10 +63,14 @@ export default function Editor(props: any) {
                             product={props?.product}
                         />
                     }
-                    {currentEditorStep?.currentStep === 3 &&
-                        <EditorContainer />
+                    {
+                        currentEditorStep?.currentStep === 3 && isPreset && <EditorPresetContainer />
                     }
+                    {currentEditorStep?.currentStep === 3 && !isPreset &&
+                        <EditorContainer />
+                    }           
                 </Container>
+                {currentEditorStep?.currentStep === 3 && isPreset && <PlaceOrder />}
             </LoadingSpinner>
         </>
     )
@@ -67,7 +79,7 @@ export default function Editor(props: any) {
 export const getStaticProps: GetStaticProps = async (context) => {
     // This is the first page
     const currentProduct = await client.product.fetchByHandle('custom-plate');
-    return{
+    return {
         props: {
             product: JSON.parse(JSON.stringify(currentProduct))
         }

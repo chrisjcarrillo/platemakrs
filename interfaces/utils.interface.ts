@@ -77,7 +77,6 @@ export interface IStroke{
 ///////// END: Design Utils /////////
 
 ///////// START: Utils /////////
-
 export interface ICustomFont {
     enabled?: boolean;
     fontColor?: string;

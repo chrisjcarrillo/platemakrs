@@ -51,7 +51,7 @@ export default function Editor(props: any) {
                             <Search
                                 className='pm__search-bar'
                                 placeholder="Type to search"
-                                allowClear={{ clearIcon: <CloseSquareFilled color='white' /> }}
+                                allowClear={{ clearIcon: <CloseSquareFilled rev={''} color='white' /> }}
                                 onSearch={
                                     (e) => onSearch(e)
                                 }

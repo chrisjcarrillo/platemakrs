@@ -363,7 +363,7 @@ export const premadeTemplates = [
         },
         mainLogo: {
             enabled: true,
-            url: '/images/resources/cars/ford/logos/mustang/logo-3d.svg',
+            url: '/images/resources/cars/ford/logos/mustang/logo-3d.png',
             leftCoordinates: {
                 x: 26,
                 y: 65
@@ -457,7 +457,7 @@ export const premadeTemplates = [
         mainLogo: {
             enabled: true,
             name: "mercedes.svg",
-            url: '/images/resources/sports/football/dolphins/logos/dolphins-1.svg',
+            url: '/images/resources/sports/football/dolphins/logos/dolphins-1.png',
             leftCoordinates: {
                 x: 10,
                 y: 32
@@ -3779,7 +3779,7 @@ export const premadeTemplates = [
         mainLogo: {
             enabled: true,
             name: "mercedes.svg",
-            url: '/images/logos/brands/cars/corvette/logo.svg',
+            url: '/images/resources/cars/corvette/logos/1.png',
             leftCoordinates: {
                 x: 26,
                 y: 32
@@ -5519,7 +5519,7 @@ export const premadeTemplates = [
         mainLogo: {
             enabled: true,
             name: "mercedes.svg",
-            url: '/images/resources/cars/lamborghini/logos/crest/crest.svg',
+            url: '/images/resources/cars/lamborghini/logos/crest/crest.png',
             leftCoordinates: {
                 x: 40,
                 y: 50
@@ -5927,7 +5927,7 @@ export const premadeTemplates = [
         mainLogo: {
             enabled: true,
             name: "mercedes.svg",
-            url: '/images/logos/brands/cars/corvette/logo.svg',
+            url: '/images/resources/cars/corvette/logo/logo.png',
             leftCoordinates: {
                 x: 26,
                 y: 32
@@ -6103,7 +6103,7 @@ export const premadeTemplates = [
         mainLogo: {
             enabled: true,
             name: "mercedes.svg",
-            url: '/images/logos/brands/cars/corvette/logo.svg',
+            url: '/images/resources/cars/corvette/logo/logo.png',
             leftCoordinates: {
                 x: 26,
                 y: 32

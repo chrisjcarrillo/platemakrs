@@ -53,7 +53,13 @@ export const Decision = () => {
                         <a 
                             className="decision__actions-customize-btn"
                             onClick={
-                                () => updateStep?.(3)
+                                () => updateStep?.(
+                                    3, 
+                                    'presetBgColor',
+                                    'Select Color',
+                                    false,
+                                    'Background'
+                                )
                             }
                         >Customize Template</a>
                     </div>

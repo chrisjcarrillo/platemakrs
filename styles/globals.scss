@@ -83,14 +83,14 @@ html, body {
 }
 .app{
   &__container{
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    height: 100%;
-    top: 0;
-    right: 0;
+    // display: flex;
+    // -webkit-box-orient: vertical;
+    // -webkit-box-direction: normal;
+    // -ms-flex-direction: column;
+    // flex-direction: column;
+    // height: 100%;
+    // top: 0;
+    // right: 0;
   }
 }
 .container, .container-md, .container-fluid {

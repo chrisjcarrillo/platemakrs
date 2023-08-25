@@ -6,6 +6,8 @@ import { EditorContext } from '../../../context/editorContext';
 import { EditorContextType } from '../../../context/editorContext';
 import { useContext } from 'react';
 import Image from 'next/image';
+import { ProductSkeleton } from '../../shared/ProductSkeleton/ProductSkeleton';
+import { ICustomPlateTemplate } from '../../../interfaces/customTemplate.interface';
 
 export const TemplateList = (props: any) => {
 
@@ -37,7 +39,7 @@ export const TemplateList = (props: any) => {
                 className={`templatePreview__row g-4`}
             >
                 {/* <CustomHits {...props} /> */}
-                {(props?.products?.map((template, index) => {
+                {(props?.products?.map((template: any, index: number) => {
                     return (
                         <Col
                             {...columnSettings}
@@ -49,7 +51,6 @@ export const TemplateList = (props: any) => {
                                     // `gid://shopify/ProductVariant/${template?.objectID}`
                                 )
                             }
-                            key={index}
                         >
                             <div className="templatePreivew__card">
                                 <div className="templatePreview__image">

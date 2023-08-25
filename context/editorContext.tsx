@@ -53,7 +53,13 @@ export type EditorContextType = {
     createPresetLicensePlate?: () => void;
 
     // Step Functions
-    updateStep?: (step: number, subStep?: string, description?: string, showWarning?: boolean) => void;
+    updateStep?: (
+        step: number, 
+        subStep?: string, 
+        description?: string, 
+        showWarning?: boolean,
+        title?: string
+    ) => void;
 
     // Template
     onSelectTemplate?: (template: ITemplate) => void;
@@ -376,7 +382,8 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         step?: number,
         subStep?: string,
         description?: string,
-        showWarning?: boolean
+        showWarning?: boolean,
+        title?: string
     ) => {
         setMoveLogo(false);
         setMovePattern(false);
@@ -435,7 +442,8 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             ...currentEditorStep,
             currentStep: step,
             currentSubStep: subStep ?? undefined,
-            currentStepDescription: description ?? undefined
+            currentStepDescription: description ?? undefined,
+            currentStepTitle: title ?? undefined,
         }))
 
         if (document) {

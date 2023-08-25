@@ -97,41 +97,45 @@ const TemplateCanvas = (
             >
                 {!popupPreview && (
                     <Row className="canvas__tools">
+
                         <Col {...actionSettings}>
-                            <div className='header__tools-left-back'>
-                                <Button
-                                    size='small'
-                                    disabled={currentEditorStep?.currentStep === 1 && !isPreset ? true : false}
-                                    className='header__tools-left-back-button'
-                                    shape="circle"
-                                    icon={<ArrowLeftOutlined rev={''}  />}
-                                    onClick={() =>
-                                        stepDecision('BACK')
-                                    }
-                                />
-                            </div>
+                            {!isPreset || isPreset && currentEditorStep?.currentStep === 1 && (
+                                <div className='header__tools-left-back'>
+                                    <Button
+                                        size='small'
+                                        disabled={currentEditorStep?.currentStep === 1 && !isPreset ? true : false}
+                                        className='header__tools-left-back-button'
+                                        shape="circle"
+                                        icon={<ArrowLeftOutlined rev={''}  />}
+                                        onClick={() =>
+                                            stepDecision('BACK')
+                                        }
+                                    />
+                                </div>
+                            )}
                         </Col>
                         <Col {...headerSettings}>
                             <div className="editor__title">
                                 <h2 className="editor__title-text">License Plate Preview </h2>
                             </div>
                         </Col>
-                        <Col {...actionSettings}>
-                            <div className="header__tools-right-forward">
-                                <Button
-                                    size='small'
-                                    disabled={
-                                        currentEditorStep?.currentStep === 1
-                                            || currentEditorStep?.currentStep === 3
-                                            || currentEditorStep?.currentStep === 2 && currentTemplate === undefined ? true : false}
-                                    className="header__tools-right-forward-button"
-                                    shape="circle"
-                                    icon={<ArrowRightOutlined rev={''}  />}
-                                    onClick={() => stepDecision('NEXT')}
-                                />
-                            </div>
+                            <Col {...actionSettings}>
+                            {!isPreset || isPreset && currentEditorStep?.currentStep === 1 && (
+                                <div className="header__tools-right-forward">
+                                    <Button
+                                        size='small'
+                                        disabled={
+                                            currentEditorStep?.currentStep === 1
+                                                || currentEditorStep?.currentStep === 3
+                                                || currentEditorStep?.currentStep === 2 && currentTemplate === undefined ? true : false}
+                                        className="header__tools-right-forward-button"
+                                        shape="circle"
+                                        icon={<ArrowRightOutlined rev={''}  />}
+                                        onClick={() => stepDecision('NEXT')}
+                                    />
+                                </div>
+                            )}
                         </Col>
-
                     </Row>
                 )}
             </Container>
