@@ -42,6 +42,7 @@ export const TemplateList = (props: any) => {
                 {(props?.products?.map((template: any, index: number) => {
                     return (
                         <Col
+                            key={index}
                             {...columnSettings}
                             className={`templatePreview__column`}
                             onClick={
