@@ -183,6 +183,21 @@ export const ColorSelect = (
             }
 
             <div className={`colorSelect__left`}>
+                {type !== 'backgroundColor' && (
+                    <Button
+                        onClick={() => updateColor(type, currentCustomTemplate?.originalColor)}
+                        size="small"
+                        className={`colorSelect__preset`}
+                        style={{
+                            backgroundColor: `${currentCustomTemplate?.originalColor}`,
+                            border: '1px solid #ffffff'
+                        }}
+                        shape="circle"
+                    >
+                        {/* Black */}
+                    </Button>
+                )}
+
                 <Button
                     onClick={() => updateColor(type, '#000000')}
                     size="small"

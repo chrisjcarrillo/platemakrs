@@ -1,76 +1,35 @@
 .logo{
     &-bg__container{
         position: absolute;
-        // left: auto;
-        // right: auto;
-        // top: auto;
-        // bottom: auto;
         align-self: center;
         z-index: 4;
     }
     &__container{
-        // &-new{
-        //     position: relative;
-        //     left: auto;
-        //     right: auto;
-        //     align-self: unset;
-        //     flex: 1 1 50%; 
-        // }
-        // position: absolute;
         position: absolute;
-        // left: auto;
-        // right: auto;
-        // top: auto;
-        // bottom: auto;
         align-self: center;
         z-index: 5;
-        // flex: 1 1 40%;
-        // flex: 1 1 auto;
-        // padding-right: 1rem;
         img{
             height: auto;
             width: 150px;
             @media screen and (max-width: 475px) {
                 max-width: 150px;
             }
-            // filter: drop-shadow(rgb(0, 0, 0) 5px 5px 5px);
             object-fit: contain;
         }
     }
-    &__position{
-        &--left{
+    &-bottom{
+        &__container{
             position: absolute;
-            right: 0;
-            left: auto;
-            margin-left: auto;
-            margin-right: auto;
             align-self: center;
-        }
-        &--right{
-            position: absolute;
-            right: auto;
-            left: 0;
-            margin-left: auto;
-            margin-right: auto;
-            align-self: center;
-        }
-        &--center{
-            position: absolute;
-            right: auto;
-            left: auto;
-            margin-left: auto;
-            margin-right: auto;
-            align-self: center;
-            // img{
-            //     @media screen and (max-width: 495px) {
-            //         max-width: 50px;
-            //     }
-            //     height: auto;
-            //     width: auto;
-            //     object-fit: contain;
-            //     -webkit-filter: drop-shadow(5px 5px 5px #666666);
-            //     filter: drop-shadow(5px 5px 5px #666666);
-            // }
+            z-index: 6;
+            img{
+                height: auto;
+                width: 150px;
+                @media screen and (max-width: 475px) {
+                    max-width: 150px;
+                }
+                object-fit: contain;
+            }
         }
     }
 }

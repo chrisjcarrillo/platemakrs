@@ -60,14 +60,13 @@ export const BottomLogo = (props: ILogo) => {
     const groupRef = useRef<any>();
 
     useEffect(() => {
-        console.log(moveBottomLogo)
         if (moveBottomLogo) {
-            transformerRef.current.nodes([imageRef.current]);
+            transformerRef.current.nodes([groupRef.current]);
         }
     }, [moveBottomLogo]);
 
     useEffect(() => {
-        transformerRef?.current?.nodes([imageRef.current]);
+        transformerRef?.current?.nodes([groupRef.current]);
         if (image) {
             imageRef?.current?.cache();
         }
@@ -107,10 +106,10 @@ export const BottomLogo = (props: ILogo) => {
     return (
         <div
             className={
-                `logo__container`
+                `logo-bottom__container`
             }
             style={moveBottomLogo ?
-                { zIndex: 100 } : {}
+                { zIndex: 10 } : {}
             }
         >
             <Stage
@@ -120,6 +119,7 @@ export const BottomLogo = (props: ILogo) => {
                 <Layer>
                     <Group
                         ref={groupRef}
+                        draggable
                     >
                         <Image
                             ref={imageRef}

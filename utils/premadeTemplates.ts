@@ -6033,6 +6033,7 @@ export const premadeTemplates = [
     }, //Lambo #10 - [Done]
 
     {
+        originalColor: '#ff9800',
         shopifyHandle: 'rolls-royce-3-template',
         templateId: '61',
         preset: true,
@@ -6047,9 +6048,9 @@ export const premadeTemplates = [
             hasColor: true,
             enabled: true,
             name: "mercedes.svg",
-            filePath: '/images/resources/cars/rolls-royce/logo/rr/colors',
+            filePath: '/images/resources/cars/rolls-royce/logo/rr/colors-orange',
             imageType: 'svg',
-            url: '/images/resources/cars/rolls-royce/logo/rr/colors/orange.svg',
+            url: '/images/resources/cars/rolls-royce/logo/rr/colors-orange/orange.svg',
             leftCoordinates: {
                 x: 30,
                 y: 32
@@ -6171,9 +6172,11 @@ export const premadeTemplates = [
                 enabled: true,
                 file:{
                     hasMainColor: true,
-                    hasColor: false,
+                    hasColor: true,
                     name: 'green-hexagons.png',
-                    url: '/images/logos/misc/red-line.png',
+                    imageType: 'png',
+                    filePath: '/images/resources/misc/line/colors',
+                    url: '/images/resources/misc/line/colors/red.png',
                 },
             },
             stroke: {
@@ -6336,15 +6339,18 @@ export const premadeTemplates = [
             }
         },
         bottomLogo: {
+            hasColor: true,
             enabled: true,
             name: "mercedes.svg",
+            imageType: 'svg',
+            filePath: '/images/resources/cars/corvette/text/colors',
             url: '/images/resources/cars/corvette/text/colors/red.svg',
             centerCoordinates: {
                 x: 104,
                 y: 8
             },
             width: 145,
-            height: 5,
+            height: 10,
             glow: {
                 enabled: true,
                 color: "#000000"
@@ -6411,6 +6417,7 @@ export const premadeTemplates = [
     }, //Corvette #1  - [Done]
 
     {
+        originalColor: '#000e48',
         templateId: '66',
         shopifyHandle: 'mustang-shelby-3-template',
         startPlatePosition: 'center',
@@ -6568,12 +6575,14 @@ export const premadeTemplates = [
         patternSettings: { enabled: false },
         fadeSettings: { enabled: false },
         bottomLogo: { enabled: false },
+        backgroundLogo: { enabled: false },
+
         mainLogo: {
             enabled: true,
             name: "mercedes.svg",
             url: '/images/resources/cars/dodge/logos/ram/1.png',
             leftCoordinates: {
-                x: 30,
+                x: 142,
                 y: 55
             },
             centerCoordinates: {
@@ -6581,7 +6590,7 @@ export const premadeTemplates = [
                 y: 55
             },
             rightCoordinates: {
-                x: 245,
+                x: 142,
                 y: 55
             },
             width: 60,
@@ -6592,33 +6601,19 @@ export const premadeTemplates = [
             }
         },
 
-        backgroundLogo:{
-            hasColor: true,
-            enabled: true,
-            name: 'white.png',
-            imageType: 'png',
-            filePath: '/images/resources/cars/dodge/patterns/option-1',
-            url: '/images/resources/cars/dodge/patterns/option-1/gray.png',
-            leftCoordinates: {
-                x: 0,
-                y: 0
-            },
-            centerCoordinates: {
-                x: 0,
-                y: 0
-            },
-            rightCoordinates: {
-                x: 0,
-                y: 0
-            },
-            width: 350,
-            height: 185,
-        },
-
         backgroundSettings: {
             color: '#000000',
             background: {
-                enabled: false,
+                enabled: true,
+                file: {
+                    hasMainColor: true,
+                    hasColor: true,
+                    enabled: true,
+                    name: 'white.png',
+                    imageType: 'png',
+                    filePath: '/images/resources/cars/dodge/patterns/option-1',
+                    url: '/images/resources/cars/dodge/patterns/option-1/gray.png',
+                }
             },
         },
         state:{

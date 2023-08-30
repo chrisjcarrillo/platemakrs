@@ -23,6 +23,7 @@ export interface ICustomPlateTemplate{
     selectedVariant?: IShopifyVariant;
 
     preset?: boolean;
+    originalColor?: string;
 
     thumbnail?: string;
 
