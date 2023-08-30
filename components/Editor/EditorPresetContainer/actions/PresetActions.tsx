@@ -66,6 +66,15 @@ export const PresetActions = (
                     />
                 )
             }
+
+            {
+                step.currentSubStep === "presetBgPinstripe" && (
+                    <ColorSelect
+                        title="Background Pinstripe"
+                        type="backgroundPinstripe"
+                    />
+                )
+            }
             {/* - Background Color*/}
             {/* - Background Color */}
 

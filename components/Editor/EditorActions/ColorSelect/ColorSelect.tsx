@@ -21,6 +21,16 @@ export const ColorSelect = (
     // }
 
     const updateColor = (type: any, value: any) => {
+        if(type === "backgroundPinstripe"){
+            updateCustomTemplateSelection?.('backgroundSettings', {
+                ...currentCustomTemplate?.backgroundSettings,
+                pinstripe:{
+                    ...currentCustomTemplate?.backgroundSettings?.pinstripe,
+                    enabled: true,
+                    color: value
+                }
+            })
+        }
         if(type === "detailLogo2"){
             updateCustomTemplateSelection?.('detailLogo2', {
                 ...currentCustomTemplate?.detailLogo2,
