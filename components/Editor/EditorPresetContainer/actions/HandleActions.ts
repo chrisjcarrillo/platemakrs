@@ -1268,6 +1268,15 @@ export const handleActions = (
                 currentCustomTemplate?.backgroundSettings?.background?.enabled &&
                 currentCustomTemplate?.backgroundSettings?.background?.file?.hasColor
             ) {
+                if( currentCustomTemplate?.backgroundSettings?.background?.file?.hasMainColor){
+                    return {
+                        step: CURRENT_STEP,
+                        subStep: steps[1],
+                        subTitle: 'Select Color',
+                        warning: false,
+                        title: 'Background'
+                    }
+                }
                 if (currentCustomTemplate?.backgroundSettings?.stroke?.enabled) {
                     return {
                         step: CURRENT_STEP,
@@ -1987,7 +1996,7 @@ export const handleActions = (
         }
 
         // Bottom Logo Move
-        if (currentEditorStep?.currentSubStep === "presetMainLogoMove") {
+        if (currentEditorStep?.currentSubStep === "presetBottomLogoMove") {
             if (currentCustomTemplate?.bottomLogo?.glow?.enabled) {
                 return {
                     step: CURRENT_STEP,

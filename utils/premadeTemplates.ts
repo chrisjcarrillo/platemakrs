@@ -403,6 +403,7 @@ export const premadeTemplates = [
                 enabled: true,
                 file:{
                     hasColor: true,
+                    hasMainColor: false,
                     name: 'green-hexagons.png',
                     imageType: 'png',
                     filePath: '/images/resources/backgrounds/hexagon/option-1',
@@ -502,6 +503,7 @@ export const premadeTemplates = [
                 enabled: true,
                 file:{
                     hasColor: true,
+                    hasMainColor: false,
                     name: 'green-hexagons.png',
                     filePath: '/images/resources/backgrounds/hexagon/option-2',
                     url: '/images/resources/backgrounds/hexagon/option-2/dark-blue.png',
@@ -636,6 +638,7 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file:{
+                    hasMainColor: false,
                     name: 'green-hexagons.png',
                     url: '/images/bg/carbon-fiber/carbon-fiber-full-with-shadow.png',
                 },
@@ -877,6 +880,7 @@ export const premadeTemplates = [
         startPlateText: 'SAM  PLE',
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
+        backgroundLogo: { enabled: false },
         mainLogo: {
             hasColor: false,
             enabled: true,
@@ -912,32 +916,19 @@ export const premadeTemplates = [
             width: 135,
             height: 15,
         },
-        backgroundLogo:{
-            hasColor: true,
-            enabled: true,
-            name: 'gray.png',
-            imageType: 'png',
-            filePath: '/images/resources/cars/mercedes/patterns/gucci-maybach/colors',
-            url: '/images/resources/cars/mercedes/patterns/gucci-maybach/colors/regular.png',
-            leftCoordinates: {
-                x: 0,
-                y: 0
-            },
-            centerCoordinates: {
-                x: 0,
-                y: 0
-            },
-            rightCoordinates: {
-                x: 0,
-                y: 0
-            },
-            width: 350,
-            height: 150,
-        },
         backgroundSettings: {
             color: '#000000',
             background: {
-                enabled: false,
+                enabled: true,
+                file: {
+                    hasMainColor: true,
+                    hasColor: true,
+                    enabled: true,
+                    name: 'gray.png',
+                    imageType: 'png',
+                    filePath: '/images/resources/cars/mercedes/patterns/gucci-maybach/colors',
+                    url: '/images/resources/cars/mercedes/patterns/gucci-maybach/colors/regular.png',
+                }
             },
             stroke: {
                 enabled: false,
@@ -1198,7 +1189,7 @@ export const premadeTemplates = [
             enabled: true,
             name: "mercedes.svg",
             imageType: 'svg',
-            filePath: 'public/images/resources/sports/football/um/text/option-1/colors',
+            filePath: '/images/resources/sports/football/um/text/option-1/colors',
             url: '/images/resources/sports/football/um/text/option-1/colors/regular.svg',
             leftCoordinates: {
                 x: 26,
@@ -1224,6 +1215,7 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file: {
+                    hasMainColor: true,
                     hasColor: false,
                     name: 'fade',
                     url: '/images/bg/carbon-fiber-fade-up.png'
@@ -1740,7 +1732,7 @@ export const premadeTemplates = [
             hasColor: true,
             imageType: 'svg',
             name: "mercedes.svg",
-            filePath: 'public/images/resources/cars/aston-martin/logos/option-1/colors',
+            filePath: '/images/resources/cars/aston-martin/logos/option-1/colors',
             url: '/images/resources/cars/aston-martin/logos/option-1/colors/regular.svg',
             leftCoordinates: {
                 x: 26,
@@ -2636,13 +2628,14 @@ export const premadeTemplates = [
         bottomLogo: { enabled: false },
         patternSettings: { enabled: false },
         fadeSettings: { enabled: false },
+        backgroundLogo: {enabled: false},
 
         mainLogo: {
             enabled: true,
             hasColor: true,
             imageType: 'svg',
             name: "mercedes.svg",
-            filePath: 'public/images/resources/cars/aston-martin/logos/option-1/colors',
+            filePath: '/images/resources/cars/aston-martin/logos/option-1/colors',
             url: '/images/resources/cars/aston-martin/logos/option-1/colors/regular.svg',
             leftCoordinates: {
                 x: 26,
@@ -2663,34 +2656,20 @@ export const premadeTemplates = [
                 color: '#ffffff'
             }
         },
-
-        backgroundLogo:{
-            hasPresetColors: true,
-            enabled: true,
-            name: 'gray.png',
-            imageType: 'png',
-            filePath: '/images/resources/backgrounds/hexagon/option-6/colors',
-            url: '/images/resources/backgrounds/hexagon/option-6/colors/gray.png',
-            leftCoordinates: {
-                x: 0,
-                y: 0
-            },
-            centerCoordinates: {
-                x: 0,
-                y: -15
-            },
-            rightCoordinates: {
-                x: 0,
-                y: 0
-            },
-            width: 350,
-            height: 200,
-        },
         
         backgroundSettings: {
             color: '#00685d',
             background: {
-                enabled: false,
+                enabled: true,
+                file: {
+                    hasMainColor: true,
+                    hasPresetColors: true,
+                    enabled: true,
+                    name: 'gray.png',
+                    imageType: 'png',
+                    filePath: '/images/resources/backgrounds/hexagon/option-6/colors',
+                    url: '/images/resources/backgrounds/hexagon/option-6/colors/gray.png',
+                }
             },
             stroke: { enabled: true, color: "#000000"}
         },
@@ -2753,7 +2732,7 @@ export const premadeTemplates = [
             hasColor: true,
             imageType: 'svg',
             name: "mercedes.svg",
-            filePath: 'public/images/resources/cars/aston-martin/logos/option-1/colors',
+            filePath: '/images/resources/cars/aston-martin/logos/option-1/colors',
             url: '/images/resources/cars/aston-martin/logos/option-1/colors/regular.svg',
             leftCoordinates: {
                 x: 26,
@@ -2775,33 +2754,23 @@ export const premadeTemplates = [
             }
         },
         backgroundLogo:{
-            hasPresetColors: true,
-            enabled: true,
-            name: 'white.png',
-            imageType: 'png',
-            filePath: '/images/resources/backgrounds/hexagon/option-6/colors',
-            url: '/images/resources/backgrounds/hexagon/option-6/colors/white.png',
-            leftCoordinates: {
-                x: 0,
-                y: 0
-            },
-            centerCoordinates: {
-                x: 0,
-                y: -15
-            },
-            rightCoordinates: {
-                x: 0,
-                y: 0
-            },
-            width: 350,
-            height: 200,
+            enabled: false,
         },
 
 
         backgroundSettings: {
             color: '#000000',
             background: {
-                enabled: false,
+                enabled: true,
+                file: {
+                    hasMainColor: true,
+                    hasColor: true,
+                    enabled: true,
+                    name: 'gray.png',
+                    imageType: 'png',
+                    filePath: '/images/resources/backgrounds/hexagon/option-6/colors',
+                    url: '/images/resources/backgrounds/hexagon/option-6/colors/white.png',
+                }
             },
             stroke: { enabled: true, color: "#000000"}
         },
@@ -3071,6 +3040,9 @@ export const premadeTemplates = [
         preset: true,
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
+        backgroundLogo:{
+            enabled: false
+        },
         mainLogo: {
             hasColor: true,
             enabled: true,
@@ -3112,33 +3084,19 @@ export const premadeTemplates = [
             height: 30,
             glow:{ enabled: true, color: '#000000' }
         },
-        backgroundLogo:{
-            hasColor: true,
-            enabled: true,
-            name: 'white.png',
-            imageType: 'png',
-            filePath: '/images/resources/cars/lamborghini/patterns/option-1/colors',
-            url: '/images/resources/cars/lamborghini/patterns/option-1/colors/regular.png',
-            leftCoordinates: {
-                x: 0,
-                y: 0
-            },
-            centerCoordinates: {
-                x: 0,
-                y: -10
-            },
-            rightCoordinates: {
-                x: 0,
-                y: 0
-            },
-            width: 350,
-            height: 175,
-        },
 
         backgroundSettings: {
             color: '#ffffff',
             background: {
-                enabled: false,
+                enabled: true,
+                file:{
+                    hasMainColor: true,
+                    hasColor: true,
+                    name: 'white.png',
+                    imageType: 'png',
+                    filePath: '/images/resources/cars/lamborghini/patterns/option-1/colors',
+                    url: '/images/resources/cars/lamborghini/patterns/option-1/colors/regular.png',
+                }
             },
             stroke: {
                 enabled: false
@@ -3223,7 +3181,7 @@ export const premadeTemplates = [
             enabled: true,
             name: "mercedes.svg",
             imageType: 'png',
-            filePath: 'public/images/resources/sports/football/um/text/option-3/colors',
+            filePath: '/images/resources/sports/football/um/text/option-3/colors',
             url: '/images/resources/sports/football/um/text/option-3/colors/regular.png',
             centerCoordinates: {
                 x: 125,
@@ -3345,30 +3303,22 @@ export const premadeTemplates = [
             glow: { enabled: false }
         },
         backgroundLogo:{
-            hasPresetColors: true,
-            enabled: true,
-            name: 'gray.png',
-            imageType: 'png',
-            filePath: '/images/resources/backgrounds/hexagon/fade/bottom-up',
-            url: '/images/resources/backgrounds/hexagon/fade/bottom-up/black.png',
-            leftCoordinates: {
-                x: 0,
-                y: 0
-            },
-            centerCoordinates: {
-                x: 0,
-                y: 0
-            },
-            rightCoordinates: {
-                x: 0,
-                y: 0
-            },
-            width: 350,
-            height: 200,
+            enabled: false,
         },
         backgroundSettings: {
             color: '#a5a5a5',
-            background: { enabled: false },
+            background: { 
+                enabled: true,
+                file: {
+                    hasMainColor: true,
+                    hasColor: true,
+                    enabled: true,
+                    name: 'gray.png',
+                    imageType: 'png',
+                    filePath: '/images/resources/backgrounds/hexagon/fade/bottom-up',
+                    url: '/images/resources/backgrounds/hexagon/fade/bottom-up/black.png',
+                }
+            },
             stroke: { enabled: false, color: ""}
         },
         state:{
@@ -3815,6 +3765,7 @@ export const premadeTemplates = [
             hasColor: true,
             enabled: true,
             name: 'gray.png',
+            imageType: 'png',
             filePath: '/images/resources/sports/football/dolphins/flags/option-1/colors',
             url: '/images/resources/sports/football/dolphins/flags/option-1/colors/regular.png',
             leftCoordinates: {
@@ -4049,6 +4000,7 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file: {
+                    hasMainColor: true,
                     hasColor: true,
                     name: 'hexagon.svg',
                     url: '/images/bg/hexagon.svg',
@@ -4357,6 +4309,7 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file: {
+                    hasMainColor: true,
                     hasColor: false,
                     url: '/images/logos/flags/italian-flag-background.png',
                     color: '#000000'
@@ -4641,7 +4594,7 @@ export const premadeTemplates = [
             enabled: true,
             name: "mercedes.svg",
             imageType: 'png',
-            filePath: 'public/images/resources/cars/rolls-royce/text/black-badge/colors',
+            filePath: '/images/resources/cars/rolls-royce/text/black-badge/colors',
             url: '/images/resources/cars/rolls-royce/text/black-badge/colors/gray.png',
             centerCoordinates: {
                 x: 106,
@@ -4656,6 +4609,8 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file: {
+                    hasMainColor: true,
+                    hasColor: false,
                     url: '/images/bg/carbon-fiber-fade-up.png',
                     color: '#000000'
                 }
@@ -4748,32 +4703,22 @@ export const premadeTemplates = [
         },
 
         backgroundLogo:{
-            hasPresetColors: true,
-            enabled: true,
-            name: 'gray.png',
-            imageType: 'png',
-            filePath: '/images/resources/cars/mercedes/backgrounds/option-1/colors',
-            url: '/images/resources/cars/mercedes/backgrounds/option-1/colors/regular.png',
-            leftCoordinates: {
-                x: 0,
-                y: 0
-            },
-            centerCoordinates: {
-                x: 0,
-                y: 0
-            },
-            rightCoordinates: {
-                x: 0,
-                y: 0
-            },
-            width: 350,
-            height: 200,
+            enabled: false
         },
 
         backgroundSettings: {
             color: '#000000',
             background: {
-                enabled: false,
+                enabled: true,
+                file: {
+                    hasColor: true,
+                    hasMainColor: true,
+                    enabled: true,
+                    name: 'gray.png',
+                    imageType: 'png',
+                    filePath: '/images/resources/cars/mercedes/backgrounds/option-1/colors',
+                    url: '/images/resources/cars/mercedes/backgrounds/option-1/colors/regular.png',
+                }
             },
         },
         state:{
@@ -5255,32 +5200,22 @@ export const premadeTemplates = [
         },
 
         backgroundLogo:{
-            hasColor: true,
-            enabled: true,
-            name: 'white.png',
-            imageType: 'png',
-            filePath: 'public/images/resources/backgrounds/hexagon/option-7/colors',
-            url: '/images/resources/backgrounds/hexagon/option-7/colors/regular.png',
-            leftCoordinates: {
-                x: 0,
-                y: 0
-            },
-            centerCoordinates: {
-                x: 0,
-                y: -10
-            },
-            rightCoordinates: {
-                x: 0,
-                y: 0
-            },
-            width: 350,
-            height: 175,
+            enabled: false,
         },
 
         backgroundSettings: {
             color: '#000000',
             background: {
-                enabled: false,
+                enabled: true,
+                file: {
+                    hasMainColor: true,
+                    hasColor: true,
+                    enabled: true,
+                    name: 'white.png',
+                    imageType: 'png',
+                    filePath: '/images/resources/backgrounds/hexagon/option-7/colors',
+                    url: '/images/resources/backgrounds/hexagon/option-7/colors/regular.png',
+                }
             },
             stroke: { enabled: false }
         },
@@ -5342,6 +5277,8 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file: {
+                    hasMainColor: false,
+                    hasColor: false,
                     url: '/images/bg/forged-carbon/option-2.png',
                 },
             },
@@ -5471,6 +5408,8 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file:{
+                    hasMainColor: false,
+                    hasColor: false,
                     name: 'green-hexagons.png',
                     url: '/images/bg/carbon-fiber/carbon-fiber-full-with-shadow.png',
                 },
@@ -5592,6 +5531,8 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file:{
+                    hasMainColor: true,
+                    hasColor: false,
                     name: 'green-hexagons.png',
                     url: '/images/bg/carbon-fiber-fade-up.png',
                 },
@@ -5763,6 +5704,7 @@ export const premadeTemplates = [
                 enabled: true,
                 file:{
                     hasColor: false,
+                    hasMainColor: true,
                     name: 'green-hexagons.png',
                     url: '/images/bg/carbon-fiber-fade-up.png',
                 },
@@ -5869,6 +5811,8 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file:{
+                    hasColor: false,
+                    hasMainColor: true,
                     name: 'green-hexagons.png',
                     url: '/images/bg/carbon-fiber-fade-up.png',
                 },
@@ -5947,6 +5891,8 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file:{
+                    hasColor: false,
+                    hasMainColor: false,
                     name: 'green-hexagons.png',
                     url: '/images/bg/carbon-fiber.png',
                 },
@@ -6036,6 +5982,7 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file: {
+                    hasMainColor: true,
                     hasColor: true,
                     name: 'white.png',
                     imageType: 'png',
@@ -6095,7 +6042,7 @@ export const premadeTemplates = [
         patternSettings: { enabled: false },
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
-        
+
         mainLogo: {
             hasColor: true,
             enabled: true,
@@ -6222,8 +6169,9 @@ export const premadeTemplates = [
             color: '#000000',
             background: {
                 enabled: true,
-                hasColor: false,
                 file:{
+                    hasMainColor: true,
+                    hasColor: false,
                     name: 'green-hexagons.png',
                     url: '/images/logos/misc/red-line.png',
                 },
@@ -6412,6 +6360,7 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file:{
+                    hasMainColor: false,
                     hasColor: true,
                     name: 'white.png',
                     imageType: 'png',
@@ -6749,6 +6698,7 @@ export const premadeTemplates = [
             background: {
                 enabled: true,
                 file: {
+                    hasMainColor: true,
                     hasColor: false,
                     url: '/images/bg/carbon-fiber-fade-up.png',
                     color: '#000000'

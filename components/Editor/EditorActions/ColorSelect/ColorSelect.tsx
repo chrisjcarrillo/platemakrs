@@ -178,7 +178,7 @@ export const ColorSelect = (
             {
                 title !== "" && 
                     <div className={`colorSelect__title`}> 
-                        <p className={`colorSelect__text`}>Select {title} Color</p>
+                        <p className={`colorSelect__text`}>{type === "backgroundUrl" ? `Select Honeycomb Color` : `Select ${title} Color`}</p>
                     </div>
             }
 

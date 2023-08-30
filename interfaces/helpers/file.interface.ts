@@ -11,6 +11,7 @@ export interface IFile {
     // hasPresetColors?: boolean, // Define if the background has preset colors
     color?: string, // if hasPresetColors is false, this will be the assigned color
     filePath?: string, // if hasPresetColors is true, this will be the assigned color
+    hasMainColor?: boolean;
     imageType?: string;
 
     name?: string,

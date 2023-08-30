@@ -37,10 +37,21 @@ export const PresetActions = (
             
             {/* - Background Color */}
             {
-                step.currentSubStep === "presetBgImageColor" && (
+                step.currentSubStep === "presetBgImageColor" && currentCustomTemplate.backgroundSettings?.background?.file?.name !== "hexagon.svg" && (
                     <PresetColorSelect
                         title="Background Image"
                         type="backgroundSetting"
+                    />
+                )
+            }
+            {/* - Background Color */}
+
+            {/* - Background Color */}
+            {
+                step.currentSubStep === "presetBgImageColor" && currentCustomTemplate.backgroundSettings?.background?.file?.name === "hexagon.svg" && (
+                    <ColorSelect
+                        title="Background"
+                        type="backgroundUrl"
                     />
                 )
             }
