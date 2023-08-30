@@ -34,10 +34,8 @@ export const PresetColorSelect = (
                 ...currentCustomTemplate?.backgroundLogo,
                 url: `${currentCustomTemplate?.backgroundLogo?.filePath}/${value}.${currentCustomTemplate.backgroundLogo?.imageType}`,
             })
-            console.info('hi2')
         }
         if (type === "backgroundSetting") {
-
             updateCustomTemplateSelection?.('backgroundSettings', {
                 ...currentCustomTemplate?.backgroundSettings,
                 background: {

@@ -55,10 +55,12 @@ export const Decision = () => {
                             onClick={
                                 () => updateStep?.(
                                     3, 
-                                    'presetBgColor',
+                                    currentCustomTemplate?.backgroundSettings?.background?.enabled && currentCustomTemplate?.backgroundSettings?.background?.file?.hasColor ?
+                                        'presetBgImageColor' : 'presetBgColor',
                                     'Select Color',
                                     false,
-                                    'Background'
+                                    currentCustomTemplate?.backgroundSettings?.background?.enabled && currentCustomTemplate?.backgroundSettings?.background?.file?.hasColor ? 
+                                    'Background Image' : 'Background'
                                 )
                             }
                         >Customize Template</a>

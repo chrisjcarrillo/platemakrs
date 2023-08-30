@@ -6413,32 +6413,20 @@ export const premadeTemplates = [
         },
 
         backgroundLogo:{
-            hasColor: true,
-            enabled: true,
-            name: 'white.png',
-            imageType: 'png',
-            filePath: '/images/resources/backgrounds/hexagon/option-5',
-            url: '/images/resources/backgrounds/hexagon/option-5/red.png',
-            leftCoordinates: {
-                x: 0,
-                y: 0
-            },
-            centerCoordinates: {
-                x: 0,
-                y: -15
-            },
-            rightCoordinates: {
-                x: 0,
-                y: 0
-            },
-            width: 350,
-            height: 200,
+            enabled: false,
         },
     
         backgroundSettings: {
             color: '#000000',
             background: {
-                enabled: false,
+                enabled: true,
+                file:{
+                    hasColor: true,
+                    name: 'white.png',
+                    imageType: 'png',
+                    filePath: '/images/resources/backgrounds/hexagon/option-5',
+                    url: '/images/resources/backgrounds/hexagon/option-5/red.png',
+                }
             },
         },
         state:{

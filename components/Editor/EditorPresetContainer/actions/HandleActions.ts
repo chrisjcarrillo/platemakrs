@@ -21,7 +21,7 @@ export const handleActions = (
     // If your in the first action
     if (actionType == "cancel") {
         return {
-            step: 0,
+            step: 1,
             subStep: '',
             subTitle: '',
             warning: false,
@@ -1265,8 +1265,8 @@ export const handleActions = (
         // If the template has an image and isn't in need of color
         if (currentEditorStep?.currentSubStep === "presetBgImageColor") {
             if (
-                currentCustomTemplate.backgroundSettings?.background?.enabled &&
-                currentCustomTemplate.backgroundSettings?.background?.file?.hasColor
+                currentCustomTemplate?.backgroundSettings?.background?.enabled &&
+                currentCustomTemplate?.backgroundSettings?.background?.file?.hasColor
             ) {
                 if (currentCustomTemplate?.backgroundSettings?.stroke?.enabled) {
                     return {
@@ -1286,9 +1286,16 @@ export const handleActions = (
                         title: 'Background Pinstripe'
                     }
                 }
+                return {
+                    step: CURRENT_STEP,
+                    subStep: steps[4],
+                    subTitle: 'Select Color',
+                    warning: false,
+                    title: 'Plate Character'
+                }
             } else if (
-                currentCustomTemplate.backgroundSettings?.background?.enabled &&
-                !currentCustomTemplate.backgroundSettings?.background?.file?.hasColor
+                currentCustomTemplate?.backgroundSettings?.background?.enabled &&
+                !currentCustomTemplate?.backgroundSettings?.background?.file?.hasColor
             ) {
                 return {
                     step: CURRENT_STEP,
