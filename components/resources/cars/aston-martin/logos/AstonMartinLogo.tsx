@@ -1,6 +1,6 @@
 import { ICustomPlateTemplate } from "../../../../../interfaces/customTemplate.interface";
 
-export const MclarenText = (props: {
+export const AstonMartinLogo = (props: {
     customTemplate?: ICustomPlateTemplate
 }) => {
     const { customTemplate } = props;

@@ -34,6 +34,18 @@ export const PresetActions = (
 
     return (
         <Row className={`editorContainer__actions g-2`}>
+            
+            {/* - Background Color */}
+            {
+                step.currentSubStep === "presetBgImageColor" && (
+                    <PresetColorSelect
+                        title="Background Image"
+                        type="backgroundSetting"
+                    />
+                )
+            }
+            {/* - Background Color */}
+
             {/* - Background Color */}
             {
                 step.currentSubStep === "presetBgColor" && (
@@ -69,7 +81,7 @@ export const PresetActions = (
             {
                 step.currentSubStep === "presetCharacterStrokeColor" && (
                     <ColorSelect
-                        title="Plate Character Stroke Color"
+                        title="Plate Character Stroke"
                         type="plateNumberStrokeColor"
                     />
                 )
@@ -96,7 +108,7 @@ export const PresetActions = (
             {
                 step.currentSubStep === "presetStateGlowColor" && (
                     <ColorSelect
-                        title="State Glow Color"
+                        title="State Glow"
                         type="stateGlowColor"
                     />
                 )
@@ -125,28 +137,89 @@ export const PresetActions = (
             {
                 step.currentSubStep === "presetBottomGlowColor" && (
                     <ColorSelect
-                        title="Bottom Text Glow Color"
-                        type="bottomTextGlow"
-                    />
-                )
-            }
-            {
-                step.currentSubStep === "presetBottomGlowColor" && (
-                    <ColorSelect
-                        title="Bottom Text Glow Color"
+                        title="Bottom Text Glow"
                         type="bottomTextGlow"
                     />
                 )
             }
 
+            {/* Main Logo*/}
             {
-                step.currentSubStep === "presetLogoMove" && (
-                    <MoveSwitcher
-                        type="moveLogo"
-                        text="Logo Move"
+                step.currentSubStep === "presetMainLogoColor" && (
+                    <PresetColorSelect 
+                        type='mainLogo'
+                        title="Main Logo"
                     />
                 )
             }
+
+            {
+                step.currentSubStep === "presetMainLogoGlowColor" && (
+                    <ColorSelect 
+                        type="mainLogoGlow"
+                        title="Main Logo Glow"
+                    />
+                )
+            }
+    
+            {
+                step.currentSubStep === "presetMainLogoMove" && (
+                    <MoveSwitcher
+                        type="moveLogo"
+                        text="Main Logo Move"
+                    />
+                )
+            }
+            {/* Main Logo */}
+
+            {/* Bottom Logo*/}
+            {
+                step.currentSubStep === "presetBottomLogoColor" && (
+                    <PresetColorSelect 
+                        type='bottomLogo'
+                        title="Bottom Logo"
+                    />
+                )
+            }
+
+            {
+                step.currentSubStep === "presetBottomLogoGlow" && (
+                    <ColorSelect 
+                        type="bottomLogoGlow"
+                        title="Bottom Logo Glow"
+                    />
+                )
+            }
+    
+            {
+                step.currentSubStep === "presetBottomLogoMove" && (
+                    <MoveSwitcher
+                        type="bottomLogo"
+                        text="Bottom Logo Move"
+                    />
+                )
+            }
+            {/* Bottom Logo*/}
+
+            {/* Background Logo*/}
+            {
+                step.currentSubStep === "presetBackgroundLogoColor" && (
+                    <PresetColorSelect 
+                        type='backgroundLogo'
+                        title="Background Logo"
+                    />
+                )
+            }
+            {
+                step.currentSubStep === "presetBackgroundLogoMove" && (
+                    <MoveSwitcher
+                        type="moveBackgroundLogo"
+                        text="Move Background Logo"
+                    />
+                )
+            }
+            {/* Background logo */}
+
         </Row>
     )
 }

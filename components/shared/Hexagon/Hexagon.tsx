@@ -1,5 +1,3 @@
-import { useContext } from "react"
-import { EditorContext, EditorContextType } from "../../../context/editorContext"
 import { ICustomPlateTemplate } from "../../../interfaces/customTemplate.interface"
 
 export const Hexagon = (props: {

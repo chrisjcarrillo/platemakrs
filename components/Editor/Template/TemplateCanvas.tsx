@@ -291,13 +291,14 @@ const TemplateCanvas = (
                             }
                             {/* START Bottom Logo*/}
                             {
-                                currentCustomTemplate?.bottomLogo?.enabled === true && currentLicensePlate === undefined
-                                    || currentCustomTemplate?.bottomLogo?.enabled === true && currentLicensePlate?.bottomTextEnabled === false ? (
-                                    <BottomLogo
-                                        canvasReference={canvasRef}
-                                        type="CANVAS"
-                                        logoType="BOTTOM"
-                                    /> ): null
+                                    currentCustomTemplate?.bottomLogo?.enabled 
+                                    && !currentLicensePlate?.bottomTextEnabled ? (   
+                                        <BottomLogo
+                                            canvasReference={canvasRef}
+                                            type="CANVAS"
+                                            logoType="BOTTOM"
+                                        /> 
+                                    ): null
                                 
                             }
                             {/* END Bottom Logo*/}
@@ -309,8 +310,6 @@ const TemplateCanvas = (
                             <Logo
                                 canvasReference={canvasRef}
                                 type="CANVAS"
-                                logoType="REGULAR"
-                                initialPosition={currentLicensePlate?.platePosition}
                             />
                         }
                         {/* END Logo*/}

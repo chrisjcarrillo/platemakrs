@@ -35,6 +35,8 @@ export interface ITemplate{
     backgroundLogo?: IFileLogo; // Background
 
     details?: Array<IFileLogo> // WORK ON MULTIPLE DETAIL LOGOS FOR SIDES ETC
+    detailLogo1?: IFileLogo // WORK ON MULTIPLE DETAIL LOGOS FOR SIDES ETC
+    detailLogo2?: IFileLogo // WORK ON MULTIPLE DETAIL LOGOS FOR SIDES ETC
 
     fadeSettings?: IFadeSettings // Fade Settings
     patternSettings?: IPatternSettings // Pattern Settings

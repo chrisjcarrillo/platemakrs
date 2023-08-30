@@ -16,16 +16,20 @@ export const MoveSwitcher = (
     } = props;
 
     const {
+        setMoveBottomLogo,
         setMoveLogo,
-        setMovePattern
+        setMoveBackgroundLogo
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const updateSwitch = (type: any, value: any) => {
+        if(type === "bottomLogo"){
+            setMoveBottomLogo(value)
+        }
         if(type === "moveLogo"){
             setMoveLogo(value)
         }
-        if(type === "movePattern"){
-            setMovePattern(value)
+        if(type === "moveBackgroundLogo"){
+            setMoveBackgroundLogo(value)
         }
     }
 

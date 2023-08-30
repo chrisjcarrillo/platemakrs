@@ -21,6 +21,24 @@ export const ColorSelect = (
     // }
 
     const updateColor = (type: any, value: any) => {
+        if(type === "bottomLogoGlow"){
+            updateCustomTemplateSelection?.('bottomLogo', {
+                ...currentCustomTemplate?.bottomLogo,
+                glow: {
+                    ...currentCustomTemplate?.bottomLogo?.glow,
+                    color: value
+                }
+            }) 
+        }
+        if(type === "mainLogoGlow"){
+            updateCustomTemplateSelection?.('mainLogo', {
+                ...currentCustomTemplate?.mainLogo,
+                glow: {
+                    ...currentCustomTemplate?.mainLogo?.glow,
+                    color: value
+                }
+            })
+        }
         if(type === "fadeColor1"){
             updateCustomTemplateSelection?.('fadeSettings', {
                 ...currentCustomTemplate?.fadeSettings,

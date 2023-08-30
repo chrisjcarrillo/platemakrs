@@ -15,16 +15,11 @@ import { StoreContext, StoreContextType } from '../../../context/storeContext';
 import { PlaceOrder } from '../BottomButton/PlaceOrder';
 import { PresetActions } from './actions/PresetActions';
 import { useRouter } from "next/navigation";
+import { handleActions } from './actions/HandleActions';
 
 export const EditorPresetContainer = (
     props: any
 ) => {
-    const router = useRouter();
-    // const {
-    //     checkout,
-    //     redirectCheckout
-    // } = useContext(StoreContext) as StoreContextType;
-
     const {
         currentLicensePlate,
         currentEditorStep,
@@ -40,398 +35,41 @@ export const EditorPresetContainer = (
         xl: 6
     }
 
-    const handleActions = (
+    const router = useRouter();
+
+    const handleAction = (
         actionType: 'back' | 'forward' | 'cancel',
     ) => {
-        const CURRENT_STEP = 3;
-        console.info('handleActions')
-        // If your in the first action
-        if (actionType == "cancel") {
-            if (currentEditorStep?.currentSubStep == "presetBgColor") {
-                router.push('/editor');
-            }
+        const handle = handleActions(
+            actionType,
+            currentCustomTemplate,
+            currentEditorStep,
+            currentLicensePlate
+        )
+
+        if(handle?.step === undefined){
+            updateStep?.(
+                1,
+                undefined,
+                undefined,
+                false,
+                undefined
+            )
+            // Reset count to 0 on dynamic route change.
+            router.push('/products')
         }
-        if (actionType == 'back') {
-        }
-        if (actionType == "forward") {
-            if (
-                currentEditorStep?.currentSubStep === "presetBgColor"
-            ) {
-                // If Stroke is enabled go to stroke
-                if (currentCustomTemplate?.backgroundSettings?.stroke?.enabled) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetBgBorder',
-                        'Select Color',
-                        false,
-                        'Background Border'
-                    )
-                }
-                // If Stroke isn't enabled go to character colors
-                if (!currentCustomTemplate?.backgroundSettings?.stroke?.enabled) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetCharacterColor',
-                        'Select Character Color',
-                        false,
-                        'Plate Character'
-                    )
-                }
-            }
-            // If Stroke is enabled go to character colors after
-            if (currentEditorStep?.currentSubStep === "presetBgBorder") {
-                if (currentCustomTemplate?.backgroundSettings?.stroke?.enabled) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetCharacterColor',
-                        'Select Character Color',
-                        false,
-                        'Plate Character'
-                    )
-                }
-            }
-            if (
-                currentEditorStep?.currentSubStep === "presetCharacterColor"
-            ) {
-                // If Stroke is enabled go to stroke
-                if (currentCustomTemplate?.plateNumber?.stroke?.enabled) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetCharacterStrokeColor',
-                        'Select Border Color',
-                        false,
-                        'Plate Character'
-                    )
-                }
-                // If Stroke isn't enabled go to state colors
-                if (!currentCustomTemplate?.plateNumber?.stroke?.enabled) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetStateColor',
-                        'Select Color',
-                        false,
-                        'State'
-                    )
-                }
 
-            }
-            // If Stroke is enabled go to state colors after
-            if (currentEditorStep?.currentSubStep === "presetCharacterStrokeColor") {
-                updateStep?.(
-                    CURRENT_STEP,
-                    'presetStateColor',
-                    'Select Color',
-                    false,
-                    'State'
-                )
-            }
-
-            // If State Color
-            if (
-                currentEditorStep?.currentSubStep === "presetStateColor"
-            ) {
-                // If Stroke is enabled go to stroke
-                if (currentCustomTemplate?.state?.stroke?.enabled) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetStateStrokeColor',
-                        'Select Border Color',
-                        false,
-                        'State'
-                    )
-                }
-                // If Stroke isnt enabled but glow is go to glow
-                if (!currentCustomTemplate?.state?.stroke?.enabled &&
-                    currentCustomTemplate?.state?.glow?.enabled
-                ) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetStateGlowColor',
-                        'Select Border Color',
-                        false,
-                        'State'
-                    )
-                }
-
-                // If Stroke and glow arent enabled, 
-                // CHECK IF bottom text is available
-                if (!currentCustomTemplate?.state?.stroke?.enabled &&
-                    !currentCustomTemplate?.state?.glow?.enabled && currentLicensePlate?.bottomTextEnabled) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetBottomColor',
-                        'Select Border Color',
-                        false,
-                        'State'
-                    )
-                }
-                //IF NONE of the above, go to logo color if available
-                if (!currentCustomTemplate?.state?.stroke?.enabled &&
-                    !currentCustomTemplate?.state?.glow?.enabled &&
-                    !currentLicensePlate?.bottomTextEnabled &&
-                    currentCustomTemplate?.mainLogo?.hasColor
-                ) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetLogoColor',
-                        'Select Logo Color',
-                        false,
-                        'Main Logo'
-                    )
-                }
-
-                //IF NONE of the above, go to move Logo
-                if (!currentCustomTemplate?.state?.stroke?.enabled &&
-                    !currentCustomTemplate?.state?.glow?.enabled &&
-                    !currentLicensePlate?.bottomTextEnabled &&
-                    !currentCustomTemplate?.mainLogo?.hasColor
-                ) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetLogoMove',
-                        'Adjust Logo Position',
-                        false,
-                        'Main Logo'
-                    )
-                }
-            }
-
-            // If State Border
-            if (
-                currentEditorStep?.currentSubStep === "presetStateStrokeColor"
-            ) {
-                // If glow is enabled move to glow
-                if (currentCustomTemplate?.state?.glow?.enabled) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetStateGlowColor',
-                        'Select Border Color',
-                        false,
-                        'State'
-                    )
-                }
-
-                // If glow isn't enabled, 
-                // CHECK IF bottom text is available
-                if (!currentCustomTemplate?.state?.glow?.enabled && currentLicensePlate?.bottomTextEnabled) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetBottomColor',
-                        'Select Border Color',
-                        false,
-                        'State'
-                    )
-                }
-
-                //IF NONE of the above, go to logo color if available
-                if (
-                    !currentCustomTemplate?.state?.glow?.enabled &&
-                    !currentLicensePlate?.bottomTextEnabled &&
-                    currentCustomTemplate?.mainLogo?.hasColor
-                ) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetLogoColor',
-                        'Select Logo Color',
-                        false,
-                        'Main Logo'
-                    )
-                }
-
-                //IF NONE of the above, go to move Logo
-                if (
-                    !currentCustomTemplate?.state?.glow?.enabled &&
-                    !currentLicensePlate?.bottomTextEnabled &&
-                    !currentCustomTemplate?.mainLogo?.hasColor
-                ) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetLogoMove',
-                        'Adjust Logo Position',
-                        false,
-                        'Main Logo'
-                    )
-                }
-            }
-
-            // If State Glow
-            if (
-                currentEditorStep?.currentSubStep === "presetStateGlowColor"
-            ) {
-                if (currentLicensePlate?.bottomTextEnabled) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetBottomColor',
-                        'Select Border Color',
-                        false,
-                        'State'
-                    )
-                }
-
-                //IF NONE of the above, go to logo color if available
-                if (
-                    !currentLicensePlate?.bottomTextEnabled &&
-                    currentCustomTemplate?.mainLogo?.hasColor
-                ) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetLogoColor',
-                        'Select Logo Color',
-                        false,
-                        'Main Logo'
-                    )
-                }
-
-                //IF NONE of the above, go to move Logo
-                if (
-                    !currentLicensePlate?.bottomTextEnabled &&
-                    !currentCustomTemplate?.mainLogo?.hasColor
-                ) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetLogoMove',
-                        'Adjust Logo Position',
-                        false,
-                        'Main Logo'
-                    )
-                }
-            }
-
-            // If Bottom Color
-            if (
-                currentEditorStep?.currentSubStep === "presetBottomColor"
-            ) {
-                // If Stroke is enabled go to stroke
-                if (currentCustomTemplate?.bottomText?.stroke?.enabled) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetBottomStrokeColor',
-                        'Select Border Color',
-                        false,
-                        'State'
-                    )
-                }
-
-                // If Stroke isnt enabled but glow is go to glow
-                if (!currentCustomTemplate?.bottomText?.stroke?.enabled &&
-                    currentCustomTemplate?.bottomText?.glow?.enabled
-                ) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetBottomGlowColor',
-                        'Select Border Color',
-                        false,
-                        'State'
-                    )
-                }
-
-                //IF NONE of the above, go to logo color if available
-                if (!currentCustomTemplate?.bottomText?.stroke?.enabled &&
-                    !currentCustomTemplate?.bottomText?.glow?.enabled &&
-                    currentCustomTemplate?.mainLogo?.hasColor
-                ) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetLogoColor',
-                        'Select Logo Color',
-                        false,
-                        'Main Logo'
-                    )
-                }
-
-                //IF NONE of the above, go to move Logo
-                if (!currentCustomTemplate?.bottomText?.stroke?.enabled &&
-                    !currentCustomTemplate?.bottomText?.glow?.enabled &&
-                    !currentCustomTemplate?.mainLogo?.hasColor
-                ) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetLogoMove',
-                        'Adjust Logo Position',
-                        false,
-                        'Main Logo'
-                    )
-                }
-            }
-
-            // If Bottom Border
-            if (
-                currentEditorStep?.currentSubStep === "presetBottomStrokeColor"
-            ) {
-                // If glow is enabled move to glow
-                if (currentCustomTemplate?.bottomText?.glow?.enabled) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetBottomGlowColor',
-                        'Select Border Color',
-                        false,
-                        'State'
-                    )
-                }
-
-                //IF NONE of the above, go to logo color if available
-                if (
-                    !currentCustomTemplate?.bottomText?.glow?.enabled &&
-                    currentCustomTemplate?.mainLogo?.hasColor
-                ) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetLogoColor',
-                        'Select Logo Color',
-                        false,
-                        'Main Logo'
-                    )
-                }
-
-                //IF NONE of the above, go to move Logo
-                if (
-                    !currentCustomTemplate?.bottomText?.glow?.enabled &&
-                    !currentCustomTemplate?.mainLogo?.hasColor
-                ) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetLogoMove',
-                        'Adjust Logo Position',
-                        false,
-                        'Main Logo'
-                    )
-                }
-            }
-
-            // If Bottom Glow
-            if (
-                currentEditorStep?.currentSubStep === "presetBottomGlowColor"
-            ) {
-
-                //IF NONE of the above, go to logo color if available
-                if (
-                    currentCustomTemplate?.mainLogo?.hasColor
-                ) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetLogoColor',
-                        'Select Logo Color',
-                        false,
-                        'Main Logo'
-                    )
-                }
-
-                //IF NONE of the above, go to move Logo
-                if (
-                    !currentCustomTemplate?.mainLogo?.hasColor
-                ) {
-                    updateStep?.(
-                        CURRENT_STEP,
-                        'presetLogoMove',
-                        'Adjust Logo Position',
-                        false,
-                        'Main Logo'
-                    )
-                }
-            }
-
+        if(handle){
+            updateStep?.(
+                3,
+                handle?.subStep,
+                handle?.subTitle,
+                false,
+                handle?.title
+            )
         }
     }
+
 
     return (
         <>
@@ -439,65 +77,6 @@ export const EditorPresetContainer = (
             {/* <Container className={`editorContainer__main`}>
         
             // Actions
-
-            // TODOOOOOOO
-           
-            [] Forward
-            [] Back
-            - Background Color
-                --- step: 3
-                --- subStep: presetBgColor
-                --- title: background color
-                --- description: select the background color
-
-            [] Forward
-            [] Back
-            - Background Stroke (If enabled): 
-                --- step: 3
-                --- subStep: presetBgBorder
-                --- title: background border color
-                --- description: select the background border color
-            
-            [] Forward
-            [] Back
-            - Background Color (If Enabled): presetBgImageColor
-            - Background Pinstripe (If enabled)
-                --- step: 3
-                --- subStep: presetBgBorder
-                --- title: background border color
-                --- description: select the background border color
-
-            [] Forward
-            [] Back
-            - Plate Character Color
-                -- Color: presetCharacterColor
-                -- Stroke (If enabled): presetCharacterStrokeColor
-                
-            [] Forward
-            [] Back
-            - State
-                -- Color: presetStateColor
-                -- Stroke (If enabled): presetStateStrokeColor
-                -- Glow (If Enabled): presetStateGlowColor
-
-            [] Forward
-            [] Back
-            - Bottom Text
-                -- Color: presetBottomColor
-                -- Stroke (If enabled): presetBottomStrokeColor
-                -- Glow (If Enabled): presetBottomGlowColor
-
-            - [Logo] Color or Colors: presetMainLogColor (if dosen't have multiple colors)
-                -- [Logo] Move: presetMainLogoMove
-                -- [Logo] Glow: presetMainLogoGlowColor
-
-            - [Bottom Logo] Color: presetBottomLogoColor (if dosen't have multiple colors)
-                -- [Bottom Logo] Move: presetBottomLogoMove
-                -- [Bottom Logo] Glow: presetBottomLogoGlow
-
-            - [Background Logo] Pattern Color: presetBackgroundLogoColor
-                -- [Background Logo] Move: presetBackgroundLogoMove
-                -- [Bottom Logo] Glow: presetBackgroundLogoGlow
 
             </Container> */}
             <Container className={`editorContainer__main`}>
@@ -521,7 +100,9 @@ export const EditorPresetContainer = (
                             shape="circle"
                             icon={<ArrowLeftOutlined rev={''} />}
                             onClick={
-                                () => updateStep?.(3, "")
+                                () => handleAction(
+                                    'back'
+                                )
                             }
                         />
                     </Col>
@@ -611,11 +192,10 @@ export const EditorPresetContainer = (
                             <Button
                                 className={`editorContainer__order-step-back-button g-2`}
                                 onClick={
-                                    () => updateStep?.(
-                                        3,
-                                        currentEditorStep.currentSubStep === "textSetting" ? "backgroundSetting" :
-                                            currentEditorStep.currentSubStep === "extraDetails" ? "textSetting" : "",
+                                    () => handleAction(
+                                        'back'
                                     )
+
                                 }
                             >
                                 {currentEditorStep.currentSubStep === "backgroundSetting" ? "Cancel" : "Back"}
@@ -628,7 +208,9 @@ export const EditorPresetContainer = (
                             <Button
                                 className={`editorContainer__order-step-next-button g-2`}
                                 onClick={
-                                    () => handleActions('forward')
+                                    () => handleAction(
+                                        'forward'
+                                    )
                                 }
                             >
                                 {currentEditorStep.currentSubStep === "extraDetails" ? "Complete" : "Next"}

@@ -27,10 +27,6 @@ export const BottomLogo = (props: ILogo) => {
         currentLicensePlate
     } = useContext(EditorContext) as EditorContextType;
 
-    console.info(
-        'logo', props
-    )
-
     const { type, logoType, canvasReference, currentPreviewTemplate } = props;
 
     const imageSource = () => {
@@ -114,7 +110,7 @@ export const BottomLogo = (props: ILogo) => {
                 `logo__container`
             }
             style={moveBottomLogo ?
-                { zIndex: 10 } : {}
+                { zIndex: 100 } : {}
             }
         >
             <Stage

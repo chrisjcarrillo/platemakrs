@@ -7,6 +7,8 @@ import { Gradient } from "../Gradient/Gradient";
 import { Pinstripe } from "../Pinstripe/Pinstripe";
 import { BackgroundLogo } from "../BackgroundLogo/BackgroundLogo";
 import Image from 'next/image';
+import { DetailLogo1 } from "../DetailLogo1/DetailLogo1";
+import { DetailLogo2 } from "../DetailLogo2/DetailLogo2";
 
 
 export const Background = (
@@ -46,6 +48,25 @@ export const Background = (
             {
                 template?.backgroundSettings?.pinstripe?.enabled && (
                     <Pinstripe
+                    />
+                )
+            }
+
+            {
+                template?.detailLogo1?.enabled && (
+                    <DetailLogo1
+                        canvasReference={canvasReference}
+                        type="CANVAS"
+                        logoType="REGULAR"
+                    />
+                )
+            }
+            {
+                template?.detailLogo2?.enabled && (
+                    <DetailLogo2
+                        canvasReference={canvasReference}
+                        type="CANVAS"
+                        logoType="REGULAR"
                     />
                 )
             }

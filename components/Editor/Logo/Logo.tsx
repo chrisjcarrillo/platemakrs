@@ -1,18 +1,21 @@
-import { useContext, useEffect, useRef, useState } from "react"
+import React, { ReactElement, useContext, useEffect, useRef, useState } from "react"
 import { EditorContext, EditorContextType } from "../../../context/editorContext";
 import { Stage, Layer, Image, Transformer, Group } from 'react-konva';
 import useImage from "use-image";
 import { ITemplate } from "../../../interfaces/template.interface";
 import { InterfaceContext, InterfaceContextType } from "../../../context/interfaceContext";
+import { renderToStaticMarkup } from 'react-dom/server';
+import Mercedes from "../../resources/cars/mercedes/logos/Mercedes";
+import { MiamiHeatBasketball } from "../../resources/sports/basketball/miami-heat/logos/miami-heat-basketball";
+import { PorscheSolid } from "../../resources/cars/porsche/logos/crest/PorscheSolid";
+import { AstonMartinLogo } from "../../resources/cars/aston-martin/logos/AstonMartinLogo";
+import { Cobra } from "../../resources/cars/ford/logos/Cobra";
+import { FerrariHorse } from "../../resources/cars/ferrari/logos/horse/FerrariHorse";
 
 interface ILogo {
     currentPreviewTemplate?: ITemplate
     canvasReference?: any;
     type?: 'PREVIEW' | 'CANVAS';
-    logoType?: 'REGULAR' | 'BOTTOM';
-    initialPosition?: string;
-    glowColor?: string;
-    glow?: string;
 }
 
 export const Logo = (props: ILogo) => {
@@ -23,44 +26,44 @@ export const Logo = (props: ILogo) => {
 
     const {
         currentCustomTemplate,
-        currentTemplate,
         currentLicensePlate
     } = useContext(EditorContext) as EditorContextType;
 
-    const { type, logoType, canvasReference, currentPreviewTemplate } = props;
+    const { 
+        type, 
+        canvasReference
+    } = props;
 
+    // const imageUrl = () => {
+    //     const svgString = renderToStaticMarkup(<Mercedes customTemplate={currentCustomTemplate} />)
+    //     const blob = new Blob([svgString], { type: 'image/svg+xml' });
+    //     return URL.createObjectURL(blob);
+    // }
+    
     const imageSource = () => {
-        if(logoType === "REGULAR"){
-            if(type === "CANVAS"){
-                if(!currentCustomTemplate){
-                    return currentTemplate?.mainLogo?.url
-                }
-            }
-            if(type === "PREVIEW" ){
-                return currentPreviewTemplate?.mainLogo?.url
-            }
-        }
-        if(logoType === "BOTTOM"){
-            if(type === "CANVAS"){
-                if(!currentCustomTemplate){
-                    return currentTemplate?.bottomLogo?.url
-                }
-            }
-            if(type === "PREVIEW" ){
-                return currentPreviewTemplate?.bottomLogo?.url
-            }
-        }
+        // Main Checks
+        // hasColor?
+        ///// return encodedSvg + color
+        // hasPresetColors?
+        ///// return current file
+        // hasMultipleColors
+        // return encodedSvg + multipleColors
+        // if(currentCustomTemplate.mainLogo?.hasColor){
+        //     if(currentCustomTemplate.mainLogo.hasPresetColors){
+        //         return currentCustomTemplate?.mainLogo?.url;
+        //     }
+        // }
         return currentCustomTemplate?.mainLogo?.url
     }
 
     const [image] = useImage(imageSource() ?? '');
+    console.log(image);
 
     const imageRef = useRef<any>();
     const transformerRef = useRef<any>();
     const groupRef = useRef<any>();
 
     useEffect(() => {
-        console.log(moveLogo)
         if (moveLogo) {
           transformerRef.current.nodes([groupRef.current]);
         }
@@ -70,6 +73,7 @@ export const Logo = (props: ILogo) => {
         transformerRef?.current?.nodes([groupRef.current]);
         if(image){
             imageRef?.current?.cache();
+            console.info(imageRef.current)            
         }
     }, [image]);
 
@@ -77,8 +81,6 @@ export const Logo = (props: ILogo) => {
     const calculateInitialPosition = (
         calcType?: string
     ) => {
-        // if(type === "x" && initialPosition === "left") return canvasReference?.current?.clientWidth - canvasReference?.current?.clientWidth / 4;
-        // if(type === "x" && initialPosition === "right") return canvasReference?.current?.clientWidth - canvasReference?.current?.clientWidth / 1;
         if(type === "CANVAS"){
             if(calcType === "x"){
                 if(currentLicensePlate?.platePosition === "" || !currentLicensePlate?.platePosition){
@@ -134,23 +136,6 @@ export const Logo = (props: ILogo) => {
                 return currentCustomTemplate?.mainLogo?.height! as number
         }
     }
-
-    // const setSize = (
-    //     sizeType: string
-    // ) => {
-    //     if(type === "CANVAS"){
-    //         if(sizeType === "width"){
-    //             return Math.max(
-    //                 canvasReference?.current?.clientWidth / 3.5
-    //             );
-    //         }
-    //         if(sizeType === "height"){
-    //             return Math.max(
-    //                 canvasReference?.current?.clientHeight / 1.85
-    //             )
-    //         }
-    //     }
-    // }
 
     return (
         <div 
@@ -296,120 +281,3 @@ export const Logo = (props: ILogo) => {
         </div>
     )
 }
-
-
-    // const dragBoundFunc = (pos: any) => {
-    //     console.info(
-    //         'Position:', pos
-    //     )
-    //     let newY = pos.y;
-    //     let newX = pos.x;
-    //     if(pos.y < -(canvasReference?.current?.clientHeight) + 165) // 165
-    //         newY = canvasReference?.current?.clientHeight - 165;
-    //     if(pos.y > canvasReference?.current?.clientHeight - 100) // 165
-    //         newY = canvasReference?.current?.clientHeight - 100
-    //     return {
-    //       x: newX,
-    //       y: newY
-    //     };
-    // }
-// const dragBoundFunc = (pos: any) => {
-//     console.info(
-//         'Position:', pos
-//     )
-//     // let { x, y } = pos;
-//     let newY = pos.y;
-//     let newX = pos.x;
-//     // This works on Mobile
-//     // console.log(y) 
-//                 // console.log(canvasReference?.current?.clientHeight - 10)
-//         // newY = canvasReference?.current?.clientHeight - 165;
-//         // newY = canvasReference?.current?.clientHeight - 165;
-//     // if(y < -(canvasReference?.current?.clientHeight) + 25)  
-//     //     // y = -(canvasReference?.current?.clientHeight - 45);
-//                 // newX = canvasReference?.current?.clientWidth - 85; 
-//     //     // x = canvasReference?.current?.clientWidth - 145;
-//     // if(x < -(canvasReference?.current?.clientWidth) + 265)
-//         // x = -(canvasReference?.current?.clientWidth) + 265
-//     if(pos.y < -(canvasReference?.current?.clientHeight) + 165) // 165
-//         newY = canvasReference?.current?.clientHeight - 165;
-//     if(pos.y > canvasReference?.current?.clientHeight - 100) // 165
-//         // console.log(canvasReference?.current?.clientHeight - 100)
-//         // console.log(pos.y)
-//         newY = canvasReference?.current?.clientHeight - 100
-//     // if(pos.x > -(canvasReference?.current?.clientWidth) + 155)
-//     //     newX = canvasReference?.current?.clientWidth - 150;
-//     // if(pos.x < canvasReference?.current?.clientWidth - 350)
-//     //     newX = canvasReference?.current?.clientWidth - 350;
-//     return {
-//       x: newX,
-//       y: newY
-//     };
-                        // shadowEnabled={
-                        //     true
-                        // }
-                        // shadowColor={
-                        //     'green'
-                        // }
-                        // shadowBlur={10}
-                        // shadowOpacity={1}
-                        // shadowOffsetX={0}
-                        // shadowOffsetY={0}
-                        // stroke={'#ffffff'}
-
-
-
-    // const groupDragBound = (pos) => {
-    //     let { x, y } = pos;
-    //     const sw = stage.width();
-    //     const sh = stage.height();
-    //     if (minMaxY[0] + y < 0) y = -1 * minMaxY[0];
-    //     if (minMaxX[0] + x < 0) x = -1 * minMaxX[0];
-    //     if (minMaxY[1] + y > sh) y = sh - minMaxY[1];
-    //     if (minMaxX[1] + x > sw) x = sw - minMaxX[1];
-    //     return { x, y };
-    // };
-
-
-    // const dragBoundFunc = (pos: any) => {
-    
-    //     let newY = pos.y;
-    //     let newX = pos.x;
-    //     // clientHeight = 165 // clientWidth = 350
-    //     // console.log(pos.x)
-    //     // Bottom Safe
-    //     if(pos.y > -(canvasReference?.current?.clientHeight) + 165)
-    //         newY = -(canvasReference?.current?.clientHeight - 150);
-    //     // Top Safe
-    //     if(pos.y < -(canvasReference?.current?.clientHeight) + 25)  
-    //         newY = -(canvasReference?.current?.clientHeight - 45);
-    //     if(pos.x > -(canvasReference?.current?.clientWidth) + 500)
-    //         newX = canvasReference?.current?.clientWidth - 145;
-    //     if(pos.x < -(canvasReference?.current?.clientWidth) + 25)
-    //         newX = -(canvasReference?.current?.clientWidth) + 265
-    //         // newX = canvasReference?.current?.clientWidth - 145;
-
-    //     // if(pos.x)
-    //     // if(pos.y > (canvasReference?.current?.clientHeight) - 165){
-    //     //     newY = -(canvasReference?.current?.clientHeight - 150);
-    //     // }
-    //     // if (pos.y > canvasReference?.current?.clientHeight - 10) {
-    //     //   newY = canvasReference?.current?.clientHeight - 10;
-    //     // }
-    //     // if (pos.y < -(canvasReference?.current?.clientHeight - 1)) {
-    //     // //   newY = canvasReference?.current?.clientHeight;
-    //     // }
-    //     // if (pos.y > -(canvasReference?.current?.clientHeight - 1)) {
-    //     //     // newY = canvasReference?.current?.clientHeight;
-    //     // }
-    //     // if (pos.x > canvasReference?.current?.clientWidth - 10) {
-    //     //   newX = canvasReference?.current?.clientWidth - 10;
-    //     // }
-    //     // if (pos.x < -(canvasReference?.current?.clientWidth - 10)) {
-    //     //   newX = -(canvasReference?.current?.clientWidth - 10);
-    //     // }
-    //     return {
-    //       x: newX,
-    //       y: newY
-    //     };
-    // }

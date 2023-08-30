@@ -11,21 +11,30 @@ export const PresetColorSelect = (
     }
 ) => {
     const { type, title } = props;
-    const { currentCustomTemplate, updateCustomTemplateSelection } = useContext(EditorContext) as EditorContextType;
-    // const [colorHex, setColorHex] = useState<Color | string>('#1677ff');
-
-
-    // const updateColor = (Color: Color) => {
-    //     setColorHex(Color)
-
-    // }
-
+    const { 
+        currentCustomTemplate, 
+        updateCustomTemplateSelection 
+    } = useContext(EditorContext) as EditorContextType;
+    
     const updateColor = (type: any, value: any) => {
+        if (type === "mainLogo") {
+            updateCustomTemplateSelection?.('mainLogo', {
+                ...currentCustomTemplate?.mainLogo,
+                url: `${currentCustomTemplate?.mainLogo?.filePath}/${value}.${currentCustomTemplate.mainLogo?.imageType}`,
+            })
+        }
+        if (type === "bottomLogo") {
+            updateCustomTemplateSelection?.('bottomLogo', {
+                ...currentCustomTemplate?.bottomLogo,
+                url: `${currentCustomTemplate?.bottomLogo?.filePath}/${value}.${currentCustomTemplate.bottomLogo?.imageType}`,
+            })
+        }
         if (type === "backgroundLogo") {
             updateCustomTemplateSelection?.('backgroundLogo', {
                 ...currentCustomTemplate?.backgroundLogo,
-                url: `${currentCustomTemplate?.backgroundLogo?.filePath}/${value}.png`,
+                url: `${currentCustomTemplate?.backgroundLogo?.filePath}/${value}.${currentCustomTemplate.backgroundLogo?.imageType}`,
             })
+            console.info('hi2')
         }
         if (type === "backgroundSetting") {
 
@@ -35,7 +44,7 @@ export const PresetColorSelect = (
                     ...currentCustomTemplate?.backgroundSettings?.background,
                     file: {                 
                         ...currentCustomTemplate?.backgroundSettings?.background?.file,
-                        url: `${currentCustomTemplate?.backgroundSettings?.background?.file?.filePath}/${value}.png`,
+                        url: `${currentCustomTemplate?.backgroundSettings?.background?.file?.filePath}/${value}.${currentCustomTemplate.backgroundLogo?.imageType}`,
                     },
                 },
             })
@@ -52,6 +61,19 @@ export const PresetColorSelect = (
                 </div>
             }
             <div className={`presetColorSelect__left`}>
+                <Button
+                    onClick={() => updateColor(type, 'regular')}
+                    size="small"
+                    className={`presetColorSelect__preset`}
+                    style={{
+                        backgroundImage: "url('../../images/resources/selector/regular.png')",
+                        // backgroundColor: '#000000',
+                        border: '1px solid #000000'
+                    }}
+                    shape="circle"
+                >
+                    {/* Black */}
+                </Button>
                 <Button
                     onClick={() => updateColor(type, 'black')}
                     size="small"

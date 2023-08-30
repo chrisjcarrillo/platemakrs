@@ -88,7 +88,8 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         setShowPreview,
         setDecision,
         setMoveLogo,
-        setMovePattern
+        setMoveBackgroundLogo,
+        setMoveBottomLogo
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const {
@@ -386,7 +387,9 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         title?: string
     ) => {
         setMoveLogo(false);
-        setMovePattern(false);
+        setMoveBackgroundLogo(false);
+        setMoveBottomLogo(false);
+        
         if(sessionStorage.getItem('preset')){
             setDecision(false);
         }

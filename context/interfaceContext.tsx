@@ -34,8 +34,12 @@ export type InterfaceContextType = {
     moveBackgroundLogo?: boolean; // For Logo
     setMoveBackgroundLogo: (type: boolean) => void; // For Logo
 
-    movePattern?: boolean // For Pattern
-    setMovePattern: (type: boolean) => void; // For Pattern
+    moveDetail1?: boolean
+    setMoveDetail1: (type: boolean) => void; // For Logo
+
+    moveDetail2?: boolean
+    setMoveDetail2: (type: boolean) => void; // For Logo
+
 
     isPreset?: boolean;
     setPreset: (type: boolean) => void;
@@ -60,12 +64,13 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
 
     const [showCart, setShowCart] = useState<boolean>(false) //Show Cart
 
+    // MOVEABLES
     const [moveLogo, setMoveLogo] = useState<boolean>(false) // Move Logo
     const [moveBottomLogo, setMoveBottomLogo] = useState<boolean>(false) // Move Bottom Logo
-
-    const [movePattern, setMovePattern] = useState<boolean>(false) // Move Logo
-
-    const [moveBackgroundLogo, setMoveBackgroundLogo] = useState<boolean>(false) // Move Gradient
+    const [moveBackgroundLogo, setMoveBackgroundLogo] = useState<boolean>(false) // Move Background
+    const [moveDetail1, setMoveDetail1] = useState<boolean>(false) // Move Detail 1
+    const [moveDetail2, setMoveDetail2] = useState<boolean>(false) // Move Detail 1
+    // MOVEABLES
 
     const [isPreset, setPreset] = useState<boolean>(false)
 
@@ -112,8 +117,11 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
                 moveBackgroundLogo,
                 setMoveBackgroundLogo,
 
-                movePattern,
-                setMovePattern,
+                moveDetail1, 
+                setMoveDetail1,
+
+                moveDetail2, 
+                setMoveDetail2,
 
                 isPreset,
                 setPreset,

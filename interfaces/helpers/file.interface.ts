@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import { ICoordinates } from "../helpers/coordinates.interface";
 import { 
     IGlow, 
@@ -7,9 +8,10 @@ import {
 // Used for backgrounds
 export interface IFile {
     hasColor?: boolean; // Define if the background will have a color
-    hasPresetColors?: boolean, // Define if the background has preset colors
+    // hasPresetColors?: boolean, // Define if the background has preset colors
     color?: string, // if hasPresetColors is false, this will be the assigned color
     filePath?: string, // if hasPresetColors is true, this will be the assigned color
+    imageType?: string;
 
     name?: string,
     url?: string,
@@ -20,14 +22,15 @@ export interface IFile {
 // Used for logos
 export interface IFileLogo {
     hasColor?: boolean; // Define if the logo will have a color
+    imageType?: string;
+    filePath?: string,
     
     // Colors
-    hasPresetColors?: boolean, // Define if the logo has preset colors
-    filePath?: string,
+    // hasPresetColors?: boolean, // Define if the logo has preset colors
 
-    hasMultipleColors?: boolean,
-    color?: string
-    multipleColors?: IMultipleColor
+    // hasMultipleColors?: boolean,
+    // color?: string
+    // multipleColors?: IMultipleColor
 
 
     enabled?: boolean

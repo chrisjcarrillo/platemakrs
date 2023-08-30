@@ -1,16 +1,15 @@
+import React from 'react';
 import { ICustomPlateTemplate } from "../../../../../interfaces/customTemplate.interface";
 
-export const Mercedes = (props: {
+const Mercedes = (props: {
     customTemplate?: ICustomPlateTemplate
-}) => {
-    const { customTemplate } = props;
-    return (
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-            viewBox="0 0 181 181" >
+}) => (
+        <svg version="1.1" id="background" x="0px" y="0px"
+            viewBox="0 0 181 181">
             <g>
                 <path style={{
-                    fill: customTemplate?.backgroundSettings?.background?.file?.color ?? '#ffffff',
-                    stroke: customTemplate?.backgroundSettings?.background?.file?.color ?? '#ffffff',
+                    fill: props.customTemplate?.backgroundSettings?.background?.file?.color ?? 'red',
+                    stroke: props.customTemplate?.backgroundSettings?.background?.file?.color ?? 'red',
                     strokeMiterlimit: '20',
                 }} d="M90.5,180.5C40.5,180.5,0,140.4,0,91C0,41.5,40.5,1.5,90.5,1.5c50,0,90.5,40.1,90.5,89.5
 		C181,140.4,140.5,180.5,90.5,180.5L90.5,180.5z M16.3,133.9l1.6-1.3c-4.7-8.6-6.5-14.3-8.5-20.6c-0.2-0.5-0.3-0.8-0.5-1.1
@@ -29,4 +28,5 @@ export const Mercedes = (props: {
             </g>
         </svg>
     )
-}
+
+    export default Mercedes
