@@ -6509,6 +6509,7 @@ export const premadeTemplates = [
             hasColor: true,
             enabled: true,
             name: 'gray.png',
+            imageType: 'png',
             filePath: 'images/resources/cars/ford/patterns/gt500-2/colors',
             url: '/images/resources/cars/ford/patterns/gt500-2/colors/regular.png',
             leftCoordinates: {
@@ -6531,6 +6532,7 @@ export const premadeTemplates = [
             hasColor: true,
             enabled: true,
             name: 'gray.png',
+            imageType: 'png',
             filePath: '/images/resources/cars/ford/details/faded-stripe/colors',
             url: '/images/resources/cars/ford/details/faded-stripe/colors/regular.png',
             leftCoordinates: {
@@ -6553,6 +6555,7 @@ export const premadeTemplates = [
             hasColor: true,
             enabled: true,
             name: 'gray.png',
+            imageType: 'png',
             filePath: '/images/resources/cars/ford/logos/CS/colors',
             url: '/images/resources/cars/ford/logos/CS/colors/regular.png',
             leftCoordinates: {

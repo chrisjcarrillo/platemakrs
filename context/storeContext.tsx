@@ -63,7 +63,9 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         setCheckout(checkout)
     }
 
-    const redirectCheckout = () => {
+    const redirectCheckout = (
+        currentCustomTemplate?: ICustomPlateTemplate
+    ) => {
         const queryParams = new URLSearchParams(window.location.search);
         if(queryParams.get("preset") && sessionStorage.getItem('preset') && currentCustomTemplate){
             addVariant(
@@ -77,10 +79,10 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
     // Variants START
     const addVariant = async (
         variantId?: any,
-        customTemplateId?: string
+        customTemplateId?: string,
     ) => {
         try {
-            const checkoutId = checkout.id;
+            const checkoutId = checkout?.id;
             const lineItemsToUpdate = [
                 {
                     variantId,
@@ -109,7 +111,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
     const removeVariant = async (item?: any) => {
         try {
             // setCartLoading(true);
-            const checkoutId = checkout.id;
+            const checkoutId = checkout?.id;
             const itemRemove = [
                 {
                     id: item.id,
@@ -135,8 +137,8 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
 
     const updateLineItemFromCart = async (item: any, type: any, inputQuantity: any) => {
         try {
-            const checkoutId = checkout.id;
-            const quantitySum = type === 'add' ? parseInt(item.quantity + (1)) : type === 'subtract' ? parseInt(item.quantity - (1)) : parseInt(inputQuantity)
+            const checkoutId = checkout?.id;
+            const quantitySum = type === 'add' ? parseInt(item.quantity + (1)) : type === 'subtract' ? parseInt(item?.quantity - (1)) : parseInt(inputQuantity)
             const itemRemove = [
                 {
                     id: item.id,

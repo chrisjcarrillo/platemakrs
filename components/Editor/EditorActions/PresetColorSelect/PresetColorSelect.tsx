@@ -78,6 +78,7 @@ export const PresetColorSelect = (
                     style={{
                         backgroundImage: "url('../../images/resources/selector/regular.png')",
                         // backgroundColor: '#000000',
+                        backgroundSize: 'contain',
                         border: '1px solid #000000'
                     }}
                     shape="circle"

@@ -9,6 +9,7 @@ import { Cart } from '../components/shared/Cart/Cart';
 import { Input } from 'antd';
 import { CloseSquareFilled } from '@ant-design/icons';
 import Container from 'react-bootstrap/Container';
+import { useRouter } from 'next/router';
 
 const MainHead = () => {
     return (
@@ -35,46 +36,47 @@ export default function Editor(props: any) {
     }
 
     return (
-        <>
-            <LoadingSpinner>
-                <Container fluid>
-                    <Cart />
-                    <MainHead />
-                    <EditorHeader
-                    />
-                    {/* <Search /> */}
-                    <div className='pm__search'>
-                        <div className='pm__search-title'>
+        <Container fluid>
+            <LoadingSpinner >
+                <Cart />
+                <MainHead />
+                <EditorHeader
+                />
+                {/* <Search /> */}
+                <div className='pm__search'>
+                    <div className='pm__search-title'>
                         Search
-                        </div>
-                        <div className='pm__search-container'>
-                            <Search
-                                className='pm__search-bar'
-                                placeholder="Type to search"
-                                allowClear={{ clearIcon: <CloseSquareFilled rev={''} color='white' /> }}
-                                onSearch={
-                                    (e) => onSearch(e)
-                                }
-                                style={{ width: '100%' }}
-                                bordered={false}
-                            />
-                        </div>
                     </div>
-                    <TemplateList
-                        products={products}
-                    />
-                </Container>
+                    <div className='pm__search-container'>
+                        <Search
+                            className='pm__search-bar'
+                            placeholder="Type to search"
+                            allowClear={{ clearIcon: <CloseSquareFilled rev={''} color='white' /> }}
+                            onSearch={
+                                (e) => onSearch(e)
+                            }
+                            style={{ width: '100%' }}
+                            bordered={false}
+                        />
+                    </div>
+                </div>
+                <TemplateList
+                    products={products}
+                />
             </LoadingSpinner>
-        </>
+        </Container>
     )
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
     // This is the first page
     const currentProduct = await client.collection.fetchWithProducts('gid://shopify/Collection/456849490221', { productsFirst: 100 })
+    const addOns = await client.collection.fetchWithProducts('gid://shopify/Collection/459092033837')   
+
     return {
         props: {
-            productList: JSON.parse(JSON.stringify(currentProduct))
+            productList: JSON.parse(JSON.stringify(currentProduct)),
+            productAddOns: JSON.parse(JSON.stringify(currentProduct))
         }
     }
 }
