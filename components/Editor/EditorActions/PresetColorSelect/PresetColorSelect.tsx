@@ -42,7 +42,7 @@ export const PresetColorSelect = (
                     ...currentCustomTemplate?.backgroundSettings?.background,
                     file: {                 
                         ...currentCustomTemplate?.backgroundSettings?.background?.file,
-                        url: `${currentCustomTemplate?.backgroundSettings?.background?.file?.filePath}/${value}.${currentCustomTemplate.backgroundLogo?.imageType}`,
+                        url: `${currentCustomTemplate?.backgroundSettings?.background?.file?.filePath}/${value}.${currentCustomTemplate?.backgroundSettings?.background?.file?.imageType}`,
                     },
                 },
             })
