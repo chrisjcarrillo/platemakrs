@@ -56,10 +56,7 @@ export const EditorPresetContainer = (
                 undefined
             )
             // Reset count to 0 on dynamic route change.
-            router.push('/products')
-        }
-
-        if(handle){
+        } else {
             updateStep?.(
                 3,
                 handle?.subStep,
