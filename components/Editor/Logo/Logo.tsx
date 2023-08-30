@@ -171,7 +171,7 @@ export const Logo = (props: ILogo) => {
                                     currentCustomTemplate?.mainLogo?.glow?.enabled ? true : false                   
                                 }
                                 shadowColor={
-                                    currentCustomTemplate?.mainLogo?.glow?.enabled ? currentCustomTemplate?.mainLogo?.glow?.color : ''    
+                                    currentCustomTemplate?.mainLogo?.glow?.enabled ? currentCustomTemplate?.mainLogo?.glow?.color : '#000000'    
                                 }
                                 shadowBlur={20}
                                 shadowOpacity={1}

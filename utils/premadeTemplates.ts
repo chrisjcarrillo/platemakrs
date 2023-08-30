@@ -140,7 +140,7 @@ export const premadeTemplates = [
             height: 100,
             glow:{ enabled: false }
         },
-        
+
         bottomLogo: {
             enabled: true,
             hasColor: true,
@@ -6005,6 +6005,7 @@ export const premadeTemplates = [
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
         bottomLogo: { enabled: false },
+        backgroundLogo: { enabled: false },
 
         mainLogo: {
             hasColor: true,
@@ -6030,34 +6031,17 @@ export const premadeTemplates = [
             glow:{ enabled: true, color: '#ff0000' }
         },
 
-        backgroundLogo:{
-            hasPresetColors: true,
-            enabled: true,
-            name: 'white.png',
-            imageType: 'png',
-            filePath: 'public/images/resources/backgrounds/hexagon/option-8/colors',
-            url: '/images/resources/backgrounds/hexagon/option-8/colors/red.png',
-            leftCoordinates: {
-                x: 0,
-                y: 0
-            },
-            centerCoordinates: {
-                x: 0,
-                y: -15
-            },
-            rightCoordinates: {
-                x: 0,
-                y: 0
-            },
-            width: 350,
-            height: 200,
-        },
-
-
         backgroundSettings: {
             color: '#000000',
             background: {
-                enabled: false,
+                enabled: true,
+                file: {
+                    hasColor: true,
+                    name: 'white.png',
+                    imageType: 'png',
+                    filePath: '/images/resources/backgrounds/hexagon/option-8/colors',
+                    url: '/images/resources/backgrounds/hexagon/option-8/colors/red.png',
+                }
             },
             stroke: { enabled: false }
         },
@@ -6103,18 +6087,21 @@ export const premadeTemplates = [
 
     {
         shopifyHandle: 'rolls-royce-3-template',
-        detailLogo1: { enabled: false},
-        detailLogo2: {enabled: false},
         templateId: '61',
         preset: true,
         startPlatePosition: 'right',
         startPlateText: 'SAMPL',
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
-
+        detailLogo1: { enabled: false},
+        detailLogo2: {enabled: false},
+        
         mainLogo: {
+            hasColor: true,
             enabled: true,
             name: "mercedes.svg",
+            filePath: '/images/resources/cars/rolls-royce/logo/rr/colors',
+            imageType: 'svg',
             url: '/images/resources/cars/rolls-royce/logo/rr/colors/orange.svg',
             leftCoordinates: {
                 x: 30,
@@ -6134,8 +6121,11 @@ export const premadeTemplates = [
         },
 
         bottomLogo: {
+            hasColor: true,
             enabled: true,
             name: "mercedes.svg",
+            filePath: '/images/resources/cars/rolls-royce/text/black-badge/colors',
+            imageType: 'png',
             url: '/images/resources/cars/rolls-royce/text/black-badge/colors/orange.png',
             centerCoordinates: {
                 x: 105,
@@ -6764,6 +6754,106 @@ export const premadeTemplates = [
                     color: '#000000'
                 },
             },
+        },
+        state:{
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: true
+            },
+            stroke: { enabled: false},
+        },
+        plateNumber: {
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: true
+            },
+            stroke: { enabled: false},
+        },
+        bottomText: {
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: true
+            },
+            stroke: { enabled: false},
+        }
+    }, //Corvette #1  - [Done]
+
+    {
+        detailLogo1: { enabled: false},
+        detailLogo2: {enabled: false},
+        templateId: '69',
+        shopifyHandle: 'two-colors-simple-template',
+        startPlatePosition: 'center',
+        startPlateText: 'SAM PLE',
+        patternSettings: { enabled: false },
+        fadeSettings: { enabled: false },
+        backgroundLogo: { enabled: false },
+        bottomLogo: { enabled: false },
+        mainLogo: { enabled: false },
+        backgroundSettings: {
+            color: '#000000',
+            background: { enabled: false },
+        },
+        state:{
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: true
+            },
+            stroke: { enabled: false},
+        },
+        plateNumber: {
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: true
+            },
+            stroke: { enabled: false},
+        },
+        bottomText: {
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: true
+            },
+            stroke: { enabled: false},
+        }
+    }, //Corvette #1  - [Done]
+
+    {
+        detailLogo1: { enabled: false},
+        detailLogo2: {enabled: false},
+        templateId: '70',
+        shopifyHandle: 'pinstripe-template',
+        startPlatePosition: 'center',
+        startPlateText: 'SAM PLE',
+        patternSettings: { enabled: false },
+        fadeSettings: { enabled: false },
+        backgroundLogo: { enabled: false },
+        bottomLogo: { enabled: false },
+        mainLogo: { enabled: false },
+        backgroundSettings: {
+            color: '#000000',
+            background: { enabled: false },
+            pinstripe: {
+                enabled: true,
+                color: '#ffffff'
+            }
         },
         state:{
             color: '#ffffff',
