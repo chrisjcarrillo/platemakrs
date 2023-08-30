@@ -140,6 +140,7 @@ export const premadeTemplates = [
             height: 100,
             glow:{ enabled: false }
         },
+        
         bottomLogo: {
             enabled: true,
             hasColor: true,
