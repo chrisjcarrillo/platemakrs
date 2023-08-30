@@ -21,6 +21,24 @@ export const ColorSelect = (
     // }
 
     const updateColor = (type: any, value: any) => {
+        if(type === "detailLogo2"){
+            updateCustomTemplateSelection?.('detailLogo2', {
+                ...currentCustomTemplate?.detailLogo2,
+                glow: {
+                    ...currentCustomTemplate?.detailLogo2?.glow,
+                    color: value
+                }
+            }) 
+        }
+        if(type === "detailLogo1"){
+            updateCustomTemplateSelection?.('detailLogo1', {
+                ...currentCustomTemplate?.detailLogo1,
+                glow: {
+                    ...currentCustomTemplate?.detailLogo1?.glow,
+                    color: value
+                }
+            }) 
+        }
         if(type === "bottomLogoGlow"){
             updateCustomTemplateSelection?.('bottomLogo', {
                 ...currentCustomTemplate?.bottomLogo,

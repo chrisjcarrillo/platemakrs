@@ -17,6 +17,18 @@ export const PresetColorSelect = (
     } = useContext(EditorContext) as EditorContextType;
     
     const updateColor = (type: any, value: any) => {
+        if (type === "detailLogo2") {
+            updateCustomTemplateSelection?.('detailLogo2', {
+                ...currentCustomTemplate?.detailLogo2,
+                url: `${currentCustomTemplate?.detailLogo2?.filePath}/${value}.${currentCustomTemplate.detailLogo2?.imageType}`,
+            })
+        }
+        if (type === "detailLogo1") {
+            updateCustomTemplateSelection?.('detailLogo1', {
+                ...currentCustomTemplate?.detailLogo1,
+                url: `${currentCustomTemplate?.detailLogo1?.filePath}/${value}.${currentCustomTemplate.detailLogo1?.imageType}`,
+            })
+        }
         if (type === "mainLogo") {
             updateCustomTemplateSelection?.('mainLogo', {
                 ...currentCustomTemplate?.mainLogo,

@@ -220,6 +220,68 @@ export const PresetActions = (
             }
             {/* Background logo */}
 
+
+
+
+
+            {/* Bottom Logo*/}
+            {
+                step.currentSubStep === "presetDetailLogo1Color" && (
+                    <PresetColorSelect 
+                        type='detailLogo1'
+                        title="Detail 1 Logo"
+                    />
+                )
+            }
+            
+            {
+                step.currentSubStep === "presetDetailLogo1Move" && (
+                    <MoveSwitcher
+                        type="detailLogo1"
+                        text="Detail 1 Logo Move"
+                    />
+                )
+            }
+
+            {
+                step.currentSubStep === "presetDetailLogo1Glow" && (
+                    <ColorSelect 
+                        type="detailLogo1"
+                        title="Detail 1 Logo Glow"
+                    />
+                )
+            }
+            {/* Bottom Logo*/}
+
+            {/* Bottom Logo*/}
+            {
+                step.currentSubStep === "presetDetailLogo2Color" && (
+                    <PresetColorSelect 
+                        type='detailLogo2'
+                        title="Detail 2 Logo"
+                    />
+                )
+            }
+            
+            {
+                step.currentSubStep === "presetDetailLogo2Move" && (
+                    <MoveSwitcher
+                        type="detailLogo2"
+                        text="Detail 2 Logo Move"
+                    />
+                )
+            }
+
+            {
+                step.currentSubStep === "presetDetailLogo2Glow" && (
+                    <ColorSelect 
+                        type="detailLogo2"
+                        title="Detail 2 Logo Glow"
+                    />
+                )
+            }
+            {/* Bottom Logo*/}
+
         </Row>
     )
 }
