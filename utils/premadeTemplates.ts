@@ -6506,7 +6506,7 @@ export const premadeTemplates = [
         },
 
         backgroundLogo:{
-            hasColor: false,
+            hasColor: true,
             enabled: true,
             name: 'gray.png',
             filePath: 'images/resources/cars/ford/patterns/gt500-2/colors',
@@ -6528,7 +6528,7 @@ export const premadeTemplates = [
         },
 
         detailLogo1:{
-            hasColor: false,
+            hasColor: true,
             enabled: true,
             name: 'gray.png',
             filePath: '/images/resources/cars/ford/details/faded-stripe/colors',
@@ -6550,7 +6550,7 @@ export const premadeTemplates = [
         },
 
         detailLogo2:{
-            hasColor: false,
+            hasColor: true,
             enabled: true,
             name: 'gray.png',
             filePath: '/images/resources/cars/ford/logos/CS/colors',
