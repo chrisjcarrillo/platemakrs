@@ -19,6 +19,7 @@ const MainHead = () => {
     )
 }
 export default function Editor(props: any) {
+    console.log(props.productList)
     const { Search } = Input
     const { productList } = props;
     const [products, setProducts] = useState(productList?.products)
@@ -69,7 +70,6 @@ export default function Editor(props: any) {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    // This is the first page
     const currentProduct = await client.collection.fetchWithProducts('gid://shopify/Collection/456849490221', { productsFirst: 100 })
     const addOns = await client.collection.fetchWithProducts('gid://shopify/Collection/459092033837')   
 
@@ -77,6 +77,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
         props: {
             productList: JSON.parse(JSON.stringify(currentProduct)),
             productAddOns: JSON.parse(JSON.stringify(currentProduct))
-        }
+        },
+        revalidate: 10
     }
 }

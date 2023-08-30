@@ -2008,6 +2008,7 @@ export const handleActions = (
             }
 
             if (currentCustomTemplate?.backgroundLogo?.enabled) {
+                console.info('im here');
                 if (currentCustomTemplate?.backgroundLogo?.hasColor) {
                     return {
                         step: CURRENT_STEP,
@@ -2028,7 +2029,8 @@ export const handleActions = (
         }
 
         // Bottom Logo Glow
-        if (currentEditorStep?.currentSubStep === "presetMainLogoGlowColor") {
+        if (currentEditorStep?.currentSubStep === "presetBottomLogoGlow") {
+            
             if (currentCustomTemplate?.backgroundLogo?.enabled) {
                 if (currentCustomTemplate?.backgroundLogo?.hasColor) {
                     return {

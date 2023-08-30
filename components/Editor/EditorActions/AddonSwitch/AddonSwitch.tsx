@@ -16,30 +16,8 @@ export const MoveSwitcher = (
     } = props;
 
     const {
-        setMoveBottomLogo,
-        setMoveLogo,
-        setMoveBackgroundLogo,
-        setMoveDetail1,
-        setMoveDetail2
     } = useContext(InterfaceContext) as InterfaceContextType;
 
-    const updateSwitch = (type: any, value: any) => {
-        if(type === "detailLogo1"){
-            setMoveDetail1(value)
-        }
-        if(type === "detailLogo2"){
-            setMoveDetail2(value)
-        }
-        if(type === "bottomLogo"){
-            setMoveBottomLogo(value)
-        }
-        if(type === "moveLogo"){
-            setMoveLogo(value)
-        }
-        if(type === "moveBackgroundLogo"){
-            setMoveBackgroundLogo(value)
-        }
-    }
 
     const [checked, setChecked] = useState(false);
 
@@ -62,7 +40,6 @@ export const MoveSwitcher = (
                         (e) => {
                             if(e) setChecked(true)
                             if(!e) setChecked(false)
-                            updateSwitch(type, e)
                         }
                     }
                 />

@@ -639,8 +639,8 @@ export const premadeTemplates = [
                 enabled: true,
                 file:{
                     hasMainColor: false,
-                    name: 'green-hexagons.png',
-                    url: '/images/bg/carbon-fiber/carbon-fiber-full-with-shadow.png',
+                    name: 'carbon-fiber-full-with-shadow',
+                    url: '/images/resources/backgrounds/carbon-fiber/regular/carbon-fiber-full-with-shadow.png',
                 },
             },
             stroke: {
@@ -2830,9 +2830,9 @@ export const premadeTemplates = [
             hasColor: true,
             enabled: true,
             name: "mercedes.svg",
-            imageType: 'svg',
+            imageType: 'png',
             filePath: '/images/resources/cars/ferrari/logos/horse/colors',
-            url: '/images/resources/cars/ferrari/logos/horse/colors/regular.svg',
+            url: '/images/resources/cars/ferrari/logos/horse/colors/regular.png',
             leftCoordinates: {
                 x: 30,
                 y: 45
@@ -2936,9 +2936,9 @@ export const premadeTemplates = [
             hasColor: true,
             enabled: true,
             name: "mercedes.svg",
-            imageType: 'svg',
+            imageType: 'png',
             filePath: '/images/resources/cars/ferrari/logos/horse/colors',
-            url: '/images/resources/cars/ferrari/logos/horse/colors/regular.svg',
+            url: '/images/resources/cars/ferrari/logos/horse/colors/regular.png',
             leftCoordinates: {
                 x: 30,
                 y: 45
@@ -3977,19 +3977,20 @@ export const premadeTemplates = [
                 color: '#000000'
             }
         },
+        
         bottomLogo: {
             hasColor: true,
             enabled: true,
             name: "mercedes.svg",
             imageType: 'svg',
-            filePath: '/images/logos/brands/cars/corvette/text/colors',
-            url: '/images/logos/brands/cars/corvette/text/colors/white.svg',
+            filePath: '/images/resources/cars/corvette/text/colors',
+            url: '/images/resources/cars/corvette/text/colors/red.svg',
             centerCoordinates: {
-                x: 106,
-                y: 10
+                x: 104,
+                y: 8
             },
             width: 145,
-            height: 5,
+            height: 10,
             glow: {
                 enabled: true,
                 color: "#000000"
@@ -4090,7 +4091,8 @@ export const premadeTemplates = [
                 enabled: true,
                 file: {
                     hasColor: false,
-                    url: '/images/bg/forged-carbon/option-1.png',
+                    name: 'forged-carbon',
+                    url: '/images/resources/backgrounds/carbon-fiber/forged/option-1.png',
                     color: '#000000'
                 }
             },
@@ -4149,12 +4151,10 @@ export const premadeTemplates = [
         patternSettings: { enabled: false },
 
         mainLogo: {
-            hasColor: true,
+            hasColor: false,
             enabled: true,
             name: "mercedes.svg",
-            imageType: 'png',
-            filePath: '/images/resources/cars/lamborghini/logos/crest/solid-3d/colors',
-            url: '/images/resources/cars/lamborghini/logos/crest/solid-3d/colors/yellow.png',
+            url: '/images/resources/cars/lamborghini/logos/bull/crest-bull.png',
             leftCoordinates: {
                 x: 26,
                 y: 32
@@ -4403,9 +4403,11 @@ export const premadeTemplates = [
         },
 
         backgroundLogo:{
-            hasColor: false,
+            hasColor: true,
             enabled: true,
             name: 'gray.png',
+            filePath: '/images/resources/cars/ferrari/overlay/horse',
+            imageType: 'png',
             url: '/images/resources/cars/ferrari/overlay/horse/gray.png',
             leftCoordinates: {
                 x: 50,
@@ -4570,9 +4572,9 @@ export const premadeTemplates = [
             hasColor: true,
             enabled: true,
             name: "mercedes.svg",
-            imageType: 'svg',
+            imageType: 'png',
             filePath: '/images/resources/cars/rolls-royce/logo/crest/colors',
-            url: '/images/resources/cars/rolls-royce/logo/crest/colors/regular.svg',
+            url: '/images/resources/cars/rolls-royce/logo/crest/colors/regular.png',
             leftCoordinates: {
                 x: 40,
                 y: 45
@@ -4892,8 +4894,8 @@ export const premadeTemplates = [
                 enabled: true,
                 file:{
                     hasColor: false,
-                    name: 'green-hexagons.png',
-                    url: '/images/bg/carbon-fiber/carbon-fiber-full-with-shadow.png',
+                    name: 'carbon-fiber-full-with-shadow',
+                    url: '/images/resources/backgrounds/carbon-fiber/regular/carbon-fiber-full-with-shadow.png',
                 },
             },
             stroke: {
@@ -5001,6 +5003,10 @@ export const premadeTemplates = [
             },
             stroke: {
                 enabled: false
+            },
+            pinstripe: {
+                enabled: true,
+                color: '#fdcc02'
             }
         },
 
@@ -5279,7 +5285,8 @@ export const premadeTemplates = [
                 file: {
                     hasMainColor: false,
                     hasColor: false,
-                    url: '/images/bg/forged-carbon/option-2.png',
+                    name: 'forged-carbon',
+                    url: '/images/resources/backgrounds/carbon-fiber/forged/option-2.png',
                 },
             },
             stroke: { enabled: false }
@@ -5410,8 +5417,8 @@ export const premadeTemplates = [
                 file:{
                     hasMainColor: false,
                     hasColor: false,
-                    name: 'green-hexagons.png',
-                    url: '/images/bg/carbon-fiber/carbon-fiber-full-with-shadow.png',
+                    name: 'carbon-fiber-full-with-shadow',
+                    url: '/images/resources/backgrounds/carbon-fiber/regular/carbon-fiber-full-with-shadow.png',
                 },
             },
             stroke: {
@@ -5598,9 +5605,9 @@ export const premadeTemplates = [
             hasColor: true,
             enabled: true,
             name: "mercedes.svg",
-            imageType: 'svg',
+            imageType: 'png',
             filePath: '/images/resources/cars/ferrari/logos/horse/colors',
-            url: '/images/resources/cars/ferrari/logos/horse/colors/regular.svg',
+            url: '/images/resources/cars/ferrari/logos/horse/colors/regular.png',
             leftCoordinates: {
                 x: 50,
                 y: 35
@@ -5720,7 +5727,7 @@ export const premadeTemplates = [
                 enabled: false,
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -5788,6 +5795,7 @@ export const premadeTemplates = [
             hasColor: true,
             enabled: true,
             name: 'gray.png',
+            imageType: 'png',
             filePath: '/images/resources/cars/ford/patterns/gt500/option-2',
             url: '/images/resources/cars/ford/patterns/gt500/option-2/gray.png',
             leftCoordinates: {
@@ -5893,8 +5901,8 @@ export const premadeTemplates = [
                 file:{
                     hasColor: false,
                     hasMainColor: false,
-                    name: 'green-hexagons.png',
-                    url: '/images/bg/carbon-fiber.png',
+                    name: 'carbon-fiber',
+                    url: '/images/resources/backgrounds/carbon-fiber/regular/carbon-fiber.png',
                 },
             },
             stroke: {

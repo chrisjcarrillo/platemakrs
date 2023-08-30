@@ -28,6 +28,39 @@ export const Decision = () => {
         checkout
     } = useContext(StoreContext) as StoreContextType;
 
+    // If carbon fiber/hexagon are in the template go directly to plate characters
+    const handleDecision = () => {
+        // currentCustomTemplate;
+        let name = currentCustomTemplate?.backgroundSettings?.background?.file?.name;
+        if(
+            name === "carbon-fiber-full-with-shadow" || name === "forged-carbon" || name === "carbon-fiber"
+        ){
+            updateStep?.(
+                3, 
+                'presetCharacterColor',
+                'Select Color',
+                false,
+                'Plate Character'
+            )
+        } else if(currentCustomTemplate?.backgroundSettings?.background?.enabled && currentCustomTemplate?.backgroundSettings?.background?.file?.hasColor){
+            updateStep?.(
+                3, 
+                'presetBgImageColor',
+                'Select Color',
+                false,
+                'Background Image'
+            )
+        } else {
+            updateStep?.(
+                3,
+                'presetBgColor',
+                'Select Color',
+                false,
+                'Background'
+            )
+        }
+    }
+
     return (
         <Offcanvas
             onClose={() => setDecision(false)}
@@ -53,15 +86,7 @@ export const Decision = () => {
                         <a 
                             className="decision__actions-customize-btn"
                             onClick={
-                                () => updateStep?.(
-                                    3, 
-                                    currentCustomTemplate?.backgroundSettings?.background?.enabled && currentCustomTemplate?.backgroundSettings?.background?.file?.hasColor ?
-                                        'presetBgImageColor' : 'presetBgColor',
-                                    'Select Color',
-                                    false,
-                                    currentCustomTemplate?.backgroundSettings?.background?.enabled && currentCustomTemplate?.backgroundSettings?.background?.file?.hasColor ? 
-                                    'Background Image' : 'Background'
-                                )
+                                () => handleDecision()
                             }
                         >Customize Template</a>
                     </div>

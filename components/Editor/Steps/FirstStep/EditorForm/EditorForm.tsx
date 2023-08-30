@@ -24,6 +24,8 @@ import {
 import { EditorContextType } from '../../../../../context/editorContext';
 import { Action } from '../../../Action/Action';
 import { InterfaceContext, InterfaceContextType } from '../../../../../context/interfaceContext';
+import Image from 'next/image';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 
 // ToDo
 //// Validate Inputs
@@ -37,13 +39,13 @@ interface SButton {
 // const SubmitButton = (
 //     { form, updateStep }: SButton
 // ) => {
-    
+
 // };
 
 
 const EditorForm = (props: any) => {
 
-    const{
+    const {
         stepLoading,
         isPreset
     } = useContext(InterfaceContext) as InterfaceContextType
@@ -61,7 +63,7 @@ const EditorForm = (props: any) => {
     const [formValues, setFormValues] = useState({});
     const [form] = Form.useForm();
     const values = Form.useWatch([], form);
-    
+
     const FormItem = Form.Item;
     const regex = /^[A-Za-z0-9\s-]+$/;
     const columnSettings = {
@@ -130,7 +132,25 @@ const EditorForm = (props: any) => {
                                     name="state"
                                     hasFeedback
                                     label="Select your state"
-                                    tooltip={'Select the State associated to your license plate'}
+                                    tooltip={
+                                        <div
+                                            style={{
+                                                textAlign: 'center'
+                                            }}
+                                        >
+                                            <Image
+                                                alt=''
+                                                width={100}
+                                                height={50}
+                                                src="/images/resources/info/top-text/1.png"
+                                            />
+                                            <p style={{
+                                                textAlign: 'center',
+                                                fontSize: '0.8rem',
+                                                marginBottom: 0
+                                            }}>Select the State associated to your license plate</p>
+                                        </div>
+                                    }
                                     rules={
                                         [
                                             { required: true, message: 'State is required' }
@@ -188,7 +208,25 @@ const EditorForm = (props: any) => {
                                         { required: true, message: 'License Plate characted are required' },
                                         { pattern: regex, message: "Only authorized characters are letters, spaces, numbers and -" }
                                     ]}
-                                    tooltip={'Enter the characters associated to your license plate'}
+                                    tooltip={
+                                        <div
+                                            style={{
+                                                textAlign: 'center'
+                                            }}
+                                        >
+                                            <Image
+                                                alt=''
+                                                width={100}
+                                                height={50}
+                                                src="/images/resources/info/characters/1.png"
+                                            />
+                                            <p style={{
+                                                textAlign: 'center',
+                                                fontSize: '0.8rem',
+                                                marginBottom: 0
+                                            }}>Enter the characters associated to your license plate</p>
+                                        </div>
+                                    }
                                 >
                                     <Input
                                         disabled={!form.getFieldValue('state')}
@@ -285,31 +323,53 @@ const EditorForm = (props: any) => {
                             </Col>
                         </Row>
                         {/* License Plate Position END */}
-                        
+
 
                         {/* Bottom Text Enabled? Start */}
                         <Row className={`${form.getFieldValue('platePosition') ? '' : 'editor__disabled--input'}`}>
                             <Col
-                                xs="8"
-                                sm="8"
-                                md="8"
-                                lg="8"
-                                xl="8"
-                                xxl="8"
+                                xs="10"
+                                sm="10"
+                                md="10"
+                                lg="10"
+                                xl="10"
+                                xxl="10"
                             >
                                 <div
                                     className="editor__label-container"
                                 >
-                                    <label className="editor__label-text editor--text-left">Do you have text on the bottom?</label>
+                                    <label className="editor__label-text editor--text-left">Do you have text on the bottom? <Tooltip title={
+                                        <div
+                                            style={{
+                                                textAlign: 'center'
+                                            }}
+                                        >
+                                            <Image
+                                                alt=''
+                                                width={100}
+                                                height={50}
+                                                src="/images/resources/info/bottom-text/1.png"
+                                            />
+                                            <p style={{
+                                                textAlign: 'center',
+                                                fontSize: '0.8rem',
+                                                marginBottom: 0
+                                            }}>Text located at the bottom of your plate</p>
+                                        </div>
+                                    }>
+                                        <QuestionCircleOutlined rev={''} style={{
+                                            color: '#0093FF'
+                                        }} />
+                                    </Tooltip></label>
                                 </div>
                             </Col>
                             <Col
-                                xs="4"
-                                sm="4"
-                                md="4"
-                                lg="4"
-                                xl="4"
-                                xxl="4"
+                                xs="2"
+                                sm="2"
+                                md="2"
+                                lg="2"
+                                xl="2"
+                                xxl="2"
                             >
                                 <FormItem
                                     name="bottomTextEnabled"
