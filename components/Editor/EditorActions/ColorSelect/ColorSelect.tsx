@@ -5,7 +5,7 @@ import { EditorContext, EditorContextType } from '../../../../context/editorCont
 
 
 export const ColorSelect = (
-    props:{
+    props: {
         type?: string,
         title?: string,
     }
@@ -14,176 +14,179 @@ export const ColorSelect = (
     const { currentCustomTemplate, updateCustomTemplateSelection } = useContext(EditorContext) as EditorContextType;
     // const [colorHex, setColorHex] = useState<Color | string>('#1677ff');
 
-    
+
     // const updateColor = (Color: Color) => {
     //     setColorHex(Color)
-        
+
     // }
 
     const updateColor = (type: any, value: any) => {
-        if(type === "backgroundPinstripe"){
-            updateCustomTemplateSelection?.('backgroundSettings', {
-                ...currentCustomTemplate?.backgroundSettings,
-                pinstripe:{
-                    ...currentCustomTemplate?.backgroundSettings?.pinstripe,
-                    enabled: true,
-                    color: value
-                }
-            })
-        }
-        if(type === "detailLogo2"){
-            updateCustomTemplateSelection?.('detailLogo2', {
-                ...currentCustomTemplate?.detailLogo2,
-                glow: {
-                    ...currentCustomTemplate?.detailLogo2?.glow,
-                    color: value
-                }
-            }) 
-        }
-        if(type === "detailLogo1"){
-            updateCustomTemplateSelection?.('detailLogo1', {
-                ...currentCustomTemplate?.detailLogo1,
-                glow: {
-                    ...currentCustomTemplate?.detailLogo1?.glow,
-                    color: value
-                }
-            }) 
-        }
-        if(type === "bottomLogoGlow"){
-            updateCustomTemplateSelection?.('bottomLogo', {
-                ...currentCustomTemplate?.bottomLogo,
-                glow: {
-                    ...currentCustomTemplate?.bottomLogo?.glow,
-                    color: value
-                }
-            }) 
-        }
-        if(type === "mainLogoGlow"){
-            updateCustomTemplateSelection?.('mainLogo', {
-                ...currentCustomTemplate?.mainLogo,
-                glow: {
-                    ...currentCustomTemplate?.mainLogo?.glow,
-                    color: value
-                }
-            })
-        }
-        if(type === "fadeColor1"){
-            updateCustomTemplateSelection?.('fadeSettings', {
-                ...currentCustomTemplate?.fadeSettings,
-                fadeColor1: value
-            })
-        }
-        if(type === "fadeColor2"){
-            updateCustomTemplateSelection?.('fadeSettings', {
-                ...currentCustomTemplate?.fadeSettings,
-                fadeColor2: value
-            })
-        }
-        if(type === "backgroundUrl"){
-            updateCustomTemplateSelection?.('backgroundSettings', {
-                ...currentCustomTemplate?.backgroundSettings,
-                background: {
-                    ...currentCustomTemplate?.backgroundSettings?.background,
-                    file: {                 
-                        ...currentCustomTemplate?.backgroundSettings?.background?.file,  
-                        color: value,
+        switch (type) {
+            case 'backgroundPinstripe':
+                updateCustomTemplateSelection?.('backgroundSettings', {
+                    ...currentCustomTemplate?.backgroundSettings,
+                    pinstripe: {
+                        ...currentCustomTemplate?.backgroundSettings?.pinstripe,
+                        enabled: true,
+                        color: value
+                    }
+                })
+                break;
+            case 'detailLogo2':
+                updateCustomTemplateSelection?.('detailLogo2', {
+                    ...currentCustomTemplate?.detailLogo2,
+                    glow: {
+                        ...currentCustomTemplate?.detailLogo2?.glow,
+                        color: value
+                    }
+                })
+                break;
+            case 'detailLogo1':
+                updateCustomTemplateSelection?.('detailLogo1', {
+                    ...currentCustomTemplate?.detailLogo1,
+                    glow: {
+                        ...currentCustomTemplate?.detailLogo1?.glow,
+                        color: value
+                    }
+                })
+                break;
+            case 'bottomLogoGlow':
+                updateCustomTemplateSelection?.('bottomLogo', {
+                    ...currentCustomTemplate?.bottomLogo,
+                    glow: {
+                        ...currentCustomTemplate?.bottomLogo?.glow,
+                        color: value
+                    }
+                })
+                break;
+            case 'mainLogoGlow':
+                updateCustomTemplateSelection?.('mainLogo', {
+                    ...currentCustomTemplate?.mainLogo,
+                    glow: {
+                        ...currentCustomTemplate?.mainLogo?.glow,
+                        color: value
+                    }
+                })
+                break;
+            case 'backgroundUrl':
+                updateCustomTemplateSelection?.('backgroundSettings', {
+                    ...currentCustomTemplate?.backgroundSettings,
+                    background: {
+                        ...currentCustomTemplate?.backgroundSettings?.background,
+                        file: {
+                            ...currentCustomTemplate?.backgroundSettings?.background?.file,
+                            color: value,
+                        },
                     },
-                },
-            })
-        }
-        if(type === "backgroundColor"){
-            updateCustomTemplateSelection?.('backgroundSettings', {
-                ...currentCustomTemplate?.backgroundSettings,
-                color: value
-            })
-        } 
-        if(type === "backgroundStroke"){
-            updateCustomTemplateSelection?.('backgroundSettings', {
-                ...currentCustomTemplate?.backgroundSettings,
-                stroke:{
-                    ...currentCustomTemplate?.backgroundSettings?.stroke,
-                    enabled: true,
+                })
+                break;
+            case 'backgroundColor':
+                updateCustomTemplateSelection?.('backgroundSettings', {
+                    ...currentCustomTemplate?.backgroundSettings,
                     color: value
-                }
-            })
-        }
-        if(type === "stateColor"){
-            updateCustomTemplateSelection?.('state', {
-                ...currentCustomTemplate?.state,
-                color: value
-            })
-        }
-        if(type === "stateStrokeColor"){
-            updateCustomTemplateSelection?.('state', {
-                ...currentCustomTemplate?.state,
-                stroke:{
-                    ...currentCustomTemplate?.state?.stroke,
+                })
+                break;
+            case 'backgroundStroke':
+                updateCustomTemplateSelection?.('backgroundSettings', {
+                    ...currentCustomTemplate?.backgroundSettings,
+                    stroke: {
+                        ...currentCustomTemplate?.backgroundSettings?.stroke,
+                        enabled: true,
+                        color: value
+                    }
+                })
+                break;
+            case 'stateColor': 
+                updateCustomTemplateSelection?.('state', {
+                    ...currentCustomTemplate?.state,
                     color: value
-                }
-            })
-        }
-        if(type === "stateGlowColor"){
-            updateCustomTemplateSelection?.('state', {
-                ...currentCustomTemplate?.state,
-                glow: {
-                    ...currentCustomTemplate?.state?.glow,
+                })
+                break;
+            case 'stateStrokeColor':
+                updateCustomTemplateSelection?.('state', {
+                    ...currentCustomTemplate?.state,
+                    stroke: {
+                        ...currentCustomTemplate?.state?.stroke,
+                        color: value
+                    }
+                })
+                break;
+            case 'stateGlowColor':
+                updateCustomTemplateSelection?.('state', {
+                    ...currentCustomTemplate?.state,
+                    glow: {
+                        ...currentCustomTemplate?.state?.glow,
+                        color: value
+                    }
+                })
+                break;
+            case 'plateNumberColor':
+                updateCustomTemplateSelection?.('plateNumber', {
+                    ...currentCustomTemplate?.plateNumber,
                     color: value
-                }
-            })
-        }
-
-        if(type === "plateNumberColor"){
-            updateCustomTemplateSelection?.('plateNumber', {
-                ...currentCustomTemplate?.plateNumber,
-                color: value
-            })
-        }
-        if(type === "plateNumberStrokeColor"){
-            updateCustomTemplateSelection?.('plateNumber', {
-                ...currentCustomTemplate?.plateNumber,
-                stroke:{
-                    ...currentCustomTemplate?.plateNumber?.stroke,
+                })
+                break;
+            case 'plateNumberStrokeColor':
+                updateCustomTemplateSelection?.('plateNumber', {
+                    ...currentCustomTemplate?.plateNumber,
+                    stroke: {
+                        ...currentCustomTemplate?.plateNumber?.stroke,
+                        color: value
+                    }
+                })
+                break;
+            case 'bottomTextColor':
+                updateCustomTemplateSelection?.('bottomText', {
+                    ...currentCustomTemplate?.bottomText,
                     color: value
-                }
-            })
+                })
+                break;
+            case 'bottomTextStrokeColor':
+                updateCustomTemplateSelection?.('bottomText', {
+                    ...currentCustomTemplate?.bottomText,
+                    stroke: {
+                        ...currentCustomTemplate?.bottomText?.stroke,
+                        color: value
+                    }
+                })
+                break;
+            case 'bottomTextGlow':
+                updateCustomTemplateSelection?.('bottomText', {
+                    ...currentCustomTemplate?.bottomText,
+                    glow: {
+                        ...currentCustomTemplate?.bottomText?.glow,
+                        color: value
+                    }
+                })
+                break;
+            default:
+                break;
         }
-        if(type === "bottomTextColor"){
-            updateCustomTemplateSelection?.('bottomText', {
-                ...currentCustomTemplate?.bottomText,
-                color: value
-            })
-        }
-        if(type === "bottomTextStrokeColor"){
-            updateCustomTemplateSelection?.('bottomText', {
-                ...currentCustomTemplate?.bottomText,
-                stroke:{
-                    ...currentCustomTemplate?.bottomText?.stroke,
-                    color: value
-                }
-            })
-        }
-        if(type === "bottomTextGlow"){
-            updateCustomTemplateSelection?.('bottomText', {
-                ...currentCustomTemplate?.bottomText,
-                glow: {
-                    ...currentCustomTemplate?.bottomText?.glow,
-                    color: value
-                }
-            })
-        }
+        // if (type === "fadeColor1") {
+        //     updateCustomTemplateSelection?.('fadeSettings', {
+        //         ...currentCustomTemplate?.fadeSettings,
+        //         fadeColor1: value
+        //     })
+        // }
+        // if (type === "fadeColor2") {
+        //     updateCustomTemplateSelection?.('fadeSettings', {
+        //         ...currentCustomTemplate?.fadeSettings,
+        //         fadeColor2: value
+        //     })
+        // }
     }
 
-    return(
+    return (
         <div className={`colorSelect`}>
             {
-                title !== "" && 
-                    <div className={`colorSelect__title`}> 
-                        <p className={`colorSelect__text`}>{type === "backgroundUrl" ? `Select Honeycomb Color` : `Select ${title} Color`}</p>
-                    </div>
+                title !== "" &&
+                <div className={`colorSelect__title`}>
+                    <p className={`colorSelect__text`}>{type === "backgroundUrl" ? `Select Honeycomb Color` : `Select ${title} Color`}</p>
+                </div>
             }
 
             <div className={`colorSelect__left`}>
-                {type !== 'backgroundColor' && (
+                {type !== 'backgroundColor' && currentCustomTemplate?.originalColor === "" && (
                     <Button
                         onClick={() => updateColor(type, currentCustomTemplate?.originalColor)}
                         size="small"
@@ -210,7 +213,7 @@ export const ColorSelect = (
                 >
                     {/* Black */}
                 </Button>
-                <Button 
+                <Button
                     onClick={() => updateColor(type, '#ffffff')}
                     size="small"
                     className={`colorSelect__preset`}
@@ -220,7 +223,7 @@ export const ColorSelect = (
                     }}
                     shape="circle"
                 />
-                <Button 
+                <Button
                     onClick={() => updateColor(type, '#FF0000')}
                     size="small"
                     className={`colorSelect__preset`}

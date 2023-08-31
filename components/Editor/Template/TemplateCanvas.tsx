@@ -258,6 +258,9 @@ const TemplateCanvas = (
                                 ${currentEditorStep?.currentStep === 2 && currentTemplate === undefined ? 'preview add-shadow' : ''} 
                                 ${!currentLicensePlate?.bottomTextEnabled && !currentLicensePlate?.bottomText ? 'canvas__bottomText-space' : ''}`
                             }
+                            style={{
+                                zIndex: 20
+                            }}
                         >
                             {
                                 currentLicensePlate?.bottomTextEnabled

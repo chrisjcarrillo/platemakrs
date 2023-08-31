@@ -85,7 +85,7 @@ export const EditorHeader = (
                 </Nav>
             </Container>
             {
-                pathname !== "/" && (
+                pathname !== "/" && pathname !== "/editor" && (
 <Container
                 className="header__links"
             >

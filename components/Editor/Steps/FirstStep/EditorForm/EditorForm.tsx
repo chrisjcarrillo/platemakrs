@@ -132,25 +132,7 @@ const EditorForm = (props: any) => {
                                     name="state"
                                     hasFeedback
                                     label="Select your state"
-                                    tooltip={
-                                        <div
-                                            style={{
-                                                textAlign: 'center'
-                                            }}
-                                        >
-                                            <Image
-                                                alt=''
-                                                width={100}
-                                                height={50}
-                                                src="/images/resources/info/top-text/1.png"
-                                            />
-                                            <p style={{
-                                                textAlign: 'center',
-                                                fontSize: '0.8rem',
-                                                marginBottom: 0
-                                            }}>Select the State associated to your license plate</p>
-                                        </div>
-                                    }
+                                    tooltip={'Select the State associated to your license plate'}
                                     rules={
                                         [
                                             { required: true, message: 'State is required' }

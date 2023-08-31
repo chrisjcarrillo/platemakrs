@@ -23,33 +23,11 @@ export const BottomLogo = (props: ILogo) => {
 
     const {
         currentCustomTemplate,
-        currentTemplate,
-        currentLicensePlate
     } = useContext(EditorContext) as EditorContextType;
 
     const { type, logoType, canvasReference, currentPreviewTemplate } = props;
 
     const imageSource = () => {
-        if (logoType === "REGULAR") {
-            if (type === "CANVAS") {
-                if (!currentCustomTemplate) {
-                    return currentTemplate?.bottomLogo?.url
-                }
-            }
-            if (type === "PREVIEW") {
-                return currentPreviewTemplate?.bottomLogo?.url
-            }
-        }
-        if (logoType === "BOTTOM") {
-            if (type === "CANVAS") {
-                if (!currentCustomTemplate) {
-                    return currentTemplate?.bottomLogo?.url
-                }
-            }
-            if (type === "PREVIEW") {
-                return currentPreviewTemplate?.bottomLogo?.url
-            }
-        }
         return currentCustomTemplate?.bottomLogo?.url
     }
 
@@ -76,31 +54,21 @@ export const BottomLogo = (props: ILogo) => {
     const calculateInitialPosition = (
         calcType?: string
     ) => {
-        if (type === "CANVAS") {
-            if (calcType === "x") {
-                return currentCustomTemplate?.bottomLogo?.centerCoordinates?.x
-            }
-            return currentCustomTemplate?.bottomLogo?.centerCoordinates?.y
+        if (calcType === "x") {
+            return currentCustomTemplate?.bottomLogo?.centerCoordinates?.x
         }
-        if (type === "PREVIEW") {
-            if (calcType === "x") return canvasReference?.current?.clientWidth - canvasReference?.current?.clientWidth / 1.5; //center
-            return canvasReference?.current?.clientHeight - canvasReference?.current?.clientHeight / 1.5;
-        }
+        return currentCustomTemplate?.bottomLogo?.centerCoordinates?.y
 
     }
 
     const setSize = (
         sizeType: string
     ) => {
-        if (type === "PREVIEW") {
+        if (sizeType === "width") {
+            return currentCustomTemplate?.bottomLogo?.width! as number
         }
-        if (type === "CANVAS") {
-            if (sizeType === "width") {
-                return currentCustomTemplate?.bottomLogo?.width! as number
-            }
-            if (sizeType === "height")
-                return currentCustomTemplate?.bottomLogo?.height! as number
-        }
+        if (sizeType === "height")
+            return currentCustomTemplate?.bottomLogo?.height! as number
     }
 
     return (
@@ -119,16 +87,16 @@ export const BottomLogo = (props: ILogo) => {
                 <Layer>
                     <Group
                         ref={groupRef}
-                        draggable
+                        draggable={
+                            moveBottomLogo ? true : false
+                        }
                     >
                         <Image
+                            key={1}
                             ref={imageRef}
                             image={image}
                             width={setSize?.('width')}
                             height={setSize?.('height')}
-                            draggable={
-                                type === "CANVAS" && moveBottomLogo ? true : false
-                            }
                             x={
                                 calculateInitialPosition('x')
                             }
@@ -147,13 +115,11 @@ export const BottomLogo = (props: ILogo) => {
                             shadowOffsetY={0}
                         />
                         <Image
+                            key={2}
                             ref={imageRef}
                             image={image}
                             width={setSize?.('width')}
                             height={setSize?.('height')}
-                            draggable={
-                                type === "CANVAS" && moveBottomLogo ? true : false
-                            }
                             x={
                                 calculateInitialPosition('x')
                             }
@@ -172,13 +138,11 @@ export const BottomLogo = (props: ILogo) => {
                             shadowOffsetY={0}
                         />
                         <Image
+                            key={3}
                             ref={imageRef}
                             image={image}
                             width={setSize?.('width')}
                             height={setSize?.('height')}
-                            draggable={
-                                type === "CANVAS" && moveBottomLogo ? true : false
-                            }
                             x={
                                 calculateInitialPosition('x')
                             }
@@ -198,7 +162,7 @@ export const BottomLogo = (props: ILogo) => {
                         />
                     </Group>
 
-                    {type === "CANVAS" && moveBottomLogo &&
+                    {moveBottomLogo &&
                         <Transformer
                             ref={transformerRef}
                         />

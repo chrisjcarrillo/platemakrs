@@ -34,30 +34,11 @@ export const Logo = (props: ILogo) => {
         canvasReference
     } = props;
 
-    // const imageUrl = () => {
-    //     const svgString = renderToStaticMarkup(<Mercedes customTemplate={currentCustomTemplate} />)
-    //     const blob = new Blob([svgString], { type: 'image/svg+xml' });
-    //     return URL.createObjectURL(blob);
-    // }
-    
     const imageSource = () => {
-        // Main Checks
-        // hasColor?
-        ///// return encodedSvg + color
-        // hasPresetColors?
-        ///// return current file
-        // hasMultipleColors
-        // return encodedSvg + multipleColors
-        // if(currentCustomTemplate.mainLogo?.hasColor){
-        //     if(currentCustomTemplate.mainLogo.hasPresetColors){
-        //         return currentCustomTemplate?.mainLogo?.url;
-        //     }
-        // }
         return currentCustomTemplate?.mainLogo?.url
     }
 
     const [image] = useImage(imageSource() ?? '');
-    console.log(image);
 
     const imageRef = useRef<any>();
     const transformerRef = useRef<any>();
@@ -72,8 +53,7 @@ export const Logo = (props: ILogo) => {
     useEffect(() => {
         transformerRef?.current?.nodes([groupRef.current]);
         if(image){
-            imageRef?.current?.cache();
-            console.info(imageRef.current)            
+            imageRef?.current?.cache();        
         }
     }, [image]);
 

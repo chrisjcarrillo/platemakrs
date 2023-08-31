@@ -17,47 +17,51 @@ export const PresetColorSelect = (
     } = useContext(EditorContext) as EditorContextType;
     
     const updateColor = (type: any, value: any) => {
-        if (type === "detailLogo2") {
-            updateCustomTemplateSelection?.('detailLogo2', {
-                ...currentCustomTemplate?.detailLogo2,
-                url: `${currentCustomTemplate?.detailLogo2?.filePath}/${value}.${currentCustomTemplate.detailLogo2?.imageType}`,
-            })
-        }
-        if (type === "detailLogo1") {
-            updateCustomTemplateSelection?.('detailLogo1', {
-                ...currentCustomTemplate?.detailLogo1,
-                url: `${currentCustomTemplate?.detailLogo1?.filePath}/${value}.${currentCustomTemplate.detailLogo1?.imageType}`,
-            })
-        }
-        if (type === "mainLogo") {
-            updateCustomTemplateSelection?.('mainLogo', {
-                ...currentCustomTemplate?.mainLogo,
-                url: `${currentCustomTemplate?.mainLogo?.filePath}/${value}.${currentCustomTemplate.mainLogo?.imageType}`,
-            })
-        }
-        if (type === "bottomLogo") {
-            updateCustomTemplateSelection?.('bottomLogo', {
-                ...currentCustomTemplate?.bottomLogo,
-                url: `${currentCustomTemplate?.bottomLogo?.filePath}/${value}.${currentCustomTemplate.bottomLogo?.imageType}`,
-            })
-        }
-        if (type === "backgroundLogo") {
-            updateCustomTemplateSelection?.('backgroundLogo', {
-                ...currentCustomTemplate?.backgroundLogo,
-                url: `${currentCustomTemplate?.backgroundLogo?.filePath}/${value}.${currentCustomTemplate.backgroundLogo?.imageType}`,
-            })
-        }
-        if (type === "backgroundSetting") {
-            updateCustomTemplateSelection?.('backgroundSettings', {
-                ...currentCustomTemplate?.backgroundSettings,
-                background: {
-                    ...currentCustomTemplate?.backgroundSettings?.background,
-                    file: {                 
-                        ...currentCustomTemplate?.backgroundSettings?.background?.file,
-                        url: `${currentCustomTemplate?.backgroundSettings?.background?.file?.filePath}/${value}.${currentCustomTemplate?.backgroundSettings?.background?.file?.imageType}`,
+        switch (type) {
+            case 'detailLogo2':
+                updateCustomTemplateSelection?.('detailLogo2', {
+                    ...currentCustomTemplate?.detailLogo2,
+                    url: `${currentCustomTemplate?.detailLogo2?.filePath}/${value}.${currentCustomTemplate.detailLogo2?.imageType}`,
+                })
+                break;
+            case 'detailLogo1':
+                updateCustomTemplateSelection?.('detailLogo1', {
+                    ...currentCustomTemplate?.detailLogo1,
+                    url: `${currentCustomTemplate?.detailLogo1?.filePath}/${value}.${currentCustomTemplate.detailLogo1?.imageType}`,
+                })
+                break;
+            case 'mainLogo': 
+                updateCustomTemplateSelection?.('mainLogo', {
+                    ...currentCustomTemplate?.mainLogo,
+                    url: `${currentCustomTemplate?.mainLogo?.filePath}/${value}.${currentCustomTemplate.mainLogo?.imageType}`,
+                })
+                break;
+            case 'bottomLogo':
+                updateCustomTemplateSelection?.('bottomLogo', {
+                    ...currentCustomTemplate?.bottomLogo,
+                    url: `${currentCustomTemplate?.bottomLogo?.filePath}/${value}.${currentCustomTemplate.bottomLogo?.imageType}`,
+                })
+                break;
+            case 'backgroundLogo':
+                updateCustomTemplateSelection?.('backgroundLogo', {
+                    ...currentCustomTemplate?.backgroundLogo,
+                    url: `${currentCustomTemplate?.backgroundLogo?.filePath}/${value}.${currentCustomTemplate.backgroundLogo?.imageType}`,
+                })
+                break;
+            case 'backgroundSetting': 
+                updateCustomTemplateSelection?.('backgroundSettings', {
+                    ...currentCustomTemplate?.backgroundSettings,
+                    background: {
+                        ...currentCustomTemplate?.backgroundSettings?.background,
+                        file: {                 
+                            ...currentCustomTemplate?.backgroundSettings?.background?.file,
+                            url: `${currentCustomTemplate?.backgroundSettings?.background?.file?.filePath}/${value}.${currentCustomTemplate?.backgroundSettings?.background?.file?.imageType}`,
+                        },
                     },
-                },
-            })
+                })
+                break;
+            default:
+                break;
         }
 
     }
