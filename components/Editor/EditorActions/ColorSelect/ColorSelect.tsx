@@ -177,10 +177,10 @@ export const ColorSelect = (
     }
 
     return (
-        <div className={`colorSelect`}>
+        <div className={`colorSelect animate__animated animate__fadeIn`}>
             {
                 title !== "" &&
-                <div className={`colorSelect__title`}>
+                <div className={`colorSelect__title animate__animated animate__fadeIn`}>
                     <p className={`colorSelect__text`}>{type === "backgroundUrl" ? `Select Honeycomb Color` : `Select ${title} Color`}</p>
                 </div>
             }

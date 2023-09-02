@@ -17,6 +17,12 @@
             // height: 345px;
             // overflow: auto !important;
         }
+        .ant-result-title{
+            color: #ffffff;
+        }
+        .ant-result{
+            padding: 2rem 0rem;
+        }
     }
 
     &__actions {
@@ -29,20 +35,20 @@
         padding-bottom: 0.75rem;
         border-top: 1px solid #ffffff;
         border-bottom: 1px solid #ffffff;
-        position: sticky;
-        bottom: 0;
+        position: fixed;
+        bottom: 6.5rem;
         left: 0;
         right: 0;
         &-actions{
             background-color: #000000;
-            position: sticky;
+            position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
         }
-
         &-row {
-            padding-top: 0.75rem;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
             &-steps{
                 padding-top: 0.5rem;
                 padding-bottom: 0.5rem;

@@ -1,63 +1,218 @@
-import { Button } from 'antd';
+import { Button, Checkbox, Tooltip } from 'antd';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useContext } from 'react';
 import { EditorContext, EditorContextType } from '../../../context/editorContext';
 import { StoreContext, StoreContextType } from '../../../context/storeContext';
+import { handleActions } from '../EditorPresetContainer/actions/HandleActions';
 
 export const PlaceOrder = () => {
-    
-    const actionDetailsCols = {
-        xs: 5,
-        sm: 5,
-        md: 5,
-        lg: 5,
-        xl: 5
-    }
 
-    const actionPlaceOrderCols = {
-        xs: 7,
-        sm: 7,
-        md: 7,
-        lg: 7,
-        xl: 7
-    }
 
     const {
         checkout,
-        redirectCheckout
+        redirectCheckout,
+        hasDesigner,
+        acceptTerms,
+        setAcceptTerms
     } = useContext(StoreContext) as StoreContextType;
 
     const {
-        currentCustomTemplate
+        currentCustomTemplate,
+        currentEditorStep,
+        updateStep,
+        currentLicensePlate
     } = useContext(EditorContext) as EditorContextType;
 
+    const showTotal = () => {
+        if (hasDesigner) {
+            const amount = (parseInt(currentCustomTemplate?.selectedVariant?.price?.amount) + 50).toFixed(2)
+            return `${amount}`
+        }
+        if (currentCustomTemplate?.selectedVariant?.price?.amount) {
+            const amount = parseInt(currentCustomTemplate?.selectedVariant?.price?.amount).toFixed(2)
+            return `${amount}`
+        }
+        return parseInt('0').toFixed(2)
+    }
+
+    const termsCols = {
+        xs: 6,
+        sm: 6,
+        md: 6,
+        lg: 6,
+        xl: 6
+    }
+
+    const priceDetailsCols = {
+        xs: 6,
+        sm: 6,
+        md: 6,
+        lg: 6,
+        xl: 6
+    }
+
+    const placeOrderCols = {
+        xs: 12,
+        sm: 12,
+        md: 12,
+        lg: 12,
+        xl: 12
+    }
+
+    const actionButtonsCols = {
+        xs: currentEditorStep?.currentSubStep !== "addonDesigner" ? 6 : 12,
+        sm: currentEditorStep?.currentSubStep !== "addonDesigner" ? 6 : 12,
+        md: currentEditorStep?.currentSubStep !== "addonDesigner" ? 6 : 12,
+        lg: currentEditorStep?.currentSubStep !== "addonDesigner" ? 6 : 12,
+        xl: currentEditorStep?.currentSubStep !== "addonDesigner" ? 6 : 12
+    }
+
+
+    const handleAction = (
+        actionType: 'back' | 'forward' | 'cancel',
+    ) => {
+        const handle = handleActions(
+            actionType,
+            currentCustomTemplate,
+            currentEditorStep,
+            currentLicensePlate
+        )
+
+        if (handle?.step === undefined) {
+            updateStep?.(
+                1,
+                undefined,
+                undefined,
+                false,
+                undefined
+            )
+            // Reset count to 0 on dynamic route change.
+        } else {
+            updateStep?.(
+                3,
+                handle?.subStep,
+                handle?.subTitle,
+                false,
+                handle?.title
+            )
+        }
+    }
+
     return (
-        <Container className={`editorContainer__order-actions`}>
-            <Row className={`editorContainer__order-row g-2`}>
+        <>
+            {/* Details? */}
+
+            <Container className={`editorContainer__order`}>
+                {
+                    currentEditorStep?.currentSubStep &&
+                    <Row className={`editorContainer__order-row-steps g-2`}>
+                        <Col
+                            className={`editorContainer__order-step-back g-2`}
+                            {...actionButtonsCols}
+                        >
+                            <Button
+                                className={`editorContainer__order-step-back-button g-2`}
+                                onClick={
+                                    () => handleAction(
+                                        'back'
+                                    )
+
+                                }
+                            >
+                                {currentEditorStep.currentSubStep === "backgroundSetting" ? "Cancel" : "Back"}
+                            </Button>
+                        </Col>
+                        {
+                            currentEditorStep?.currentSubStep !== "addonDesigner" && (
+                                <Col
+                                    {...actionButtonsCols}
+                                    className={`editorContainer__order-step-next g-2`}
+                                >
+                                    <Button
+                                        className={`editorContainer__order-step-next-button g-2`}
+                                        onClick={
+                                            () => handleAction(
+                                                'forward'
+                                            )
+                                        }
+                                    >
+                                        {currentEditorStep.currentSubStep === "extraDetails" ? "Complete" : "Next"}
+                                        {/* {currentEditorStep.currentSubStep === "backgroundSetting" ? "Cancel" : "Back"} */}
+                                    </Button>
+                                </Col>
+                            )
+                        }
+
+                    </Row>
+                }
+            </Container>
+
+            {/* Details */}
+
+            <Container className={`placeOrder__container`}>
+                {/* <Row className={`placeOrder__row-terms g-2`}>
                 <Col
-                    className={`editorContainer__order-details g-2`}
                     {...actionDetailsCols}
+                    className={`placeOrder__action`}
+                >
+                    <Checkbox
+                    className='placeOrder__terms'
+                    onChange={(e) => {
+                        setAcceptTerms(e.target.checked)
+                    }}>
+                        <a>Terms and Conditions</a>
+                    </Checkbox>
+                </Col>
+            </Row> */}
+                <Row className={`placeOrder__row-details g-2`}>
+                    {/* <Col
+                    className={`placeOrder__details`}
+                    {...priceDetailsCols}
                 >
                     <h1
-                        className={`editorContainer__order-price`}
+                        className={`placeOrder__total`}
                     >
-                        ${(parseInt(currentCustomTemplate?.selectedVariant?.price?.amount ? currentCustomTemplate?.selectedVariant?.price?.amount : 10).toFixed(2))}
+                        Total
                     </h1>
-                </Col>
-                <Col
-                    {...actionPlaceOrderCols}
-                    className={`editorContainer__order-action g-2`}
-                >
-                    <Button
-                        className={`editorContainer__order-button g-2`}
-                        onClick={() => redirectCheckout?.(currentCustomTemplate)}
+                </Col> */}
+                    <Col
+                        {...termsCols}
+                        className={`placeOrder__action`}
                     >
-                        Place Order
-                    </Button>
-                </Col>
-            </Row>
-        </Container>
+                        <Checkbox
+                            className='placeOrder__terms'
+                            onChange={(e) => {
+                                setAcceptTerms(e.target.checked)
+                            }}>
+                            <a>Terms and Conditions</a>
+                        </Checkbox>
+                    </Col>
+
+                    <Col
+                        className={`placeOrder__details`}
+                        {...priceDetailsCols}
+                    >
+                        <h1
+                            className={`placeOrder__price`}
+                        >
+                            Total: ${showTotal()}
+                        </h1>
+                    </Col>
+                </Row>
+                <Row className={`placeOrder__row-order g-2`}>
+                    <Col {...placeOrderCols} className={`placeOrder__action`}>
+                        <Button
+                            disabled={acceptTerms ? false : true}
+                            className={`placeOrder__button`}
+                            onClick={() => redirectCheckout?.(currentCustomTemplate)}
+                        >
+                            Place Order
+                        </Button>
+                    </Col>
+                </Row>
+            </Container>
+        </>
     )
 }

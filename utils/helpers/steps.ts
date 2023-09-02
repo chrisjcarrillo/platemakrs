@@ -16,22 +16,28 @@ export const steps = [
     "presetBottomGlowColor", // 11
 
     "presetMainLogoColor", // 12
-    "presetMainLogoMove", // 13
-    "presetMainLogoGlowColor", //14
+    "presetMainLogoGlowColor", // 13
+    "presetMainLogoMove", //14
 
     "presetBottomLogoColor",// 15
-    "presetBottomLogoMove", // 16 
-    "presetBottomLogoGlow", // 17
+    "presetBottomLogoGlow", // 16 
+    "presetBottomLogoMove", // 17
 
     "presetBackgroundLogoColor", // 18
-    "presetBackgroundLogoMove", // 19
-    "presetBackgroundLogoGlow", // 20
+    "presetBackgroundLogoGlow", // 19
+    "presetBackgroundLogoMove", // 20
 
     "presetDetailLogo1Color", // 21
-    "presetDetailLogo1Move", // 22 
-    "presetDetailLogo1Glow", // 23
+    "presetDetailLogo1Glow", // 22
+    "presetDetailLogo1Move", // 23 
 
     "presetDetailLogo2Color", //24
-    "presetDetailLogo2Move", //25
-    "presetDetailLogo2Glow" // 26
+    "presetDetailLogo2Glow", // 25
+    "presetDetailLogo2Move", //26
+
+    'selectFinish',
+
+    "addonDesigner", // 27
+    // "termsAndConditions" //28
 ]
+

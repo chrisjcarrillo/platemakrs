@@ -93,7 +93,7 @@ const TemplateCanvas = (
     return (
         <>
             <Container
-                className={`canvas__tools-main`}
+                className={`canvas__tools-main animate__animated animate__fadeIn`}
             >
                 {!popupPreview && (
                     <Row className="canvas__tools">
@@ -141,7 +141,7 @@ const TemplateCanvas = (
             </Container>
 
             <Container
-                className={`canvas__main ${showDecision ? 'zIndexHigh' : ''}`}
+                className={`canvas__main animate__animated animate__fadeIn ${showDecision ? 'zIndexHigh' : ''}`}
                 style={
                     popupPreview ? { backgroundColor: '#ffffff' } : {}
                 }

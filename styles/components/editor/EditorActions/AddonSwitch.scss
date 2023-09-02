@@ -1,0 +1,71 @@
+// .addon{
+//     &__container{
+//         display: flex;
+//         flex-flow: row wrap;
+//         &--text{
+//             flex: 1 1 70%;
+//         }
+//         &--switch{
+//             flex: 1 1 30%;
+//             text-align: right;
+//             .ant-switch-checked{
+//                 background-color: #50bf00;
+//             }
+//             .ant-switch:not(.ant-switch-checked){
+//                 background-color: #A2A2A2;
+//             }
+//             .ant-switch .ant-switch-checked{
+//                 background-color: #A2A2A2;
+//             }
+//         }
+//     }
+
+//     &__text{
+//         font-size: 0.85rem;
+//         margin-bottom: 5px;
+//         color: #ffffff;
+//     }
+// }
+
+.addonSwitch{
+    margin-top: 0rem;
+    margin-bottom: 1rem;
+    &__title{
+        width: 100%;
+        text-align: center;
+    }
+    &__text{
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+        color: #ffffff;
+    }
+    &__group{
+        text-align: center;
+        margin-left: auto;
+        width: 100%;
+        margin-right: auto;
+    }
+    &__matte{
+        border-radius: 20px  !important;
+        margin-right: 10px;
+        padding: 1rem 2rem;
+        // padding-left: 2rem;
+        // padding-right: 2rem;
+        height: 10%;
+    }
+    .ant-badge {
+        font-size: 0.65rem;
+    }
+    &__gloss{
+        padding: 1rem 2rem;
+        height: 10%;
+        &::before{
+            display: none !important;
+            inset-inline-start: unset !important;
+            background-color: unset !important;
+        }
+        border-radius: 20px !important;
+        margin-left: 5px;
+        border-left: unset !important;
+    }
+}

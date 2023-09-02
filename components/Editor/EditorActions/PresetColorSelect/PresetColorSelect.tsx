@@ -67,10 +67,10 @@ export const PresetColorSelect = (
     }
 
     return (
-        <div className={`presetColorSelect`}>
+        <div className={`presetColorSelect animate__animated animate__fadeIn`}>
             {
                 title !== "" &&
-                <div className={`presetColorSelect__title`}>
+                <div className={`presetColorSelect__title animate__animated animate__fadeIn`}>
                     <p className={`presetColorSelect__text`}>Select {title} Color</p>
                 </div>
             }

@@ -16,6 +16,12 @@ export type StoreContextType = {
     showCart: boolean
     checkout: Object
 
+    hasDesigner?: boolean,
+    setHasDesigner: (e: boolean) => void;
+
+    acceptTerms?: boolean,
+    setAcceptTerms: (e: boolean) => void;
+
     // Variant
     addVariant: (
         variantId?: any,
@@ -49,6 +55,8 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
     const [cart, setCart] = useState([])
     const [checkout, setCheckout] = useState({})
     const [showCart, setShowCart] = useState(false);
+    const [hasDesigner, setHasDesigner] = useState(false);
+    const [acceptTerms, setAcceptTerms] = useState(false);
 
     const onStorageUpdate = (e: any) => {
         const { key, newValue } = e;
@@ -79,11 +87,11 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
     // Variants START
     const addVariant = async (
         variantId?: any,
-        customTemplateId?: string,
+        customTemplateId?: string
     ) => {
         try {
             const checkoutId = checkout?.id;
-            const lineItemsToUpdate = [
+            const lineItemsToUpdate = hasDesigner ? [
                 {
                     variantId,
                     quantity: 1,
@@ -93,7 +101,27 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                         }
                     ]
                 },
+                {
+                    variantId: 'gid://shopify/ProductVariant/46836862648621',
+                    quantity: 1,
+                    customAttributes: [
+                        {
+                            key: "Order ID", value: `${customTemplateId}`, // Template of Preset
+                        }
+                    ]
+                }
+            ] : [
+                {
+                    variantId,
+                    quantity: 1,
+                    customAttributes: [
+                        {
+                            key: "Order ID", value: `${customTemplateId}`, // Template of Preset
+                        }
+                    ]
+                }
             ]
+
             const checkoutResponse = await client.checkout.addLineItems(
                 checkoutId,
                 lineItemsToUpdate
@@ -207,6 +235,12 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 
                 addVariant,
                 removeVariant,
+
+                hasDesigner,
+                setHasDesigner,
+                
+                acceptTerms,
+                setAcceptTerms,
 
                 redirectCheckout
             }}

@@ -106,6 +106,34 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
     const [currentTemplate, setCurrentTemplate] = useState<ITemplate | undefined>(undefined)// Current Template
     const [currentCustomTemplate, setCurrentCustomTemplate] = useState<ICustomPlateTemplate | undefined>(undefined)// Current Custom Template
 
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const query = new URLSearchParams(window.location.search);
+            if(query.get('presetTemplate') && query.get('preset')){
+                setLoading(true);
+                // TODO
+                // - [DONE] Add logic if it’s a preset to save in sessionStorage on select 
+                const templateFilter = premadeTemplates.filter(
+                    template => template?.templateId === query.get('presetTemplate')
+                );
+                
+                const customTemplate = templateFilter[0] as ICustomPlateTemplate;
+
+                if(customTemplate){
+                    setCurrentTemplate(template => ({
+                        ...template,
+                        ...customTemplate
+                    }))
+        
+                    setCurrentCustomTemplate(template => ({
+                        ...template,
+                        ...customTemplate,
+                    }))
+                }
+            }
+        }
+    }, [])
+
     ///// START: Custom Template Functions /////
     const createCustomTemplate = async (
         templateId: string,

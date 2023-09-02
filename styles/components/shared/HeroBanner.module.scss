@@ -13,7 +13,8 @@
         z-index: 10;
         top: 30%;
         @media screen and (max-width: 414px) {
-            top: 15%;
+            // top: 15%;
+            top: 6%;
         }
     }
     &-img{
@@ -74,6 +75,7 @@
 
     &__column{
         z-index: 10;
+        padding: 0 !important;
     }
     &__title{
         color: white;

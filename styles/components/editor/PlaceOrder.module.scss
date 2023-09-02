@@ -1,0 +1,71 @@
+.placeOrder{
+    // &__container {
+
+    //     background-color: #000000;
+    //     padding-top: 0.75rem;
+    //     padding-bottom: 0.75rem;
+    //     border-top: 1px solid #ffffff;
+    //     border-bottom: 1px solid #ffffff;
+    //     position: sticky;
+    //     bottom: 0;
+    //     left: 0;
+    //     right: 0;
+    // }
+
+    color: #0093FF;
+
+    &__container{
+        background-color: #000000;
+        position: fixed;
+        padding-top: 0rem;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+    &__row {
+        &-terms{
+        }
+        &-details{
+
+        }
+        &-order{
+            padding-top: 0.5rem;
+            padding-bottom: 0.75rem;
+        }
+    }
+    &__terms{
+        text-align: center;
+    }
+    &__total{
+        color: #ffffff;
+        text-align: left;
+    }
+
+    &__price {
+        color: #ffffff;
+        text-align: right;
+    }
+    &__action{
+        text-align: center;
+        label{
+            font-size: 0.85rem;
+        }
+    }
+
+    &__button {
+        font-family: 'Poppins', sans-serif !important;
+        background-color: #FFD800;
+        border-radius: 20px;
+        font-size: 1rem;
+        color: #000000;
+        height: auto;
+        width: 100%;
+        font-weight: 700;
+        text-transform: uppercase;
+        align-self: center;
+        &:disabled{
+            color: #ffffff;
+            background-color: #000000;
+        }
+    }
+}

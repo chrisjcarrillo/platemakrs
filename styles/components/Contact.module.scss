@@ -78,6 +78,11 @@
             margin: 0.5rem 0;
         }
     }
+    label:not(.ant-radio-button-wrapper){
+        display: block !important;
+        color: white !important;
+        font-weight: 500 !important;
+    }
 }
 .ant-form-item-label{
     padding: 0 !important;
@@ -87,9 +92,7 @@
     }
 }
 label:not(.ant-radio-button-wrapper){
-    display: block !important;
     color: white !important;
-    font-weight: 500 !important;
 }
 input.ant-input{
     border: 2px solid white;

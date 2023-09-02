@@ -75,8 +75,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
     return {
         props: {
-            productList: JSON.parse(JSON.stringify(currentProduct)),
-            productAddOns: JSON.parse(JSON.stringify(currentProduct))
+            productList: JSON.parse(JSON.stringify(currentProduct))
         },
         revalidate: 10
     }

@@ -243,9 +243,7 @@ export const premadeTemplates = [
         preset: true,
         startPlatePosition: 'right',
         startPlateText: 'SAMPL',
-        fadeSettings: {
-            enabled: false,
-        },
+        fadeSettings: { enabled: false },
         mainLogo: {
             enabled: true,
             name: "mercedes.svg",
@@ -299,9 +297,10 @@ export const premadeTemplates = [
             }
         },
         backgroundLogo:{
-            hasPresetColors: true,
+            hasColor: true,
             enabled: true,
             name: 'gray.png',
+            imageType: 'png',
             filePath: '/images/resources/cars/ferrari/patterns/miami-heat',
             url: '/images/resources/cars/ferrari/patterns/miami-heat/gray.png',
             leftCoordinates: {
@@ -505,6 +504,7 @@ export const premadeTemplates = [
                     hasColor: true,
                     hasMainColor: false,
                     name: 'green-hexagons.png',
+                    imageType: 'png',
                     filePath: '/images/resources/backgrounds/hexagon/option-2',
                     url: '/images/resources/backgrounds/hexagon/option-2/dark-blue.png',
                 },
@@ -612,7 +612,7 @@ export const premadeTemplates = [
             glow:{ enabled: true, color: '#000000' }
         },
         backgroundLogo:{
-            hasPresetColors: true,
+            hasColor: true,
             enabled: true,
             name: 'gray.png',
             imageType: 'svg',
@@ -2663,7 +2663,7 @@ export const premadeTemplates = [
                 enabled: true,
                 file: {
                     hasMainColor: true,
-                    hasPresetColors: true,
+                    hasColor: true,
                     enabled: true,
                     name: 'gray.png',
                     imageType: 'png',
@@ -3069,20 +3069,29 @@ export const premadeTemplates = [
                 color: '#000000'
             }
         },
+
         bottomLogo: {
-            hasColor: true,
             enabled: true,
+            hasColor: true,
             name: "mercedes.svg",
             imageType: 'png',
-            filePath: '/images/resources/cars/lamborghini/text/SVJ/colors',
-            url: '/images/resources/cars/lamborghini/text/SVJ/colors/regular.png',
-            centerCoordinates: {
-                x: 135,
-                y: -5
+            filePath: '/images/resources/cars/lamborghini/text/old/red',
+            url: '/images/resources/cars/lamborghini/text/old/red/regular.png',
+            leftCoordinates: {
+                x: 26,
+                y: 32
             },
-            width: 85,
-            height: 30,
-            glow:{ enabled: true, color: '#000000' }
+            centerCoordinates: {
+                x: 106,
+                y: 0
+            },
+            rightCoordinates: {
+                x: 230,
+                y: 32
+            },
+            width: 125,
+            height: 20,
+            glow:{ enabled: false }
         },
 
         backgroundSettings: {
@@ -4595,15 +4604,15 @@ export const premadeTemplates = [
             hasColor: true,
             enabled: true,
             name: "mercedes.svg",
+            filePath: '/images/resources/cars/rolls-royce/text/rolls-royce/gray/colors',
             imageType: 'png',
-            filePath: '/images/resources/cars/rolls-royce/text/black-badge/colors',
-            url: '/images/resources/cars/rolls-royce/text/black-badge/colors/gray.png',
+            url: '/images/resources/cars/rolls-royce/text/rolls-royce/gray/colors/regular.png',
             centerCoordinates: {
-                x: 106,
-                y: 0
+                x: 108,
+                y: 3
             },
-            width: 145,
-            height: 20,
+            width: 130,
+            height: 15,
             glow:{ enabled: true, color: "#000000" }
         },
         backgroundSettings: {
@@ -6080,15 +6089,15 @@ export const premadeTemplates = [
             hasColor: true,
             enabled: true,
             name: "mercedes.svg",
-            filePath: '/images/resources/cars/rolls-royce/text/black-badge/colors',
+            filePath: '/images/resources/cars/rolls-royce/text/rolls-royce/orange/colors',
             imageType: 'png',
-            url: '/images/resources/cars/rolls-royce/text/black-badge/colors/orange.png',
+            url: '/images/resources/cars/rolls-royce/text/rolls-royce/orange/colors/regular.png',
             centerCoordinates: {
-                x: 105,
+                x: 108,
                 y: 3
             },
-            width: 145,
-            height: 20,
+            width: 130,
+            height: 15,
             glow:{ enabled: true, color: "#000000" }
         },
 

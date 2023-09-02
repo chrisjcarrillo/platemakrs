@@ -103,7 +103,7 @@ const EditorForm = (props: any) => {
     return (
         <>
             <Container
-                className="editor__main-container"
+                className="editor__main-container animate__animated animate__fadeIn"
             >
                 <div className="editor__container">
                     <Form

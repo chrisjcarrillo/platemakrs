@@ -45,7 +45,7 @@ export const MoveSwitcher = (
 
     return(
         <div
-            className={`switcher`}
+            className={`switcher animate__animated animate__fadeIn`}
         >
             <div
                 className={`switcher__left`}

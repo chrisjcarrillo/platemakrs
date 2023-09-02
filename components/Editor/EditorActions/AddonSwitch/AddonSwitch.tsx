@@ -1,49 +1,51 @@
-import { Switch } from "antd"
+import { Badge, Switch, Radio } from "antd"
 import { useContext, useState } from "react"
 import { EditorContext, EditorContextType } from "../../../../context/editorContext"
 import { InterfaceContext, InterfaceContextType } from "../../../../context/interfaceContext"
+import { StoreContext, StoreContextType } from "../../../../context/storeContext"
+import type { RadioChangeEvent } from 'antd';
 
-export const MoveSwitcher = (
-    props: {
-        type: any,
-        text: string,
-    }
-) => {
-
-    const { 
-        type, 
-        text,
-    } = props;
+export const AddonSwitch = () => {
 
     const {
-    } = useContext(InterfaceContext) as InterfaceContextType;
+        hasDesigner,
+        setHasDesigner
+    } = useContext(StoreContext) as StoreContextType;
 
+    const onChange = (e: RadioChangeEvent) => {
+        if(e.target.value === "YES"){
+            setHasDesigner(true)
+        } else {
+            setHasDesigner(false)
+        }
+    };
 
-    const [checked, setChecked] = useState(false);
-
-    return(
-        <div
-            className={`switcher`}
-        >
-            <div
-                className={`switcher__left`}
-            >
-                <p className={`switcher__text`}>{checked ? 'Disable' : 'Enable'} {text}</p>
+    return (
+        <div className={`addonSwitch`}>
+            <div className={`addonSwitch__title`}>
+                <p className={`addonSwitch__text`}>Would you like to work on your plate with our designers?</p>
             </div>
-
-            <div
-            
-                className={`switcher__right`}
+            <Radio.Group
+                defaultValue={hasDesigner ? 'YES' : ''}
+                className={`addonSwitch__group`}
+                onChange={onChange}
+                buttonStyle="solid"
             >
-                <Switch
-                    onChange={
-                        (e) => {
-                            if(e) setChecked(true)
-                            if(!e) setChecked(false)
-                        }
-                    }
-                />
-            </div>
+                <Radio.Button
+                    className={`addonSwitch__matte`}
+                    value="NO"
+                >
+                    No
+                </Radio.Button>
+                <Badge count={'+$50.00'}>
+                    <Radio.Button
+                        className={`addonSwitch__gloss`}
+                        value="YES"
+                    >
+                        Yes
+                    </Radio.Button>
+                </Badge>
+            </Radio.Group>
         </div>
     )
 }

@@ -1,21 +1,14 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { editorActions } from '../../../utils/editorActions';
-import { Button } from 'antd';
-import { faFillDrip } from '@fortawesome/free-solid-svg-icons'
-import { IEditorSteps } from '../../../interfaces/editor.interface';
-import { EditorActionContainer } from '../EditorActionContainer/EditorActionContainer';
+import { Button, Result } from 'antd';
 import { useContext } from 'react';
 import { EditorContext, EditorContextType } from '../../../context/editorContext';
 import { ArrowLeftOutlined } from '@ant-design/icons';
-import { FinishSelect } from '../EditorActions/FinishSelect/FinishSelect';
-import { StoreContext, StoreContextType } from '../../../context/storeContext';
-import { PlaceOrder } from '../BottomButton/PlaceOrder';
 import { PresetActions } from './actions/PresetActions';
 import { useRouter } from "next/navigation";
 import { handleActions } from './actions/HandleActions';
+import { StoreContext, StoreContextType } from '../../../context/storeContext';
 
 export const EditorPresetContainer = (
     props: any
@@ -27,15 +20,9 @@ export const EditorPresetContainer = (
         currentCustomTemplate
     } = useContext(EditorContext) as EditorContextType;
 
-    const actionButtonsCols = {
-        xs: 6,
-        sm: 6,
-        md: 6,
-        lg: 6,
-        xl: 6
-    }
-
-    const router = useRouter();
+    const {
+        acceptTerms
+    } = useContext(StoreContext) as StoreContextType;
 
     const handleAction = (
         actionType: 'back' | 'forward' | 'cancel',
@@ -66,7 +53,6 @@ export const EditorPresetContainer = (
             )
         }
     }
-
 
     return (
         <>
@@ -135,89 +121,7 @@ export const EditorPresetContainer = (
 
                     />
                 }
-
-                {!currentEditorStep?.currentSubStep &&
-                    <Row className={`editorContainer__actions g-2`}>
-                        {/* <FinishSelect
-                            title="State Text"
-                            type="finish"
-                        /> */}
-                        {/* {
-                            editorActions.map((editor, index) => {
-                                return (
-                                    <Col
-                                        style={
-                                            currentTemplate?.templateId === '1' && index === 2 && !sessionStorage.getItem('preset') ? {
-                                                display: 'none'
-                                            } : {
-
-                                            }
-                                        }
-                                        className={`editorAction__main`}
-                                        {...editorCols}
-                                        key={index}
-                                        onClick={() => updateStep?.(3, editor.subStep, editor.description)}
-                                    >
-                                        <div className={`editorAction__card`}>
-                                            <FontAwesomeIcon
-                                                className={`editorAction__icon`}
-                                                icon={editor.icon ?? faFillDrip}
-                                            />
-                                            <hr />
-                                            <p className={`editorAction__name`}>
-                                                {editor.name}
-                                            </p>
-                                        </div>
-                                    </Col>
-                                )
-                            })
-                        } */}
-                    </Row>
-                }
-
             </Container>
-
-            {/* Details? */}
-            <Container className={`editorContainer__order`}>
-                {
-                    currentEditorStep?.currentSubStep &&
-                    <Row className={`editorContainer__order-row-steps g-2`}>
-                        <Col
-                            className={`editorContainer__order-step-back g-2`}
-                            {...actionButtonsCols}
-                        >
-                            <Button
-                                className={`editorContainer__order-step-back-button g-2`}
-                                onClick={
-                                    () => handleAction(
-                                        'back'
-                                    )
-
-                                }
-                            >
-                                {currentEditorStep.currentSubStep === "backgroundSetting" ? "Cancel" : "Back"}
-                            </Button>
-                        </Col>
-                        <Col
-                            {...actionButtonsCols}
-                            className={`editorContainer__order-step-next g-2`}
-                        >
-                            <Button
-                                className={`editorContainer__order-step-next-button g-2`}
-                                onClick={
-                                    () => handleAction(
-                                        'forward'
-                                    )
-                                }
-                            >
-                                {currentEditorStep.currentSubStep === "extraDetails" ? "Complete" : "Next"}
-                                {/* {currentEditorStep.currentSubStep === "backgroundSetting" ? "Cancel" : "Back"} */}
-                            </Button>
-                        </Col>
-                    </Row>
-                }
-            </Container>
-            {/* Details */}
         </>
     )
 }

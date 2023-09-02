@@ -2,6 +2,7 @@
 // @import 'antd/dist/reset.css';
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'animate.css';
 
 // Font
 @import './font/font.scss';
@@ -20,6 +21,8 @@
 @import './components/shared/Search.module.scss';
 
 // Plate Editor Components
+//// Addon Switch
+@import './components/editor/EditorActions/AddonSwitch.scss';
 //// Background Select
 @import './components/editor/EditorActions/BackgroundSelect.module.scss';
 //// Brightness Slider
@@ -43,6 +46,7 @@
 @import './components/editor/EditorActions/PatternRepeatSelect.module.scss';
 // Preset Color Select
 @import './components/editor/EditorActions/PresetColorSelect.module.scss';
+@import './components/editor/PlaceOrder.module.scss';
 // Position Select
 @import './components/editor/EditorActions/PositionSelect.module.scss';
 // Preview Modal
@@ -71,12 +75,16 @@
 // Shared
 @import './components/shared/Cart.module.scss';
 
-html, body {
-    background-color: #000000;
-    padding: 0;
-    margin: 0;
-    font-family: 'Poppins', sans-serif !important;
-    height: 100%;
+html{
+  min-height:100%;/* make sure it is at least as tall as the viewport */
+  position:relative;
+}
+body {
+  background-color: #000000;
+  padding: 0;
+  margin: 0;
+  font-family: 'Poppins', sans-serif !important;
+  height: 100%;
 }
 * {
   box-sizing: border-box;

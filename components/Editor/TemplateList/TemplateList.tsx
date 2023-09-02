@@ -44,7 +44,7 @@ export const TemplateList = (props: any) => {
                         <Col
                             key={index}
                             {...columnSettings}
-                            className={`templatePreview__column`}
+                            className={`templatePreview__column animate__animated animate__fadeIn`}
                             onClick={
                                 e => selectPresetTemplate?.(
                                     template.handle,
