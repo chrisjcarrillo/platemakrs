@@ -35,13 +35,13 @@
         padding-bottom: 0.75rem;
         border-top: 1px solid #ffffff;
         border-bottom: 1px solid #ffffff;
-        position: fixed;
-        bottom: 6.5rem;
+        position: sticky;
+        bottom: 0;
         left: 0;
         right: 0;
         &-actions{
             background-color: #000000;
-            position: fixed;
+            position: sticky;
             bottom: 0;
             left: 0;
             right: 0;

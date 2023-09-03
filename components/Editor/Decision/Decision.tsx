@@ -31,34 +31,38 @@ export const Decision = () => {
     // If carbon fiber/hexagon are in the template go directly to plate characters
     const handleDecision = () => {
         // currentCustomTemplate;
-        let name = currentCustomTemplate?.backgroundSettings?.background?.file?.name;
         if(
-            name === "carbon-fiber-full-with-shadow" || name === "forged-carbon" || name === "carbon-fiber"
+            currentCustomTemplate?.backgroundSettings?.background?.file?.name === "carbon-fiber-full-with-shadow" || 
+                currentCustomTemplate?.backgroundSettings?.background?.file?.name === "forged-carbon" || 
+                    currentCustomTemplate?.backgroundSettings?.background?.file?.name === "carbon-fiber"
         ){
-            updateStep?.(
+            return updateStep?.(
                 3, 
                 'presetCharacterColor',
                 'Select Color',
                 false,
                 'Plate Character'
             )
-        } else if(currentCustomTemplate?.backgroundSettings?.background?.enabled && currentCustomTemplate?.backgroundSettings?.background?.file?.hasColor){
-            updateStep?.(
+        }
+        if(
+            currentCustomTemplate?.backgroundSettings?.background?.enabled 
+                && currentCustomTemplate?.backgroundSettings?.background?.file?.hasColor
+        ){
+            return updateStep?.(
                 3, 
                 'presetBgImageColor',
                 'Select Color',
                 false,
                 'Background Image'
             )
-        } else {
-            updateStep?.(
-                3,
-                'presetBgColor',
-                'Select Color',
-                false,
-                'Background'
-            )
         }
+        return  updateStep?.(
+                    3,
+                    'presetBgColor',
+                    'Select Color',
+                    false,
+                    'Background'
+                )
     }
 
     return (

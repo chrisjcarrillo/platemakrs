@@ -71,8 +71,6 @@ export default function Editor(props: any) {
 
 export const getStaticProps: GetStaticProps = async (context) => {
     const currentProduct = await client.collection.fetchWithProducts('gid://shopify/Collection/456849490221', { productsFirst: 100 })
-    const addOns = await client.collection.fetchWithProducts('gid://shopify/Collection/459092033837')   
-
     return {
         props: {
             productList: JSON.parse(JSON.stringify(currentProduct))
