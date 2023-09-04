@@ -17,6 +17,7 @@ import { GradientSelect } from '../../EditorActions/GradientSelect/GradientSelec
 import { PresetColorSelect } from '../../EditorActions/PresetColorSelect/PresetColorSelect';
 import { AddonSwitch } from '../../EditorActions/AddonSwitch/AddonSwitch';
 import { FinishSelect } from '../../EditorActions/FinishSelect/FinishSelect';
+import { NoteInput } from '../../EditorActions/NoteInput/NoteInput';
 
 export const PresetActions = (
     props: {
@@ -39,7 +40,7 @@ export const PresetActions = (
 
             {/* - Background Color */}
             {
-                step.currentSubStep === "presetBgImageColor" && currentCustomTemplate.backgroundSettings?.background?.file?.name !== "hexagon.svg" && (
+                step?.currentSubStep === "presetBgImageColor" && currentCustomTemplate.backgroundSettings?.background?.file?.name !== "hexagon.svg" && (
                     <PresetColorSelect
                         title="Background Image"
                         type="backgroundSetting"
@@ -50,7 +51,7 @@ export const PresetActions = (
 
             {/* - Background Color */}
             {
-                step.currentSubStep === "presetBgImageColor" && currentCustomTemplate.backgroundSettings?.background?.file?.name === "hexagon.svg" && (
+                step?.currentSubStep === "presetBgImageColor" && currentCustomTemplate.backgroundSettings?.background?.file?.name === "hexagon.svg" && (
                     <ColorSelect
                         title="Background"
                         type="backgroundUrl"
@@ -61,7 +62,7 @@ export const PresetActions = (
 
             {/* - Background Color */}
             {
-                step.currentSubStep === "presetBgColor" && (
+                step?.currentSubStep === "presetBgColor" && (
                     <ColorSelect
                         title="Background"
                         type="backgroundColor"
@@ -72,7 +73,7 @@ export const PresetActions = (
 
             {/* - Background Border */}
             {
-                step.currentSubStep === "presetBgBorder" && (
+                step?.currentSubStep === "presetBgBorder" && (
                     <ColorSelect
                         title="Background Border"
                         type="backgroundStroke"
@@ -81,7 +82,7 @@ export const PresetActions = (
             }
 
             {
-                step.currentSubStep === "presetBgPinstripe" && (
+                step?.currentSubStep === "presetBgPinstripe" && (
                     <ColorSelect
                         title="Background Pinstripe"
                         type="backgroundPinstripe"
@@ -93,7 +94,7 @@ export const PresetActions = (
 
             {/* Plate Character*/}
             {
-                step.currentSubStep === "presetCharacterColor" && (
+                step?.currentSubStep === "presetCharacterColor" && (
                     <ColorSelect
                         title="Plate Characters"
                         type="plateNumberColor"
@@ -101,7 +102,7 @@ export const PresetActions = (
                 )
             }
             {
-                step.currentSubStep === "presetCharacterStrokeColor" && (
+                step?.currentSubStep === "presetCharacterStrokeColor" && (
                     <ColorSelect
                         title="Plate Character Stroke"
                         type="plateNumberStrokeColor"
@@ -112,7 +113,7 @@ export const PresetActions = (
 
             {/* State Character*/}
             {
-                step.currentSubStep === "presetStateColor" && (
+                step?.currentSubStep === "presetStateColor" && (
                     <ColorSelect
                         title="State Text"
                         type="stateColor"
@@ -120,7 +121,7 @@ export const PresetActions = (
                 )
             }
             {
-                step.currentSubStep === "presetStateStrokeColor" && (
+                step?.currentSubStep === "presetStateStrokeColor" && (
                     <ColorSelect
                         title="State Text Border"
                         type="stateStrokeColor"
@@ -128,7 +129,7 @@ export const PresetActions = (
                 )
             }
             {
-                step.currentSubStep === "presetStateGlowColor" && (
+                step?.currentSubStep === "presetStateGlowColor" && (
                     <ColorSelect
                         title="State Glow"
                         type="stateGlowColor"
@@ -140,7 +141,7 @@ export const PresetActions = (
 
             {/* Bottom Text */}
             {
-                step.currentSubStep === "presetBottomColor" && (
+                step?.currentSubStep === "presetBottomColor" && (
                     <ColorSelect
                         title="Bottom Text"
                         type="bottomTextColor"
@@ -149,7 +150,7 @@ export const PresetActions = (
             }
 
             {
-                step.currentSubStep === "presetBottomStrokeColor" && (
+                step?.currentSubStep === "presetBottomStrokeColor" && (
                     <ColorSelect
                         title="Bottom Text Border"
                         type="bottomTextStrokeColor"
@@ -157,7 +158,7 @@ export const PresetActions = (
                 )
             }
             {
-                step.currentSubStep === "presetBottomGlowColor" && (
+                step?.currentSubStep === "presetBottomGlowColor" && (
                     <ColorSelect
                         title="Bottom Text Glow"
                         type="bottomTextGlow"
@@ -167,7 +168,7 @@ export const PresetActions = (
 
             {/* Main Logo*/}
             {
-                step.currentSubStep === "presetMainLogoColor" && (
+                step?.currentSubStep === "presetMainLogoColor" && (
                     <PresetColorSelect
                         type='mainLogo'
                         title="Main Logo"
@@ -176,7 +177,7 @@ export const PresetActions = (
             }
 
             {
-                step.currentSubStep === "presetMainLogoGlowColor" && (
+                step?.currentSubStep === "presetMainLogoGlowColor" && (
                     <ColorSelect
                         type="mainLogoGlow"
                         title="Main Logo Glow"
@@ -185,7 +186,7 @@ export const PresetActions = (
             }
 
             {
-                step.currentSubStep === "presetMainLogoMove" && (
+                step?.currentSubStep === "presetMainLogoMove" && (
                     <MoveSwitcher
                         type="moveLogo"
                         text="Main Logo Move"
@@ -196,7 +197,7 @@ export const PresetActions = (
 
             {/* Bottom Logo*/}
             {
-                step.currentSubStep === "presetBottomLogoColor" && (
+                step?.currentSubStep === "presetBottomLogoColor" && (
                     <PresetColorSelect
                         type='bottomLogo'
                         title="Bottom Logo"
@@ -205,7 +206,7 @@ export const PresetActions = (
             }
 
             {
-                step.currentSubStep === "presetBottomLogoGlow" && (
+                step?.currentSubStep === "presetBottomLogoGlow" && (
                     <ColorSelect
                         type="bottomLogoGlow"
                         title="Bottom Logo Glow"
@@ -214,7 +215,7 @@ export const PresetActions = (
             }
 
             {
-                step.currentSubStep === "presetBottomLogoMove" && (
+                step?.currentSubStep === "presetBottomLogoMove" && (
                     <MoveSwitcher
                         type="bottomLogo"
                         text="Bottom Logo Move"
@@ -225,7 +226,7 @@ export const PresetActions = (
 
             {/* Background Logo*/}
             {
-                step.currentSubStep === "presetBackgroundLogoColor" && (
+                step?.currentSubStep === "presetBackgroundLogoColor" && (
                     <PresetColorSelect
                         type='backgroundLogo'
                         title="Background Logo"
@@ -233,7 +234,7 @@ export const PresetActions = (
                 )
             }
             {
-                step.currentSubStep === "presetBackgroundLogoMove" && (
+                step?.currentSubStep === "presetBackgroundLogoMove" && (
                     <MoveSwitcher
                         type="moveBackgroundLogo"
                         text="Move Background Logo"
@@ -248,7 +249,7 @@ export const PresetActions = (
 
             {/* Bottom Logo*/}
             {
-                step.currentSubStep === "presetDetailLogo1Color" && (
+                step?.currentSubStep === "presetDetailLogo1Color" && (
                     <PresetColorSelect
                         type='detailLogo1'
                         title="Detail 1 Logo"
@@ -257,7 +258,7 @@ export const PresetActions = (
             }
 
             {
-                step.currentSubStep === "presetDetailLogo1Move" && (
+                step?.currentSubStep === "presetDetailLogo1Move" && (
                     <MoveSwitcher
                         type="detailLogo1"
                         text="Detail 1 Logo Move"
@@ -266,7 +267,7 @@ export const PresetActions = (
             }
 
             {
-                step.currentSubStep === "presetDetailLogo1Glow" && (
+                step?.currentSubStep === "presetDetailLogo1Glow" && (
                     <ColorSelect
                         type="detailLogo1"
                         title="Detail 1 Logo Glow"
@@ -277,7 +278,7 @@ export const PresetActions = (
 
             {/* Bottom Logo*/}
             {
-                step.currentSubStep === "presetDetailLogo2Color" && (
+                step?.currentSubStep === "presetDetailLogo2Color" && (
                     <PresetColorSelect
                         type='detailLogo2'
                         title="Detail 2 Logo"
@@ -286,7 +287,7 @@ export const PresetActions = (
             }
 
             {
-                step.currentSubStep === "presetDetailLogo2Move" && (
+                step?.currentSubStep === "presetDetailLogo2Move" && (
                     <MoveSwitcher
                         type="detailLogo2"
                         text="Detail 2 Logo Move"
@@ -295,7 +296,7 @@ export const PresetActions = (
             }
 
             {
-                step.currentSubStep === "presetDetailLogo2Glow" && (
+                step?.currentSubStep === "presetDetailLogo2Glow" && (
                     <ColorSelect
                         type="detailLogo2"
                         title="Detail 2 Logo Glow"
@@ -305,7 +306,7 @@ export const PresetActions = (
             {/* Bottom Logo*/}
 
             {
-                step.currentSubStep === "selectFinish" && (
+                step?.currentSubStep === "selectFinish" && (
                     <FinishSelect
                         title="State Text"
                         type="finish"
@@ -313,8 +314,20 @@ export const PresetActions = (
             }
 
             {
-                step.currentSubStep === "addonDesigner" && (
+                step?.currentSubStep === "addonDesigner" && (
                     <AddonSwitch />
+                )
+            }
+
+            {
+                step?.currentSubStep === "addonNotes" && (
+                   <NoteInput />
+                )
+            }
+
+            {
+                step?.currentSubStep === "termsAndConditions" && (
+                    <></>
                 )
             }
 

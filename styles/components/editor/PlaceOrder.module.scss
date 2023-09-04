@@ -24,13 +24,25 @@
     }
     &__row {
         &-terms{
+            &-final{
+                padding-bottom: 0.5rem;
+            }
         }
         &-details{
+            &-final{
+                text-align: center;
+            }
 
         }
         &-order{
             padding-top: 0.5rem;
             padding-bottom: 0.75rem;
+        }
+    }
+    &__details{
+        &-final{
+            text-align: center;
+            padding-bottom: 1rem;
         }
     }
     &__terms{
@@ -44,12 +56,30 @@
     &__price {
         color: #ffffff;
         text-align: right;
+        &-final{
+            color: #ffffff;
+            text-align: center !important;
+        }
     }
     &__action{
         text-align: center;
         label{
             font-size: 0.85rem;
         }
+        .ant-checkbox-inner{
+            width: 20px;
+            height: 20px;
+        }
+        .ant-checkbox-input:focus+.ant-checkbox-inner {
+            border: 1px solid red !important;
+            -webkit-box-shadow: 0 0 8px rgb(255, 0, 0), 0 0 10px rgb(255, 0, 0);
+            box-shadow: 0 0 8px rgb(255, 0, 0), 0 0 10px rgb(255, 0, 0);
+        }
+        // .ant-checkbox-inner::after {
+        //     width: 20px !important;
+        //     height: 20px !important;
+        //  }
+
     }
 
     &__button {
@@ -66,6 +96,23 @@
         &:disabled{
             color: #ffffff;
             background-color: #000000;
+        }
+        &-final{
+            font-family: 'Poppins', sans-serif !important;
+            background-color: #FFD800;
+            border-radius: 20px;
+            font-size: 1.25rem;
+            color: #000000;
+            height: auto;
+            width: 100%;
+            font-weight: 700;
+            padding: 0.5rem 0;
+            text-transform: uppercase;
+            align-self: center;
+            &:disabled{
+                color: #ffffff;
+                background-color: #000000;
+            }
         }
     }
 }

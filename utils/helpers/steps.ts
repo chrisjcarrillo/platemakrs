@@ -35,9 +35,10 @@ export const steps = [
     "presetDetailLogo2Glow", // 25
     "presetDetailLogo2Move", //26
 
-    'selectFinish',
+    'selectFinish', //27
 
-    "addonDesigner", // 27
-    // "termsAndConditions" //28
+    "addonDesigner", // 28
+    "addonNotes", //29
+    "termsAndConditions" // 30
 ]
 

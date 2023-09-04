@@ -30,14 +30,13 @@ export const Decision = () => {
 
     // If carbon fiber/hexagon are in the template go directly to plate characters
     const handleDecision = () => {
-        // currentCustomTemplate;
         if(
             currentCustomTemplate?.backgroundSettings?.background?.file?.name === "carbon-fiber-full-with-shadow" || 
                 currentCustomTemplate?.backgroundSettings?.background?.file?.name === "forged-carbon" || 
                     currentCustomTemplate?.backgroundSettings?.background?.file?.name === "carbon-fiber"
         ){
             console.info('presetCharacterColor');
-            return updateStep?.(
+            updateStep?.(
                 3, 
                 'presetCharacterColor',
                 'Select Color',
@@ -50,7 +49,7 @@ export const Decision = () => {
                 && currentCustomTemplate?.backgroundSettings?.background?.file?.hasColor
         ){
             console.info('presetBgImageColor');
-            return updateStep?.(
+            updateStep?.(
                 3, 
                 'presetBgImageColor',
                 'Select Color',
@@ -59,7 +58,7 @@ export const Decision = () => {
             )
         }
         console.info('presetBgColor');
-        return updateStep?.(
+        updateStep?.(
                     3,
                     'presetBgColor',
                     'Select Color',
@@ -90,11 +89,9 @@ export const Decision = () => {
                         <p className="decision__actions-divider-text">or</p>
                     </div>
                     <div className="decision__actions-customize">
-                        <a 
+                        <a
                             className="decision__actions-customize-btn"
-                            onClick={
-                                () => handleDecision()
-                            }
+                            onClick={() => handleDecision()}
                         >Customize Template</a>
                     </div>
                     {/* Customize Template */}

@@ -62,7 +62,7 @@ export const EditorPresetContainer = (
             // Actions
 
             </Container> */}
-            <Container className={`editorContainer__main`}>
+            <Container className={`editorContainer__main ${currentEditorStep?.currentSubStep === 'termsAndConditions' ? 'removePadding' : ''}`} >
 
                 <Row className={`editorContainer__title`}>
                     <Col

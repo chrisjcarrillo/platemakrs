@@ -48,17 +48,17 @@
     &__matte{
         border-radius: 20px  !important;
         margin-right: 10px;
-        padding: 1rem 2rem;
+        // padding: 1rem 2rem;
         // padding-left: 2rem;
         // padding-right: 2rem;
-        height: 10%;
+        // height: 10%;
     }
     .ant-badge {
         font-size: 0.65rem;
     }
     &__gloss{
-        padding: 1rem 2rem;
-        height: 10%;
+        // padding: 1rem 2rem;
+        // height: 10%;
         &::before{
             display: none !important;
             inset-inline-start: unset !important;

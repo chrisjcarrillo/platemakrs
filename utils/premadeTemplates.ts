@@ -4974,7 +4974,7 @@ export const premadeTemplates = [
                 enabled: false,
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -4986,7 +4986,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true,
+                enabled: false,
             },
             stroke: {
                 enabled: false
@@ -4998,7 +4998,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false

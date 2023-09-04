@@ -1,4 +1,12 @@
 .templatePreview{
+    &__badge{
+        margin-top: 0.5rem;
+        &-details{
+            .ant-badge-count{
+                font-size: 0.65rem !important;
+            }
+        }
+    }
     &__container{
         // padding-top: 3rem;
         padding-left: 6rem;

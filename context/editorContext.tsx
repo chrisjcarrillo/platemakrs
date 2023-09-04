@@ -19,7 +19,7 @@ import { ICustomPlateTemplate } from '../interfaces/customTemplate.interface';
 import { useRouter } from 'next/navigation'
 import { InterfaceContext, InterfaceContextType } from './interfaceContext';
 import { createLicensePlateFirebase, createTemplateFirebase } from '../lib/firebase/firebase';
-import { StoreContext, StoreContextType } from './storeContext';
+import { StoreContext, StoreContextType, client } from './storeContext';
 import { premadeTemplates } from '../utils/premadeTemplates';
 
 
@@ -54,9 +54,9 @@ export type EditorContextType = {
 
     // Step Functions
     updateStep?: (
-        step: number, 
-        subStep?: string, 
-        description?: string, 
+        step: number,
+        subStep?: string,
+        description?: string,
         showWarning?: boolean,
         title?: string
     ) => void;
@@ -67,7 +67,7 @@ export type EditorContextType = {
     selectPresetTemplate?: (handle: string, variantId: string) => void;
 
     // Custom Template
-    createCustomTemplate?: (         templateId: string,
+    createCustomTemplate?: (templateId: string,
         variant?: any) => void;
     updateCustomTemplateSelection?: (type: any, value: any) => void;
 }
@@ -109,28 +109,48 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
     useEffect(() => {
         if (typeof window !== "undefined") {
             const query = new URLSearchParams(window.location.search);
-            if(query.get('presetTemplate') && query.get('preset')){
-                setLoading(true);
-                // TODO
-                // - [DONE] Add logic if it’s a preset to save in sessionStorage on select 
-                const templateFilter = premadeTemplates.filter(
-                    template => template?.templateId === query.get('presetTemplate')
-                );
-                
-                const customTemplate = templateFilter[0] as ICustomPlateTemplate;
+            const initProduct = async () => {
+                try {
+                    setLoading(true);
+                    // TODO
+                    // - [DONE] Add logic if it’s a preset to save in sessionStorage on select 
+                    const templateFilter = premadeTemplates.filter(
+                        template => template?.templateId === query.get('presetTemplate')
+                    );
 
-                if(customTemplate){
-                    setCurrentTemplate(template => ({
-                        ...template,
-                        ...customTemplate
-                    }))
-        
-                    setCurrentCustomTemplate(template => ({
-                        ...template,
-                        ...customTemplate,
-                    }))
+                    const shopifyProduct = await client.product.fetchByHandle(templateFilter[0].shopifyHandle);
+                    if(shopifyProduct){
+
+                        const customTemplate = templateFilter[0] as ICustomPlateTemplate;
+
+                        if (customTemplate) {
+                            setCurrentTemplate(template => ({
+                                ...template,
+                                ...customTemplate
+                            }))
+
+                            setCurrentCustomTemplate(template => ({
+                                ...template,
+                                ...customTemplate,
+                                shopifyVariants: shopifyProduct?.variants,
+                                selectedVariant: shopifyProduct?.variants[1]
+                            }))
+                        }
+                    }
+
+                } catch (error) {
+                    setLoading(false);
+                } finally {
+                    setLoading(false); 
                 }
             }
+            if (query.get('presetTemplate') && query.get('preset') && query.get('step') === "1" && window.location.pathname === "/editor") {
+                let data = window.performance.getEntriesByType("navigation")[0].type;
+                if(data === 'reload'){
+                    initProduct();
+                }
+            }
+
         }
     }, [])
 
@@ -150,22 +170,22 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             const customTemplate = templateFilter[0] as unknown as ICustomPlateTemplate;
 
             const uploadToFirebase = await createTemplateFirebase(
-                 customTemplate
+                customTemplate
             );
-            
-            if(uploadToFirebase){
+
+            if (uploadToFirebase) {
                 sessionStorage.setItem(
                     'customTemplateId', uploadToFirebase?.id ?? customTemplate?.id
                 ); // Save the id in case of reload
-   
+
             }
 
-            if(customTemplate){
+            if (customTemplate) {
                 setCurrentTemplate(template => ({
                     ...template,
                     ...customTemplate
                 }))
-    
+
                 setCurrentCustomTemplate(template => ({
                     ...template,
                     ...customTemplate,
@@ -173,12 +193,12 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                     shopifyVariants: variant
                 }))
             }
-            
+
             addVariant(
                 currentCustomTemplate?.selectedVariant?.id,
                 uploadToFirebase?.id
             )
-            
+
             setTimeout(() => {
                 messageApi.open({
                     key,
@@ -269,12 +289,12 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             const customTemplate = templateFilter[0] as ICustomPlateTemplate;
             setLoading(true);
 
-            if(customTemplate){
+            if (customTemplate) {
                 setCurrentTemplate(template => ({
                     ...template,
                     ...customTemplate
                 }))
-    
+
                 setCurrentCustomTemplate(template => ({
                     ...template,
                     ...customTemplate,
@@ -294,14 +314,9 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         setLoading(false);
     }
 
-    const createPresetTemplate = async () => {
-
-    }
     ///// END: Template Functions //////
 
     ///// START: License Plate Functions /////
-
-
     const createLicensePlate = async (
     ) => {
         try {
@@ -310,24 +325,24 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             const queryParams = new URLSearchParams(window.location.search);
 
             const createPlate = await createLicensePlateFirebase(currentLicensePlate);
-        
-            if(createPlate) sessionStorage.setItem('licensePlateId', createPlate.id);
-            
+
+            if (createPlate) sessionStorage.setItem('licensePlateId', createPlate.id);
+
             setLicensePlate(licensePlate => ({
                 ...licensePlate,
                 ...currentLicensePlate
             }))
 
-            if(queryParams.get("preset") && sessionStorage.getItem('preset')){
+            if (queryParams.get("preset") && sessionStorage.getItem('preset')) {
                 const createCustomTemplate = await createTemplateFirebase(
                     currentCustomTemplate
                 );
-                if(createCustomTemplate) {
+                if (createCustomTemplate) {
                     sessionStorage.setItem(
-                        'customTemplateId', 
+                        'customTemplateId',
                         createCustomTemplate?.id
                     ); // Save the id in case of reload
-        
+
                     setCurrentCustomTemplate(template => ({
                         ...template,
                         ...currentCustomTemplate,
@@ -353,7 +368,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 () => {
                     setLoading(false);
                     setStepLoading(false)
-                     if(queryParams.get("preset") && sessionStorage.getItem('preset')){
+                    if (queryParams.get("preset") && sessionStorage.getItem('preset')) {
                         setDecision(true)
                     } else {
                         updateStep(2)
@@ -363,35 +378,6 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             )
         }
     }
-
-    // const createLicensePlate = async () => {
-    //     // create the license plate in localStorage once the continue button is clicked
-    //     try {
-    //         setStepLoading(true)
-    //         setTimeout(() => {
-    //             messageApi.open({
-    //                 key,
-    //                 type: 'success',
-    //                 content: 'License Plate Added!',
-    //                 duration: 1,
-    //             })
-    //         }, 3000);
-    //     } catch (error) {
-    //         messageApi.open({
-    //             type: 'error',
-    //             content: `Error: ${error}`,
-    //         })
-    //         setStepLoading(false)
-    //     } finally {
-    //         setTimeout(
-    //             () => {
-    //                 updateStep?.(2)
-    //                 setStepLoading(false)
-    //             },
-    //             3000
-    //         )
-    //     }
-    // }
 
     const updateLicensePlate = (
         type: string,
@@ -417,8 +403,8 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         setMoveLogo(false);
         setMoveBackgroundLogo(false);
         setMoveBottomLogo(false);
-        
-        if(sessionStorage.getItem('preset')){
+
+        if (sessionStorage.getItem('preset')) {
             setDecision(false);
         }
 
@@ -432,7 +418,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             console.log('first')
             Modal.confirm({
                 centered: true,
-                icon: <WarningOutlined rev={''}  />,
+                icon: <WarningOutlined rev={''} />,
                 title: 'Are you sure you want to go back?',
                 content: 'You will lose your current Design',
                 okText: 'Confirm',
@@ -447,13 +433,13 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
 
         }
 
-        if( currentEditorStep.currentStep === 1 && step === 1 &&
-                currentCustomTemplate && sessionStorage.getItem('preset')
-        ){
+        if (currentEditorStep.currentStep === 1 && step === 1 &&
+            currentCustomTemplate && sessionStorage.getItem('preset')
+        ) {
             console.log('second')
             Modal.confirm({
                 centered: true,
-                icon: <WarningOutlined  rev={''} />,
+                icon: <WarningOutlined rev={''} />,
                 title: 'Are you sure you want to go back?',
                 content: 'You will lose your current Design',
                 okText: 'Confirm',
@@ -484,12 +470,12 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         setStep(currentEditorStep => ({
             ...currentEditorStep,
             currentStep: step,
-            currentSubStep: subStep ?? undefined,
-            currentStepDescription: description ?? undefined,
-            currentStepTitle: title ?? undefined,
+            currentSubStep: subStep,
+            currentStepDescription: description,
+            currentStepTitle: title,
         }))
 
-        console.info( 'testEditorStep',
+        console.info('testEditorStep',
             currentEditorStep
         )
 

@@ -1631,15 +1631,24 @@ export const handleActions = (
                 title: 'Finish'
             }
         }
-        // if (currentEditorStep?.currentSubStep === "termsAndConditions") {
-        //     return {
-        //         step: CURRENT_STEP,
-        //         subStep: steps[27],
-        //         subTitle: '',
-        //         warning: false,
-        //         title: 'Finish'
-        //     }
-        // }
+        if (currentEditorStep?.currentSubStep === "addonNotes") {
+            return {
+                step: CURRENT_STEP,
+                subStep: steps[28],
+                subTitle: '',
+                warning: false,
+                title: 'ADD-ON'
+            }
+        }
+        if (currentEditorStep?.currentSubStep === "termsAndConditions") {
+            return {
+                step: CURRENT_STEP,
+                subStep: steps[29],
+                subTitle: 'Notes',
+                warning: false,
+                title: 'ADD-ON'
+            }
+        }
     }
 
 
@@ -2831,6 +2840,26 @@ export const handleActions = (
                 subTitle: '',
                 warning: false,
                 title: 'ADD-ON'
+            }
+        }
+
+        if(currentEditorStep?.currentSubStep === "addonDesigner"){
+            return {
+                step: CURRENT_STEP,
+                subStep: steps[29],
+                subTitle: 'Notes',
+                warning: false,
+                title: 'ADD-ON'
+            }
+        }
+
+        if(currentEditorStep?.currentSubStep === "addonNotes"){
+            return {
+                step: CURRENT_STEP,
+                subStep: steps[30],
+                subTitle: '',
+                warning: false,
+                title: ''
             }
         }
     }

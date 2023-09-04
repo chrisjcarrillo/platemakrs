@@ -8,6 +8,7 @@ import { useContext } from 'react';
 import Image from 'next/image';
 import { ProductSkeleton } from '../../shared/ProductSkeleton/ProductSkeleton';
 import { ICustomPlateTemplate } from '../../../interfaces/customTemplate.interface';
+import { Badge } from 'antd';
 
 export const TemplateList = (props: any) => {
 
@@ -65,6 +66,14 @@ export const TemplateList = (props: any) => {
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                         style={{ width: '100%', height: 'auto' }} // optional
                                     />
+                                </div>
+                                <div className="templatePreview__badge">
+                                    {
+                                        (template?.title?.includes('Miami') || template?.title?.includes('Dolphins') || template?.title?.includes('Panthers') ) &&
+                                            <Badge className="templatePreview__badge-details" count="Any Teams Available" />
+                                        
+                                    }
+                                                                    
                                 </div>
                                 <div className="templatePreview__details">
                                     <h3 className='templatePreview__name'>

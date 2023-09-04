@@ -19,11 +19,10 @@ const MainHead = () => {
     )
 }
 export default function Editor(props: any) {
-    console.log(props.productList)
     const { Search } = Input
     const { productList } = props;
     const [products, setProducts] = useState(productList?.products)
-
+    
     const onSearch = (e: string) => {
         if (!e) {
             console.log(!e)
