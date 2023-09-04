@@ -9,7 +9,7 @@ export interface ILicensePlate {
     // Plate Numbers
     plateNumber?: string;
     plateNumberRaised?: boolean;
-    vehicleType?: string;
+    vehicleType: 'Car';
     platePosition?: string;
     
     // Bottom Text

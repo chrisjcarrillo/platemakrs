@@ -223,14 +223,14 @@ const EditorForm = (props: any) => {
                         {/* License Plate # END */}
 
                         {/* Vehicle Type START */}
-                        <Row
+                        {/* <Row
                             className={`${!form.getFieldValue('plateNumber') ? 'editor__disabled--input' : ''}`}
-                        >
-                            <Col {...columnSettings}>
+                        > */}
+                            {/* <Col {...columnSettings}> */}
                                 {/* <div className="editor__label-container">
                                     <label className="editor__label-text">Select your vehicle type</label>
                                 </div> */}
-                                <FormItem
+                                {/* <FormItem
 
                                     tooltip={'Select the vehicle type associated to your license plate'}
                                     name="vehicleType"
@@ -259,14 +259,14 @@ const EditorForm = (props: any) => {
                                             ]
                                         }
                                     />
-                                </FormItem>
-                            </Col>
-                        </Row>
+                                </FormItem> */}
+                            {/* </Col> */}
+                        {/* </Row> */}
                         {/* Vehicle Type END */}
 
                         {/* License Plate Position START */}
                         <Row
-                            className={`${form.getFieldValue('vehicleType') ? '' : 'editor__disabled--input'}`}
+                            className={`${form.getFieldValue('plateNumber') ? '' : 'editor__disabled--input'}`}
                         >
                             <Col {...columnSettings}>
                                 {/* <div className="editor__label-container">
@@ -280,7 +280,7 @@ const EditorForm = (props: any) => {
                                     rules={[{ required: true, message: 'License Plate Position is required' }]}
                                 >
                                     <Select
-                                        disabled={!form.getFieldValue('vehicleType')}
+                                        disabled={!form.getFieldValue('plateNumber')}
                                         labelInValue
                                         onSelect={(e) => updateLicensePlate('platePosition', e.value)}
                                         size="large"

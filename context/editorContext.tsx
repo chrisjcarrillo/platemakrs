@@ -429,6 +429,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             currentEditorStep.currentStep === 2 && step === 1 &&
             currentTemplate && !sessionStorage.getItem('preset')
         ) {
+            console.log('first')
             Modal.confirm({
                 centered: true,
                 icon: <WarningOutlined rev={''}  />,
@@ -449,6 +450,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         if( currentEditorStep.currentStep === 1 && step === 1 &&
                 currentCustomTemplate && sessionStorage.getItem('preset')
         ){
+            console.log('second')
             Modal.confirm({
                 centered: true,
                 icon: <WarningOutlined  rev={''} />,
@@ -468,6 +470,16 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             return;
         }
 
+        console.info(
+            'testVariables',
+            {
+                step: step,
+                subStep: subStep,
+                description: description,
+                showWarning: showWarning,
+                title: title
+            }
+        )
 
         setStep(currentEditorStep => ({
             ...currentEditorStep,
@@ -476,6 +488,10 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             currentStepDescription: description ?? undefined,
             currentStepTitle: title ?? undefined,
         }))
+
+        console.info( 'testEditorStep',
+            currentEditorStep
+        )
 
         if (document) {
             document.body.scrollTop = 0; // For Safari
