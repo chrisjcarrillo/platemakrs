@@ -245,9 +245,12 @@ export const premadeTemplates = [
         startPlateText: 'SAMPL',
         fadeSettings: { enabled: false },
         mainLogo: {
+            hasColor: true,
             enabled: true,
             name: "mercedes.svg",
-            url: '/images/resources/sports/basketball/miami-heat/miami-heat-black-yellow.svg',
+            imageType: 'svg',
+            filePath: '/images/resources/sports/basketball/miami-heat/ferrari',
+            url: '/images/resources/sports/basketball/miami-heat/ferrari/regular.svg',
             leftCoordinates: {
                 x: 26,
                 y: 32
@@ -571,7 +574,8 @@ export const premadeTemplates = [
             enabled: true,
             hasColor: true,
             imageType: 'svg',
-            url: '/images/logos/brands/sports/miami-heat/miami-heat-gold-red.svg',
+            filePath: '/images/resources/sports/basketball/miami-heat/mclaren',
+            url: '/images/resources/sports/basketball/miami-heat/mclaren/regular.svg',
             leftCoordinates: {
                 x: 26,
                 y: 32
@@ -699,8 +703,11 @@ export const premadeTemplates = [
         backgroundLogo: { enabled: false },
         mainLogo: {
             enabled: true,
+            hasColor: true,
             name: "mercedes.svg",
-            url: '/images/logos/brands/sports/miami-heat/miami-heat-yellow.svg',
+            filePath: '/images/resources/sports/basketball/miami-heat/ruzy',
+            imageType: 'svg',
+            url: '/images/resources/sports/basketball/miami-heat/ruzy/regular.svg',
             leftCoordinates: {
                 x: 26,
                 y: 32
@@ -985,9 +992,12 @@ export const premadeTemplates = [
         fadeSettings: { enabled: false }, 
         patternSettings: { enabled: false },
         mainLogo: {
+            hasColor: true,
             enabled: true,
             name: "mercedes.svg",
-            url: '/images/resources/sports/basketball/miami-heat/miami-heat-porsche-red-orange.svg',
+            imageType: 'svg',
+            filePath: '/images/resources/sports/basketball/miami-heat/porsche',
+            url: '/images/resources/sports/basketball/miami-heat/porsche/regular.svg',
             leftCoordinates: {
                 x: 26,
                 y: 32
@@ -1371,26 +1381,25 @@ export const premadeTemplates = [
         backgroundSettings: {
             color: '#000000',
             background: {
-                enabled: true,
-                file: {
-                    name: 'fade',
-                    url: '/images/bg/hexagons/hexagon-fade-1.png'
-                }
+                enabled: false
             },
             stroke: {
                 enabled: false,
             }
         },
         mainLogo: {
+            hasColor: true,
             enabled: true,
             name: "mercedes.svg",
-            url: '/images/logos/brands/cars/lamborghini/crest.svg',
+            fileType: 'png',
+            imagePath: '/images/resources/cars/lamborghini/logos/crest/solid-3d/colors',
+            url: '/images/resources/cars/lamborghini/logos/crest/solid-3d/colors/regular.png',
             leftCoordinates: {
                 x: 26,
                 y: 32
             },
             centerCoordinates: {
-                x: 165,
+                x: 125,
                 y: 35
             },
             rightCoordinates: {
@@ -1400,6 +1409,28 @@ export const premadeTemplates = [
             width: 90,
             height: 100,
             glow:{ enabled: true, color: '#ffffff' }
+        },
+        backgroundLogo:{
+            hasColor: true,
+            enabled: true,
+            name: 'gray.png',
+            imageType: 'png',
+            filePath: '/images/resources/backgrounds/hexagon/option-9/gray',
+            url: '/images/resources/backgrounds/hexagon/option-9/gray/regular.png',
+            leftCoordinates: {
+                x: -200,
+                y: 0
+            },
+            centerCoordinates: {
+                x: -95,
+                y: 0
+            },
+            rightCoordinates: {
+                x: 0,
+                y: 0
+            },
+            width: 350,
+            height: 150,
         },
         state:{
             color: '#ffffff',
@@ -2146,9 +2177,12 @@ export const premadeTemplates = [
         bottomLogo: { enabled: false },
         backgroundLogo: {enabled: false},
         mainLogo: {
+            hasColor: true,
             enabled: true,
             name: "mercedes.svg",
-            url: '/images/resources/sports/basketball/miami-heat/miami-heat-black-yellow-gray.svg',
+            filePath: '/images/resources/sports/basketball/miami-heat/gray',
+            imageType: 'svg',
+            url: '/images/resources/sports/basketball/miami-heat/gray/regular.svg',
             leftCoordinates: {
                 x: 40,
                 y: 60
@@ -3552,40 +3586,62 @@ export const premadeTemplates = [
         fadeSettings: {
             enabled: false,
         },
-        mainLogo: {
-            enabled: true,
-            name: "mercedes.svg",
-            url: '/images/logos/brands/cars/lamborghini/crest.svg',
-            leftCoordinates: {
-                x: 40,
-                y: 65
-            },
-            centerCoordinates: {
-                x: 145,
-                y: 65
-            },
-            rightCoordinates: {
-                x: 250,
-                y: 65
-            },
-            width: 45,
-            height: 45,
-            glow:{ enabled: true, color: '#a100b0' }
-        },
         bottomLogo: {
             enabled: false,
         },
         patternSettings: {
             enabled: false,
         },
+
+        mainLogo: {
+            hasColor: true,
+            enabled: true,
+            name: "mercedes.svg",
+            fileType: 'png',
+            imagePath: '/images/resources/cars/lamborghini/logos/crest/solid-3d/colors',
+            url: '/images/resources/cars/lamborghini/logos/crest/solid-3d/colors/regular.png',
+            leftCoordinates: {
+                x: 26,
+                y: 32
+            },
+            centerCoordinates: {
+                x: 125,
+                y: 35
+            },
+            rightCoordinates: {
+                x: 230,
+                y: 32
+            },
+            width: 90,
+            height: 100,
+            glow:{ enabled: true, color: '#ffffff' }
+        },
+        backgroundLogo:{
+            hasColor: true,
+            enabled: true,
+            name: 'gray.png',
+            imageType: 'png',
+            filePath: '/images/resources/backgrounds/hexagon/option-9/regular',
+            url: '/images/resources/backgrounds/hexagon/option-9/regular/regular.png',
+            leftCoordinates: {
+                x: -200,
+                y: 0
+            },
+            centerCoordinates: {
+                x: -95,
+                y: 0
+            },
+            rightCoordinates: {
+                x: 0,
+                y: 0
+            },
+            width: 350,
+            height: 150,
+        },
         backgroundSettings: {
             color: '#000000',
             background: {
-                enabled: true,
-                file: {
-                    url: '/images/bg/hexagons/hexagon-fade-2.png',
-                    color: '#000000'
-                },
+                enabled: false,
             },
         },
         state:{
