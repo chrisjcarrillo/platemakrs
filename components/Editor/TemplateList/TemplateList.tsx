@@ -70,7 +70,7 @@ export const TemplateList = (props: any) => {
                                 <div className="templatePreview__badge">
                                     {
                                         (template?.title?.includes('Miami') || template?.title?.includes('Dolphins') || template?.title?.includes('Panthers') ) &&
-                                            <Badge className="templatePreview__badge-details" count="Any Teams Available" />
+                                            <Badge className="templatePreview__badge-details" count="All Teams Available" />
                                         
                                     }
                                                                     
