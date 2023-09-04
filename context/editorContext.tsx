@@ -108,49 +108,50 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
 
     useEffect(() => {
         if (typeof window !== "undefined") {
-            const query = new URLSearchParams(window.location.search);
-            const initProduct = async () => {
-                try {
-                    setLoading(true);
-                    // TODO
-                    // - [DONE] Add logic if it’s a preset to save in sessionStorage on select 
-                    const templateFilter = premadeTemplates.filter(
-                        template => template?.templateId === query.get('presetTemplate')
-                    );
+            let data = window.performance.getEntriesByType("navigation")[0].type;
+            console.log(data);
+            if (data === 'reload') {
+                const query = new URLSearchParams(window.location.search);
+                const initProduct = async () => {
+                    try {
+                        setLoading(true);
+                        // TODO
+                        // - [DONE] Add logic if it’s a preset to save in sessionStorage on select 
+                        const templateFilter = premadeTemplates.filter(
+                            template => template?.templateId === query.get('presetTemplate')
+                        );
 
-                    const shopifyProduct = await client.product.fetchByHandle(templateFilter[0].shopifyHandle);
-                    if(shopifyProduct){
+                        const shopifyProduct = await client.product.fetchByHandle(templateFilter[0].shopifyHandle);
+                        if (shopifyProduct) {
 
-                        const customTemplate = templateFilter[0] as ICustomPlateTemplate;
+                            const customTemplate = templateFilter[0] as ICustomPlateTemplate;
 
-                        if (customTemplate) {
-                            setCurrentTemplate(template => ({
-                                ...template,
-                                ...customTemplate
-                            }))
+                            if (customTemplate) {
+                                setCurrentTemplate(template => ({
+                                    ...template,
+                                    ...customTemplate
+                                }))
 
-                            setCurrentCustomTemplate(template => ({
-                                ...template,
-                                ...customTemplate,
-                                shopifyVariants: shopifyProduct?.variants,
-                                selectedVariant: shopifyProduct?.variants[1]
-                            }))
+                                setCurrentCustomTemplate(template => ({
+                                    ...template,
+                                    ...customTemplate,
+                                    shopifyVariants: shopifyProduct?.variants,
+                                    selectedVariant: shopifyProduct?.variants[1]
+                                }))
+                            }
                         }
+
+                    } catch (error) {
+                        setLoading(false);
+                    } finally {
+                        setLoading(false);
                     }
-
-                } catch (error) {
-                    setLoading(false);
-                } finally {
-                    setLoading(false); 
                 }
-            }
-            if (query.get('presetTemplate') && query.get('preset') && query.get('step') === "1" && window.location.pathname === "/editor") {
-                let data = window.performance.getEntriesByType("navigation")[0].type;
-                if(data === 'reload'){
+                if (query.get('presetTemplate') && query.get('preset') && query.get('step') === "1" && window.location.pathname === "/editor") {
                     initProduct();
+
                 }
             }
-
         }
     }, [])
 
