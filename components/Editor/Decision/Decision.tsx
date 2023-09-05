@@ -20,6 +20,7 @@ export const Decision = () => {
     const {
         showDecision,
         setDecision,
+        setPreset
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const {
@@ -30,6 +31,7 @@ export const Decision = () => {
 
     // If carbon fiber/hexagon are in the template go directly to plate characters
     const handleDecision = () => {
+        setPreset(true);
         if(
             currentCustomTemplate?.backgroundSettings?.background?.file?.name === "carbon-fiber-full-with-shadow" || 
                 currentCustomTemplate?.backgroundSettings?.background?.file?.name === "forged-carbon" || 
