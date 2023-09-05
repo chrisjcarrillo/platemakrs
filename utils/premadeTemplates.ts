@@ -2057,7 +2057,7 @@ export const premadeTemplates = [
             hasColor: false,
             enabled: true,
             name: "mercedes.svg",
-            url: '/images/resources/cars/bmw/logos/logo.svg',
+            url: '/images/resources/cars/bmw/logos/logo.png',
             leftCoordinates: {
                 x: 50,
                 y: 32
