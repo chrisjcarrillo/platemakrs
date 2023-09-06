@@ -2892,7 +2892,7 @@ export const handleActions = (
             }
 
             if (currentEditorStep?.currentSubStep === "editorBgColor") {
-                if(name === "hexagon.svg"){
+                if(name === "hexagon.svg" || name === "hexagon-down" || name === "hexagon-up"){
                     return {
                         step: CURRENT_STEP,
                         subStep: editorSteps[1],
@@ -2901,7 +2901,7 @@ export const handleActions = (
                         title: 'Background Image'
                     } 
                 } else if (name === "carbon-fiber-fade-up.png" ||
-                name === "carbon-fiber-fade-down.png") {
+                name === "carbon-fiber-fade-down.png" || name === "3d-hexagon-up" || name === "3d-hexagon-down") {
                     return {
                         step: CURRENT_STEP,
                         subStep: editorSteps[0],
@@ -3366,15 +3366,22 @@ export const handleActions = (
         }
         if (actionType === "forward") {
             if (currentEditorStep?.currentSubStep === "editorBgImage") {
-                if (name === "hexagon.svg" ||
-                    name === "carbon-fiber-fade-up.png" ||
-                    name === "carbon-fiber-fade-down.png") {
+                if (name === "hexagon.svg" || name === "hexagon-down" || name === "hexagon-up") {
                     return {
                         step: CURRENT_STEP,
                         subStep: editorSteps[1],
                         subTitle: 'Select Color',
                         warning: false,
                         title: 'Background Image'
+                    }
+                }
+                if(name !== "3d-hexagon" && name !== "carbon-fiber"){
+                    return {
+                        step: CURRENT_STEP,
+                        subStep: editorSteps[2],
+                        subTitle: 'Select Color',
+                        warning: false,
+                        title: 'Background'
                     }
                 }
                 return {

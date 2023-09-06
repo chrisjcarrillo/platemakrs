@@ -14,7 +14,6 @@ import { DetailLogo2 } from "../DetailLogo2/DetailLogo2";
 export const Background = (
     props: {
         type?: 'PREVIEW' | 'CANVAS',
-        template?: ITemplate,
         customTemplate?: ICustomPlateTemplate
         canvasReference?: any
     }
@@ -22,7 +21,6 @@ export const Background = (
 
     const {
         type,
-        template,
         customTemplate, 
         canvasReference
     } = props;
@@ -46,14 +44,14 @@ export const Background = (
             {/* HOLES END */}
             
             {
-                template?.backgroundSettings?.pinstripe?.enabled && (
+                customTemplate?.backgroundSettings?.pinstripe?.enabled && (
                     <Pinstripe
                     />
                 )
             }
 
             {
-                template?.detailLogo1?.enabled && (
+                customTemplate?.detailLogo1?.enabled && (
                     <DetailLogo1
                         canvasReference={canvasReference}
                         type="CANVAS"
@@ -62,7 +60,7 @@ export const Background = (
                 )
             }
             {
-                template?.detailLogo2?.enabled && (
+                customTemplate?.detailLogo2?.enabled && (
                     <DetailLogo2
                         canvasReference={canvasReference}
                         type="CANVAS"
@@ -72,7 +70,7 @@ export const Background = (
             }
 
             {
-                template?.backgroundLogo?.enabled && (
+                customTemplate?.backgroundLogo?.enabled && (
                     <BackgroundLogo
                         canvasReference={canvasReference}
                         type="CANVAS"
@@ -81,35 +79,34 @@ export const Background = (
                 )
             }
 
-            { template?.fadeSettings?.enabled &&
+            {/* { customTemplate?.fadeSettings?.enabled &&
                     <Gradient
                         template={template}
                         canvasReference={canvasReference}
                     />
             }
 
-            { template?.patternSettings?.enabled && 
+            { customTemplate?.patternSettings?.enabled && 
                 <Pattern 
                     type={type}
                     template={template}
                     customTemplate={customTemplate}
                     canvasReference={canvasReference}
                 />
-            }
+            } */}
             {
-                template?.backgroundSettings?.background?.enabled &&
+                customTemplate?.backgroundSettings?.background?.enabled &&
                     <Image 
                         className="background__image"
                         fill
                         alt=""
                         quality={100}
                         sizes="100vw"
-                        // src={customTemplate === undefined ? template?.backgroundSettings?.background?.file?.url :
+                        // src={customTemplate === undefined ? customTemplate?.backgroundSettings?.background?.file?.url :
                         //     customTemplate?.backgroundSettings?.background?.file?.url}
                         src={
                             customTemplate?.backgroundSettings?.background?.file?.name === "hexagon.svg" ? 
-                            `data:image/svg+xml,${svgString}`: customTemplate === undefined ? template?.backgroundSettings?.background?.file?.url :
-                             customTemplate?.backgroundSettings?.background?.file?.url
+                            `data:image/svg+xml,${svgString}` : customTemplate?.backgroundSettings?.background?.file?.url
                         }
                         style={
                             {
@@ -125,7 +122,7 @@ export const Background = (
                     //             backgroundSize: 'contain'
                     //         } : {
                     //         backgroundImage: `url('${
-                    //             customTemplate === undefined ? template?.backgroundSettings?.background?.file?.url :
+                    //             customTemplate === undefined ? customTemplate?.backgroundSettings?.background?.file?.url :
                     //             customTemplate?.backgroundSettings?.background?.file?.url
                     //         }')`,
                     //         backgroundSize: 'cover'
@@ -134,33 +131,28 @@ export const Background = (
                     // />
             }
             {/* {
-                template?.patternSettings?.enabled &&
+                customTemplate?.patternSettings?.enabled &&
                     <div 
                         className="background__logo-overlay"
                         style={{
-                            opacity: customTemplate === undefined ? template?.patternSettings?.opacity : customTemplate?.patternSettings?.opacity,
+                            opacity: customTemplate === undefined ? customTemplate?.patternSettings?.opacity : customTemplate?.patternSettings?.opacity,
                             backgroundImage: `url('${
-                                customTemplate === undefined ? template?.patternSettings.logo?.url :
+                                customTemplate === undefined ? customTemplate?.patternSettings.logo?.url :
                                 customTemplate?.patternSettings?.logo?.url
                             }')`,
-                            backgroundRepeat: template.templateId === "3" || customTemplate?.template?.templateId === "3" ? `repeat-y` : ``,
+                            backgroundRepeat: template.templateId === "3" || customTemplate?.customTemplate?.templateId === "3" ? `repeat-y` : ``,
                             backgroundSize: '25%',
                             backgroundPosition:
-                                customTemplate === undefined ? `${template?.patternSettings?.position} center` : `${customTemplate?.patternSettings?.position} center`
+                                customTemplate === undefined ? `${customTemplate?.patternSettings?.position} center` : `${customTemplate?.patternSettings?.position} center`
                         }}
                     />
             } */}
 
             <div 
                 className="background__bg" 
-                style={
-                    customTemplate === undefined
-                    ? {
-                       backgroundColor: `${template?.backgroundSettings?.color ?? '#000000'}`
-                   } : {
+                style={{
                        backgroundColor: `${customTemplate?.backgroundSettings?.color ?? '#000000'}`
-                   }
-                }
+                }}
             />
         </>
     )

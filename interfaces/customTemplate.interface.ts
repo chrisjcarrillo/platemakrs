@@ -15,6 +15,8 @@ export interface ICustomPlateTemplate{
     id?: string // ID Created by system
     templateId?: string; // PresetId
 
+    fadeType?: 'FADE-UP' | 'FADE-DOWN' | 'FULL-BG';
+
     startPlatePosition?: string;
     startPlateText?: string;
 

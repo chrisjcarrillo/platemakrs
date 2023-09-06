@@ -12,6 +12,7 @@ import { InterfaceContext, InterfaceContextType } from '../../../context/interfa
 import { AddonSwitch } from '../EditorActions/AddonSwitch/AddonSwitch';
 import { NoteInput } from '../EditorActions/NoteInput/NoteInput';
 import { MoveSwitcher } from '../EditorActions/MoveSwitcher/MoveSwitcher';
+import { PresetColorSelect } from '../EditorActions/PresetColorSelect/PresetColorSelect';
 
 export const EditorActionContainer = (
     props: {
@@ -44,10 +45,23 @@ export const EditorActionContainer = (
             }
 
             {
-                step.currentSubStep === "editorBgImageColor" && (
+                (step.currentSubStep === "editorBgImageColor" && 
+                    currentCustomTemplate.backgroundSettings?.background?.file?.name === "hexagon.svg")
+                     && (
                     <ColorSelect
                         title="Background Image"
                         type="backgroundUrl"
+                    />
+                )
+            }
+
+{
+                (step.currentSubStep === "editorBgImageColor" && 
+                    currentCustomTemplate.backgroundSettings?.background?.file?.name === "hexagon-down" || step.currentSubStep === "editorBgImageColor" && 
+                    currentCustomTemplate.backgroundSettings?.background?.file?.name === "hexagon-up") && (
+                    <PresetColorSelect
+                        title="Background Image"
+                        type="backgroundSetting"
                     />
                 )
             }
@@ -84,17 +98,8 @@ export const EditorActionContainer = (
                 step.currentSubStep === "editorEnableBgPinstripe" && (
                     <Switcher
                         type="backgroundPinstripeEnabled"
-                        text="Background Border"
+                        text="Background Pinstripe"
                         checkedDefault={currentCustomTemplate?.backgroundSettings?.pinstripe?.enabled ?? false}
-                    />
-                )
-            }
-
-            {
-                step?.currentSubStep === "editorBgPinstripe" && (
-                    <ColorSelect
-                        title="Background Pinstripe"
-                        type="backgroundPinstripe"
                     />
                 )
             }

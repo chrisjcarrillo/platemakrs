@@ -18,15 +18,12 @@ export const Switcher = (
     } = props;
 
     const {
-        setMoveLogo
-    } = useContext(InterfaceContext) as InterfaceContextType;
-
-    const {
         currentCustomTemplate,
         updateCustomTemplateSelection
     } = useContext(EditorContext) as EditorContextType;
 
     const updateSwitch = (type: any, value: any) => {
+        console.log(value)
         switch (type) {
             case "backgroundStrokeEnabled":
                 updateCustomTemplateSelection?.('backgroundSettings', {
@@ -42,7 +39,7 @@ export const Switcher = (
                     ...currentCustomTemplate?.backgroundSettings,
                     pinstripe: {
                         ...currentCustomTemplate?.backgroundSettings?.pinstripe,
-                        enabled: value
+                        enabled: value,
                     }
                 })
                 break;
@@ -151,7 +148,7 @@ export const Switcher = (
             <div
                 className={`switcher__left`}
             >
-                <p className={`switcher__text`}>{checked && !text?.includes('Shadow') ? 'Select' : 'Enable'} {text} {checked && !text?.includes('Shadow') ? 'Color' : ''}</p>
+                <p className={`switcher__text`}> Enable {text}</p>
             </div>
 
             <div

@@ -2,7 +2,7 @@ import { Button, ColorPicker } from 'antd';
 import type { Color } from 'antd/es/color-picker';
 import { useContext } from 'react';
 import { EditorContext, EditorContextType } from '../../../../context/editorContext';
-import {Hexagon} from '../../../shared/Hexagon/Hexagon';
+import { Hexagon } from '../../../shared/Hexagon/Hexagon';
 
 export const BackgroundSelect = (
     props: {
@@ -13,8 +13,8 @@ export const BackgroundSelect = (
     const { type, title } = props;
     const { currentCustomTemplate, updateCustomTemplateSelection } = useContext(EditorContext) as EditorContextType;
 
-    const changeBackground = (name: string) =>{
-        if(name === "carbonFiberDown"){
+    const changeBackground = (name: string) => {
+        if (name === "carbonFiberDown") {
             updateCustomTemplateSelection?.('backgroundSettings', {
                 ...currentCustomTemplate?.backgroundSettings,
                 background: {
@@ -27,7 +27,7 @@ export const BackgroundSelect = (
                 }
             })
         }
-        if(name === "carbonFiberUp"){
+        if (name === "carbonFiberUp") {
             updateCustomTemplateSelection?.('backgroundSettings', {
                 ...currentCustomTemplate?.backgroundSettings,
                 background: {
@@ -40,7 +40,7 @@ export const BackgroundSelect = (
                 }
             })
         }
-        if(name === "carbonFiber"){
+        if (name === "carbonFiber") {
             updateCustomTemplateSelection?.('backgroundSettings', {
                 ...currentCustomTemplate?.backgroundSettings,
                 background: {
@@ -53,7 +53,7 @@ export const BackgroundSelect = (
                 }
             })
         }
-        if(name === "3dHex"){
+        if (name === "3dHex") {
             updateCustomTemplateSelection?.('backgroundSettings', {
                 ...currentCustomTemplate?.backgroundSettings,
                 background: {
@@ -66,7 +66,7 @@ export const BackgroundSelect = (
                 }
             })
         }
-        if(name === "honeycomb"){
+        if (name === "honeycomb") {
             updateCustomTemplateSelection?.('backgroundSettings', {
                 ...currentCustomTemplate?.backgroundSettings,
                 background: {
@@ -79,7 +79,63 @@ export const BackgroundSelect = (
                 }
             })
         }
+        if (name === "3d-down") {
+            updateCustomTemplateSelection?.('backgroundSettings', {
+                ...currentCustomTemplate?.backgroundSettings,
+                background: {
+                    ...currentCustomTemplate?.backgroundSettings?.background,
+                    file: {
+                        ...currentCustomTemplate?.backgroundSettings?.background?.file,
+                        name: '3d-hexagon-down',
+                        url: '/images/resources/backgrounds/hexagon/3d/fade-down.png'
+                    }
+                }
+            })
+        }
+        if (name === "hexagonDown") {
+            updateCustomTemplateSelection?.('backgroundSettings', {
+                ...currentCustomTemplate?.backgroundSettings,
+                background: {
+                    ...currentCustomTemplate?.backgroundSettings?.background,
+                    file: {
+                        ...currentCustomTemplate?.backgroundSettings?.background?.file,
+                        filePath: '/images/resources/backgrounds/hexagon/fade-down/colors',
+                        imageType: 'png',
+                        name: 'hexagon-down',
+                        url: '/images/resources/backgrounds/hexagon/fade-down/colors/black.png'
+                    }
+                }
+            })
+        }
 
+        if (name === "3d-up") {
+            updateCustomTemplateSelection?.('backgroundSettings', {
+                ...currentCustomTemplate?.backgroundSettings,
+                background: {
+                    ...currentCustomTemplate?.backgroundSettings?.background,
+                    file: {
+                        ...currentCustomTemplate?.backgroundSettings?.background?.file,
+                        name: '3d-hexagon-up',
+                        url: '/images/resources/backgrounds/hexagon/3d/fade-up.png'
+                    }
+                }
+            })
+        }
+        if (name === "hexagonUp") {
+            updateCustomTemplateSelection?.('backgroundSettings', {
+                ...currentCustomTemplate?.backgroundSettings,
+                background: {
+                    ...currentCustomTemplate?.backgroundSettings?.background,
+                    file: {
+                        ...currentCustomTemplate?.backgroundSettings?.background?.file,
+                        filePath: '/images/resources/backgrounds/hexagon/fade-up/colors',
+                        imageType: 'png',
+                        name: 'hexagon-up',
+                        url: '/images/resources/backgrounds/hexagon/fade-up/colors/black.png'
+                    }
+                }
+            })
+        }
     }
 
     return (
@@ -90,67 +146,147 @@ export const BackgroundSelect = (
                     <p className={`backgroundSelect__text`}>Select {title}</p>
                 </div>
             }
-
             <div className={`backgroundSelect__left`}>
-                <Button
-                    onClick={
-                        () => changeBackground('carbonFiberDown')
-                    }
-                    size="small"
-                    className={`backgroundSelect__preset`}
-                    style={{
-                        backgroundImage: "url('../../images/bg/carbon-fiber-fade-down.png')",
-                        backgroundSize: 'cover',
-                        backgroundRepeat: 'no-repeat'
-                    }}
-                    shape="circle"
-                >
-                    {/* Black */}
-                </Button>
-                <Button
-                    onClick={() => changeBackground('carbonFiberUp')}
-                    size="small"
-                    className={`backgroundSelect__preset`}
-                    style={{
-                        backgroundImage: "url('../../images/bg/carbon-fiber-fade-up.png')",
-                        backgroundSize: 'cover',
-                        backgroundRepeat: 'no-repeat'
-                    }}
-                    shape="circle"
-                />
-                <Button
-                    onClick={() => changeBackground('carbonFiber')}
-                    size="small"
-                    className={`backgroundSelect__preset`}
-                    style={{
-                        backgroundImage: "url('/images/resources/backgrounds/carbon-fiber/regular/carbon-fiber.png')",
-                        backgroundSize: '1000%',
-                        backgroundRepeat: 'no-repeat'
-                    }}
-                    shape="circle"
-                />
-                <Button
-                    onClick={() => changeBackground('3dHex')}
-                    size="small"
-                    className={`backgroundSelect__preset`}
-                    style={{
-                        backgroundImage: "url('../../images/bg/3d-hexagon.png')",
-                        backgroundSize: '850%',
-                        backgroundRepeat: 'no-repeat'
-                    }}
-                    shape="circle"
-                />
-                <Button
-                    onClick={() => changeBackground('honeycomb')}
-                    size="small"
-                    className={`backgroundSelect__preset`}
-                    style={{
-                        backgroundImage: `url(${'../../images/bg/hexagon.svg'})`,
-                        backgroundSize: '500%',
-                        backgroundRepeat: 'no-repeat'
-                    }}
-                    shape="circle"
-                />
+
+                {
+                    currentCustomTemplate?.fadeType === "FADE-DOWN" && (
+                        <>
+                            <Button
+                                onClick={
+                                    () => changeBackground('carbonFiberDown')
+                                }
+                                size="small"
+                                className={`backgroundSelect__preset`}
+                                style={{
+                                    backgroundImage: "url('../../images/bg/carbon-fiber-fade-down.png')",
+                                    backgroundSize: 'cover',
+                                    backgroundRepeat: 'no-repeat'
+                                }}
+                                shape="circle"
+                            >
+                                {/* Black */}
+                            </Button>
+                            <Button
+                                onClick={
+                                    () => changeBackground('3d-down')
+                                }
+                                size="small"
+                                className={`backgroundSelect__preset`}
+                                style={{
+                                    backgroundImage: "url('../../images/resources/backgrounds/hexagon/3d/fade-down.png')",
+                                    backgroundSize: 'cover',
+                                    backgroundRepeat: 'no-repeat'
+                                }}
+                                shape="circle"
+                            >
+                                {/* Black */}
+                            </Button>
+                            <Button
+                                onClick={
+                                    () => changeBackground('hexagonDown')
+                                }
+                                size="small"
+                                className={`backgroundSelect__preset`}
+                                style={{
+                                    backgroundImage: "url('../../images/resources/backgrounds/hexagon/fade-down/colors/black.png')",
+                                    backgroundSize: 'cover',
+                                    backgroundRepeat: 'no-repeat'
+                                }}
+                                shape="circle"
+                            >
+                                {/* Black */}
+                            </Button>
+                        </>
+                    )
+                }
+
+                {
+                    currentCustomTemplate?.fadeType === "FADE-UP" && (
+                        <>
+                            <Button
+                                onClick={() => changeBackground('carbonFiberUp')}
+                                size="small"
+                                className={`backgroundSelect__preset`}
+                                style={{
+                                    backgroundImage: "url('../../images/bg/carbon-fiber-fade-up.png')",
+                                    backgroundSize: 'cover',
+                                    backgroundRepeat: 'no-repeat'
+                                }}
+                                shape="circle"
+                            />
+                            <Button
+                                onClick={
+                                    () => changeBackground('3d-up')
+                                }
+                                size="small"
+                                className={`backgroundSelect__preset`}
+                                style={{
+                                    backgroundImage: "url('../../images/resources/backgrounds/hexagon/3d/fade-up.png')",
+                                    backgroundSize: 'cover',
+                                    backgroundRepeat: 'no-repeat'
+                                }}
+                                shape="circle"
+                            >
+                                {/* Black */}
+                            </Button>
+                            <Button
+                                onClick={
+                                    () => changeBackground('hexagonUp')
+                                }
+                                size="small"
+                                className={`backgroundSelect__preset`}
+                                style={{
+                                    backgroundImage: "url('../../images/resources/backgrounds/hexagon/fade-up/colors/black.png')",
+                                    backgroundSize: 'cover',
+                                    backgroundRepeat: 'no-repeat'
+                                }}
+                                shape="circle"
+                            >
+                                {/* Black */}
+                            </Button>
+                        </>
+                    )
+                }
+
+                {
+                    currentCustomTemplate?.fadeType === "FULL-BG" && (
+                        <>
+                            <Button
+                                onClick={() => changeBackground('carbonFiber')}
+                                size="small"
+                                className={`backgroundSelect__preset`}
+                                style={{
+                                    backgroundImage: "url('/images/resources/backgrounds/carbon-fiber/regular/carbon-fiber.png')",
+                                    backgroundSize: '1000%',
+                                    backgroundRepeat: 'no-repeat'
+                                }}
+                                shape="circle"
+                            />
+                            <Button
+                                onClick={() => changeBackground('3dHex')}
+                                size="small"
+                                className={`backgroundSelect__preset`}
+                                style={{
+                                    backgroundImage: "url('../../images/bg/3d-hexagon.png')",
+                                    backgroundSize: '850%',
+                                    backgroundRepeat: 'no-repeat'
+                                }}
+                                shape="circle"
+                            />
+                            <Button
+                                onClick={() => changeBackground('honeycomb')}
+                                size="small"
+                                className={`backgroundSelect__preset`}
+                                style={{
+                                    backgroundImage: `url(${'../../images/bg/hexagon.svg'})`,
+                                    backgroundSize: '500%',
+                                    backgroundRepeat: 'no-repeat'
+                                }}
+                                shape="circle"
+                            />
+                        </>
+                    )
+                }
             </div>
         </div>
     )

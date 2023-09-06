@@ -20,7 +20,7 @@ export const Pinstripe = () => {
             >
                 <path
                     fill={`${currentCustomTemplate?.backgroundSettings?.pinstripe?.enabled ?
-                            currentCustomTemplate?.backgroundSettings.pinstripe.color : "#000000"
+                            currentCustomTemplate?.backgroundSettings?.pinstripe?.color : "#000000"
                         }`}
                     id="Pinstripe"
                     d="M58.3,52.5v2.4h747.2c11.9,0,21.6,9.7,21.6,21.6v294.3c0,11.9-9.7,21.6-21.6,21.6H58.3
