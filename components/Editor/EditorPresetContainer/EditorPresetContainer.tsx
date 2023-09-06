@@ -20,10 +20,6 @@ export const EditorPresetContainer = (
         currentCustomTemplate
     } = useContext(EditorContext) as EditorContextType;
 
-    const {
-        acceptTerms
-    } = useContext(StoreContext) as StoreContextType;
-
     const handleAction = (
         actionType: 'back' | 'forward' | 'cancel',
     ) => {

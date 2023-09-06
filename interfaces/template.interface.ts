@@ -22,11 +22,9 @@ export interface ITemplate{
     selectedVariant?: IShopifyVariant;
 
     preset?: boolean;
-
-    thumbnail?: string;
+    originalColor?: string;
 
     finish?: 'MATTE' | 'GLOSS'; // Finish Type
-    template?: ITemplate; // Inital Template
     font?: ICustomFont; // Font
 
     // Design Settings
@@ -34,12 +32,11 @@ export interface ITemplate{
     bottomLogo?: IFileLogo; // Bottom Logo Settings
     backgroundLogo?: IFileLogo; // Background
 
-    details?: Array<IFileLogo> // WORK ON MULTIPLE DETAIL LOGOS FOR SIDES ETC
     detailLogo1?: IFileLogo // WORK ON MULTIPLE DETAIL LOGOS FOR SIDES ETC
     detailLogo2?: IFileLogo // WORK ON MULTIPLE DETAIL LOGOS FOR SIDES ETC
 
-    fadeSettings?: IFadeSettings // Fade Settings
-    patternSettings?: IPatternSettings // Pattern Settings
+    // fadeSettings?: IFadeSettings // Fade Settings
+    // patternSettings?: IPatternSettings // Pattern Settings
     backgroundSettings?: IBackgroundSettings // Background Settings
 
     ///////// START: Plate Settings /////////

@@ -7,9 +7,9 @@ import { EditorContext, EditorContextType } from '../../../context/editorContext
 import { StoreContext, StoreContextType } from '../../../context/storeContext';
 import { handleActions } from '../EditorPresetContainer/actions/HandleActions';
 
-export const PlaceOrder = () => {
-
-
+export const PlaceOrder = (props:{
+    presetTemplate?: boolean
+}) => {
     const {
         checkout,
         redirectCheckout,
@@ -74,11 +74,10 @@ export const PlaceOrder = () => {
     useEffect(() => {
         if(currentEditorStep?.currentSubStep === "termsAndConditions"){
             checkboxReference.current.focus();
-            // console.log(checkboxReference)
         }
     }, [checkboxReference])
 
-
+    const { presetTemplate } = props;
 
     const handleAction = (
         actionType: 'back' | 'forward' | 'cancel',
@@ -87,27 +86,50 @@ export const PlaceOrder = () => {
             actionType,
             currentCustomTemplate,
             currentEditorStep,
-            currentLicensePlate
+            currentLicensePlate,
+            presetTemplate
         )
 
-        if (handle?.step === undefined) {
-            updateStep?.(
-                1,
-                undefined,
-                undefined,
-                false,
-                undefined
-            )
-            // Reset count to 0 on dynamic route change.
+        if(presetTemplate){
+            if (handle?.step === undefined) {
+                updateStep?.(
+                    1,
+                    undefined,
+                    undefined,
+                    false,
+                    undefined,
+                )
+                // Reset count to 0 on dynamic route change.
+            } else {
+                updateStep?.(
+                    3,
+                    handle?.subStep,
+                    handle?.subTitle,
+                    false,
+                    handle?.title
+                )
+            }
         } else {
-            updateStep?.(
-                3,
-                handle?.subStep,
-                handle?.subTitle,
-                false,
-                handle?.title
-            )
+            if (handle?.step === undefined) {
+                updateStep?.(
+                    2,
+                    undefined,
+                    undefined,
+                    false,
+                    undefined
+                )
+                // Reset count to 0 on dynamic route change.
+            } else {
+                updateStep?.(
+                    3,
+                    handle?.subStep,
+                    handle?.subTitle,
+                    false,
+                    handle?.title
+                )
+            }
         }
+        
     }
 
     return (
@@ -130,7 +152,7 @@ export const PlaceOrder = () => {
 
                                 }
                             >
-                                {currentEditorStep.currentSubStep === "backgroundSetting" ? "Cancel" : "Back"}
+                                {currentEditorStep?.currentSubStep === "backgroundSetting" ? "Cancel" : "Back"}
                             </Button>
                         </Col>
 
@@ -146,8 +168,8 @@ export const PlaceOrder = () => {
                                     )
                                 }
                             >
-                                {currentEditorStep.currentSubStep === "extraDetails" ? "Complete" : "Next"}
-                                {/* {currentEditorStep.currentSubStep === "backgroundSetting" ? "Cancel" : "Back"} */}
+                                {currentEditorStep?.currentSubStep === "extraDetails" ? "Complete" : "Next"}
+                                {/* {currentEditorStep?.currentSubStep === "backgroundSetting" ? "Cancel" : "Back"} */}
                             </Button>
                         </Col>
 

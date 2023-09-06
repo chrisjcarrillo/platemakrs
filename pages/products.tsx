@@ -62,6 +62,7 @@ export default function Editor(props: any) {
                 </div>
                 <TemplateList
                     products={products}
+                    customTemplate={false}
                 />
             </LoadingSpinner>
         </Container>

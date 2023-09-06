@@ -57,6 +57,8 @@ export const Logo = (props: ILogo) => {
         }
     }, [image]);
 
+    console.log(image);
+
 
     const calculateInitialPosition = (
         calcType?: string

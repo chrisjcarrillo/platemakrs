@@ -5,27 +5,62 @@ import TemplateCanvas from "../Template/TemplateCanvas";
 import { InterfaceContext, InterfaceContextType } from "../../../context/interfaceContext";
 
 export const PreviewModal = (
-    props:{
+    props: {
         product?: any
     }
 ) => {
 
     const {
+        setLoading,
+        setStepLoading,
+        setPreset,
         stepLoading,
         showPreview,
         setShowPreview
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const {
-        currentTemplate, 
-        createCustomTemplate,
+        currentTemplate,
+        currentCustomTemplate,
+        confirmPreview,
+        updateStep
     } = useContext(EditorContext) as EditorContextType;
 
-    const {
-        product
-    } = props;
+    const handleDecision = () => {
+        setStepLoading(true)
+        setLoading(true)
+        setTimeout(
+            () => {
+                setPreset(false);
+                setLoading(false)
+                setShowPreview(false)
+                setStepLoading(false)
+                if (
+                    currentCustomTemplate?.backgroundSettings?.background?.enabled
+                ) {
+                    updateStep?.(
+                        3,
+                        'editorBgImage',
+                        'Select Image',
+                        false,
+                        'Background Image'
+                    )
+                } else {
+                    updateStep?.(
+                        3,
+                        'editorBgColor',
+                        'Select Color',
+                        false,
+                        'Background'
+                    )
+                }
+            },
+            3000
+        )
 
-    return(
+    }
+
+    return (
         <Modal
             maskClosable={false}
             className={`previewModal`}
@@ -39,25 +74,22 @@ export const PreviewModal = (
             title={'Preview'}
             footer={[
                 <Button key="cancel" onClick={(e) => setShowPreview(false)}>
-                  Cancel
+                    Cancel
                 </Button>,
                 <Button key="submit" type="primary" loading={stepLoading} onClick={
-                    () => createCustomTemplate?.(
-                        currentTemplate?.id,
-                        product.variants
-                    )
+                    () => handleDecision?.()
                 }>
-                  Confirm
+                    Confirm
                 </Button>
-              ]}
+            ]}
         >
             <TemplateCanvas
                 popupPreview={true}
             />
-            <div className="previewModal__container">
+            {/* <div className="previewModal__container">
                 <h1 className="previewModal__name">{currentTemplate?.templateName}</h1>
                 <p className="previewModal__description">{currentTemplate?.templateDescription}</p>
-            </div>
+            </div> */}
         </Modal>
     )
 }

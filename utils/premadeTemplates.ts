@@ -1088,7 +1088,6 @@ export const premadeTemplates = [
         detailLogo2: {enabled: false},
         templateId: '11',
         shopifyHandle: 'the-joker-template',
-        thumbnail: '/images/thumbnails/characters/joker-1.png',
         preset: true,
         startPlatePosition: 'center',
         startPlateText: 'SAM PLE',

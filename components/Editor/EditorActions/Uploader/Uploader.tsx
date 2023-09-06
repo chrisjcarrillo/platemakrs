@@ -36,9 +36,11 @@ export const Uploader = (
 
     async function removeUpload(file: any) {
         try {
-            updateCustomTemplateSelection?.(type ?? 'logo', {
-                name: "logo-white.png",
-                url: '../../images/logos/logo-white.png'
+            const uploadType = type === "mainLogo" ? currentCustomTemplate?.mainLogo : currentCustomTemplate?.bottomLogo;
+            updateCustomTemplateSelection?.(type, {
+                    ...uploadType,
+                    name: 'logo.png',
+                    url: '/images/resources/preset/logos/logo.png'
             })
         } catch (error) {
             console.log(error);
@@ -49,7 +51,7 @@ export const Uploader = (
         setStepLoading(true);
         setLoading(true);
         try {
-            const storageRef = ref(storage, `test/${file.name}`); // Create storage reference
+            const storageRef = ref(storage, `customTemplates/${currentCustomTemplate?.id}/${type}/${file.name}`); // Create storage reference
 
             let formdata = new FormData(); // Form data for API
             formdata.append("image_file", file, file.name); // Form data for API 
@@ -74,13 +76,17 @@ export const Uploader = (
             const downloadUrl = await getDownloadURL(upload.ref) // Get URL from Firebase
 
             setTimeout(() => {
-                updateCustomTemplateSelection?.(type ?? 'logo', {
+                console.log('process started');
+                const uploadType = type === "mainLogo" ? currentCustomTemplate?.mainLogo : currentCustomTemplate?.bottomLogo;
+                console.log(uploadType)
+                updateCustomTemplateSelection?.(type, {
+                    ...uploadType,
                     name: file.name,
                     url: downloadUrl
                 })
                 setStepLoading(false);
                 setLoading(false);
-            }, 2000);
+            }, 3000);
             onSuccess(null, response);
         } catch (e) {
             onError(e);
@@ -91,53 +97,42 @@ export const Uploader = (
 
     return (
         <>
-            {type === "logo" && (
-                <MoveSwitcher
-                    type="moveLogo"
-                    text="Logo Move"
-                />
-            )}
-
-            {!isPreset && (
-                <div className={`fileUploader`}>
-                    <div className={`fileUploader__title`}>
-                        <p className={`fileUploader__text`}>Upload {title}</p>
-                    </div>
-                    <Upload
-                        className="upload-list-inline"
-                        defaultFileList={
-                            type === "logo" ?
-                                currentCustomTemplate?.mainLogo?.name !== "logo-white.png" ? [
-                                    {
-                                        uid: `${currentCustomTemplate?.id}`,
-                                        name: currentCustomTemplate?.mainLogo?.name ?? '',
-                                        url: currentCustomTemplate?.mainLogo?.url ?? ''
-                                    }
-                                ] : [] : currentCustomTemplate?.patternSettings?.logo?.name !== "logo-white.png" ? [
-                                    {
-                                        uid: `${currentCustomTemplate?.id}`,
-                                        name: currentCustomTemplate?.patternSettings?.logo?.name ?? '',
-                                        url: currentCustomTemplate?.patternSettings?.logo?.url ?? ''
-                                    }
-                                ] : []
-                        }
-                        beforeUpload={(file) => {
-                            const isAccepted =
-                                file.type === 'image/png' || file.type === 'image/jpg' || file.type === 'image/jpeg' || file.type === "image/heic";
-                            if (!isAccepted) {
-                                console.error(`${file.name} is not a accepted file`);
-                            }
-                            return isAccepted || Upload.LIST_IGNORE;
-                        }}
-                        maxCount={1}
-                        customRequest={(e) => customUpload(e)}
-                        onRemove={(e) => removeUpload(e)}
-                        listType="picture"
-                    >
-                        <Button icon={<UploadOutlined rev={''} />}>Upload</Button>
-                    </Upload>
+            <div className={`fileUploader`}>
+                <div className={`fileUploader__title`}>
+                    <p className={`fileUploader__text`}>Upload {title}</p>
                 </div>
-            )}
+                <Upload
+                    className="upload-list-inline"
+                    defaultFileList={
+                        type === "mainLogo" ?
+                            currentCustomTemplate?.mainLogo?.name !== "logo-white.png" ? [
+                                {
+                                    name: currentCustomTemplate?.mainLogo?.name ?? '',
+                                    url: currentCustomTemplate?.mainLogo?.url ?? ''
+                                }
+                            ] : [] : currentCustomTemplate?.bottomLogo?.name !== "logo-white.png" ? [
+                                {
+                                    name: currentCustomTemplate?.bottomLogo?.name ?? '',
+                                    url: currentCustomTemplate?.bottomLogo?.url ?? ''
+                                }
+                            ] : []
+                    }
+                    beforeUpload={(file) => {
+                        const isAccepted =
+                            file.type === 'image/png' || file.type === 'image/jpg' || file.type === 'image/jpeg' || file.type === "image/heic";
+                        if (!isAccepted) {
+                            console.error(`${file.name} is not a accepted file`);
+                        }
+                        return isAccepted || Upload.LIST_IGNORE;
+                    }}
+                    maxCount={1}
+                    customRequest={(e) => customUpload(e)}
+                    onRemove={(e) => removeUpload(e)}
+                    listType="picture"
+                >
+                    <Button icon={<UploadOutlined rev={''} />}>Upload</Button>
+                </Upload>
+            </div>
 
         </>
     )

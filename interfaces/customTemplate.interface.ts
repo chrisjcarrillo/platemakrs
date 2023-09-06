@@ -25,8 +25,6 @@ export interface ICustomPlateTemplate{
     preset?: boolean;
     originalColor?: string;
 
-    thumbnail?: string;
-
     finish?: 'MATTE' | 'GLOSS'; // Finish Type
     template?: ITemplate; // Inital Template
     font?: ICustomFont; // Font
@@ -39,8 +37,8 @@ export interface ICustomPlateTemplate{
     detailLogo1?: IFileLogo // WORK ON MULTIPLE DETAIL LOGOS FOR SIDES ETC
     detailLogo2?: IFileLogo // WORK ON MULTIPLE DETAIL LOGOS FOR SIDES ETC
 
-    fadeSettings?: IFadeSettings // Fade Settings
-    patternSettings?: IPatternSettings // Pattern Settings
+    // fadeSettings?: IFadeSettings // Fade Settings
+    // patternSettings?: IPatternSettings // Pattern Settings
     backgroundSettings?: IBackgroundSettings // Background Settings
 
     ///////// START: Plate Settings /////////

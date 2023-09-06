@@ -99,7 +99,7 @@ const TemplateCanvas = (
                     <Row className="canvas__tools">
 
                         <Col {...actionSettings}>
-                            {!isPreset || isPreset && currentEditorStep?.currentStep === 1 && (
+                            {(!isPreset || isPreset && currentEditorStep?.currentStep === 1) && (
                                 <div className='header__tools-left-back'>
                                     <Button
                                         size='small'
@@ -120,7 +120,7 @@ const TemplateCanvas = (
                             </div>
                         </Col>
                             <Col {...actionSettings}>
-                            {!isPreset || isPreset && currentEditorStep?.currentStep === 1 && (
+                            {(!isPreset || isPreset && currentEditorStep?.currentStep === 1) && (
                                 <div className="header__tools-right-forward">
                                     <Button
                                         size='small'

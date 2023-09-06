@@ -11,8 +11,8 @@ export const Switcher = (
     }
 ) => {
 
-    const { 
-        type, 
+    const {
+        type,
         text,
         checkedDefault
     } = props;
@@ -27,91 +27,124 @@ export const Switcher = (
     } = useContext(EditorContext) as EditorContextType;
 
     const updateSwitch = (type: any, value: any) => {
-        if(type === "moveLogo"){
-            setMoveLogo(value)
-        }
-        if(type === "stateStrokeEnabled"){
-            updateCustomTemplateSelection?.('state', {
-                ...currentCustomTemplate?.state,
-                stroke:{
-                    ...currentCustomTemplate?.state?.stroke,
-                    enabled: value
-                }
-            })
-        } 
-        if(type === "stateGlowEnabled"){
-            updateCustomTemplateSelection?.('state', {
-                ...currentCustomTemplate?.state,
-                glow: {
-                    ...currentCustomTemplate?.state?.glow,
-                    enabled: value
-                }
-            })
-        }
-        if(type === "stateShadowEnabled"){
-            updateCustomTemplateSelection?.('state', {
-                ...currentCustomTemplate?.state,
-                shadow: {
-                    ...currentCustomTemplate?.state?.shadow,
-                    enabled: value
-                }
-            })
-        }
+        switch (type) {
+            case "backgroundStrokeEnabled":
+                updateCustomTemplateSelection?.('backgroundSettings', {
+                    ...currentCustomTemplate?.backgroundSettings,
+                    stroke: {
+                        ...currentCustomTemplate?.backgroundSettings?.stroke,
+                        enabled: value
+                    }
+                })
+                break;
+            case "backgroundPinstripeEnabled":
+                updateCustomTemplateSelection?.('backgroundSettings', {
+                    ...currentCustomTemplate?.backgroundSettings,
+                    pinstripe: {
+                        ...currentCustomTemplate?.backgroundSettings?.pinstripe,
+                        enabled: value
+                    }
+                })
+                break;
+            case "mainLogoGlowEnabled":
+                updateCustomTemplateSelection?.('mainLogo', {
+                    ...currentCustomTemplate?.mainLogo,
+                    glow: {
+                        ...currentCustomTemplate?.mainLogo?.glow,
+                        enabled: value
+                    }
+                })
+                break;
+            case "bottomLogoGlowEnabled":
+                updateCustomTemplateSelection?.('bottomLogo', {
+                    ...currentCustomTemplate?.bottomLogo,
+                    glow: {
+                        ...currentCustomTemplate?.bottomLogo?.glow,
+                        enabled: value
+                    }
+                })
+                break;
+            case "plateNumberStrokeEnabled":
+                updateCustomTemplateSelection?.('plateNumber', {
+                    ...currentCustomTemplate?.plateNumber,
+                    stroke: {
+                        ...currentCustomTemplate?.plateNumber?.stroke,
+                        enabled: value
+                    }
+                })
+                break;
+            case "plateNumberShadowEnabled":
+                updateCustomTemplateSelection?.('plateNumber', {
+                    ...currentCustomTemplate?.plateNumber,
+                    shadow: {
+                        ...currentCustomTemplate?.plateNumber?.shadow,
+                        enabled: value
+                    }
+                })
+                break;
+            case "stateStrokeEnabled":
+                updateCustomTemplateSelection?.('state', {
+                    ...currentCustomTemplate?.state,
+                    stroke: {
+                        ...currentCustomTemplate?.state?.stroke,
+                        enabled: value
+                    }
+                })
+                break;
+            case "stateGlowEnabled":
+                updateCustomTemplateSelection?.('state', {
+                    ...currentCustomTemplate?.state,
+                    glow: {
+                        ...currentCustomTemplate?.state?.glow,
+                        enabled: value
+                    }
+                })
+                break;
+            case "stateShadowEnabled":
+                updateCustomTemplateSelection?.('state', {
+                    ...currentCustomTemplate?.state,
+                    shadow: {
+                        ...currentCustomTemplate?.state?.shadow,
+                        enabled: value
+                    }
+                })
+                break;
+            case "bottomTextStrokeEnabled":
+                updateCustomTemplateSelection?.('bottomText', {
+                    ...currentCustomTemplate?.bottomText,
+                    stroke: {
+                        ...currentCustomTemplate?.bottomText?.stroke,
+                        enabled: value
+                    }
+                })
 
-
-
-        if(type === "plateNumberStrokeEnabled"){
-            updateCustomTemplateSelection?.('plateNumber', {
-                ...currentCustomTemplate?.plateNumber,
-                stroke:{
-                    ...currentCustomTemplate?.plateNumber?.stroke,
-                    enabled: value
-                }
-            })
-        } 
-        if(type === "plateNumberShadowEnabled"){
-            updateCustomTemplateSelection?.('plateNumber', {
-                ...currentCustomTemplate?.plateNumber,
-                shadow: {
-                    ...currentCustomTemplate?.plateNumber?.shadow,
-                    enabled: value
-                }
-            })
-        }
-
-
-        if(type === "bottomTextStrokeEnabled"){
-            updateCustomTemplateSelection?.('bottomText', {
-                ...currentCustomTemplate?.bottomText,
-                stroke:{
-                    ...currentCustomTemplate?.bottomText?.stroke,
-                    enabled: value
-                }
-            })
-        } 
-        if(type === "bottomTextGlowEnabled"){
-            updateCustomTemplateSelection?.('bottomText', {
-                ...currentCustomTemplate?.bottomText,
-                glow: {
-                    ...currentCustomTemplate?.bottomText?.glow,
-                    enabled: value
-                }
-            })
-        }
-        if(type === "bottomTextShadowEnabled"){
-            updateCustomTemplateSelection?.('bottomText', {
-                ...currentCustomTemplate?.bottomText,
-                shadow: {
-                    ...currentCustomTemplate?.bottomText?.shadow,
-                    enabled: value
-                }
-            })
+                break;
+            case "bottomTextGlowEnabled":
+                updateCustomTemplateSelection?.('bottomText', {
+                    ...currentCustomTemplate?.bottomText,
+                    glow: {
+                        ...currentCustomTemplate?.bottomText?.glow,
+                        enabled: value
+                    }
+                })
+                break;
+            case "bottomTextShadowEnabled":
+                updateCustomTemplateSelection?.('bottomText', {
+                    ...currentCustomTemplate?.bottomText,
+                    shadow: {
+                        ...currentCustomTemplate?.bottomText?.shadow,
+                        enabled: value
+                    }
+                })
+                break;
+            default:
+                break;
         }
     }
 
     const [checked, setChecked] = useState(false);
 
-    return(
+    return (
         <div
             className={`switcher`}
         >
@@ -122,15 +155,15 @@ export const Switcher = (
             </div>
 
             <div
-            
+
                 className={`switcher__right`}
             >
                 <Switch
                     defaultChecked={checkedDefault}
                     onChange={
                         (e) => {
-                            if(e) setChecked(true)
-                            if(!e) setChecked(false)
+                            if (e) setChecked(true)
+                            if (!e) setChecked(false)
                             updateSwitch(type, e)
                         }
                     }

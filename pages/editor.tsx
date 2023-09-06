@@ -4,7 +4,6 @@ import TemplateCanvas from '../components/Editor/Template/TemplateCanvas';
 import EditorProvider, { EditorContextType } from '../context/editorContext';
 import { EditorContext } from '../context/editorContext';
 import { EditorHeader } from '../components/Editor/EditorHeader/EditorHeader';
-import { TemplatePreview } from '../components/Editor/TemplatePreview/TemplatePreview';
 import { EditorContainer } from '../components/Editor/EditorContainer/EditorContainer';
 import { Modal } from 'antd';
 import { PreviewModal } from '../components/Editor/PreviewModal/PreviewModal';
@@ -18,6 +17,7 @@ import { Container } from 'react-bootstrap';
 import { EditorPresetContainer } from '../components/Editor/EditorPresetContainer/EditorPresetContainer';
 import { InterfaceContext, InterfaceContextType } from '../context/interfaceContext';
 import { PlaceOrder } from '../components/Editor/BottomButton/PlaceOrder';
+import { TemplateList } from '../components/Editor/TemplateList/TemplateList';
 
 
 const MainHead = () => {
@@ -28,19 +28,15 @@ const MainHead = () => {
     )
 }
 export default function Editor(props: any) {
+
     const {
-        updateStep,
-        setCurrentTemplate,
-        currentLicensePlate,
-        currentCustomTemplate,
-        currentTemplate,
         currentEditorStep,
     } = useContext(EditorContext) as EditorContextType;
 
     const {
         isPreset
     } = useContext(InterfaceContext) as InterfaceContextType;
-
+    
     return (
         <>
             <LoadingSpinner>
@@ -59,29 +55,30 @@ export default function Editor(props: any) {
                         <EditorForm />
                     }
                     {currentEditorStep?.currentStep === 2 &&
-                        <TemplatePreview
-                            product={props?.product}
+                        <TemplateList
+                            products={props?.productList?.products}
+                            customTemplate={true}
                         />
                     }
                     {
                         currentEditorStep?.currentStep === 3 && isPreset && <EditorPresetContainer />
                     }
                     {currentEditorStep?.currentStep === 3 && !isPreset &&
-                        <EditorContainer />
-                    }           
+                        <EditorContainer presetTemplate={isPreset}  />
+                    }
                 </Container>
-                {currentEditorStep?.currentStep === 3 && isPreset && <PlaceOrder />}
+                {currentEditorStep?.currentStep === 3 && <PlaceOrder presetTemplate={isPreset} />}
             </LoadingSpinner>
         </>
     )
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    // This is the first page
-    const currentProduct = await client.product.fetchByHandle('custom-plate');
+    const currentProduct = await client.collection.fetchWithProducts('gid://shopify/Collection/459770659117', { productsFirst: 100 })
     return {
         props: {
-            product: JSON.parse(JSON.stringify(currentProduct))
-        }
+            productList: JSON.parse(JSON.stringify(currentProduct))
+        },
+        revalidate: 10
     }
 }

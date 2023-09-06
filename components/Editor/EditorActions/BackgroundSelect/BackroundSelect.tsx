@@ -22,7 +22,7 @@ export const BackgroundSelect = (
                     file: {
                         ...currentCustomTemplate?.backgroundSettings?.background?.file,
                         name: 'carbon-fiber-fade-down.png',
-                        url: '../../images/bg/carbon-fiber-fade-down.png'
+                        url: '/images/bg/carbon-fiber-fade-down.png'
                     }
                 }
             })
@@ -35,7 +35,7 @@ export const BackgroundSelect = (
                     file: {
                         ...currentCustomTemplate?.backgroundSettings?.background?.file,
                         name: 'carbon-fiber-fade-up.png',
-                        url: '../../images/bg/carbon-fiber-fade-up.png'
+                        url: '/images/bg/carbon-fiber-fade-up.png'
                     }
                 }
             })
@@ -47,8 +47,8 @@ export const BackgroundSelect = (
                     ...currentCustomTemplate?.backgroundSettings?.background,
                     file: {
                         ...currentCustomTemplate?.backgroundSettings?.background?.file,
-                        name: 'carbon-fiber.png',
-                        url: '../../images/bg/carbon-fiber.png'
+                        name: 'carbon-fiber',
+                        url: '/images/resources/backgrounds/carbon-fiber/regular/carbon-fiber.png'
                     }
                 }
             })
@@ -60,8 +60,8 @@ export const BackgroundSelect = (
                     ...currentCustomTemplate?.backgroundSettings?.background,
                     file: {
                         ...currentCustomTemplate?.backgroundSettings?.background?.file,
-                        name: '3d-hexagon.png',
-                        url: '../../images/bg/3d-hexagon.png'
+                        name: '3d-hexagon',
+                        url: '/images/bg/3d-hexagon.png'
                     }
                 }
             })
@@ -123,7 +123,7 @@ export const BackgroundSelect = (
                     size="small"
                     className={`backgroundSelect__preset`}
                     style={{
-                        backgroundImage: "url('../../images/bg/carbon-fiber.png')",
+                        backgroundImage: "url('/images/resources/backgrounds/carbon-fiber/regular/carbon-fiber.png')",
                         backgroundSize: '1000%',
                         backgroundRepeat: 'no-repeat'
                     }}

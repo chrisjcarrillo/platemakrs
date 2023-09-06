@@ -75,13 +75,18 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         currentCustomTemplate?: ICustomPlateTemplate
     ) => {
         const queryParams = new URLSearchParams(window.location.search);
-        if(queryParams.get("preset") && sessionStorage.getItem('preset') && currentCustomTemplate){
-            addVariant(
-                currentCustomTemplate?.selectedVariant?.id,
-                currentCustomTemplate?.id
-            )
-            window.location.replace(checkout?.webUrl)
-        }
+        // if(queryParams.get("preset") && sessionStorage.getItem('preset') && currentCustomTemplate){
+        //     addVariant(
+        //         currentCustomTemplate?.selectedVariant?.id,
+        //         currentCustomTemplate?.id
+        //     )
+        //     window.location.replace(checkout?.webUrl)
+        // }
+        addVariant(
+            currentCustomTemplate?.selectedVariant?.id,
+            currentCustomTemplate?.id
+        )
+        window.location.replace(checkout?.webUrl)
     }
 
     // Variants START

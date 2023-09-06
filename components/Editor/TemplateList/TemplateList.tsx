@@ -16,6 +16,13 @@ export const TemplateList = (props: any) => {
         selectPresetTemplate
     } = useContext(EditorContext) as EditorContextType;
 
+    const bigColumnSettings = {
+        xs: 12,
+        sm: 12,
+        md: 12,
+        lg: 12,
+        xl: 12
+    }
     const columnSettings = {
         xs: 6,
         sm: 6,
@@ -28,14 +35,24 @@ export const TemplateList = (props: any) => {
         <Container
             className={`templatePreview__container`}
         >
-            {/* <InstantSearch
-                indexName="shopify_products" searchClient={searchClient}
-            > */}
-            {/* Select Templates */}
+            {props?.customTemplate && (
+                <Row className={`templatePreview__title-container`}>
+                    <Col {...bigColumnSettings}>
+                        <span className={`templatePreview__title-text`}>Want to create a custom design? <a className={`templatePreview__title-action`}>Contact us.</a>
+                        </span>
+                    </Col>
+                    <Col {...bigColumnSettings} className={`templatePreview__title-divider`}>
+                        <span className={`templatePreview__title-divider-text`}>OR</span>
+                    </Col>
+                    <Col {...bigColumnSettings} className={`templatePreview__title-select`}>
+                        <span className={`templatePreview__title-select-text`}>Select a Template</span>
+                    </Col>
+                </Row>
+            )}
+
 
             <Row className={`templatePreview__title-container`}>
             </Row>
-
             <Row
                 className={`templatePreview__row g-4`}
             >
@@ -49,7 +66,8 @@ export const TemplateList = (props: any) => {
                             onClick={
                                 e => selectPresetTemplate?.(
                                     template.handle,
-                                    template.variants
+                                    template.variants,
+                                    props?.customTemplate
                                     // `gid://shopify/ProductVariant/${template?.objectID}`
                                 )
                             }
@@ -69,15 +87,18 @@ export const TemplateList = (props: any) => {
                                 </div>
                                 <div className="templatePreview__badge">
                                     {
-                                        (template?.title?.includes('Miami') || template?.title?.includes('Dolphins') || template?.title?.includes('Panthers') ) &&
-                                            <Badge className="templatePreview__badge-details" count="All Teams Available" />
-                                        
+                                        (template?.title?.includes('Miami') || template?.title?.includes('Dolphins') || template?.title?.includes('Panthers')) &&
+                                        <Badge className="templatePreview__badge-details" count="All Teams Available" />
+
                                     }
-                                                                    
+
                                 </div>
                                 <div className="templatePreview__details">
                                     <h3 className='templatePreview__name'>
-                                        {template?.title.replace(' - Template', '')}
+                                        { 
+                                            (template?.title?.includes('- Template')) ? template?.title.replace(' - Template', '') :
+                                                (template?.title?.includes('- Custom Template')) ? template?.title.replace(' - Custom Template', '') : null
+                                        }
                                     </h3>
                                     <h5 className='templatePreview__price'>
                                         <span className='templatePreview__from'>from</span>
