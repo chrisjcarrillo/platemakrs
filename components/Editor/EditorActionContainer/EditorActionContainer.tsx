@@ -306,7 +306,7 @@ export const EditorActionContainer = (
 
             {step.currentSubStep === "editorEnableBottomLogoGlow" && (
                 <Switcher
-                    type="mainLogoGlowEnabled"
+                    type="bottomLogoGlowEnabled"
                     text="Bottom Logo Glow"
                     checkedDefault={currentCustomTemplate?.bottomLogo?.glow?.enabled ?? false}
                 />
