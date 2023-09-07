@@ -182,7 +182,7 @@ export const staticTemplates = [
                 },
             },
             stroke: {
-                enabled: true,
+                enabled: false,
                 color: '#000000'
             },
             pinstripe: {
@@ -289,7 +289,7 @@ export const staticTemplates = [
                 },
             },
             stroke: {
-                enabled: true,
+                enabled: false,
                 color: '#000000'
             },
             pinstripe: {
@@ -397,7 +397,7 @@ export const staticTemplates = [
                 },
             },
             stroke: {
-                enabled: true,
+                enabled: false,
                 color: '#000000'
             },
             pinstripe: {
@@ -505,7 +505,7 @@ export const staticTemplates = [
                 },
             },
             stroke: {
-                enabled: true,
+                enabled: false,
                 color: '#000000'
             }
         },
@@ -609,7 +609,7 @@ export const staticTemplates = [
                 },
             },
             stroke: {
-                enabled: true,
+                enabled: false,
                 color: '#000000'
             }
         },
@@ -713,7 +713,7 @@ export const staticTemplates = [
                 },
             },
             stroke: {
-                enabled: true,
+                enabled: false,
                 color: '#000000'
             }
         },

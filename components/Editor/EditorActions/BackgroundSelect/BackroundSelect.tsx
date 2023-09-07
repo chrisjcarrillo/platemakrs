@@ -14,32 +14,7 @@ export const BackgroundSelect = (
     const { currentCustomTemplate, updateCustomTemplateSelection } = useContext(EditorContext) as EditorContextType;
 
     const changeBackground = (name: string) => {
-        if (name === "carbonFiberDown") {
-            updateCustomTemplateSelection?.('backgroundSettings', {
-                ...currentCustomTemplate?.backgroundSettings,
-                background: {
-                    ...currentCustomTemplate?.backgroundSettings?.background,
-                    file: {
-                        ...currentCustomTemplate?.backgroundSettings?.background?.file,
-                        name: 'carbon-fiber-fade-down.png',
-                        url: '/images/bg/carbon-fiber-fade-down.png'
-                    }
-                }
-            })
-        }
-        if (name === "carbonFiberUp") {
-            updateCustomTemplateSelection?.('backgroundSettings', {
-                ...currentCustomTemplate?.backgroundSettings,
-                background: {
-                    ...currentCustomTemplate?.backgroundSettings?.background,
-                    file: {
-                        ...currentCustomTemplate?.backgroundSettings?.background?.file,
-                        name: 'carbon-fiber-fade-up.png',
-                        url: '/images/bg/carbon-fiber-fade-up.png'
-                    }
-                }
-            })
-        }
+        
         if (name === "carbonFiber") {
             updateCustomTemplateSelection?.('backgroundSettings', {
                 ...currentCustomTemplate?.backgroundSettings,
@@ -79,6 +54,51 @@ export const BackgroundSelect = (
                 }
             })
         }
+        if(name === "forged"){
+            updateCustomTemplateSelection?.('backgroundSettings', {
+                ...currentCustomTemplate?.backgroundSettings,
+                background: {
+                    ...currentCustomTemplate?.backgroundSettings?.background,
+                    file: {
+                        ...currentCustomTemplate?.backgroundSettings?.background?.file,
+                        name: 'forged',
+                        url: '/images/resources/backgrounds/carbon-fiber/forged/regular.png'
+                    }
+                }
+            })
+        }
+        if(name === "honeycomb-lambo"){ 
+            updateCustomTemplateSelection?.('backgroundSettings', {
+                ...currentCustomTemplate?.backgroundSettings,
+                background: {
+                    ...currentCustomTemplate?.backgroundSettings?.background,
+                    file: {
+                        ...currentCustomTemplate?.backgroundSettings?.background?.file,
+                        filePath: '/images/resources/cars/lamborghini/patterns/option-1/colors',
+                        imageType: 'png',
+                        name: 'honeycomb-lambo',
+                        url: '/images/resources/cars/lamborghini/patterns/option-1/colors/regular.png'
+                    }
+                }
+            })
+        }
+        if(name === "honeycomb-8"){
+            updateCustomTemplateSelection?.('backgroundSettings', {
+                ...currentCustomTemplate?.backgroundSettings,
+                background: {
+                    ...currentCustomTemplate?.backgroundSettings?.background,
+                    file: {
+                        ...currentCustomTemplate?.backgroundSettings?.background?.file,
+                        filePath: '/images/resources/backgrounds/hexagon/option-8/colors',
+                        imageType: 'png',
+                        name: 'honeycomb-8',
+                        url: '/images/resources/backgrounds/hexagon/option-8/colors/red.png'
+                    }
+                }
+            })
+        }
+
+        // Down START
         if (name === "3d-down") {
             updateCustomTemplateSelection?.('backgroundSettings', {
                 ...currentCustomTemplate?.backgroundSettings,
@@ -107,7 +127,63 @@ export const BackgroundSelect = (
                 }
             })
         }
+        if (name === "carbonFiberDown") {
+            updateCustomTemplateSelection?.('backgroundSettings', {
+                ...currentCustomTemplate?.backgroundSettings,
+                background: {
+                    ...currentCustomTemplate?.backgroundSettings?.background,
+                    file: {
+                        ...currentCustomTemplate?.backgroundSettings?.background?.file,
+                        name: 'carbon-fiber-fade-down.png',
+                        url: '/images/bg/carbon-fiber-fade-down.png'
+                    }
+                }
+            })
+        }
+        if(name === "forged-down"){
+            updateCustomTemplateSelection?.('backgroundSettings', {
+                ...currentCustomTemplate?.backgroundSettings,
+                background: {
+                    ...currentCustomTemplate?.backgroundSettings?.background,
+                    file: {
+                        ...currentCustomTemplate?.backgroundSettings?.background?.file,
+                        name: 'forged-down',
+                        url: '/images/resources/backgrounds/carbon-fiber/forged/fade-down.png'
+                    }
+                }
+            })
+        }
+        if(name === "honeycomb-lambo-down"){ 
+            updateCustomTemplateSelection?.('backgroundSettings', {
+                ...currentCustomTemplate?.backgroundSettings,
+                background: {
+                    ...currentCustomTemplate?.backgroundSettings?.background,
+                    file: {
+                        ...currentCustomTemplate?.backgroundSettings?.background?.file,
+                        filePath: '/images/resources/cars/lamborghini/patterns/option-1/fade-down',
+                        imageType: 'png',
+                        name: 'honeycomb-lambo-down',
+                        url: '/images/resources/cars/lamborghini/patterns/option-1/fade-down/regular.png'
+                    }
+                }
+            })
+        }
+        // Down END
 
+        // Up START
+        if (name === "carbonFiberUp") {
+            updateCustomTemplateSelection?.('backgroundSettings', {
+                ...currentCustomTemplate?.backgroundSettings,
+                background: {
+                    ...currentCustomTemplate?.backgroundSettings?.background,
+                    file: {
+                        ...currentCustomTemplate?.backgroundSettings?.background?.file,
+                        name: 'carbon-fiber-fade-up.png',
+                        url: '/images/bg/carbon-fiber-fade-up.png'
+                    }
+                }
+            })
+        }
         if (name === "3d-up") {
             updateCustomTemplateSelection?.('backgroundSettings', {
                 ...currentCustomTemplate?.backgroundSettings,
@@ -136,6 +212,35 @@ export const BackgroundSelect = (
                 }
             })
         }
+        if(name === "forged-up"){
+            updateCustomTemplateSelection?.('backgroundSettings', {
+                ...currentCustomTemplate?.backgroundSettings,
+                background: {
+                    ...currentCustomTemplate?.backgroundSettings?.background,
+                    file: {
+                        ...currentCustomTemplate?.backgroundSettings?.background?.file,
+                        name: 'forged-up',
+                        url: '/images/resources/backgrounds/carbon-fiber/forged/fade-up.png'
+                    }
+                }
+            })
+        }
+        if(name === "honeycomb-lambo-up"){ 
+            updateCustomTemplateSelection?.('backgroundSettings', {
+                ...currentCustomTemplate?.backgroundSettings,
+                background: {
+                    ...currentCustomTemplate?.backgroundSettings?.background,
+                    file: {
+                        ...currentCustomTemplate?.backgroundSettings?.background?.file,
+                        filePath: '/images/resources/cars/lamborghini/patterns/option-1/fade-up',
+                        imageType: 'png',
+                        name: 'honeycomb-lambo-up',
+                        url: '/images/resources/cars/lamborghini/patterns/option-1/fade-up/regular.png'
+                    }
+                }
+            })
+        }
+        // Up END
     }
 
     return (
@@ -182,6 +287,17 @@ export const BackgroundSelect = (
                                 {/* Black */}
                             </Button>
                             <Button
+                                onClick={() => changeBackground('forged-down')}
+                                size="small"
+                                className={`backgroundSelect__preset`}
+                                style={{
+                                    backgroundImage: `url(${'/images/resources/backgrounds/carbon-fiber/forged/fade-down.png'})`,
+                                    backgroundSize: '500%',
+                                    backgroundRepeat: 'no-repeat'
+                                }}
+                                shape="circle"
+                            />
+                            <Button
                                 onClick={
                                     () => changeBackground('hexagonDown')
                                 }
@@ -196,6 +312,17 @@ export const BackgroundSelect = (
                             >
                                 {/* Black */}
                             </Button>
+                            <Button
+                                onClick={() => changeBackground('honeycomb-lambo-down')}
+                                size="small"
+                                className={`backgroundSelect__preset`}
+                                style={{
+                                    backgroundImage: `url(${'/images/resources/cars/lamborghini/patterns/option-1/fade-down/regular.png'})`,
+                                    backgroundSize: '500%',
+                                    backgroundRepeat: 'no-repeat'
+                                }}
+                                shape="circle"
+                            />
                         </>
                     )
                 }
@@ -230,6 +357,17 @@ export const BackgroundSelect = (
                                 {/* Black */}
                             </Button>
                             <Button
+                                onClick={() => changeBackground('forged-up')}
+                                size="small"
+                                className={`backgroundSelect__preset`}
+                                style={{
+                                    backgroundImage: `url(${'/images/resources/backgrounds/carbon-fiber/forged/fade-up.png'})`,
+                                    backgroundSize: '200%',
+                                    backgroundRepeat: 'no-repeat'
+                                }}
+                                shape="circle"
+                            />
+                            <Button
                                 onClick={
                                     () => changeBackground('hexagonUp')
                                 }
@@ -244,6 +382,17 @@ export const BackgroundSelect = (
                             >
                                 {/* Black */}
                             </Button>
+                            <Button
+                                onClick={() => changeBackground('honeycomb-lambo-up')}
+                                size="small"
+                                className={`backgroundSelect__preset`}
+                                style={{
+                                    backgroundImage: `url(${'/images/resources/cars/lamborghini/patterns/option-1/fade-up/regular.png'})`,
+                                    backgroundSize: '200%',
+                                    backgroundRepeat: 'no-repeat'
+                                }}
+                                shape="circle"
+                            />
                         </>
                     )
                 }
@@ -267,8 +416,19 @@ export const BackgroundSelect = (
                                 size="small"
                                 className={`backgroundSelect__preset`}
                                 style={{
-                                    backgroundImage: "url('../../images/bg/3d-hexagon.png')",
+                                    backgroundImage: "url('/images/bg/3d-hexagon.png')",
                                     backgroundSize: '850%',
+                                    backgroundRepeat: 'no-repeat'
+                                }}
+                                shape="circle"
+                            />
+                            <Button
+                                onClick={() => changeBackground('forged')}
+                                size="small"
+                                className={`backgroundSelect__preset`}
+                                style={{
+                                    backgroundImage: `url(${'/images/resources/backgrounds/carbon-fiber/forged/regular.png'})`,
+                                    backgroundSize: '500%',
                                     backgroundRepeat: 'no-repeat'
                                 }}
                                 shape="circle"
@@ -278,7 +438,29 @@ export const BackgroundSelect = (
                                 size="small"
                                 className={`backgroundSelect__preset`}
                                 style={{
-                                    backgroundImage: `url(${'../../images/bg/hexagon.svg'})`,
+                                    backgroundImage: `url(${'/images/bg/hexagon.svg'})`,
+                                    backgroundSize: '500%',
+                                    backgroundRepeat: 'no-repeat'
+                                }}
+                                shape="circle"
+                            />
+                            <Button
+                                onClick={() => changeBackground('honeycomb-lambo')}
+                                size="small"
+                                className={`backgroundSelect__preset`}
+                                style={{
+                                    backgroundImage: `url(${'/images/resources/cars/lamborghini/patterns/option-1/colors/regular.png'})`,
+                                    backgroundSize: '500%',
+                                    backgroundRepeat: 'no-repeat'
+                                }}
+                                shape="circle"
+                            />
+                            <Button
+                                onClick={() => changeBackground('honeycomb-8')}
+                                size="small"
+                                className={`backgroundSelect__preset`}
+                                style={{
+                                    backgroundImage: `url(${'/images/resources/backgrounds/hexagon/option-8/colors/red.png'})`,
                                     backgroundSize: '500%',
                                     backgroundRepeat: 'no-repeat'
                                 }}

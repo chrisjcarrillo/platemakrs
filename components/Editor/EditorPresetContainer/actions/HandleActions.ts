@@ -12,7 +12,6 @@ export const handleActions = (
     currentLicensePlate?: ILicensePlate,
     presetTemplate?: boolean
 ) => {
-    // const router = useRouter();
     const CURRENT_STEP = 3;
 
     let name = currentCustomTemplate?.backgroundSettings?.background?.file?.name;
@@ -2892,7 +2891,8 @@ export const handleActions = (
             }
 
             if (currentEditorStep?.currentSubStep === "editorBgColor") {
-                if(name === "hexagon.svg" || name === "hexagon-down" || name === "hexagon-up"){
+                if(name === "hexagon.svg" || name === "hexagon-down" || name === "hexagon-up" 
+                    || name === "honeycomb-lambo" || name === "honeycomb-8" || name === "honeycomb-lambo-up" || name === "honeycomb-lambo-down"){
                     return {
                         step: CURRENT_STEP,
                         subStep: editorSteps[1],
@@ -2901,7 +2901,7 @@ export const handleActions = (
                         title: 'Background Image'
                     } 
                 } else if (name === "carbon-fiber-fade-up.png" ||
-                name === "carbon-fiber-fade-down.png" || name === "3d-hexagon-up" || name === "3d-hexagon-down") {
+                name === "carbon-fiber-fade-down.png" || name === "3d-hexagon-up" || name === "3d-hexagon-down" || name === "forged" || name === "forged-up" || name === "forged-down") {
                     return {
                         step: CURRENT_STEP,
                         subStep: editorSteps[0],
@@ -2919,7 +2919,7 @@ export const handleActions = (
             if (currentEditorStep?.currentSubStep === "editorEnableBgBorder") {
                 if(name === "hexagon.svg" ||
                 name === "carbon-fiber-fade-up.png" ||
-                name === "carbon-fiber-fade-down.png" || !currentCustomTemplate?.backgroundSettings?.background?.enabled){
+                name === "carbon-fiber-fade-down.png" || name === "forged-up" || name === "forged-down" || !currentCustomTemplate?.backgroundSettings?.background?.enabled){
                     return {
                         step: CURRENT_STEP,
                         subStep: editorSteps[2],
@@ -3366,7 +3366,7 @@ export const handleActions = (
         }
         if (actionType === "forward") {
             if (currentEditorStep?.currentSubStep === "editorBgImage") {
-                if (name === "hexagon.svg" || name === "hexagon-down" || name === "hexagon-up") {
+                if (name === "hexagon.svg" || name === "hexagon-down" || name === "hexagon-up" || name === "honeycomb-lambo" || name === "honeycomb-8" || name === "honeycomb-lambo-up" || name === "honeycomb-lambo-down") {
                     return {
                         step: CURRENT_STEP,
                         subStep: editorSteps[1],
@@ -3375,7 +3375,7 @@ export const handleActions = (
                         title: 'Background Image'
                     }
                 }
-                if(name !== "3d-hexagon" && name !== "carbon-fiber"){
+                if(name !== "3d-hexagon" && name !== "carbon-fiber" && name !== "forged"){
                     return {
                         step: CURRENT_STEP,
                         subStep: editorSteps[2],
@@ -3394,7 +3394,7 @@ export const handleActions = (
 
             }
             if (currentEditorStep?.currentSubStep === "editorBgImageColor") {
-                if (name !== "3d-hexagon" && name !== "carbon-fiber") {
+                if (name !== "3d-hexagon" && name !== "carbon-fiber" && name !== "forged") {
                     return {
                         step: CURRENT_STEP,
                         subStep: editorSteps[2],

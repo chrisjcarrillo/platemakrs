@@ -142,3 +142,14 @@ input:focus {
     font-size: 16px !important;
   }
 }
+
+.ant-modal-title{
+  text-align: center;
+}
+
+.ant-modal-footer{
+  position: sticky;
+  bottom: 0;
+  margin-top: 12px;
+  padding: 1rem;
+}

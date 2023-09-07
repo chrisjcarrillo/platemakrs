@@ -1,15 +1,19 @@
-import { Button, Checkbox, Tooltip } from 'antd';
+import { Button, Checkbox, Modal, Tooltip } from 'antd';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useContext, useEffect, useRef} from 'react';
+import { useContext, useEffect, useRef, useState} from 'react';
 import { EditorContext, EditorContextType } from '../../../context/editorContext';
 import { StoreContext, StoreContextType } from '../../../context/storeContext';
 import { handleActions } from '../EditorPresetContainer/actions/HandleActions';
+import { Terms } from '../../shared/Terms/Terms';
 
 export const PlaceOrder = (props:{
     presetTemplate?: boolean
 }) => {
+
+    const [terms, setTerms] = useState<boolean>(false);
+
     const {
         checkout,
         redirectCheckout,
@@ -134,6 +138,15 @@ export const PlaceOrder = (props:{
 
     return (
         <>
+        <Modal 
+            title={'Terms and Conditions'}
+            open={terms}
+            onOk={() => setTerms(false)} 
+            onCancel={() => setTerms(false)}
+        >
+            <Terms />
+            
+        </Modal>
             {/* Details? */}
             {
                 currentEditorStep?.currentSubStep && currentEditorStep?.currentSubStep !== "termsAndConditions" &&
@@ -199,7 +212,7 @@ export const PlaceOrder = (props:{
                                     onChange={(e) => {
                                         setAcceptTerms(e.target.checked)
                                     }}>
-                                    I Accept the <a href={'#'}> Terms and Conditions</a>
+                                    I Accept the <a href={'#'} onClick={() => setTerms(true)}> Terms and Conditions</a>
                                 </Checkbox>
                             </Col>
                         </Row>
@@ -247,7 +260,7 @@ export const PlaceOrder = (props:{
                                 onChange={(e) => {
                                     setAcceptTerms(e.target.checked)
                                 }}>
-                                <a>Terms and Conditions</a>
+                                <a href={'#'} onClick={() => setTerms(true)}>Terms and Conditions</a>
                             </Checkbox>
                         </Col>
 

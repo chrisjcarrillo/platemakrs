@@ -57,8 +57,17 @@ export const EditorActionContainer = (
 
 {
                 (step.currentSubStep === "editorBgImageColor" && 
-                    currentCustomTemplate.backgroundSettings?.background?.file?.name === "hexagon-down" || step.currentSubStep === "editorBgImageColor" && 
-                    currentCustomTemplate.backgroundSettings?.background?.file?.name === "hexagon-up") && (
+                    currentCustomTemplate.backgroundSettings?.background?.file?.name === "hexagon-down" 
+                        || step.currentSubStep === "editorBgImageColor" && 
+                            currentCustomTemplate.backgroundSettings?.background?.file?.name === "hexagon-up"
+                            || step.currentSubStep === "editorBgImageColor" && 
+                            currentCustomTemplate.backgroundSettings?.background?.file?.name === "honeycomb-lambo"
+                            || step.currentSubStep === "editorBgImageColor" && 
+                            currentCustomTemplate.backgroundSettings?.background?.file?.name === "honeycomb-lambo-down"
+                            || step.currentSubStep === "editorBgImageColor" && 
+                            currentCustomTemplate.backgroundSettings?.background?.file?.name === "honeycomb-lambo-up"
+                            || step.currentSubStep === "editorBgImageColor" && 
+                            currentCustomTemplate.backgroundSettings?.background?.file?.name === "honeycomb-8") && (
                     <PresetColorSelect
                         title="Background Image"
                         type="backgroundSetting"
