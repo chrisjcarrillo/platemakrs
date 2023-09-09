@@ -59,7 +59,7 @@ export const Terms = () => {
                     <span style={{ fontWeight: "900" }}>
                     Color Matching Disclaimer:</span>
                     <p>
-                    We strive to provide accurate representations of our products' colors, but we cannot guarantee a 100% color match between the images displayed and the actual product due to variations in monitors, lighting, and materials. Minor color differences do not constitute defects.
+                    We strive to provide accurate representations of our products colors, but we cannot guarantee a 100% color match between the images displayed and the actual product due to variations in monitors, lighting, and materials. Minor color differences do not constitute defects.
                     </p>
                 </li>
                 <br></br>
