@@ -286,6 +286,7 @@ export const ColorSelect = (
             </div>
             <div className={`colorSelect__right`}>
                 <ColorPicker
+                    placement='bottom'
                     onChange={
                         (e: Color | string) => {
                             updateColor(type, (typeof e === 'string' ? e : e.toHexString()))

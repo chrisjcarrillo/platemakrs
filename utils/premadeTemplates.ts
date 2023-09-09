@@ -86,7 +86,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -327,7 +327,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -340,7 +340,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -539,7 +539,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -657,7 +657,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -669,7 +669,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -746,7 +746,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true,
+                enabled: false,
             },
             stroke: {
                 enabled: false,
@@ -844,7 +844,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -857,7 +857,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -947,7 +947,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -959,7 +959,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -1063,7 +1063,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -1143,7 +1143,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -1240,7 +1240,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -1252,7 +1252,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -1265,7 +1265,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -1380,7 +1380,15 @@ export const premadeTemplates = [
         backgroundSettings: {
             color: '#000000',
             background: {
-                enabled: false
+                enabled: true,
+                file: {
+                    hasMainColor: false,
+                    hasColor: false,
+                    name: 'black-plate',
+                    imageType: 'png',
+                    filePath: '/images/resources/misc',
+                    url: '/images/resources/misc/black-plate.png',
+                }
             },
             stroke: {
                 enabled: false,
@@ -1390,8 +1398,8 @@ export const premadeTemplates = [
             hasColor: true,
             enabled: true,
             name: "mercedes.svg",
-            fileType: 'png',
-            imagePath: '/images/resources/cars/lamborghini/logos/crest/solid-3d/colors',
+            imageType: 'png',
+            filePath: '/images/resources/cars/lamborghini/logos/crest/solid-3d/colors',
             url: '/images/resources/cars/lamborghini/logos/crest/solid-3d/colors/regular.png',
             leftCoordinates: {
                 x: 26,
@@ -1437,7 +1445,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -1449,7 +1457,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -1538,7 +1546,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -1550,7 +1558,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -1703,7 +1711,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -1716,7 +1724,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -1802,7 +1810,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -1893,7 +1901,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -1906,7 +1914,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -1919,7 +1927,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -2010,7 +2018,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -2022,7 +2030,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -2141,7 +2149,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -2217,7 +2225,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -2229,7 +2237,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true,
+                enabled: false,
             },
             stroke: {
                 enabled: false,
@@ -2241,7 +2249,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -2323,7 +2331,7 @@ export const premadeTemplates = [
                 color: '#ff0000'
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -2335,7 +2343,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true,
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -2533,7 +2541,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -2546,7 +2554,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true,
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -2712,7 +2720,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -2725,7 +2733,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -2813,7 +2821,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -2826,7 +2834,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -2919,7 +2927,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -2932,7 +2940,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -3041,7 +3049,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -3596,8 +3604,8 @@ export const premadeTemplates = [
             hasColor: true,
             enabled: true,
             name: "mercedes.svg",
-            fileType: 'png',
-            imagePath: '/images/resources/cars/lamborghini/logos/crest/solid-3d/colors',
+            imageType: 'png',
+            filePath: '/images/resources/cars/lamborghini/logos/crest/solid-3d/colors',
             url: '/images/resources/cars/lamborghini/logos/crest/solid-3d/colors/regular.png',
             leftCoordinates: {
                 x: 26,
@@ -3662,7 +3670,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -3675,7 +3683,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -3863,7 +3871,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -3876,7 +3884,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true,
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -3970,7 +3978,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -3983,7 +3991,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true,
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -4079,7 +4087,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -4092,7 +4100,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -4105,7 +4113,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -4167,7 +4175,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -4180,7 +4188,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -4193,7 +4201,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -4300,7 +4308,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -4386,7 +4394,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -4398,7 +4406,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -4410,7 +4418,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -4501,7 +4509,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -4513,7 +4521,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -4525,7 +4533,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -4589,7 +4597,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -4601,7 +4609,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -4613,7 +4621,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -4688,7 +4696,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -4700,7 +4708,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -4713,7 +4721,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -4793,7 +4801,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -4805,7 +4813,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -4817,7 +4825,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -4873,7 +4881,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -4885,7 +4893,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -4897,7 +4905,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -5080,7 +5088,7 @@ export const premadeTemplates = [
                 enabled: false,
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -5093,7 +5101,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true,
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -5106,7 +5114,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -5180,7 +5188,7 @@ export const premadeTemplates = [
                 enabled: false,
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -5192,7 +5200,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true,
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -5204,7 +5212,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -5296,7 +5304,7 @@ export const premadeTemplates = [
                 enabled: false,
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -5308,7 +5316,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true,
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -5321,7 +5329,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -5362,7 +5370,7 @@ export const premadeTemplates = [
                 enabled: false,
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -5375,7 +5383,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true,
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -5388,7 +5396,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -5496,7 +5504,7 @@ export const premadeTemplates = [
                 enabled: false,
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -5508,7 +5516,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true,
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -5520,7 +5528,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -5619,7 +5627,7 @@ export const premadeTemplates = [
                 enabled: false,
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -5632,7 +5640,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true,
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -5645,7 +5653,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -5724,7 +5732,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -5736,7 +5744,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -5803,7 +5811,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true,
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -5815,7 +5823,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -5898,7 +5906,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: { enabled: false }
         },
@@ -5908,7 +5916,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true,
+                enabled: false
             },
             stroke: { enabled: false }
         },
@@ -5918,7 +5926,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: { enabled: false }
         }
@@ -5980,7 +5988,7 @@ export const premadeTemplates = [
                 enabled: false,
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -5992,7 +6000,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true,
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -6004,7 +6012,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -6071,7 +6079,7 @@ export const premadeTemplates = [
                 enabled: false,
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -6083,7 +6091,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true,
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -6096,7 +6104,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false
@@ -6193,7 +6201,7 @@ export const premadeTemplates = [
                 enabled: false,
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -6205,7 +6213,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true,
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -6217,7 +6225,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -6262,7 +6270,7 @@ export const premadeTemplates = [
                 enabled: false,
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -6274,7 +6282,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true,
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -6286,7 +6294,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -6453,7 +6461,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -6466,7 +6474,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -6479,7 +6487,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: true,
@@ -6694,7 +6702,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -6706,7 +6714,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -6718,7 +6726,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: {
                 enabled: false,
@@ -6778,7 +6786,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: { enabled: false},
         },
@@ -6788,7 +6796,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: { enabled: false},
         },
@@ -6798,7 +6806,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: { enabled: false},
         }
@@ -6826,7 +6834,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: { enabled: false},
         },
@@ -6836,7 +6844,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: { enabled: false},
         },
@@ -6846,7 +6854,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: { enabled: false},
         }
@@ -6878,7 +6886,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: { enabled: false},
         },
@@ -6888,7 +6896,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: { enabled: false},
         },
@@ -6898,7 +6906,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             shadow: {
-                enabled: true
+                enabled: false
             },
             stroke: { enabled: false},
         }

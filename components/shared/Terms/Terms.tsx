@@ -51,6 +51,27 @@ export const Terms = () => {
             <b>The customer mindful of the contents hereto, acknowledges that said customization or enhancement may be illegal under the laws of the State of Florida subjecting the customer to traffic violations and/or trademark or copyright infringement for said unauthorized use</b>
             <p style={{ fontSize: "11px" }}></p>
             <b>The customer hereby indemnifies and holds harmless PLATEMKRS LLC., a Florida limited liability company  from any and all liability or ramification being monetary or injunctive relief from PLATEMKRS LLC. enhancing or customizing  license plates at the sole direction of Customer and utilizing images as supplied by the Customer</b>
+            <br></br>
+            <b>By making a purchase from [Your Company Name], you agree to the following terms and conditions:</b>
+            <p style={{ fontSize: "11px" }}></p>
+            <ol>
+                <li style={{ fontWeight: "400" }}>
+                    <span style={{ fontWeight: "900" }}>
+                    Color Matching Disclaimer:</span>
+                    <p>
+                    We strive to provide accurate representations of our products' colors, but we cannot guarantee a 100% color match between the images displayed and the actual product due to variations in monitors, lighting, and materials. Minor color differences do not constitute defects.
+                    </p>
+                </li>
+                <br></br>
+                <li style={{ fontWeight: "400" }}>
+                    <span style={{ fontWeight: "900" }}>
+                     All Sales Are Final:</span>
+                    <p>
+                    All sales are final, and we do not accept returns or exchanges unless the product is defective or damaged upon receipt.
+                    </p>
+                </li>
+            </ol>
+            <b>By proceeding with your purchase, you acknowledge and accept these terms. If you do not agree, please do not make a purchase.</b>
         </div>
     )
 }

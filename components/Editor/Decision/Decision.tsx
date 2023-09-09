@@ -35,10 +35,10 @@ export const Decision = () => {
         if(
             currentCustomTemplate?.backgroundSettings?.background?.file?.name === "carbon-fiber-full-with-shadow" || 
                 currentCustomTemplate?.backgroundSettings?.background?.file?.name === "forged-carbon" || 
-                    currentCustomTemplate?.backgroundSettings?.background?.file?.name === "carbon-fiber"
+                    currentCustomTemplate?.backgroundSettings?.background?.file?.name === "carbon-fiber" || currentCustomTemplate?.backgroundSettings?.background?.file?.name === 'black-plate'
         ){
             console.info('presetCharacterColor');
-            updateStep?.(
+            return updateStep?.(
                 3, 
                 'presetCharacterColor',
                 'Select Color',
@@ -51,7 +51,7 @@ export const Decision = () => {
                 && currentCustomTemplate?.backgroundSettings?.background?.file?.hasColor
         ){
             console.info('presetBgImageColor');
-            updateStep?.(
+            return updateStep?.(
                 3, 
                 'presetBgImageColor',
                 'Select Color',
@@ -60,7 +60,7 @@ export const Decision = () => {
             )
         }
         console.info('presetBgColor');
-        updateStep?.(
+        return updateStep?.(
                     3,
                     'presetBgColor',
                     'Select Color',

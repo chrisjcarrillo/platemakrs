@@ -41,7 +41,7 @@ export const handleActions = (
                 }
             }
             if (currentEditorStep?.currentSubStep === "presetBgColor") {
-                if (name === "carbon-fiber-full-with-shadow" || name === "forged-carbon" || name === "carbon-fiber") {
+                if (name === "carbon-fiber-full-with-shadow" || name === "forged-carbon" || name === "carbon-fiber" || name === "black-plate") {
                     return {
                         step: undefined
                     }
@@ -62,7 +62,7 @@ export const handleActions = (
             }
 
             if (currentEditorStep?.currentSubStep === "presetBgBorder") {
-                if (name === "carbon-fiber-full-with-shadow" || name === "forged-carbon" || name === "carbon-fiber") {
+                if (name === "carbon-fiber-full-with-shadow" || name === "forged-carbon" || name === "carbon-fiber" || name === "black-plate") {
                     return {
                         step: undefined
                     }
@@ -96,7 +96,7 @@ export const handleActions = (
                         title: 'Background Border'
                     }
                 }
-                if (name === "carbon-fiber-full-with-shadow" || name === "forged-carbon" || name === "carbon-fiber") {
+                if (name === "carbon-fiber-full-with-shadow" || name === "forged-carbon" || name === "carbon-fiber" || name === "black-plate") {
                     return {
                         step: undefined
                     }
@@ -139,7 +139,7 @@ export const handleActions = (
                         title: 'Background Border'
                     }
                 }
-                if (name === "carbon-fiber-full-with-shadow" || name === "forged-carbon" || name === "carbon-fiber") {
+                if (name === "carbon-fiber-full-with-shadow" || name === "forged-carbon" || name === "carbon-fiber" || name === "black-plate") {
                     return {
                         step: undefined
                     }
