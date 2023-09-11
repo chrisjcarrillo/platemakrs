@@ -244,7 +244,8 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 }))
             }
         } catch (error) {
-            updateStep(2)
+            console.error(error)
+            // updateStep(2)
         } finally {
             setTimeout(
                 () => {
