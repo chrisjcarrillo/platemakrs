@@ -237,7 +237,7 @@ export const PlaceOrder = (props:{
                                 <Button
                                     disabled={acceptTerms ? false : true}
                                     className={`placeOrder__button-final`}
-                                    onClick={() => redirectCheckout?.(currentCustomTemplate)}
+                                    onClick={() => redirectCheckout?.(currentCustomTemplate, false)}
                                 >
                                     Place Order
                                 </Button>
@@ -279,7 +279,7 @@ export const PlaceOrder = (props:{
                             <Button
                                 disabled={acceptTerms ? false : true}
                                 className={`placeOrder__button`}
-                                onClick={() => redirectCheckout?.(currentCustomTemplate)}
+                                onClick={() => redirectCheckout?.(currentCustomTemplate, false)}
                             >
                                 Place Order
                             </Button>

@@ -80,7 +80,7 @@ export const Decision = () => {
                         <a 
                             className="decision__actions-checkout-btn"
                             onClick={
-                                () => redirectCheckout(currentCustomTemplate)
+                                () => redirectCheckout(currentCustomTemplate, false)
                             }
                         >Checkout</a>
                     </div>

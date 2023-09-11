@@ -96,7 +96,7 @@ export const Cart = () => {
                     <div className='cart__checkout-button-container'>
                         <a 
                             className='cart__checkout-button'
-                            onClick={() => redirectCheckout(currentCustomTemplate)}
+                            onClick={() => redirectCheckout(currentCustomTemplate, true)}
                         >
                             Checkout
                         </a>

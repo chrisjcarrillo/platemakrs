@@ -75,29 +75,36 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
 
     const redirectCheckout = async (
         currentCustomTemplate?: ICustomPlateTemplate,
+        isCheckout?: boolean
     ) => {
         setLoading(true)
         try {
-            // const queryParams = new URLSearchParams(window.location.search);
-            const storage = getStorage();
-            const storageRef = ref(storage, `customTemplates/${currentCustomTemplate?.id}/design-preview/test`); // Create storage reference
-            
-            const upload = await uploadString(
-                storageRef, 
-                finalDesign, 
-                'data_url', 
-                {
-                    contentType: 'image/png'
-                }
-            );
+            if (isCheckout) {
+                window.location.replace(checkout?.webUrl)
+            } else {
+                // const queryParams = new URLSearchParams(window.location.search);
+                const storage = getStorage();
+                const storageRef = ref(storage, `customTemplates/${currentCustomTemplate?.id}/design-preview/test`); // Create storage reference
 
-            const downloadUrl = await getDownloadURL(upload.ref)
+                const upload = await uploadString(
+                    storageRef,
+                    finalDesign,
+                    'data_url',
+                    {
+                        contentType: 'image/png'
+                    }
+                );
 
-            addVariant(
-                currentCustomTemplate?.selectedVariant?.id,
-                currentCustomTemplate?.id,
-                downloadUrl
-            )
+                const downloadUrl = await getDownloadURL(upload.ref)
+
+                addVariant(
+                    currentCustomTemplate?.selectedVariant?.id,
+                    currentCustomTemplate?.id,
+                    downloadUrl
+                )
+                window.location.replace(checkout?.webUrl)
+            }
+
         } catch (error) {
             console.log(error)
             setLoading(false)
@@ -155,7 +162,6 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 lineItemsToUpdate
             );
             setCart(JSON.parse(JSON.stringify(checkoutResponse.lineItems)));
-            window.location.replace(checkout?.webUrl)
         } catch (error) {
             console.error(error)
             throw new Error(error?.message);
