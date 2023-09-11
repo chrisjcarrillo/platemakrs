@@ -1,7 +1,6 @@
 import React, {
     createContext, useState, useEffect
 } from 'react';
-import { useScreenshot } from "use-react-screenshot";
 
 interface IStoreProps {
     children: React.ReactNode
@@ -75,10 +74,7 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
     const [moveDetail2, setMoveDetail2] = useState<boolean>(false) // Move Detail 1
     // MOVEABLES
 
-    const [finalDesign, takeDesignScreenshot] = useScreenshot({
-        type: "image/png",
-        quality: 100.0,
-    });
+    const [finalDesign, takeDesignScreenshot] = useState<any>(null);
 
     const [isPreset, setPreset] = useState<boolean>(false)
 

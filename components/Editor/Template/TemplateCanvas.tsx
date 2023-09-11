@@ -19,11 +19,11 @@ import { InterfaceContext, InterfaceContextType } from '../../../context/interfa
 import { BottomLogo } from '../BottomLogo/BottomLogo';
 import { useRouter } from 'next/navigation';
 import { StoreContext, StoreContextType } from '../../../context/storeContext';
+import html2canvas from 'html2canvas'
 
 const TemplateCanvas = (
     props: {
         popupPreview?: boolean,
-        canvasRef?: any
     }
 ) => {
 
@@ -39,7 +39,7 @@ const TemplateCanvas = (
     const {
         showDecision,
         isPreset,
-        finalDesign, 
+        finalDesign,
         takeDesignScreenshot
     } = useContext(InterfaceContext) as InterfaceContextType
 
@@ -53,10 +53,39 @@ const TemplateCanvas = (
 
     const { popupPreview } = props;
 
+    const setImagePreview = async (node: any) => {
+        try {
+            window.devicePixelRatio = 5;
+            const canvas = await html2canvas(node, {
+                scale: 5
+            })
+            const croppedCanvas = document.createElement('canvas')
+            const croppedCanvasContext = croppedCanvas.getContext('2d')
+            croppedCanvasContext?.scale(5, 5)
+            // init data
+            const cropPositionTop = 0
+            const cropPositionLeft = 0
+            let cropWidth = canvas.width * 5;
+            let cropHeight = canvas.height * 5;
+
+            croppedCanvas.width = canvas.width
+            croppedCanvas.height = canvas.height
+
+            croppedCanvasContext?.drawImage(
+                canvas,
+                cropPositionLeft,
+                cropPositionTop,
+            )
+            const base64Image = croppedCanvas.toDataURL('image/jpeg', 1)
+            takeDesignScreenshot?.(base64Image)
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     useEffect(() => {
-        if(acceptTerms){
-            takeDesignScreenshot?.(canvasRef.current)
+        if (acceptTerms) {
+            setImagePreview(canvasRef.current)
         }
     }, [acceptTerms])
 
@@ -77,28 +106,28 @@ const TemplateCanvas = (
     }
 
     const stepDecision = (
-        stepType?: 'BACK' | 'NEXT' 
+        stepType?: 'BACK' | 'NEXT'
     ) => {
-        if(stepType === "NEXT"){
-            if(isPreset){
-                if(currentEditorStep?.currentStep === 1 && currentLicensePlate){
+        if (stepType === "NEXT") {
+            if (isPreset) {
+                if (currentEditorStep?.currentStep === 1 && currentLicensePlate) {
                     updateStep?.(3)
                 }
-            } else if (!isPreset){
+            } else if (!isPreset) {
                 currentEditorStep?.currentStep === 1
                     ? currentEditorStep?.currentStep ?? 1 + 1 : 3
             }
         } else if (stepType === "BACK") {
-            if(isPreset){
-                if(currentEditorStep?.currentStep === 1){
+            if (isPreset) {
+                if (currentEditorStep?.currentStep === 1) {
                     router.push('/products')
                 }
-                if(currentEditorStep?.currentStep === 3){
+                if (currentEditorStep?.currentStep === 3) {
                     updateStep?.(1)
                 }
             } else if (!isPreset) {
                 currentEditorStep?.currentStep === 1 ? 1 :
-                                                currentEditorStep?.currentStep === undefined ? 1 : currentEditorStep?.currentStep - 1
+                    currentEditorStep?.currentStep === undefined ? 1 : currentEditorStep?.currentStep - 1
             }
         }
         return // Where the step should go
@@ -120,7 +149,7 @@ const TemplateCanvas = (
                                         disabled={currentEditorStep?.currentStep === 1 && !isPreset ? true : false}
                                         className='header__tools-left-back-button'
                                         shape="circle"
-                                        icon={<ArrowLeftOutlined rev={''}  />}
+                                        icon={<ArrowLeftOutlined rev={''} />}
                                         onClick={() =>
                                             stepDecision('BACK')
                                         }
@@ -133,7 +162,7 @@ const TemplateCanvas = (
                                 <h2 className="editor__title-text">License Plate Preview </h2>
                             </div>
                         </Col>
-                            <Col {...actionSettings}>
+                        <Col {...actionSettings}>
                             {(!isPreset || isPreset && currentEditorStep?.currentStep === 1) && (
                                 <div className="header__tools-right-forward">
                                     <Button
@@ -144,7 +173,7 @@ const TemplateCanvas = (
                                                 || currentEditorStep?.currentStep === 2 && currentTemplate === undefined ? true : false}
                                         className="header__tools-right-forward-button"
                                         shape="circle"
-                                        icon={<ArrowRightOutlined rev={''}  />}
+                                        icon={<ArrowRightOutlined rev={''} />}
                                         onClick={() => stepDecision('NEXT')}
                                     />
                                 </div>
@@ -236,8 +265,7 @@ const TemplateCanvas = (
                             className={`canvas__license-container ${currentEditorStep?.currentStep === 2 && currentTemplate === undefined ? 'preview add-shadow' : ''}`}
                         >
                             <div
-                                className={`canvas__license-inner-container canvas--align-${
-                                    currentLicensePlate?.platePosition ?? currentCustomTemplate?.startPlatePosition} ${currentEditorStep?.currentStep === 2 ? 'add-shadow' : ''}`}
+                                className={`canvas__license-inner-container canvas--align-${currentLicensePlate?.platePosition ?? currentCustomTemplate?.startPlatePosition} ${currentEditorStep?.currentStep === 2 ? 'add-shadow' : ''}`}
                             >
                                 <a
                                     className="canvas__license-text"
@@ -257,9 +285,9 @@ const TemplateCanvas = (
                                     }
                                 >
                                     {
-                                        currentLicensePlate?.plateNumber ? 
-                                            currentLicensePlate?.plateNumber : 
-                                                currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate
+                                        currentLicensePlate?.plateNumber ?
+                                            currentLicensePlate?.plateNumber :
+                                            currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate
                                     }
                                 </a>
                             </div>
@@ -308,15 +336,15 @@ const TemplateCanvas = (
                             }
                             {/* START Bottom Logo*/}
                             {
-                                    currentCustomTemplate?.bottomLogo?.enabled 
-                                    && !currentLicensePlate?.bottomTextEnabled ? (   
-                                        <BottomLogo
-                                            canvasReference={canvasRef}
-                                            type="CANVAS"
-                                            logoType="BOTTOM"
-                                        /> 
-                                    ): null
-                                
+                                currentCustomTemplate?.bottomLogo?.enabled
+                                    && !currentLicensePlate?.bottomTextEnabled ? (
+                                    <BottomLogo
+                                        canvasReference={canvasRef}
+                                        type="CANVAS"
+                                        logoType="BOTTOM"
+                                    />
+                                ) : null
+
                             }
                             {/* END Bottom Logo*/}
                         </div>
