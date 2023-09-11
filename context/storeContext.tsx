@@ -5,6 +5,7 @@ import Client from 'shopify-buy';
 import { InterfaceContext, InterfaceContextType } from './interfaceContext';
 import { useRouter } from 'next/navigation'
 import { ICustomPlateTemplate } from '../interfaces/customTemplate.interface';
+import { ref, uploadBytes, getDownloadURL, getStorage, deleteObject, uploadString } from 'firebase/storage';
 
 
 interface IStoreProps {
@@ -75,16 +76,31 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
     const redirectCheckout = async (
         currentCustomTemplate?: ICustomPlateTemplate,
     ) => {
-        setLoading(true);
+        setLoading(true)
         try {
+            // const queryParams = new URLSearchParams(window.location.search);
+            const storage = getStorage();
+            const storageRef = ref(storage, `customTemplates/${currentCustomTemplate?.id}/design-preview/test`); // Create storage reference
+            
+            const upload = await uploadString(
+                storageRef, 
+                finalDesign, 
+                'data_url', 
+                {
+                    contentType: 'image/png'
+                }
+            );
+
+            const downloadUrl = await getDownloadURL(upload.ref)
+
             addVariant(
                 currentCustomTemplate?.selectedVariant?.id,
-                currentCustomTemplate?.id
+                currentCustomTemplate?.id,
+                downloadUrl
             )
-            window.location.replace(checkout?.webUrl)
         } catch (error) {
-            console.log(error);
-            setLoading(false);
+            console.log(error)
+            setLoading(false)
         }
 
     }
@@ -92,7 +108,8 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
     // Variants START
     const addVariant = async (
         variantId?: any,
-        customTemplateId?: string
+        customTemplateId?: string,
+        preview?: string,
     ) => {
         try {
             const checkoutId = checkout?.id;
@@ -105,7 +122,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                             key: "Order ID", value: `${customTemplateId}`, // Template of Preset
                         },
                         {
-                            key: "Preview", value: `${finalDesign}`, // Template of Preset
+                            key: "preview", value: `${preview}`, // Template of Preset
                         }
                     ]
                 },
@@ -127,7 +144,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                             key: "Order ID", value: `${customTemplateId}`, // Template of Preset
                         },
                         {
-                            key: "Preview", value: `${finalDesign}`, // Template of Preset
+                            key: "preview", value: `${preview}`, // Template of Preset
                         },
                     ]
                 }
@@ -138,6 +155,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 lineItemsToUpdate
             );
             setCart(JSON.parse(JSON.stringify(checkoutResponse.lineItems)));
+            window.location.replace(checkout?.webUrl)
         } catch (error) {
             console.error(error)
             throw new Error(error?.message);

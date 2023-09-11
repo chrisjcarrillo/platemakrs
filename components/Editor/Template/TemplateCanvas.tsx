@@ -83,20 +83,6 @@ const TemplateCanvas = (
             )
             const base64Image = croppedCanvas.toDataURL('image/jpeg', 1)
             takeDesignScreenshot?.(base64Image)
-
-            const storage = getStorage();
-            const storageRef = ref(storage, `customTemplates/${currentCustomTemplate?.id}/design-preview/test`); // Create storage reference
-
-            const upload = await uploadString(
-                storageRef, 
-                finalDesign, 
-                'data_url', 
-                {
-                    contentType: 'image/png'
-                }
-            );
-            const downloadUrl = await getDownloadURL(upload.ref)
-            return downloadUrl
         } catch (error) {
             console.log(error);
         }
@@ -105,6 +91,7 @@ const TemplateCanvas = (
     useEffect(() => {
         if (acceptTerms) {
             setImagePreview(canvasRef.current)
+            if(finalDesign){}
         }
     }, [acceptTerms])
 
