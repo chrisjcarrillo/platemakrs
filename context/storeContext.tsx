@@ -102,14 +102,14 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                     currentCustomTemplate?.id,
                     downloadUrl
                 )
-                window.location.replace(checkout?.webUrl)
             }
 
         } catch (error) {
             console.log(error)
             setLoading(false)
+        } finally {
+            window.location.replace(checkout?.webUrl)
         }
-
     }
 
     // Variants START

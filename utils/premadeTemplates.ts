@@ -266,9 +266,13 @@ export const premadeTemplates = [
                 x: 26,
                 y: 32
             },
+            // centerCoordinates: {
+            //     x: 95,
+            //     y: 5
+            // },
             centerCoordinates: {
                 x: 95,
-                y: 5
+                y: 140
             },
             rightCoordinates: {
                 x: 230,
@@ -590,17 +594,9 @@ export const premadeTemplates = [
             imageType: 'svg',
             filePath: '/images/resources/cars/mclaren/text/option-1/colors',
             url: '/images/resources/cars/mclaren/text/option-1/colors/regular.svg',
-            leftCoordinates: {
-                x: 26,
-                y: 32
-            },
             centerCoordinates: {
                 x: 106,
-                y: 0
-            },
-            rightCoordinates: {
-                x: 230,
-                y: 32
+                y: 138
             },
             width: 125,
             height: 20,
@@ -819,7 +815,7 @@ export const premadeTemplates = [
             url: '/images/resources/sports/hockey/panthers/text/1.png',
             centerCoordinates: {
                 x: 115,
-                y: 0
+                y: 135
             },
             width: 100,
             height: 25,
@@ -912,7 +908,7 @@ export const premadeTemplates = [
             url: '/images/resources/cars/mercedes/text/maybach/colors/regular.svg',
             centerCoordinates: {
                 x: 106,
-                y: 5
+                y: 140
             },
             width: 135,
             height: 15,
@@ -1014,17 +1010,9 @@ export const premadeTemplates = [
             imageType: 'svg',
             filePath: '/images/resources/cars/porsche/text/porsche/colors',
             url: '/images/resources/cars/porsche/text/porsche/colors/regular.svg',
-            leftCoordinates: {
-                x: 26,
-                y: 32
-            },
             centerCoordinates: {
                 x: 106,
-                y: 0
-            },
-            rightCoordinates: {
-                x: 230,
-                y: 32
+                y: 135
             },
             width: 125,
             height: 15,
@@ -1194,17 +1182,9 @@ export const premadeTemplates = [
             imageType: 'svg',
             filePath: '/images/resources/sports/football/um/text/option-1/colors',
             url: '/images/resources/sports/football/um/text/option-1/colors/regular.svg',
-            leftCoordinates: {
-                x: 26,
-                y: 32
-            },
             centerCoordinates: {
                 x: 100,
-                y: 5
-            },
-            rightCoordinates: {
-                x: 230,
-                y: 32
+                y: 140
             },
             width: 150,
             height: 10,
@@ -1305,7 +1285,7 @@ export const premadeTemplates = [
             url: '/images/resources/sports/football/um/text/option-2.png',
             centerCoordinates: {
                 x: 18,
-                y: 0
+                y: 135
             },
             width: 315,
             height: 25,
@@ -1995,7 +1975,7 @@ export const premadeTemplates = [
             url: '/images/resources/cars/porsche/text/porsche/colors/gray.svg',
             centerCoordinates: {
                 x: 115,
-                y: 0
+                y: 140
             },
             width: 125,
             height: 15,
@@ -2103,7 +2083,7 @@ export const premadeTemplates = [
             url: '/images/resources/cars/bmw/logos/logo-m.svg',
             centerCoordinates: {
                 x: 285,
-                y: 3
+                y: 140
             },
             width: 45,
             height: 15,
@@ -3112,17 +3092,9 @@ export const premadeTemplates = [
             imageType: 'png',
             filePath: '/images/resources/cars/lamborghini/text/old/red',
             url: '/images/resources/cars/lamborghini/text/old/red/regular.png',
-            leftCoordinates: {
-                x: 26,
-                y: 32
-            },
             centerCoordinates: {
                 x: 106,
-                y: 0
-            },
-            rightCoordinates: {
-                x: 230,
-                y: 32
+                y: 135
             },
             width: 125,
             height: 20,
@@ -3229,7 +3201,7 @@ export const premadeTemplates = [
             url: '/images/resources/sports/football/um/text/option-3/colors/regular.png',
             centerCoordinates: {
                 x: 125,
-                y: 0
+                y: 135
             },
             width: 100,
             height: 25,
@@ -3527,7 +3499,7 @@ export const premadeTemplates = [
                 url: '/images/logos/flags/italian-rectangle-slanted.png',
                 centerCoordinates: {
                     x: 100,
-                    y: 0
+                    y: 135
                 },
                 width: 150,
                 height: 3,
@@ -3811,17 +3783,9 @@ export const premadeTemplates = [
             imageType: 'png',
             filePath: '/images/resources/sports/football/dolphins/text/colors',
             url: '/images/resources/sports/football/dolphins/text/colors/regular.png',
-            leftCoordinates: {
-                x: 26,
-                y: 32
-            },
             centerCoordinates: {
                 x: 106,
-                y: 0
-            },
-            rightCoordinates: {
-                x: 230,
-                y: 32
+                y: 140
             },
             width: 125,
             height: 15,
@@ -3942,17 +3906,9 @@ export const premadeTemplates = [
             imageType: 'png',
             filePath: '/images/resources/sports/football/dolphins/text/colors',
             url: '/images/resources/sports/football/dolphins/text/colors/gray.png',
-            leftCoordinates: {
-                x: 26,
-                y: 32
-            },
             centerCoordinates: {
                 x: 106,
-                y: 0
-            },
-            rightCoordinates: {
-                x: 230,
-                y: 32
+                y: 140
             },
             width: 125,
             height: 15,
@@ -4053,7 +4009,7 @@ export const premadeTemplates = [
             url: '/images/resources/cars/corvette/text/colors/red.svg',
             centerCoordinates: {
                 x: 104,
-                y: 8
+                y: 140
             },
             width: 145,
             height: 10,
@@ -4268,17 +4224,9 @@ export const premadeTemplates = [
             imageType: 'png',
             filePath: '/images/resources/cars/lamborghini/text/old/colors',
             url: '/images/resources/cars/lamborghini/text/old/colors/white.png',
-            leftCoordinates: {
-                x: 26,
-                y: 32
-            },
             centerCoordinates: {
                 x: 106,
-                y: 0
-            },
-            rightCoordinates: {
-                x: 230,
-                y: 32
+                y: 135
             },
             width: 125,
             height: 20,
@@ -4462,7 +4410,7 @@ export const premadeTemplates = [
             url: '/images/logos/flags/italian-rectangle.svg',
             centerCoordinates: {
                 x: 100,
-                y: 5
+                y: 135
             },
             width: 150,
             height: 10,
@@ -4666,7 +4614,7 @@ export const premadeTemplates = [
             url: '/images/resources/cars/rolls-royce/text/rolls-royce/gray/colors/regular.png',
             centerCoordinates: {
                 x: 108,
-                y: 3
+                y: 135
             },
             width: 130,
             height: 15,
@@ -4763,7 +4711,7 @@ export const premadeTemplates = [
             url: '/images/resources/cars/mercedes/text/mercedes/colors/white.png',
             centerCoordinates: {
                 x: 110,
-                y: 0
+                y: 135
             },
             width: 125,
             height: 15,
@@ -4948,7 +4896,7 @@ export const premadeTemplates = [
             url: '/images/resources/cars/porsche/text/turbo/colors/white.svg',
             centerCoordinates: {
                 x: 125,
-                y: 0
+                y: 135
             },
             width: 100,
             height: 20,
@@ -5255,17 +5203,9 @@ export const premadeTemplates = [
             imageType: 'png',
             filePath: '/images/resources/cars/lamborghini/text/old/colors',
             url: '/images/resources/cars/lamborghini/text/old/colors/yellow.png',
-            leftCoordinates: {
-                x: 26,
-                y: 32
-            },
             centerCoordinates: {
-                x: 106,
-                y: 0
-            },
-            rightCoordinates: {
-                x: 230,
-                y: 32
+                x: 108,
+                y: 135
             },
             width: 125,
             height: 20,
@@ -5436,17 +5376,9 @@ export const premadeTemplates = [
             imageType: 'png',
             filePath: '/images/resources/cars/ferrari/text/ferrari/colors',
             url: '/images/resources/cars/ferrari/text/ferrari/colors/regular.png',
-            leftCoordinates: {
-                x: 26,
-                y: 32
-            },
             centerCoordinates: {
                 x: 125,
-                y: -5
-            },
-            rightCoordinates: {
-                x: 230,
-                y: 32
+                y: 130
             },
             width: 100,
             height: 30,
@@ -5568,7 +5500,7 @@ export const premadeTemplates = [
             url: '/images/resources/cars/bmw/flag/bottom/option-1.png',
             centerCoordinates: {
                 x: 0,
-                y: -5
+                y: 130
             },
             width: 350,
             height: 30,
@@ -6151,7 +6083,7 @@ export const premadeTemplates = [
             url: '/images/resources/cars/rolls-royce/text/rolls-royce/orange/colors/regular.png',
             centerCoordinates: {
                 x: 108,
-                y: 3
+                y: 135
             },
             width: 130,
             height: 15,
@@ -6421,7 +6353,7 @@ export const premadeTemplates = [
             url: '/images/resources/cars/corvette/text/colors/red.svg',
             centerCoordinates: {
                 x: 104,
-                y: 8
+                y: 135
             },
             width: 145,
             height: 10,

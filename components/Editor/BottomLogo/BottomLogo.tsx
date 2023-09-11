@@ -31,7 +31,7 @@ export const BottomLogo = (props: ILogo) => {
         return currentCustomTemplate?.bottomLogo?.url
     }
 
-    const [image] = useImage(imageSource() ?? '');
+    const [image] = useImage(imageSource() ?? '', 'anonymous');
 
     const imageRef = useRef<any>();
     const transformerRef = useRef<any>();

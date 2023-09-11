@@ -41,7 +41,7 @@ export const BackgroundLogo = (props: ILogo) => {
         return currentCustomTemplate?.backgroundLogo?.url
     }
 
-    const [image] = useImage(imageSource() ?? '');
+    const [image] = useImage(imageSource() ?? '', 'anonymous');
 
     const imageRef = useRef<any>();
     const transformerRef = useRef<any>();
