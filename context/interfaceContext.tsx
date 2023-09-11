@@ -1,6 +1,7 @@
 import React, {
     createContext, useState, useEffect
 } from 'react';
+import { useScreenshot } from "use-react-screenshot";
 
 interface IStoreProps {
     children: React.ReactNode
@@ -40,6 +41,8 @@ export type InterfaceContextType = {
     moveDetail2?: boolean
     setMoveDetail2: (type: boolean) => void; // For Logo
 
+    finalDesign?: any; 
+    takeDesignScreenshot?: (img: any) => void;
 
     isPreset?: boolean;
     setPreset: (type: boolean) => void;
@@ -71,6 +74,8 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
     const [moveDetail1, setMoveDetail1] = useState<boolean>(false) // Move Detail 1
     const [moveDetail2, setMoveDetail2] = useState<boolean>(false) // Move Detail 1
     // MOVEABLES
+
+    const [finalDesign, takeDesignScreenshot] = useScreenshot();
 
     const [isPreset, setPreset] = useState<boolean>(false)
 
@@ -125,6 +130,9 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
 
                 isPreset,
                 setPreset,
+                
+                finalDesign, 
+                takeDesignScreenshot
 
             }}
         >

@@ -5,7 +5,8 @@ import Client from 'shopify-buy';
 import { InterfaceContext, InterfaceContextType } from './interfaceContext';
 import { useRouter } from 'next/navigation'
 import { ICustomPlateTemplate } from '../interfaces/customTemplate.interface';
-import { EditorContext, EditorContextType } from './editorContext';
+import { ref, uploadBytes, getDownloadURL, getStorage, deleteObject, uploadString } from 'firebase/storage';
+
 
 interface IStoreProps {
     children: React.ReactNode
@@ -33,7 +34,7 @@ export type StoreContextType = {
     ) => void;
 
     // Checkout
-    redirectCheckout: (currentCustomTemplate: ICustomPlateTemplate) => void;
+    redirectCheckout: (currentCustomTemplate: ICustomPlateTemplate, canvasRef?: any) => void;
 }
 
 export const client = Client.buildClient({
@@ -49,7 +50,8 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
 
     const {
         loading,
-        setLoading
+        setLoading,
+        finalDesign
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const [cart, setCart] = useState([])
@@ -60,7 +62,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
 
     const onStorageUpdate = (e: any) => {
         const { key, newValue } = e;
-        return{
+        return {
             key,
             newValue
         }
@@ -71,22 +73,31 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         setCheckout(checkout)
     }
 
-    const redirectCheckout = (
-        currentCustomTemplate?: ICustomPlateTemplate
+    const redirectCheckout = async (
+        currentCustomTemplate?: ICustomPlateTemplate,
     ) => {
-        const queryParams = new URLSearchParams(window.location.search);
-        // if(queryParams.get("preset") && sessionStorage.getItem('preset') && currentCustomTemplate){
-        //     addVariant(
-        //         currentCustomTemplate?.selectedVariant?.id,
-        //         currentCustomTemplate?.id
-        //     )
-        //     window.location.replace(checkout?.webUrl)
-        // }
-        addVariant(
-            currentCustomTemplate?.selectedVariant?.id,
-            currentCustomTemplate?.id
-        )
-        window.location.replace(checkout?.webUrl)
+        try {
+            // const queryParams = new URLSearchParams(window.location.search);
+            const storage = getStorage();
+            const storageRef = ref(storage, `customTemplates/${currentCustomTemplate?.id}/preview/test`); // Create storage reference
+            // const upload = await uploadBytes(storageRef, finalDesign);
+
+            const upload = await uploadString(storageRef, finalDesign, 'data_url', {
+                contentType: 'image/png'
+            }); // Upload to Firebase
+
+            const downloadUrl = await getDownloadURL(upload.ref)
+            console.log(downloadUrl);
+
+            addVariant(
+                currentCustomTemplate?.selectedVariant?.id,
+                currentCustomTemplate?.id
+            )
+            window.location.replace(checkout?.webUrl)
+        } catch (error) {
+            console.log(error)
+        }
+
     }
 
     // Variants START
@@ -237,13 +248,13 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 cart,
                 showCart,
                 checkout,
-                
+
                 addVariant,
                 removeVariant,
 
                 hasDesigner,
                 setHasDesigner,
-                
+
                 acceptTerms,
                 setAcceptTerms,
 

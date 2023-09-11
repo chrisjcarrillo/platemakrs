@@ -9,31 +9,38 @@ import { Background } from '../Background/Background';
 import { Logo } from '../Logo/Logo';
 import { EditorContext } from '../../../context/editorContext';
 import { EditorContextType } from '../../../context/editorContext';
-import { useContext, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { FinishEffect } from '../FinishEffect/FinishEffect';
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import { StateSvg } from '../../shared/StateSvg/StateSvg';
 import { stateSvg } from '../../../utils/helpers/stateSvg';
-
-import { ITemplate } from '../../../interfaces/template.interface';
-import { ICustomPlateTemplate } from '../../../interfaces/customTemplate.interface';
 import { initialLicensePlate, initialState } from '../../../utils/helpers';
 import { InterfaceContext, InterfaceContextType } from '../../../context/interfaceContext';
 import { BottomLogo } from '../BottomLogo/BottomLogo';
 import { useRouter } from 'next/navigation';
+import { StoreContext, StoreContextType } from '../../../context/storeContext';
 
 const TemplateCanvas = (
     props: {
         popupPreview?: boolean,
+        canvasRef?: any
     }
 ) => {
 
-    const canvasRef = useRef(null);
     const router = useRouter();
+
+    // const getImage = () => takeScreenShot(canvasRef.current);
+    const canvasRef = useRef(null);
+
+    const {
+        acceptTerms
+    } = useContext(StoreContext) as StoreContextType;
 
     const {
         showDecision,
-        isPreset
+        isPreset,
+        finalDesign, 
+        takeDesignScreenshot
     } = useContext(InterfaceContext) as InterfaceContextType
 
     const {
@@ -45,6 +52,14 @@ const TemplateCanvas = (
     } = useContext(EditorContext) as EditorContextType;
 
     const { popupPreview } = props;
+
+
+    useEffect(() => {
+        if(acceptTerms){
+            takeDesignScreenshot?.(canvasRef.current)
+            console.log(finalDesign);
+        }
+    }, [acceptTerms])
 
     const actionSettings = {
         xs: 2,

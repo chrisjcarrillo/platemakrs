@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useRef } from 'react';
 import EditorForm from '../components/Editor/Steps/FirstStep/EditorForm/EditorForm';
 import TemplateCanvas from '../components/Editor/Template/TemplateCanvas';
 import EditorProvider, { EditorContextType } from '../context/editorContext';
@@ -36,7 +36,6 @@ export default function Editor(props: any) {
     const {
         isPreset
     } = useContext(InterfaceContext) as InterfaceContextType;
-    
     return (
         <>
             <LoadingSpinner>
@@ -48,7 +47,8 @@ export default function Editor(props: any) {
                 />
                 <EditorHeader
                 />
-                <TemplateCanvas />
+                <TemplateCanvas
+                />
                 <Container fluid className="app__container">
 
                     {currentEditorStep?.currentStep === 1 &&

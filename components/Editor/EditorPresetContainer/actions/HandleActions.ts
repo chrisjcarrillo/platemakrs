@@ -16,11 +16,6 @@ export const handleActions = (
 
     let name = currentCustomTemplate?.backgroundSettings?.background?.file?.name;
 
-    console.info(
-        'Current Step:',
-        currentEditorStep?.currentSubStep
-    )
-
     if (presetTemplate) {
         // If your in the first action
         if (actionType == "cancel") {

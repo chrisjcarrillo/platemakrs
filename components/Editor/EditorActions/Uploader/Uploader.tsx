@@ -1,14 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { UploadOutlined } from '@ant-design/icons';
 import { Button, Upload } from 'antd';
-import type { UploadFile } from 'antd/es/upload/interface';
-
-import { app, database, storage } from '../../../../firebaseConfig';
 import { ref, uploadBytes, getDownloadURL, getStorage, deleteObject, uploadString } from 'firebase/storage';
 import { EditorContext, EditorContextType } from '../../../../context/editorContext';
 import { InterfaceContext, InterfaceContextType } from '../../../../context/interfaceContext';
-import { Switcher } from '../Switcher/Switcher';
-import { MoveSwitcher } from '../MoveSwitcher/MoveSwitcher';
 
 
 export const Uploader = (
