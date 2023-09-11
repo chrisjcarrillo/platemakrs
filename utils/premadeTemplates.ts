@@ -148,18 +148,9 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             filePath: '/images/resources/cars/mercedes/logos/amg/colors',
             url: '/images/resources/cars/mercedes/logos/amg/colors/black.svg',
-
-            leftCoordinates: {
-                x: 26,
-                y: 32
-            },
             centerCoordinates: {
                 x: 106,
-                y: 0
-            },
-            rightCoordinates: {
-                x: 230,
-                y: 32
+                y: 140
             },
             width: 125,
             height: 20,
@@ -5169,7 +5160,7 @@ export const premadeTemplates = [
             url: '/images/resources/cars/tesla/text/stormtrooper/colors/white.png',
             centerCoordinates: {
                 x: 110,
-                y: 5
+                y: 140
             },
             width: 125,
             height: 10,

@@ -20,6 +20,7 @@ import { BottomLogo } from '../BottomLogo/BottomLogo';
 import { useRouter } from 'next/navigation';
 import { StoreContext, StoreContextType } from '../../../context/storeContext';
 import html2canvas from 'html2canvas'
+import { ref, uploadBytes, getDownloadURL, getStorage, deleteObject, uploadString } from 'firebase/storage';
 
 const TemplateCanvas = (
     props: {
@@ -66,7 +67,7 @@ const TemplateCanvas = (
             const croppedCanvas = document.createElement('canvas')
             const croppedCanvasContext = croppedCanvas.getContext('2d')
             croppedCanvasContext?.scale(5, 5)
-            
+
             const cropPositionTop = 0
             const cropPositionLeft = 0
             let cropWidth = canvas.width * 5;
@@ -82,6 +83,20 @@ const TemplateCanvas = (
             )
             const base64Image = croppedCanvas.toDataURL('image/jpeg', 1)
             takeDesignScreenshot?.(base64Image)
+
+            const storage = getStorage();
+            const storageRef = ref(storage, `customTemplates/${currentCustomTemplate?.id}/design-preview/test`); // Create storage reference
+
+            const upload = await uploadString(
+                storageRef, 
+                finalDesign, 
+                'data_url', 
+                {
+                    contentType: 'image/png'
+                }
+            );
+            const downloadUrl = await getDownloadURL(upload.ref)
+            return downloadUrl
         } catch (error) {
             console.log(error);
         }
@@ -338,19 +353,6 @@ const TemplateCanvas = (
                                     </a>
                                 )
                             }
-                            {/* START Bottom Logo*/}
-                            {
-                                currentCustomTemplate?.bottomLogo?.enabled
-                                    && !currentLicensePlate?.bottomTextEnabled ? (
-                                    <BottomLogo
-                                        canvasReference={canvasRef}
-                                        type="CANVAS"
-                                        logoType="BOTTOM"
-                                    />
-                                ) : null
-
-                            }
-                            {/* END Bottom Logo*/}
                         </div>
                         {/* END Bottom letters */}
 
@@ -362,6 +364,19 @@ const TemplateCanvas = (
                             />
                         }
                         {/* END Logo*/}
+                        {/* START Bottom Logo*/}
+                        {
+                            currentCustomTemplate?.bottomLogo?.enabled
+                                && !currentLicensePlate?.bottomTextEnabled ? (
+                                <BottomLogo
+                                    canvasReference={canvasRef}
+                                    type="CANVAS"
+                                    logoType="BOTTOM"
+                                />
+                            ) : null
+
+                        }
+                        {/* END Bottom Logo*/}
 
                         {/* START Background*/}
                         <Background

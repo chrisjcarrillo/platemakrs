@@ -145,7 +145,6 @@ export const PlaceOrder = (props:{
             onCancel={() => setTerms(false)}
         >
             <Terms />
-            
         </Modal>
             {/* Details? */}
             {
@@ -288,8 +287,6 @@ export const PlaceOrder = (props:{
                     </Row>
                 </Container>
             )}
-
-
         </>
     )
 }

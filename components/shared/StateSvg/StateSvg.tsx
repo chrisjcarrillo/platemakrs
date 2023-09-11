@@ -47,6 +47,9 @@ export const StateSvg = (
 			x="0px" 
 			y="0px"
 			viewBox={`${svg?.viewBox}`}
+			width={"35%"}
+			height={"auto"}
+
 		>
 			{
 				svg?.paths.map((svg, index) => {
