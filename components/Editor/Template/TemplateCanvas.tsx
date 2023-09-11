@@ -57,7 +57,6 @@ const TemplateCanvas = (
     useEffect(() => {
         if(acceptTerms){
             takeDesignScreenshot?.(canvasRef.current)
-            console.log(finalDesign);
         }
     }, [acceptTerms])
 

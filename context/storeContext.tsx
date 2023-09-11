@@ -79,21 +79,24 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         try {
             // const queryParams = new URLSearchParams(window.location.search);
             const storage = getStorage();
-            const storageRef = ref(storage, `customTemplates/${currentCustomTemplate?.id}/preview/test`); // Create storage reference
-            // const upload = await uploadBytes(storageRef, finalDesign);
-
-            const upload = await uploadString(storageRef, finalDesign, 'data_url', {
-                contentType: 'image/png'
-            }); // Upload to Firebase
+            const storageRef = ref(storage, `customTemplates/${currentCustomTemplate?.id}/design-preview/test`); // Create storage reference
+            
+            const upload = await uploadString(
+                storageRef, 
+                finalDesign, 
+                'data_url', 
+                {
+                    contentType: 'image/png'
+                }
+            );
 
             const downloadUrl = await getDownloadURL(upload.ref)
-            console.log(downloadUrl);
 
             addVariant(
                 currentCustomTemplate?.selectedVariant?.id,
-                currentCustomTemplate?.id
+                currentCustomTemplate?.id,
+                downloadUrl
             )
-            window.location.replace(checkout?.webUrl)
         } catch (error) {
             console.log(error)
         }
@@ -103,7 +106,8 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
     // Variants START
     const addVariant = async (
         variantId?: any,
-        customTemplateId?: string
+        customTemplateId?: string,
+        preview?: string,
     ) => {
         try {
             const checkoutId = checkout?.id;
@@ -114,6 +118,9 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                     customAttributes: [
                         {
                             key: "Order ID", value: `${customTemplateId}`, // Template of Preset
+                        },
+                        {
+                            key: "Preview", value: `${preview}`, // Template of Preset
                         }
                     ]
                 },
@@ -133,7 +140,10 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                     customAttributes: [
                         {
                             key: "Order ID", value: `${customTemplateId}`, // Template of Preset
-                        }
+                        },
+                        {
+                            key: "Preview", value: `${preview}`, // Template of Preset
+                        },
                     ]
                 }
             ]
@@ -143,7 +153,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 lineItemsToUpdate
             );
             setCart(JSON.parse(JSON.stringify(checkoutResponse.lineItems)));
-
+            window.location.replace(checkout?.webUrl)
         } catch (error) {
             console.error(error)
             throw new Error(error?.message);
@@ -211,9 +221,6 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                     const existingCheckout = await client.checkout.fetch(
                         existingCheckoutID
                     )
-                    console.info('existingCheckout',
-                        existingCheckout
-                    )
                     if (!existingCheckout?.completedAt && existingCheckout?.completedAt == null) {
                         setCheckoutItem(existingCheckout)
                         const lineItems = JSON.parse(JSON.stringify(existingCheckout.lineItems));
@@ -231,7 +238,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 } catch (e) {
                     setLoading(false)
                     sessionStorage.setItem("checkout", null)
-                    console.info('e', e)
+                    console.info('error', e)
                     throw new Error("Shopify API - Failed to get Checkout");
                 }
             }

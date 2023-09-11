@@ -37,7 +37,6 @@ export const Decision = () => {
                 currentCustomTemplate?.backgroundSettings?.background?.file?.name === "forged-carbon" || 
                     currentCustomTemplate?.backgroundSettings?.background?.file?.name === "carbon-fiber" || currentCustomTemplate?.backgroundSettings?.background?.file?.name === 'black-plate'
         ){
-            console.info('presetCharacterColor');
             return updateStep?.(
                 3, 
                 'presetCharacterColor',
@@ -50,7 +49,6 @@ export const Decision = () => {
             currentCustomTemplate?.backgroundSettings?.background?.enabled 
                 && currentCustomTemplate?.backgroundSettings?.background?.file?.hasColor
         ){
-            console.info('presetBgImageColor');
             return updateStep?.(
                 3, 
                 'presetBgImageColor',
@@ -59,7 +57,6 @@ export const Decision = () => {
                 'Background Image'
             )
         }
-        console.info('presetBgColor');
         return updateStep?.(
                     3,
                     'presetBgColor',

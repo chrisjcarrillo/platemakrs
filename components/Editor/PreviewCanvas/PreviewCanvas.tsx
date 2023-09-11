@@ -43,12 +43,7 @@ const PreviewCanvas = (
     const { template } = props;
 
     const previewCanvasRef = useRef();
-
-    console.info(
-        'templateTest',
-        template
-    )
-
+    
     return (
         <div
             className="previewCanvas__main-container"

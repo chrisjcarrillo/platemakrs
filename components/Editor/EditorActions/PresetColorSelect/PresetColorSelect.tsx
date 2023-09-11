@@ -31,7 +31,6 @@ export const PresetColorSelect = (
                 })
                 break;
             case 'mainLogo': 
-            console.info('current', currentCustomTemplate?.mainLogo)
                 updateCustomTemplateSelection?.('mainLogo', {
                     ...currentCustomTemplate?.mainLogo,
                     url: `${currentCustomTemplate?.mainLogo?.filePath}/${value}.${currentCustomTemplate.mainLogo?.imageType}`,

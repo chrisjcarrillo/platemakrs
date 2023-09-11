@@ -289,14 +289,11 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         try {
             setLoading(true);
             const templateType = customPresetTemplate ? staticTemplates : premadeTemplates;
-            const templateFilter = templateType?.filter(
-                template => template?.shopifyHandle === handle
-            );
-
+            const templateFilter = templateType?.filter( template => template?.shopifyHandle === handle );
+            
             const customTemplate = templateFilter[0] as ICustomPlateTemplate;
 
             if (!customPresetTemplate && customTemplate) {
-                console.info('Template Type: Preset')
                 setCurrentTemplate(template => ({
                     ...template,
                     ...customTemplate
@@ -311,7 +308,6 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 sessionStorage.setItem('preset', 'true')
                 router.push(`/editor?presetTemplate=${customTemplate?.templateId}&step=1&preset=true`)
             } else {
-                console.info('Template Type: Custom')
                 setShowPreview(true)
                 setCurrentTemplate(template => ({
                     ...template,

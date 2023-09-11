@@ -2606,7 +2606,6 @@ export const handleActions = (
             // Bottom Logo Move
             if (currentEditorStep?.currentSubStep === "presetBottomLogoMove") {
                 if (currentCustomTemplate?.backgroundLogo?.enabled) {
-                    console.info('im here');
                     if (currentCustomTemplate?.backgroundLogo?.hasColor) {
                         return {
                             step: CURRENT_STEP,
