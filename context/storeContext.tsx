@@ -97,6 +97,8 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 currentCustomTemplate?.id,
                 downloadUrl
             )
+
+            window.location.replace(checkout?.webUrl)
         } catch (error) {
             console.log(error)
         }
@@ -153,7 +155,6 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 lineItemsToUpdate
             );
             setCart(JSON.parse(JSON.stringify(checkoutResponse.lineItems)));
-            window.location.replace(checkout?.webUrl)
         } catch (error) {
             console.error(error)
             throw new Error(error?.message);
