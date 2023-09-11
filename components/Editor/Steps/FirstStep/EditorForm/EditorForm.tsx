@@ -185,9 +185,9 @@ const EditorForm = (props: any) => {
                                 <FormItem
                                     name="plateNumber"
                                     hasFeedback
-                                    label="Enter your license plate character"
+                                    label="Enter your license plate letters"
                                     rules={[
-                                        { required: true, message: 'License Plate characted are required' },
+                                        { required: true, message: 'License Plate letters are required' },
                                         { pattern: regex, message: "Only authorized characters are letters, spaces, numbers and -" }
                                     ]}
                                     tooltip={
@@ -215,7 +215,7 @@ const EditorForm = (props: any) => {
                                         maxLength={8}
                                         ref={inputRef}
                                         onChange={(e) => licensePlateValidtor(e)}
-                                        placeholder='Enter your license plate characters...'
+                                        placeholder='Enter your license plate letters...'
                                     />
                                 </FormItem>
                             </Col>
@@ -277,7 +277,7 @@ const EditorForm = (props: any) => {
                                     name="platePosition"
                                     hasFeedback
                                     label="License Plate Position"
-                                    rules={[{ required: true, message: 'License Plate Position is required' }]}
+                                    rules={[{ required: true, message: 'License Plate Letter Position is required' }]}
                                 >
                                     <Select
                                         disabled={!form.getFieldValue('plateNumber')}
