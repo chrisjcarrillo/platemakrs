@@ -57,6 +57,10 @@ const TemplateCanvas = (
         try {
             window.devicePixelRatio = 5;
             const canvas = await html2canvas(node, {
+                useCORS: true,
+                // foreignObjectRendering: true,
+                // crossOrigin: 'anonymous',
+                // allowTaint: true,
                 scale: 5
             })
             const croppedCanvas = document.createElement('canvas')

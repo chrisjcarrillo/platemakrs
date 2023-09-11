@@ -38,7 +38,7 @@ export const Logo = (props: ILogo) => {
         return currentCustomTemplate?.mainLogo?.url
     }
 
-    const [image] = useImage(imageSource() ?? '');
+    const [image] = useImage(imageSource() ?? '', 'anonymous');
 
     const imageRef = useRef<any>();
     const transformerRef = useRef<any>();
@@ -138,6 +138,7 @@ export const Logo = (props: ILogo) => {
                             draggable
                         >
                             <Image
+                            
                                 key={1}
                                 ref={imageRef}
                                 image={image}

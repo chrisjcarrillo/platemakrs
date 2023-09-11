@@ -11,10 +11,10 @@
         margin-left: auto;
         margin-right: auto;
         z-index: 10;
-        top: 30%;
+        top: 8%;
         @media screen and (max-width: 414px) {
             // top: 15%;
-            top: 6%;
+            top: 5%;
         }
     }
     &-img{
@@ -50,8 +50,21 @@
         &-button{
             text-align: center;
             margin: 2rem;
+            @media screen and (max-width: 768px) {
+                margin: 0;
+                display: flex;
+                flex-flow: column;
+                a{
+                    width: 50% !important;
+                    margin-left: auto !important;
+                    margin-right: auto !important;
+                    margin-bottom: 5px;
+                }
+            }
             @media screen and (max-width: 414px) {
-                margin: 1rem;
+                // margin: 1rem;
+                display: flex;
+                flex-flow: column;
             }
         }
         // padding: 10rem;

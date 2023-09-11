@@ -3,7 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: [
-      'cdn.shopify.com'
+      'cdn.shopify.com',
+      'firebasestorage.googleapis.com'
     ],
   },
   typescript: {

@@ -660,7 +660,8 @@ export const premadeTemplates = [
                 enabled: false
             },
             stroke: {
-                enabled: false,
+                enabled: true,
+                color: "#000000"
             },
         },
         plateNumber: {
@@ -672,7 +673,8 @@ export const premadeTemplates = [
                 enabled: false
             },
             stroke: {
-                enabled: false,
+                enabled: true,
+                color: "#000000"
             },
         },
         bottomText: {
@@ -684,7 +686,8 @@ export const premadeTemplates = [
                 enabled: false
             },
             stroke: {
-                enabled: false
+                enabled: true,
+                color: "#000000"
             },
         }
     }, //MCLAREN - [NOT Done]
