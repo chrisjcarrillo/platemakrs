@@ -127,7 +127,7 @@ export const BackgroundLogo = (props: ILogo) => {
                 `logo-bg__container`
             }
             style={moveBackgroundLogo ?
-                { zIndex: 7 } : {}
+                { zIndex: 40 } : {}
             }
         >
             <Stage
