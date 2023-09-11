@@ -31,6 +31,7 @@ export const PreviewModal = (
         setLoading(true)
         setTimeout(
             () => {
+                confirmPreview?.();
                 setPreset(false);
                 setLoading(false)
                 setShowPreview(false)

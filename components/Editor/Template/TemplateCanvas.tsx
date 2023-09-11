@@ -62,7 +62,7 @@ const TemplateCanvas = (
             const croppedCanvas = document.createElement('canvas')
             const croppedCanvasContext = croppedCanvas.getContext('2d')
             croppedCanvasContext?.scale(5, 5)
-            // init data
+            
             const cropPositionTop = 0
             const cropPositionLeft = 0
             let cropWidth = canvas.width * 5;

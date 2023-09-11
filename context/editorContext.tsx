@@ -228,8 +228,21 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
 
     const confirmPreview = async () => {
         try {
-            setStepLoading(true);
-            setLoading(true);
+            const createCustomTemplate = await createTemplateFirebase(
+                currentCustomTemplate
+            );
+            if (createCustomTemplate) {
+                sessionStorage.setItem(
+                    'customTemplateId',
+                    createCustomTemplate?.id
+                ); // Save the id in case of reload
+
+                setCurrentCustomTemplate(template => ({
+                    ...template,
+                    ...currentCustomTemplate,
+                    id: createCustomTemplate?.id
+                }))
+            }
         } catch (error) {
             updateStep(2)
         } finally {
@@ -238,7 +251,6 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                     setLoading(false)
                     setShowPreview(false)
                     setStepLoading(false)
-                    updateStep(3)
                 },
                 3000
             )

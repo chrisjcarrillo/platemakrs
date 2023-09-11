@@ -68,7 +68,6 @@ export const TemplateList = (props: any) => {
                                     template.handle,
                                     template.variants,
                                     props?.customTemplate
-                                    // `gid://shopify/ProductVariant/${template?.objectID}`
                                 )
                             }
                         >
