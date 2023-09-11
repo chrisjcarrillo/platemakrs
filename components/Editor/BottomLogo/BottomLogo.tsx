@@ -77,7 +77,7 @@ export const BottomLogo = (props: ILogo) => {
                 `logo-bottom__container`
             }
             style={moveBottomLogo ?
-                { zIndex: 10 } : {}
+                { zIndex: 35 } : {}
             }
         >
             <Stage

@@ -125,7 +125,7 @@ export const Logo = (props: ILogo) => {
                 `logo__container`
             }
             style={ moveLogo ? 
-                { zIndex: 7 } : {}
+                { zIndex: 30 } : {}
             }
         >
             <Stage            
