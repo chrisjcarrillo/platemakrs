@@ -99,28 +99,28 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
     }, [isPreset])
 
 
-    useEffect(() => {
-        if(finalDesign){
-            const uploadDesign = async () => {
-                try {
-                    const storage = getStorage();
-                    const id = sessionStorage.getItem('customTemplateId');
-                    const storageRef = ref(storage, `customTemplates/${id}/design-preview/test`); // Create storage reference
-                    const upload = await uploadString( storageRef, finalDesign, 'data_url', {
-                            contentType: 'image/png'
-                        }
-                    );
-                    const downloadUrl = await getDownloadURL(upload.ref)
-                    setDesignUrl(downloadUrl);
-                    console.log(designUrl);
-                } catch (error) {
-                    console.log(error)
-                }
+    // useEffect(() => {
+    //     if(finalDesign){
+    //         const uploadDesign = async () => {
+    //             try {
+    //                 const storage = getStorage();
+    //                 const id = sessionStorage.getItem('customTemplateId');
+    //                 const storageRef = ref(storage, `customTemplates/${id}/design-preview/test`); // Create storage reference
+    //                 const upload = await uploadString( storageRef, finalDesign, 'data_url', {
+    //                         contentType: 'image/png'
+    //                     }
+    //                 );
+    //                 const downloadUrl = await getDownloadURL(upload.ref)
+    //                 setDesignUrl(downloadUrl);
+    //                 console.log(designUrl);
+    //             } catch (error) {
+    //                 console.log(error)
+    //             }
                 
-            }
-            uploadDesign();            
-        }
-    }, [finalDesign])
+    //         }
+    //         uploadDesign();            
+    //     }
+    // }, [finalDesign])
 
 
     return (
