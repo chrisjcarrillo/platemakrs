@@ -107,9 +107,6 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                     customAttributes: [
                         {
                             key: "Order ID", value: `${customTemplateId}`, // Template of Preset
-                        },
-                        {
-                            key: 'Preview:', value: designUrl,
                         }
                     ]
                 },
@@ -129,9 +126,6 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                     customAttributes: [
                         {
                             key: "Order ID", value: `${customTemplateId}`, // Template of Preset
-                        },
-                        {
-                            key: 'Preview:', value: designUrl,
                         }
                     ]
                 }
