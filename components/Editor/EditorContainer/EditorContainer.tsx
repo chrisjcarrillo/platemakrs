@@ -18,12 +18,6 @@ export const EditorContainer = (props:{
     presetTemplate?: boolean
 }) => {
     // This Will contain all EditorActionCards
-
-    const {
-        checkout,
-        redirectCheckout
-    } = useContext(StoreContext) as StoreContextType;
-
     const {
         currentLicensePlate,
         currentEditorStep,

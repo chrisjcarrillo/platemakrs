@@ -15,7 +15,6 @@ export const PlaceOrder = (props:{
     const [terms, setTerms] = useState<boolean>(false);
 
     const {
-        checkout,
         redirectCheckout,
         hasDesigner,
         acceptTerms,

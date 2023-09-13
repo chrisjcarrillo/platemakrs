@@ -227,10 +227,9 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             setLoading(true);
             const templateType = customPresetTemplate ? staticTemplates : premadeTemplates;
             const templateFilter = templateType?.filter( template => template?.shopifyHandle === handle );
-            
             const customTemplate = templateFilter[0] as ICustomPlateTemplate;
 
-            if (!customPresetTemplate && customTemplate) {
+            if (!customPresetTemplate) {
                 setCurrentTemplate(template => ({
                     ...template,
                     ...customTemplate
@@ -255,8 +254,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                     ...template,
                     ...customTemplate,
                     shopifyVariants: variant,
-                    selectedVariant: variant[1],
-                    template: customTemplate
+                    selectedVariant: variant[1]
                 }))
                 if (sessionStorage.getItem('preset')) sessionStorage.removeItem('preset')
                 router.push(`/editor?presetTemplate=${customTemplate?.templateId}&step=1`)

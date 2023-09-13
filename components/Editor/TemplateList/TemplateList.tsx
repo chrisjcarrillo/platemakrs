@@ -64,7 +64,7 @@ export const TemplateList = (props: any) => {
                             {...columnSettings}
                             className={`templatePreview__column animate__animated animate__fadeIn`}
                             onClick={
-                                e => selectPresetTemplate?.(
+                                () => selectPresetTemplate?.(
                                     template.handle,
                                     template.variants,
                                     props?.customTemplate
@@ -87,7 +87,7 @@ export const TemplateList = (props: any) => {
                                 <div className="templatePreview__badge">
                                     {
                                         (template?.title?.includes('Miami') || template?.title?.includes('Dolphins') || template?.title?.includes('Panthers')) &&
-                                        <Badge className="templatePreview__badge-details" count="All Teams Available" />
+                                            <Badge className="templatePreview__badge-details" count="All Teams Available" />
 
                                     }
 

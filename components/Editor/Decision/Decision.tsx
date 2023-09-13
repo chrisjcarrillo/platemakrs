@@ -24,9 +24,7 @@ export const Decision = () => {
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const {
-        redirectCheckout,
-        cart,
-        checkout
+        redirectCheckout
     } = useContext(StoreContext) as StoreContextType;
 
     // If carbon fiber/hexagon are in the template go directly to plate characters
