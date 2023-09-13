@@ -21,31 +21,31 @@ export const PresetColorSelect = (
             case 'detailLogo2':
                 updateCustomTemplateSelection?.('detailLogo2', {
                     ...currentCustomTemplate?.detailLogo2,
-                    url: `${currentCustomTemplate?.detailLogo2?.filePath}/${value}.${currentCustomTemplate.detailLogo2?.imageType}`,
+                    url: `${currentCustomTemplate?.detailLogo2?.filePath}/${value}.${currentCustomTemplate?.detailLogo2?.imageType}`,
                 })
                 break;
             case 'detailLogo1':
                 updateCustomTemplateSelection?.('detailLogo1', {
                     ...currentCustomTemplate?.detailLogo1,
-                    url: `${currentCustomTemplate?.detailLogo1?.filePath}/${value}.${currentCustomTemplate.detailLogo1?.imageType}`,
+                    url: `${currentCustomTemplate?.detailLogo1?.filePath}/${value}.${currentCustomTemplate?.detailLogo1?.imageType}`,
                 })
                 break;
             case 'mainLogo': 
                 updateCustomTemplateSelection?.('mainLogo', {
                     ...currentCustomTemplate?.mainLogo,
-                    url: `${currentCustomTemplate?.mainLogo?.filePath}/${value}.${currentCustomTemplate.mainLogo?.imageType}`,
+                    url: `${currentCustomTemplate?.mainLogo?.filePath}/${value}.${currentCustomTemplate?.mainLogo?.imageType}`,
                 })
                 break;
             case 'bottomLogo':
                 updateCustomTemplateSelection?.('bottomLogo', {
                     ...currentCustomTemplate?.bottomLogo,
-                    url: `${currentCustomTemplate?.bottomLogo?.filePath}/${value}.${currentCustomTemplate.bottomLogo?.imageType}`,
+                    url: `${currentCustomTemplate?.bottomLogo?.filePath}/${value}.${currentCustomTemplate?.bottomLogo?.imageType}`,
                 })
                 break;
             case 'backgroundLogo':
                 updateCustomTemplateSelection?.('backgroundLogo', {
                     ...currentCustomTemplate?.backgroundLogo,
-                    url: `${currentCustomTemplate?.backgroundLogo?.filePath}/${value}.${currentCustomTemplate.backgroundLogo?.imageType}`,
+                    url: `${currentCustomTemplate?.backgroundLogo?.filePath}/${value}.${currentCustomTemplate?.backgroundLogo?.imageType}`,
                 })
                 break;
             case 'backgroundSetting': 

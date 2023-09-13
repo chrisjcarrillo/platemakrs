@@ -107,14 +107,12 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
     useEffect(() => {
         if (typeof window !== "undefined") {
             let data = window.performance.getEntriesByType("navigation")[0].type;
-            console.log(data);
             const query = new URLSearchParams(window.location.search);
             if (data === 'reload' && query.get('preset')) {
                 const initProduct = async () => {
                     try {
                         setLoading(true);
-                        // TODO
-                        // - [DONE] Add logic if it’s a preset to save in sessionStorage on select 
+                        
                         const templateFilter = premadeTemplates.filter(
                             template => template?.templateId === query.get('presetTemplate')
                         );
@@ -151,80 +149,6 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             }
         }
     }, [])
-
-    ///// START: Custom Template Functions /////
-    // const createCustomTemplate = async (
-    //     templateId: string,
-    //     variant?: any
-    // ) => {
-    //     try {
-    //         setStepLoading(true);
-    //         setLoading(true);
-
-    //         const templateFilter = staticTemplates.filter(
-    //             template => template?.templateId === templateId
-    //         );
-
-    //         const customTemplate = templateFilter[0] as unknown as ICustomPlateTemplate;
-
-    //         const uploadToFirebase = await createTemplateFirebase(
-    //             customTemplate
-    //         );
-
-    //         if (uploadToFirebase) {
-    //             sessionStorage.setItem(
-    //                 'customTemplateId', uploadToFirebase?.id ?? customTemplate?.id
-    //             ); // Save the id in case of reload
-
-    //         }
-
-    //         if (customTemplate) {
-    //             setCurrentTemplate(template => ({
-    //                 ...template,
-    //                 ...customTemplate
-    //             }))
-
-    //             setCurrentCustomTemplate(template => ({
-    //                 ...template,
-    //                 ...customTemplate,
-    //                 id: uploadToFirebase?.id,
-    //                 shopifyVariants: variant
-    //             }))
-    //         }
-
-    //         addVariant(
-    //             currentCustomTemplate?.selectedVariant?.id,
-    //             uploadToFirebase?.id
-    //         )
-
-    //         setTimeout(() => {
-    //             messageApi.open({
-    //                 key,
-    //                 type: 'success',
-    //                 content: 'Template Added!',
-    //                 duration: 1,
-    //             })
-    //         }, 3000);
-    //         return;
-    //     } catch (error) {
-    //         messageApi.open({
-    //             type: 'error',
-    //             content: `Error: ${error}`,
-    //         })
-    //         updateStep(2)
-    //     } finally {
-    //         setTimeout(
-    //             () => {
-    //                 setLoading(false)
-    //                 setShowPreview(false)
-    //                 setStepLoading(false)
-    //                 updateStep(3)
-    //             },
-    //             3000
-    //         )
-
-    //     }
-    // }
 
     const confirmPreview = async () => {
         try {
@@ -320,6 +244,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 }))
                 sessionStorage.setItem('preset', 'true')
                 router.push(`/editor?presetTemplate=${customTemplate?.templateId}&step=1&preset=true`)
+                
             } else {
                 setShowPreview(true)
                 setCurrentTemplate(template => ({
@@ -343,6 +268,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         }
         setLoading(false);
     }
+    
     ///// END: Template Functions //////
 
     ///// START: License Plate Functions /////

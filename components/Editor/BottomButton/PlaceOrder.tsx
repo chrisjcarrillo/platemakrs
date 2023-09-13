@@ -276,13 +276,12 @@ export const PlaceOrder = (props:{
                     </Row>
                     <Row className={`placeOrder__row-order g-2`}>
                         <Col {...placeOrderCols} className={`placeOrder__action`}>
-                            <Button
-                                disabled={acceptTerms ? false : true}
-                                className={`placeOrder__button`}
+                            <a
+                                className={`placeOrder__button ${acceptTerms ? '' : 'disabled' }`}
                                 onClick={() => redirectCheckout?.(currentCustomTemplate, false)}
                             >
                                 Place Order
-                            </Button>
+                            </a>
                         </Col>
                     </Row>
                 </Container>

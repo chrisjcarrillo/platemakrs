@@ -1,6 +1,10 @@
 import React, {
-    createContext, useState, useEffect
+    createContext, useState, useEffect, useContext
 } from 'react';
+
+import { ref, uploadBytes, getDownloadURL, getStorage, deleteObject, uploadString } from 'firebase/storage';
+import { EditorContext, EditorContextType } from './editorContext';
+
 
 interface IStoreProps {
     children: React.ReactNode
@@ -45,6 +49,8 @@ export type InterfaceContextType = {
 
     isPreset?: boolean;
     setPreset: (type: boolean) => void;
+
+    designUrl: string;
 }
 
 export const InterfaceContext = createContext<InterfaceContextType | null>(null);
@@ -74,7 +80,8 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
     const [moveDetail2, setMoveDetail2] = useState<boolean>(false) // Move Detail 1
     // MOVEABLES
 
-    const [finalDesign, takeDesignScreenshot] = useState<any>(null);
+    const [finalDesign, takeDesignScreenshot] = useState<string | undefined>(undefined);
+    const [designUrl, setDesignUrl] = useState<string | undefined>(undefined);
 
     const [isPreset, setPreset] = useState<boolean>(false)
 
@@ -90,6 +97,31 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
             setPreset(true);
         }
     }, [isPreset])
+
+
+    useEffect(() => {
+        if(finalDesign){
+            const uploadDesign = async () => {
+                try {
+                    const storage = getStorage();
+                    const id = sessionStorage.getItem('customTemplateId');
+                    const storageRef = ref(storage, `customTemplates/${id}/design-preview/test`); // Create storage reference
+                    const upload = await uploadString( storageRef, finalDesign, 'data_url', {
+                            contentType: 'image/png'
+                        }
+                    );
+                    const downloadUrl = await getDownloadURL(upload.ref)
+                    setDesignUrl(downloadUrl);
+                    console.log(designUrl);
+                } catch (error) {
+                    console.log(error)
+                }
+                
+            }
+            uploadDesign();            
+        }
+    }, [finalDesign])
+
 
     return (
         <InterfaceContext.Provider
@@ -131,7 +163,9 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
                 setPreset,
                 
                 finalDesign, 
-                takeDesignScreenshot
+                takeDesignScreenshot,
+
+                designUrl
 
             }}
         >

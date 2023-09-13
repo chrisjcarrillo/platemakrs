@@ -83,6 +83,9 @@
     }
 
     &__button {
+        display: block;
+        padding: 0.85rem 0.5rem;
+        text-decoration: none;
         font-family: 'Poppins', sans-serif !important;
         background-color: #FFD800;
         border-radius: 20px;
@@ -93,9 +96,12 @@
         font-weight: 700;
         text-transform: uppercase;
         align-self: center;
-        &:disabled{
+        &.disabled{
             color: #ffffff;
             background-color: #000000;
+            pointer-events: none !important;
+            border: 1px solid #ffffff;
+            cursor: not-allowed;
         }
         &-final{
             font-family: 'Poppins', sans-serif !important;

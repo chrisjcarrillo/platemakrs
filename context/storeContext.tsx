@@ -5,8 +5,6 @@ import Client from 'shopify-buy';
 import { InterfaceContext, InterfaceContextType } from './interfaceContext';
 import { useRouter } from 'next/navigation'
 import { ICustomPlateTemplate } from '../interfaces/customTemplate.interface';
-import { ref, uploadBytes, getDownloadURL, getStorage, deleteObject, uploadString } from 'firebase/storage';
-
 
 interface IStoreProps {
     children: React.ReactNode
@@ -37,7 +35,7 @@ export type StoreContextType = {
     redirectCheckout: (currentCustomTemplate: ICustomPlateTemplate, canvasRef?: any) => void;
 }
 
-export const client = Client.buildClient({
+export const client = Client?.buildClient({
     domain: 'platemakrs.myshopify.com',
     storefrontAccessToken: '2d259727a1658a93c475677f3591d3bf',
     apiVersion: '2023-07'
@@ -49,9 +47,9 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
     const router = useRouter();
 
     const {
-        loading,
         setLoading,
-        finalDesign
+        finalDesign,
+        designUrl
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const [cart, setCart] = useState([])
@@ -82,41 +80,23 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
             if (isCheckout) {
                 window.location.replace(checkout?.webUrl)
             } else {
-                // const queryParams = new URLSearchParams(window.location.search);
-                const storage = getStorage();
-                const storageRef = ref(storage, `customTemplates/${currentCustomTemplate?.id}/design-preview/test`); // Create storage reference
-
-                const upload = await uploadString(
-                    storageRef,
-                    finalDesign,
-                    'data_url',
-                    {
-                        contentType: 'image/png'
-                    }
-                );
-
-                const downloadUrl = await getDownloadURL(upload.ref)
-
                 addVariant(
                     currentCustomTemplate?.selectedVariant?.id,
                     currentCustomTemplate?.id,
-                    downloadUrl
                 )
+                window.location.replace(checkout?.webUrl)
             }
 
         } catch (error) {
             console.log(error)
             setLoading(false)
-        } finally {
-            window.location.replace(checkout?.webUrl)
         }
     }
 
     // Variants START
     const addVariant = async (
         variantId?: any,
-        customTemplateId?: string,
-        preview?: string,
+        customTemplateId?: string
     ) => {
         try {
             const checkoutId = checkout?.id;
@@ -129,7 +109,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                             key: "Order ID", value: `${customTemplateId}`, // Template of Preset
                         },
                         {
-                            key: "preview", value: `${preview}`, // Template of Preset
+                            key: 'Preview:', value: designUrl,
                         }
                     ]
                 },
@@ -151,20 +131,20 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                             key: "Order ID", value: `${customTemplateId}`, // Template of Preset
                         },
                         {
-                            key: "preview", value: `${preview}`, // Template of Preset
-                        },
+                            key: 'Preview:', value: designUrl,
+                        }
                     ]
                 }
             ]
 
-            const checkoutResponse = await client.checkout.addLineItems(
+            const checkoutResponse = await client?.checkout?.addLineItems(
                 checkoutId,
                 lineItemsToUpdate
             );
             setCart(JSON.parse(JSON.stringify(checkoutResponse.lineItems)));
-        } catch (error) {
-            console.error(error)
-            throw new Error(error?.message);
+        } catch (e) {
+            console.error(e)
+            throw new Error(e)
         } finally {
             console.info('System [Done]:', 'Finished adding Products to Cart')
         }
@@ -181,7 +161,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                     variantId: item.variant.id
                 }
             ]
-            const removeItem = await client.checkout.updateLineItems(
+            const removeItem = await client?.checkout?.updateLineItems(
                 checkoutId,
                 itemRemove
             );
@@ -208,7 +188,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                     variantId: item.variant.id
                 }
             ]
-            const updateItem = await client.checkout.updateLineItems(
+            const updateItem = await client?.checkout?.updateLineItems(
                 checkoutId,
                 itemRemove
             );
@@ -226,7 +206,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
             let itemArray;
             if (existingCheckoutID && existingCheckoutID !== "null") {
                 try {
-                    const existingCheckout = await client.checkout.fetch(
+                    const existingCheckout = await client?.checkout?.fetch(
                         existingCheckoutID
                     )
                     if (!existingCheckout?.completedAt && existingCheckout?.completedAt == null) {
@@ -238,7 +218,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                         setLoading(false)
                         return;
                     } else {
-                        const newCheckout = await client.checkout.create();
+                        const newCheckout = await client?.checkout?.create();
                         setCheckoutItem(newCheckout)
                         setLoading(false)
                         return;
@@ -250,7 +230,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                     throw new Error("Shopify API - Failed to get Checkout");
                 }
             }
-            const newCheckout = await client.checkout.create();
+            const newCheckout = await client?.checkout?.create();
             setCheckoutItem(newCheckout)
             setLoading(false)
         }

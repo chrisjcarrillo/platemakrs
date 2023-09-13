@@ -91,7 +91,9 @@ const TemplateCanvas = (
     useEffect(() => {
         if (acceptTerms) {
             setImagePreview(canvasRef.current)
-            if(finalDesign){}
+        } else {
+            console.info('screenshot is undefined');
+            takeDesignScreenshot?.(undefined)
         }
     }, [acceptTerms])
 
