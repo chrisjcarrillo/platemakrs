@@ -191,7 +191,7 @@ const Contact = () => {
                 >
                     <Col>
                         <a
-                            href="https://www.google.com/maps/dir/26.0236326,-80.1540117/Platemakrs/@26.0182082,-80.1555151,16z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x88d9ab310c7e770b:0xa17dbd0dd84738ad!2m2!1d-80.1471788!2d26.0126495?hl=en"
+                            href="https://www.google.com/maps/place/4023+NE+6th+Ave,+Oakland+Park,+FL+33334/data=!4m2!3m1!1s0x88d9022a46870a57:0xb46a309cf01ea943?sa=X&ved=2ahUKEwj13K72naqBAxWiRjABHem8CZoQ8gF6BAgSEAA&ved=2ahUKEwj13K72naqBAxWiRjABHem8CZoQ8gF6BAgaEAI"
                             style={{
                                 color: 'white',
                                 textDecoration: 'none'
@@ -202,9 +202,8 @@ const Contact = () => {
                                 textDecoration: 'underline'
                             }}>
                             <br></br>
-                            2001 Tyler St, 
-                            <br></br>Suite #7
-                            <br></br>Hollywood, FL 33020
+                            4023 NE 6th Ave 
+                            <br></br>Oakland Park, FL 33334
                             </span>
                         </a>
                     </Col>
