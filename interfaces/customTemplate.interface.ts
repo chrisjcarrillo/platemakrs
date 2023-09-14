@@ -1,4 +1,4 @@
-import { ITemplate } from "./template.interface";
+// import { ITemplate } from "./template.interface";
 import { IShopifyVariant } from "./shopify/variants.interface";
 import {
     ICustomFont, 
@@ -28,7 +28,7 @@ export interface ICustomPlateTemplate{
     originalColor?: string;
 
     finish?: 'MATTE' | 'GLOSS'; // Finish Type
-    template?: ITemplate; // Inital Template
+    // template?: ITemplate; // Inital Template
     font?: ICustomFont; // Font
 
     // Design Settings

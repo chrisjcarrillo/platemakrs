@@ -70,7 +70,7 @@ export const Cart = () => {
                                         )
                                     })) }
                                     {/* Should Contain attributes (Below Title) */}
-                                    <a className="cart__product-attributes-remove" onClick={() => removeVariant(item)}>remove</a>
+                                    <a className="cart__product-attributes-remove" onClick={() => removeVariant(item, false)}>remove</a>
                                     {/* Should Contain Remove Button */}
                                 </div>
                                 <div className='cart__product-price'>

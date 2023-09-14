@@ -23,7 +23,6 @@ export const Switcher = (
     } = useContext(EditorContext) as EditorContextType;
 
     const updateSwitch = (type: any, value: any) => {
-        console.log(value)
         switch (type) {
             case "backgroundStrokeEnabled":
                 updateCustomTemplateSelection?.('backgroundSettings', {

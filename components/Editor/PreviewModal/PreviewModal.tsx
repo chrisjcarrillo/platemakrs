@@ -20,7 +20,6 @@ export const PreviewModal = (
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const {
-        currentTemplate,
         currentCustomTemplate,
         confirmPreview,
         updateStep

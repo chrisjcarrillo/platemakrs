@@ -6,10 +6,10 @@ import { StoreContext, StoreContextType } from "../../../../context/storeContext
 import type { RadioChangeEvent } from 'antd';
 
 export const AddonSwitch = () => {
-
+    
     const {
         hasDesigner,
-        setHasDesigner
+        setHasDesigner,
     } = useContext(StoreContext) as StoreContextType;
 
     const onChange = (e: RadioChangeEvent) => {

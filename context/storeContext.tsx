@@ -24,12 +24,15 @@ export type StoreContextType = {
     // Variant
     addVariant: (
         variantId?: any,
-        licensePlateId?: string,
         customTemplateId?: string
     ) => void;
+    
     removeVariant: (
-        any?: any
+        any?: any, boolean?: boolean
     ) => void;
+
+    addon?: any; 
+    setAddon?: (e: any) => void;
 
     // Checkout
     redirectCheckout: (currentCustomTemplate: ICustomPlateTemplate, canvasRef?: any) => void;
@@ -53,6 +56,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const [cart, setCart] = useState([])
+    const [addon, setAddon] = useState(undefined);
     const [checkout, setCheckout] = useState({})
     const [showCart, setShowCart] = useState(false);
     const [hasDesigner, setHasDesigner] = useState(false);
@@ -84,12 +88,10 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                     currentCustomTemplate?.selectedVariant?.id,
                     currentCustomTemplate?.id,
                 )
-                window.location.replace(checkout?.webUrl)
             }
 
         } catch (error) {
             console.log(error)
-            setLoading(false)
         }
     }
 
@@ -107,11 +109,14 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                     customAttributes: [
                         {
                             key: "Order ID", value: `${customTemplateId}`, // Template of Preset
+                        },
+                        {
+                            key: "Preview", value: `${designUrl}`, // Template of Preset
                         }
                     ]
                 },
                 {
-                    variantId: 'gid://shopify/ProductVariant/46836862648621',
+                    variantId: addon?.variants[0]?.id,
                     quantity: 1,
                     customAttributes: [
                         {
@@ -126,35 +131,33 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                     customAttributes: [
                         {
                             key: "Order ID", value: `${customTemplateId}`, // Template of Preset
+                        },
+                        {
+                            key: "Preview", value: `${designUrl}`, // Template of Preset
                         }
                     ]
                 }
             ]
-
             const checkoutResponse = await client?.checkout?.addLineItems(
                 checkoutId,
                 lineItemsToUpdate
             );
             setCart(JSON.parse(JSON.stringify(checkoutResponse.lineItems)));
+            window.location.replace(checkout?.webUrl)
         } catch (e) {
             console.error(e)
             throw new Error(e)
-        } finally {
-            console.info('System [Done]:', 'Finished adding Products to Cart')
         }
     }
 
-    const removeVariant = async (item?: any) => {
+    const removeVariant = async (item?: any, isAddon?: boolean) => {
         try {
-            // setCartLoading(true);
             const checkoutId = checkout?.id;
-            const itemRemove = [
-                {
+            const itemRemove = [{
                     id: item.id,
                     quantity: 0,
-                    variantId: item.variant.id
-                }
-            ]
+                    variantId: item?.variant?.id
+            }]
             const removeItem = await client?.checkout?.updateLineItems(
                 checkoutId,
                 itemRemove
@@ -170,27 +173,6 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         }
     }
     // Variants END
-
-    const updateLineItemFromCart = async (item: any, type: any, inputQuantity: any) => {
-        try {
-            const checkoutId = checkout?.id;
-            const quantitySum = type === 'add' ? parseInt(item.quantity + (1)) : type === 'subtract' ? parseInt(item?.quantity - (1)) : parseInt(inputQuantity)
-            const itemRemove = [
-                {
-                    id: item.id,
-                    quantity: quantitySum,
-                    variantId: item.variant.id
-                }
-            ]
-            const updateItem = await client?.checkout?.updateLineItems(
-                checkoutId,
-                itemRemove
-            );
-            setCart(JSON.parse(JSON.stringify(updateItem.lineItems)));
-        } catch (error) {
-            throw new Error("Shopify API - Update Ticket in Cart");
-        }
-    }
 
     useEffect(() => {
         setLoading(true)
@@ -208,7 +190,6 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                         const lineItems = JSON.parse(JSON.stringify(existingCheckout.lineItems));
                         itemArray = [...lineItems];
                         setCart(itemArray);
-                        // updateCheckoutWithId(existingCheckoutID);
                         setLoading(false)
                         return;
                     } else {
@@ -247,7 +228,10 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 acceptTerms,
                 setAcceptTerms,
 
-                redirectCheckout
+                redirectCheckout,
+
+                addon, 
+                setAddon
             }}
         >
             {children}

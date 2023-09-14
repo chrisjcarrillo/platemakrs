@@ -27,7 +27,6 @@ export const PresetActions = (
     const { step } = props;
 
     const {
-        currentTemplate,
         currentCustomTemplate
     } = useContext(EditorContext) as EditorContextType;
 

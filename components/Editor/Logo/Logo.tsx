@@ -1,19 +1,10 @@
-import React, { ReactElement, useContext, useEffect, useRef, useState } from "react"
+import React, { useContext, useEffect, useRef } from "react"
 import { EditorContext, EditorContextType } from "../../../context/editorContext";
-import { Stage, Layer, Image, Transformer, Group } from 'react-konva';
 import useImage from "use-image";
-import { ITemplate } from "../../../interfaces/template.interface";
 import { InterfaceContext, InterfaceContextType } from "../../../context/interfaceContext";
-import { renderToStaticMarkup } from 'react-dom/server';
-import Mercedes from "../../resources/cars/mercedes/logos/Mercedes";
-import { MiamiHeatBasketball } from "../../resources/sports/basketball/miami-heat/logos/miami-heat-basketball";
-import { PorscheSolid } from "../../resources/cars/porsche/logos/crest/PorscheSolid";
-import { AstonMartinLogo } from "../../resources/cars/aston-martin/logos/AstonMartinLogo";
-import { Cobra } from "../../resources/cars/ford/logos/Cobra";
-import { FerrariHorse } from "../../resources/cars/ferrari/logos/horse/FerrariHorse";
+import { Stage, Layer, Image, Transformer, Group } from 'react-konva';
 
 interface ILogo {
-    currentPreviewTemplate?: ITemplate
     canvasReference?: any;
     type?: 'PREVIEW' | 'CANVAS';
 }
@@ -56,10 +47,7 @@ export const Logo = (props: ILogo) => {
             imageRef?.current?.cache();        
         }
     }, [image]);
-
-    console.log(image);
-
-
+    
     const calculateInitialPosition = (
         calcType?: string
     ) => {

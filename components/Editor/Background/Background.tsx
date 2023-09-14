@@ -1,5 +1,4 @@
 import { Hexagon } from "../../shared/Hexagon/Hexagon";
-import { ITemplate } from "../../../interfaces/template.interface";  
 import { ICustomPlateTemplate } from "../../../interfaces/customTemplate.interface";
 import * as ReactDOMServer from 'react-dom/server';
 import { Pattern } from "../Pattern/Pattern";

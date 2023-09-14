@@ -47,55 +47,54 @@ const TemplateCanvas = (
     const {
         currentLicensePlate,
         currentCustomTemplate,
-        currentTemplate,
         currentEditorStep,
         updateStep,
     } = useContext(EditorContext) as EditorContextType;
 
     const { popupPreview } = props;
 
-    // const setImagePreview = async (node: any) => {
-    //     try {
-    //         window.devicePixelRatio = 5;
-    //         const canvas = await html2canvas(node, {
-    //             useCORS: true,
-    //             // foreignObjectRendering: true,
-    //             // crossOrigin: 'anonymous',
-    //             // allowTaint: true,
-    //             scale: 5
-    //         })
-    //         const croppedCanvas = document.createElement('canvas')
-    //         const croppedCanvasContext = croppedCanvas.getContext('2d')
-    //         croppedCanvasContext?.scale(5, 5)
+    const setImagePreview = async (node: any) => {
+        try {
+            window.devicePixelRatio = 5;
+            const canvas = await html2canvas(node, {
+                useCORS: true,
+                // foreignObjectRendering: true,
+                // crossOrigin: 'anonymous',
+                allowTaint: true,
+                scale: 5
+            })
+            const croppedCanvas = document.createElement('canvas')
+            const croppedCanvasContext = croppedCanvas.getContext('2d')
+            croppedCanvasContext?.scale(5, 5)
 
-    //         const cropPositionTop = 0
-    //         const cropPositionLeft = 0
-    //         let cropWidth = canvas.width * 5;
-    //         let cropHeight = canvas.height * 5;
+            const cropPositionTop = 0
+            const cropPositionLeft = 0
+            let cropWidth = canvas.width * 5;
+            let cropHeight = canvas.height * 5;
 
-    //         croppedCanvas.width = canvas.width
-    //         croppedCanvas.height = canvas.height
+            croppedCanvas.width = canvas.width
+            croppedCanvas.height = canvas.height
 
-    //         croppedCanvasContext?.drawImage(
-    //             canvas,
-    //             cropPositionLeft,
-    //             cropPositionTop,
-    //         )
-    //         const base64Image = croppedCanvas.toDataURL('image/jpeg', 1)
-    //         takeDesignScreenshot?.(base64Image)
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
+            croppedCanvasContext?.drawImage(
+                canvas,
+                cropPositionLeft,
+                cropPositionTop,
+            )
+            const base64Image = croppedCanvas.toDataURL('image/jpeg', 1)
+            takeDesignScreenshot?.(base64Image)
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
-    // useEffect(() => {
-    //     if (acceptTerms) {
-    //         setImagePreview(canvasRef.current)
-    //     } else {
-    //         console.info('screenshot is undefined');
-    //         takeDesignScreenshot?.(undefined)
-    //     }
-    // }, [acceptTerms])
+    useEffect(() => {
+        if (acceptTerms) {
+            setImagePreview(canvasRef.current)
+        } else {
+            console.info('screenshot is undefined');
+            takeDesignScreenshot?.(undefined)
+        }
+    }, [acceptTerms])
 
     const actionSettings = {
         xs: 2,
@@ -178,7 +177,7 @@ const TemplateCanvas = (
                                         disabled={
                                             currentEditorStep?.currentStep === 1
                                                 || currentEditorStep?.currentStep === 3
-                                                || currentEditorStep?.currentStep === 2 && currentTemplate === undefined ? true : false}
+                                                || currentEditorStep?.currentStep === 2 ? true : false}
                                         className="header__tools-right-forward-button"
                                         shape="circle"
                                         icon={<ArrowRightOutlined rev={''} />}
@@ -206,16 +205,11 @@ const TemplateCanvas = (
                     <div
                         ref={canvasRef}
                         className={`canvas__main-inner-container`}
-                        style={
-                            currentCustomTemplate === undefined
-                                ? {
-                                    border: currentTemplate?.backgroundSettings?.stroke?.enabled ? `5px solid ${currentTemplate?.backgroundSettings?.stroke?.color}` : 'unset'
-                                } : {
-                                    border: currentCustomTemplate?.backgroundSettings?.stroke?.enabled ? `5px solid ${currentCustomTemplate?.backgroundSettings?.stroke?.color}` : 'unset'
-                                }
-                        }
+                        style={{
+                            border: currentCustomTemplate?.backgroundSettings?.stroke?.enabled ? `5px solid ${currentCustomTemplate?.backgroundSettings?.stroke?.color}` : 'unset'
+                        }}
                     >
-                        {currentEditorStep?.currentStep === 2 && currentTemplate === undefined && (
+                        {currentEditorStep?.currentStep === 2 && !popupPreview && (
                             <div className="canvas__main-preview">
                                 <div className='canvas__main-preview-bullet'>
                                     Select your template before starting
@@ -225,7 +219,7 @@ const TemplateCanvas = (
 
                         {/* START Top State */}
                         <div
-                            className={`canvas__state-container ${currentEditorStep?.currentStep === 2 && currentTemplate === undefined ? 'preview' : ''}`}
+                            className={`canvas__state-container ${currentEditorStep?.currentStep === 2 && !popupPreview ? 'preview' : ''}`}
                         >
                             {
                                 stateSvg.find(state => state.stateId === currentLicensePlate?.state) && (
@@ -242,23 +236,14 @@ const TemplateCanvas = (
                             {
                                 !stateSvg.find(state => state.stateId === currentLicensePlate?.state) && (
                                     <a
-                                        className={`canvas__state-text ${currentEditorStep?.currentStep === 2 ? 'add-shadow' : ''}`}
-                                        style={
-                                            currentCustomTemplate === undefined
-                                                ? {
-                                                    color: `${currentTemplate?.state?.color ?? '#ffffff'}`,
-                                                    textShadow: `${currentTemplate?.state?.glow?.enabled ? `${currentTemplate?.state?.glow?.color ?? '#000000'} 0px 0px 5px, ${currentTemplate?.state?.glow?.color ?? '#000000'} 0px 0px 5px` : `unset`}`,
-                                                    WebkitTextStrokeColor: `${currentTemplate?.state?.stroke?.enabled ? `${currentTemplate?.state?.stroke?.color}` : `'#000000`}`,
-                                                    WebkitTextStrokeWidth: `${currentTemplate?.state?.stroke?.enabled ? '1px' : '0px'}`,
-                                                    filter: `${currentTemplate?.state?.shadow?.enabled ? 'drop-shadow(rgb(0, 0, 0) 3px 1px 2px)' : 'unset'}`
-                                                } : {
-                                                    color: `${currentCustomTemplate?.state?.color ?? '#ffffff'}`,
-                                                    textShadow: `${currentCustomTemplate?.state?.glow?.enabled ? `${currentCustomTemplate?.state?.glow?.color ?? '#000000'} 0px 0px 5px, ${currentCustomTemplate?.state?.glow?.color ?? '#000000'} 0px 0px 5px` : `unset`}`,
-                                                    WebkitTextStrokeColor: `${currentCustomTemplate?.state?.stroke?.enabled ? `${currentCustomTemplate?.state?.stroke?.color}` : `#000000`}`,
-                                                    WebkitTextStrokeWidth: `${currentCustomTemplate?.state?.stroke?.enabled ? '1px' : '0px'}`,
-                                                    filter: `${currentCustomTemplate?.state?.shadow?.enabled ? 'drop-shadow(rgb(0, 0, 0) 3px 1px 2px)' : 'unset'}`
-                                                }
-                                        }
+                                        className={`canvas__state-text ${currentEditorStep?.currentStep === 2 && !popupPreview ? 'add-shadow' : ''}`}
+                                        style={{
+                                            color: `${currentCustomTemplate?.state?.color ?? '#ffffff'}`,
+                                            textShadow: `${currentCustomTemplate?.state?.glow?.enabled ? `${currentCustomTemplate?.state?.glow?.color ?? '#000000'} 0px 0px 5px, ${currentCustomTemplate?.state?.glow?.color ?? '#000000'} 0px 0px 5px` : `unset`}`,
+                                            WebkitTextStrokeColor: `${currentCustomTemplate?.state?.stroke?.enabled ? `${currentCustomTemplate?.state?.stroke?.color}` : `#000000`}`,
+                                            WebkitTextStrokeWidth: `${currentCustomTemplate?.state?.stroke?.enabled ? '1px' : '0px'}`,
+                                            filter: `${currentCustomTemplate?.state?.shadow?.enabled ? 'drop-shadow(rgb(0, 0, 0) 3px 1px 2px)' : 'unset'}`
+                                        }}
                                     >
                                         {currentLicensePlate?.state ?? initialState}
                                     </a>
@@ -270,27 +255,19 @@ const TemplateCanvas = (
 
                         {/* START License Plate Digits*/}
                         <div
-                            className={`canvas__license-container ${currentEditorStep?.currentStep === 2 && currentTemplate === undefined ? 'preview add-shadow' : ''}`}
+                            className={`canvas__license-container ${currentEditorStep?.currentStep === 2 && !popupPreview ? 'preview add-shadow' : ''}`}
                         >
                             <div
                                 className={`canvas__license-inner-container canvas--align-${currentLicensePlate?.platePosition ?? currentCustomTemplate?.startPlatePosition} ${currentEditorStep?.currentStep === 2 ? 'add-shadow' : ''}`}
                             >
                                 <a
                                     className="canvas__license-text"
-                                    style={
-                                        currentCustomTemplate === undefined ? {
-                                            color: `${currentTemplate?.plateNumber?.color ?? '#ffffff'}`,
-                                            WebkitTextStrokeColor: `${currentTemplate?.plateNumber?.stroke?.enabled ? `${currentTemplate?.plateNumber?.stroke?.color ?? '#000000'}` : ``}`,
-                                            WebkitTextStrokeWidth: `${currentTemplate?.plateNumber?.stroke?.enabled ? '2px' : ''}`,
-                                            filter: `${currentTemplate?.plateNumber?.shadow?.enabled ? 'drop-shadow(rgb(0, 0, 0) 3px 1px 2px)' : ''}`
-                                        } : {
-                                            color: `${currentCustomTemplate?.plateNumber?.color ?? '#ffffff'}`,
-                                            WebkitTextStrokeColor: `${currentCustomTemplate?.plateNumber?.stroke?.enabled ? `${currentCustomTemplate?.plateNumber?.stroke?.color ?? '#000000'}` : ``}`,
-                                            WebkitTextStrokeWidth: `${currentCustomTemplate?.plateNumber?.stroke?.enabled ? '2px' : ''}`,
-                                            filter: `${currentCustomTemplate?.plateNumber?.shadow?.enabled ? 'drop-shadow(rgb(0, 0, 0) 3px 1px 2px)' : ''}`
-                                        }
-
-                                    }
+                                    style={{
+                                        color: `${currentCustomTemplate?.plateNumber?.color ?? '#ffffff'}`,
+                                        WebkitTextStrokeColor: `${currentCustomTemplate?.plateNumber?.stroke?.enabled ? `${currentCustomTemplate?.plateNumber?.stroke?.color ?? '#000000'}` : ``}`,
+                                        WebkitTextStrokeWidth: `${currentCustomTemplate?.plateNumber?.stroke?.enabled ? '2px' : ''}`,
+                                        filter: `${currentCustomTemplate?.plateNumber?.shadow?.enabled ? 'drop-shadow(rgb(0, 0, 0) 3px 1px 2px)' : ''}`
+                                    }}
                                 >
                                     {
                                         currentLicensePlate?.plateNumber ?
@@ -305,7 +282,7 @@ const TemplateCanvas = (
                         {/* START Bottom letters */}
                         <div
                             className={`canvas__bottomText-container 
-                                ${currentEditorStep?.currentStep === 2 && currentTemplate === undefined ? 'preview add-shadow' : ''} 
+                                ${currentEditorStep?.currentStep === 2 && !popupPreview ? 'preview add-shadow' : ''}
                                 ${!currentLicensePlate?.bottomTextEnabled && !currentLicensePlate?.bottomText ? 'canvas__bottomText-space' : ''}`
                             }
                             style={{
@@ -317,22 +294,13 @@ const TemplateCanvas = (
                                 && currentLicensePlate?.bottomText && (
                                     <a
                                         className={`canvas__bottomText-text`}
-                                        style={
-                                            currentCustomTemplate === undefined
-                                                ? {
-                                                    color: `${currentTemplate?.bottomText?.color ?? '#ffffff'}`,
-                                                    textShadow: `${currentTemplate?.bottomText?.glow?.enabled ? `${currentTemplate?.bottomText?.glow?.color ?? '#000000'} 0px 0px 5px, ${currentTemplate?.bottomText?.glow?.color ?? '#000000'} 0px 0px 5px` : ``}`,
-                                                    WebkitTextStrokeColor: `${currentTemplate?.bottomText?.stroke?.enabled ? `${currentTemplate?.bottomText.stroke.color ?? '#000000'}` : ``}`,
-                                                    WebkitTextStrokeWidth: `${currentTemplate?.bottomText?.stroke?.enabled ? '1px' : ''}`,
-                                                    filter: `${currentTemplate?.bottomText?.shadow?.enabled ? 'drop-shadow(rgb(0, 0, 0) 3px 1px 2px)' : ''}`
-                                                } : {
-                                                    color: `${currentCustomTemplate?.bottomText?.color ?? '#ffffff'}`,
-                                                    textShadow: `${currentCustomTemplate?.bottomText?.glow?.enabled ? `${currentCustomTemplate?.bottomText?.glow?.color ?? '#000000'} 0px 0px 5px, ${currentCustomTemplate?.bottomText?.glow?.color ?? '#000000'} 0px 0px 5px` : ``}`,
-                                                    WebkitTextStrokeColor: `${currentCustomTemplate?.bottomText?.stroke?.enabled ? `${currentCustomTemplate?.bottomText.stroke.color ?? '#000000'}` : ``}`,
-                                                    WebkitTextStrokeWidth: `${currentCustomTemplate?.bottomText?.stroke?.enabled ? '1px' : ''}`,
-                                                    filter: `${currentCustomTemplate?.bottomText?.shadow?.enabled ? 'drop-shadow(rgb(0, 0, 0) 3px 1px 2px)' : ''}`
-                                                }
-                                        }
+                                        style={{
+                                            color: `${currentCustomTemplate?.bottomText?.color ?? '#ffffff'}`,
+                                            textShadow: `${currentCustomTemplate?.bottomText?.glow?.enabled ? `${currentCustomTemplate?.bottomText?.glow?.color ?? '#000000'} 0px 0px 5px, ${currentCustomTemplate?.bottomText?.glow?.color ?? '#000000'} 0px 0px 5px` : ``}`,
+                                            WebkitTextStrokeColor: `${currentCustomTemplate?.bottomText?.stroke?.enabled ? `${currentCustomTemplate?.bottomText.stroke.color ?? '#000000'}` : ``}`,
+                                            WebkitTextStrokeWidth: `${currentCustomTemplate?.bottomText?.stroke?.enabled ? '1px' : ''}`,
+                                            filter: `${currentCustomTemplate?.bottomText?.shadow?.enabled ? 'drop-shadow(rgb(0, 0, 0) 3px 1px 2px)' : ''}`
+                                        }}
                                     >
                                         {/* Bottom Text */}
                                         {
@@ -346,7 +314,7 @@ const TemplateCanvas = (
                         {/* END Bottom letters */}
 
                         {/* START Logo*/}
-                        {currentTemplate?.mainLogo?.enabled &&
+                        {currentCustomTemplate?.mainLogo?.enabled &&
                             <Logo
                                 canvasReference={canvasRef}
                                 type="CANVAS"
@@ -370,7 +338,6 @@ const TemplateCanvas = (
                         {/* START Background*/}
                         <Background
                             type="CANVAS"
-                            template={currentTemplate}
                             customTemplate={currentCustomTemplate}
                             canvasReference={canvasRef}
                         />

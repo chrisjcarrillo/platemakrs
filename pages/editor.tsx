@@ -36,6 +36,13 @@ export default function Editor(props: any) {
     const {
         isPreset
     } = useContext(InterfaceContext) as InterfaceContextType;
+
+    const {
+        setAddon
+    } = useContext(StoreContext) as StoreContextType
+
+    setAddon?.(props?.addons)
+    
     return (
         <>
             <LoadingSpinner>
@@ -75,9 +82,12 @@ export default function Editor(props: any) {
 
 export const getStaticProps: GetStaticProps = async (context) => {
     const currentProduct = await client.collection.fetchWithProducts('gid://shopify/Collection/459770659117', { productsFirst: 100 })
+    const getAddon = await client.product.fetchByHandle('add-on-work-with-a-designer');
+
     return {
         props: {
-            productList: JSON.parse(JSON.stringify(currentProduct))
+            productList: JSON.parse(JSON.stringify(currentProduct)),
+            addons: JSON.parse(JSON.stringify(getAddon))
         },
         revalidate: 10
     }

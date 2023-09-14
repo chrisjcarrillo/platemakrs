@@ -24,7 +24,6 @@ const PreviewCanvas = (
 ) => {
 
     const {
-        currentTemplate,
         currentCustomTemplate,
         currentLicensePlate,
     } = useContext(EditorContext) as EditorContextType;

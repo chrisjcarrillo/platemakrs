@@ -37,10 +37,10 @@ export type EditorContextType = {
     currentLicensePlate?: ILicensePlate;
 
     // Current Selected Template
-    currentTemplate?: ITemplate;
+    // currentTemplate?: ITemplate;
 
     // Current Custom Templatet
-    currentCustomTemplate: ICustomPlateTemplate;
+    currentCustomTemplate?: ICustomPlateTemplate;
 
     // Imaginary Cart (FOR NOW )
     licensePlates?: ILicensePlate[];
@@ -62,7 +62,7 @@ export type EditorContextType = {
     ) => void;
 
     // Template
-    setCurrentTemplate?: (template: any) => void;
+    // setCurrentTemplate?: (template: any) => void;
     selectPresetTemplate?: (handle: string, variantId: string, customPresetTemplate: boolean) => void;
 
     // Custom Template
@@ -101,7 +101,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
 
     const [currentEditorStep, setStep] = useState<IEditorSteps>({ currentStep: 1, currentSubStep: undefined });// Current Step
     const [currentLicensePlate, setLicensePlate] = useState<ILicensePlate | undefined>(undefined)// Current License Plate
-    const [currentTemplate, setCurrentTemplate] = useState<ITemplate | undefined>(undefined)// Current Template
+    // const [currentTemplate, setCurrentTemplate] = useState<ITemplate | undefined>(undefined)// Current Template
     const [currentCustomTemplate, setCurrentCustomTemplate] = useState<ICustomPlateTemplate | undefined>(undefined)// Current Custom Template
 
     useEffect(() => {
@@ -116,24 +116,17 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                         const templateFilter = premadeTemplates.filter(
                             template => template?.templateId === query.get('presetTemplate')
                         );
+                        
                         const shopifyProduct = await client.product.fetchByHandle(templateFilter[0].shopifyHandle);
-                        if (shopifyProduct) {
+                        const customTemplate = templateFilter[0] as ICustomPlateTemplate;
 
-                            const customTemplate = templateFilter[0] as ICustomPlateTemplate;
-
-                            if (customTemplate) {
-                                setCurrentTemplate(template => ({
-                                    ...template,
-                                    ...customTemplate
-                                }))
-
-                                setCurrentCustomTemplate(template => ({
-                                    ...template,
-                                    ...customTemplate,
-                                    shopifyVariants: shopifyProduct?.variants,
-                                    selectedVariant: shopifyProduct?.variants[1]
-                                }))
-                            }
+                        if (customTemplate) {
+                            setCurrentCustomTemplate(template => ({
+                                ...template,
+                                ...customTemplate,
+                                shopifyVariants: shopifyProduct?.variants,
+                                selectedVariant: shopifyProduct?.variants[1]
+                            }))
                         }
 
                     } catch (error) {
@@ -225,16 +218,10 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
     ) => {
         try {
             setLoading(true);
-            const templateType = customPresetTemplate ? staticTemplates : premadeTemplates;
-            const templateFilter = templateType?.filter( template => template?.shopifyHandle === handle );
+            const templateFilter = premadeTemplates?.filter( template => template?.shopifyHandle === handle );
             const customTemplate = templateFilter[0] as ICustomPlateTemplate;
 
             if (!customPresetTemplate) {
-                setCurrentTemplate(template => ({
-                    ...template,
-                    ...customTemplate
-                }))
-
                 setCurrentCustomTemplate(template => ({
                     ...template,
                     ...customTemplate,
@@ -246,17 +233,15 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 
             } else {
                 setShowPreview(true)
-                setCurrentTemplate(template => ({
-                    ...template,
-                    ...customTemplate
-                }))
                 setCurrentCustomTemplate(template => ({
                     ...template,
                     ...customTemplate,
                     shopifyVariants: variant,
                     selectedVariant: variant[1]
                 }))
-                if (sessionStorage.getItem('preset')) sessionStorage.removeItem('preset')
+                if (sessionStorage.getItem('preset')) {
+                    sessionStorage.removeItem('preset')
+                }
                 router.push(`/editor?presetTemplate=${customTemplate?.templateId}&step=1`)
             }
         } catch (error) {
@@ -365,8 +350,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         // Show the user a warning (You will lose all of your edit information)
         // 
         if (
-            currentEditorStep.currentStep === 2 && step === 1 &&
-            currentTemplate && !sessionStorage.getItem('preset')
+            currentEditorStep.currentStep === 2 && step === 1 && !sessionStorage.getItem('preset')
         ) {
             console.log('first')
             Modal.confirm({
@@ -376,7 +360,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 content: 'You will lose your current Design',
                 okText: 'Confirm',
                 onOk() {
-                    setCurrentTemplate(undefined);
+                    // setCurrentTemplate(undefined);
                     setCurrentCustomTemplate(undefined);
                     setStep({ currentStep: 1, currentSubStep: undefined })
                 },
@@ -399,7 +383,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 onOk() {
                     setDecision(false);
                     setLicensePlate(undefined);
-                    setCurrentTemplate(undefined);
+                    // setCurrentTemplate(undefined);
                     setCurrentCustomTemplate(undefined);
                     setStep({ currentStep: 1, currentSubStep: undefined })
                     router.push('/products')
@@ -453,14 +437,14 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 // createPresetLicensePlate,
 
                 // Custom Template
-                setCurrentTemplate,
+                // setCurrentTemplate,
                 currentCustomTemplate,
                 // createCustomTemplate,
                 confirmPreview,
                 updateCustomTemplateSelection,
 
                 // Template
-                currentTemplate,
+                // currentTemplate,
                 selectPresetTemplate,
 
                 // Steps

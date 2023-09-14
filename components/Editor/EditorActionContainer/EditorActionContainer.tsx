@@ -23,7 +23,6 @@ export const EditorActionContainer = (
     const { licensePlate, step } = props;
 
     const {
-        currentTemplate,
         currentCustomTemplate
     } = useContext(EditorContext) as EditorContextType;
 

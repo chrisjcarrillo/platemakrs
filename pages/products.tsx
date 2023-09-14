@@ -22,6 +22,8 @@ export default function Editor(props: any) {
     const { Search } = Input
     const { productList } = props;
     const [products, setProducts] = useState(productList?.products)
+
+    // console.log(props?.product);
     
     const onSearch = (e: string) => {
         if (!e) {
@@ -73,7 +75,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const currentProduct = await client.collection.fetchWithProducts('gid://shopify/Collection/456849490221', { productsFirst: 100 })
     return {
         props: {
-            productList: JSON.parse(JSON.stringify(currentProduct))
+            productList: JSON.parse(JSON.stringify(currentProduct)),
         },
         revalidate: 10
     }

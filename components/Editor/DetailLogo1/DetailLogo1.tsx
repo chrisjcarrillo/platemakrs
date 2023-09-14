@@ -2,11 +2,9 @@ import { useContext, useEffect, useRef, useState } from "react"
 import { EditorContext, EditorContextType } from "../../../context/editorContext";
 import { Stage, Layer, Image, Transformer, Group } from 'react-konva';
 import useImage from "use-image";
-import { ITemplate } from "../../../interfaces/template.interface";
 import { InterfaceContext, InterfaceContextType } from "../../../context/interfaceContext";
 
 interface ILogo {
-    currentPreviewTemplate?: ITemplate
     canvasReference?: any;
     type?: 'PREVIEW' | 'CANVAS';
     logoType?: 'REGULAR' | 'BOTTOM';
@@ -23,21 +21,12 @@ export const DetailLogo1 = (props: ILogo) => {
 
     const {
         currentCustomTemplate,
-        currentTemplate,
         currentLicensePlate
     } = useContext(EditorContext) as EditorContextType;
 
-    const { type, logoType, canvasReference, currentPreviewTemplate } = props;
+    const { type, logoType, canvasReference } = props;
 
     const imageSource = () => {
-        if (type === "CANVAS") {
-            if (!currentCustomTemplate) {
-                return currentTemplate?.detailLogo1?.url
-            }
-        }
-        if (type === "PREVIEW") {
-            return currentPreviewTemplate?.detailLogo1?.url
-        }
         return currentCustomTemplate?.detailLogo1?.url
     }
 
