@@ -272,3 +272,23 @@ export const returnMoney = (value: any) => {
 
 export const initialState = "Florida";
 export const initialLicensePlate = "SAM PLE";
+
+
+export const menuLayout = [
+    {
+        text: 'Home',
+        link: '/'
+    },
+    {
+        text: 'Pre-Made Designs',
+        link: '/products'
+    },
+    {
+        text: 'Customize Your Own',
+        link: '/editor'
+    },
+    {
+        text: 'Contact',
+        link: '/contact'
+    },
+]

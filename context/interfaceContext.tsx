@@ -47,6 +47,9 @@ export type InterfaceContextType = {
     finalDesign?: any; 
     takeDesignScreenshot?: (img: any) => void;
 
+    showMenu?: any;  
+    setMenu: (show: boolean) => void;
+
     isPreset?: boolean;
     setPreset: (type: boolean) => void;
 
@@ -84,6 +87,8 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
     const [designUrl, setDesignUrl] = useState<string | undefined>(undefined);
 
     const [isPreset, setPreset] = useState<boolean>(false)
+
+    const [showMenu, setMenu] = useState<boolean>(false)
 
     useEffect(() => {
         setLoading(true)
@@ -165,7 +170,10 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
                 finalDesign, 
                 takeDesignScreenshot,
 
-                designUrl
+                designUrl,
+
+                showMenu, 
+                setMenu
 
             }}
         >

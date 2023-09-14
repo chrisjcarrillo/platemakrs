@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Image from 'next/image';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import Offcanvas from 'react-bootstrap/Offcanvas';
 import { EditorContext } from '../../../context/editorContext';
 import { EditorContextType } from '../../../context/editorContext';
 import { useContext } from 'react';
@@ -11,6 +12,7 @@ import { StoreContext, StoreContextType } from "../../../context/storeContext";
 import { InterfaceContext, InterfaceContextType } from "../../../context/interfaceContext";
 import { Cart } from "../../shared/Cart/Cart";
 import { usePathname } from 'next/navigation'
+import { menuLayout } from "../../../utils/helpers";
 
 // import Link from 'next/link';
 
@@ -30,7 +32,9 @@ export const EditorHeader = (
 
     const {
         showCart,
-        setShowCart
+        setShowCart,
+        showMenu,
+        setMenu
     } = useContext(InterfaceContext) as InterfaceContextType; // Interface Context
 
     const arrSum = (cartObject: any) => cartObject.reduce(
@@ -38,13 +42,11 @@ export const EditorHeader = (
     )
 
     return (
-        <Navbar className="header" expand="lg" bg="light" sticky="top" >
+        <Navbar className="header" expand="lg" bg="light" sticky="top">
             <Container
                 className="header__tools"
             >
-                {/* <Nav className="mr-auto header__tools-left">
-                    </Nav> */}
-                <Toggle className="header__toggle me-auto" />
+                <Toggle className="header__toggle me-auto" aria-controls="offcanvasNavbar" onClick={() => setMenu(true)} />
                 <Brand className="m-auto" href="/">
                     <Image
                         alt="Platemakrs Logo"
@@ -53,14 +55,22 @@ export const EditorHeader = (
                         src={'/images/logo-white.png'}
                     />
                 </Brand>
-                <Nav className="ml-auto header__tools-right">
-                </Nav>
+
+                {!showMenu && (
+                    <Navbar.Collapse className={'header__link__container'}>
+                        {menuLayout.map((menuItem, index) => {
+                            return (
+                                <Link key={index} href={`${menuItem.link}`} className="header__link">{menuItem.text}</Link>
+                            )
+                        })}
+                    </Navbar.Collapse>
+                )}
                 <Nav className="ms-auto header__tools">
-                    <div 
-                    className={'cart'} 
-                    onClick={
-                        cart.length !== 0 ? 
-                            () => setShowCart(true) : 
+                    <div
+                        className={'cart'}
+                        onClick={
+                            cart.length !== 0 ?
+                                () => setShowCart(true) :
                                 () => setShowCart(false)
                         }
                     >
@@ -83,32 +93,55 @@ export const EditorHeader = (
                         </span>
                     </div>
                 </Nav>
+
+                {showMenu && (
+                    <Navbar.Offcanvas
+                        id="offcanvasNavbar"
+                        aria-labelledby="offcanvasNavbarLabel"
+                        placement="top"
+                        backdrop="true"
+                        onHide={() => setMenu(false)}
+                    >
+                        <Offcanvas.Header closeButton>
+                        </Offcanvas.Header>
+                        <Offcanvas.Body>
+                            <Nav className="justify-content-end flex-grow-1 pe-3">
+                                {menuLayout.map((menuItem, index) => {
+                                    return (
+                                        <Link key={index} href={`${menuItem.link}`} className="header__link">{menuItem.text}</Link>
+                                    )
+                                })}
+                            </Nav>
+                        </Offcanvas.Body>
+                    </Navbar.Offcanvas>
+                )}
+
             </Container>
             {
                 pathname !== "/" && pathname !== "/editor" && (
-<Container
-                className="header__links"
-            >
-                <div className="header__links-container">
-                    <Link 
-                        className="header__links-link" 
-                        href={'/editor'}
+                    <Container
+                        className="header__links"
                     >
-                        Customize your own
-                    </Link>
-                </div>
-                <div className="header__links-container">
-                    <Link 
-                        className="header__links-link"
-                        href={'/products'}
-                    >
-                        Pre-Made Designs
-                    </Link>
-                </div>
-            </Container>
+                        <div className="header__links-container">
+                            <Link
+                                className="header__links-link"
+                                href={'/editor'}
+                            >
+                                Customize your own
+                            </Link>
+                        </div>
+                        <div className="header__links-container">
+                            <Link
+                                className="header__links-link"
+                                href={'/products'}
+                            >
+                                Pre-Made Designs
+                            </Link>
+                        </div>
+                    </Container>
                 )
             }
-            
+
         </Navbar>
     )
 }

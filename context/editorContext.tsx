@@ -393,17 +393,6 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             return;
         }
 
-        console.info(
-            'testVariables',
-            {
-                step: step,
-                subStep: subStep,
-                description: description,
-                showWarning: showWarning,
-                title: title
-            }
-        )
-
         setStep(currentEditorStep => ({
             ...currentEditorStep,
             currentStep: step,
@@ -411,10 +400,6 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             currentStepDescription: description,
             currentStepTitle: title,
         }))
-
-        console.info('testEditorStep',
-            currentEditorStep
-        )
 
         if (document) {
             document.body.scrollTop = 0; // For Safari

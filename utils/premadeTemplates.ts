@@ -7215,7 +7215,7 @@ export const premadeTemplates = [
             url: '/images/resources/preset/logos/bottom-logo.png',
             centerCoordinates: {
                 x: 98,
-                y: 2
+                y: 130
             },
             width: 145,
             height: 10,
@@ -7323,7 +7323,7 @@ export const premadeTemplates = [
             url: '/images/resources/preset/logos/bottom-logo.png',
             centerCoordinates: {
                 x: 98,
-                y: 2
+                y: 130
             },
             width: 145,
             height: 10,
@@ -7427,7 +7427,7 @@ export const premadeTemplates = [
             url: '/images/resources/preset/logos/bottom-logo.png',
             centerCoordinates: {
                 x: 98,
-                y: 2
+                y: 130
             },
             width: 145,
             height: 10,
@@ -7531,7 +7531,7 @@ export const premadeTemplates = [
             url: '/images/resources/preset/logos/bottom-logo.png',
             centerCoordinates: {
                 x: 98,
-                y: 2
+                y: 130
             },
             width: 145,
             height: 10,
