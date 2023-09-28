@@ -1,7 +1,7 @@
 import sendgrid from "@sendgrid/mail";
 import { NextApiRequest, NextApiResponse } from "next";
 
-sendgrid.setApiKey('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');
+sendgrid.setApiKey(process?.env?.NEXT_SENDGRID_TOKEN);
 
 async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
 	try {
@@ -27,7 +27,6 @@ async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
 		await sendgrid.send(message);
         return res.status(200).json({ success: "ok" });
 	} catch (error: any) {
-		// console.log(error);
 		return res.status(error.statusCode || 500).json({ error: error.message });
 	}
 }
