@@ -1,9 +1,8 @@
-import { useContext, useRef } from 'react';
+import { useContext } from 'react';
 import EditorForm from '../components/Editor/Steps/FirstStep/EditorForm/EditorForm';
 import TemplateCanvas from '../components/Editor/Template/TemplateCanvas';
-import EditorProvider, { EditorContextType } from '../context/editorContext';
+import { EditorContextType } from '../context/editorContext';
 import { EditorContext } from '../context/editorContext';
-import { EditorHeader } from '../components/Editor/EditorHeader/EditorHeader';
 import { EditorContainer } from '../components/Editor/EditorContainer/EditorContainer';
 import { Modal } from 'antd';
 import { PreviewModal } from '../components/Editor/PreviewModal/PreviewModal';
@@ -51,8 +50,6 @@ export default function Editor(props: any) {
                 <MainHead />
                 <PreviewModal
                     product={props?.product}
-                />
-                <EditorHeader
                 />
                 <TemplateCanvas
                 />

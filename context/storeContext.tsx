@@ -11,9 +11,9 @@ interface IStoreProps {
 }
 
 export type StoreContextType = {
-    cart: Array<Object>
-    showCart: boolean
-    checkout: Object
+    cart: Array<Object>;
+    showCart: boolean;
+    checkout: Object;
 
     hasDesigner?: boolean,
     setHasDesigner: (e: boolean) => void;
@@ -36,6 +36,9 @@ export type StoreContextType = {
 
     // Checkout
     redirectCheckout: (currentCustomTemplate: ICustomPlateTemplate, canvasRef?: any) => void;
+
+    notes?: string;
+    setNotes: (e: any) => void;
 }
 
 export const client = Client?.buildClient({
@@ -51,16 +54,16 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
 
     const {
         setLoading,
-        finalDesign,
         designUrl
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const [cart, setCart] = useState([])
     const [addon, setAddon] = useState(undefined);
     const [checkout, setCheckout] = useState({})
-    const [showCart, setShowCart] = useState(false);
-    const [hasDesigner, setHasDesigner] = useState(false);
-    const [acceptTerms, setAcceptTerms] = useState(false);
+    const [showCart, setShowCart] = useState<boolean>(false);
+    const [hasDesigner, setHasDesigner] = useState<boolean>(false);
+    const [acceptTerms, setAcceptTerms] = useState<boolean>(false);
+    const [notes, setNotes] = useState<string | undefined>(undefined);
 
     const onStorageUpdate = (e: any) => {
         const { key, newValue } = e;
@@ -112,6 +115,9 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                         },
                         {
                             key: "Preview", value: `${designUrl}`, // Template of Preset
+                        },
+                        {
+                            key: "Notes", value: `${notes ?? 'N/A'}`,
                         }
                     ]
                 },
@@ -231,7 +237,10 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 redirectCheckout,
 
                 addon, 
-                setAddon
+                setAddon,
+
+                notes,
+                setNotes
             }}
         >
             {children}

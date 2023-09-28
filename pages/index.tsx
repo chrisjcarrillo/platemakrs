@@ -6,7 +6,6 @@ import { GetStaticProps } from "next";
 import PlateComparison from "../components/PlateComparison/PlateComparison";
 import { ImageAndText } from "../components/shared/ImageAndText/ImageAndText";
 import MainSlider from "../components/MainSlider/MainSlider";
-import { EditorHeader } from '../components/Editor/EditorHeader/EditorHeader';
 
 const MainHead = () => {
 	return(
@@ -22,7 +21,6 @@ const MainHead = () => {
 export default function Home(props: any) {
 	return (
 		<>
-			<EditorHeader />
 			<MainHead />
 			<HeroBanner 
 				mainText={props.slider.mainText}

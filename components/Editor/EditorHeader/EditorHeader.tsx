@@ -38,7 +38,7 @@ export const EditorHeader = (
     } = useContext(InterfaceContext) as InterfaceContextType; // Interface Context
 
     const arrSum = (cartObject: any) => cartObject.reduce(
-        (a, b) => a + b.quantity, 0
+        (a: any, b: any) => a + b.quantity, 0
     )
 
     return (

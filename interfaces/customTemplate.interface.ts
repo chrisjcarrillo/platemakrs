@@ -17,6 +17,8 @@ export interface ICustomPlateTemplate{
 
     fadeType?: 'FADE-UP' | 'FADE-DOWN' | 'FULL-BG';
 
+    sportsTeam?: boolean;
+
     startPlatePosition?: string;
     startPlateText?: string;
 

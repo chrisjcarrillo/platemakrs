@@ -1,17 +1,10 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { editorActions } from '../../../utils/editorActions';
-import { Button } from 'antd';
-import { faFillDrip } from '@fortawesome/free-solid-svg-icons'
-import { IEditorSteps } from '../../../interfaces/editor.interface';
 import { EditorActionContainer } from '../EditorActionContainer/EditorActionContainer';
 import { useContext } from 'react';
 import { EditorContext, EditorContextType } from '../../../context/editorContext';
 import { ArrowLeftOutlined } from '@ant-design/icons';
-import { FinishSelect } from '../EditorActions/FinishSelect/FinishSelect';
-import { StoreContext, StoreContextType } from '../../../context/storeContext';
 import { handleActions } from '../EditorPresetContainer/actions/HandleActions';
 
 export const EditorContainer = (props:{

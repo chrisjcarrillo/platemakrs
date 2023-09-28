@@ -1,14 +1,14 @@
 import sendgrid from "@sendgrid/mail";
 import { NextApiRequest, NextApiResponse } from "next";
 
-sendgrid.setApiKey('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');
+sendgrid.setApiKey('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');
 
 async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
 	try {
 		// 
 		const message = {
 			from: `info@platemakrs.com`, // your website email address here
-			templateId: 'd-d43719eb35424f24824f2011e443b35c ',
+			templateId: 'd-d43719eb35424f24824f2011e443b35c',
 			personalizations: [{
 				to: req.body.toEmails,
 				subject: `License Plate Inquiry: ${req.body.firstName} ${req.body.lastName}`,

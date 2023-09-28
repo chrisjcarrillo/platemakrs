@@ -232,6 +232,7 @@ export const premadeTemplates = [
         detailLogo2: {enabled: false},
         templateId: '3',
         preset: true,
+        sportsTeam: true,
         startPlatePosition: 'right',
         startPlateText: 'SAMPL',
         fadeSettings: { enabled: false },
@@ -561,6 +562,7 @@ export const premadeTemplates = [
         detailLogo2: {enabled: false},
         templateId: '6',
         preset: true,
+        sportsTeam: true,
         startPlatePosition: 'right',
         startPlateText: 'SAMPL',
         fadeSettings: { enabled: false },
@@ -683,6 +685,7 @@ export const premadeTemplates = [
         shopifyHandle: 'miami-heat-yellow-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
+        sportsTeam: true,
         templateId: '7',
         preset: true,
         startPlatePosition: 'right',
@@ -760,6 +763,7 @@ export const premadeTemplates = [
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '8',
+        sportsTeam: true,
         shopifyHandle: 'panthers-template',
         preset: true,
         startPlatePosition: 'center',
@@ -973,6 +977,7 @@ export const premadeTemplates = [
     {
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
+        sportsTeam: true,
         templateId: '10',
         shopifyHandle: 'miami-heat-porsche-template',
         preset: true,
@@ -1148,6 +1153,7 @@ export const premadeTemplates = [
     {
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
+        sportsTeam: true,
         templateId: '12',
         shopifyHandle: 'university-of-miami-ibis-template',
         startPlatePosition: 'right',
@@ -1250,6 +1256,7 @@ export const premadeTemplates = [
     {
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
+        sportsTeam: true,
         templateId: '13',
         shopifyHandle: 'university-of-miami-classic-template',
         startPlatePosition: 'right',
@@ -1355,18 +1362,15 @@ export const premadeTemplates = [
             color: '#000000',
             background: {
                 enabled: true,
-                file: {
+                file:{
                     hasMainColor: false,
-                    hasColor: false,
-                    name: 'black-plate',
+                    hasColor: true,
+                    name: 'regular.png',
                     imageType: 'png',
-                    filePath: '/images/resources/misc',
-                    url: '/images/resources/misc/black-plate.png',
+                    filePath: '/images/resources/backgrounds/hexagon/option-9/gray',
+                    url: '/images/resources/backgrounds/hexagon/option-9/gray/regular.png',
                 }
             },
-            stroke: {
-                enabled: false,
-            }
         },
         mainLogo: {
             hasColor: true,
@@ -1393,25 +1397,7 @@ export const premadeTemplates = [
         },
         backgroundLogo:{
             hasColor: true,
-            enabled: true,
-            name: 'gray.png',
-            imageType: 'png',
-            filePath: '/images/resources/backgrounds/hexagon/option-9/gray',
-            url: '/images/resources/backgrounds/hexagon/option-9/gray/regular.png',
-            leftCoordinates: {
-                x: -200,
-                y: 0
-            },
-            centerCoordinates: {
-                x: -95,
-                y: 0
-            },
-            rightCoordinates: {
-                x: 0,
-                y: 0
-            },
-            width: 350,
-            height: 150,
+            enabled: false,
         },
         state:{
             color: '#ffffff',
@@ -1640,6 +1626,7 @@ export const premadeTemplates = [
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '17',
+        sportsTeam: true,
         shopifyHandle: 'messi-x-inter-miami-template',
         startPlatePosition: 'right',
         startPlateText: 'SAMPL',
@@ -2149,6 +2136,7 @@ export const premadeTemplates = [
         shopifyHandle: 'miami-heat-yellow-2-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
+        sportsTeam: true,
         templateId: '22',
         preset: true,
         startPlatePosition: 'center',
@@ -3162,6 +3150,7 @@ export const premadeTemplates = [
     {
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
+        sportsTeam: true,
         templateId: '32',
         shopifyHandle: 'university-of-miami-ibis-2-template',
         startPlatePosition: 'right',
@@ -3376,6 +3365,7 @@ export const premadeTemplates = [
         shopifyHandle: 'miami-heat-red-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
+        sportsTeam: true,
         templateId: '34',
         preset: true,
         startPlatePosition: 'center',
@@ -3589,32 +3579,19 @@ export const premadeTemplates = [
             height: 100,
             glow:{ enabled: true, color: '#ffffff' }
         },
-        backgroundLogo:{
-            hasColor: true,
-            enabled: true,
-            name: 'gray.png',
-            imageType: 'png',
-            filePath: '/images/resources/backgrounds/hexagon/option-9/regular',
-            url: '/images/resources/backgrounds/hexagon/option-9/regular/regular.png',
-            leftCoordinates: {
-                x: -200,
-                y: 0
-            },
-            centerCoordinates: {
-                x: -95,
-                y: 0
-            },
-            rightCoordinates: {
-                x: 0,
-                y: 0
-            },
-            width: 350,
-            height: 150,
-        },
+        backgroundLogo:{ enabled: false },
         backgroundSettings: {
             color: '#000000',
             background: {
-                enabled: false,
+                enabled: true,
+                file:{
+                    hasMainColor: false,
+                    hasColor: true,
+                    name: 'regular.png',
+                    imageType: 'png',
+                    filePath: '/images/resources/backgrounds/hexagon/option-9/regular',
+                    url: '/images/resources/backgrounds/hexagon/option-9/regular/regular.png',
+                }
             },
         },
         state:{
@@ -3743,6 +3720,7 @@ export const premadeTemplates = [
 
     {
         shopifyHandle: 'dolphins-2-template',
+        sportsTeam: true,
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '38',
@@ -3866,6 +3844,7 @@ export const premadeTemplates = [
 
     {
         shopifyHandle: 'dolphins-3-template-1',
+        sportsTeam: true,
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '39',
@@ -7179,6 +7158,7 @@ export const premadeTemplates = [
         templateId: '5',
         fadeType: 'FADE-DOWN',
         shopifyHandle: 'fade-down-pattern-logo-custom-template',
+        sportsTeam: true,
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
         backgroundLogo: { enabled: false },

@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from 'react';
-import { EditorHeader } from '../components/Editor/EditorHeader/EditorHeader';
 import Head from "next/head";
 import { LoadingSpinner } from '../components/shared/LoadingSpinner/LoadingSpinner';
 import { TemplateList } from '../components/Editor/TemplateList/TemplateList';
@@ -42,8 +41,6 @@ export default function Editor(props: any) {
             <LoadingSpinner >
                 <Cart />
                 <MainHead />
-                <EditorHeader
-                />
                 {/* <Search /> */}
                 <div className='pm__search'>
                     <div className='pm__search-title'>

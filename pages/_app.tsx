@@ -1,12 +1,11 @@
 import '../styles/globals.scss'
 import type { AppProps } from 'next/app'
-import { Header } from '../components/shared/Header/Header'
-import Head from 'next/head'
 import EditorProvider from '../context/editorContext'
 import { useEffect } from 'react'
 import StoreProvider from '../context/storeContext'
 import InterfaceProvider from '../context/interfaceContext'
-import { Cart } from '../components/shared/Cart/Cart'
+import { Analytics } from '@vercel/analytics/react';
+import { EditorHeader } from '../components/Editor/EditorHeader/EditorHeader'
 
 export default function App({ Component, pageProps }: AppProps) {
   const useDisablePinchZoomEffect = () => {
@@ -28,7 +27,9 @@ export default function App({ Component, pageProps }: AppProps) {
       <StoreProvider>
         <EditorProvider>
           {/* { pageProps !== 'editor' && <Header {...pageProps} /> } */}
+          <EditorHeader />
           <Component {...pageProps} />
+          <Analytics />
         </EditorProvider>
       </StoreProvider>
     </InterfaceProvider>

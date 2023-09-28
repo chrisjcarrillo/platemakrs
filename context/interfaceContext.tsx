@@ -53,7 +53,7 @@ export type InterfaceContextType = {
     isPreset?: boolean;
     setPreset: (type: boolean) => void;
 
-    designUrl: string;
+    designUrl?: string;
 }
 
 export const InterfaceContext = createContext<InterfaceContextType | null>(null);
@@ -61,19 +61,23 @@ export const InterfaceContext = createContext<InterfaceContextType | null>(null)
 const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
 
     // Loading START
-    const [loading, setLoading] = useState<boolean>(false);
-    const [stepLoading, setStepLoading] = useState<boolean>(false);
-    const [editorLoading, setEditorLoading] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false); // Show Loading
+    const [stepLoading, setStepLoading] = useState<boolean>(false); // Show step loading
+    const [editorLoading, setEditorLoading] = useState<boolean>(false); // Show Editor Loading
     // Loading End
     
+    // Preview START
     const [showPreview, setShowPreview] = useState<boolean>(false); // Show Plate Preview
+    // Preveiw END
 
     // Decision START
-    // Show Decision Drawer when Clicking continue on a preset template
-    const [showDecision, setDecision] = useState<boolean>(false);
+    const [showDecision, setDecision] = useState<boolean>(false); // Show Decision Drawer when Clicking continue on a preset template
     // Decision END
 
+    // Cart
     const [showCart, setShowCart] = useState<boolean>(false) //Show Cart
+    // Cart
+
 
     // MOVEABLES
     const [moveLogo, setMoveLogo] = useState<boolean>(false) // Move Logo
@@ -83,12 +87,12 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
     const [moveDetail2, setMoveDetail2] = useState<boolean>(false) // Move Detail 1
     // MOVEABLES
 
-    const [finalDesign, takeDesignScreenshot] = useState<string | undefined>(undefined);
-    const [designUrl, setDesignUrl] = useState<string | undefined>(undefined);
+    const [finalDesign, takeDesignScreenshot] = useState<string | undefined>(undefined); // Set Final Design
+    const [designUrl, setDesignUrl] = useState<string | undefined>(undefined); // Set Final Design URL
 
-    const [isPreset, setPreset] = useState<boolean>(false)
+    const [isPreset, setPreset] = useState<boolean>(false) // is the current template a preset
 
-    const [showMenu, setMenu] = useState<boolean>(false)
+    const [showMenu, setMenu] = useState<boolean>(false) // show menu
 
     useEffect(() => {
         setLoading(true)
@@ -97,6 +101,8 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
         }, 3000);
     }, [])
 
+
+    // Notes
     useEffect(() => {
         if(sessionStorage.getItem('preset') === 'true'){
             setPreset(true);
@@ -104,6 +110,8 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
     }, [isPreset])
 
 
+    // NOTES
+    /// Set the Design url if finalDesign is set
     useEffect(() => {
         if(finalDesign){
             const uploadDesign = async () => {
