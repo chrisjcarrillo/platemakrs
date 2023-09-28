@@ -2,10 +2,8 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import FormGroup from 'react-bootstrap/FormGroup';
-import FormLabel from 'react-bootstrap/FormLabel';
 import {
     Button,
-    Checkbox,
     Form,
     Input,
     message,
@@ -17,8 +15,6 @@ import { app, database, storage } from '../firebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useState } from 'react';
-import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import { GetServerSideProps } from 'next';
 
 const dbInstance = collection(database, 'contacts');
 
