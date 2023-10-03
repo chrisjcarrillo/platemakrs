@@ -5,6 +5,8 @@ import Client from 'shopify-buy';
 import { InterfaceContext, InterfaceContextType } from './interfaceContext';
 import { useRouter } from 'next/navigation'
 import { ICustomPlateTemplate } from '../interfaces/customTemplate.interface';
+import Cookies from 'js-cookie';
+import {v4 as uuidv4} from 'uuid';
 
 interface IStoreProps {
     children: React.ReactNode
@@ -57,6 +59,8 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         designUrl
     } = useContext(InterfaceContext) as InterfaceContextType;
 
+    const [klaviyoAd, setKlaviyoAd] = useState(false);
+    const [googleAd, setGoogleAd] = useState(false);
     const [cart, setCart] = useState([])
     const [addon, setAddon] = useState(undefined);
     const [checkout, setCheckout] = useState({})
@@ -96,6 +100,47 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         } catch (error) {
             console.log(error)
         }
+    }
+
+    const addToCartEvent = (type) => {
+        const cartEventId = sessionStorage.getItem('cart_fbEventId');
+        let content = [], contentIds = [];
+        const currentCheckout = JSON.parse(JSON.stringify(checkout));
+        const currentCart = cart;
+        if(cartEventId === undefined) return;
+        if(currentCart?.length !== 0){
+            currentCart?.map(item => {
+                let fullItem = {
+                    id: item.variant.product.id,
+                    title: item.title,
+                    description: item.title + " - " + item.variant.title,
+                    item_price: item.variant.price,
+                    quantity: item.quantity,
+                    category: 'Tickets',
+                }
+                content.push(fullItem);
+                contentIds.push(item.variant.product.id);
+            })
+        }
+        if(type === "facebook") {
+            window?.fbq('track', 'AddToCart', {
+                content_name: 'Custom License Plate',
+                value: currentCheckout.totalPrice,
+                content: content,
+                content_ids: contentIds
+            },{
+                eventID: cartEventId
+            });
+        }
+    }
+
+    const initiateCheckoutEvent = (checkoutResponse) => {
+        let fbCheckoutId = sessionStorage.getItem('checkout_fbEventId');
+        window.fbq('track', 'InitiateCheckout', {
+            value: JSON.parse(JSON.stringify(checkoutResponse.totalPrice )),
+        }, {
+            eventID: fbCheckoutId
+        })
     }
 
     // Variants START
@@ -149,6 +194,10 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 lineItemsToUpdate
             );
             setCart(JSON.parse(JSON.stringify(checkoutResponse.lineItems)));
+            klaviyoAd ? null : addToCartEvent('facebook');
+            klaviyoAd ? null : initiateCheckoutEvent(checkoutResponse);
+
+            // history.pushState('', '', `${process.env.STORE_URL}/${uri}`)
             window.location.replace(checkout?.webUrl)
         } catch (e) {
             console.error(e)
@@ -180,9 +229,95 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
     }
     // Variants END
 
+    const checkEventSource = () => {
+        const urlQueryParamsCheckout = new URLSearchParams(window.location.search);
+        if(Cookies.get('_fbc')){
+            return "Facebook Campaign";
+        }
+        if(urlQueryParamsCheckout.get("c")){
+            return `Klaviyo Campaign: ${urlQueryParamsCheckout.get("c")}`
+        }
+        return "Organic Traffic";
+    }
+
+    const updateCheckoutWithId = async (id) => {
+        try {
+            const generatePlatemakrsID = uuidv4();
+            const checkoutEventId = "PM_" + generatePlatemakrsID;
+            if(checkoutEventId) sessionStorage.setItem('checkout_fbEventId', checkoutEventId);
+            
+            const purchasePlatemakrsID = uuidv4();
+            const purchaseEventId = "PM_" + purchasePlatemakrsID;
+
+            const generateCartPlatemakrsID = uuidv4();
+            const cartEventId = "PM_" + generateCartPlatemakrsID;
+
+            const customId = uuidv4();
+
+            const customAttributes = {
+                customAttributes: [
+                    {
+                        key: "click_id", 
+                        value: `${Cookies.get('_fbc') ?? null}`
+                    },
+                    {
+                        key: "pixel_id", 
+                        value: `${Cookies.get('_fbp') ?? null}`
+                    },
+                    {
+                        key: "checkout_event_id", 
+                        value: `${checkoutEventId ?? null}`
+                    },
+                    {
+                        key: "origin_url",
+                        value: `${window.location.href ?? null }`
+                    },
+                    {
+                        key: "ip_address",
+                        value: `${sessionStorage.getItem('ipAddress') ?? null}`
+                    },
+                    {
+                        key: "user_agent",
+                        value: `${sessionStorage.getItem('userAgent') ?? null}`
+                    },
+                    {
+                        key: "purchase_event_id",
+                        value: `${purchaseEventId ?? null}`
+                    },
+                    {
+                        key: "cart_event_id",
+                        value: `${ cartEventId ?? null }`
+                    },
+                    {
+                        key: "source",
+                        value: checkEventSource()
+                    },
+                    {
+                        key: "custom_id",
+                        value: `${ customId ?? null }`
+                    }
+                ]
+            }
+            const updateCheckout = await client.checkout.updateAttributes(
+                id,     
+                customAttributes
+            )
+            return updateCheckout;
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+
     useEffect(() => {
         setLoading(true)
         window.addEventListener('storage', onStorageUpdate);
+        const urlQueryParams = new URLSearchParams(window.location.search)
+        if(urlQueryParams.get("c") === "sms" || 
+                urlQueryParams.get("c") === "email"
+        ){
+            setKlaviyoAd(true);
+        }
         const initializeCheckout = async () => {
             const existingCheckoutID = sessionStorage.getItem("checkout");
             let itemArray;
@@ -196,10 +331,14 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                         const lineItems = JSON.parse(JSON.stringify(existingCheckout.lineItems));
                         itemArray = [...lineItems];
                         setCart(itemArray);
+                        updateCheckoutWithId(existingCheckoutID);
                         setLoading(false)
                         return;
                     } else {
                         const newCheckout = await client?.checkout?.create();
+                        if(newCheckout){
+                            updateCheckoutWithId(newCheckout.id);
+                        }
                         setCheckoutItem(newCheckout)
                         setLoading(false)
                         return;
@@ -212,6 +351,9 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 }
             }
             const newCheckout = await client?.checkout?.create();
+            if(newCheckout){
+                updateCheckoutWithId(newCheckout.id);
+            }
             setCheckoutItem(newCheckout)
             setLoading(false)
         }
