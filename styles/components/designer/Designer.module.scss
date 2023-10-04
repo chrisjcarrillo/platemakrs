@@ -110,6 +110,11 @@
         @media screen and (max-width: 768px) {
             font-size: 1.5rem;
         }
+        // border-bottom: 1px solid white;
+    }
+    &__text{
+        font-size: 0.75rem;
+        color: white;
     }
     &__submit{
         height: auto;

@@ -206,6 +206,13 @@ const WorkWithADesigner = (props: any) => {
                         >
                             Work With a Designer
                         </h1>
+                        <p
+                            className='designer-form__text'
+                        >
+                            This is a Design Fee to work with a in-house designer directly to give you the most custom experience we offer.
+                            <br></br>
+                            This price does not include the cost of the actual design on the plate, you will be billed separately after you approve your designed. 
+                        </p>
                     </Col>
                 </Row>
                 <Row
