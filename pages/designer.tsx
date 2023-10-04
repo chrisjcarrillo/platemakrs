@@ -211,7 +211,7 @@ const WorkWithADesigner = (props: any) => {
                         >
                             This is a Design Fee to work with a in-house designer directly to give you the most custom experience we offer.
                             <br></br>
-                            This price does not include the cost of the actual design on the plate, you will be billed separately after you approve your designed. 
+                            This price does not include the cost of the actual design on the plate, you will be billed separately after you approve your design.
                         </p>
                     </Col>
                 </Row>
