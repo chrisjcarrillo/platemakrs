@@ -15,10 +15,26 @@
         color: white !important;
     }
 }
-.contact-form{
-    &__col{
+.designer-form{
+    &__main{
+        width: 65%;
         @media screen and (max-width: 768px) {
-            flex: 1 1 100%;
+            width: 100%;
+        }
+        margin-left: auto;
+        margin-right: auto;
+        .ant-form-item-label{
+            padding: 0 !important;
+            text-align: center !important;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif !important;
+            text-transform: uppercase;
+            label{
+                height: auto !important;
+            }
+        }
+        .ant-upload-wrapper .ant-upload-select{
+            width: 100%;
         }
     }
     &__company{
@@ -147,14 +163,97 @@
         color: white !important;
         font-weight: 500 !important;
     }
-    .ant-form-item-label{
-        // padding: 0 !important;
-        // text-align: center !important;
-        font-weight: 700;
-        font-family: 'Poppins', sans-serif !important;
-        text-transform: uppercase;
-        label{
-            height: auto !important;
+    &__order{
+        border-top: 1px solid #ffffff;
+        background-color: #000000;
+        position: sticky;
+        padding-top: 1rem;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        &--button{
+            display: block;
+            padding: 0.85rem 0.5rem;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif !important;
+            background-color: #FFD800;
+            border-radius: 20px;
+            font-size: 1.25rem;
+            color: #000000;
+            height: auto;
+            width: 100%;
+            font-weight: 700;
+            text-transform: uppercase;
+            align-self: center;
+            text-align: center;
+            &.disabled{
+                color: #ffffff;
+                background-color: #000000;
+                pointer-events: none !important;
+                border: 1px solid #ffffff;
+                cursor: not-allowed;
+            }
+            &-final{
+                font-family: 'Poppins', sans-serif !important;
+                background-color: #FFD800;
+                border-radius: 20px;
+                font-size: 1.25rem;
+                color: #000000;
+                height: auto;
+                width: 100%;
+                font-weight: 700;
+                padding: 0.5rem 0;
+                text-transform: uppercase;
+                align-self: center;
+                &:disabled{
+                    color: #ffffff;
+                    background-color: #000000;
+                }
+            }
+        }
+        &--price{
+            text-align: right;
+            color: #ffffff;
+            font-size: 1.65rem;
+            font-weight: 600;
+        }
+        &__action{
+            text-align: center;
+            label{
+                font-size: 0.85rem;
+            }
+            .ant-checkbox-inner{
+                width: 20px;
+                height: 20px;
+            }
+            .ant-checkbox-input:focus+.ant-checkbox-inner {
+                border: 1px solid red !important;
+                -webkit-box-shadow: 0 0 8px rgb(255, 0, 0), 0 0 10px rgb(255, 0, 0);
+                box-shadow: 0 0 8px rgb(255, 0, 0), 0 0 10px rgb(255, 0, 0);
+            }
+            // .ant-checkbox-inner::after {
+            //     width: 20px !important;
+            //     height: 20px !important;
+            //  }
+    
+        }
+        &-row-details{
+            width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+            @media screen and (max-width: 768px) {
+                width: 100%;            
+            }
+        }
+        &-row-order{
+            width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+            @media screen and (max-width: 768px) {
+                width: 100%;            
+            }
         }
     }
 }

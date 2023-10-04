@@ -10,16 +10,19 @@ async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
 		// 
 		const message = {
 			from: `info@platemakrs.com`, // your website email address here
-			templateId: 'd-216aef6367ec4baca9ec82ec484f6eef',
+			templateId: 'd-d43719eb35424f24824f2011e443b35c',
 			personalizations: [{
 				to: req.body.toEmails,
-				subject: `Contact Inquiry: ${req.body.firstName} ${req.body.lastName}`,
+				subject: `License Plate Inquiry: ${req.body.firstName} ${req.body.lastName}`,
 				dynamic_template_data: {
 					"firstName": req.body.firstName,
 					"lastName": req.body.lastName,
 					"email": req.body.email,
 					"phoneNumber": req.body.phoneNumber,
+					"stateCode": req.body.state,
 					"summary": req.body.message,
+					"licensePlate": req.body.licensePlate,
+					"attachments": req.body.attachments
 				},
 			}],
 		}

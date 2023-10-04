@@ -16,6 +16,16 @@
         }
     }
     &__container{
+        .ant-form-item-label{
+            padding: 0 !important;
+            text-align: center !important;
+            // font-weight: 700;
+            font-family: 'Poppins', sans-serif !important;
+            // text-transform: uppercase;
+            label{
+                height: auto !important;
+            }
+        }
         @media screen and (max-width: 495px){
             width: 95%;
         }

@@ -288,6 +288,10 @@ export const menuLayout = [
         link: '/editor'
     },
     {
+        text: 'Work with a designer',
+        link: '/designer'
+    },
+    {
         text: 'Contact',
         link: '/contact'
     },

@@ -8,7 +8,6 @@ import { Modal } from 'antd';
 import { PreviewModal } from '../components/Editor/PreviewModal/PreviewModal';
 import Head from "next/head";
 import { LoadingSpinner } from '../components/shared/LoadingSpinner/LoadingSpinner';
-import { Cart } from '../components/shared/Cart/Cart';
 import { Decision } from '../components/Editor/Decision/Decision';
 import { GetStaticProps } from "next";
 import { StoreContext, StoreContextType, client } from '../context/storeContext';
@@ -46,7 +45,6 @@ export default function Editor(props: any) {
         <>
             <LoadingSpinner>
                 <Decision />
-                <Cart />
                 <MainHead />
                 <PreviewModal
                     product={props?.product}

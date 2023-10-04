@@ -50,6 +50,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <InterfaceProvider>
       <Main />
       <Script
+	  	id="facebook"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `

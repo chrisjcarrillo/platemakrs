@@ -36,6 +36,8 @@ export type StoreContextType = {
     addon?: any; 
     setAddon?: (e: any) => void;
 
+    addVariantDesigner: (product: any, id: string, notes: string) => void;
+
     // Checkout
     redirectCheckout: (currentCustomTemplate: ICustomPlateTemplate, canvasRef?: any) => void;
 
@@ -185,6 +187,40 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                         },
                         {
                             key: "Preview", value: `${designUrl}`, // Template of Preset
+                        }
+                    ]
+                }
+            ]
+            const checkoutResponse = await client?.checkout?.addLineItems(
+                checkoutId,
+                lineItemsToUpdate
+            );
+            setCart(JSON.parse(JSON.stringify(checkoutResponse.lineItems)));
+            klaviyoAd ? null : addToCartEvent('facebook');
+            klaviyoAd ? null : initiateCheckoutEvent(checkoutResponse);
+
+            // history.pushState('', '', `${process.env.STORE_URL}/${uri}`)
+            window.location.replace(checkout?.webUrl)
+        } catch (e) {
+            console.error(e)
+            throw new Error(e)
+        }
+    }
+
+    const addVariantDesigner = async (product: any, id: string, notes: string) => {
+        try {
+            // console.log(variant);
+            const checkoutId = checkout?.id;
+            const lineItemsToUpdate = [
+                {
+                    variantId: product?.variants[0].id,
+                    quantity: 1,
+                    customAttributes: [
+                        {
+                            key: "Order ID", value: `${id}`, // Template of Preset
+                        },
+                        {
+                            key: "Notes", value: `${notes}`, // Template of Preset
                         }
                     ]
                 }
@@ -368,6 +404,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 checkout,
 
                 addVariant,
+                addVariantDesigner,
                 removeVariant,
 
                 hasDesigner,
