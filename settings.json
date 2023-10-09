@@ -8,11 +8,11 @@
     "plateComparison": [
         {
             "imageType": "Before",
-            "imageUrl": "/images/lp-before-.png"
+            "imageUrl": "/images/lp-before.png"
         },
         {
             "imageType": "After",
-            "imageUrl": "/images/lp-after-.png"
+            "imageUrl": "/images/lp-after.png"
         }
     ],
     "howItWorks": {
