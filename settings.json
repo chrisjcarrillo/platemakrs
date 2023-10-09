@@ -8,16 +8,16 @@
     "plateComparison": [
         {
             "imageType": "Before",
-            "imageUrl": "/images/lp-before.png"
+            "imageUrl": "/images/lp-before-1.png"
         },
         {
             "imageType": "After",
-            "imageUrl": "/images/lp-after.png"
+            "imageUrl": "/images/lp-after-1.png"
         }
     ],
     "howItWorks": {
         "title": "How it works",
-        "image": "/images/pm-hiw.png"
+        "image": "/images/hiw-1.png"
     },
     "showcaseSlider": {
         "title": "Platemakr Official",
