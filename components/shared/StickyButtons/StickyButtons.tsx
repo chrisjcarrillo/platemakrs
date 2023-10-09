@@ -1,11 +1,12 @@
+import Link from "next/link";
 import { useEffect } from "react";
 
 export const StickyButtons = () => {
     const handleScroll = () => {
-        let elementTarget = document.querySelector(".hero__container");
+        let elementTarget = document.getElementById("heroc");
         let stickyTarget = document.querySelector('.sticky__container');
         if(elementTarget){
-            if (elementTarget && window.scrollY > (25 + elementTarget?.offsetHeight)) {
+            if (elementTarget && window.scrollY > (100 + elementTarget?.offsetHeight)) {
                 stickyTarget?.classList.add('show');
                 stickyTarget?.classList.remove('hide');
             } else {
@@ -19,10 +20,10 @@ export const StickyButtons = () => {
     });
 
     return(
-        <div className={'sticky__container'}>
+        <div className={'sticky__container hide'}>
             <div className={'sticky__container-inner'}>
-                <a className="sticky__buttons" href="/editor">Build Your Plate</a>
-                <a className="sticky__buttons" href="/products">Pre-Made Designs</a>
+                <Link className="sticky__buttons" href="/editor">Build Your Plate</Link>
+                <Link className="sticky__buttons" href="/products">Pre-Made Designs</Link>
             </div>
         </div>
     )

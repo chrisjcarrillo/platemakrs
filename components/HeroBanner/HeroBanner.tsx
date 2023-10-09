@@ -17,6 +17,7 @@ const HeroBanner = (
 
     return(
         <Container
+            id='heroc'
             className="hero__container"
             fluid
         >       
