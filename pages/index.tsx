@@ -38,6 +38,7 @@ export default function Home(props: any) {
 			<MainSlider
 				title={props.showcaseSlider.title} 
 				swipeImage=""
+				image={props.showcaseSlider.image}
 				swipeText={props.showcaseSlider.swipeText}
 				plates={props.showcaseSlider.images}
 

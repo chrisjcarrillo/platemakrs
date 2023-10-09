@@ -34,6 +34,12 @@
             margin-bottom: 1.5rem;
         }
     }
+    &__images{
+        padding: 0 !important;
+        .slider__row-title{
+            margin-top: -10px !important;
+        }
+    }
     &__img{
         display: block !important;
         object-fit: cover !important;
@@ -57,9 +63,9 @@
             padding: 0 1rem;
         }
         &-title{
-            margin-bottom: 3rem;
+            // margin-bottom: 3rem;
             @media screen and (max-width: 414px) {
-                margin-bottom: 1.5rem;
+                // margin-bottom: 1.5rem;
             }
     
         }

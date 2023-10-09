@@ -16,6 +16,7 @@ type SliderProps = {
     title: string,
     swipeText: string,
     swipeImage: string,
+    image: string,
     plates: Array<SliderImage>
 }
 
@@ -34,15 +35,18 @@ const MainSlider = (
 
     return (
         <Container
-            className="slider__container"
+            className="slider__container slider__images"
         >
             <Row
                 className="slider__row-title"
             >
                 <Col {...colSettings}>
-                    <h1 className="slider__title">
-                        {props.title}
-                    </h1>
+                     <Image
+                        className="it__image"
+                        alt="How it works image"
+                        fill
+                        src={props.image} 
+                    />
                 </Col>
             </Row>
             <Row

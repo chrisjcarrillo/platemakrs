@@ -3,7 +3,7 @@
 
         padding: 4rem 0;
         @media screen and (max-width: 414px) {
-            padding: 1rem 0;
+            padding: 0;
         }
         &-title{
             text-align: center;
@@ -25,8 +25,8 @@
         position: relative !important;
         width: 60% !important;
         @media screen and (max-width: 991px) {
-            height: 95% !important;
-            width: 85% !important;
+            height: 100% !important;
+            width: 100% !important;
         }
     }
 }

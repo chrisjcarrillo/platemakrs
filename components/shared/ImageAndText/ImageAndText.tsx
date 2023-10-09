@@ -44,28 +44,6 @@ export const ImageAndText = (props: ImageAndTextProps) => {
                     />
                 </Col>
             </Row>
-            <Row className="mt-5 it__container-title">
-                    <Col
-                    xs="6" sm="6" md="6" lg="6" xl="6"
-                    style={{
-                        padding: '0'
-                }}
-                    >
-                         <Link className=" hero__button main__cta" href="/editor">
-                            Build your plate
-                        </Link>
-                    </Col>
-                    <Col
-                    xs="6" sm="6" md="6" lg="6" xl="6"
-                    style={{
-                        padding: '0'
-                }}
-                    >
-                         <Link className=" hero__button main__cta" href="/products">
-                            Pre-Made Designs
-                        </Link>
-                    </Col>
-            </Row>
         </Container>
     )
 }
