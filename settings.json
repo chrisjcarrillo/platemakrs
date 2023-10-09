@@ -8,11 +8,11 @@
     "plateComparison": [
         {
             "imageType": "Before",
-            "imageUrl": "/images/lp-before-1.png"
+            "imageUrl": "/images/lp-before-.png"
         },
         {
             "imageType": "After",
-            "imageUrl": "/images/lp-after-1.png"
+            "imageUrl": "/images/lp-after-.png"
         }
     ],
     "howItWorks": {
@@ -24,6 +24,9 @@
         "swipeText": "Swipe",
         "swipeLogo": null,
         "images": [
+            {
+                "imageUrl": "/images/cars/11.png"
+            },
             {
                 "imageUrl": "/images/cars/2.png"
             },
