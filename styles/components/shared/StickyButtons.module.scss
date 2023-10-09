@@ -1,0 +1,33 @@
+.sticky{
+    &__container{
+        position: sticky;
+        bottom: 0;
+        z-index: 1000;
+        padding: 1rem;
+        background-color: #000000;
+        border-top: 1px solid #ffffff;
+        &-inner{
+            display: flex;
+            flex-flow: row wrap;
+        }
+        &.hide{
+            display: none;
+        }
+        &.show{
+            // display: flex;
+        }
+    }
+    &__buttons{
+        flex: 1 1;
+        // width: 50%;
+        background-color: #FFD800;
+        color: black;
+        text-align: center;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        border-radius: 2rem;
+        border: 3px solid;
+        font-size: 0.85rem;
+        font-weight: 700;
+    }
+}

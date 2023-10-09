@@ -20,6 +20,7 @@
 @import './components/Contact.module.scss';
 @import './components/designer/Designer.module.scss';
 @import './components/shared/Search.module.scss';
+@import './components/shared/StickyButtons.module.scss';
 
 // Plate Editor Components
 //// Additional Notes
@@ -79,12 +80,13 @@
 @import './components/shared/Cart.module.scss';
 
 html{
-  overscroll-behavior: none;
+  overscroll-behavior: none !important;
   // overflow: hidden;
   min-height:100%;/* make sure it is at least as tall as the viewport */
   position:relative;
 }
 body {
+  overscroll-behavior: none !important;
   background-color: #000000;
   padding: 0;
   margin: 0;

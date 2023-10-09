@@ -6,6 +6,7 @@ import { GetStaticProps } from "next";
 import PlateComparison from "../components/PlateComparison/PlateComparison";
 import { ImageAndText } from "../components/shared/ImageAndText/ImageAndText";
 import MainSlider from "../components/MainSlider/MainSlider";
+import { StickyButtons } from "../components/shared/StickyButtons/StickyButtons";
 
 const MainHead = () => {
 	return(
@@ -43,6 +44,7 @@ export default function Home(props: any) {
 				plates={props.showcaseSlider.images}
 
 			/>
+			<StickyButtons />
 		</>
 	);
 }
