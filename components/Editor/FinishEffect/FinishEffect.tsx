@@ -16,7 +16,7 @@ export const FinishEffect = (
                 customTemplate?.finish === "GLOSS" && (
                     <div
                         style={{
-                            backgroundImage: "url('../../images/backgrounds/gloss.png')",
+                            backgroundImage: "url('../../images/resources/gloss/1.png')",
                             backgroundSize: 'contain',
                             backgroundPositionX: 'center'
                         }}

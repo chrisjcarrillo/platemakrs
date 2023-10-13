@@ -9,6 +9,9 @@
             width: 100%;
             height: 100%;
             border-radius: 20px;
+            bottom: 1px;
+            mix-blend-mode: screen;
+            background-blend-mode: screen;
         }
     }
     &__holes{
