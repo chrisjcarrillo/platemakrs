@@ -8,9 +8,11 @@
     opacity: 1 !important;
 }
 .swiper-pagination{
-    bottom: 10px !important;
+    display: none !important;
+    bottom: 0px !important;
     @media screen and (max-width: 495px) {
-        bottom: 10px !important;
+        bottom: 0px !important;
+        display: none !important;
     }
 }
 .mySwiper{
