@@ -81,11 +81,12 @@
 
 html{
   overscroll-behavior: none !important;
-  // overflow: hidden;
+  overflow: hidden;
   min-height:100%;/* make sure it is at least as tall as the viewport */
   position:relative;
 }
 body {
+  overflow: hidden;
   overscroll-behavior: none !important;
   background-color: #000000;
   padding: 0;
