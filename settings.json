@@ -26,37 +26,97 @@
         "swipeLogo": null,
         "images": [
             {
-                "imageUrl": "/images/cars/11.png"
+              "imageUrl": "/images/cars/new/1.png"
             },
             {
-                "imageUrl": "/images/cars/2.png"
+              "imageUrl": "/images/cars/new/2.png"
             },
             {
-                "imageUrl": "/images/cars/3.png"
+              "imageUrl": "/images/cars/new/3.png"
             },
             {
-                "imageUrl": "/images/cars/9.png"
+              "imageUrl": "/images/cars/new/4.png"
             },
             {
-                "imageUrl": "/images/cars/10.png"
+              "imageUrl": "/images/cars/new/5.png"
             },
             {
-                "imageUrl": "/images/cars/1.png"
+              "imageUrl": "/images/cars/new/6.png"
             },
             {
-                "imageUrl": "/images/cars/8.png"
+              "imageUrl": "/images/cars/new/7.png"
             },
             {
-                "imageUrl": "/images/cars/7.png"
+              "imageUrl": "/images/cars/new/8.png"
             },
             {
-                "imageUrl": "/images/cars/6.png"
+              "imageUrl": "/images/cars/new/9.png"
             },
             {
-                "imageUrl": "/images/cars/4.png"
+              "imageUrl": "/images/cars/new/10.png"
             },
             {
-                "imageUrl": "/images/cars/5.png"
+              "imageUrl": "/images/cars/new/11.png"
+            },
+            {
+              "imageUrl": "/images/cars/new/12.png"
+            },
+            {
+              "imageUrl": "/images/cars/new/13.png"
+            },
+            {
+              "imageUrl": "/images/cars/new/14.png"
+            },
+            {
+              "imageUrl": "/images/cars/new/15.png"
+            },
+            {
+              "imageUrl": "/images/cars/new/16.png"
+            },
+            {
+              "imageUrl": "/images/cars/new/17.png"
+            },
+            {
+              "imageUrl": "/images/cars/new/18.png"
+            },
+            {
+              "imageUrl": "/images/cars/new/19.png"
+            },
+            {
+              "imageUrl": "/images/cars/new/20.png"
+            },
+            {
+              "imageUrl": "/images/cars/new/21.png"
+            },
+            {
+              "imageUrl": "/images/cars/new/22.png"
+            },
+            {
+              "imageUrl": "/images/cars/new/23.png"
+            },
+            {
+              "imageUrl": "/images/cars/new/24.png"
+            },
+            {
+              "imageUrl": "/images/cars/new/25.png"
+            },
+            {
+              "imageUrl": "/images/cars/new/26.png"
+            },
+            {
+              "imageUrl": "/images/cars/new/27.png"
+            },
+            {
+              "imageUrl": "/images/cars/new/28.png"
+            },
+            {
+              "imageUrl": "/images/cars/new/29.png"
+            },
+            {
+              "imageUrl": "/images/cars/new/30.png"
+            },
+            {
+              "imageUrl": "/images/cars/new/31.png"
             }
         ]
     }
