@@ -1,19 +1,19 @@
 // Terms and Conditions
 export const termsCols = {
-    xs: 7,
-    sm: 7,
-    md: 7,
-    lg: 7,
-    xl: 7
-}
-
-//Price Colomns
-export const priceDetailsCols = {
     xs: 5,
     sm: 5,
     md: 5,
     lg: 5,
     xl: 5
+}
+
+//Price Colomns
+export const priceDetailsCols = {
+    xs: 7,
+    sm: 7,
+    md: 7,
+    lg: 7,
+    xl: 7
 }
 
 // Place Order Button

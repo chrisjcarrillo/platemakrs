@@ -45,7 +45,7 @@
         text-align: right;
         font-size: 1.75rem;
         @media screen and (max-width: 768px) {
-            font-size: 2rem;
+            font-size: 1.45rem;
         }
         &-final{
             color: #ffffff;
@@ -55,7 +55,7 @@
     &__action{
         // text-align: center;
         label{
-            font-size: 0.85rem;
+            font-size: 0.65rem;
         }
         .ant-checkbox-inner{
             width: 20px;
