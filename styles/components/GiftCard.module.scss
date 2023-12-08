@@ -1,0 +1,101 @@
+.giftcard{
+    &__quantity{
+        &-main {
+            &-title {
+                padding-top: 1rem;
+                text-align: center;
+                &-text{
+                    font-size: 1rem !important;
+                    font-weight: 700;
+                    color: #ffffff;
+                }
+            }
+        }
+    
+    }
+    &__amount{
+
+        &-title{
+            text-align: center;
+            font-weight: 500;
+            &-text{
+                color:#ffffff;
+            }
+        }
+        &-main{
+            padding-top: 0.5rem;
+            &-container{
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: space-evenly;
+            }
+            &-title{
+                width: 100%;
+                text-align: center;
+                &-text{
+                    font-weight: 500;
+                    font-size: 1rem !important;
+                    color:#ffffff;
+                }
+            }
+            .btn-check + .btn:hover{
+                background-color: #deb251 !important;
+                border: 1px solid #000000 !important; 
+                span{
+                    color: #000000 !important;
+                }
+            }
+            .btn-check:checked + .btn{
+                background-color: #deb251 !important;
+                border: 1px solid #000000 !important; 
+                span{
+                    color: #000000 !important;
+                }
+            }
+        }
+        &-container{
+            background-color: #000000;
+            padding: 0.5rem;
+            margin-left: 5px;
+            margin-right: 5px;
+            border-radius: 50px !important;   
+            border: 1px solid #deb251;
+
+        }
+        &-title{
+            color: #deb251;
+            font-weight: 600;
+        }
+    }
+    &__title{
+        padding-top: 1rem;
+        padding-bottom: 0.5rem;
+        text-align: center;
+        &-text{
+            font-weight: 700;
+            color: #ffffff;
+        }
+    }
+    &__container{
+        border: 1px solid #deb251;
+        border-radius: 15px;
+        padding: 2rem;
+        padding-top: 8rem;
+        padding-bottom: 8rem;
+        @media screen and (max-width: 768px) {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+        background: rgb(52,52,52);
+        background: -moz-linear-gradient(0deg, rgba(52,52,52,1) 0%, rgba(0,0,0,1) 100%);
+        background: -webkit-linear-gradient(0deg, rgba(52,52,52,1) 0%, rgba(0,0,0,1) 100%);
+        background: linear-gradient(0deg, rgba(52,52,52,1) 0%, rgba(0,0,0,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#343434",endColorstr="#000000",GradientType=1);
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    &__main{
+        max-width: 40rem;
+    }
+}

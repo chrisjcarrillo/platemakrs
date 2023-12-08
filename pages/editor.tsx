@@ -17,14 +17,6 @@ import { InterfaceContext, InterfaceContextType } from '../context/interfaceCont
 import { PlaceOrder } from '../components/Editor/BottomButton/PlaceOrder';
 import { TemplateList } from '../components/Editor/TemplateList/TemplateList';
 
-
-const MainHead = () => {
-    return (
-        <Head>
-            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-        </Head>
-    )
-}
 export default function Editor(props: any) {
 
     const {
@@ -40,37 +32,34 @@ export default function Editor(props: any) {
     } = useContext(StoreContext) as StoreContextType
 
     setAddon?.(props?.addons)
-    
+
     return (
         <>
-            <LoadingSpinner>
-                <Decision />
-                <MainHead />
-                <PreviewModal
-                    product={props?.product}
-                />
-                <TemplateCanvas
-                />
-                <Container fluid className="app__container">
+            <Decision />
+            <PreviewModal
+                product={props?.product}
+            />
+            <TemplateCanvas
+            />
+            <Container fluid className="app__container">
 
-                    {currentEditorStep?.currentStep === 1 &&
-                        <EditorForm />
-                    }
-                    {currentEditorStep?.currentStep === 2 &&
-                        <TemplateList
-                            products={props?.productList?.products}
-                            customTemplate={true}
-                        />
-                    }
-                    {
-                        currentEditorStep?.currentStep === 3 && isPreset && <EditorPresetContainer />
-                    }
-                    {currentEditorStep?.currentStep === 3 && !isPreset &&
-                        <EditorContainer presetTemplate={isPreset}  />
-                    }
-                </Container>
-                {currentEditorStep?.currentStep === 3 && <PlaceOrder presetTemplate={isPreset} />}
-            </LoadingSpinner>
+                {currentEditorStep?.currentStep === 1 &&
+                    <EditorForm />
+                }
+                {currentEditorStep?.currentStep === 2 &&
+                    <TemplateList
+                        products={props?.productList?.products}
+                        customTemplate={true}
+                    />
+                }
+                {
+                    currentEditorStep?.currentStep === 3 && isPreset && <EditorPresetContainer />
+                }
+                {currentEditorStep?.currentStep === 3 && !isPreset &&
+                    <EditorContainer presetTemplate={isPreset} />
+                }
+            </Container>
+            {currentEditorStep?.currentStep === 3 && <PlaceOrder presetTemplate={isPreset} />}
         </>
     )
 }

@@ -1,0 +1,40 @@
+.quantity {
+    &__input {
+        text-align: center;
+        &-group{
+            width: 25% !important;
+            margin-left: auto;
+            margin-right: auto;
+            // padding-top: 1rem;
+            padding-bottom: 1rem;
+            .btn:disabled{
+                color: #878787 !important;
+                border-color: #878787 !important;
+                background-color: #000000 !important; 
+            }
+            .form-control:disabled{
+                background-color:  #878787 !important;
+                border-color: #878787 !important;
+            }
+            :not(.btn-check) + .btn:active{
+                color: #000000 !important;
+                border-color: #deb251 !important;
+                background-color: #deb251 !important;
+            }
+            .btn:hover{
+                color: #000000 !important;
+                border-color: #deb251 !important;
+                background-color: #deb251 !important;    
+            }
+        }
+    }
+
+    &__button {
+        // background-color: #F0F2F2;
+        box-shadow: 0 0.2rem 0.5rem rgb(15 17 17 / 15%);
+        color: #deb251;
+        border-color: #deb251;
+        background-color: #000000;
+        
+    }
+}

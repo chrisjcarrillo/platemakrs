@@ -9,11 +9,14 @@ import { EditorHeader } from '../components/Editor/EditorHeader/EditorHeader';
 import * as fbq from '../lib/facebook/pixel';
 import { Main } from '../components/shared/SEO/Main';
 import Script from 'next/script';
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
+import { Container } from 'react-bootstrap';
+import { LoadingSpinner } from '../components/shared/LoadingSpinner/LoadingSpinner';
+import { Cart } from '../components/shared/Cart/Cart';
 
 export default function App({ Component, pageProps }: AppProps) {
 
-  useEffect(() => {
+	useEffect(() => {
 		const setEventId = async () => {
 			try {
 				const eventIdData = await fetch('/api/user/userId', {
@@ -33,9 +36,9 @@ export default function App({ Component, pageProps }: AppProps) {
 					sessionStorage.setItem('page_fbEventId', eventId);
 					sessionStorage.setItem('ipAddress', eventData.ip);
 					sessionStorage.setItem('userAgent', eventData.userAgent);
-					if(
-						!urlQueryParamsMain.get("c") 
-					){
+					if (
+						!urlQueryParamsMain.get("c")
+					) {
 						fbq.pageview(eventData.uuid);
 					}
 				}
@@ -46,14 +49,14 @@ export default function App({ Component, pageProps }: AppProps) {
 		setEventId();
 	}, []);
 
-  return (
-    <InterfaceProvider>
-      <Main />
-      <Script
-	  	id="facebook"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
+	return (
+		<InterfaceProvider>
+			<Main />
+			<Script
+				id="facebook"
+				strategy="afterInteractive"
+				dangerouslySetInnerHTML={{
+					__html: `
 						!function(f,b,e,v,n,t,s)
 						{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 						n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -64,16 +67,19 @@ export default function App({ Component, pageProps }: AppProps) {
 						'https://connect.facebook.net/en_US/fbevents.js');
 						fbq('init', ${fbq.FB_PIXEL_ID});
 					`,
-        }}
-      />
-      <StoreProvider>
-        <EditorProvider>
-          {/* { pageProps !== 'editor' && <Header {...pageProps} /> } */}
-          <EditorHeader />
-          <Component {...pageProps} />
-          <Analytics />
-        </EditorProvider>
-      </StoreProvider>
-    </InterfaceProvider>
-  )
+				}}
+			/>
+			<StoreProvider>
+				<EditorProvider>
+					{/* { pageProps !== 'editor' && <Header {...pageProps} /> } */}
+					<EditorHeader />
+						<LoadingSpinner>
+							<Cart />
+							<Component {...pageProps} />
+						</LoadingSpinner>
+					<Analytics />
+				</EditorProvider>
+			</StoreProvider>
+		</InterfaceProvider>
+	)
 }

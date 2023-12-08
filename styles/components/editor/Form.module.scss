@@ -7,6 +7,7 @@
     &__container{
         position: sticky;
         bottom: 0;
+        max-width: 550px;
     }
 }
 .editor{
@@ -29,7 +30,8 @@
         @media screen and (max-width: 495px){
             width: 95%;
         }
-        width: 50%;
+        // width: 50%;
+        max-width: 550px;
         margin-left: auto;
         margin-right: auto;
         .ant-switch:not(.ant-switch-checked){

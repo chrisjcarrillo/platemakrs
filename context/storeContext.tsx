@@ -40,6 +40,7 @@ export type StoreContextType = {
 
     // Checkout
     redirectCheckout: (currentCustomTemplate: ICustomPlateTemplate, canvasRef?: any) => void;
+    addVariantGiftCard: (variant: any, quantity: number) => void;
 
     notes?: string;
     setNotes: (e: any) => void;
@@ -143,6 +144,37 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         }, {
             eventID: fbCheckoutId
         })
+    }
+
+    const addVariantGiftCard = async (
+        variant: any,
+        quantity: number
+    ) => {
+        try {
+            const checkoutId = checkout?.id;
+            const variantId = variant.id;
+            const lineItemsToUpdate =[
+                {
+                    variantId,
+                    quantity: quantity,
+                }
+            ]
+
+            const checkoutResponse = await client?.checkout?.addLineItems(
+                checkoutId,
+                lineItemsToUpdate
+            );
+
+            setCart(JSON.parse(JSON.stringify(checkoutResponse.lineItems)));
+            klaviyoAd ? null : addToCartEvent('facebook');
+            klaviyoAd ? null : initiateCheckoutEvent(checkoutResponse);
+
+            // history.pushState('', '', `${process.env.STORE_URL}/${uri}`)
+            window.location.replace(checkout?.webUrl)
+        } catch (e) {
+            console.error(e)
+            throw new Error(e)
+        }
     }
 
     // Variants START
@@ -419,7 +451,9 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 setAddon,
 
                 notes,
-                setNotes
+                setNotes,
+
+                addVariantGiftCard,
             }}
         >
             {children}

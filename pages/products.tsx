@@ -10,20 +10,13 @@ import { CloseSquareFilled } from '@ant-design/icons';
 import Container from 'react-bootstrap/Container';
 import { useRouter } from 'next/router';
 
-const MainHead = () => {
-    return (
-        <Head>
-            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-        </Head>
-    )
-}
 export default function Editor(props: any) {
     const { Search } = Input
     const { productList } = props;
     const [products, setProducts] = useState(productList?.products)
 
     // console.log(props?.product);
-    
+
     const onSearch = (e: string) => {
         if (!e) {
             console.log(!e)
@@ -38,32 +31,27 @@ export default function Editor(props: any) {
 
     return (
         <Container fluid>
-            <LoadingSpinner >
-                <Cart />
-                <MainHead />
-                {/* <Search /> */}
-                <div className='pm__search'>
-                    <div className='pm__search-title'>
-                        Search
-                    </div>
-                    <div className='pm__search-container'>
-                        <Search
-                            className='pm__search-bar'
-                            placeholder="Type to search"
-                            allowClear={{ clearIcon: <CloseSquareFilled rev={''} color='white' /> }}
-                            onSearch={
-                                (e) => onSearch(e)
-                            }
-                            style={{ width: '100%' }}
-                            bordered={false}
-                        />
-                    </div>
+            <div className='pm__search'>
+                <div className='pm__search-title'>
+                    Search
                 </div>
-                <TemplateList
-                    products={products}
-                    customTemplate={false}
-                />
-            </LoadingSpinner>
+                <div className='pm__search-container'>
+                    <Search
+                        className='pm__search-bar'
+                        placeholder="Type to search"
+                        allowClear={{ clearIcon: <CloseSquareFilled rev={''} color='white' /> }}
+                        onSearch={
+                            (e) => onSearch(e)
+                        }
+                        style={{ width: '100%' }}
+                        bordered={false}
+                    />
+                </div>
+            </div>
+            <TemplateList
+                products={products}
+                customTemplate={false}
+            />
         </Container>
     )
 }

@@ -7,6 +7,7 @@
         bottom: 0;
         left: 0;
         right: 0;
+        max-width: 515px;
     }
     &__row {
         &-terms{
@@ -42,13 +43,17 @@
     &__price {
         color: #ffffff;
         text-align: right;
+        font-size: 1.75rem;
+        @media screen and (max-width: 768px) {
+            font-size: 2rem;
+        }
         &-final{
             color: #ffffff;
             text-align: center !important;
         }
     }
     &__action{
-        text-align: center;
+        // text-align: center;
         label{
             font-size: 0.85rem;
         }
@@ -69,6 +74,7 @@
     }
 
     &__button {
+        text-align: center;
         display: block;
         padding: 0.85rem 0.5rem;
         text-decoration: none;
