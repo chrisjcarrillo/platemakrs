@@ -46,11 +46,13 @@ export const FinishSelect = (
                 defaultValue={currentCustomTemplate?.finish ?? 'GLOSS'} 
                 buttonStyle="solid"
             >
-                <Radio.Button 
+                <Radio.Button
+                    checked={currentCustomTemplate?.finish === "GLOSS"}
                     className={`finishSelect__gloss`}
                     value="GLOSS"
                 >Gloss</Radio.Button>
-                <Radio.Button 
+                <Radio.Button
+                    checked={currentCustomTemplate?.finish === "MATTE"}
                     className={`finishSelect__matte`}
                     value="MATTE"
                 >Matte</Radio.Button>

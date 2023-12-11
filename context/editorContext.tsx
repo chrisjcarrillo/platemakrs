@@ -125,7 +125,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                                 ...template,
                                 ...customTemplate,
                                 shopifyVariants: shopifyProduct?.variants,
-                                selectedVariant: shopifyProduct?.variants[1]
+                                selectedVariant: shopifyProduct?.variants[0]
                             }))
                         }
 
@@ -226,7 +226,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                     ...template,
                     ...customTemplate,
                     shopifyVariants: variant,
-                    selectedVariant: variant[1]
+                    selectedVariant: variant[0]
                 }))
                 sessionStorage.setItem('preset', 'true')
                 router.push(`/editor?presetTemplate=${customTemplate?.templateId}&step=1&preset=true`)
@@ -237,7 +237,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                     ...template,
                     ...customTemplate,
                     shopifyVariants: variant,
-                    selectedVariant: variant[1]
+                    selectedVariant: variant[0]
                 }))
                 if (sessionStorage.getItem('preset')) {
                     sessionStorage.removeItem('preset')

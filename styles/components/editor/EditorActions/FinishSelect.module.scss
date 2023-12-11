@@ -15,6 +15,12 @@
         margin-left: auto;
         width: 100%;
         margin-right: auto;
+        label{
+            margin-right: 10px;
+        }
+        :where(.css-dev-only-do-not-override-12upa3x).ant-radio-button-wrapper:not(:first-child)::before{
+            background-color: unset !important;
+        }
     }
     &__matte{
         border-radius: 20px  !important;
