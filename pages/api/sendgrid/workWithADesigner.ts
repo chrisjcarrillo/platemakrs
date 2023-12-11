@@ -7,7 +7,6 @@ sendgrid?.setApiKey(
 
 async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
 	try {
-		// 
 		const message = {
 			from: `info@platemakrs.com`, // your website email address here
 			templateId: 'd-d43719eb35424f24824f2011e443b35c',
@@ -26,7 +25,7 @@ async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
 				},
 			}],
 		}
-		await sendgrid.send(message);
+		sendgrid.send(message);
         return res.status(200).json({ success: "ok" });
 	} catch (error: any) {
 		return res.status(error.statusCode || 500).json({ error: error.message });

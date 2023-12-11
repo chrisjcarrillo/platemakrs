@@ -23,7 +23,7 @@ async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
 				},
 			}],
 		}
-		await sendgrid.send(message);
+		sendgrid.send(message);
         return res.status(200).json({ success: "ok" });
 	} catch (error: any) {
 		return res.status(error.statusCode || 500).json({ error: error.message });
