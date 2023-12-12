@@ -26,7 +26,7 @@ async function designerOrder(req: NextApiRequest, res: NextApiResponse) {
 		}
 
 		if(includesDesigner){
-            sendgrid.send(message);
+            await sendgrid.send(message);
             return res.status(200).json({ success: `${req?.body.name} - designer message sent` });
 		}
 

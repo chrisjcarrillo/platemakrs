@@ -27,10 +27,10 @@ async function regularOrder(req: NextApiRequest, res: NextApiResponse) {
 		}
 
 		if(req.body?.line_items?.length === 1 && includesDesigner){
-			return;
+			return res.status(200).json({ success: "Nothing was sent!" });
 		}
 
-		sendgrid.send(message);
+		await sendgrid.send(message);
         return res.status(200).json({ success: "ok" });
 	} catch (error: any) {
 		return res.status(error.statusCode || 500).json({ error: error.message });
