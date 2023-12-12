@@ -6,7 +6,7 @@ import { InterfaceContext, InterfaceContextType } from './interfaceContext';
 import { useRouter } from 'next/navigation'
 import { ICustomPlateTemplate } from '../interfaces/customTemplate.interface';
 import Cookies from 'js-cookie';
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 interface IStoreProps {
     children: React.ReactNode
@@ -28,12 +28,12 @@ export type StoreContextType = {
         variantId?: any,
         customTemplateId?: string
     ) => void;
-    
+
     removeVariant: (
         any?: any, boolean?: boolean
     ) => void;
 
-    addon?: any; 
+    addon?: any;
     setAddon?: (e: any) => void;
 
     addVariantDesigner: (product: any, id: string, notes: string) => void;
@@ -92,7 +92,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         setLoading(true)
         try {
             if (isCheckout) {
-                // window.location.replace(checkout?.webUrl)
+                window.location.replace(checkout?.webUrl)
             } else {
                 addVariant(
                     currentCustomTemplate?.selectedVariant?.id,
@@ -110,8 +110,8 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         let content = [], contentIds = [];
         const currentCheckout = JSON.parse(JSON.stringify(checkout));
         const currentCart = cart;
-        if(cartEventId === undefined) return;
-        if(currentCart?.length !== 0){
+        if (cartEventId === undefined) return;
+        if (currentCart?.length !== 0) {
             currentCart?.map(item => {
                 let fullItem = {
                     id: item.variant.product.id,
@@ -125,36 +125,35 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 contentIds.push(item.variant.product.id);
             })
         }
-        if(type === "facebook") {
+        if (type === "facebook") {
             window?.fbq('track', 'AddToCart', {
                 content_name: 'Custom License Plate',
                 value: currentCheckout.totalPrice,
                 content: content,
                 content_ids: contentIds
-            },{
+            }, {
                 eventID: cartEventId
             });
         }
-        if(type === "google"){
+        if (type === "google") {
             window?.gtag("event", "begin_checkout", {
                 currency: "USD",
                 send_to: 'AW-11418187763/KCSdCOKZ_v4YEPPvzsQq',
                 value: currentCheckout?.totalPrice?.amount,
-              });
-    
-              window?.gtag("event", "add_to_cart", {
+            });
+
+            window?.gtag("event", "add_to_cart", {
                 currency: "USD",
                 value: currentCheckout?.totalPrice?.amount,
                 send_to: 'AW-11418187763/Q9xNCOWZ_v4YEPPvzsQq',
-              });
+            });
         }
-        
     }
 
     const initiateCheckoutEvent = (checkoutResponse) => {
         let fbCheckoutId = sessionStorage.getItem('checkout_fbEventId');
         window.fbq('track', 'InitiateCheckout', {
-            value: JSON.parse(JSON.stringify(checkoutResponse.totalPrice )),
+            value: JSON.parse(JSON.stringify(checkoutResponse.totalPrice)),
         }, {
             eventID: fbCheckoutId
         })
@@ -167,7 +166,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         try {
             const checkoutId = checkout?.id;
             const variantId = variant.id;
-            const lineItemsToUpdate =[
+            const lineItemsToUpdate = [
                 {
                     variantId,
                     quantity: quantity,
@@ -184,7 +183,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
             klaviyoAd ? null : initiateCheckoutEvent(checkoutResponse);
 
             // history.pushState('', '', `${process.env.STORE_URL}/${uri}`)
-            // window.location.replace(checkout?.webUrl)
+            window.location.replace(checkout?.webUrl)
         } catch (e) {
             console.error(e)
             throw new Error(e)
@@ -246,7 +245,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
             klaviyoAd ? null : initiateCheckoutEvent(checkoutResponse);
 
             // history.pushState('', '', `${process.env.STORE_URL}/${uri}`)
-            // window.location.replace(checkout?.webUrl)
+            window.location.replace(checkout?.webUrl)
         } catch (e) {
             console.error(e)
             throw new Error(e)
@@ -280,7 +279,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
             klaviyoAd ? null : initiateCheckoutEvent(checkoutResponse);
 
             // history.pushState('', '', `${process.env.STORE_URL}/${uri}`)
-            // window.location.replace(checkout?.webUrl)
+            window.location.replace(checkout?.webUrl)
         } catch (e) {
             console.error(e)
             throw new Error(e)
@@ -291,9 +290,9 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         try {
             const checkoutId = checkout?.id;
             const itemRemove = [{
-                    id: item.id,
-                    quantity: 0,
-                    variantId: item?.variant?.id
+                id: item.id,
+                quantity: 0,
+                variantId: item?.variant?.id
             }]
             const removeItem = await client?.checkout?.updateLineItems(
                 checkoutId,
@@ -313,10 +312,10 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
 
     const checkEventSource = () => {
         const urlQueryParamsCheckout = new URLSearchParams(window.location.search);
-        if(Cookies.get('_fbc')){
+        if (Cookies.get('_fbc')) {
             return "Facebook Campaign";
         }
-        if(urlQueryParamsCheckout.get("c")){
+        if (urlQueryParamsCheckout.get("c")) {
             return `Klaviyo Campaign: ${urlQueryParamsCheckout.get("c")}`
         }
         return "Organic Traffic";
@@ -326,8 +325,8 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         try {
             const generatePlatemakrsID = uuidv4();
             const checkoutEventId = "PM_" + generatePlatemakrsID;
-            if(checkoutEventId) sessionStorage.setItem('checkout_fbEventId', checkoutEventId);
-            
+            if (checkoutEventId) sessionStorage.setItem('checkout_fbEventId', checkoutEventId);
+
             const purchasePlatemakrsID = uuidv4();
             const purchaseEventId = "PM_" + purchasePlatemakrsID;
 
@@ -339,20 +338,20 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
             const customAttributes = {
                 customAttributes: [
                     {
-                        key: "click_id", 
+                        key: "click_id",
                         value: `${Cookies.get('_fbc') ?? null}`
                     },
                     {
-                        key: "pixel_id", 
+                        key: "pixel_id",
                         value: `${Cookies.get('_fbp') ?? null}`
                     },
                     {
-                        key: "checkout_event_id", 
+                        key: "checkout_event_id",
                         value: `${checkoutEventId ?? null}`
                     },
                     {
                         key: "origin_url",
-                        value: `${window.location.href ?? null }`
+                        value: `${window.location.href ?? null}`
                     },
                     {
                         key: "ip_address",
@@ -368,7 +367,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                     },
                     {
                         key: "cart_event_id",
-                        value: `${ cartEventId ?? null }`
+                        value: `${cartEventId ?? null}`
                     },
                     {
                         key: "source",
@@ -376,12 +375,12 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                     },
                     {
                         key: "custom_id",
-                        value: `${ customId ?? null }`
+                        value: `${customId ?? null}`
                     }
                 ]
             }
             const updateCheckout = await client.checkout.updateAttributes(
-                id,     
+                id,
                 customAttributes
             )
             return updateCheckout;
@@ -395,9 +394,9 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         setLoading(true)
         window.addEventListener('storage', onStorageUpdate);
         const urlQueryParams = new URLSearchParams(window.location.search)
-        if(urlQueryParams.get("c") === "sms" || 
-                urlQueryParams.get("c") === "email"
-        ){
+        if (urlQueryParams.get("c") === "sms" ||
+            urlQueryParams.get("c") === "email"
+        ) {
             setKlaviyoAd(true);
         }
         const initializeCheckout = async () => {
@@ -418,7 +417,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                         return;
                     } else {
                         const newCheckout = await client?.checkout?.create();
-                        if(newCheckout){
+                        if (newCheckout) {
                             updateCheckoutWithId(newCheckout.id);
                         }
                         setCheckoutItem(newCheckout)
@@ -433,7 +432,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 }
             }
             const newCheckout = await client?.checkout?.create();
-            if(newCheckout){
+            if (newCheckout) {
                 updateCheckoutWithId(newCheckout.id);
             }
             setCheckoutItem(newCheckout)
@@ -461,7 +460,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
 
                 redirectCheckout,
 
-                addon, 
+                addon,
                 setAddon,
 
                 notes,
