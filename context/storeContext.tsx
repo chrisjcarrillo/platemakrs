@@ -92,7 +92,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         setLoading(true)
         try {
             if (isCheckout) {
-                window.location.replace(checkout?.webUrl)
+                // window.location.replace(checkout?.webUrl)
             } else {
                 addVariant(
                     currentCustomTemplate?.selectedVariant?.id,
@@ -135,6 +135,20 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 eventID: cartEventId
             });
         }
+        if(type === "google"){
+            window?.gtag("event", "begin_checkout", {
+                currency: "USD",
+                send_to: 'AW-11418187763/KCSdCOKZ_v4YEPPvzsQq',
+                value: currentCheckout?.totalPrice?.amount,
+              });
+    
+              window?.gtag("event", "add_to_cart", {
+                currency: "USD",
+                value: currentCheckout?.totalPrice?.amount,
+                send_to: 'AW-11418187763/Q9xNCOWZ_v4YEPPvzsQq',
+              });
+        }
+        
     }
 
     const initiateCheckoutEvent = (checkoutResponse) => {
@@ -170,7 +184,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
             klaviyoAd ? null : initiateCheckoutEvent(checkoutResponse);
 
             // history.pushState('', '', `${process.env.STORE_URL}/${uri}`)
-            window.location.replace(checkout?.webUrl)
+            // window.location.replace(checkout?.webUrl)
         } catch (e) {
             console.error(e)
             throw new Error(e)
@@ -232,7 +246,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
             klaviyoAd ? null : initiateCheckoutEvent(checkoutResponse);
 
             // history.pushState('', '', `${process.env.STORE_URL}/${uri}`)
-            window.location.replace(checkout?.webUrl)
+            // window.location.replace(checkout?.webUrl)
         } catch (e) {
             console.error(e)
             throw new Error(e)
@@ -266,7 +280,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
             klaviyoAd ? null : initiateCheckoutEvent(checkoutResponse);
 
             // history.pushState('', '', `${process.env.STORE_URL}/${uri}`)
-            window.location.replace(checkout?.webUrl)
+            // window.location.replace(checkout?.webUrl)
         } catch (e) {
             console.error(e)
             throw new Error(e)
