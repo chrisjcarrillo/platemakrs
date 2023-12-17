@@ -292,6 +292,10 @@ export const menuLayout = [
         link: '/designer'
     },
     {
+        text: 'Gift Card',
+        link: '/giftcard'
+    },
+    {
         text: 'Contact',
         link: '/contact'
     },
