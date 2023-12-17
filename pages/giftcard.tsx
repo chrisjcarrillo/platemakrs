@@ -23,7 +23,7 @@ import { PlaceOrderGiftCard } from '../components/PlaceOrderGiftCard/PlaceOrderG
 export default function GiftCard(props: any) {
 
     const [radioValue, setRadioValue] = useState(null);
-    const [amount, setAmount] = useState<Number>(0)
+    const [amount, setAmount] = useState<Number>(1)
 
     console.log(radioValue)
     // console.log(amount)
@@ -86,7 +86,7 @@ export default function GiftCard(props: any) {
                         </div>
                         <QuantityInput
                             disabled={radioValue}
-                            defaultAmount={0}
+                            defaultAmount={1}
                             amount={amount}
                             setAmount={ setAmount }
                         />
