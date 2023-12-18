@@ -19,6 +19,9 @@ export interface ICustomPlateTemplate{
 
     sportsTeam?: boolean;
 
+    title?: string;
+    description?: string;
+
     startPlatePosition?: string;
     startPlateText?: string;
 

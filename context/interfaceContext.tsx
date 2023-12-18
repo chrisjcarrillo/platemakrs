@@ -54,6 +54,9 @@ export type InterfaceContextType = {
     setPreset: (type: boolean) => void;
 
     designUrl?: string;
+
+    googleDetails?: boolean;
+    setGoogleDetails: (type: boolean)=> void;
 }
 
 export const InterfaceContext = createContext<InterfaceContextType | null>(null);
@@ -93,6 +96,8 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
     const [isPreset, setPreset] = useState<boolean>(false) // is the current template a preset
 
     const [showMenu, setMenu] = useState<boolean>(false) // show menu
+    const [googleDetails, setGoogleDetails] = useState<boolean>(false)
+
 
     useEffect(() => {
         setLoading(true)
@@ -108,6 +113,13 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
             setPreset(true);
         }
     }, [isPreset])
+
+    useEffect(() => {
+        const query = new URLSearchParams(window.location.search);
+        if(query && query.get('gclid')){
+            setGoogleDetails(true);
+        }
+    })
 
 
     // NOTES
@@ -181,7 +193,10 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
                 designUrl,
 
                 showMenu, 
-                setMenu
+                setMenu,
+
+                googleDetails, 
+                setGoogleDetails
 
             }}
         >

@@ -63,7 +63,7 @@ export type EditorContextType = {
 
     // Template
     // setCurrentTemplate?: (template: any) => void;
-    selectPresetTemplate?: (handle: string, variantId: string, customPresetTemplate: boolean) => void;
+    selectPresetTemplate?: (title: any, description: any, handle: string, variantId: string, customPresetTemplate: boolean) => void;
 
     // Custom Template
     confirmPreview?: () => void;
@@ -108,38 +108,47 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         if (typeof window !== "undefined") {
             let data = window.performance.getEntriesByType("navigation")[0].type;
             const query = new URLSearchParams(window.location.search);
-            if (data === 'reload' && query.get('preset')) {
-                const initProduct = async () => {
-                    try {
-                        setLoading(true);
-                        
-                        const templateFilter = premadeTemplates.filter(
-                            template => template?.templateId === query.get('presetTemplate')
-                        );
-                        
-                        const shopifyProduct = await client.product.fetchByHandle(templateFilter[0].shopifyHandle);
-                        const customTemplate = templateFilter[0] as ICustomPlateTemplate;
+            const initProduct = async () => {
+                try {
+                    setLoading(true);
+                    
+                    const templateFilter = premadeTemplates.filter(
+                        template => template?.templateId === query.get('presetTemplate')
+                    );
+                    
+                    const shopifyProduct = await client.product.fetchByHandle(templateFilter[0].shopifyHandle);
+                    const customTemplate = templateFilter[0] as ICustomPlateTemplate;
 
-                        if (customTemplate) {
-                            setCurrentCustomTemplate(template => ({
-                                ...template,
-                                ...customTemplate,
-                                shopifyVariants: shopifyProduct?.variants,
-                                selectedVariant: shopifyProduct?.variants[0]
-                            }))
-                        }
-
-                    } catch (error) {
-                        setLoading(false);
-                    } finally {
-                        setLoading(false);
+                    if (customTemplate) {
+                        setCurrentCustomTemplate(template => ({
+                            ...template,
+                            ...customTemplate,
+                            title: shopifyProduct?.title,
+                            description: shopifyProduct?.description,
+                            shopifyVariants: shopifyProduct?.variants,
+                            selectedVariant: shopifyProduct?.variants[0]
+                        }))
                     }
-                }
-                if (query.get('presetTemplate') && query.get('preset') && query.get('step') === "1" && window.location.pathname === "/editor") {
-                    initProduct();
+                    console.log('Google ads is present')
 
+                } catch (error) {
+                    setLoading(false);
+                } finally {
+                    setLoading(false);
                 }
             }
+            if (data === 'reload' && query.get('preset')) {
+                if (query.get('presetTemplate') && query.get('preset') && query.get('step') === "1" && window.location.pathname === "/editor") {
+                    initProduct();
+                    console.log('Google ads is present')
+                }
+            }
+            if(query.get('preset') && query.get('gclid')){
+                initProduct();
+                console.log('Google ads is present')
+            
+            }
+            
         }
     }, [])
 
@@ -212,6 +221,8 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
 
     ///// START: Template Functions //////
     const selectPresetTemplate = async (
+        title?: any,
+        description?: any,
         handle?: string,
         variant?: any,
         customPresetTemplate?: boolean
@@ -225,6 +236,8 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 setCurrentCustomTemplate(template => ({
                     ...template,
                     ...customTemplate,
+                    title: title,
+                    description: description,
                     shopifyVariants: variant,
                     selectedVariant: variant[0]
                 }))
@@ -236,6 +249,8 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 setCurrentCustomTemplate(template => ({
                     ...template,
                     ...customTemplate,
+                    title: title,
+                    description: description,
                     shopifyVariants: variant,
                     selectedVariant: variant[0]
                 }))

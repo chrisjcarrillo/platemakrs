@@ -9,7 +9,7 @@ import { Background } from '../Background/Background';
 import { Logo } from '../Logo/Logo';
 import { EditorContext } from '../../../context/editorContext';
 import { EditorContextType } from '../../../context/editorContext';
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useState, useRef } from 'react';
 import { FinishEffect } from '../FinishEffect/FinishEffect';
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import { StateSvg } from '../../shared/StateSvg/StateSvg';
@@ -19,7 +19,7 @@ import { InterfaceContext, InterfaceContextType } from '../../../context/interfa
 import { BottomLogo } from '../BottomLogo/BottomLogo';
 import { useRouter } from 'next/navigation';
 import { StoreContext, StoreContextType } from '../../../context/storeContext';
-import html2canvas from 'html2canvas'
+import html2canvas from 'html2canvas';
 import { ref, uploadBytes, getDownloadURL, getStorage, deleteObject, uploadString } from 'firebase/storage';
 
 const TemplateCanvas = (
@@ -41,7 +41,8 @@ const TemplateCanvas = (
         showDecision,
         isPreset,
         finalDesign,
-        takeDesignScreenshot
+        takeDesignScreenshot,
+        googleDetails
     } = useContext(InterfaceContext) as InterfaceContextType
 
     const {
@@ -166,7 +167,7 @@ const TemplateCanvas = (
                         </Col>
                         <Col {...headerSettings}>
                             <div className="editor__title">
-                                <h2 className="editor__title-text">License Plate Preview </h2>
+                                <h2 className="editor__title-text">License Plate Preview</h2>
                             </div>
                         </Col>
                         <Col {...actionSettings}>
@@ -345,6 +346,12 @@ const TemplateCanvas = (
 
                     </div>
                 </div>
+                {googleDetails && (
+                    <div className="canvas__extra-details">
+                        <p className="canvas__extra-details-title">{currentCustomTemplate?.title}</p>
+                        <p className="canvas__extra-details-title">{currentCustomTemplate?.description ?? null}</p>
+                    </div>
+                )}
             </Container>
         </>
     )

@@ -65,6 +65,8 @@ export const TemplateList = (props: any) => {
                             className={`templatePreview__column animate__animated animate__fadeIn`}
                             onClick={
                                 () => selectPresetTemplate?.(
+                                    template?.description ?? null,
+                                    template?.title,
                                     template.handle,
                                     template.variants,
                                     props?.customTemplate
