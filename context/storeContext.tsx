@@ -22,6 +22,8 @@ export type StoreContextType = {
 
     acceptTerms?: boolean,
     setAcceptTerms: (e: boolean) => void;
+    
+    addToCartEvent: (type: string) => void;
 
     // Variant
     addVariant: (
@@ -179,7 +181,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
             );
 
             setCart(JSON.parse(JSON.stringify(checkoutResponse.lineItems)));
-            klaviyoAd ? null : addToCartEvent('facebook');
+            // klaviyoAd ? null : addToCartEvent('facebook');
             klaviyoAd ? null : initiateCheckoutEvent(checkoutResponse);
 
             // history.pushState('', '', `${process.env.STORE_URL}/${uri}`)
@@ -241,7 +243,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 lineItemsToUpdate
             );
             setCart(JSON.parse(JSON.stringify(checkoutResponse.lineItems)));
-            klaviyoAd ? null : addToCartEvent('facebook');
+            // klaviyoAd ? null : addToCartEvent('facebook');
             klaviyoAd ? null : initiateCheckoutEvent(checkoutResponse);
 
             // history.pushState('', '', `${process.env.STORE_URL}/${uri}`)
@@ -275,7 +277,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 lineItemsToUpdate
             );
             setCart(JSON.parse(JSON.stringify(checkoutResponse.lineItems)));
-            klaviyoAd ? null : addToCartEvent('facebook');
+            // klaviyoAd ? null : addToCartEvent('facebook');
             klaviyoAd ? null : initiateCheckoutEvent(checkoutResponse);
 
             // history.pushState('', '', `${process.env.STORE_URL}/${uri}`)
@@ -447,7 +449,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 cart,
                 showCart,
                 checkout,
-
+                addToCartEvent,
                 addVariant,
                 addVariantDesigner,
                 removeVariant,

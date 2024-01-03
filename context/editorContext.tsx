@@ -91,7 +91,8 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const {
-        addVariant
+        addVariant,
+        addToCartEvent
     } = useContext(StoreContext) as StoreContextType;
 
     // Messages Start
@@ -111,11 +112,11 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             const initProduct = async () => {
                 try {
                     setLoading(true);
-                    
+
                     const templateFilter = premadeTemplates.filter(
                         template => template?.templateId === query.get('presetTemplate')
                     );
-                    
+
                     const shopifyProduct = await client.product.fetchByHandle(templateFilter[0].shopifyHandle);
                     const customTemplate = templateFilter[0] as ICustomPlateTemplate;
 
@@ -143,12 +144,12 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                     console.log('Google ads is present')
                 }
             }
-            if(query.get('preset') && query.get('gclid')){
+            if (query.get('preset') && query.get('gclid')) {
                 initProduct();
                 console.log('Google ads is present')
-            
+
             }
-            
+
         }
     }, [])
 
@@ -229,7 +230,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
     ) => {
         try {
             setLoading(true);
-            const templateFilter = premadeTemplates?.filter( template => template?.shopifyHandle === handle );
+            const templateFilter = premadeTemplates?.filter(template => template?.shopifyHandle === handle);
             const customTemplate = templateFilter[0] as ICustomPlateTemplate;
 
             if (!customPresetTemplate) {
@@ -243,7 +244,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 }))
                 sessionStorage.setItem('preset', 'true')
                 router.push(`/editor?presetTemplate=${customTemplate?.templateId}&step=1&preset=true`)
-                
+
             } else {
                 setShowPreview(true)
                 setCurrentCustomTemplate(template => ({
@@ -266,13 +267,14 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         }
         setLoading(false);
     }
-    
+
     ///// END: Template Functions //////
 
     ///// START: License Plate Functions /////
     const createLicensePlate = async (
     ) => {
         try {
+            addToCartEvent('facebook');
             setLoading(true)
             setStepLoading(true)
             const queryParams = new URLSearchParams(window.location.search);
