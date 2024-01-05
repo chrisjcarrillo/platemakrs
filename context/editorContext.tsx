@@ -18,7 +18,7 @@ import { ITemplate } from '../interfaces/template.interface';
 import { ICustomPlateTemplate } from '../interfaces/customTemplate.interface';
 import { useRouter } from 'next/navigation'
 import { InterfaceContext, InterfaceContextType } from './interfaceContext';
-import { createLicensePlateFirebase, createTemplateFirebase } from '../lib/firebase/firebase';
+import { createLicensePlateFirebase, createTemplateFirebase, getLicensePlate, updateLicensePlateFirebase } from '../lib/firebase/firebase';
 import { StoreContext, StoreContextType, client } from './storeContext';
 import { premadeTemplates } from '../utils/premadeTemplates';
 
@@ -66,7 +66,6 @@ export type EditorContextType = {
     selectPresetTemplate?: (title: any, description: any, handle: string, variantId: string, customPresetTemplate: boolean) => void;
 
     // Custom Template
-    confirmPreview?: () => void;
     updateCustomTemplateSelection?: (type: any, value: any) => void;
 }
 
@@ -87,7 +86,8 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         setDecision,
         setMoveLogo,
         setMoveBackgroundLogo,
-        setMoveBottomLogo
+        setMoveBottomLogo,
+        setPreset
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const {
@@ -153,66 +153,11 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         }
     }, [])
 
-    const confirmPreview = async () => {
-        try {
-            const createCustomTemplate = await createTemplateFirebase(
-                currentCustomTemplate
-            );
-            if (createCustomTemplate) {
-                sessionStorage.setItem(
-                    'customTemplateId',
-                    createCustomTemplate?.id
-                ); // Save the id in case of reload
-
-                setCurrentCustomTemplate(template => ({
-                    ...template,
-                    ...currentCustomTemplate,
-                    id: createCustomTemplate?.id
-                }))
-            }
-        } catch (error) {
-            console.error(error)
-            // updateStep(2)
-        } finally {
-            setTimeout(
-                () => {
-                    setLoading(false)
-                    setShowPreview(false)
-                    setStepLoading(false)
-                },
-                3000
-            )
-        }
-
-    }
-
-    const colorValidation = (type: any, value: any) => {
-        if (
-            currentCustomTemplate?.backgroundSettings?.color === value
-        ) {
-            messageApi.open({
-                type: 'error',
-                content: 'Background and Other Text should not be the same color!',
-                duration: 2,
-            })
-            return 'sameColor';
-        }
-    }
 
     const updateCustomTemplateSelection = (
         type: any,
         value: any
     ) => {
-
-        // let validation = colorValidation(type, value);
-        // if (validation === "sameColor") return;
-        // if(type !== "backgroundStroke") {
-        //     let validation = colorValidation(type, value);
-        //     if (validation === "sameColor") return;
-        // }
-
-        // const currentTemplates = {...currentCustomTemplate, [type]: value}
-
         setCurrentCustomTemplate(currentCustomTemplates => ({
             ...currentCustomTemplates,
             [type]: value
@@ -233,28 +178,22 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             const templateFilter = premadeTemplates?.filter(template => template?.shopifyHandle === handle);
             const customTemplate = templateFilter[0] as ICustomPlateTemplate;
 
+            setCurrentCustomTemplate(template => ({
+                ...template,
+                ...customTemplate,
+                title: title,
+                description: description,
+                shopifyVariants: variant,
+            }))
+
             if (!customPresetTemplate) {
-                setCurrentCustomTemplate(template => ({
-                    ...template,
-                    ...customTemplate,
-                    title: title,
-                    description: description,
-                    shopifyVariants: variant,
-                    selectedVariant: variant[0]
-                }))
+                setPreset(true);
                 sessionStorage.setItem('preset', 'true')
                 router.push(`/editor?presetTemplate=${customTemplate?.templateId}&step=1&preset=true`)
+            }
 
-            } else {
-                setShowPreview(true)
-                setCurrentCustomTemplate(template => ({
-                    ...template,
-                    ...customTemplate,
-                    title: title,
-                    description: description,
-                    shopifyVariants: variant,
-                    selectedVariant: variant[0]
-                }))
+            if (customPresetTemplate) {
+                setPreset(false);
                 if (sessionStorage.getItem('preset')) {
                     sessionStorage.removeItem('preset')
                 }
@@ -262,10 +201,11 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             }
         } catch (error) {
             console.log(error);
+            setLoading(false);
         } finally {
+            updateStep(1);
             setLoading(false);
         }
-        setLoading(false);
     }
 
     ///// END: Template Functions //////
@@ -277,33 +217,41 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             addToCartEvent('facebook');
             setLoading(true)
             setStepLoading(true)
-            const queryParams = new URLSearchParams(window.location.search);
 
-            const createPlate = await createLicensePlateFirebase(currentLicensePlate);
+            // Find License Plate in Storage
+            if(sessionStorage.getItem('licensePlateId')){
+                const getPlate = await updateLicensePlateFirebase(sessionStorage.getItem('licensePlateId'), currentLicensePlate);
+                setLicensePlate(licensePlate => ({
+                    ...licensePlate,
+                    ...currentLicensePlate
+                }))
+            } else {
+                // Create License Plate on Firebase
+                const createPlate = await createLicensePlateFirebase(currentLicensePlate);
+                 // Note: Set License Plate in Session Storage
+                sessionStorage.setItem('licensePlateId', createPlate.id);
+                setLicensePlate(licensePlate => ({
+                    ...licensePlate,
+                    ...currentLicensePlate
+                }))
+            }
 
-            if (createPlate) sessionStorage.setItem('licensePlateId', createPlate.id);
 
-            setLicensePlate(licensePlate => ({
-                ...licensePlate,
-                ...currentLicensePlate
-            }))
+            const createCustomTemplate = await createTemplateFirebase(
+                currentCustomTemplate
+            );
 
-            if (queryParams.get("preset") && sessionStorage.getItem('preset')) {
-                const createCustomTemplate = await createTemplateFirebase(
-                    currentCustomTemplate
-                );
-                if (createCustomTemplate) {
-                    sessionStorage.setItem(
-                        'customTemplateId',
-                        createCustomTemplate?.id
-                    ); // Save the id in case of reload
+            if (createCustomTemplate) {
+                sessionStorage.setItem(
+                    'customTemplateId',
+                    createCustomTemplate?.id
+                ); // Save the id in case of reload
 
-                    setCurrentCustomTemplate(template => ({
-                        ...template,
-                        ...currentCustomTemplate,
-                        id: createCustomTemplate?.id
-                    }))
-                }
+                setCurrentCustomTemplate(template => ({
+                    ...template,
+                    ...currentCustomTemplate,
+                    id: createCustomTemplate?.id
+                }))
             }
 
             setTimeout(() => {
@@ -324,9 +272,59 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                     setLoading(false);
                     setStepLoading(false)
                     if (queryParams.get("preset") && sessionStorage.getItem('preset')) {
-                        setDecision(true)
+                        setPreset(true)
+                        if (
+                            currentCustomTemplate?.backgroundSettings?.background?.file?.name === "carbon-fiber-full-with-shadow" ||
+                            currentCustomTemplate?.backgroundSettings?.background?.file?.name === "forged-carbon" ||
+                            currentCustomTemplate?.backgroundSettings?.background?.file?.name === "carbon-fiber" || currentCustomTemplate?.backgroundSettings?.background?.file?.name === 'black-plate'
+                        ) {
+                            updateStep?.(
+                                3,
+                                'presetCharacterColor',
+                                'Select Color',
+                                false,
+                                'Plate Character'
+                            )
+                        }
+                        if (
+                            currentCustomTemplate?.backgroundSettings?.background?.enabled
+                            && currentCustomTemplate?.backgroundSettings?.background?.file?.hasColor
+                        ) {
+                            updateStep?.(
+                                3,
+                                'presetBgImageColor',
+                                'Select Color',
+                                false,
+                                'Background Image'
+                            )
+                        }
+                        updateStep?.(
+                            3,
+                            'presetBgColor',
+                            'Select Color',
+                            false,
+                            'Background'
+                        )
                     } else {
-                        updateStep(2)
+                        if (
+                            currentCustomTemplate?.backgroundSettings?.background?.enabled
+                        ) {
+                            updateStep(
+                                3,
+                                'editorBgImage',
+                                'Select Image',
+                                false,
+                                'Background Image'
+                            )
+                        } else {
+                            updateStep(
+                                3,
+                                'editorBgColor',
+                                'Select Color',
+                                false,
+                                'Background'
+                            )
+                        }
                     }
                 },
                 2000
@@ -359,57 +357,6 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         setMoveBackgroundLogo(false);
         setMoveBottomLogo(false);
 
-        if (sessionStorage.getItem('preset')) {
-            setDecision(false);
-        }
-
-        // If your going from the second step to the first step
-        // Show the user a warning (You will lose all of your edit information)
-        // 
-        if (
-            currentEditorStep.currentStep === 2 && step === 1 && !sessionStorage.getItem('preset')
-        ) {
-            console.log('first')
-            Modal.confirm({
-                centered: true,
-                icon: <WarningOutlined rev={''} />,
-                title: 'Are you sure you want to go back?',
-                content: 'You will lose your current Design',
-                okText: 'Confirm',
-                onOk() {
-                    // setCurrentTemplate(undefined);
-                    setCurrentCustomTemplate(undefined);
-                    setStep({ currentStep: 1, currentSubStep: undefined })
-                },
-                onCancel() { },
-            });
-            return;
-
-        }
-
-        if (currentEditorStep.currentStep === 1 && step === 1 &&
-            currentCustomTemplate && sessionStorage.getItem('preset')
-        ) {
-            console.log('second')
-            Modal.confirm({
-                centered: true,
-                icon: <WarningOutlined rev={''} />,
-                title: 'Are you sure you want to go back?',
-                content: 'You will lose your current Design',
-                okText: 'Confirm',
-                onOk() {
-                    setDecision(false);
-                    setLicensePlate(undefined);
-                    // setCurrentTemplate(undefined);
-                    setCurrentCustomTemplate(undefined);
-                    setStep({ currentStep: 1, currentSubStep: undefined })
-                    router.push('/products')
-                },
-                onCancel() { },
-            });
-            return;
-        }
-
         setStep(currentEditorStep => ({
             ...currentEditorStep,
             currentStep: step,
@@ -436,17 +383,14 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 currentLicensePlate,
                 updateLicensePlate,
                 createLicensePlate,
-                // createPresetLicensePlate,
 
                 // Custom Template
-                // setCurrentTemplate,
                 currentCustomTemplate,
+
                 // createCustomTemplate,
-                confirmPreview,
                 updateCustomTemplateSelection,
 
                 // Template
-                // currentTemplate,
                 selectPresetTemplate,
 
                 // Steps

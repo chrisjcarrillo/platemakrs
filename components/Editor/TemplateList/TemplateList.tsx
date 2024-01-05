@@ -89,7 +89,16 @@ export const TemplateList = (props: any) => {
                                 <div className="templatePreview__badge">
                                     {
                                         (template?.title?.includes('Miami') || template?.title?.includes('Dolphins') || template?.title?.includes('Panthers')) &&
-                                            <Badge className="templatePreview__badge-details" count="All Teams Available" />
+                                            <Badge className="templatePreview__badge-details" count="All Teams Available" /> 
+
+                                    }
+                                                                        {
+                                    (
+                                        !template?.title?.includes('Miami') && !template?.title?.includes('Dolphins') && !template?.title?.includes('Panthers') &&
+                                        !template?.title?.includes('Carbon') && !template?.title?.includes('Pinstripe') && !template?.title?.includes('Two Colors') && !template?.title?.includes('Trees')
+                                        && !template?.title?.includes('line') && !template?.title?.includes('Autism')  && !template?.title?.includes('Joker')
+                                        ) &&
+                                            <Badge className="templatePreview__badge-details" count="Any Brand Available" /> 
 
                                     }
 
@@ -102,8 +111,7 @@ export const TemplateList = (props: any) => {
                                         }
                                     </h3>
                                     <h5 className='templatePreview__price'>
-                                        <span className='templatePreview__from'>from</span>
-                                        ${(parseInt(template?.variants[1].priceV2.amount).toFixed(2))}
+                                        ${(parseInt(template?.variants[1].priceV2.amount).toFixed(2))} - ${(parseInt(template?.variants[0].priceV2.amount).toFixed(2))}
                                     </h5>
                                 </div>
                             </div>
@@ -112,8 +120,6 @@ export const TemplateList = (props: any) => {
 
                 }))}
             </Row>
-            {/* </InstantSearch> */}
-
         </Container>
 
     )

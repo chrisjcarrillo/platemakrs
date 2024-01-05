@@ -4,11 +4,6 @@ import TemplateCanvas from '../components/Editor/Template/TemplateCanvas';
 import { EditorContextType } from '../context/editorContext';
 import { EditorContext } from '../context/editorContext';
 import { EditorContainer } from '../components/Editor/EditorContainer/EditorContainer';
-import { Modal } from 'antd';
-import { PreviewModal } from '../components/Editor/PreviewModal/PreviewModal';
-import Head from "next/head";
-import { LoadingSpinner } from '../components/shared/LoadingSpinner/LoadingSpinner';
-import { Decision } from '../components/Editor/Decision/Decision';
 import { GetStaticProps } from "next";
 import { StoreContext, StoreContextType, client } from '../context/storeContext';
 import { Container } from 'react-bootstrap';
@@ -35,22 +30,12 @@ export default function Editor(props: any) {
 
     return (
         <>
-            <Decision />
-            <PreviewModal
-                product={props?.product}
-            />
             <TemplateCanvas
             />
             <Container fluid className="app__container">
 
                 {currentEditorStep?.currentStep === 1 &&
                     <EditorForm />
-                }
-                {currentEditorStep?.currentStep === 2 &&
-                    <TemplateList
-                        products={props?.productList?.products}
-                        customTemplate={true}
-                    />
                 }
                 {
                     currentEditorStep?.currentStep === 3 && isPreset && <EditorPresetContainer />

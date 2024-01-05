@@ -1,17 +1,24 @@
 import { app, database, storage } from '../../firebaseConfig';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, getDoc, doc, updateDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { ICustomPlateTemplate } from '../../interfaces/customTemplate.interface';
 import { ILicensePlate } from '../../interfaces/licensePlate.interface';
 
+const LICENSE_PLATES = 'licensePlates';
+const CUSTOM_PLATES = 'customPlateTemplates';
+
+
 // Firebase Initializers START 
 export const licensePlateInstance = collection(
     database,
-    'licensePlates'
+    LICENSE_PLATES
 );
+
+export const licensePlateGetDoc = (id: string) => doc(database, LICENSE_PLATES, id)
+
 export const customTemplateInstance = collection(
     database,
-    'customPlateTemplates'
+    CUSTOM_PLATES
 );
 // Firebase Initializers END
 
@@ -29,6 +36,31 @@ export const createTemplateFirebase = async (
         // return createDocument;   
     } catch (error) {
         console.log(error);
+    }
+}
+
+export const getLicensePlateFirebase = async (
+    licensePlateId: string
+) => {
+    try {
+        const getDocument = await getDoc(licensePlateGetDoc(licensePlateId))
+        return getDocument.data();
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const updateLicensePlateFirebase = async (
+    licensePlateId: string,
+    licensePlate: ILicensePlate
+) => {
+    try {
+        const createDocument = await updateDoc(licensePlateGetDoc(licensePlateId), {
+            ...licensePlate
+        })
+        return createDocument;
+    } catch (error) {
+        console.log(error)   
     }
 }
 

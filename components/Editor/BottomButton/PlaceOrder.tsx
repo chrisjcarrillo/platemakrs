@@ -115,7 +115,7 @@ export const PlaceOrder = (props:{
         } else {
             if (handle?.step === undefined) {
                 updateStep?.(
-                    2,
+                    1,
                     undefined,
                     undefined,
                     false,

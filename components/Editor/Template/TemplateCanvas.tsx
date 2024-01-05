@@ -21,6 +21,7 @@ import { useRouter } from 'next/navigation';
 import { StoreContext, StoreContextType } from '../../../context/storeContext';
 import html2canvas from 'html2canvas';
 import { ref, uploadBytes, getDownloadURL, getStorage, deleteObject, uploadString } from 'firebase/storage';
+import { TopActions } from '../../../utils/actions/TopActions';
 
 const TemplateCanvas = (
     props: {
@@ -40,7 +41,6 @@ const TemplateCanvas = (
     const {
         showDecision,
         isPreset,
-        finalDesign,
         takeDesignScreenshot,
         googleDetails
     } = useContext(InterfaceContext) as InterfaceContextType
@@ -114,31 +114,15 @@ const TemplateCanvas = (
     }
 
     const stepDecision = (
-        stepType?: 'BACK' | 'NEXT'
+        stepType: 'BACK' | 'NEXT'
     ) => {
-        if (stepType === "NEXT") {
-            if (isPreset) {
-                if (currentEditorStep?.currentStep === 1 && currentLicensePlate) {
-                    updateStep?.(3)
-                }
-            } else if (!isPreset) {
-                currentEditorStep?.currentStep === 1
-                    ? currentEditorStep?.currentStep ?? 1 + 1 : 3
-            }
-        } else if (stepType === "BACK") {
-            if (isPreset) {
-                if (currentEditorStep?.currentStep === 1) {
-                    router.push('/products')
-                }
-                if (currentEditorStep?.currentStep === 3) {
-                    updateStep?.(1)
-                }
-            } else if (!isPreset) {
-                currentEditorStep?.currentStep === 1 ? 1 :
-                    currentEditorStep?.currentStep === undefined ? 1 : currentEditorStep?.currentStep - 1
-            }
+        const currentDecision = TopActions( stepType, currentEditorStep, isPreset)
+        if(currentDecision?.updateStep){
+            updateStep?.(currentDecision?.step)
         }
-        return // Where the step should go
+        if(!currentDecision?.updateStep){
+            router.push(currentDecision?.page)
+        }
     }
 
     return (
@@ -154,7 +138,6 @@ const TemplateCanvas = (
                                 <div className='header__tools-left-back'>
                                     <Button
                                         size='small'
-                                        disabled={currentEditorStep?.currentStep === 1 && !isPreset ? true : false}
                                         className='header__tools-left-back-button'
                                         shape="circle"
                                         icon={<ArrowLeftOutlined rev={''} />}

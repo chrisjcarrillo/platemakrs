@@ -22,7 +22,7 @@ export const StickyButtons = () => {
     return(
         <div className={'sticky__container hide'}>
             <div className={'sticky__container-inner'}>
-                <Link className="sticky__buttons" href="/editor">Build Your Plate</Link>
+                <Link className="sticky__buttons" href="/products-custom">Build Your Plate</Link>
                 <Link className="sticky__buttons" href="/products">Pre-Made Designs</Link>
             </div>
         </div>

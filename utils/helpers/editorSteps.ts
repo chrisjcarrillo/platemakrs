@@ -1,4 +1,5 @@
 export const editorSteps = [
+    //
     "editorBgImage", // 0
     "editorBgImageColor", // 1
 
