@@ -111,7 +111,7 @@ const WorkWithADesigner = (props: any) => {
             })
             const res = await fetch("/api/sendgrid/workWithADesigner", {
                 body: JSON.stringify({
-                    toEmails: ['johnny@platemakrs.com', 'clay@platemakrs.com', 'chris@platemakrs.com', 'harvey@platemakrs.com'],
+                    toEmails: ['info@platemakrs.com', 'clay@platemakrs.com', 'chris@platemakrs.com', 'harvey@platemakrs.com', 'cadet@platemakrs.com'],
                     email: values.email,
                     firstName: values.firstName,
                     lastName: values.lastName,
