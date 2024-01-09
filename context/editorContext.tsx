@@ -87,7 +87,8 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         setDecision,
         setMoveLogo,
         setMoveBackgroundLogo,
-        setMoveBottomLogo
+        setMoveBottomLogo,
+        setPreset
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const {
@@ -233,28 +234,24 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             const templateFilter = premadeTemplates?.filter(template => template?.shopifyHandle === handle);
             const customTemplate = templateFilter[0] as ICustomPlateTemplate;
 
+            setCurrentCustomTemplate(template => ({
+                ...template,
+                ...customTemplate,
+                title: title,
+                description: description,
+                shopifyVariants: variant,
+                selectedVariant: variant[0]
+            }))
+
             if (!customPresetTemplate) {
-                setCurrentCustomTemplate(template => ({
-                    ...template,
-                    ...customTemplate,
-                    title: title,
-                    description: description,
-                    shopifyVariants: variant,
-                    selectedVariant: variant[0]
-                }))
+                setPreset(true);
                 sessionStorage.setItem('preset', 'true')
                 router.push(`/editor?presetTemplate=${customTemplate?.templateId}&step=1&preset=true`)
+            }
 
-            } else {
+            if(customPresetTemplate){
                 setShowPreview(true)
-                setCurrentCustomTemplate(template => ({
-                    ...template,
-                    ...customTemplate,
-                    title: title,
-                    description: description,
-                    shopifyVariants: variant,
-                    selectedVariant: variant[0]
-                }))
+                setPreset(false);
                 if (sessionStorage.getItem('preset')) {
                     sessionStorage.removeItem('preset')
                 }
@@ -262,6 +259,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             }
         } catch (error) {
             console.log(error);
+            setLoading(false);
         } finally {
             setLoading(false);
         }
@@ -324,7 +322,39 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                     setLoading(false);
                     setStepLoading(false)
                     if (queryParams.get("preset") && sessionStorage.getItem('preset')) {
-                        setDecision(true)
+                        setPreset(true)
+                        if (
+                            currentCustomTemplate?.backgroundSettings?.background?.file?.name === "carbon-fiber-full-with-shadow" ||
+                            currentCustomTemplate?.backgroundSettings?.background?.file?.name === "forged-carbon" ||
+                            currentCustomTemplate?.backgroundSettings?.background?.file?.name === "carbon-fiber" || currentCustomTemplate?.backgroundSettings?.background?.file?.name === 'black-plate'
+                        ) {
+                            updateStep?.(
+                                3,
+                                'presetCharacterColor',
+                                'Select Color',
+                                false,
+                                'Plate Character'
+                            )
+                        }
+                        if (
+                            currentCustomTemplate?.backgroundSettings?.background?.enabled
+                            && currentCustomTemplate?.backgroundSettings?.background?.file?.hasColor
+                        ) {
+                            updateStep?.(
+                                3,
+                                'presetBgImageColor',
+                                'Select Color',
+                                false,
+                                'Background Image'
+                            )
+                        }
+                        updateStep?.(
+                            3,
+                            'presetBgColor',
+                            'Select Color',
+                            false,
+                            'Background'
+                        )
                     } else {
                         updateStep(2)
                     }
