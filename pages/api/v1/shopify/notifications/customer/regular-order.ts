@@ -12,7 +12,7 @@ async function regularOrder(req: NextApiRequest, res: NextApiResponse) {
 		const includesDesigner = req.body.line_items.find((item: any) => item.title === "Add-on - Work with a Designer");
 
 		const message = {
-			from: `johnny@platemakrs.com`, // your website email address here
+			from: `info@platemakrs.com`, // your website email address here
 			templateId: 'd-2afb192cf0134778804ea34fee66b3c8',
 			personalizations: [{
 				to: [`${req.body?.customer?.email}`],
