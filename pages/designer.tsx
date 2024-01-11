@@ -1,9 +1,8 @@
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import FormGroup from 'react-bootstrap/FormGroup';
 import {
-    Checkbox, Modal,
+    Checkbox,
     Button,
     Form,
     Input,
@@ -118,7 +117,7 @@ const WorkWithADesigner = (props: any) => {
                     phoneNumber: values.phone,
                     message: values.summary,
                     state: values.state,
-                    licensePlate: licensePlate,
+                    licensePlate: licensePlate ?? null,
                     attachments: files,
                 }),
                 headers: {
@@ -585,7 +584,7 @@ const WorkWithADesigner = (props: any) => {
                                     required
                                     label="Upload License Plate Picture"
                                     name="licensePlateUpload"
-                                    rules={[{ required: true, message: 'Please upload at least one file!' }]}
+                                    rules={[{ required: false, message: 'Please upload at least one file!' }]}
                                 >
                                     <Upload
                                         name="licensePlateUpload"
@@ -601,7 +600,7 @@ const WorkWithADesigner = (props: any) => {
                             >
                                 <Item
                                     required
-                                    rules={[{ required: true, message: 'Please upload at least one file!' }]}
+                                    rules={[{ required: false, message: 'Please upload at least one file!' }]}
                                     label="Detail Uploads"
                                     name="licensePlateUpload"
                                 >
