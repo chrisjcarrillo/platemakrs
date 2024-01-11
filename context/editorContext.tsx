@@ -36,21 +36,14 @@ export type EditorContextType = {
     // Current Selected License Plate 
     currentLicensePlate?: ILicensePlate;
 
-    // Current Selected Template
-    // currentTemplate?: ITemplate;
-
-    // Current Custom Templatet
+    // Current Custom Template
     currentCustomTemplate?: ICustomPlateTemplate;
-
-    // Imaginary Cart (FOR NOW )
-    licensePlates?: ILicensePlate[];
 
     // Licese Plate Functions 
     addLicensePlate?: (licensePlate: ILicensePlate) => void;
     updateLicensePlate: (type: string, value?: string, switchValue?: boolean) => void;
     removeLicensePlate?: (licensePlate: ILicensePlate) => void;
     createLicensePlate?: () => void;
-    createPresetLicensePlate?: () => void;
 
     // Step Functions
     updateStep?: (
@@ -82,8 +75,6 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
     const {
         setLoading,
         setStepLoading,
-        setShowPreview,
-        setDecision,
         setMoveLogo,
         setMoveBackgroundLogo,
         setMoveBottomLogo,
@@ -91,7 +82,6 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const {
-        addVariant,
         addToCartEvent
     } = useContext(StoreContext) as StoreContextType;
 
@@ -223,7 +213,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 const getPlate = await updateLicensePlateFirebase(sessionStorage.getItem('licensePlateId'), currentLicensePlate);
                 setLicensePlate(licensePlate => ({
                     ...licensePlate,
-                    ...currentLicensePlate
+                    ...getPlate
                 }))
             } else {
                 // Create License Plate on Firebase
