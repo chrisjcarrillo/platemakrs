@@ -11,6 +11,7 @@ import { EditorPresetContainer } from '../components/Editor/EditorPresetContaine
 import { InterfaceContext, InterfaceContextType } from '../context/interfaceContext';
 import { PlaceOrder } from '../components/Editor/BottomButton/PlaceOrder';
 import { TemplateList } from '../components/Editor/TemplateList/TemplateList';
+import { EditLogo } from '../components/Editor/EditLogo/EditLogo';
 
 export default function Editor(props: any) {
 
@@ -30,6 +31,7 @@ export default function Editor(props: any) {
 
     return (
         <>
+            <EditLogo />
             <TemplateCanvas
             />
             <Container fluid className="app__container">

@@ -123,7 +123,7 @@ const PreviewCanvas = (
                 </div>
                 {/* END Bottom letters */}
 
-                {template?.mainLogo?.enabled &&
+                {template?.mainLogo?.enabled && !currentCustomTemplate?.preset &&
                     <Logo
                         currentPreviewTemplate={template}
                         type="PREVIEW"

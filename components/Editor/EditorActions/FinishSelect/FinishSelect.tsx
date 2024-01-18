@@ -34,7 +34,6 @@ export const FinishSelect = (
         }
     };
     
-    
     return(
         <div className={`finishSelect`}>
             <div className={`finishSelect__title`}> 
@@ -43,7 +42,8 @@ export const FinishSelect = (
             <Radio.Group
                 className={`finishSelect__group`}
                 onChange={onChange}
-                defaultValue={currentCustomTemplate?.finish ?? 'GLOSS'} 
+                value={currentCustomTemplate?.finish}
+                // defaultValue={currentCustomTemplate?.finish ?? 'GLOSS'} 
                 buttonStyle="solid"
             >
                 <Radio.Button

@@ -29,6 +29,9 @@ export type InterfaceContextType = {
     showDecision?: boolean;
     setDecision: (type: boolean) => void;
 
+    editLogoUi?: boolean; // For Logo
+    setEditLogoUi: (type: boolean) => void; // For Logo
+
     moveLogo?: boolean; // For Logo
     setMoveLogo: (type: boolean) => void; // For Logo
 
@@ -83,6 +86,7 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
 
 
     // MOVEABLES
+    const [editLogoUi, setEditLogoUi] = useState<boolean>(false)
     const [moveLogo, setMoveLogo] = useState<boolean>(false) // Move Logo
     const [moveBottomLogo, setMoveBottomLogo] = useState<boolean>(false) // Move Bottom Logo
     const [moveBackgroundLogo, setMoveBackgroundLogo] = useState<boolean>(false) // Move Background
@@ -171,6 +175,9 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
 
                 moveLogo,
                 setMoveLogo,
+
+                editLogoUi, 
+                setEditLogoUi,
 
                 moveBottomLogo,
                 setMoveBottomLogo,

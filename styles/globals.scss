@@ -40,6 +40,8 @@
 @import './components/editor/EditorContainer.module.scss';
 // Editor Actions
 @import './components/editor/EditorActions/EditorActionCard.module.scss';
+// Edit Logo
+@import './components/editor/EditLogo.module.scss';
 // Color Select
 @import './components/editor/EditorActions/ColorSelect.module.scss';
 // Finish Select
@@ -51,6 +53,8 @@
 // Preset Color Select
 @import './components/editor/EditorActions/PresetColorSelect.module.scss';
 @import './components/editor/PlaceOrder.module.scss';
+
+@import './components/product/Product.module.scss';
 // Position Select
 @import './components/editor/EditorActions/PositionSelect.module.scss';
 // Preview Modal
@@ -80,6 +84,7 @@
 
 // Shared
 @import './components/shared/Cart.module.scss';
+
 /* prevent pull-to-refresh for Safari 16+ */
 @media screen and (pointer: coarse) {
   @supports (-webkit-backdrop-filter: blur(1px)) and (overscroll-behavior-y: none)  {

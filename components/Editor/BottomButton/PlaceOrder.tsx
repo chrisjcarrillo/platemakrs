@@ -82,6 +82,20 @@ export const PlaceOrder = (props:{
 
     const { presetTemplate } = props;
 
+    const handlePlaceOrder = () => {
+        if(currentCustomTemplate?.selectedVariant){
+            redirectCheckout?.(currentCustomTemplate, false)
+        } else{
+            updateStep?.(
+                3,
+                'selectFinish',
+                '',
+                false,
+                'Finish'
+            )
+        }
+    }
+
     const handleAction = (
         actionType: 'back' | 'forward' | 'cancel',
     ) => {
@@ -172,6 +186,7 @@ export const PlaceOrder = (props:{
                             className={`editorContainer__order-step-next g-2`}
                         >
                             <Button
+                                disabled={currentEditorStep?.currentSubStep === 'selectFinish' && currentCustomTemplate?.selectedVariant === undefined ? true : false}
                                 className={`editorContainer__order-step-next-button g-2`}
                                 onClick={
                                     () => handleAction(
@@ -193,8 +208,8 @@ export const PlaceOrder = (props:{
 
             {
                 currentEditorStep?.currentSubStep === "termsAndConditions" && (
-                    <Container className={`placeOrder__container animate__animated animate__fadeIn`}>
-                        <Row className="placeOrder__row-terms-final animate__animated animate__bounceInUp">
+                    <Container className={`placeOrder__container`}>
+                        <Row className="placeOrder__row-terms-final">
                             <Col
                                 xs={12}
                                 sm={12}
@@ -215,7 +230,7 @@ export const PlaceOrder = (props:{
                             </Col>
                         </Row>
 
-                        <Row className={`placeOrder__row-details-final g-2 animate__animated animate__bounceInUp`}>
+                        <Row className={`placeOrder__row-details-final g-2`}>
                             <Col
                                 className={`placeOrder__details-final`}
                                 xs={12}
@@ -231,7 +246,7 @@ export const PlaceOrder = (props:{
                                 </h1>
                             </Col>
                         </Row>
-                        <Row className={`placeOrder__row-order g-2 animate__animated animate__bounceInUp`}>
+                        <Row className={`placeOrder__row-order g-2`}>
                             <Col {...placeOrderCols} className={`placeOrder__action`}>
                                 <Button
                                     disabled={acceptTerms ? false : true}
@@ -276,8 +291,11 @@ export const PlaceOrder = (props:{
                     <Row className={`placeOrder__row-order g-2`}>
                         <Col {...placeOrderCols} className={`placeOrder__action`}>
                             <a
-                                className={`placeOrder__button ${acceptTerms ? '' : 'disabled' }`}
-                                onClick={() => redirectCheckout?.(currentCustomTemplate, false)}
+                                className={`placeOrder__button ${currentEditorStep?.currentSubStep === 'selectFinish' && currentCustomTemplate?.selectedVariant === undefined ? 'disabled' : ''} 
+                                    ${acceptTerms ? '' : 'disabled' }`}
+                                onClick={
+                                    () => handlePlaceOrder()
+                                }
                             >
                                 Place Order
                             </a>

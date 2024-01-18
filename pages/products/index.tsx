@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
 import Head from "next/head";
-import { LoadingSpinner } from '../components/shared/LoadingSpinner/LoadingSpinner';
-import { TemplateList } from '../components/Editor/TemplateList/TemplateList';
-import { client } from '../context/storeContext';
+import { LoadingSpinner } from '../../components/shared/LoadingSpinner/LoadingSpinner';
+import { TemplateList } from '../../components/Editor/TemplateList/TemplateList';
+import { client } from '../../context/storeContext';
 import { GetStaticProps } from "next";
-import { Cart } from '../components/shared/Cart/Cart';
+import { Cart } from '../../components/shared/Cart/Cart';
 import { Input } from 'antd';
 import { CloseSquareFilled } from '@ant-design/icons';
 import Container from 'react-bootstrap/Container';

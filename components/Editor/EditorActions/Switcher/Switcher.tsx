@@ -147,7 +147,7 @@ export const Switcher = (
             <div
                 className={`switcher__left`}
             >
-                <p className={`switcher__text`}> Enable {text}</p>
+                <p className={`switcher__text`}> {checkedDefault ? 'Disable' : 'Enable' } {text}</p>
             </div>
 
             <div

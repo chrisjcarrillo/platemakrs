@@ -12,6 +12,7 @@ interface ILogo {
 export const Logo = (props: ILogo) => {
 
     const {
+        setMoveLogo,
         moveLogo
     } = useContext(InterfaceContext) as InterfaceContextType;
 
@@ -108,7 +109,7 @@ export const Logo = (props: ILogo) => {
     }
 
     return (
-        <div 
+        <div
             className={
                 `logo__container`
             }
@@ -116,7 +117,7 @@ export const Logo = (props: ILogo) => {
                 { zIndex: 30 } : {}
             }
         >
-            <Stage            
+            <Stage         
                 width={canvasReference?.current?.clientWidth} 
                 height={canvasReference?.current?.clientHeight}
             >
@@ -126,7 +127,6 @@ export const Logo = (props: ILogo) => {
                             draggable
                         >
                             <Image
-                            
                                 key={1}
                                 ref={imageRef}
                                 image={image}

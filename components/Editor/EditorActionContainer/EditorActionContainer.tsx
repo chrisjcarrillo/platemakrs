@@ -44,7 +44,7 @@ export const EditorActionContainer = (
             }
 
             {
-                (step.currentSubStep === "editorBgImageColor" && 
+                (step.currentSubStep === "editorBgImage" && 
                     currentCustomTemplate?.backgroundSettings?.background?.file?.name === "hexagon.svg")
                      && (
                     <ColorSelect
@@ -55,17 +55,17 @@ export const EditorActionContainer = (
             }
 
 {
-                (step.currentSubStep === "editorBgImageColor" && 
+                (step.currentSubStep === "editorBgImage" && 
                     currentCustomTemplate?.backgroundSettings?.background?.file?.name === "hexagon-down" 
-                        || step.currentSubStep === "editorBgImageColor" && 
+                        || step.currentSubStep === "editorBgImage" && 
                             currentCustomTemplate?.backgroundSettings?.background?.file?.name === "hexagon-up"
-                            || step.currentSubStep === "editorBgImageColor" && 
+                            || step.currentSubStep === "editorBgImage" && 
                             currentCustomTemplate?.backgroundSettings?.background?.file?.name === "honeycomb-lambo"
-                            || step.currentSubStep === "editorBgImageColor" && 
+                            || step.currentSubStep === "editorBgImage" && 
                             currentCustomTemplate?.backgroundSettings?.background?.file?.name === "honeycomb-lambo-down"
-                            || step.currentSubStep === "editorBgImageColor" && 
+                            || step.currentSubStep === "editorBgImage" && 
                             currentCustomTemplate?.backgroundSettings?.background?.file?.name === "honeycomb-lambo-up"
-                            || step.currentSubStep === "editorBgImageColor" && 
+                            || step.currentSubStep === "editorBgImage" && 
                             currentCustomTemplate?.backgroundSettings?.background?.file?.name === "honeycomb-8") && (
                     <PresetColorSelect
                         title="Background Image"
@@ -84,45 +84,7 @@ export const EditorActionContainer = (
             }
 
             {
-                step.currentSubStep === "editorEnableBgBorder" && (
-                    <Switcher
-                        type="backgroundStrokeEnabled"
-                        text="Background Border"
-                        checkedDefault={currentCustomTemplate?.backgroundSettings?.stroke?.enabled ?? false}
-                    />
-                )
-            }
-
-            {
-                step.currentSubStep === "editorBgBorder" && (
-                    <ColorSelect
-                        title="Background Border"
-                        type="backgroundStroke"
-                    />
-                )
-            }
-
-            {
-                step.currentSubStep === "editorEnableBgPinstripe" && (
-                    <Switcher
-                        type="backgroundPinstripeEnabled"
-                        text="Background Pinstripe"
-                        checkedDefault={currentCustomTemplate?.backgroundSettings?.pinstripe?.enabled ?? false}
-                    />
-                )
-            }
-
-            {
-                step?.currentSubStep === "editorBgPinstripe" && (
-                    <ColorSelect
-                        title="Background Pinstripe"
-                        type="backgroundPinstripe"
-                    />
-                )
-            }
-
-            {
-                step?.currentSubStep === "editorCharacterColor" && (
+                step?.currentSubStep === "editorCharacter" && (
                     <ColorSelect
                         title="Plate Characters"
                         type="plateNumberColor"
@@ -131,7 +93,7 @@ export const EditorActionContainer = (
             }
 
             {
-                step?.currentSubStep === "editorEnableCharacterStroke" && (
+                step?.currentSubStep === "editorCharacter" && (
                     <Switcher
                         type="plateNumberStrokeEnabled"
                         text="Plate Character Border"
@@ -141,20 +103,10 @@ export const EditorActionContainer = (
             }
 
             {
-                step?.currentSubStep === "editorCharacterStrokeColor" && (
+                step?.currentSubStep === "editorCharacter" && currentCustomTemplate?.plateNumber?.stroke?.enabled  && (
                     <ColorSelect
                         title="Plate Character Stroke Color"
                         type="plateNumberStrokeColor"
-                    />
-                )
-            }
-
-            {
-                step?.currentSubStep === "editorEnableCharacterShadow" && (
-                    <Switcher
-                        type="plateNumberShadowEnabled"
-                        text="Plate Character Shadow"
-                        checkedDefault={currentCustomTemplate?.plateNumber?.shadow?.enabled ?? false}
                     />
                 )
             }
@@ -162,7 +114,7 @@ export const EditorActionContainer = (
 
             {/* STATE START */}
             {
-                step.currentSubStep === "editorStateColor" && (
+                step.currentSubStep === "editorState" && (
                     <ColorSelect
                         title="State Text"
                         type="stateColor"
@@ -171,7 +123,7 @@ export const EditorActionContainer = (
             }
 
             {
-                step.currentSubStep === "editorEnableStateStroke" && (
+                step.currentSubStep === "editorState" && (
                     <Switcher
                         type="stateStrokeEnabled"
                         text="State Text Border"
@@ -181,39 +133,10 @@ export const EditorActionContainer = (
             }
 
             {
-                step.currentSubStep === "editorStateStrokeColor" && (
+                step.currentSubStep === "editorState" && currentCustomTemplate?.state?.stroke?.enabled  && (
                     <ColorSelect
                         title="State Text Border"
                         type="stateStrokeColor"
-                    />
-                )
-            }
-
-            {
-                step.currentSubStep === "editorEnableStateGlow" && (
-                    <Switcher
-                        type="stateGlowEnabled"
-                        text="State Text Glow"
-                        checkedDefault={currentCustomTemplate?.state?.glow?.enabled ?? false}
-                    />
-                )
-            }
-
-            {
-                step.currentSubStep === "editorStateGlowColor" && (
-                    <ColorSelect
-                        title="State Glow Color"
-                        type="stateGlowColor"
-                    />
-                )
-            }
-
-            {
-                step.currentSubStep === "editorEnableStateShadow" && (
-                    <Switcher
-                        type="stateShadowEnabled"
-                        text="State Text Shadow"
-                        checkedDefault={currentCustomTemplate?.state?.shadow?.enabled ?? false}
                     />
                 )
             }
@@ -221,7 +144,7 @@ export const EditorActionContainer = (
 
             {/* BOTTOM TEXT START */}
             {
-                step.currentSubStep === "editorBottomColor" && (
+                step.currentSubStep === "editorBottomText" && (
                     <ColorSelect
                         title="Bottom Text"
                         type="bottomTextColor"
@@ -230,49 +153,24 @@ export const EditorActionContainer = (
             }
 
             {
-                step.currentSubStep === "editorEnableBottomStroke" && (<Switcher
+                step.currentSubStep === "editorBottomText" && (<Switcher
                     type="bottomTextStrokeEnabled"
                     text="Bottom Text Border"
                     checkedDefault={currentCustomTemplate?.bottomText?.stroke?.enabled ?? false}
                 />)
             }
 
-
-            {step.currentSubStep === "editorBottomStrokeColor" && (
+            {step.currentSubStep === "editorBottomText" && currentCustomTemplate?.bottomText?.stroke?.enabled && (
                 <ColorSelect
                     title="Bottom Text Border"
                     type="bottomTextStrokeColor"
-                />
-            )}
-
-            {step.currentSubStep === "editorEnableBottomGlow" && (
-                <Switcher
-                    type="bottomTextGlowEnabled"
-                    text="Bottom Text Glow"
-                    checkedDefault={currentCustomTemplate?.bottomText?.glow?.enabled ?? false}
-                />)}
-
-
-            {step.currentSubStep === "editorBottomGlowColor" && (
-                <ColorSelect
-                    title="Bottom Text Glow"
-                    type="bottomTextGlow"
-                />
-            )}
-
-
-            {step.currentSubStep === "editorEnableBottomShadow" && (
-                <Switcher
-                    type="bottomTextShadowEnabled"
-                    text="Bottom Text Shadow"
-                    checkedDefault={currentCustomTemplate?.bottomText?.shadow?.enabled ?? false}
                 />
             )}
             {/* BOTTOM TEXT END */}
 
             {/* Main Logo Start */}
             {
-                step.currentSubStep === "editorMainLogoUpload" && (
+                step.currentSubStep === "editorMainLogo" && (
                     <Uploader
                         title={'Main Logo'}
                         type={'mainLogo'}
@@ -280,7 +178,7 @@ export const EditorActionContainer = (
                 )
             }
 
-            {step.currentSubStep === "editorEnableMainLogoGlow" && (
+            {step.currentSubStep === "editorMainLogo" && (
                 <Switcher
                     type="mainLogoGlowEnabled"
                     text="Main Logo Glow"
@@ -289,19 +187,10 @@ export const EditorActionContainer = (
             )}
 
             {
-                step?.currentSubStep === "editorMainLogoGlowColor" && (
+                step?.currentSubStep === "editorMainLogo" && currentCustomTemplate?.mainLogo?.glow?.enabled && (
                     <ColorSelect
                         type="mainLogoGlow"
                         title="Main Logo Glow"
-                    />
-                )
-            }
-
-            {
-                step?.currentSubStep === "editorMainLogoMove" && (
-                    <MoveSwitcher
-                        type="moveLogo"
-                        text="Main Logo Move"
                     />
                 )
             }
@@ -309,7 +198,7 @@ export const EditorActionContainer = (
 
             {/* Bottom Logo Start */}
             {
-                step.currentSubStep === "editorBottomLogoUpload" && (
+                step.currentSubStep === "editorBottomLogo" && (
                     <Uploader
                         title={'Bottom Logo'}
                         type={'bottomLogo'}
@@ -317,7 +206,7 @@ export const EditorActionContainer = (
                 )
             }
 
-            {step.currentSubStep === "editorEnableBottomLogoGlow" && (
+            {step.currentSubStep === "editorBottomLogo" && (
                 <Switcher
                     type="bottomLogoGlowEnabled"
                     text="Bottom Logo Glow"
@@ -326,24 +215,14 @@ export const EditorActionContainer = (
             )}
 
             {
-                step?.currentSubStep === "editorBottomLogoGlowColor" && (
+                step?.currentSubStep === "editorBottomLogo" && currentCustomTemplate?.bottomLogo?.glow?.enabled && (
                     <ColorSelect
                         type="bottomLogoGlow"
                         title="Bottom Logo Glow"
                     />
                 )
             }
-
-            {
-                step?.currentSubStep === "editorBottomLogoMove" && (
-                    <MoveSwitcher
-                        type="bottomLogo"
-                        text="Bottom Logo Move"
-                    />
-                )
-            }
             {/* Bottom Logo End */}
-
 
             {
                 step?.currentSubStep === "selectFinish" && (
@@ -364,32 +243,6 @@ export const EditorActionContainer = (
                     <NoteInput />
                 )
             }
-
-
-            {/* {
-                                step.currentSubStep === "backgroundSetting" && isPreset && currentCustomTemplate?.backgroundLogo?.enabled && (
-                                    <PresetColorSelect
-                                        title="Background Logo"
-                                        type="backgroundLogo"
-                                    />
-                                )
-                            }
-                                                        {
-                                step.currentSubStep === "backgroundSetting" && isPreset && (
-                                    <PresetColorSelect
-                                        title="Background"
-                                        type="backgroundSetting"
-                                    />
-                                )
-                            }
-                            {
-                                step.currentSubStep === "backgroundSetting" && isPreset && (
-                                    <MoveSwitcher
-                                        type="movePattern"
-                                        text="Pattern Move"
-                                    />
-                                )
-                            } */}
         </Row>
     )
 }

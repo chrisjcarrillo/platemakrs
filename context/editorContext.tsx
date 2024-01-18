@@ -21,6 +21,7 @@ import { InterfaceContext, InterfaceContextType } from './interfaceContext';
 import { createLicensePlateFirebase, createTemplateFirebase, getLicensePlate, updateLicensePlateFirebase } from '../lib/firebase/firebase';
 import { StoreContext, StoreContextType, client } from './storeContext';
 import { premadeTemplates } from '../utils/premadeTemplates';
+import { IShopifyVariant } from '../interfaces/shopify/variants.interface';
 
 
 
@@ -57,6 +58,7 @@ export type EditorContextType = {
     // Template
     // setCurrentTemplate?: (template: any) => void;
     selectPresetTemplate?: (title: any, description: any, handle: string, variantId: string, customPresetTemplate: boolean) => void;
+    setCurrentCustomTemplate?: (template: any) => void;
 
     // Custom Template
     updateCustomTemplateSelection?: (type: any, value: any) => void;
@@ -92,7 +94,6 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
 
     const [currentEditorStep, setStep] = useState<IEditorSteps>({ currentStep: 1, currentSubStep: undefined });// Current Step
     const [currentLicensePlate, setLicensePlate] = useState<ILicensePlate | undefined>(undefined)// Current License Plate
-    // const [currentTemplate, setCurrentTemplate] = useState<ITemplate | undefined>(undefined)// Current Template
     const [currentCustomTemplate, setCurrentCustomTemplate] = useState<ICustomPlateTemplate | undefined>(undefined)// Current Custom Template
 
     useEffect(() => {
@@ -110,14 +111,36 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                     const shopifyProduct = await client.product.fetchByHandle(templateFilter[0].shopifyHandle);
                     const customTemplate = templateFilter[0] as ICustomPlateTemplate;
 
+                    const formatedVariants: IShopifyVariant[] = [];
+
+                    if (shopifyProduct?.variants?.length !== 0) {
+                        shopifyProduct?.variants?.map( (item: any) => {
+                            let currentVariant = {
+                                id: item?.id,
+                                available: item?.available,
+                                title: item?.title,
+                                price: {
+                                    amount: item?.priceV2?.amount,
+                                    currencyCode: item?.priceV2?.currencyCode
+                                },
+                                image: {
+                                    id: item?.image?.id,
+                                    src: item?.image?.src,
+                                    width: item?.image?.width,
+                                    height: item?.image?.height
+                                }
+                            }
+                            formatedVariants.push(currentVariant);
+                        })
+                    }
+
                     if (customTemplate) {
                         setCurrentCustomTemplate(template => ({
                             ...template,
                             ...customTemplate,
                             title: shopifyProduct?.title,
                             description: shopifyProduct?.description,
-                            shopifyVariants: shopifyProduct?.variants,
-                            selectedVariant: shopifyProduct?.variants[0]
+                            shopifyVariants: formatedVariants,
                         }))
                     }
                     console.log('Google ads is present')
@@ -137,9 +160,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             if (query.get('preset') && query.get('gclid')) {
                 initProduct();
                 console.log('Google ads is present')
-
             }
-
         }
     }, [])
 
@@ -167,13 +188,35 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             setLoading(true);
             const templateFilter = premadeTemplates?.filter(template => template?.shopifyHandle === handle);
             const customTemplate = templateFilter[0] as ICustomPlateTemplate;
+            const formatedVariants: IShopifyVariant[] = [];
+
+            if (variant?.length !== 0) {
+                variant?.map( (item: any) => {
+                    let currentVariant = {
+                        id: item?.id,
+                        available: item?.available,
+                        title: item?.title,
+                        price: {
+                            amount: item?.priceV2?.amount,
+                            currencyCode: item?.priceV2?.currencyCode
+                        },
+                        image: {
+                            id: item?.image?.id,
+                            src: item?.image?.src,
+                            width: item?.image?.width,
+                            height: item?.image?.height
+                        }
+                    }
+                    formatedVariants.push(currentVariant);
+                })
+            }
 
             setCurrentCustomTemplate(template => ({
                 ...template,
                 ...customTemplate,
                 title: title,
                 description: description,
-                shopifyVariants: variant,
+                shopifyVariants: formatedVariants,
             }))
 
             if (!customPresetTemplate) {
@@ -376,6 +419,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
 
                 // Custom Template
                 currentCustomTemplate,
+                setCurrentCustomTemplate,
 
                 // createCustomTemplate,
                 updateCustomTemplateSelection,

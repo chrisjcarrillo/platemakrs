@@ -28,7 +28,6 @@ export const handleActions = (
             }
         }
 
-
         if (actionType == 'back') {
             if (currentEditorStep?.currentSubStep === "presetBgImageColor") {
                 return {
@@ -1648,7 +1647,6 @@ export const handleActions = (
             }
         }
 
-
         if (actionType == "forward") {
 
             // If the template has an image and isn't in need of color
@@ -2874,28 +2872,23 @@ export const handleActions = (
                 }
             }
 
-            if(currentEditorStep?.currentSubStep === "editorBgImageColor"){
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[0],
-                    subTitle: 'Select Image',
-                    warning: false,
-                    title: 'Background Image'
-                }
-            }
-
             if (currentEditorStep?.currentSubStep === "editorBgColor") {
-                if(name === "hexagon.svg" || name === "hexagon-down" || name === "hexagon-up" 
-                    || name === "honeycomb-lambo" || name === "honeycomb-8" || name === "honeycomb-lambo-up" || name === "honeycomb-lambo-down"){
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: editorSteps[1],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Background Image'
-                    } 
-                } else if (name === "carbon-fiber-fade-up.png" ||
-                name === "carbon-fiber-fade-down.png" || name === "3d-hexagon-up" || name === "3d-hexagon-down" || name === "forged" || name === "forged-up" || name === "forged-down") {
+                if (
+                    name === "carbon-fiber-fade-up.png" ||
+                    name === "carbon-fiber-fade-down.png" || 
+                    name === "3d-hexagon-up" || 
+                    name === "3d-hexagon-down" || 
+                    name === "forged" || 
+                    name === "forged-up" || 
+                    name === "forged-down" ||
+                    name === "hexagon.svg" || 
+                    name === "hexagon-down" || 
+                    name === "hexagon-up" || 
+                    name === "honeycomb-lambo" || 
+                    name === "honeycomb-8" || 
+                    name === "honeycomb-lambo-up" || 
+                    name === "honeycomb-lambo-down"
+                ) {
                     return {
                         step: CURRENT_STEP,
                         subStep: editorSteps[0],
@@ -2910,13 +2903,13 @@ export const handleActions = (
                 }
             }
 
-            if (currentEditorStep?.currentSubStep === "editorEnableBgBorder") {
+            if (currentEditorStep?.currentSubStep === "editorCharacter") {
                 if(name === "hexagon.svg" ||
                 name === "carbon-fiber-fade-up.png" ||
                 name === "carbon-fiber-fade-down.png" || name === "forged-up" || name === "forged-down" || !currentCustomTemplate?.backgroundSettings?.background?.enabled){
                     return {
                         step: CURRENT_STEP,
-                        subStep: editorSteps[2],
+                        subStep: editorSteps[1],
                         subTitle: 'Select Color',
                         warning: false,
                         title: 'Background'
@@ -2932,382 +2925,52 @@ export const handleActions = (
                 }
             }
 
-            if (currentEditorStep?.currentSubStep === "editorBgBorder") {
+
+            if (currentEditorStep?.currentSubStep === "editorState") {
+                return {
+                    step: CURRENT_STEP,
+                    subStep: editorSteps[2],
+                    subTitle: 'Select Settings',
+                    warning: false,
+                    title: 'Plate Characters'
+                }
+            }
+
+            if (currentEditorStep?.currentSubStep === "editorBottomText") {
                 return {
                     step: CURRENT_STEP,
                     subStep: editorSteps[3],
-                    subTitle: 'Enable Border',
-                    warning: false,
-                    title: 'Background'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorEnableBgPinstripe") {
-                if(currentCustomTemplate?.backgroundSettings?.stroke?.enabled){
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: editorSteps[4],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'Background'
-                    } 
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[3],
-                    subTitle: 'Enable Border',
-                    warning: false,
-                    title: 'Background'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorBgPinstripe") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[5],
-                    subTitle: 'Enable Pinstripe',
-                    warning: false,
-                    title: 'Background Pinstripe'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorCharacterColor") {
-                if(currentCustomTemplate?.backgroundSettings?.pinstripe?.enabled){
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: editorSteps[6],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Background Pinstripe'
-                    } 
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[5],
-                    subTitle: 'Enable Pinstripe',
-                    warning: false,
-                    title: 'Background Pinstripe'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorEnableCharacterStroke") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[7],
-                    subTitle: 'Select Color',
-                    warning: false,
-                    title: 'Plate Characters'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorCharacterStrokeColor") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[8],
-                    subTitle: 'Enable Border',
-                    warning: false,
-                    title: 'Plate Characters'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorEnableCharacterShadow") {
-                if (currentCustomTemplate?.plateNumber?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: editorSteps[9],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'Plate Characters'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[8],
-                    subTitle: 'Enable Border',
-                    warning: false,
-                    title: 'Plate Characters'
-                }
-            }
-
-
-            if (currentEditorStep?.currentSubStep === "editorStateColor") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[10],
-                    subTitle: 'Enable Shadow',
-                    warning: false,
-                    title: 'Plate Characters'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorEnableStateStroke") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[11],
-                    subTitle: 'Select Color',
+                    subTitle: 'Select Settings',
                     warning: false,
                     title: 'State'
                 }
             }
 
-            if (currentEditorStep?.currentSubStep === "editorStateStrokeColor") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[12],
-                    subTitle: 'Enable Border',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorEnableStateGlow") {
-                if (currentCustomTemplate?.state?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: editorSteps[13],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[12],
-                    subTitle: 'Enable Border',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorStateGlowColor") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[14],
-                    subTitle: 'Enable Glow',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorEnableStateShadow") {
-                if (currentCustomTemplate?.state?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: editorSteps[15],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[14],
-                    subTitle: 'Enable Glow',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorBottomColor") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[16],
-                    subTitle: 'Enable Shadow',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorEnableBottomStroke") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[17],
-                    subTitle: 'Select Color',
-                    warning: false,
-                    title: 'Bottom Text'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorBottomStrokeColor") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[18],
-                    subTitle: 'Enable Border',
-                    warning: false,
-                    title: 'Bottom Text'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorEnableBottomGlow") {
-                if (currentCustomTemplate?.bottomText?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: editorSteps[19],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'Bottom Text'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[18],
-                    subTitle: 'Enable Border',
-                    warning: false,
-                    title: 'Bottom Text'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorBottomGlowColor") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[20],
-                    subTitle: 'Enable Glow',
-                    warning: false,
-                    title: 'Bottom Text'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorEnableBottomShadow") {
-                if (currentCustomTemplate?.bottomText?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: editorSteps[21],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'Bottom Text'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[20],
-                    subTitle: 'Enable Glow',
-                    warning: false,
-                    title: 'Bottom Text'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorMainLogoUpload") {
+            if (currentEditorStep?.currentSubStep === "editorMainLogo") {
                 if (currentLicensePlate?.bottomTextEnabled) {
                     return {
                         step: CURRENT_STEP,
-                        subStep: editorSteps[22],
-                        subTitle: 'Enable Shadow',
+                        subStep: editorSteps[4],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Bottom Text'
                     }
                 }
                 return {
                     step: CURRENT_STEP,
-                    subStep: editorSteps[16],
-                    subTitle: 'Enable Shadow',
+                    subStep: editorSteps[3],
+                    subTitle: 'Select Settings',
                     warning: false,
                     title: 'State'
                 }
             }
 
-            if (currentEditorStep?.currentSubStep === "editorEnableMainLogoGlow") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[23],
-                    subTitle: 'Upload',
-                    warning: false,
-                    title: 'Main Logo'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorMainLogoGlowColor") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[24],
-                    subTitle: 'Enable Glow',
-                    warning: false,
-                    title: 'Main Logo'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorMainLogoMove") {
-                if (currentCustomTemplate?.mainLogo?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: editorSteps[25],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'Main Logo'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[24],
-                    subTitle: 'Enable Glow',
-                    warning: false,
-                    title: 'Main Logo'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorBottomLogoUpload") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[26],
-                    subTitle: 'Move Logo',
-                    warning: false,
-                    title: 'Main Logo'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorEnableBottomLogoGlow") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[27],
-                    subTitle: 'Upload',
-                    warning: false,
-                    title: 'Bottom Logo'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorBottomLogoGlowColor") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[28],
-                    subTitle: 'Enable Glow',
-                    warning: false,
-                    title: 'Bottom Logo'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorBottomLogoMove") {
-                if (currentCustomTemplate?.bottomLogo?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: editorSteps[29],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'Bottom Logo'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[28],
-                    subTitle: 'Enable Glow',
-                    warning: false,
-                    title: 'Bottom Logo'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "selectFinish") {
-                if (currentCustomTemplate?.bottomLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: editorSteps[30],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Bottom Logo'
-                    }
-                }
+            if (currentEditorStep?.currentSubStep === "editorBottomLogo") {
                 if (currentCustomTemplate?.mainLogo?.enabled) {
                     return {
                         step: CURRENT_STEP,
-                        subStep: editorSteps[26],
-                        subTitle: 'Move Logo',
+                        subStep: editorSteps[5],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Main Logo '
                     }
@@ -3315,16 +2978,53 @@ export const handleActions = (
                 if (currentLicensePlate?.bottomTextEnabled) {
                     return {
                         step: CURRENT_STEP,
-                        subStep: editorSteps[22],
-                        subTitle: 'Enable Shadow',
+                        subStep: editorSteps[4],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Bottom Text'
                     }
                 }
                 return {
                     step: CURRENT_STEP,
-                    subStep: editorSteps[16],
-                    subTitle: 'Enable Shadow',
+                    subStep: editorSteps[3],
+                    subTitle: 'Select Settings',
+                    warning: false,
+                    title: 'State'
+                }
+            }
+
+            if (currentEditorStep?.currentSubStep === "selectFinish") {
+                if (currentCustomTemplate?.bottomLogo?.enabled) {
+                    return {
+                        step: CURRENT_STEP,
+                        subStep: editorSteps[6],
+                        subTitle: 'Select Settings',
+                        warning: false,
+                        title: 'Bottom Logo'
+                    }
+                }
+                if (currentCustomTemplate?.mainLogo?.enabled) {
+                    return {
+                        step: CURRENT_STEP,
+                        subStep: editorSteps[5],
+                        subTitle: 'Select Settings',
+                        warning: false,
+                        title: 'Main Logo '
+                    }
+                }
+                if (currentLicensePlate?.bottomTextEnabled) {
+                    return {
+                        step: CURRENT_STEP,
+                        subStep: editorSteps[4],
+                        subTitle: 'Select Settings',
+                        warning: false,
+                        title: 'Bottom Text'
+                    }
+                }
+                return {
+                    step: CURRENT_STEP,
+                    subStep: editorSteps[3],
+                    subTitle: 'Select Settings',
                     warning: false,
                     title: 'State'
                 }
@@ -3333,7 +3033,7 @@ export const handleActions = (
             if (currentEditorStep?.currentSubStep === "addonDesigner") {
                 return {
                     step: CURRENT_STEP,
-                    subStep: editorSteps[31],
+                    subStep: editorSteps[7],
                     subTitle: '',
                     warning: false,
                     title: 'Finish'
@@ -3342,7 +3042,7 @@ export const handleActions = (
             if (currentEditorStep?.currentSubStep === "addonNotes") {
                 return {
                     step: CURRENT_STEP,
-                    subStep: editorSteps[32],
+                    subStep: editorSteps[8],
                     subTitle: '',
                     warning: false,
                     title: 'ADD-ON'
@@ -3351,251 +3051,59 @@ export const handleActions = (
             if (currentEditorStep?.currentSubStep === "termsAndConditions") {
                 return {
                     step: CURRENT_STEP,
-                    subStep: editorSteps[33],
+                    subStep: editorSteps[9],
                     subTitle: 'Notes',
                     warning: false,
                     title: 'ADD-ON'
                 }
             }
         }
+
         if (actionType === "forward") {
             if (currentEditorStep?.currentSubStep === "editorBgImage") {
-                if (name === "hexagon.svg" || name === "hexagon-down" || name === "hexagon-up" || name === "honeycomb-lambo" || name === "honeycomb-8" || name === "honeycomb-lambo-up" || name === "honeycomb-lambo-down") {
+                if(name !== "3d-hexagon" && name !== "carbon-fiber" && name !== "forged"){
                     return {
                         step: CURRENT_STEP,
                         subStep: editorSteps[1],
                         subTitle: 'Select Color',
                         warning: false,
-                        title: 'Background Image'
-                    }
-                }
-                if(name !== "3d-hexagon" && name !== "carbon-fiber" && name !== "forged"){
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: editorSteps[2],
-                        subTitle: 'Select Color',
-                        warning: false,
                         title: 'Background'
                     }
                 }
                 return {
                     step: CURRENT_STEP,
-                    subStep: editorSteps[3],
-                    subTitle: 'Enable Border',
+                    subStep: editorSteps[2],
+                    subTitle: 'Select Settings',
                     warning: false,
-                    title: 'Background'
+                    title: 'Plate Character'
                 }
-
             }
-            if (currentEditorStep?.currentSubStep === "editorBgImageColor") {
-                if (name !== "3d-hexagon" && name !== "carbon-fiber" && name !== "forged") {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: editorSteps[2],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Background'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[3],
-                    subTitle: 'Enable Border',
-                    warning: false,
-                    title: 'Background'
-                }
-
-            }
-
             if (currentEditorStep?.currentSubStep === "editorBgColor") {
                 return {
                     step: CURRENT_STEP,
+                    subStep: editorSteps[2],
+                    subTitle: 'Select Settings',
+                    warning: false,
+                    title: 'Plate Character'
+                }
+            }
+
+            if (currentEditorStep?.currentSubStep === "editorCharacter") {
+                return {
+                    step: CURRENT_STEP,
                     subStep: editorSteps[3],
-                    subTitle: 'Enable Border',
-                    warning: false,
-                    title: 'Background'
-                }
-            }
-            if (currentEditorStep?.currentSubStep === "editorEnableBgBorder") {
-                if (currentCustomTemplate?.backgroundSettings?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: editorSteps[4],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'Background'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[5],
-                    subTitle: 'Enable Pinstripe',
-                    warning: false,
-                    title: 'Background Pinstripe'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorBgBorder") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[5],
-                    subTitle: 'Enable Pinstripe',
-                    warning: false,
-                    title: 'Background Pinstripe'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorEnableBgPinstripe") {
-                if (currentCustomTemplate?.backgroundSettings?.pinstripe?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: editorSteps[6],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Background Pinstripe'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[7],
-                    subTitle: 'Select Color',
-                    warning: false,
-                    title: 'Plate Character'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorBgPinstripe") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[7],
-                    subTitle: 'Select Color',
-                    warning: false,
-                    title: 'Plate Character'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorCharacterColor") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[8],
-                    subTitle: 'Enable Border',
-                    warning: false,
-                    title: 'Plate Character'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorEnableCharacterStroke") {
-                if (currentCustomTemplate?.plateNumber?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: editorSteps[9],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'Plate Character'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[10],
-                    subTitle: 'Enable Shadow',
-                    warning: false,
-                    title: 'Plate Character'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorCharacterStrokeColor") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[10],
-                    subTitle: 'Enable Shadow',
-                    warning: false,
-                    title: 'Plate Character'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorEnableCharacterShadow") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[11],
-                    subTitle: 'Select Color',
+                    subTitle: 'Select Settings',
                     warning: false,
                     title: 'State'
                 }
             }
 
-            if (currentEditorStep?.currentSubStep === "editorStateColor") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[12],
-                    subTitle: 'Enable Border',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorEnableStateStroke") {
-                if (currentCustomTemplate?.state?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: editorSteps[13],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[14],
-                    subTitle: 'Enable Glow',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorStateStrokeColor") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[14],
-                    subTitle: 'Enable Glow',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorEnableStateGlow") {
-                if (currentCustomTemplate?.state?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: editorSteps[15],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[16],
-                    subTitle: 'Enable Shadow',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-            if (currentEditorStep?.currentSubStep === "editorStateGlowColor") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[16],
-                    subTitle: 'Enable Shadow',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorEnableStateShadow") {
+            if (currentEditorStep?.currentSubStep === "editorState") {
                 if (currentLicensePlate?.bottomTextEnabled) {
                     return {
                         step: CURRENT_STEP,
-                        subStep: editorSteps[17],
-                        subTitle: 'Select Color',
+                        subStep: editorSteps[4],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Bottom Text'
                     }
@@ -3603,210 +3111,63 @@ export const handleActions = (
                 if (currentCustomTemplate?.mainLogo?.enabled) {
                     return {
                         step: CURRENT_STEP,
-                        subStep: editorSteps[23],
-                        subTitle: 'Upload',
+                        subStep: editorSteps[5],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Main Logo'
                     }
                 }
                 return {
                     step: CURRENT_STEP,
-                    subStep: editorSteps[31],
+                    subStep: editorSteps[7],
                     subTitle: '',
                     warning: false,
                     title: 'Finish'
                 }
             }
 
-            if (currentEditorStep?.currentSubStep === "editorBottomColor") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[18],
-                    subTitle: 'Enable Border',
-                    warning: false,
-                    title: 'Bottom Text'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorEnableBottomStroke") {
-                if (currentCustomTemplate?.bottomText?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: editorSteps[19],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'Bottom Text'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[20],
-                    subTitle: 'Enable Glow',
-                    warning: false,
-                    title: 'Bottom Text'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorBottomStrokeColor") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[20],
-                    subTitle: 'Enable Glow',
-                    warning: false,
-                    title: 'Bottom Text'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorEnableBottomGlow") {
-                if (currentCustomTemplate?.bottomText?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: editorSteps[21],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'Bottom Text'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[22],
-                    subTitle: 'Enable Shadow',
-                    warning: false,
-                    title: 'Bottom Text'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorBottomGlowColor") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[22],
-                    subTitle: 'Enable Shadow',
-                    warning: false,
-                    title: 'Bottom Text'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorEnableBottomShadow") {
+            if (currentEditorStep?.currentSubStep === "editorBottomText") {
                 if (currentCustomTemplate?.mainLogo?.enabled) {
                     return {
                         step: CURRENT_STEP,
-                        subStep: editorSteps[23],
-                        subTitle: 'Upload',
+                        subStep: editorSteps[5],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Main Logo'
                     }
                 }
                 return {
                     step: CURRENT_STEP,
-                    subStep: editorSteps[31],
+                    subStep: editorSteps[7],
                     subTitle: '',
                     warning: false,
                     title: 'Finish'
                 }
             }
 
-
-            if (currentEditorStep?.currentSubStep === "editorMainLogoUpload") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[24],
-                    subTitle: 'Enable Glow',
-                    warning: false,
-                    title: 'Main Logo'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorEnableMainLogoGlow") {
-                if (currentCustomTemplate?.mainLogo?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: editorSteps[25],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'Main Logo'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[26],
-                    subTitle: 'Move Logo',
-                    warning: false,
-                    title: 'Main Logo'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorMainLogoGlowColor") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[26],
-                    subTitle: 'Move Logo',
-                    warning: false,
-                    title: 'Main Logo'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorMainLogoMove") {
+            if (currentEditorStep?.currentSubStep === "editorMainLogo") {
                 if (currentCustomTemplate?.bottomLogo?.enabled) {
                     return {
                         step: CURRENT_STEP,
-                        subStep: editorSteps[27],
-                        subTitle: 'Upload',
+                        subStep: editorSteps[6],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Bottom Logo'
                     }
                 }
                 return {
                     step: CURRENT_STEP,
-                    subStep: editorSteps[31],
+                    subStep: editorSteps[7],
                     subTitle: '',
                     warning: false,
                     title: 'Finish'
                 }
             }
 
-            if (currentEditorStep?.currentSubStep === "editorBottomLogoUpload") {
+            if (currentEditorStep?.currentSubStep === "editorBottomLogo") {
                 return {
                     step: CURRENT_STEP,
-                    subStep: editorSteps[28],
-                    subTitle: 'Enable Glow',
-                    warning: false,
-                    title: 'Bottom Logo'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorEnableBottomLogoGlow") {
-                if (currentCustomTemplate?.bottomLogo?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: editorSteps[29],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'Bottom Logo'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[30],
-                    subTitle: 'Move Logo',
-                    warning: false,
-                    title: 'Bottom Logo'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorBottomLogoGlowColor") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[30],
-                    subTitle: 'Move Logo',
-                    warning: false,
-                    title: 'Bottom Logo'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "editorBottomLogoMove") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: editorSteps[31],
+                    subStep: editorSteps[7],
                     subTitle: '',
                     warning: false,
                     title: 'Finish'
@@ -3816,7 +3177,7 @@ export const handleActions = (
             if (currentEditorStep?.currentSubStep === "selectFinish") {
                 return {
                     step: CURRENT_STEP,
-                    subStep: editorSteps[32],
+                    subStep: editorSteps[8],
                     subTitle: '',
                     warning: false,
                     title: 'ADD-ON'
@@ -3826,7 +3187,7 @@ export const handleActions = (
             if (currentEditorStep?.currentSubStep === "addonDesigner") {
                 return {
                     step: CURRENT_STEP,
-                    subStep: editorSteps[33],
+                    subStep: editorSteps[9],
                     subTitle: 'Notes',
                     warning: false,
                     title: 'ADD-ON'
@@ -3836,7 +3197,7 @@ export const handleActions = (
             if (currentEditorStep?.currentSubStep === "addonNotes") {
                 return {
                     step: CURRENT_STEP,
-                    subStep: editorSteps[34],
+                    subStep: editorSteps[10],
                     subTitle: '',
                     warning: false,
                     title: ''

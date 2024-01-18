@@ -1,10 +1,4 @@
-import { useRouter } from 'next/navigation';
-import { useContext } from 'react';
-import { InterfaceContext, InterfaceContextType } from '../../context/interfaceContext';
-import { EditorContext, EditorContextType } from '../../context/editorContext';
-import { ICustomPlateTemplate } from '../../interfaces/customTemplate.interface';
 import { IEditorSteps } from '../../interfaces/editor.interface';
-import { ILicensePlate } from '../../interfaces/licensePlate.interface';
 
 export const TopActions = (
     stepType: 'BACK' | 'NEXT',

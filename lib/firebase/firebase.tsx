@@ -1,5 +1,5 @@
 import { app, database, storage } from '../../firebaseConfig';
-import { collection, addDoc, getDoc, doc, updateDoc } from 'firebase/firestore';
+import { collection, addDoc, getDoc, doc, updateDoc, Timestamp } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { ICustomPlateTemplate } from '../../interfaces/customTemplate.interface';
 import { ILicensePlate } from '../../interfaces/licensePlate.interface';
@@ -27,13 +27,10 @@ export const createTemplateFirebase = async (
 ) => {
     try {
         const createDocument = await addDoc(customTemplateInstance, {
-            ...customTemplate
+            ...customTemplate,
+            createdAt: Timestamp.fromMillis(Date.now()),
         })
         return createDocument;   
-        // Set the Item of the License Plate
-        // localStorage.setItem('customLicensePlateId', createDocument.id);
-        // updateCustomTemplateSelection('firebaseId', createDocument.id);
-        // return createDocument;   
     } catch (error) {
         console.log(error);
     }
@@ -69,7 +66,8 @@ export const createLicensePlateFirebase = async (
 ) => {
     try {
         const createDocument = await addDoc(licensePlateInstance, {
-            ...licensePlate
+            ...licensePlate,
+            createdAt: Timestamp.fromMillis(Date.now()),
         })
         return createDocument;
     } catch (error) {

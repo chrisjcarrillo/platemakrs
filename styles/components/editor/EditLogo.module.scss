@@ -1,0 +1,37 @@
+.editLogo{
+    &__button{
+        font-family: "Poppins", sans-serif !important;
+        background-color: #ffffff;
+        border-radius: 10px;
+        font-size: 1rem;
+        color: #000000;
+        height: auto;
+        width: 100%;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+    &__main{
+        &-action{
+            &-col{
+                text-align: center;
+            }
+            &-button{
+                text-align: center;
+                display: block;
+                text-decoration: none;
+                font-family: "Poppins", sans-serif !important;
+                background-color: #FFD800;
+                border-radius: 20px;
+                font-size: 0.85rem;
+                color: #000000;
+                height: auto;
+                width: 50%;
+                font-weight: 700;
+                text-transform: uppercase;
+                padding: 0rem;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    }
+}
