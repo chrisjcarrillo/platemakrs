@@ -17,6 +17,7 @@ export default function Document() {
                 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
                 <GoogleTag />
                 <script async src="https://www.googletagmanager.com/gtag/js?id=G-52EHMW9BFY"></script>
+                <meta name="google-site-verification" content="4sUNv0Dw_cKFHDBTv8wq773BltPcNtArXWHnLQCsoa4" />
                 <GoogleAnalytics />
             </Head>
             <body>
