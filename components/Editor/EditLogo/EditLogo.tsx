@@ -1,0 +1,77 @@
+import { useContext } from "react"
+import { InterfaceContext, InterfaceContextType } from "../../../context/interfaceContext"
+import { Button, Offcanvas } from "react-bootstrap";
+import { StoreContext, StoreContextType } from "../../../context/storeContext";
+import { EditorContext, EditorContextType } from "../../../context/editorContext";
+import { MoveSwitcher } from "../EditorActions/MoveSwitcher/MoveSwitcher";
+
+export const EditLogo = () => {
+
+    const {
+        Header,
+        Body
+    } = Offcanvas;
+
+    const {
+        updateStep,
+        currentCustomTemplate
+    } = useContext(EditorContext) as EditorContextType;
+
+    const {
+        editLogoUi,
+        setEditLogoUi,
+    } = useContext(InterfaceContext) as InterfaceContextType;
+
+    return (
+        <Offcanvas
+            onClose={() => setEditLogoUi(false)}
+            show={editLogoUi}
+            className='decision__container'
+            placement='bottom'
+            
+        >
+            <Body className="decision__main-container">
+                <div className="decision__actions">
+                {
+                    currentCustomTemplate?.mainLogo?.enabled && (
+                        <MoveSwitcher
+                        type="moveLogo"
+                        text="Main Logo Move"
+                     />
+                    )
+                }
+                {
+                    currentCustomTemplate?.bottomLogo?.enabled && (
+                        <MoveSwitcher
+                            type="bottomLogo"
+                            text="Bottom Logo Move"
+                        />
+                    )
+                }
+                {
+                    currentCustomTemplate?.detailLogo1?.enabled && (
+                        <MoveSwitcher
+                            type="detailLogo1"
+                            text="Detail 1 Logo Move"
+                        />
+                    )
+                }
+                {
+                    currentCustomTemplate?.detailLogo2?.enabled && (
+                        <MoveSwitcher
+                            type="detailLogo2"
+                            text="Detail 2 Logo Move"
+                        />
+                    )
+                }
+                </div>
+                <Button 
+                    className="editLogo__button"
+                    onClick={() => setEditLogoUi(false)}
+                >
+                    Save
+                </Button>
+            </Body>
+        </Offcanvas>
+    )
+}

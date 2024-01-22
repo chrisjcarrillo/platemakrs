@@ -11,12 +11,15 @@ import { usePathname } from 'next/navigation'
 import { menuLayout } from "../../../utils/helpers";
 import { isMobile } from 'react-device-detect';
 import { Cart } from "../../shared/Cart/Cart";
+import { useRouter } from "next/navigation";
 
 // import Link from 'next/link';
 
 export const EditorHeader = (
     props: any
 ) => {
+
+    const router = useRouter();
 
     const pathname = usePathname();
 
@@ -48,7 +51,7 @@ export const EditorHeader = (
                     <Toggle className="header__toggle me-auto" aria-controls="offcanvasNavbar" onClick={() => setMenu(true)} />
                     {!isMobile && (<div className="me-auto"></div>)}
 
-                    <Brand className="m-auto" href="/">
+                    <Brand className="m-auto" onClick={() => router.push('/')}>
                         <Image
                             alt="Platemakrs Logo"
                             height={20}
@@ -100,7 +103,7 @@ export const EditorHeader = (
                                 <Nav className="justify-content-end flex-grow-1 pe-3">
                                     {menuLayout.map((menuItem, index) => {
                                         return (
-                                            <Link key={index} href={`${menuItem.link}`} className="header__link">{menuItem.text}</Link>
+                                            <Link key={index} onClick={() => router.push(`${menuItem.link}`)} className="header__link">{menuItem.text}</Link>
                                         )
                                     })}
                                 </Nav>
@@ -115,7 +118,7 @@ export const EditorHeader = (
                         <Navbar.Collapse className={'header__link--container'}>
                             {menuLayout.map((menuItem, index) => {
                                 return (
-                                    <Link key={index} href={`${menuItem.link}`} className="header__link">{menuItem.text}</Link>
+                                    <Link key={index} onClick={() => router.push(`${menuItem.link}`)} className="header__link">{menuItem.text}</Link>
                                 )
                             })}
                         </Navbar.Collapse>
@@ -131,7 +134,7 @@ export const EditorHeader = (
                             <div className="header__links-container">
                                 <Link
                                     className="header__links-link"
-                                    href={'/editor'}
+                                    onClick={() => router.push('/products-custom')}
                                 >
                                     Customize your own
                                 </Link>
@@ -139,7 +142,7 @@ export const EditorHeader = (
                             <div className="header__links-container">
                                 <Link
                                     className="header__links-link"
-                                    href={'/products'}
+                                    onClick={() => router.push('/products')}
                                 >
                                     Pre-Made Designs
                                 </Link>

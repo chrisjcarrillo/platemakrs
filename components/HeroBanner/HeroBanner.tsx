@@ -40,7 +40,7 @@ const HeroBanner = (
                     >
                         <Link                     style={{
                         marginRight: '0.5rem'
-                }} className="hero__button main__cta" href='/editor'>
+                }} className="hero__button main__cta" href='/products-custom'>
                         Build your plate
                         </Link>
                         <Link                     style={{

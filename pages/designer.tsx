@@ -16,7 +16,7 @@ import { StoreContext, StoreContextType, client } from '../context/storeContext'
 import { GetStaticProps } from "next";
 // Firebase
 import { app, database, storage } from '../firebaseConfig';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, Timestamp } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 const dbInstance = collection(database, 'contacts');
@@ -106,7 +106,8 @@ const WorkWithADesigner = (props: any) => {
                 lastName: values.lastName,
                 phone: values.phone,
                 state: values.state,
-                summary: values.summary
+                summary: values.summary,
+                createdAt: Timestamp.fromMillis(Date.now())
             })
             const res = await fetch("/api/sendgrid/workWithADesigner", {
                 body: JSON.stringify({

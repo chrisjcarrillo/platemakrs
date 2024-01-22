@@ -11,7 +11,7 @@ import { EditorContext } from '../../../context/editorContext';
 import { EditorContextType } from '../../../context/editorContext';
 import { useContext, useEffect, useState, useRef } from 'react';
 import { FinishEffect } from '../FinishEffect/FinishEffect';
-import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
+import { ArrowLeftOutlined, ArrowRightOutlined, EditOutlined } from '@ant-design/icons';
 import { StateSvg } from '../../shared/StateSvg/StateSvg';
 import { stateSvg } from '../../../utils/helpers/stateSvg';
 import { initialLicensePlate, initialState } from '../../../utils/helpers';
@@ -21,6 +21,7 @@ import { useRouter } from 'next/navigation';
 import { StoreContext, StoreContextType } from '../../../context/storeContext';
 import html2canvas from 'html2canvas';
 import { ref, uploadBytes, getDownloadURL, getStorage, deleteObject, uploadString } from 'firebase/storage';
+import { TopActions } from '../../../utils/actions/TopActions';
 
 const TemplateCanvas = (
     props: {
@@ -38,11 +39,11 @@ const TemplateCanvas = (
     } = useContext(StoreContext) as StoreContextType;
 
     const {
+        editLogoUi,
+        setEditLogoUi,
         showDecision,
         isPreset,
-        finalDesign,
         takeDesignScreenshot,
-        googleDetails
     } = useContext(InterfaceContext) as InterfaceContextType
 
     const {
@@ -50,6 +51,7 @@ const TemplateCanvas = (
         currentCustomTemplate,
         currentEditorStep,
         updateStep,
+        setCurrentCustomTemplate,
     } = useContext(EditorContext) as EditorContextType;
 
     const { popupPreview } = props;
@@ -97,6 +99,15 @@ const TemplateCanvas = (
         }
     }, [acceptTerms])
 
+    const editLogoButtonSettings = {
+        xs: 12,
+        sm: 12,
+        md: 12,
+        lg: 12,
+        xl: 12
+    }
+
+
     const actionSettings = {
         xs: 2,
         sm: 2,
@@ -114,31 +125,20 @@ const TemplateCanvas = (
     }
 
     const stepDecision = (
-        stepType?: 'BACK' | 'NEXT'
+        stepType: 'BACK' | 'NEXT'
     ) => {
-        if (stepType === "NEXT") {
-            if (isPreset) {
-                if (currentEditorStep?.currentStep === 1 && currentLicensePlate) {
-                    updateStep?.(3)
-                }
-            } else if (!isPreset) {
-                currentEditorStep?.currentStep === 1
-                    ? currentEditorStep?.currentStep ?? 1 + 1 : 3
-            }
-        } else if (stepType === "BACK") {
-            if (isPreset) {
-                if (currentEditorStep?.currentStep === 1) {
-                    router.push('/products')
-                }
-                if (currentEditorStep?.currentStep === 3) {
-                    updateStep?.(1)
-                }
-            } else if (!isPreset) {
-                currentEditorStep?.currentStep === 1 ? 1 :
-                    currentEditorStep?.currentStep === undefined ? 1 : currentEditorStep?.currentStep - 1
-            }
+        const currentDecision = TopActions(stepType, currentEditorStep, isPreset)
+        if (currentDecision?.updateStep) {
+            updateStep?.(currentDecision?.step)
         }
-        return // Where the step should go
+        if (!currentDecision?.updateStep) {
+            if (stepType === "BACK") {
+                if (currentEditorStep?.currentStep === 1) {
+                    setCurrentCustomTemplate?.(undefined)
+                }
+            }
+            router.push(currentDecision?.page)
+        }
     }
 
     return (
@@ -146,53 +146,50 @@ const TemplateCanvas = (
             <Container
                 className={`canvas__tools-main animate__animated animate__fadeIn`}
             >
-                {!popupPreview && (
-                    <Row className="canvas__tools">
+                <Row className="canvas__tools">
 
-                        <Col {...actionSettings}>
-                            {(!isPreset || isPreset && currentEditorStep?.currentStep === 1) && (
-                                <div className='header__tools-left-back'>
-                                    <Button
-                                        size='small'
-                                        disabled={currentEditorStep?.currentStep === 1 && !isPreset ? true : false}
-                                        className='header__tools-left-back-button'
-                                        shape="circle"
-                                        icon={<ArrowLeftOutlined rev={''} />}
-                                        onClick={() =>
-                                            stepDecision('BACK')
-                                        }
-                                    />
-                                </div>
-                            )}
-                        </Col>
-                        <Col {...headerSettings}>
-                            <div className="editor__title">
-                                <h2 className="editor__title-text">License Plate Preview</h2>
+                    <Col {...actionSettings}>
+                        {(!isPreset || isPreset && currentEditorStep?.currentStep === 1) && (
+                            <div className='header__tools-left-back'>
+                                <Button
+                                    size='small'
+                                    className='header__tools-left-back-button'
+                                    shape="circle"
+                                    icon={<ArrowLeftOutlined rev={''} />}
+                                    onClick={() =>
+                                        stepDecision('BACK')
+                                    }
+                                />
                             </div>
-                        </Col>
-                        <Col {...actionSettings}>
-                            {(!isPreset || isPreset && currentEditorStep?.currentStep === 1) && (
-                                <div className="header__tools-right-forward">
-                                    <Button
-                                        size='small'
-                                        disabled={
-                                            currentEditorStep?.currentStep === 1
-                                                || currentEditorStep?.currentStep === 3
-                                                || currentEditorStep?.currentStep === 2 ? true : false}
-                                        className="header__tools-right-forward-button"
-                                        shape="circle"
-                                        icon={<ArrowRightOutlined rev={''} />}
-                                        onClick={() => stepDecision('NEXT')}
-                                    />
-                                </div>
-                            )}
-                        </Col>
-                    </Row>
-                )}
+                        )}
+                    </Col>
+                    <Col {...headerSettings}>
+                        <div className="editor__title">
+                            <h2 className="editor__title-text">License Plate Preview</h2>
+                        </div>
+                    </Col>
+                    <Col {...actionSettings}>
+                        {(!isPreset || isPreset && currentEditorStep?.currentStep === 1) && (
+                            <div className="header__tools-right-forward">
+                                <Button
+                                    size='small'
+                                    disabled={
+                                        currentEditorStep?.currentStep === 1
+                                            || currentEditorStep?.currentStep === 3
+                                            || currentEditorStep?.currentStep === 2 ? true : false}
+                                    className="header__tools-right-forward-button"
+                                    shape="circle"
+                                    icon={<ArrowRightOutlined rev={''} />}
+                                    onClick={() => stepDecision('NEXT')}
+                                />
+                            </div>
+                        )}
+                    </Col>
+                </Row>
             </Container>
 
             <Container
-                className={`canvas__main animate__animated animate__fadeIn ${showDecision ? 'zIndexHigh' : ''}`}
+                className={`canvas__main animate__animated animate__fadeIn ${editLogoUi ? 'zIndexHigh' : ''}`}
                 style={
                     popupPreview ? { backgroundColor: '#ffffff' } : {}
                 }
@@ -346,13 +343,31 @@ const TemplateCanvas = (
 
                     </div>
                 </div>
-                {googleDetails && (
-                    <div className="canvas__extra-details">
-                        <p className="canvas__extra-details-title">{currentCustomTemplate?.title}</p>
-                        <p className="canvas__extra-details-title">{currentCustomTemplate?.description ?? null}</p>
-                    </div>
-                )}
             </Container>
+
+            {
+                (currentCustomTemplate?.mainLogo?.enabled 
+                    || currentCustomTemplate?.bottomLogo?.enabled 
+                        || currentCustomTemplate?.detailLogo1?.enabled 
+                        || currentCustomTemplate?.detailLogo2?.enabled) && (
+                    <Container
+                        className={`editLogo__main-action`}
+                    >
+                        <Row
+                            className={`editLogo__main-action-row`}
+                        >
+                            <Col
+                                className={`editLogo__main-action-col`}
+                                {...editLogoButtonSettings}
+                            >
+                                <Button className={`editLogo__main-action-button`} onClick={() => setEditLogoUi(true)}>
+                                    Edit Logo <EditOutlined />
+                                </Button>
+                            </Col>
+                        </Row>
+                    </Container>
+                )
+            }
         </>
     )
 }

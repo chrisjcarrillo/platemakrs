@@ -285,7 +285,7 @@ export const menuLayout = [
     },
     {
         text: 'Customize Your Own',
-        link: '/editor'
+        link: '/products-custom'
     },
     {
         text: 'Work with a designer',

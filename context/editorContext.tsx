@@ -18,9 +18,10 @@ import { ITemplate } from '../interfaces/template.interface';
 import { ICustomPlateTemplate } from '../interfaces/customTemplate.interface';
 import { useRouter } from 'next/navigation'
 import { InterfaceContext, InterfaceContextType } from './interfaceContext';
-import { createLicensePlateFirebase, createTemplateFirebase } from '../lib/firebase/firebase';
+import { createLicensePlateFirebase, createTemplateFirebase, getLicensePlate, updateLicensePlateFirebase } from '../lib/firebase/firebase';
 import { StoreContext, StoreContextType, client } from './storeContext';
 import { premadeTemplates } from '../utils/premadeTemplates';
+import { IShopifyVariant } from '../interfaces/shopify/variants.interface';
 
 
 
@@ -36,21 +37,14 @@ export type EditorContextType = {
     // Current Selected License Plate 
     currentLicensePlate?: ILicensePlate;
 
-    // Current Selected Template
-    // currentTemplate?: ITemplate;
-
-    // Current Custom Templatet
+    // Current Custom Template
     currentCustomTemplate?: ICustomPlateTemplate;
-
-    // Imaginary Cart (FOR NOW )
-    licensePlates?: ILicensePlate[];
 
     // Licese Plate Functions 
     addLicensePlate?: (licensePlate: ILicensePlate) => void;
     updateLicensePlate: (type: string, value?: string, switchValue?: boolean) => void;
     removeLicensePlate?: (licensePlate: ILicensePlate) => void;
     createLicensePlate?: () => void;
-    createPresetLicensePlate?: () => void;
 
     // Step Functions
     updateStep?: (
@@ -64,9 +58,9 @@ export type EditorContextType = {
     // Template
     // setCurrentTemplate?: (template: any) => void;
     selectPresetTemplate?: (title: any, description: any, handle: string, variantId: string, customPresetTemplate: boolean) => void;
+    setCurrentCustomTemplate?: (template: any) => void;
 
     // Custom Template
-    confirmPreview?: () => void;
     updateCustomTemplateSelection?: (type: any, value: any) => void;
 }
 
@@ -83,8 +77,6 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
     const {
         setLoading,
         setStepLoading,
-        setShowPreview,
-        setDecision,
         setMoveLogo,
         setMoveBackgroundLogo,
         setMoveBottomLogo,
@@ -92,7 +84,6 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const {
-        addVariant,
         addToCartEvent
     } = useContext(StoreContext) as StoreContextType;
 
@@ -103,7 +94,6 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
 
     const [currentEditorStep, setStep] = useState<IEditorSteps>({ currentStep: 1, currentSubStep: undefined });// Current Step
     const [currentLicensePlate, setLicensePlate] = useState<ILicensePlate | undefined>(undefined)// Current License Plate
-    // const [currentTemplate, setCurrentTemplate] = useState<ITemplate | undefined>(undefined)// Current Template
     const [currentCustomTemplate, setCurrentCustomTemplate] = useState<ICustomPlateTemplate | undefined>(undefined)// Current Custom Template
 
     useEffect(() => {
@@ -121,14 +111,36 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                     const shopifyProduct = await client.product.fetchByHandle(templateFilter[0].shopifyHandle);
                     const customTemplate = templateFilter[0] as ICustomPlateTemplate;
 
+                    const formatedVariants: IShopifyVariant[] = [];
+
+                    if (shopifyProduct?.variants?.length !== 0) {
+                        shopifyProduct?.variants?.map( (item: any) => {
+                            let currentVariant = {
+                                id: item?.id,
+                                available: item?.available,
+                                title: item?.title,
+                                price: {
+                                    amount: item?.priceV2?.amount,
+                                    currencyCode: item?.priceV2?.currencyCode
+                                },
+                                image: {
+                                    id: item?.image?.id,
+                                    src: item?.image?.src,
+                                    width: item?.image?.width,
+                                    height: item?.image?.height
+                                }
+                            }
+                            formatedVariants.push(currentVariant);
+                        })
+                    }
+
                     if (customTemplate) {
                         setCurrentCustomTemplate(template => ({
                             ...template,
                             ...customTemplate,
                             title: shopifyProduct?.title,
                             description: shopifyProduct?.description,
-                            shopifyVariants: shopifyProduct?.variants,
-                            selectedVariant: shopifyProduct?.variants[0]
+                            shopifyVariants: formatedVariants,
                         }))
                     }
                     console.log('Google ads is present')
@@ -148,72 +160,15 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             if (query.get('preset') && query.get('gclid')) {
                 initProduct();
                 console.log('Google ads is present')
-
             }
-
         }
     }, [])
 
-    const confirmPreview = async () => {
-        try {
-            const createCustomTemplate = await createTemplateFirebase(
-                currentCustomTemplate
-            );
-            if (createCustomTemplate) {
-                sessionStorage.setItem(
-                    'customTemplateId',
-                    createCustomTemplate?.id
-                ); // Save the id in case of reload
-
-                setCurrentCustomTemplate(template => ({
-                    ...template,
-                    ...currentCustomTemplate,
-                    id: createCustomTemplate?.id
-                }))
-            }
-        } catch (error) {
-            console.error(error)
-            // updateStep(2)
-        } finally {
-            setTimeout(
-                () => {
-                    setLoading(false)
-                    setShowPreview(false)
-                    setStepLoading(false)
-                },
-                3000
-            )
-        }
-
-    }
-
-    const colorValidation = (type: any, value: any) => {
-        if (
-            currentCustomTemplate?.backgroundSettings?.color === value
-        ) {
-            messageApi.open({
-                type: 'error',
-                content: 'Background and Other Text should not be the same color!',
-                duration: 2,
-            })
-            return 'sameColor';
-        }
-    }
 
     const updateCustomTemplateSelection = (
         type: any,
         value: any
     ) => {
-
-        // let validation = colorValidation(type, value);
-        // if (validation === "sameColor") return;
-        // if(type !== "backgroundStroke") {
-        //     let validation = colorValidation(type, value);
-        //     if (validation === "sameColor") return;
-        // }
-
-        // const currentTemplates = {...currentCustomTemplate, [type]: value}
-
         setCurrentCustomTemplate(currentCustomTemplates => ({
             ...currentCustomTemplates,
             [type]: value
@@ -233,6 +188,36 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             setLoading(true);
             const templateFilter = premadeTemplates?.filter(template => template?.shopifyHandle === handle);
             const customTemplate = templateFilter[0] as ICustomPlateTemplate;
+            const formatedVariants: IShopifyVariant[] = [];
+
+            if (variant?.length !== 0) {
+                variant?.map( (item: any) => {
+                    let currentVariant = {
+                        id: item?.id,
+                        available: item?.available,
+                        title: item?.title,
+                        price: {
+                            amount: item?.priceV2?.amount,
+                            currencyCode: item?.priceV2?.currencyCode
+                        },
+                        image: {
+                            id: item?.image?.id,
+                            src: item?.image?.src,
+                            width: item?.image?.width,
+                            height: item?.image?.height
+                        }
+                    }
+                    formatedVariants.push(currentVariant);
+                })
+            }
+
+            setCurrentCustomTemplate(template => ({
+                ...template,
+                ...customTemplate,
+                title: title,
+                description: description,
+                shopifyVariants: formatedVariants,
+            }))
 
             setCurrentCustomTemplate(template => ({
                 ...template,
@@ -248,9 +233,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 sessionStorage.setItem('preset', 'true')
                 router.push(`/editor?presetTemplate=${customTemplate?.templateId}&step=1&preset=true`)
             }
-
-            if(customPresetTemplate){
-                setShowPreview(true)
+            if (customPresetTemplate) {
                 setPreset(false);
                 if (sessionStorage.getItem('preset')) {
                     sessionStorage.removeItem('preset')
@@ -261,9 +244,9 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             console.log(error);
             setLoading(false);
         } finally {
+            updateStep(1);
             setLoading(false);
         }
-        setLoading(false);
     }
 
     ///// END: Template Functions //////
@@ -275,33 +258,41 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             addToCartEvent('facebook');
             setLoading(true)
             setStepLoading(true)
-            const queryParams = new URLSearchParams(window.location.search);
 
-            const createPlate = await createLicensePlateFirebase(currentLicensePlate);
+            // Find License Plate in Storage
+            if(sessionStorage.getItem('licensePlateId')){
+                const getPlate = await updateLicensePlateFirebase(sessionStorage.getItem('licensePlateId'), currentLicensePlate);
+                setLicensePlate(licensePlate => ({
+                    ...licensePlate,
+                    ...getPlate
+                }))
+            } else {
+                // Create License Plate on Firebase
+                const createPlate = await createLicensePlateFirebase(currentLicensePlate);
+                 // Note: Set License Plate in Session Storage
+                sessionStorage.setItem('licensePlateId', createPlate.id);
+                setLicensePlate(licensePlate => ({
+                    ...licensePlate,
+                    ...currentLicensePlate
+                }))
+            }
 
-            if (createPlate) sessionStorage.setItem('licensePlateId', createPlate.id);
 
-            setLicensePlate(licensePlate => ({
-                ...licensePlate,
-                ...currentLicensePlate
-            }))
+            const createCustomTemplate = await createTemplateFirebase(
+                currentCustomTemplate
+            );
 
-            if (queryParams.get("preset") && sessionStorage.getItem('preset')) {
-                const createCustomTemplate = await createTemplateFirebase(
-                    currentCustomTemplate
-                );
-                if (createCustomTemplate) {
-                    sessionStorage.setItem(
-                        'customTemplateId',
-                        createCustomTemplate?.id
-                    ); // Save the id in case of reload
+            if (createCustomTemplate) {
+                sessionStorage.setItem(
+                    'customTemplateId',
+                    createCustomTemplate?.id
+                ); // Save the id in case of reload
 
-                    setCurrentCustomTemplate(template => ({
-                        ...template,
-                        ...currentCustomTemplate,
-                        id: createCustomTemplate?.id
-                    }))
-                }
+                setCurrentCustomTemplate(template => ({
+                    ...template,
+                    ...currentCustomTemplate,
+                    id: createCustomTemplate?.id
+                }))
             }
 
             setTimeout(() => {
@@ -356,7 +347,25 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                             'Background'
                         )
                     } else {
-                        updateStep(2)
+                        if (
+                            currentCustomTemplate?.backgroundSettings?.background?.enabled
+                        ) {
+                            updateStep(
+                                3,
+                                'editorBgImage',
+                                'Select Image',
+                                false,
+                                'Background Image'
+                            )
+                        } else {
+                            updateStep(
+                                3,
+                                'editorBgColor',
+                                'Select Color',
+                                false,
+                                'Background'
+                            )
+                        }
                     }
                 },
                 2000
@@ -389,57 +398,6 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         setMoveBackgroundLogo(false);
         setMoveBottomLogo(false);
 
-        if (sessionStorage.getItem('preset')) {
-            setDecision(false);
-        }
-
-        // If your going from the second step to the first step
-        // Show the user a warning (You will lose all of your edit information)
-        // 
-        if (
-            currentEditorStep.currentStep === 2 && step === 1 && !sessionStorage.getItem('preset')
-        ) {
-            console.log('first')
-            Modal.confirm({
-                centered: true,
-                icon: <WarningOutlined rev={''} />,
-                title: 'Are you sure you want to go back?',
-                content: 'You will lose your current Design',
-                okText: 'Confirm',
-                onOk() {
-                    // setCurrentTemplate(undefined);
-                    setCurrentCustomTemplate(undefined);
-                    setStep({ currentStep: 1, currentSubStep: undefined })
-                },
-                onCancel() { },
-            });
-            return;
-
-        }
-
-        if (currentEditorStep.currentStep === 1 && step === 1 &&
-            currentCustomTemplate && sessionStorage.getItem('preset')
-        ) {
-            console.log('second')
-            Modal.confirm({
-                centered: true,
-                icon: <WarningOutlined rev={''} />,
-                title: 'Are you sure you want to go back?',
-                content: 'You will lose your current Design',
-                okText: 'Confirm',
-                onOk() {
-                    setDecision(false);
-                    setLicensePlate(undefined);
-                    // setCurrentTemplate(undefined);
-                    setCurrentCustomTemplate(undefined);
-                    setStep({ currentStep: 1, currentSubStep: undefined })
-                    router.push('/products')
-                },
-                onCancel() { },
-            });
-            return;
-        }
-
         setStep(currentEditorStep => ({
             ...currentEditorStep,
             currentStep: step,
@@ -466,17 +424,15 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 currentLicensePlate,
                 updateLicensePlate,
                 createLicensePlate,
-                // createPresetLicensePlate,
 
                 // Custom Template
-                // setCurrentTemplate,
                 currentCustomTemplate,
+                setCurrentCustomTemplate,
+
                 // createCustomTemplate,
-                confirmPreview,
                 updateCustomTemplateSelection,
 
                 // Template
-                // currentTemplate,
                 selectPresetTemplate,
 
                 // Steps
