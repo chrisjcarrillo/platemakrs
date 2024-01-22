@@ -219,12 +219,20 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 shopifyVariants: formatedVariants,
             }))
 
+            setCurrentCustomTemplate(template => ({
+                ...template,
+                ...customTemplate,
+                title: title,
+                description: description,
+                shopifyVariants: variant,
+                selectedVariant: variant[0]
+            }))
+
             if (!customPresetTemplate) {
                 setPreset(true);
                 sessionStorage.setItem('preset', 'true')
                 router.push(`/editor?presetTemplate=${customTemplate?.templateId}&step=1&preset=true`)
             }
-
             if (customPresetTemplate) {
                 setPreset(false);
                 if (sessionStorage.getItem('preset')) {
