@@ -103,7 +103,12 @@ export const EditorHeader = (
                                 <Nav className="justify-content-end flex-grow-1 pe-3">
                                     {menuLayout.map((menuItem, index) => {
                                         return (
-                                            <Link key={index} onClick={() => router.push(`${menuItem.link}`)} className="header__link">{menuItem.text}</Link>
+                                            <Link key={index} onClick={
+                                                () => {
+                                                    router.push(`${menuItem.link}`)
+                                                    setMenu(false);
+                                                }
+                                        } className="header__link">{menuItem.text}</Link>
                                         )
                                     })}
                                 </Nav>
