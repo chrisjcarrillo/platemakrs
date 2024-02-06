@@ -31,46 +31,24 @@ export const EditorContainer = (props:{
             currentLicensePlate,
             presetTemplate
         )
-        if(presetTemplate){
-            if (handle?.step === undefined) {
-                updateStep?.(
-                    1,
-                    undefined,
-                    undefined,
-                    false,
-                    undefined
-                )
-                // Reset count to 0 on dynamic route change.
-            } else {
-                updateStep?.(
-                    3,
-                    handle?.subStep,
-                    handle?.subTitle,
-                    false,
-                    handle?.title
-                )
-            }
+        if (handle?.step === undefined) {
+            updateStep?.(
+                1,
+                undefined,
+                undefined,
+                false,
+                undefined
+            )
+            // Reset count to 0 on dynamic route change.
         } else {
-            if (handle?.step === undefined) {
-                updateStep?.(
-                    1,
-                    undefined,
-                    undefined,
-                    false,
-                    undefined
-                )
-                // Reset count to 0 on dynamic route change.
-            } else {
-                updateStep?.(
-                    3,
-                    handle?.subStep,
-                    handle?.subTitle,
-                    false,
-                    handle?.title
-                )
-            }
+            updateStep?.(
+                3,
+                handle?.subStep,
+                handle?.subTitle,
+                false,
+                handle?.title
+            )
         }
-        
     }
 
     return (

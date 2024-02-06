@@ -114,7 +114,7 @@ export const handleActions = (
                 }
             }
 
-            if (currentEditorStep?.currentSubStep === "presetCharacterColor") {
+            if (currentEditorStep?.currentSubStep === "presetCharacter") {
                 if (currentCustomTemplate?.backgroundSettings?.pinstripe?.enabled) {
                     return {
                         step: CURRENT_STEP,
@@ -156,1061 +156,164 @@ export const handleActions = (
                     }
                 }
             }
-            if (currentEditorStep?.currentSubStep === "presetCharacterStrokeColor") {
+
+            if (currentEditorStep?.currentSubStep === "presetState") {
                 return {
                     step: CURRENT_STEP,
                     subStep: steps[4],
-                    subTitle: 'Select Color',
+                    subTitle: 'Select Settings',
                     warning: false,
                     title: 'Plate Character'
                 }
             }
 
-            if (currentEditorStep?.currentSubStep === "presetStateColor") {
-                if (currentCustomTemplate?.plateNumber?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[5],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'Plate Character'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[4],
-                    subTitle: 'Select Color',
-                    warning: false,
-                    title: 'Plate Character'
-                }
-            }
 
-            if (currentEditorStep?.currentSubStep === "presetStateStrokeColor") {
+            if (currentEditorStep?.currentSubStep === "presetBottomText") {
                 return {
                     step: CURRENT_STEP,
-                    subStep: steps[6],
-                    subTitle: 'Select Color',
+                    subStep: steps[5],
+                    subTitle: 'Select Settings',
                     warning: false,
                     title: 'State'
                 }
             }
 
-            if (currentEditorStep?.currentSubStep === "presetStateGlowColor") {
-                if (currentCustomTemplate?.state?.stroke?.enabled) {
+            if (currentEditorStep?.currentSubStep === "presetMainLogo") {
+                if (currentLicensePlate?.bottomTextEnabled) {
+                    return {
+                        step: CURRENT_STEP,
+                        subStep: steps[6],
+                        subTitle: 'Select Settings',
+                        warning: false,
+                        title: 'Bottom Text'
+                    }
+                }
+                return {
+                    step: CURRENT_STEP,
+                    subStep: steps[5],
+                    subTitle: 'Select Settings',
+                    warning: false,
+                    title: 'State'
+                }
+            }
+
+            if (currentEditorStep?.currentSubStep === "presetBottomLogo") {
+                if (currentCustomTemplate?.mainLogo?.enabled) {
                     return {
                         step: CURRENT_STEP,
                         subStep: steps[7],
-                        subTitle: 'Select Border Color',
+                        subTitle: 'Select Settings',
                         warning: false,
-                        title: 'State'
+                        title: 'Main Logo '
+                    }
+                }
+                if (currentLicensePlate?.bottomTextEnabled) {
+                    return {
+                        step: CURRENT_STEP,
+                        subStep: steps[6],
+                        subTitle: 'Select Settings',
+                        warning: false,
+                        title: 'Bottom Text'
                     }
                 }
                 return {
                     step: CURRENT_STEP,
-                    subStep: steps[6],
-                    subTitle: 'Select Color',
+                    subStep: steps[5],
+                    subTitle: 'Select Settings',
                     warning: false,
                     title: 'State'
                 }
             }
 
-            if (currentEditorStep?.currentSubStep === "presetBottomColor") {
-                if (currentCustomTemplate?.state?.glow?.enabled) {
+            if (currentEditorStep?.currentSubStep === "presetBackgroundLogo") {
+                if (currentCustomTemplate?.bottomLogo?.enabled) {
                     return {
                         step: CURRENT_STEP,
                         subStep: steps[8],
-                        subTitle: 'Select Glow Color',
+                        subTitle: 'Select Settings',
                         warning: false,
-                        title: 'State'
+                        title: 'Bottom Logo'
                     }
                 }
-                if (currentCustomTemplate?.state?.stroke?.enabled) {
+                if (currentCustomTemplate?.mainLogo?.enabled) {
                     return {
                         step: CURRENT_STEP,
                         subStep: steps[7],
-                        subTitle: 'Select Border Color',
+                        subTitle: 'Select Settings',
                         warning: false,
-                        title: 'State'
+                        title: 'Main Logo '
+                    }
+                }
+                if (currentLicensePlate?.bottomTextEnabled) {
+                    return {
+                        step: CURRENT_STEP,
+                        subStep: steps[6],
+                        subTitle: 'Select Settings',
+                        warning: false,
+                        title: 'Bottom Text'
                     }
                 }
                 return {
                     step: CURRENT_STEP,
-                    subStep: steps[6],
-                    subTitle: 'Select Color',
+                    subStep: steps[5],
+                    subTitle: 'Select Settings',
                     warning: false,
                     title: 'State'
                 }
             }
 
-            if (currentEditorStep?.currentSubStep === "presetBottomStrokeColor") {
+            if (currentEditorStep?.currentSubStep === "presetDetailLogo1") {
+                if (currentCustomTemplate?.backgroundLogo?.enabled) {
+                    return {
+                        step: CURRENT_STEP,
+                        subStep: steps[9],
+                        subTitle: 'Select Settings',
+                        warning: false,
+                        title: 'Background Logo'
+                    }
+                }
+                if (currentCustomTemplate?.bottomLogo?.enabled) {
+                    return {
+                        step: CURRENT_STEP,
+                        subStep: steps[8],
+                        subTitle: 'Select Settings',
+                        warning: false,
+                        title: 'Bottom Logo'
+                    }
+                }
+                if (currentCustomTemplate?.mainLogo?.enabled) {
+                    return {
+                        step: CURRENT_STEP,
+                        subStep: steps[7],
+                        subTitle: 'Select Settings',
+                        warning: false,
+                        title: 'Main Logo '
+                    }
+                }
+                if (currentLicensePlate?.bottomTextEnabled) {
+                    return {
+                        step: CURRENT_STEP,
+                        subStep: steps[6],
+                        subTitle: 'Select Settings',
+                        warning: false,
+                        title: 'Bottom Text'
+                    }
+                }
                 return {
                     step: CURRENT_STEP,
-                    subStep: steps[9],
-                    subTitle: 'Select Color',
+                    subStep: steps[5],
+                    subTitle: 'Select Settings',
                     warning: false,
-                    title: 'Bottom Text'
+                    title: 'State'
                 }
             }
 
-            if (currentEditorStep?.currentSubStep === "presetBottomGlowColor") {
-                if (currentCustomTemplate?.bottomText?.stroke?.enabled) {
+            if (currentEditorStep?.currentSubStep === "presetDetailLogo2") {
+                if (currentCustomTemplate?.detailLogo1?.enabled) {
                     return {
                         step: CURRENT_STEP,
                         subStep: steps[10],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'Bottom Text'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[9],
-                    subTitle: 'Select Color',
-                    warning: false,
-                    title: 'Bottom Text'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "presetMainLogoColor") {
-                if (currentLicensePlate?.bottomTextEnabled) {
-                    if (currentCustomTemplate?.bottomText?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[11],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    if (currentCustomTemplate?.bottomText?.stroke?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[10],
-                            subTitle: 'Select Border Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[9],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Bottom Text'
-                    }
-                }
-                if (currentCustomTemplate?.state?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[8],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                if (currentCustomTemplate?.state?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[7],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[6],
-                    subTitle: 'Select Color',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "presetMainLogoGlowColor") {
-                if (currentCustomTemplate?.mainLogo?.hasColor) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[12],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Main Logo'
-                    }
-                }
-                if (currentLicensePlate?.bottomTextEnabled) {
-                    if (currentCustomTemplate?.bottomText?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[11],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    if (currentCustomTemplate?.bottomText?.stroke?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[10],
-                            subTitle: 'Select Border Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[9],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Bottom Text'
-                    }
-                }
-                if (currentCustomTemplate?.state?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[8],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                if (currentCustomTemplate?.state?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[7],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[6],
-                    subTitle: 'Select Color',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "presetMainLogoMove") {
-                if (currentCustomTemplate?.mainLogo?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[13],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'Main Logo'
-                    }
-                }
-                if (currentCustomTemplate?.mainLogo?.hasColor) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[12],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Main Logo'
-                    }
-                }
-                if (currentLicensePlate?.bottomTextEnabled) {
-                    if (currentCustomTemplate?.bottomText?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[11],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    if (currentCustomTemplate?.bottomText?.stroke?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[10],
-                            subTitle: 'Select Border Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[9],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Bottom Text'
-                    }
-                }
-                if (currentCustomTemplate?.state?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[8],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                if (currentCustomTemplate?.state?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[7],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[6],
-                    subTitle: 'Select Color',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-
-
-            if (currentEditorStep?.currentSubStep === "presetBottomLogoColor") {
-                if (currentCustomTemplate?.mainLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[14],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Main Logo '
-                    }
-                }
-                if (currentLicensePlate?.bottomTextEnabled) {
-                    if (currentCustomTemplate?.bottomText?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[11],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    if (currentCustomTemplate?.bottomText?.stroke?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[10],
-                            subTitle: 'Select Border Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[9],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Bottom Text'
-                    }
-                }
-                if (currentCustomTemplate?.state?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[8],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                if (currentCustomTemplate?.state?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[7],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[6],
-                    subTitle: 'Select Color',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "presetBottomLogoGlow") {
-                if (currentCustomTemplate?.bottomLogo?.hasColor) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[15],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Bottom Logo'
-                    }
-                }
-                if (currentCustomTemplate?.mainLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[14],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Main Logo '
-                    }
-                }
-                if (currentLicensePlate?.bottomTextEnabled) {
-                    if (currentCustomTemplate?.bottomText?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[11],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    if (currentCustomTemplate?.bottomText?.stroke?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[10],
-                            subTitle: 'Select Border Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[9],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Bottom Text'
-                    }
-                }
-                if (currentCustomTemplate?.state?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[8],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                if (currentCustomTemplate?.state?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[7],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[6],
-                    subTitle: 'Select Color',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "presetBottomLogoMove") {
-                if (currentCustomTemplate?.bottomLogo?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[16],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'Bottom Logo'
-                    }
-                }
-                if (currentCustomTemplate?.bottomLogo?.hasColor) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[15],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Bottom Logo'
-                    }
-                }
-                if (currentCustomTemplate?.mainLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[14],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Main Logo '
-                    }
-                }
-                if (currentLicensePlate?.bottomTextEnabled) {
-                    if (currentCustomTemplate?.bottomText?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[11],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    if (currentCustomTemplate?.bottomText?.stroke?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[10],
-                            subTitle: 'Select Border Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[9],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Bottom Text'
-                    }
-                }
-                if (currentCustomTemplate?.state?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[8],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                if (currentCustomTemplate?.state?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[7],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[6],
-                    subTitle: 'Select Color',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "presetBackgroundLogoColor") {
-                if (currentCustomTemplate?.bottomLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[17],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Bottom Logo'
-                    }
-                }
-                if (currentCustomTemplate?.mainLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[14],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Main Logo '
-                    }
-                }
-                if (currentLicensePlate?.bottomTextEnabled) {
-                    if (currentCustomTemplate?.bottomText?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[11],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    if (currentCustomTemplate?.bottomText?.stroke?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[10],
-                            subTitle: 'Select Border Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[9],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Bottom Text'
-                    }
-                }
-                if (currentCustomTemplate?.state?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[8],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                if (currentCustomTemplate?.state?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[7],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[6],
-                    subTitle: 'Select Color',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "presetBackgroundLogoGlow") {
-                if (currentCustomTemplate?.backgroundLogo?.hasColor) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[18],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Background Logo'
-                    }
-                }
-                if (currentCustomTemplate?.bottomLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[17],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Bottom Logo'
-                    }
-                }
-                if (currentCustomTemplate?.mainLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[14],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Main Logo '
-                    }
-                }
-
-                if (currentLicensePlate?.bottomTextEnabled) {
-                    if (currentCustomTemplate?.bottomText?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[11],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    if (currentCustomTemplate?.bottomText?.stroke?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[10],
-                            subTitle: 'Select Border Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[9],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Bottom Text'
-                    }
-                }
-                if (currentCustomTemplate?.state?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[8],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                if (currentCustomTemplate?.state?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[7],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[6],
-                    subTitle: 'Select Color',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "presetBackgroundLogoMove") {
-                if (currentCustomTemplate?.backgroundLogo?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[19],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'Background Logo'
-                    }
-                }
-                if (currentCustomTemplate?.backgroundLogo?.hasColor) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[18],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Background Logo'
-                    }
-                }
-                if (currentCustomTemplate?.bottomLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[17],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Bottom Logo'
-                    }
-                }
-                if (currentCustomTemplate?.mainLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[14],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Main Logo '
-                    }
-                }
-
-                if (currentLicensePlate?.bottomTextEnabled) {
-                    if (currentCustomTemplate?.bottomText?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[11],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    if (currentCustomTemplate?.bottomText?.stroke?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[10],
-                            subTitle: 'Select Border Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[9],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Bottom Text'
-                    }
-                }
-                if (currentCustomTemplate?.state?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[8],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                if (currentCustomTemplate?.state?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[7],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[6],
-                    subTitle: 'Select Color',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-
-
-            if (currentEditorStep?.currentSubStep === "presetDetailLogo1Color") {
-                if (currentCustomTemplate?.backgroundLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[20],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Background Logo'
-                    }
-                }
-                if (currentCustomTemplate?.bottomLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[17],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Bottom Logo'
-                    }
-                }
-                if (currentCustomTemplate?.mainLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[14],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Main Logo '
-                    }
-                }
-                if (currentLicensePlate?.bottomTextEnabled) {
-                    if (currentCustomTemplate?.bottomText?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[11],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    if (currentCustomTemplate?.bottomText?.stroke?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[10],
-                            subTitle: 'Select Border Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[9],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Bottom Text'
-                    }
-                }
-                if (currentCustomTemplate?.state?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[8],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                if (currentCustomTemplate?.state?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[7],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[6],
-                    subTitle: 'Select Color',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "presetDetailLogo1Glow") {
-                if (currentCustomTemplate?.detailLogo1?.hasColor) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[21],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Detail 1 Logo'
-                    }
-                }
-                if (currentCustomTemplate?.backgroundLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[20],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Background Logo'
-                    }
-                }
-                if (currentCustomTemplate?.bottomLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[17],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Bottom Logo'
-                    }
-                }
-                if (currentCustomTemplate?.mainLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[14],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Main Logo '
-                    }
-                }
-                if (currentLicensePlate?.bottomTextEnabled) {
-                    if (currentCustomTemplate?.bottomText?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[11],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    if (currentCustomTemplate?.bottomText?.stroke?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[10],
-                            subTitle: 'Select Border Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[9],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Bottom Text'
-                    }
-                }
-                if (currentCustomTemplate?.state?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[8],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                if (currentCustomTemplate?.state?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[7],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[6],
-                    subTitle: 'Select Color',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "presetDetailLogo1Move") {
-                if (currentCustomTemplate?.detailLogo1?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[22],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'Detail 1 Logo'
-                    }
-                }
-                if (currentCustomTemplate?.detailLogo1?.hasColor) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[21],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Detail 1 Logo'
-                    }
-                }
-                if (currentCustomTemplate?.backgroundLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[20],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Background Logo'
-                    }
-                }
-                if (currentCustomTemplate?.bottomLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[17],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Bottom Logo'
-                    }
-                }
-                if (currentCustomTemplate?.mainLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[14],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Main Logo '
-                    }
-                }
-                if (currentLicensePlate?.bottomTextEnabled) {
-                    if (currentCustomTemplate?.bottomText?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[11],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    if (currentCustomTemplate?.bottomText?.stroke?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[10],
-                            subTitle: 'Select Border Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[9],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Bottom Text'
-                    }
-                }
-                if (currentCustomTemplate?.state?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[8],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                if (currentCustomTemplate?.state?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[7],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[6],
-                    subTitle: 'Select Color',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "presetDetailLogo2Color") {
-                if (currentCustomTemplate?.detailLogo1?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[23],
-                        subTitle: 'Move Logo',
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Detail 1 Logo'
                     }
@@ -1219,8 +322,8 @@ export const handleActions = (
                 if (currentCustomTemplate?.backgroundLogo?.enabled) {
                     return {
                         step: CURRENT_STEP,
-                        subStep: steps[20],
-                        subTitle: 'Move Logo',
+                        subStep: steps[9],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Background Logo'
                     }
@@ -1228,8 +331,8 @@ export const handleActions = (
                 if (currentCustomTemplate?.bottomLogo?.enabled) {
                     return {
                         step: CURRENT_STEP,
-                        subStep: steps[17],
-                        subTitle: 'Move Logo',
+                        subStep: steps[8],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Bottom Logo'
                     }
@@ -1237,277 +340,25 @@ export const handleActions = (
                 if (currentCustomTemplate?.mainLogo?.enabled) {
                     return {
                         step: CURRENT_STEP,
-                        subStep: steps[14],
-                        subTitle: 'Move Logo',
+                        subStep: steps[7],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Main Logo '
                     }
                 }
-
                 if (currentLicensePlate?.bottomTextEnabled) {
-                    if (currentCustomTemplate?.bottomText?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[11],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    if (currentCustomTemplate?.bottomText?.stroke?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[10],
-                            subTitle: 'Select Border Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
                     return {
                         step: CURRENT_STEP,
-                        subStep: steps[9],
-                        subTitle: 'Select Color',
+                        subStep: steps[6],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Bottom Text'
                     }
                 }
-                if (currentCustomTemplate?.state?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[8],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                if (currentCustomTemplate?.state?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[7],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
                 return {
                     step: CURRENT_STEP,
-                    subStep: steps[6],
-                    subTitle: 'Select Color',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "presetDetailLogo2Glow") {
-                if (currentCustomTemplate?.detailLogo2?.hasColor) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[24],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Detail 2 Logo'
-                    }
-                }
-                if (currentCustomTemplate?.detailLogo1?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[23],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Detail 1 Logo'
-                    }
-                }
-
-                if (currentCustomTemplate?.backgroundLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[20],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Background Logo'
-                    }
-                }
-                if (currentCustomTemplate?.bottomLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[17],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Bottom Logo'
-                    }
-                }
-                if (currentCustomTemplate?.mainLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[14],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Main Logo '
-                    }
-                }
-
-                if (currentLicensePlate?.bottomTextEnabled) {
-                    if (currentCustomTemplate?.bottomText?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[11],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    if (currentCustomTemplate?.bottomText?.stroke?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[10],
-                            subTitle: 'Select Border Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[9],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Bottom Text'
-                    }
-                }
-                if (currentCustomTemplate?.state?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[8],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                if (currentCustomTemplate?.state?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[7],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[6],
-                    subTitle: 'Select Color',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-
-            if (currentEditorStep?.currentSubStep === "presetDetailLogo2Move") {
-                if (currentCustomTemplate?.detailLogo2?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[25],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'Detail 2 Logo'
-                    }
-                }
-                if (currentCustomTemplate?.detailLogo2?.hasColor) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[24],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Detail 2 Logo'
-                    }
-                }
-                if (currentCustomTemplate?.detailLogo1?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[23],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Detail 1 Logo'
-                    }
-                }
-
-                if (currentCustomTemplate?.backgroundLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[20],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Background Logo'
-                    }
-                }
-                if (currentCustomTemplate?.bottomLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[17],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Bottom Logo'
-                    }
-                }
-                if (currentCustomTemplate?.mainLogo?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[14],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Main Logo '
-                    }
-                }
-
-                if (currentLicensePlate?.bottomTextEnabled) {
-                    if (currentCustomTemplate?.bottomText?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[11],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    if (currentCustomTemplate?.bottomText?.stroke?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[10],
-                            subTitle: 'Select Border Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[9],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Bottom Text'
-                    }
-                }
-
-                if (currentCustomTemplate?.state?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[8],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-
-                if (currentCustomTemplate?.state?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[7],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[6],
-                    subTitle: 'Select Color',
+                    subStep: steps[5],
+                    subTitle: 'Select Settings',
                     warning: false,
                     title: 'State'
                 }
@@ -1517,8 +368,8 @@ export const handleActions = (
                 if (currentCustomTemplate?.detailLogo2?.enabled) {
                     return {
                         step: CURRENT_STEP,
-                        subStep: steps[26],
-                        subTitle: 'Move Logo',
+                        subStep: steps[11],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Detail 2 Logo'
                     }
@@ -1526,18 +377,17 @@ export const handleActions = (
                 if (currentCustomTemplate?.detailLogo1?.enabled) {
                     return {
                         step: CURRENT_STEP,
-                        subStep: steps[23],
-                        subTitle: 'Move Logo',
+                        subStep: steps[10],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Detail 1 Logo'
                     }
                 }
-
                 if (currentCustomTemplate?.backgroundLogo?.enabled) {
                     return {
                         step: CURRENT_STEP,
-                        subStep: steps[20],
-                        subTitle: 'Move Logo',
+                        subStep: steps[9],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Background Logo'
                     }
@@ -1545,8 +395,8 @@ export const handleActions = (
                 if (currentCustomTemplate?.bottomLogo?.enabled) {
                     return {
                         step: CURRENT_STEP,
-                        subStep: steps[17],
-                        subTitle: 'Move Logo',
+                        subStep: steps[8],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Bottom Logo'
                     }
@@ -1554,64 +404,25 @@ export const handleActions = (
                 if (currentCustomTemplate?.mainLogo?.enabled) {
                     return {
                         step: CURRENT_STEP,
-                        subStep: steps[14],
-                        subTitle: 'Move Logo',
+                        subStep: steps[7],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Main Logo '
                     }
                 }
-
                 if (currentLicensePlate?.bottomTextEnabled) {
-                    if (currentCustomTemplate?.bottomText?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[11],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    if (currentCustomTemplate?.bottomText?.stroke?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[10],
-                            subTitle: 'Select Border Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
                     return {
                         step: CURRENT_STEP,
-                        subStep: steps[9],
-                        subTitle: 'Select Color',
+                        subStep: steps[6],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Bottom Text'
                     }
                 }
-
-                if (currentCustomTemplate?.state?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[8],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-
-                if (currentCustomTemplate?.state?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[7],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
                 return {
                     step: CURRENT_STEP,
-                    subStep: steps[6],
-                    subTitle: 'Select Color',
+                    subStep: steps[5],
+                    subTitle: 'Select Settings',
                     warning: false,
                     title: 'State'
                 }
@@ -1621,7 +432,7 @@ export const handleActions = (
             if (currentEditorStep?.currentSubStep === "addonDesigner") {
                 return {
                     step: CURRENT_STEP,
-                    subStep: steps[27],
+                    subStep: steps[12],
                     subTitle: '',
                     warning: false,
                     title: 'Finish'
@@ -1630,7 +441,7 @@ export const handleActions = (
             if (currentEditorStep?.currentSubStep === "addonNotes") {
                 return {
                     step: CURRENT_STEP,
-                    subStep: steps[28],
+                    subStep: steps[13],
                     subTitle: '',
                     warning: false,
                     title: 'ADD-ON'
@@ -1639,7 +450,7 @@ export const handleActions = (
             if (currentEditorStep?.currentSubStep === "termsAndConditions") {
                 return {
                     step: CURRENT_STEP,
-                    subStep: steps[29],
+                    subStep: steps[14],
                     subTitle: 'Notes',
                     warning: false,
                     title: 'ADD-ON'
@@ -1767,696 +578,53 @@ export const handleActions = (
             }
 
             //Character Color
-            if (currentEditorStep?.currentSubStep === "presetCharacterColor") {
-                if (currentCustomTemplate?.plateNumber?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[5],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'Plate Character'
-                    }
-                }
+            if (currentEditorStep?.currentSubStep === "presetCharacter") {
                 return {
                     step: CURRENT_STEP,
-                    subStep: steps[6],
-                    subTitle: 'Select Color',
-                    warning: false,
-                    title: 'State'
-                }
-            }
-
-            //Character Stroke
-            if (currentEditorStep?.currentSubStep === "presetCharacterStrokeColor") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[6],
-                    subTitle: 'Select Color',
+                    subStep: steps[5],
+                    subTitle: 'Select Settings',
                     warning: false,
                     title: 'State'
                 }
             }
 
             //State Color
-            if (currentEditorStep?.currentSubStep === "presetStateColor") {
-
-                if (currentCustomTemplate?.state?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[7],
-                        subTitle: 'Select Border Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-
-                if (currentCustomTemplate?.state?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[8],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                }
-
-                if (!currentCustomTemplate?.state?.stroke?.enabled &&
-                    !currentCustomTemplate?.state?.glow?.enabled) {
-                    if (currentLicensePlate?.bottomTextEnabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[9],
-                            subTitle: 'Select Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    if (currentCustomTemplate?.mainLogo?.enabled) {
-                        if (currentCustomTemplate?.mainLogo?.hasColor) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[12],
-                                subTitle: 'Select Color',
-                                warning: false,
-                                title: 'Main Logo'
-                            }
-                        }
-                        if (currentCustomTemplate?.mainLogo?.glow?.enabled) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[13],
-                                subTitle: 'Select Glow Color',
-                                warning: false,
-                                title: 'Main Logo'
-                            }
-                        }
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[14],
-                            subTitle: 'Move Logo',
-                            warning: false,
-                            title: 'Main Logo'
-                        }
-                    }
-
-                    if (currentCustomTemplate?.bottomLogo?.enabled) {
-                        if (currentCustomTemplate?.bottomLogo.hasColor) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[15],
-                                subTitle: 'Select Color',
-                                warning: false,
-                                title: 'Bottom Logo'
-                            }
-                        }
-                        if (currentCustomTemplate?.bottomLogo?.glow?.enabled) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[16],
-                                subTitle: 'Select Glow Color',
-                                warning: false,
-                                title: 'Bottom Logo'
-                            }
-                        }
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[17],
-                            subTitle: 'Move Logo',
-                            warning: false,
-                            title: 'Bottom Logo'
-                        }
-                    }
-
-                    if (currentCustomTemplate?.backgroundLogo?.enabled) {
-                        if (currentCustomTemplate?.backgroundLogo?.hasColor) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[18],
-                                subTitle: 'Select Color',
-                                warning: false,
-                                title: 'Background Logo'
-                            }
-                        }
-                        if (currentCustomTemplate?.backgroundLogo?.glow?.enabled) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[19],
-                                subTitle: 'Select Glow Color',
-                                warning: false,
-                                title: 'Background Logo'
-                            }
-                        }
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[20],
-                            subTitle: 'Move Logo',
-                            warning: false,
-                            title: 'Background Logo'
-                        }
-                    }
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[27],
-                        subTitle: '',
-                        warning: false,
-                        title: 'Finish'
-                    }
-                    // TODO: [GO TO ADDON]
-                }
-                // Details should not happen
-            }
-
-            //State Stroke
-            if (currentEditorStep?.currentSubStep === "presetStateStrokeColor") {
-
-                if (currentCustomTemplate?.state?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[8],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'State'
-                    }
-                } else {
-                    if (currentLicensePlate?.bottomTextEnabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[9],
-                            subTitle: 'Select Color',
-                            warning: false,
-                            title: 'Bottom Text'
-                        }
-                    }
-                    if (currentCustomTemplate?.mainLogo?.enabled) {
-                        if (currentCustomTemplate?.mainLogo?.hasColor) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[12],
-                                subTitle: 'Select Color',
-                                warning: false,
-                                title: 'Main Logo'
-                            }
-                        }
-                        if (currentCustomTemplate?.mainLogo?.glow?.enabled) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[13],
-                                subTitle: 'Select Glow Color',
-                                warning: false,
-                                title: 'Main Logo'
-                            }
-                        }
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[14],
-                            subTitle: 'Move Logo',
-                            warning: false,
-                            title: 'Main Logo'
-                        }
-                    }
-
-                    if (currentCustomTemplate?.bottomLogo?.enabled) {
-                        if (currentCustomTemplate?.bottomLogo.hasColor) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[15],
-                                subTitle: 'Select Color',
-                                warning: false,
-                                title: 'Bottom Logo'
-                            }
-                        }
-                        if (currentCustomTemplate?.bottomLogo?.glow?.enabled) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[16],
-                                subTitle: 'Select Glow Color',
-                                warning: false,
-                                title: 'Bottom Logo'
-                            }
-                        }
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[17],
-                            subTitle: 'Move Logo',
-                            warning: false,
-                            title: 'Bottom Logo'
-                        }
-                    }
-
-                    if (currentCustomTemplate?.backgroundLogo?.enabled) {
-                        if (currentCustomTemplate?.backgroundLogo?.hasColor) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[18],
-                                subTitle: 'Select Color',
-                                warning: false,
-                                title: 'Background Logo'
-                            }
-                        }
-                        if (currentCustomTemplate?.backgroundLogo?.glow?.enabled) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[19],
-                                subTitle: 'Select Glow Color',
-                                warning: false,
-                                title: 'Background Logo'
-                            }
-                        }
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[20],
-                            subTitle: 'Move Logo',
-                            warning: false,
-                            title: 'Background Logo'
-                        }
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[27],
-                    subTitle: '',
-                    warning: false,
-                    title: 'Finish'
-                }
-                // TODO: [GO TO ADDON]
-            }
-
-            //State Glow
-            if (currentEditorStep?.currentSubStep === "presetStateGlowColor") {
-
+            if (currentEditorStep?.currentSubStep === "presetState") {
                 if (currentLicensePlate?.bottomTextEnabled) {
                     return {
                         step: CURRENT_STEP,
-                        subStep: steps[9],
-                        subTitle: 'Select Color',
-                        warning: false,
-                        title: 'Bottom Text'
-                    }
-                } else {
-                    if (currentCustomTemplate?.mainLogo?.enabled) {
-                        if (currentCustomTemplate?.mainLogo?.hasColor) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[12],
-                                subTitle: 'Select Color',
-                                warning: false,
-                                title: 'Main Logo'
-                            }
-                        }
-                        if (currentCustomTemplate?.mainLogo?.glow?.enabled) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[13],
-                                subTitle: 'Select Glow Color',
-                                warning: false,
-                                title: 'Main Logo'
-                            }
-                        }
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[14],
-                            subTitle: 'Move Logo',
-                            warning: false,
-                            title: 'Main Logo'
-                        }
-                    }
-
-                    if (currentCustomTemplate?.bottomLogo?.enabled) {
-                        if (currentCustomTemplate?.bottomLogo.hasColor) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[15],
-                                subTitle: 'Select Color',
-                                warning: false,
-                                title: 'Bottom Logo'
-                            }
-                        }
-                        if (currentCustomTemplate?.bottomLogo?.glow?.enabled) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[16],
-                                subTitle: 'Select Glow Color',
-                                warning: false,
-                                title: 'Bottom Logo'
-                            }
-                        }
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[17],
-                            subTitle: 'Move Logo',
-                            warning: false,
-                            title: 'Bottom Logo'
-                        }
-                    }
-
-                    if (currentCustomTemplate?.backgroundLogo?.enabled) {
-                        if (currentCustomTemplate?.backgroundLogo?.hasColor) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[18],
-                                subTitle: 'Select Color',
-                                warning: false,
-                                title: 'Background Logo'
-                            }
-                        }
-                        if (currentCustomTemplate?.backgroundLogo?.glow?.enabled) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[19],
-                                subTitle: 'Select Glow Color',
-                                warning: false,
-                                title: 'Background Logo'
-                            }
-                        }
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[20],
-                            subTitle: 'Move Logo',
-                            warning: false,
-                            title: 'Background Logo'
-                        }
-                    }
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[27],
-                        subTitle: '',
-                        warning: false,
-                        title: 'Finish'
-                    }
-                    // TODO: [GO TO ADDON]
-                }
-            }
-
-            //Bottom Text Color
-            if (currentEditorStep?.currentSubStep === "presetBottomColor") {
-
-                if (currentCustomTemplate?.bottomText?.stroke?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[10],
-                        subTitle: 'Select Border Color',
+                        subStep: steps[6],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Bottom Text'
                     }
                 }
 
-                if (currentCustomTemplate?.bottomText?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[11],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'Bottom Text'
-                    }
-                }
-
-                if (!currentCustomTemplate?.bottomText?.stroke?.enabled &&
-                    !currentCustomTemplate?.bottomText?.glow?.enabled) {
-
-                    if (currentCustomTemplate?.mainLogo?.enabled) {
-                        if (currentCustomTemplate?.mainLogo?.hasColor) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[12],
-                                subTitle: 'Select Color',
-                                warning: false,
-                                title: 'Main Logo'
-                            }
-                        }
-                        if (currentCustomTemplate?.mainLogo?.glow?.enabled) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[13],
-                                subTitle: 'Select Glow Color',
-                                warning: false,
-                                title: 'Main Logo'
-                            }
-                        }
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[14],
-                            subTitle: 'Move Logo',
-                            warning: false,
-                            title: 'Main Logo'
-                        }
-                    }
-
-                    if (currentCustomTemplate?.bottomLogo?.enabled) {
-                        if (currentCustomTemplate?.bottomLogo.hasColor) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[15],
-                                subTitle: 'Select Color',
-                                warning: false,
-                                title: 'Bottom Logo'
-                            }
-                        }
-                        if (currentCustomTemplate?.bottomLogo?.glow?.enabled) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[16],
-                                subTitle: 'Select Glow Color',
-                                warning: false,
-                                title: 'Bottom Logo'
-                            }
-                        }
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[16],
-                            subTitle: 'Move Logo',
-                            warning: false,
-                            title: 'Bottom Logo'
-                        }
-                    }
-
-                    if (currentCustomTemplate?.backgroundLogo?.enabled) {
-                        if (currentCustomTemplate?.backgroundLogo?.hasColor) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[18],
-                                subTitle: 'Select Color',
-                                warning: false,
-                                title: 'Background Logo'
-                            }
-                        }
-                        if (currentCustomTemplate?.backgroundLogo?.glow?.enabled) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[19],
-                                subTitle: 'Select Glow Color',
-                                warning: false,
-                                title: 'Background Logo'
-                            }
-                        }
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[20],
-                            subTitle: 'Move Logo',
-                            warning: false,
-                            title: 'Background Logo'
-                        }
-                    }
-
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[27],
-                        subTitle: '',
-                        warning: false,
-                        title: 'Finish'
-                    }
-                    // TODO: [GO TO ADDON]
-                }
-                // Details should not happen
-            }
-
-            //Bottom Text Stroke
-            if (currentEditorStep?.currentSubStep === "presetBottomStrokeColor") {
-
-                if (currentCustomTemplate?.bottomText?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[11],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'Bottom Text'
-                    }
-                } else {
-                    if (currentCustomTemplate?.mainLogo?.enabled) {
-                        if (currentCustomTemplate?.mainLogo?.hasColor) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[12],
-                                subTitle: 'Select Color',
-                                warning: false,
-                                title: 'Main Logo'
-                            }
-                        }
-                        if (currentCustomTemplate?.mainLogo?.glow?.enabled) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[13],
-                                subTitle: 'Select Glow Color',
-                                warning: false,
-                                title: 'Main Logo'
-                            }
-                        }
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[14],
-                            subTitle: 'Move Logo',
-                            warning: false,
-                            title: 'Main Logo'
-                        }
-                    }
-
-                    if (currentCustomTemplate?.bottomLogo?.enabled) {
-                        if (currentCustomTemplate?.bottomLogo.hasColor) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[15],
-                                subTitle: 'Select Color',
-                                warning: false,
-                                title: 'Bottom Logo'
-                            }
-                        }
-                        if (currentCustomTemplate?.bottomLogo?.glow?.enabled) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[16],
-                                subTitle: 'Select Glow Color',
-                                warning: false,
-                                title: 'Bottom Logo'
-                            }
-                        }
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[17],
-                            subTitle: 'Move Logo',
-                            warning: false,
-                            title: 'Bottom Logo'
-                        }
-                    }
-
-                    if (currentCustomTemplate?.backgroundLogo?.enabled) {
-                        if (currentCustomTemplate?.backgroundLogo?.hasColor) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[18],
-                                subTitle: 'Select Color',
-                                warning: false,
-                                title: 'Background Logo'
-                            }
-                        }
-                        if (currentCustomTemplate?.backgroundLogo?.glow?.enabled) {
-                            return {
-                                step: CURRENT_STEP,
-                                subStep: steps[19],
-                                subTitle: 'Select Glow Color',
-                                warning: false,
-                                title: 'Background Logo'
-                            }
-                        }
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[20],
-                            subTitle: 'Move Logo',
-                            warning: false,
-                            title: 'Background Logo'
-                        }
-                    }
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[27],
-                        subTitle: '',
-                        warning: false,
-                        title: 'Finish'
-                    }
-                }
-
-                // TODO: [GO TO ADDON]
-            }
-
-            //Bottom Text Glow
-            if (currentEditorStep?.currentSubStep === "presetBottomGlowColor") {
                 if (currentCustomTemplate?.mainLogo?.enabled) {
-                    if (currentCustomTemplate?.mainLogo?.hasColor) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[12],
-                            subTitle: 'Select Color',
-                            warning: false,
-                            title: 'Main Logo'
-                        }
-                    }
-                    if (currentCustomTemplate?.mainLogo?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[13],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Main Logo'
-                        }
-                    }
                     return {
                         step: CURRENT_STEP,
-                        subStep: steps[14],
-                        subTitle: 'Move Logo',
+                        subStep: steps[7],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Main Logo'
                     }
                 }
 
                 if (currentCustomTemplate?.bottomLogo?.enabled) {
-                    if (currentCustomTemplate?.bottomLogo.hasColor) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[15],
-                            subTitle: 'Select Color',
-                            warning: false,
-                            title: 'Bottom Logo'
-                        }
-                    }
-                    if (currentCustomTemplate?.bottomLogo?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[16],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Bottom Logo'
-                        }
-                    }
                     return {
                         step: CURRENT_STEP,
-                        subStep: steps[17],
-                        subTitle: 'Move Logo',
+                        subStep: steps[8],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Bottom Logo'
                     }
                 }
 
                 if (currentCustomTemplate?.backgroundLogo?.enabled) {
-                    if (currentCustomTemplate?.backgroundLogo?.hasColor) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[18],
-                            subTitle: 'Select Color',
-                            warning: false,
-                            title: 'Background Logo'
-                        }
-                    }
-                    if (currentCustomTemplate?.backgroundLogo?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[19],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Background Logo'
-                        }
-                    }
                     return {
                         step: CURRENT_STEP,
-                        subStep: steps[20],
-                        subTitle: 'Move Logo',
+                        subStep: steps[9],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Background Logo'
                     }
@@ -2464,7 +632,58 @@ export const handleActions = (
 
                 return {
                     step: CURRENT_STEP,
-                    subStep: steps[27],
+                    subStep: steps[12],
+                    subTitle: '',
+                    warning: false,
+                    title: 'Finish'
+                }
+            }
+
+            //Bottom Text Color
+            if (currentEditorStep?.currentSubStep === "presetBottomText") {
+                if (currentLicensePlate?.bottomTextEnabled) {
+                    return {
+                        step: CURRENT_STEP,
+                        subStep: steps[6],
+                        subTitle: 'Select Settings',
+                        warning: false,
+                        title: 'Bottom Text'
+                    }
+                }
+
+                if (currentCustomTemplate?.mainLogo?.enabled) {
+                    return {
+                        step: CURRENT_STEP,
+                        subStep: steps[7],
+                        subTitle: 'Select Settings',
+                        warning: false,
+                        title: 'Main Logo'
+                    }
+                }
+
+                if (currentCustomTemplate?.bottomLogo?.enabled) {
+                    return {
+                        step: CURRENT_STEP,
+                        subStep: steps[8],
+                        subTitle: 'Select Settings',
+                        warning: false,
+                        title: 'Bottom Logo'
+                    }
+                }
+
+                if (currentCustomTemplate?.backgroundLogo?.enabled) {
+                    return {
+                        step: CURRENT_STEP,
+                        subStep: steps[9],
+                        subTitle: 'Select Settings',
+                        warning: false,
+                        title: 'Background Logo'
+                    }
+                }
+
+                return {
+                    step: CURRENT_STEP,
+                    subStep: steps[12],
                     subTitle: '',
                     warning: false,
                     title: 'Finish'
@@ -2472,98 +691,50 @@ export const handleActions = (
             }
 
             // Main Logo
-            if (currentEditorStep?.currentSubStep === "presetMainLogoColor") {
-                if (currentCustomTemplate?.mainLogo?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[13],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'Main Logo'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[14],
-                    subTitle: 'Move Logo',
-                    warning: false,
-                    title: 'Main Logo'
-                }
-            }
-
-            // Main Logo Glow
-            if (currentEditorStep?.currentSubStep === "presetMainLogoGlowColor") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[14],
-                    subTitle: 'Move Logo',
-                    warning: false,
-                    title: 'Main Logo'
-                }
-            }
-
-            // Main Logo Move
-            if (currentEditorStep?.currentSubStep === "presetMainLogoMove") {
-
+            if (currentEditorStep?.currentSubStep === "presetMainLogo") {
                 if (currentCustomTemplate?.bottomLogo?.enabled) {
-                    if (currentCustomTemplate?.bottomLogo.hasColor) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[15],
-                            subTitle: 'Select Color',
-                            warning: false,
-                            title: 'Bottom Logo'
-                        }
-                    }
-                    if (currentCustomTemplate?.bottomLogo?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[16],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Bottom Logo'
-                        }
-                    }
                     return {
                         step: CURRENT_STEP,
-                        subStep: steps[17],
-                        subTitle: 'Move Logo',
+                        subStep: steps[8],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Bottom Logo'
                     }
                 }
 
                 if (currentCustomTemplate?.backgroundLogo?.enabled) {
-                    if (currentCustomTemplate?.backgroundLogo?.hasColor) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[18],
-                            subTitle: 'Select Color',
-                            warning: false,
-                            title: 'Background Logo'
-                        }
-                    }
-                    if (currentCustomTemplate?.backgroundLogo?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[19],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Background Logo'
-                        }
-                    }
                     return {
                         step: CURRENT_STEP,
-                        subStep: steps[20],
-                        subTitle: 'Move Logo',
+                        subStep: steps[9],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Background Logo'
                     }
                 }
 
+                if (currentCustomTemplate?.detailLogo1?.enabled) {
+                    return {
+                        step: CURRENT_STEP,
+                        subStep: steps[10],
+                        subTitle: 'Select Settings',
+                        warning: false,
+                        title: 'Detail 1 Logo'
+                    }
+                }
+
+                if (currentCustomTemplate?.detailLogo2?.enabled) {
+                    return {
+                        step: CURRENT_STEP,
+                        subStep: steps[11],
+                        subTitle: 'Select Settings',
+                        warning: false,
+                        title: 'Detail 2 Logo'
+                    }
+                }
+
                 return {
                     step: CURRENT_STEP,
-                    subStep: steps[27],
+                    subStep: steps[12],
                     subTitle: '',
                     warning: false,
                     title: 'Finish'
@@ -2571,68 +742,37 @@ export const handleActions = (
             }
 
             // Bottom Logo
-            if (currentEditorStep?.currentSubStep === "presetBottomLogoColor") {
-                if (currentCustomTemplate?.bottomLogo?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[16],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'Bottom Logo'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[17],
-                    subTitle: 'Move Logo',
-                    warning: false,
-                    title: 'Bottom Logo'
-                }
-            }
-
-            // Bottom Logo Glow
-            if (currentEditorStep?.currentSubStep === "presetBottomLogoGlow") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[17],
-                    subTitle: 'Move Logo',
-                    warning: false,
-                    title: 'Bottom Logo'
-                }
-            }
-
-            // Bottom Logo Move
-            if (currentEditorStep?.currentSubStep === "presetBottomLogoMove") {
+            if (currentEditorStep?.currentSubStep === "presetBottomLogo") {
                 if (currentCustomTemplate?.backgroundLogo?.enabled) {
-                    if (currentCustomTemplate?.backgroundLogo?.hasColor) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[18],
-                            subTitle: 'Select Color',
-                            warning: false,
-                            title: 'Background Logo'
-                        }
-                    }
-                    if (currentCustomTemplate?.backgroundLogo?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[19],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Background Logo'
-                        }
-                    }
                     return {
                         step: CURRENT_STEP,
-                        subStep: steps[20],
-                        subTitle: 'Move Logo',
+                        subStep: steps[9],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Background Logo'
                     }
                 }
+                if (currentCustomTemplate?.detailLogo1?.enabled) {
+                    return {
+                        step: CURRENT_STEP,
+                        subStep: steps[10],
+                        subTitle: 'Select Settings',
+                        warning: false,
+                        title: 'Detail 1 Logo'
+                    }
+                }
+                if (currentCustomTemplate?.detailLogo2?.enabled) {
+                    return {
+                        step: CURRENT_STEP,
+                        subStep: steps[11],
+                        subTitle: 'Select Settings',
+                        warning: false,
+                        title: 'Detail 2 Logo'
+                    }
+                }
                 return {
                     step: CURRENT_STEP,
-                    subStep: steps[27],
+                    subStep: steps[12],
                     subTitle: '',
                     warning: false,
                     title: 'Finish'
@@ -2640,68 +780,28 @@ export const handleActions = (
             }
 
             // Background Logo
-            if (currentEditorStep?.currentSubStep === "presetBackgroundLogoColor") {
-                if (currentCustomTemplate?.backgroundLogo?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[19],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'Background Logo'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[20],
-                    subTitle: 'Move Logo',
-                    warning: false,
-                    title: 'Background Logo'
-                }
-            }
-
-            // Background Glow
-            if (currentEditorStep?.currentSubStep === "presetBackgroundLogoGlow") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[20],
-                    subTitle: 'Move Logo',
-                    warning: false,
-                    title: 'Background Logo'
-                }
-            }
-
-            // Background Move
-            if (currentEditorStep?.currentSubStep === "presetBackgroundLogoMove") {
+            if (currentEditorStep?.currentSubStep === "presetBackgroundLogo") {
                 if (currentCustomTemplate?.detailLogo1?.enabled) {
-                    if (currentCustomTemplate?.detailLogo1?.hasColor) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[21],
-                            subTitle: 'Select Color',
-                            warning: false,
-                            title: 'Detail 1 Logo'
-                        }
-                    }
-                    if (currentCustomTemplate?.detailLogo1?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[22],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Detail 1 Logo'
-                        }
-                    }
                     return {
                         step: CURRENT_STEP,
-                        subStep: steps[23],
-                        subTitle: 'Move Logo',
+                        subStep: steps[10],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Detail 1 Logo'
                     }
                 }
+                if (currentCustomTemplate?.detailLogo2?.enabled) {
+                    return {
+                        step: CURRENT_STEP,
+                        subStep: steps[11],
+                        subTitle: 'Select Settings',
+                        warning: false,
+                        title: 'Detail 2 Logo'
+                    }
+                }
                 return {
                     step: CURRENT_STEP,
-                    subStep: steps[27],
+                    subStep: steps[12],
                     subTitle: '',
                     warning: false,
                     title: 'Finish'
@@ -2709,77 +809,19 @@ export const handleActions = (
             }
 
             // Detail 1 Logo
-            if (currentEditorStep?.currentSubStep === "presetDetailLogo1Color") {
-                if (currentCustomTemplate?.detailLogo1?.enabled) {
-                    if (currentCustomTemplate?.detailLogo1?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[22],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Detail 1 Logo'
-                        }
-                    }
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[23],
-                        subTitle: 'Move Logo',
-                        warning: false,
-                        title: 'Detail 1 Logo'
-                    }
-                }
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[27],
-                    subTitle: '',
-                    warning: false,
-                    title: 'Finish'
-                }
-            }
-
-            // Detail 1 Glow
-            if (currentEditorStep?.currentSubStep === "presetDetailLogo1Glow") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[23],
-                    subTitle: 'Move Logo',
-                    warning: false,
-                    title: 'Detail 1 Logo'
-                }
-            }
-
-            // Detail 1 Move
-            if (currentEditorStep?.currentSubStep === "presetDetailLogo1Move") {
+            if (currentEditorStep?.currentSubStep === "presetDetailLogo1") {
                 if (currentCustomTemplate?.detailLogo2?.enabled) {
-                    if (currentCustomTemplate?.detailLogo2?.hasColor) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[24],
-                            subTitle: 'Select Color',
-                            warning: false,
-                            title: 'Detail 2 Logo'
-                        }
-                    }
-                    if (currentCustomTemplate?.detailLogo2?.glow?.enabled) {
-                        return {
-                            step: CURRENT_STEP,
-                            subStep: steps[25],
-                            subTitle: 'Select Glow Color',
-                            warning: false,
-                            title: 'Detail 2 Logo'
-                        }
-                    }
                     return {
                         step: CURRENT_STEP,
-                        subStep: steps[26],
-                        subTitle: 'Move Logo',
+                        subStep: steps[11],
+                        subTitle: 'Select Settings',
                         warning: false,
                         title: 'Detail 2 Logo'
                     }
                 }
                 return {
                     step: CURRENT_STEP,
-                    subStep: steps[27],
+                    subStep: steps[12],
                     subTitle: '',
                     warning: false,
                     title: 'Finish'
@@ -2787,50 +829,20 @@ export const handleActions = (
             }
 
             // Detail 2 Logo
-            if (currentEditorStep?.currentSubStep === "presetDetailLogo2Color") {
-                if (currentCustomTemplate?.detailLogo2?.glow?.enabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[25],
-                        subTitle: 'Select Glow Color',
-                        warning: false,
-                        title: 'Detail 2 Logo'
-                    }
-                }
+            if (currentEditorStep?.currentSubStep === "presetDetailLogo2") {
                 return {
                     step: CURRENT_STEP,
-                    subStep: steps[26],
-                    subTitle: 'Move Logo',
-                    warning: false,
-                    title: 'Detail 2 Logo'
-                }
-            }
-
-            // Detail 2 Glow
-            if (currentEditorStep?.currentSubStep === "presetDetailLogo2Glow") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[26],
-                    subTitle: 'Move Logo',
-                    warning: false,
-                    title: 'Detail 2 Logo'
-                }
-            }
-
-            // Detail 2 Move
-            if (currentEditorStep?.currentSubStep === "presetDetailLogo2Move") {
-                return {
-                    step: CURRENT_STEP,
-                    subStep: steps[27],
+                    subStep: steps[12],
                     subTitle: '',
                     warning: false,
                     title: 'Finish'
                 }
             }
+
             if (currentEditorStep?.currentSubStep === "selectFinish") {
                 return {
                     step: CURRENT_STEP,
-                    subStep: steps[28],
+                    subStep: steps[13],
                     subTitle: '',
                     warning: false,
                     title: 'ADD-ON'
@@ -2840,7 +852,7 @@ export const handleActions = (
             if (currentEditorStep?.currentSubStep === "addonDesigner") {
                 return {
                     step: CURRENT_STEP,
-                    subStep: steps[29],
+                    subStep: steps[14],
                     subTitle: 'Notes',
                     warning: false,
                     title: 'ADD-ON'
@@ -2850,7 +862,7 @@ export const handleActions = (
             if (currentEditorStep?.currentSubStep === "addonNotes") {
                 return {
                     step: CURRENT_STEP,
-                    subStep: steps[30],
+                    subStep: steps[15],
                     subTitle: '',
                     warning: false,
                     title: ''

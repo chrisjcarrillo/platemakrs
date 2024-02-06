@@ -93,7 +93,7 @@ export const PresetActions = (
 
             {/* Plate Character*/}
             {
-                step?.currentSubStep === "presetCharacterColor" && (
+                step?.currentSubStep === "presetCharacter" && (
                     <ColorSelect
                         title="Plate Characters"
                         type="plateNumberColor"
@@ -101,7 +101,7 @@ export const PresetActions = (
                 )
             }
             {
-                step?.currentSubStep === "presetCharacterStrokeColor" && (
+                step?.currentSubStep === "presetCharacter" && currentCustomTemplate?.plateNumber?.stroke?.enabled && (
                     <ColorSelect
                         title="Plate Character Stroke"
                         type="plateNumberStrokeColor"
@@ -112,7 +112,7 @@ export const PresetActions = (
 
             {/* State Character*/}
             {
-                step?.currentSubStep === "presetStateColor" && (
+                step?.currentSubStep === "presetState" && (
                     <ColorSelect
                         title="State Text"
                         type="stateColor"
@@ -120,7 +120,7 @@ export const PresetActions = (
                 )
             }
             {
-                step?.currentSubStep === "presetStateStrokeColor" && (
+                step?.currentSubStep === "presetState" && currentCustomTemplate?.state?.stroke?.enabled && (
                     <ColorSelect
                         title="State Text Border"
                         type="stateStrokeColor"
@@ -128,7 +128,7 @@ export const PresetActions = (
                 )
             }
             {
-                step?.currentSubStep === "presetStateGlowColor" && (
+                step?.currentSubStep === "presetState" && currentCustomTemplate?.state?.glow?.enabled && (
                     <ColorSelect
                         title="State Glow"
                         type="stateGlowColor"
@@ -140,7 +140,7 @@ export const PresetActions = (
 
             {/* Bottom Text */}
             {
-                step?.currentSubStep === "presetBottomColor" && (
+                step?.currentSubStep === "presetBottomText" && (
                     <ColorSelect
                         title="Bottom Text"
                         type="bottomTextColor"
@@ -149,7 +149,7 @@ export const PresetActions = (
             }
 
             {
-                step?.currentSubStep === "presetBottomStrokeColor" && (
+                step?.currentSubStep === "presetBottomText" && currentCustomTemplate?.bottomText?.stroke?.enabled && (
                     <ColorSelect
                         title="Bottom Text Border"
                         type="bottomTextStrokeColor"
@@ -157,7 +157,7 @@ export const PresetActions = (
                 )
             }
             {
-                step?.currentSubStep === "presetBottomGlowColor" && (
+                step?.currentSubStep === "presetBottomText" && currentCustomTemplate?.bottomText?.glow?.enabled && (
                     <ColorSelect
                         title="Bottom Text Glow"
                         type="bottomTextGlow"
@@ -167,7 +167,7 @@ export const PresetActions = (
 
             {/* Main Logo*/}
             {
-                step?.currentSubStep === "presetMainLogoColor" && (
+                step?.currentSubStep === "presetMainLogo" && (
                     <PresetColorSelect
                         type='mainLogo'
                         title="Main Logo"
@@ -176,7 +176,7 @@ export const PresetActions = (
             }
 
             {
-                step?.currentSubStep === "presetMainLogoGlowColor" && (
+                step?.currentSubStep === "presetMainLogo" && currentCustomTemplate?.mainLogo?.glow?.enabled && (
                     <ColorSelect
                         type="mainLogoGlow"
                         title="Main Logo Glow"
@@ -184,19 +184,11 @@ export const PresetActions = (
                 )
             }
 
-            {
-                step?.currentSubStep === "presetMainLogoMove" && (
-                    <MoveSwitcher
-                        type="moveLogo"
-                        text="Main Logo Move"
-                    />
-                )
-            }
             {/* Main Logo */}
 
             {/* Bottom Logo*/}
             {
-                step?.currentSubStep === "presetBottomLogoColor" && (
+                step?.currentSubStep === "presetBottomLogo" && (
                     <PresetColorSelect
                         type='bottomLogo'
                         title="Bottom Logo"
@@ -205,7 +197,7 @@ export const PresetActions = (
             }
 
             {
-                step?.currentSubStep === "presetBottomLogoGlow" && (
+                step?.currentSubStep === "presetBottomLogo" && currentCustomTemplate?.bottomLogo?.glow?.enabled &&  (
                     <ColorSelect
                         type="bottomLogoGlow"
                         title="Bottom Logo Glow"
@@ -213,30 +205,14 @@ export const PresetActions = (
                 )
             }
 
-            {
-                step?.currentSubStep === "presetBottomLogoMove" && (
-                    <MoveSwitcher
-                        type="bottomLogo"
-                        text="Bottom Logo Move"
-                    />
-                )
-            }
             {/* Bottom Logo*/}
 
             {/* Background Logo*/}
             {
-                step?.currentSubStep === "presetBackgroundLogoColor" && (
+                step?.currentSubStep === "presetBackgroundLogo" && (
                     <PresetColorSelect
                         type='backgroundLogo'
                         title="Background Logo"
-                    />
-                )
-            }
-            {
-                step?.currentSubStep === "presetBackgroundLogoMove" && (
-                    <MoveSwitcher
-                        type="moveBackgroundLogo"
-                        text="Move Background Logo"
                     />
                 )
             }
@@ -248,7 +224,7 @@ export const PresetActions = (
 
             {/* Bottom Logo*/}
             {
-                step?.currentSubStep === "presetDetailLogo1Color" && (
+                step?.currentSubStep === "presetDetailLogo1" && (
                     <PresetColorSelect
                         type='detailLogo1'
                         title="Detail 1 Logo"
@@ -257,16 +233,7 @@ export const PresetActions = (
             }
 
             {
-                step?.currentSubStep === "presetDetailLogo1Move" && (
-                    <MoveSwitcher
-                        type="detailLogo1"
-                        text="Detail 1 Logo Move"
-                    />
-                )
-            }
-
-            {
-                step?.currentSubStep === "presetDetailLogo1Glow" && (
+                step?.currentSubStep === "presetDetailLogo1" && currentCustomTemplate?.detailLogo1?.glow?.enabled && (
                     <ColorSelect
                         type="detailLogo1"
                         title="Detail 1 Logo Glow"
@@ -275,9 +242,10 @@ export const PresetActions = (
             }
             {/* Bottom Logo*/}
 
+
             {/* Bottom Logo*/}
             {
-                step?.currentSubStep === "presetDetailLogo2Color" && (
+                step?.currentSubStep === "presetDetailLogo2" && (
                     <PresetColorSelect
                         type='detailLogo2'
                         title="Detail 2 Logo"
@@ -285,17 +253,9 @@ export const PresetActions = (
                 )
             }
 
-            {
-                step?.currentSubStep === "presetDetailLogo2Move" && (
-                    <MoveSwitcher
-                        type="detailLogo2"
-                        text="Detail 2 Logo Move"
-                    />
-                )
-            }
 
             {
-                step?.currentSubStep === "presetDetailLogo2Glow" && (
+                step?.currentSubStep === "presetDetailLogo2" && currentCustomTemplate?.detailLogo2?.glow?.enabled && (
                     <ColorSelect
                         type="detailLogo2"
                         title="Detail 2 Logo Glow"

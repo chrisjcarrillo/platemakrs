@@ -22,7 +22,7 @@ export type StoreContextType = {
 
     acceptTerms?: boolean,
     setAcceptTerms: (e: boolean) => void;
-    
+
     addToCartEvent: (type: string) => void;
 
     // Variant
@@ -64,8 +64,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         designUrl
     } = useContext(InterfaceContext) as InterfaceContextType;
 
-    const [klaviyoAd, setKlaviyoAd] = useState(false);
-    const [googleAd, setGoogleAd] = useState(false);
+    const [ad, setAd] = useState<string | undefined>(undefined);
     const [cart, setCart] = useState([])
     const [addon, setAddon] = useState(undefined);
     const [checkout, setCheckout] = useState({})
@@ -107,9 +106,10 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         }
     }
 
-    const addToCartEvent = (type) => {
+    const addToCartEvent = () => {
         const cartEventId = sessionStorage.getItem('cart_fbEventId');
-        let content = [], contentIds = [];
+        let content = [];
+        let contentIds = [];
         const currentCheckout = JSON.parse(JSON.stringify(checkout));
         const currentCart = cart;
         if (cartEventId === undefined) return;
@@ -127,7 +127,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 contentIds.push(item.variant.product.id);
             })
         }
-        if (type === "facebook") {
+        if (ad === "facebook") {
             window?.fbq('track', 'AddToCart', {
                 content_name: 'Custom License Plate',
                 value: currentCheckout.totalPrice,
@@ -137,7 +137,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 eventID: cartEventId
             });
         }
-        if (type === "google") {
+        if (ad === "google") {
             window?.gtag("event", "begin_checkout", {
                 currency: "USD",
                 send_to: 'AW-11418187763/KCSdCOKZ_v4YEPPvzsQq',
@@ -181,8 +181,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
             );
 
             setCart(JSON.parse(JSON.stringify(checkoutResponse.lineItems)));
-            // klaviyoAd ? null : addToCartEvent('facebook');
-            klaviyoAd ? null : initiateCheckoutEvent(checkoutResponse);
+            initiateCheckoutEvent(checkoutResponse);
 
             // history.pushState('', '', `${process.env.STORE_URL}/${uri}`)
             window.location.replace(checkout?.webUrl)
@@ -243,8 +242,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 lineItemsToUpdate
             );
             setCart(JSON.parse(JSON.stringify(checkoutResponse.lineItems)));
-            // klaviyoAd ? null : addToCartEvent('facebook');
-            klaviyoAd ? null : initiateCheckoutEvent(checkoutResponse);
+            initiateCheckoutEvent(checkoutResponse);
 
             // history.pushState('', '', `${process.env.STORE_URL}/${uri}`)
             window.location.replace(checkout?.webUrl)
@@ -277,8 +275,8 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 lineItemsToUpdate
             );
             setCart(JSON.parse(JSON.stringify(checkoutResponse.lineItems)));
-            // klaviyoAd ? null : addToCartEvent('facebook');
-            klaviyoAd ? null : initiateCheckoutEvent(checkoutResponse);
+
+            initiateCheckoutEvent(checkoutResponse);
 
             // history.pushState('', '', `${process.env.STORE_URL}/${uri}`)
             window.location.replace(checkout?.webUrl)
@@ -317,8 +315,11 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         if (Cookies.get('_fbc')) {
             return "Facebook Campaign";
         }
-        if (urlQueryParamsCheckout.get("c")) {
+        if (ad === "klaviyo" && urlQueryParamsCheckout.get("c")) {
             return `Klaviyo Campaign: ${urlQueryParamsCheckout.get("c")}`
+        }
+        if (ad === "google") {
+            return "Google Campaign";
         }
         return "Organic Traffic";
     }
@@ -396,10 +397,16 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         setLoading(true)
         window.addEventListener('storage', onStorageUpdate);
         const urlQueryParams = new URLSearchParams(window.location.search)
+        if (urlQueryParams.get("fbclid") && !Cookies.get('_fbc')) {
+            setAd('facebook');
+        }
         if (urlQueryParams.get("c") === "sms" ||
             urlQueryParams.get("c") === "email"
         ) {
-            setKlaviyoAd(true);
+            setAd('klaviyo');
+        }
+        if (urlQueryParams.get("utm_source") === "google") {
+            setAd('google');
         }
         const initializeCheckout = async () => {
             const existingCheckoutID = sessionStorage.getItem("checkout");

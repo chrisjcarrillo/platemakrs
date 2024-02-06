@@ -27,7 +27,11 @@ export const EditorPresetContainer = (
             actionType,
             currentCustomTemplate,
             currentEditorStep,
-            currentLicensePlate
+            currentLicensePlate,
+            true
+        )
+        console.log(
+            handle?.subTitle
         )
 
         if(handle?.step === undefined){
