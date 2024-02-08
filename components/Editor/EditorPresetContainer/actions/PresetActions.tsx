@@ -167,7 +167,7 @@ export const PresetActions = (
 
             {/* Main Logo*/}
             {
-                step?.currentSubStep === "presetMainLogo" && (
+                step?.currentSubStep === "presetMainLogo" && currentCustomTemplate?.mainLogo?.hasColor === true && (
                     <PresetColorSelect
                         type='mainLogo'
                         title="Main Logo"
@@ -188,7 +188,7 @@ export const PresetActions = (
 
             {/* Bottom Logo*/}
             {
-                step?.currentSubStep === "presetBottomLogo" && (
+                step?.currentSubStep === "presetBottomLogo" && currentCustomTemplate?.bottomLogo?.hasColor === true && (
                     <PresetColorSelect
                         type='bottomLogo'
                         title="Bottom Logo"
@@ -224,7 +224,7 @@ export const PresetActions = (
 
             {/* Bottom Logo*/}
             {
-                step?.currentSubStep === "presetDetailLogo1" && (
+                step?.currentSubStep === "presetDetailLogo1" && currentCustomTemplate?.detailLogo1?.hasColor === true && (
                     <PresetColorSelect
                         type='detailLogo1'
                         title="Detail 1 Logo"
@@ -245,7 +245,7 @@ export const PresetActions = (
 
             {/* Bottom Logo*/}
             {
-                step?.currentSubStep === "presetDetailLogo2" && (
+                step?.currentSubStep === "presetDetailLogo2" && currentCustomTemplate?.detailLogo2?.hasColor === true && (
                     <PresetColorSelect
                         type='detailLogo2'
                         title="Detail 2 Logo"
