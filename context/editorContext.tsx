@@ -319,7 +319,8 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                             currentCustomTemplate?.backgroundSettings?.background?.file?.name === "forged-carbon" ||
                             currentCustomTemplate?.backgroundSettings?.background?.file?.name === "carbon-fiber" || currentCustomTemplate?.backgroundSettings?.background?.file?.name === 'black-plate'
                         ) {
-                            updateStep?.(
+                            console.log('here 1');
+                            return updateStep?.(
                                 3,
                                 'presetCharacterColor',
                                 'Select Color',
@@ -331,7 +332,8 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                             currentCustomTemplate?.backgroundSettings?.background?.enabled
                             && currentCustomTemplate?.backgroundSettings?.background?.file?.hasColor
                         ) {
-                            updateStep?.(
+                            console.log('here 2');
+                            return updateStep?.(
                                 3,
                                 'presetBgImageColor',
                                 'Select Color',
@@ -339,7 +341,8 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                                 'Background Image'
                             )
                         }
-                        updateStep?.(
+                        
+                        return updateStep?.(
                             3,
                             'presetBgColor',
                             'Select Color',
@@ -350,7 +353,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                         if (
                             currentCustomTemplate?.backgroundSettings?.background?.enabled
                         ) {
-                            updateStep(
+                            return updateStep(
                                 3,
                                 'editorBgImage',
                                 'Select Image',
@@ -358,7 +361,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                                 'Background Image'
                             )
                         } else {
-                            updateStep(
+                            return updateStep(
                                 3,
                                 'editorBgColor',
                                 'Select Color',
