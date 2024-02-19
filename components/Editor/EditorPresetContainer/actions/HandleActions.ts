@@ -10,7 +10,8 @@ export const handleActions = (
     currentCustomTemplate?: ICustomPlateTemplate,
     currentEditorStep?: IEditorSteps,
     currentLicensePlate?: ILicensePlate,
-    presetTemplate?: boolean
+    presetTemplate?: boolean,
+    extras?: boolean
 ) => {
     const CURRENT_STEP = 3;
 
@@ -641,16 +642,6 @@ export const handleActions = (
 
             //Bottom Text Color
             if (currentEditorStep?.currentSubStep === "presetBottomText") {
-                if (currentLicensePlate?.bottomTextEnabled) {
-                    return {
-                        step: CURRENT_STEP,
-                        subStep: steps[6],
-                        subTitle: 'Select Settings',
-                        warning: false,
-                        title: 'Bottom Text'
-                    }
-                }
-
                 if (currentCustomTemplate?.mainLogo?.enabled) {
                     return {
                         step: CURRENT_STEP,
@@ -1051,7 +1042,18 @@ export const handleActions = (
                     title: 'Finish'
                 }
             }
+
             if (currentEditorStep?.currentSubStep === "addonNotes") {
+                if(extras){
+                    return {
+                        step: CURRENT_STEP,
+                        subStep: editorSteps[7],
+                        subTitle: '',
+                        warning: false,
+                        title: 'Finish'
+                    }
+                }
+
                 return {
                     step: CURRENT_STEP,
                     subStep: editorSteps[8],
@@ -1187,6 +1189,15 @@ export const handleActions = (
             }
 
             if (currentEditorStep?.currentSubStep === "selectFinish") {
+                if(extras){
+                    return {
+                        step: CURRENT_STEP,
+                        subStep: editorSteps[9],
+                        subTitle: 'Notes',
+                        warning: false,
+                        title: 'ADD-ON'
+                    }
+                }
                 return {
                     step: CURRENT_STEP,
                     subStep: editorSteps[8],

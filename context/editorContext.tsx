@@ -115,13 +115,10 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                         template => (template?.templateId === query.get('presetTemplate') && template?.preset === isPresetTemp )
                     );
 
-                    console.log(templateFilter);
-
                     const shopifyProduct = await client.product.fetchByHandle(templateFilter[0].shopifyHandle);
                     const customTemplate = templateFilter[0] as ICustomPlateTemplate;
 
                     const formatedVariants: IShopifyVariant[] = [];
-                    console.log(shopifyProduct.variants)
 
                     if (shopifyProduct?.variants?.length !== 0) {
                         shopifyProduct?.variants?.map( (item: any) => {
@@ -150,7 +147,8 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                         title: shopifyProduct?.title,
                         description: shopifyProduct?.description,
                         shopifyVariants: formatedVariants,
-                        selectedVariant: formatedVariants[0]
+                        selectedVariant: formatedVariants[0],
+                        finish: 'GLOSS'
                     }))
 
                 } catch (error) {
@@ -229,7 +227,8 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 title: title,
                 description: description,
                 shopifyVariants: variant,
-                selectedVariant: variant[0]
+                selectedVariant: variant[0],
+                finish: 'GLOSS'
             }))
 
             if (!customPresetTemplate) {

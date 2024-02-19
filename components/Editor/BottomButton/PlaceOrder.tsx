@@ -18,7 +18,8 @@ export const PlaceOrder = (props:{
         redirectCheckout,
         hasDesigner,
         acceptTerms,
-        setAcceptTerms
+        setAcceptTerms,
+        extras
     } = useContext(StoreContext) as StoreContextType;
 
     const {
@@ -104,7 +105,8 @@ export const PlaceOrder = (props:{
             currentCustomTemplate,
             currentEditorStep,
             currentLicensePlate,
-            presetTemplate
+            presetTemplate,
+            extras
         )
 
         if(presetTemplate){

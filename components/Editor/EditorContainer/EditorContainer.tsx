@@ -7,6 +7,7 @@ import { useContext } from 'react';
 import { EditorContext, EditorContextType } from '../../../context/editorContext';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { handleActions } from '../EditorPresetContainer/actions/HandleActions';
+import { StoreContext, StoreContextType } from '../../../context/storeContext';
 
 export const EditorContainer = (props:{
     presetTemplate?: boolean
@@ -19,6 +20,10 @@ export const EditorContainer = (props:{
         currentCustomTemplate
     } = useContext(EditorContext) as EditorContextType;
 
+    const {
+        extras
+    } = useContext(StoreContext) as StoreContextType;
+
     const { presetTemplate } = props;
     
     const handleAction = (
@@ -29,7 +34,8 @@ export const EditorContainer = (props:{
             currentCustomTemplate,
             currentEditorStep,
             currentLicensePlate,
-            presetTemplate
+            presetTemplate,
+            extras
         )
         if (handle?.step === undefined) {
             updateStep?.(

@@ -93,7 +93,7 @@ export const EditorActionContainer = (
             }
 
             {
-                step?.currentSubStep === "editorCharacter" && (
+                step?.currentSubStep === "editorCharacter" && currentCustomTemplate?.templateId !== "1" && (
                     <Switcher
                         type="plateNumberStrokeEnabled"
                         text="Plate Character Border"
@@ -123,7 +123,7 @@ export const EditorActionContainer = (
             }
 
             {
-                step.currentSubStep === "editorState" && (
+                step.currentSubStep === "editorState" && currentCustomTemplate?.templateId !== "1" &&  (
                     <Switcher
                         type="stateStrokeEnabled"
                         text="State Text Border"
@@ -153,7 +153,7 @@ export const EditorActionContainer = (
             }
 
             {
-                step.currentSubStep === "editorBottomText" && (<Switcher
+                step.currentSubStep === "editorBottomText" && currentCustomTemplate?.templateId !== "1" && (<Switcher
                     type="bottomTextStrokeEnabled"
                     text="Bottom Text Border"
                     checkedDefault={currentCustomTemplate?.bottomText?.stroke?.enabled ?? false}

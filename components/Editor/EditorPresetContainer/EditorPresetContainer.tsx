@@ -13,6 +13,11 @@ import { StoreContext, StoreContextType } from '../../../context/storeContext';
 export const EditorPresetContainer = (
     props: any
 ) => {
+
+    const {
+        extras
+    } = useContext(StoreContext) as StoreContextType;
+
     const {
         currentLicensePlate,
         currentEditorStep,
@@ -28,7 +33,8 @@ export const EditorPresetContainer = (
             currentCustomTemplate,
             currentEditorStep,
             currentLicensePlate,
-            true
+            true,
+            extras
         )
         console.log(
             handle?.subTitle
