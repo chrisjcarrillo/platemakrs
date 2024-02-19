@@ -19,6 +19,7 @@ import MainSlider from "../components/MainSlider/MainSlider";
 
 import fsPromises from 'fs/promises';
 import path from 'path';
+import { StickyEditor } from '../components/shared/StickyButtons/StickyEditor';
 
 export default function Editor(props: any) {
 
@@ -79,6 +80,11 @@ export default function Editor(props: any) {
                         plates={props.extras.showcaseSlider.images}
 
                     />
+                )
+            }
+            {
+                extras && (
+                    <StickyEditor/>
                 )
             }
 
