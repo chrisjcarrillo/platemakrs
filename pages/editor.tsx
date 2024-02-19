@@ -13,6 +13,13 @@ import { PlaceOrder } from '../components/Editor/BottomButton/PlaceOrder';
 import { TemplateList } from '../components/Editor/TemplateList/TemplateList';
 import { EditLogo } from '../components/Editor/EditLogo/EditLogo';
 
+import PlateComparison from "../components/PlateComparison/PlateComparison";
+import { ImageAndText } from "../components/shared/ImageAndText/ImageAndText";
+import MainSlider from "../components/MainSlider/MainSlider";
+
+import fsPromises from 'fs/promises';
+import path from 'path';
+
 export default function Editor(props: any) {
 
     const {
@@ -24,7 +31,8 @@ export default function Editor(props: any) {
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const {
-        setAddon
+        setAddon,
+        extras
     } = useContext(StoreContext) as StoreContextType
 
     setAddon?.(props?.addons)
@@ -46,6 +54,36 @@ export default function Editor(props: any) {
                     <EditorContainer presetTemplate={isPreset} />
                 }
             </Container>
+            {extras && (
+                <PlateComparison
+                    plates={props.extras.plateComparison}
+                />
+            )
+            }
+
+            {
+                extras && (
+                    <ImageAndText
+                        title={props.extras.howItWorks.title}
+                        image={props.extras.howItWorks.image}
+                    />
+                )
+            }
+            {
+                extras && (
+                    <MainSlider
+                        title={props.extras.showcaseSlider.title}
+                        swipeImage=""
+                        image={props.extras.showcaseSlider.image}
+                        swipeText={props.extras.showcaseSlider.swipeText}
+                        plates={props.extras.showcaseSlider.images}
+
+                    />
+                )
+            }
+
+
+
             {currentEditorStep?.currentStep === 3 && <PlaceOrder presetTemplate={isPreset} />}
         </>
     )
@@ -55,10 +93,15 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const currentProduct = await client.collection.fetchWithProducts('gid://shopify/Collection/459770659117', { productsFirst: 100 })
     const getAddon = await client.product.fetchByHandle('add-on-work-with-a-designer');
 
+    const filePath = path.join(process.cwd(), 'settings.json');
+    const jsonData = await fsPromises.readFile(filePath);
+    const objectData = JSON.parse(jsonData.toString());
+
     return {
         props: {
             productList: JSON.parse(JSON.stringify(currentProduct)),
-            addons: JSON.parse(JSON.stringify(getAddon))
+            addons: JSON.parse(JSON.stringify(getAddon)),
+            extras: objectData
         },
         revalidate: 10
     }

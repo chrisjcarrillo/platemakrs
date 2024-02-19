@@ -84,7 +84,8 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const {
-        addToCartEvent
+        addToCartEvent,
+        setExtras
     } = useContext(StoreContext) as StoreContextType;
 
     // Messages Start
@@ -100,6 +101,9 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         if (typeof window !== "undefined") {
             let data = window.performance.getEntriesByType("navigation")[0].type;
             const query = new URLSearchParams(window.location.search);
+            if(query.get('pm_source') === "fb"){
+                setExtras(true)
+            }
             const initProduct = async () => {
                 try {
                     setLoading(true);

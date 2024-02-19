@@ -6301,6 +6301,7 @@ export const premadeTemplates = [
         fadeSettings: { enabled: false },
 
         mainLogo: {
+            hasColor: false,
             enabled: true,
             name: "mercedes.svg",
             url: '/images/resources/cars/corvette/logo/logo.png',

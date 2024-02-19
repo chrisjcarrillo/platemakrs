@@ -46,6 +46,9 @@ export type StoreContextType = {
 
     notes?: string;
     setNotes: (e: any) => void;
+
+    extras?: boolean;
+    setExtras: (e: boolean) => void;
 }
 
 export const client = Client?.buildClient({
@@ -72,6 +75,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
     const [hasDesigner, setHasDesigner] = useState<boolean>(false);
     const [acceptTerms, setAcceptTerms] = useState<boolean>(false);
     const [notes, setNotes] = useState<string | undefined>(undefined);
+    const [extras, setExtras] = useState<boolean>(false);
 
     const onStorageUpdate = (e: any) => {
         const { key, newValue } = e;
@@ -453,6 +457,8 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
     return (
         <StoreContext.Provider
             value={{
+                extras,
+                setExtras,
                 cart,
                 showCart,
                 checkout,
