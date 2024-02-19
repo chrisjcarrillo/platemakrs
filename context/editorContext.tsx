@@ -108,14 +108,20 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 try {
                     setLoading(true);
 
+                    const isPresetTemp = query.get('preset') === null ? false : true
+                    console.log(query.get('preset'))
+
                     const templateFilter = premadeTemplates.filter(
-                        template => template?.templateId === query.get('presetTemplate')
+                        template => (template?.templateId === query.get('presetTemplate') && template?.preset === isPresetTemp )
                     );
+
+                    console.log(templateFilter);
 
                     const shopifyProduct = await client.product.fetchByHandle(templateFilter[0].shopifyHandle);
                     const customTemplate = templateFilter[0] as ICustomPlateTemplate;
 
                     const formatedVariants: IShopifyVariant[] = [];
+                    console.log(shopifyProduct.variants)
 
                     if (shopifyProduct?.variants?.length !== 0) {
                         shopifyProduct?.variants?.map( (item: any) => {
@@ -138,16 +144,14 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                         })
                     }
 
-                    if (customTemplate) {
-                        setCurrentCustomTemplate(template => ({
-                            ...template,
-                            ...customTemplate,
-                            title: shopifyProduct?.title,
-                            description: shopifyProduct?.description,
-                            shopifyVariants: formatedVariants,
-                        }))
-                    }
-                    console.log('Google ads is present')
+                    setCurrentCustomTemplate(template => ({
+                        ...template,
+                        ...customTemplate,
+                        title: shopifyProduct?.title,
+                        description: shopifyProduct?.description,
+                        shopifyVariants: formatedVariants,
+                        selectedVariant: formatedVariants[0]
+                    }))
 
                 } catch (error) {
                     setLoading(false);
@@ -162,6 +166,10 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 }
             }
             if (query.get('preset') && query.get('gclid')) {
+                initProduct();
+                console.log('Google ads is present')
+            }
+            if (query.get('pm_source') === 'fb') {
                 initProduct();
                 console.log('Google ads is present')
             }
@@ -214,14 +222,6 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                     formatedVariants.push(currentVariant);
                 })
             }
-
-            setCurrentCustomTemplate(template => ({
-                ...template,
-                ...customTemplate,
-                title: title,
-                description: description,
-                shopifyVariants: formatedVariants,
-            }))
 
             setCurrentCustomTemplate(template => ({
                 ...template,

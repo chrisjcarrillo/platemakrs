@@ -208,7 +208,7 @@ export const PlaceOrder = (props:{
 
             {
                 currentEditorStep?.currentSubStep === "termsAndConditions" && (
-                    <Container className={`placeOrder__container`}>
+                    <Container className={`placeOrder__container`} id={'order-actions'}>
                         <Row className="placeOrder__row-terms-final">
                             <Col
                                 xs={12}
@@ -262,7 +262,7 @@ export const PlaceOrder = (props:{
             }
 
             {currentEditorStep?.currentSubStep !== "termsAndConditions" && (
-                <Container className={`placeOrder__container`}>
+                <Container className={`placeOrder__container`} id={'order-actions'}>
                     <Row className={`placeOrder__row-details g-2`}>
                         <Col
                             {...termsCols}

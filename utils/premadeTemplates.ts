@@ -6821,6 +6821,7 @@ export const premadeTemplates = [
        // Template 1
        {
         templateId: '1',
+        preset: false,
         shopifyHandle: 'two-colors-custom-template',
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
@@ -6876,6 +6877,7 @@ export const premadeTemplates = [
     // Template 2
     {
         templateId: '2',
+        preset: false,
         shopifyHandle: 'two-colors-and-logo-custom-template',
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
@@ -6956,6 +6958,7 @@ export const premadeTemplates = [
     {
         templateId: '3',
         fadeType: 'FADE-UP',
+        preset: false,
         shopifyHandle: 'pattern-custom-template',
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
@@ -7050,6 +7053,7 @@ export const premadeTemplates = [
     {
         templateId: '4',
         fadeType: 'FADE-UP',
+        preset: false,
         shopifyHandle: 'pattern-logo-bottom-logo-custom-template',
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
@@ -7158,6 +7162,7 @@ export const premadeTemplates = [
     {
         templateId: '5',
         fadeType: 'FADE-DOWN',
+        preset: false,
         shopifyHandle: 'fade-down-pattern-logo-custom-template',
         sportsTeam: true,
         fadeSettings: { enabled: false },
@@ -7267,6 +7272,7 @@ export const premadeTemplates = [
     {
         templateId: '6',
         fadeType: 'FADE-DOWN',
+        preset: false,
         shopifyHandle: 'fade-down-pattern-logo-bottom-logo-custom-template',
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
@@ -7371,6 +7377,7 @@ export const premadeTemplates = [
     {
         templateId: '7',
         fadeType: 'FULL-BG',
+        preset: false,
         shopifyHandle: 'copy-of-fade-up-pattern-logo-custom-template',
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
@@ -7475,6 +7482,7 @@ export const premadeTemplates = [
     {
         templateId: '8',
         fadeType: 'FULL-BG',
+        preset: false,
         shopifyHandle: 'copy-of-fade-up-pattern-logo-bottom-logo-custom-template',
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },

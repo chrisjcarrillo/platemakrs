@@ -55,6 +55,7 @@ export default function Editor(props: any) {
                     <EditorContainer presetTemplate={isPreset} />
                 }
             </Container>
+            {currentEditorStep?.currentStep === 3 && <PlaceOrder presetTemplate={isPreset} />}
             {extras && (
                 <PlateComparison
                     plates={props.extras.plateComparison}
@@ -87,10 +88,6 @@ export default function Editor(props: any) {
                     <StickyEditor/>
                 )
             }
-
-
-
-            {currentEditorStep?.currentStep === 3 && <PlaceOrder presetTemplate={isPreset} />}
         </>
     )
 }
