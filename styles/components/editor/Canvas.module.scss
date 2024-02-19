@@ -224,3 +224,7 @@
 .add-shadow{
    filter: drop-shadow(rgb(0, 0, 0) 3px 1px 2px) !important;
 }
+
+.remove--sticky{
+    position: unset !important;
+}

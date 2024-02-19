@@ -13,10 +13,12 @@ import { v4 as uuidv4 } from 'uuid';
 import { Container } from 'react-bootstrap';
 import { LoadingSpinner } from '../components/shared/LoadingSpinner/LoadingSpinner';
 import { Cart } from '../components/shared/Cart/Cart';
+import Hotjar from '@hotjar/browser';
 
 export default function App({ Component, pageProps }: AppProps) {
 
 	useEffect(() => {
+		Hotjar.init(3872346, 6);
 		const setEventId = async () => {
 			try {
 				const eventIdData = await fetch('/api/user/userId', {

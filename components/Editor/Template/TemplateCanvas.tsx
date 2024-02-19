@@ -35,7 +35,8 @@ const TemplateCanvas = (
     const canvasRef = useRef(null);
 
     const {
-        acceptTerms
+        acceptTerms,
+        extras
     } = useContext(StoreContext) as StoreContextType;
 
     const {
@@ -144,7 +145,8 @@ const TemplateCanvas = (
     return (
         <>
             <Container
-                className={`canvas__tools-main animate__animated animate__fadeIn`}
+                className={`canvas__tools-main animate__animated animate__fadeIn ${extras ? 'remove--sticky' : ''}`}
+                id={'canvas-top'}
             >
                 <Row className="canvas__tools">
 
@@ -189,7 +191,7 @@ const TemplateCanvas = (
             </Container>
 
             <Container
-                className={`canvas__main animate__animated animate__fadeIn ${editLogoUi ? 'zIndexHigh' : ''}`}
+                className={`canvas__main animate__animated animate__fadeIn ${editLogoUi ? 'zIndexHigh' : ''} ${extras ? 'remove--sticky' : ''}`}
                 style={
                     popupPreview ? { backgroundColor: '#ffffff' } : {}
                 }

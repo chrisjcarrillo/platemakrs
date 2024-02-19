@@ -402,6 +402,7 @@ const EditorForm = (props: any) => {
             {/* Next Step Button */}
             <Container
                 className={`submitButton__container`}
+                id={'submitButton'}
             >
                 <Row>
                     <Action
