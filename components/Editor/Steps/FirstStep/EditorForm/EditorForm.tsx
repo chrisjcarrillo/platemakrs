@@ -90,7 +90,7 @@ const EditorForm = (props: any) => {
 
 
     const licensePlateValidtor = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const regex = /^[A-Za-z0-9\s-]+$/;
+        // const regex = /^[A-Za-z0-9\s-]+$/;
         if (regex.test(e.target.value)) {
             setIsInputValid(true)
             updateLicensePlate('plateNumber', e.target.value)
@@ -214,7 +214,7 @@ const EditorForm = (props: any) => {
                                         disabled={!form.getFieldValue('state')}
                                         maxLength={8}
                                         ref={inputRef}
-                                        onChange={(e) => licensePlateValidtor(e)}
+                                        onChange={(e) => updateLicensePlate('plateNumber', e.target.value)}
                                         placeholder='Enter your license plate letters...'
                                     />
                                 </FormItem>
@@ -378,9 +378,6 @@ const EditorForm = (props: any) => {
                                             name="bottomText"
                                             hasFeedback
                                             label="Bottom Text"
-                                            rules={[
-                                                { required: form.getFieldValue('bottomTextEnabled'), message: 'Bottom Text is required' }
-                                            ]}
                                         >
                                             <Input
                                                 name="bottomText"
