@@ -325,7 +325,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                             console.log('here 1');
                             return updateStep?.(
                                 3,
-                                'presetCharacterColor',
+                                'presetCharacter',
                                 'Select Color',
                                 false,
                                 'Plate Character'
