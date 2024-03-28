@@ -102,7 +102,7 @@ export async function addressCreate(accessToken, address, city, province, zip, c
     `;
     const apolloClient = () => {
         return new ApolloClient({
-            uri: apiUrl,
+            uri:  apiUrl,
             headers: {
                 'Content-Type': 'application/json',
                 'Shopify-Storefront-Private-Token': process.env.SHOPIFY_STORE_FRONT_ACCESS_TOKEN
