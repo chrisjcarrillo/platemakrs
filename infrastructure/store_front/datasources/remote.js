@@ -2,7 +2,7 @@ import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
 
 export async function createCustomer(email, firstName, lastName, phone, password) {
 
-    const apiUrl = "https://platemakrs.myshopify.com/api/2024-01/graphql.json";
+    const apiUrl = `${process.env.SHOPIFY_STOREFRONT_API_URL}`;
     const createCustomerMutation = `
     mutation customerCreate {
   customerCreate(input: {email: "${email}", password: "${password}", firstName: "${firstName}", lastName: "${lastName}", phone: "${phone}" }){
@@ -31,7 +31,7 @@ export async function createCustomer(email, firstName, lastName, phone, password
             uri: apiUrl,
             headers: {
                 'Content-Type': 'application/json',
-                'X-Shopify-Storefront-Access-Token': process.env.SHOPIFY_STORE_FRONT_ACCESS_TOKEN
+                'Shopify-Storefront-Private-Token': process.env.SHOPIFY_STORE_FRONT_ACCESS_TOKEN
             },
             cache: new InMemoryCache(),
         });
@@ -44,7 +44,7 @@ export async function createCustomer(email, firstName, lastName, phone, password
 }
 
 export async function customerUpdate(accessToken, firstName, lastName, email, phone) {
-    const apiUrl = "https://platemakrs.myshopify.com/api/2024-01/graphql.json";
+    const apiUrl = `${process.env.SHOPIFY_STOREFRONT_API_URL}`;
     const query = `
   mutation customerUpdate {
   customerUpdate(customerAccessToken: "${accessToken}", customer: {firstName: "${firstName}", lastName: "${lastName}", email: "${email}", phone: "${phone}"}) {
@@ -71,7 +71,7 @@ export async function customerUpdate(accessToken, firstName, lastName, email, ph
             uri: apiUrl,
             headers: {
                 'Content-Type': 'application/json',
-                'Shopify-Storefront-Private-Token': "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"
+                'Shopify-Storefront-Private-Token': process.env.SHOPIFY_STORE_FRONT_ACCESS_TOKEN
             },
             cache: new InMemoryCache(),
         });
@@ -82,7 +82,7 @@ export async function customerUpdate(accessToken, firstName, lastName, email, ph
     return data;
 }
 export async function addressCreate(accessToken, address, city, province, zip, country) {
-    const apiUrl = "https://platemakrs.myshopify.com/api/2024-01/graphql.json";
+    const apiUrl = `${process.env.SHOPIFY_STOREFRONT_API_URL}`;
     const query = `
   mutation addressCreate {
   customerAddressCreate(
@@ -105,7 +105,7 @@ export async function addressCreate(accessToken, address, city, province, zip, c
             uri: apiUrl,
             headers: {
                 'Content-Type': 'application/json',
-                'Shopify-Storefront-Private-Token': "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"
+                'Shopify-Storefront-Private-Token': process.env.SHOPIFY_STORE_FRONT_ACCESS_TOKEN
             },
             cache: new InMemoryCache(),
         });
@@ -116,7 +116,7 @@ export async function addressCreate(accessToken, address, city, province, zip, c
     return data;
 }
 export async function addressUpdate(accessToken, addressId, address, city, province, zip, country) {
-    const apiUrl = "https://platemakrs.myshopify.com/api/2024-01/graphql.json";
+    const apiUrl = `${process.env.SHOPIFY_STOREFRONT_API_URL}`;
     const query = `
   mutation addressUpdate {
   customerAddressUpdate(
@@ -141,7 +141,7 @@ export async function addressUpdate(accessToken, addressId, address, city, provi
             uri: apiUrl,
             headers: {
                 'Content-Type': 'application/json',
-                'Shopify-Storefront-Private-Token': "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"
+                'Shopify-Storefront-Private-Token': process.env.SHOPIFY_STORE_FRONT_ACCESS_TOKEN
             },
             cache: new InMemoryCache(),
         });
@@ -153,7 +153,7 @@ export async function addressUpdate(accessToken, addressId, address, city, provi
 }
 export async function forgotPassword(email) {
 
-    const apiUrl = "https://platemakrs.myshopify.com/api/2024-01/graphql.json";
+    const apiUrl = `${process.env.SHOPIFY_STOREFRONT_API_URL}`;
     const query = `
   mutation customerRecover {
   customerRecover(email: "${email}") {
@@ -172,7 +172,7 @@ export async function forgotPassword(email) {
             uri: apiUrl,
             headers: {
                 'Content-Type': 'application/json',
-                'Shopify-Storefront-Private-Token': "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"
+                'Shopify-Storefront-Private-Token': process.env.SHOPIFY_STORE_FRONT_ACCESS_TOKEN
             },
             cache: new InMemoryCache(),
         });
@@ -184,13 +184,13 @@ export async function forgotPassword(email) {
 }
 
 export async function getAccessToken(email, password) {
-    const apiUrl = "https://platemakrs.myshopify.com/api/2024-01/graphql.json";
+    const apiUrl = `${process.env.SHOPIFY_STOREFRONT_API_URL}`;
     const apolloClient = () => {
         return new ApolloClient({
             uri: apiUrl,
             headers: {
                 'Content-Type': 'application/json',
-                'Shopify-Storefront-Private-Token': "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"
+                'Shopify-Storefront-Private-Token': process.env.SHOPIFY_STORE_FRONT_ACCESS_TOKEN
             },
             cache: new InMemoryCache(),
         });
@@ -238,7 +238,7 @@ export async function getAccessToken(email, password) {
 
 
 export async function getCustomerData(customerAccessToken, startCursor) {
-    const apiUrl = "https://platemakrs.myshopify.com/api/2024-01/graphql.json";
+    const apiUrl = `${process.env.SHOPIFY_STOREFRONT_API_URL}`;
     const query = `
   query getCustomerData {
   customer(customerAccessToken: "${customerAccessToken}") {
@@ -294,7 +294,7 @@ export async function getCustomerData(customerAccessToken, startCursor) {
             uri: apiUrl,
             headers: {
                 'Content-Type': 'application/json',
-                'Shopify-Storefront-Private-Token': "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"
+                'Shopify-Storefront-Private-Token': process.env.SHOPIFY_STORE_FRONT_ACCESS_TOKEN
             },
             cache: new InMemoryCache(),
         });
