@@ -46,8 +46,8 @@ export interface IFileLogo {
     height?: number | string,
 
     // Addons
-    glow: IGlow,
-    shadow: IShadow
+    glow?: IGlow,
+    shadow?: IShadow
 }
 
 export interface IMultipleColor {

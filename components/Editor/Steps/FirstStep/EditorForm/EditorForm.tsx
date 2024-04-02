@@ -46,7 +46,7 @@ interface SButton {
 const EditorForm = (props: any) => {
 
     const {
-        stepLoading,
+        loading,
         isPreset
     } = useContext(InterfaceContext) as InterfaceContextType
 
@@ -54,7 +54,8 @@ const EditorForm = (props: any) => {
         createLicensePlate,
         currentLicensePlate,
         updateLicensePlate,
-        updateStep
+        updateStep,
+        initialStore
     } = useContext(EditorContext) as EditorContextType;
 
     const inputRef = useRef<InputRef>(null);
@@ -403,12 +404,12 @@ const EditorForm = (props: any) => {
             >
                 <Row>
                     <Action
-                        loading={stepLoading}
+                        loading={loading}
                         actionClass='action__continue'
                         disabled={!submittable}
                         text={'Continue'}
                         action={
-                            () => createLicensePlate?.()
+                            () => initialStore()
                         }
                     />
                 </Row>

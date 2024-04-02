@@ -12,6 +12,7 @@ import {  IFileLogo } from './helpers/file.interface';
 
 export interface ITemplate{
     id?: string // ID Created by system
+    licensePlateId?: string
     templateId?: string; // PresetId
 
     fadeType?: 'FADE-UP' | 'FADE-DOWN' | 'FULL-BG';

@@ -2,6 +2,7 @@ import { ICustomPlateTemplate } from "./customTemplate.interface";
 
 export interface ILicensePlate {
     id?: string;
+    customTemplateId?: string;
 
     // State
     state?: string;

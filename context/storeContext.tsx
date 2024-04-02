@@ -7,6 +7,8 @@ import { useRouter } from 'next/navigation'
 import { ICustomPlateTemplate } from '../interfaces/customTemplate.interface';
 import Cookies from 'js-cookie';
 import { v4 as uuidv4 } from 'uuid';
+import { ILicensePlate } from '../interfaces/licensePlate.interface';
+import { storeCheckout } from './actions/storeData';
 
 interface IStoreProps {
     children: React.ReactNode
@@ -25,12 +27,6 @@ export type StoreContextType = {
 
     addToCartEvent: (type: string) => void;
 
-    // Variant
-    addVariant: (
-        variantId?: any,
-        customTemplateId?: string
-    ) => void;
-
     removeVariant: (
         any?: any, boolean?: boolean
     ) => void;
@@ -41,7 +37,13 @@ export type StoreContextType = {
     addVariantDesigner: (product: any, id: string, notes: string) => void;
 
     // Checkout
-    redirectCheckout: (currentCustomTemplate: ICustomPlateTemplate, canvasRef?: any) => void;
+    redirectCheckout: (
+        currentCustomTemplate: ICustomPlateTemplate,
+        currentLicensePlate: ILicensePlate,
+        isCheckout: boolean,
+        canvasRef?: any
+    ) => void;
+    
     addVariantGiftCard: (variant: any, quantity: number) => void;
 
     notes?: string;
@@ -79,6 +81,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
 
     const onStorageUpdate = (e: any) => {
         const { key, newValue } = e;
+        // console.log(JSON.parse(window.localStorage.getItem("sampleList")));
         return {
             key,
             newValue
@@ -91,17 +94,25 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
     }
 
     const redirectCheckout = async (
-        currentCustomTemplate?: ICustomPlateTemplate,
-        isCheckout?: boolean
+        currentCustomTemplate: ICustomPlateTemplate,
+        currentLicensePlate: ILicensePlate,
+        isCheckout: boolean,
+        canvasRef: any,
     ) => {
         setLoading(true)
         try {
             if (isCheckout) {
                 window.location.replace(checkout?.webUrl)
             } else {
+                const storeData = await storeCheckout(
+                    currentCustomTemplate,
+                    currentLicensePlate,
+                    canvasRef
+                )
                 addVariant(
                     currentCustomTemplate?.selectedVariant?.id,
                     currentCustomTemplate?.id,
+                    storeData
                 )
             }
 
@@ -197,8 +208,13 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
 
     // Variants START
     const addVariant = async (
-        variantId?: any,
-        customTemplateId?: string
+        variantId: any,
+        customTemplateId: string,
+        storeData: {
+            previewUrl: string,
+            licensePlateId: string,
+            customTemplateId: string
+        }
     ) => {
         try {
             const checkoutId = checkout?.id;
@@ -208,10 +224,13 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                     quantity: 1,
                     customAttributes: [
                         {
-                            key: "Order ID", value: `${customTemplateId}`, // Template of Preset
+                            key: "Order ID", value: `${storeData.customTemplateId}`, // Template of Preset
                         },
                         {
-                            key: "Preview", value: `${designUrl}`, // Template of Preset
+                            key: "Plate ID", value: `${storeData.licensePlateId}`, // Template of Preset
+                        },
+                        {
+                            key: "Preview", value: `${storeData.previewUrl}`, // Template of Preset
                         },
                         {
                             key: "Notes", value: `${notes ?? 'N/A'}`,
@@ -233,11 +252,14 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                     quantity: 1,
                     customAttributes: [
                         {
-                            key: "Order ID", value: `${customTemplateId}`, // Template of Preset
+                            key: "Order ID", value: `${storeData.customTemplateId}`, // Template of Preset
                         },
                         {
-                            key: "Preview", value: `${designUrl}`, // Template of Preset
-                        }
+                            key: "Plate ID", value: `${storeData.licensePlateId}`, // Template of Preset
+                        },
+                        {
+                            key: "Preview", value: `${storeData.previewUrl}`, // Template of Preset
+                        },
                     ]
                 }
             ]
@@ -463,7 +485,6 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 showCart,
                 checkout,
                 addToCartEvent,
-                addVariant,
                 addVariantDesigner,
                 removeVariant,
 

@@ -17,9 +17,6 @@ export type InterfaceContextType = {
     editorLoading?: boolean;
     setEditorLoading: (type: boolean) => void;
 
-    stepLoading?: boolean;
-    setStepLoading: (type: boolean) => void;
-
     showPreview?: boolean;
     setShowPreview: (type: boolean) => void;
 
@@ -68,7 +65,6 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
 
     // Loading START
     const [loading, setLoading] = useState<boolean>(false); // Show Loading
-    const [stepLoading, setStepLoading] = useState<boolean>(false); // Show step loading
     const [editorLoading, setEditorLoading] = useState<boolean>(false); // Show Editor Loading
     // Loading End
     
@@ -124,34 +120,6 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
             setGoogleDetails(true);
         }
     })
-
-
-    // NOTES
-    /// Set the Design url if finalDesign is set
-    useEffect(() => {
-        if(finalDesign){
-            const uploadDesign = async () => {
-                try {
-                    const storage = getStorage();
-                    const id = sessionStorage.getItem('customTemplateId');
-                    const storageRef = ref(storage, `customTemplates/${id}/design-preview/test`); // Create storage reference
-                    const upload = await uploadString( storageRef, finalDesign, 'data_url', {
-                            contentType: 'image/png'
-                        }
-                    );
-                    const downloadUrl = await getDownloadURL(upload.ref)
-                    setDesignUrl(downloadUrl);
-                    console.log(designUrl);
-                } catch (error) {
-                    console.log(error)
-                }
-                
-            }
-            uploadDesign();            
-        }
-    }, [finalDesign])
-
-
     return (
         <InterfaceContext.Provider
             value={{
@@ -160,10 +128,7 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
 
                 editorLoading,
                 setEditorLoading,
-
-                stepLoading,
-                setStepLoading,
-
+                
                 showPreview,
                 setShowPreview,
 

@@ -24,6 +24,8 @@ import { premadeTemplates } from '../utils/premadeTemplates';
 import { IShopifyVariant } from '../interfaces/shopify/variants.interface';
 
 
+////TODO
+// View Miro
 
 interface IEditorProps {
     children: React.ReactNode
@@ -46,6 +48,8 @@ export type EditorContextType = {
     removeLicensePlate?: (licensePlate: ILicensePlate) => void;
     createLicensePlate?: () => void;
 
+    initialStore: () => void;
+
     // Step Functions
     updateStep?: (
         step: number,
@@ -57,7 +61,7 @@ export type EditorContextType = {
 
     // Template
     // setCurrentTemplate?: (template: any) => void;
-    selectPresetTemplate?: (title: any, description: any, handle: string, variantId: string, customPresetTemplate: boolean) => void;
+    selectPresetTemplate: (title: any, description: any, handle: string, variantId: string, customPresetTemplate: boolean) => void;
     setCurrentCustomTemplate?: (template: any) => void;
 
     // Custom Template
@@ -76,7 +80,6 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
 
     const {
         setLoading,
-        setStepLoading,
         setMoveLogo,
         setMoveBackgroundLogo,
         setMoveBottomLogo,
@@ -104,6 +107,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             if(query.get('pm_source') === "fb"){
                 setExtras(true)
             }
+            
             const initProduct = async () => {
                 try {
                     setLoading(true);
@@ -151,12 +155,22 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                         finish: 'GLOSS'
                     }))
 
+                    localStorage.setItem( 'customTemplate', JSON.stringify({
+                        ...customTemplate,
+                        title: shopifyProduct?.title,
+                        description: shopifyProduct?.description,
+                        shopifyVariants: formatedVariants,
+                        selectedVariant: formatedVariants[0],
+                        finish: 'GLOSS'
+                    })); // Set Custom Template
+
                 } catch (error) {
                     setLoading(false);
                 } finally {
                     setLoading(false);
                 }
             }
+
             if (data === 'reload' && query.get('preset')) {
                 if (query.get('presetTemplate') && query.get('preset') && query.get('step') === "1" && window.location.pathname === "/editor") {
                     initProduct();
@@ -183,6 +197,11 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             ...currentCustomTemplates,
             [type]: value
         }))
+        const saveCurrentTemplate = localStorage.setItem( 'customTemplate', JSON.stringify({
+            ...currentCustomTemplate,
+            [type]: value
+        }));
+        return saveCurrentTemplate;
     }
     ///// END: Custom Template Functions /////
 
@@ -252,51 +271,36 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         }
     }
 
-    ///// END: Template Functions //////
+    const storeLicensePlate = () => {
+        // Step 1: Set License Plate in localStorage
+        // Step 2: Set the state of the plate
+        const saveLicensePlate = localStorage.setItem('licensePlate', JSON.stringify(currentLicensePlate)); // Step 1
+        setLicensePlate(licensePlate => ({ // Step 2
+            ...licensePlate,
+            ...currentLicensePlate
+        }))
+        return saveLicensePlate;
+    }
+    
+    const storeCurrentTemplate = () => {
+        // Step 1: Set License Plate in localStorage
+        // Step 2: Set the state of the plate
+        const saveCurrentTemplate = localStorage.setItem( 'customTemplate', JSON.stringify(currentCustomTemplate)); // Step 3
+        setCurrentCustomTemplate(template => ({ //  Step 4
+            ...template,
+            ...currentCustomTemplate,
+        }))
+        return saveCurrentTemplate;
+    }
 
-    ///// START: License Plate Functions /////
-    const createLicensePlate = async (
-    ) => {
+    // Store the licensePlate in Local Storage 
+    const initialStore = async () => {
         try {
             addToCartEvent('facebook');
-            setLoading(true)
-            setStepLoading(true)
-
-            // Find License Plate in Storage
-            if(sessionStorage.getItem('licensePlateId')){
-                const getPlate = await updateLicensePlateFirebase(sessionStorage.getItem('licensePlateId'), currentLicensePlate);
-                setLicensePlate(licensePlate => ({
-                    ...licensePlate,
-                    ...getPlate
-                }))
-            } else {
-                // Create License Plate on Firebase
-                const createPlate = await createLicensePlateFirebase(currentLicensePlate);
-                 // Note: Set License Plate in Session Storage
-                sessionStorage.setItem('licensePlateId', createPlate.id);
-                setLicensePlate(licensePlate => ({
-                    ...licensePlate,
-                    ...currentLicensePlate
-                }))
-            }
-
-
-            const createCustomTemplate = await createTemplateFirebase(
-                currentCustomTemplate
-            );
-
-            if (createCustomTemplate) {
-                sessionStorage.setItem(
-                    'customTemplateId',
-                    createCustomTemplate?.id
-                ); // Save the id in case of reload
-
-                setCurrentCustomTemplate(template => ({
-                    ...template,
-                    ...currentCustomTemplate,
-                    id: createCustomTemplate?.id
-                }))
-            }
+            setLoading(true);
+            
+            storeLicensePlate(); // Set License Plate
+            storeCurrentTemplate(); // Set Custom Template
 
             setTimeout(() => {
                 messageApi.open({
@@ -314,7 +318,6 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             setTimeout(
                 () => {
                     setLoading(false);
-                    setStepLoading(false)
                     if (queryParams.get("preset") && sessionStorage.getItem('preset')) {
                         setPreset(true)
                         if (
@@ -429,7 +432,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 // License Plate
                 currentLicensePlate,
                 updateLicensePlate,
-                createLicensePlate,
+                initialStore,
 
                 // Custom Template
                 currentCustomTemplate,

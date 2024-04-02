@@ -1,51 +1,44 @@
-import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
+import { ApolloClient, gql, InMemoryCache } from "@apollo/client";
 
 export async function createCustomer(email, firstName, lastName, phone, password) {
 
-    const apiUrl = `${process.env.SHOPIFY_STOREFRONT_API_URL}`;
-    const createCustomerMutation = `
+  const apiUrl = `${process.env.SHOPIFY_STOREFRONT_API_URL}`;
+  const createCustomerMutation = `
     mutation customerCreate {
   customerCreate(input: {email: "${email}", password: "${password}", firstName: "${firstName}", lastName: "${lastName}", phone: "${phone}" }){
     customer {
+      id
       email
       firstName
-      id
       lastName
-      orders(first: 10) {
-        nodes {
-          id
-          lineItems {
-            nodes {
-              title
-              quantity
-            }
-          }
-        }
-      }
+    }
+    userErrors{
+      field
+      message
     }
   }
 }
     `;
-    const apolloClient = () => {
-        return new ApolloClient({
-            uri: apiUrl,
-            headers: {
-                'Content-Type': 'application/json',
-                'Shopify-Storefront-Private-Token': process.env.SHOPIFY_STORE_FRONT_ACCESS_TOKEN
-            },
-            cache: new InMemoryCache(),
-        });
-    };
-    const { data } = await apolloClient().mutate({
-        mutation: gql`${createCustomerMutation}`
+  const apolloClient = () => {
+    return new ApolloClient({
+      uri: apiUrl,
+      headers: {
+        'Content-Type': 'application/json',
+        'Shopify-Storefront-Private-Token': process.env.SHOPIFY_STORE_FRONT_ACCESS_TOKEN
+      },
+      cache: new InMemoryCache(),
     });
+  };
+  const { data } = await apolloClient().mutate({
+    mutation: gql`${createCustomerMutation}`
+  });
 
-    return data;
+  return data;
 }
 
 export async function customerUpdate(accessToken, firstName, lastName, email, phone) {
-    const apiUrl = `${process.env.SHOPIFY_STOREFRONT_API_URL}`;
-    const query = `
+  const apiUrl = `${process.env.SHOPIFY_STOREFRONT_API_URL}`;
+  const query = `
   mutation customerUpdate {
   customerUpdate(customerAccessToken: "${accessToken}", customer: {firstName: "${firstName}", lastName: "${lastName}", email: "${email}", phone: "${phone}"}) {
     customer {
@@ -66,24 +59,24 @@ export async function customerUpdate(accessToken, firstName, lastName, email, ph
   }
 }
     `;
-    const apolloClient = () => {
-        return new ApolloClient({
-            uri: apiUrl,
-            headers: {
-                'Content-Type': 'application/json',
-                'Shopify-Storefront-Private-Token': process.env.SHOPIFY_STORE_FRONT_ACCESS_TOKEN
-            },
-            cache: new InMemoryCache(),
-        });
-    };
-    const { data } = await apolloClient().mutate({
-        mutation: gql`${query}`
+  const apolloClient = () => {
+    return new ApolloClient({
+      uri: apiUrl,
+      headers: {
+        'Content-Type': 'application/json',
+        'Shopify-Storefront-Private-Token': process.env.SHOPIFY_STORE_FRONT_ACCESS_TOKEN
+      },
+      cache: new InMemoryCache(),
     });
-    return data;
+  };
+  const { data } = await apolloClient().mutate({
+    mutation: gql`${query}`
+  });
+  return data;
 }
 export async function addressCreate(accessToken, address, city, province, zip, country) {
-    const apiUrl = `${process.env.SHOPIFY_STOREFRONT_API_URL}`;
-    const query = `
+  const apiUrl = `${process.env.SHOPIFY_STOREFRONT_API_URL}`;
+  const query = `
   mutation addressCreate {
   customerAddressCreate(
     address: {address1: "${address}", city: "${city}", province: "${province}", zip: "${zip}", country: "${country}"}
@@ -100,24 +93,24 @@ export async function addressCreate(accessToken, address, city, province, zip, c
   }
 }
     `;
-    const apolloClient = () => {
-        return new ApolloClient({
-            uri:  apiUrl,
-            headers: {
-                'Content-Type': 'application/json',
-                'Shopify-Storefront-Private-Token': process.env.SHOPIFY_STORE_FRONT_ACCESS_TOKEN
-            },
-            cache: new InMemoryCache(),
-        });
-    };
-    const { data } = await apolloClient().mutate({
-        mutation: gql`${query}`
+  const apolloClient = () => {
+    return new ApolloClient({
+      uri: apiUrl,
+      headers: {
+        'Content-Type': 'application/json',
+        'Shopify-Storefront-Private-Token': process.env.SHOPIFY_STORE_FRONT_ACCESS_TOKEN
+      },
+      cache: new InMemoryCache(),
     });
-    return data;
+  };
+  const { data } = await apolloClient().mutate({
+    mutation: gql`${query}`
+  });
+  return data;
 }
 export async function addressUpdate(accessToken, addressId, address, city, province, zip, country) {
-    const apiUrl = `${process.env.SHOPIFY_STOREFRONT_API_URL}`;
-    const query = `
+  const apiUrl = `${process.env.SHOPIFY_STOREFRONT_API_URL}`;
+  const query = `
   mutation addressUpdate {
   customerAddressUpdate(
     address: {address1: "${address}", city: "${city}", country: "${country}", province: "${province}", zip: "${zip}"}
@@ -136,25 +129,25 @@ export async function addressUpdate(accessToken, addressId, address, city, provi
   }
 }
     `;
-    const apolloClient = () => {
-        return new ApolloClient({
-            uri: apiUrl,
-            headers: {
-                'Content-Type': 'application/json',
-                'Shopify-Storefront-Private-Token': process.env.SHOPIFY_STORE_FRONT_ACCESS_TOKEN
-            },
-            cache: new InMemoryCache(),
-        });
-    };
-    const { data } = await apolloClient().mutate({
-        mutation: gql`${query}`
+  const apolloClient = () => {
+    return new ApolloClient({
+      uri: apiUrl,
+      headers: {
+        'Content-Type': 'application/json',
+        'Shopify-Storefront-Private-Token': process.env.SHOPIFY_STORE_FRONT_ACCESS_TOKEN
+      },
+      cache: new InMemoryCache(),
     });
-    return data;
+  };
+  const { data } = await apolloClient().mutate({
+    mutation: gql`${query}`
+  });
+  return data;
 }
 export async function forgotPassword(email) {
 
-    const apiUrl = `${process.env.SHOPIFY_STOREFRONT_API_URL}`;
-    const query = `
+  const apiUrl = `${process.env.SHOPIFY_STOREFRONT_API_URL}`;
+  const query = `
   mutation customerRecover {
   customerRecover(email: "${email}") {
     customerUserErrors {
@@ -167,37 +160,37 @@ export async function forgotPassword(email) {
   }
 }
     `;
-    const apolloClient = () => {
-        return new ApolloClient({
-            uri: apiUrl,
-            headers: {
-                'Content-Type': 'application/json',
-                'Shopify-Storefront-Private-Token': process.env.SHOPIFY_STORE_FRONT_ACCESS_TOKEN
-            },
-            cache: new InMemoryCache(),
-        });
-    };
-    const { data } = await apolloClient().mutate({
-        mutation: gql`${query}`
+  const apolloClient = () => {
+    return new ApolloClient({
+      uri: apiUrl,
+      headers: {
+        'Content-Type': 'application/json',
+        'Shopify-Storefront-Private-Token': process.env.SHOPIFY_STORE_FRONT_ACCESS_TOKEN
+      },
+      cache: new InMemoryCache(),
     });
-    return data;
+  };
+  const { data } = await apolloClient().mutate({
+    mutation: gql`${query}`
+  });
+  return data;
 }
 
 export async function getAccessToken(email, password) {
-    const apiUrl = `${process.env.SHOPIFY_STOREFRONT_API_URL}`;
-    const apolloClient = () => {
-        return new ApolloClient({
-            uri: apiUrl,
-            headers: {
-                'Content-Type': 'application/json',
-                'Shopify-Storefront-Private-Token': process.env.SHOPIFY_STORE_FRONT_ACCESS_TOKEN
-            },
-            cache: new InMemoryCache(),
-        });
-    };
+  const apiUrl = `${process.env.SHOPIFY_STOREFRONT_API_URL}`;
+  const apolloClient = () => {
+    return new ApolloClient({
+      uri: apiUrl,
+      headers: {
+        'Content-Type': 'application/json',
+        'Shopify-Storefront-Private-Token': process.env.SHOPIFY_STORE_FRONT_ACCESS_TOKEN
+      },
+      cache: new InMemoryCache(),
+    });
+  };
 
 
-    const query = `
+  const query = `
   mutation customerAccessTokenCreate{
   customerAccessTokenCreate(input: {
     email: "${email}",
@@ -219,56 +212,88 @@ export async function getAccessToken(email, password) {
 }
 `;
 
-    const { data } = await apolloClient().mutate({
-        mutation: gql`${query}`
-    });
+  const { data } = await apolloClient().mutate({
+    mutation: gql`${query}`
+  });
 
-    if (data.customerAccessTokenCreate.customerAccessToken) {
-                console.log(data.customerAccessTokenCreate.customerAccessToken.accessToken);
-                const customerData = await getCustomerData(data.customerAccessTokenCreate.customerAccessToken.accessToken);
-                return {
-                    customerData,
-                    accessToken: data.customerAccessTokenCreate.customerAccessToken.accessToken
-                };
-    }
+  if (data.customerAccessTokenCreate.customerAccessToken) {
+    console.log(data.customerAccessTokenCreate.customerAccessToken.accessToken);
+    const customerData = await getCustomerData(data.customerAccessTokenCreate.customerAccessToken.accessToken);
+    return {
+      customerData,
+      accessToken: data.customerAccessTokenCreate.customerAccessToken.accessToken
+    };
+  }
 
-    console.log(data);
-    return data;
+  console.log(data);
+  return data;
 }
 
 
 export async function getCustomerData(customerAccessToken, startCursor) {
-    const apiUrl = `${process.env.SHOPIFY_STOREFRONT_API_URL}`;
-    const query = `
+  const apiUrl = `${process.env.SHOPIFY_STOREFRONT_API_URL}`;
+  const query = `
   query getCustomerData {
   customer(customerAccessToken: "${customerAccessToken}") {
+    createdAt
     email
     id
     displayName
     firstName
     lastName
-    metafield(key: "dob") {
-      value
-    }
+    phone
+    numberOfOrders
     defaultAddress {
       address1
       address2
+      city
+      countryCodeV2
+      formatted
+      zip
+      provinceCode
     }
     orders(first: 10 ${startCursor ? `, after: "${startCursor}"` : ''}) {
       edges {
         cursor
         node {
           id
+          shippingAddress{
+            address1
+            address2
+            city
+            countryCodeV2
+            formatted
+            zip
+            provinceCode
+          }
+          canceledAt
+          cancelReason
+          financialStatus
           fulfillmentStatus
-          statusUrl
-          totalPrice {
+          orderNumber
+          currentTotalPrice{
             amount
             currencyCode
           }
-          orderNumber
-          lineItems(first: 10){
-            edges {
+          customAttributes{
+            key
+            value
+          }
+          successfulFulfillments(first: 6){
+            trackingCompany
+            trackingInfo{
+              number
+              url
+            }
+          }
+          statusUrl
+          lineItems(first: 10) {
+            edges{
               node {
+                customAttributes{
+                  key
+                  value
+                }
                 title
                 quantity
               }
@@ -288,22 +313,22 @@ export async function getCustomerData(customerAccessToken, startCursor) {
 }
     `;
 
-    console.log('Query:', query);
-    const apolloClient = () => {
-        return new ApolloClient({
-            uri: apiUrl,
-            headers: {
-                'Content-Type': 'application/json',
-                'Shopify-Storefront-Private-Token': process.env.SHOPIFY_STORE_FRONT_ACCESS_TOKEN
-            },
-            cache: new InMemoryCache(),
-        });
-    };
-
-    const { data } = await apolloClient().query({
-        query: gql`${query}`
+  console.log('Query:', query);
+  const apolloClient = () => {
+    return new ApolloClient({
+      uri: apiUrl,
+      headers: {
+        'Content-Type': 'application/json',
+        'Shopify-Storefront-Private-Token': process.env.SHOPIFY_STORE_FRONT_ACCESS_TOKEN
+      },
+      cache: new InMemoryCache(),
     });
+  };
 
-    console.log(data);
-    return data;
+  const { data } = await apolloClient().query({
+    query: gql`${query}`
+  });
+
+  console.log(data);
+  return data;
 }

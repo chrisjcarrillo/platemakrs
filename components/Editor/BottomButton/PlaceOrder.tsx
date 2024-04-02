@@ -7,12 +7,20 @@ import { EditorContext, EditorContextType } from '../../../context/editorContext
 import { StoreContext, StoreContextType } from '../../../context/storeContext';
 import { handleActions } from '../EditorPresetContainer/actions/HandleActions';
 import { Terms } from '../../shared/Terms/Terms';
+import { ICustomPlateTemplate } from '../../../interfaces/customTemplate.interface';
+import { storeCheckout } from '../../../context/actions/storeData';
+import { InterfaceContext, InterfaceContextType } from '../../../context/interfaceContext';
 
 export const PlaceOrder = (props:{
+    canvasRef: any,
     presetTemplate?: boolean
 }) => {
 
     const [terms, setTerms] = useState<boolean>(false);
+
+    const {
+        setLoading
+    } =  useContext(InterfaceContext) as InterfaceContextType;
 
     const {
         redirectCheckout,
@@ -83,9 +91,15 @@ export const PlaceOrder = (props:{
 
     const { presetTemplate } = props;
 
-    const handlePlaceOrder = () => {
+    const handlePlaceOrder = async () => {
         if(currentCustomTemplate?.selectedVariant){
-            redirectCheckout?.(currentCustomTemplate, false)
+            redirectCheckout?.(
+                currentCustomTemplate,
+                currentLicensePlate,
+                false,
+                props.canvasRef
+            )
+        
         } else{
             updateStep?.(
                 3,
@@ -253,7 +267,12 @@ export const PlaceOrder = (props:{
                                 <Button
                                     disabled={acceptTerms ? false : true}
                                     className={`placeOrder__button-final`}
-                                    onClick={() => redirectCheckout?.(currentCustomTemplate, false)}
+                                    onClick={() =>             redirectCheckout?.(
+                                        currentCustomTemplate,
+                                        currentLicensePlate,
+                                        false,
+                                        props.canvasRef
+                                    )}
                                 >
                                     Place Order
                                 </Button>

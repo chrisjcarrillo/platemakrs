@@ -67,7 +67,7 @@ const Product = (props: any) => {
                     {/* <h3 className="product__price"></h3> */}
                     <Button className="product__button"
                         onClick={
-                            () => selectPresetTemplate?.(
+                            () => selectPresetTemplate(
                                 product?.description ?? null,
                                 product?.title,
                                 product.handle,
