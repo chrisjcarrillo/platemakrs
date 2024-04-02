@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.1.4",
+    "@apollo/client": "^3.9.9",
     "@cloudinary/react": "^1.11.2",
     "@cloudinary/url-gen": "^1.10.1",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
@@ -37,6 +38,7 @@
     "eslint-config-next": "13.1.1",
     "facebook-nodejs-business-sdk": "^18.0.1",
     "firebase": "^9.17.1",
+    "graphql": "^16.8.1",
     "html2canvas": "^1.4.1",
     "js-cookie": "^3.0.5",
     "konva": "^9.2.0",
