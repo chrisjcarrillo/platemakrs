@@ -14,6 +14,7 @@ import { Container } from 'react-bootstrap';
 import { LoadingSpinner } from '../components/shared/LoadingSpinner/LoadingSpinner';
 import { Cart } from '../components/shared/Cart/Cart';
 import Hotjar from '@hotjar/browser';
+import Footer from '../components/shared/Footer/Footer';
 
 export default function App({ Component, pageProps }: AppProps) {
 
@@ -79,6 +80,8 @@ export default function App({ Component, pageProps }: AppProps) {
 							<Cart />
 							<Component {...pageProps} />
 						</LoadingSpinner>
+
+					<Footer />
 					<Analytics />
 				</EditorProvider>
 			</StoreProvider>

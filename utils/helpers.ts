@@ -300,3 +300,64 @@ export const menuLayout = [
         link: '/contact'
     },
 ]
+
+
+export const footerLinksOne = [
+    {
+        text: 'Home',
+        link: '/'
+    },
+    {
+        text: 'Pre-Made Designs',
+        link: '/products'
+    },
+    {
+        text: 'Customize Your Own',
+        link: '/products-custom'
+    },
+    {
+        text: 'Work with a designer',
+        link: '/designer'
+    },
+    {
+        text: 'Gift Card',
+        link: '/giftcard'
+    },
+]
+
+export const footerLinksTwo = [
+    {
+        text: 'Contact',
+        link: '/contact'
+    },
+    {
+        text: "Refund Policy",
+        link: "/refund-policy"
+    },
+]
+
+export const policyLinks = [
+    // {
+    //     text: "Privacy Policy",
+    //     link: "https://baddworldwide.com/privacy-policy/"
+    // },
+    // {
+    //     text: "Shipping Policy",
+    //     link: "https://baddworldwide.com/shipping-policy/"
+    // },
+    {
+        text: "Refund Policy",
+        link: "/refund-policy"
+    }
+]
+
+export const socialMediaLinks = [
+    {
+        imageLinkWhite: "images/social-media/instagram-white.png",
+        link: "https://www.instagram.com/platemakrs"
+    },
+    {
+        imageLinkWhite: "images/social-media/facebook-white.png",
+        link: "https://www.facebook.com/platemakrss"
+    },
+]
