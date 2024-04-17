@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import EditorForm from '../components/Editor/Steps/FirstStep/EditorForm/EditorForm';
 import TemplateCanvas from '../components/Editor/Template/TemplateCanvas';
 import { EditorContextType } from '../context/editorContext';
@@ -23,6 +23,8 @@ import { StickyEditor } from '../components/shared/StickyButtons/StickyEditor';
 
 export default function Editor(props: any) {
 
+    const canvasRef = useRef(null);
+
     const {
         currentEditorStep,
     } = useContext(EditorContext) as EditorContextType;
@@ -42,6 +44,9 @@ export default function Editor(props: any) {
         <>
             <EditLogo />
             <TemplateCanvas
+                canvasRef={
+                    canvasRef
+                }
             />
             <Container fluid className="app__container">
 
@@ -55,7 +60,7 @@ export default function Editor(props: any) {
                     <EditorContainer presetTemplate={isPreset} />
                 }
             </Container>
-            {currentEditorStep?.currentStep === 3 && <PlaceOrder presetTemplate={isPreset} />}
+            {currentEditorStep?.currentStep === 3 && <PlaceOrder canvasRef={canvasRef} presetTemplate={isPreset} />}
             {extras && (
                 <PlateComparison
                     plates={props.extras.plateComparison}

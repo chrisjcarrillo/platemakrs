@@ -25,6 +25,9 @@
     &__matte{
         border-radius: 20px  !important;
         margin-right: 5px;
+        &::before{
+            display: none !important;
+        }
     }
     &__gloss{
         &::before{
