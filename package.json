@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "vercel-build": "yum install gcc-c++ cairo-devel pango-devel libjpeg-turbo-devel giflib-devel zlib-devel"
+    "vercel-build": "yum install gcc-c++ cairo-devel pango-devel libjpeg-turbo-devel libpng-devel giflib-devel"
   },
   "dependencies": {
     "@ant-design/icons": "^5.1.4",
