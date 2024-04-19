@@ -38,6 +38,7 @@
     "antd": "^5.6.3",
     "bootstrap": "^5.2.3",
     "canvas": "^2.11.2",
+    "canvas": "^2.11.2",
     "eslint": "8.30.0",
     "eslint-config-next": "13.1.1",
     "facebook-nodejs-business-sdk": "^18.0.1",
