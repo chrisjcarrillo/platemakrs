@@ -1,7 +1,6 @@
-import { getOrders } from "../datasources/remote";
+import {getOrders} from "../datasources/remote";
 import clientPromise from "../../../lib/mongo/mongodb";
-import { getLicensePlateFirebase } from "../../../lib/firebase/firebase";
-import {int} from "utrie/dist/types/Trie";
+import {getLicensePlateFirebase} from "../../../lib/firebase/firebase";
 
 interface LineItemNode {
     customAttributes: Array<{ key: string; value: string }>;
@@ -110,6 +109,16 @@ class OrderRepository {
             orders: indexOrders,
         };
         return response;
+    }
+
+    async createLicensePlate(licencePlate: any) {
+        const dbClient = await clientPromise;
+        const db = dbClient.db();
+        const plateCollection = db.collection('licensePlates');
+        const customTemplateCollection = db.collection('customTemplates');
+        const customTemplate = await customTemplateCollection.insertOne(licencePlate.customTemplate);
+        const plate = await plateCollection.insertOne({...licencePlate.plate, customTemplateId: customTemplate.insertedId});
+        return {plate, customTemplate};
     }
 }
 

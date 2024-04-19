@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "vercel-build": "yum install gcc-c++ cairo-devel pango-devel libjpeg-turbo-devel libpng-devel giflib-devel zlib-devel"
+    "vercel-build": "yum install gcc-c++ cairo-devel pango-devel libjpeg-turbo-devel libpng-devel giflib-devel"
   },
   "dependencies": {
     "@ant-design/icons": "^5.1.4",
@@ -33,7 +33,7 @@
     "animate.css": "^4.1.1",
     "antd": "^5.6.3",
     "bootstrap": "^5.2.3",
-    "canvas": "^2.11.0",
+    "canvas": "^2.11.2",
     "eslint": "8.30.0",
     "eslint-config-next": "13.1.1",
     "facebook-nodejs-business-sdk": "^18.0.1",
