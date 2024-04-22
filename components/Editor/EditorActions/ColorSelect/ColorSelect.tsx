@@ -286,6 +286,7 @@ export const ColorSelect = (
             </div>
             <div className={`colorSelect__right`}>
                 <ColorPicker
+                    disabledAlpha={true}
                     placement='bottom'
                     onChange={
                         (e: Color | string) => {
