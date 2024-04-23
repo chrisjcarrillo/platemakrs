@@ -47,7 +47,7 @@ class OrderRepository {
                     name: order.name,
                     customerName: order.customer?.displayName || order.billingAddress?.name,
                     customerEmail: order.customer?.email || order.email,
-                    çustomerPhone: order.customer?.phone || order.billingAddress?.phone,
+                    customerPhone: order.customer?.phone || order.billingAddress?.phone,
                     displayFinancialStatus: order.displayFinancialStatus,
                     displayFulfillmentStatus: order.displayFulfillmentStatus,
                     preview,
@@ -66,13 +66,19 @@ class OrderRepository {
         const filterQuery = {
             $or: [
                 {
-                    "licencePlate.plateNumber": {
+                    "name": {
                         $regex: query || '',
                         $options: 'i'
                     }
                 },
                 {
-                    "licencePlate.state": {
+                    "plate.plateNumber": {
+                        $regex: query || '',
+                        $options: 'i'
+                    }
+                },
+                {
+                    "plate.state": {
                         $regex: query || '',
                         $options: 'i'
                     }
@@ -105,7 +111,7 @@ class OrderRepository {
         console.log('ORDERS', orders.length);
         const response = {
             pages: Math.ceil(orders.length / count),
-            pageIndex: cursor,
+            pageIndex: parseInt(cursor, 10),
             orders: indexOrders,
         };
         return response;

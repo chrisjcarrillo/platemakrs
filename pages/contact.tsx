@@ -259,6 +259,44 @@ const Contact = () => {
                             <div className="contact-form__company-title">
                                 <h3 className="contact-form__company-title-text">Company Information</h3>
                             </div>
+
+                            <div className='contact-form__company-info'>
+                                <div className='contact-form__company-info-title'>
+                                    <p className='contact-form__company-info-title-text'>
+                                        Business Hours
+                                    </p>
+                                </div>
+                                <div
+                                    className='contact-form__company-info-link'    
+                                >
+                                    <p
+                                        className='contact-form__company-info-link-text'
+                                    >
+                                        Monday - Friday
+                                        <br></br>
+                                        9:00 AM - 6:00 PM
+                                    </p>
+                                </div>
+
+                                <div className='contact-form__company-info-title'>
+                                    <p className='contact-form__company-info-title-text'>
+                                        Calling Hours
+                                    </p>
+                                </div>
+                                <div
+                                    className='contact-form__company-info-link'    
+                                >
+                                    <p
+                                        className='contact-form__company-info-link-text'
+                                    >
+                                        Monday - Friday
+                                        <br></br>
+                                        9:30 AM - 6:00 PM
+                                    </p>
+                                </div>
+                            </div>
+
+
                             <div className='contact-form__company-info'>
                                 <div className='contact-form__company-info-title'>
                                     <p className='contact-form__company-info-title-text'>

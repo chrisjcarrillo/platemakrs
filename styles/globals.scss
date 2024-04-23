@@ -4,6 +4,11 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import 'animate.css';
 
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+// // @import './base.css';
+@import 'tailwindcss/utilities';
+
 // Font
 @import './font/font.scss';
 
@@ -81,6 +86,7 @@
 @import './components/shared/LoadingSpinner.module.scss';
 @import './components/GiftCard.module.scss';
 @import './components/QuantityInput.module.scss';
+@import './pages/RefundPolicy.module.scss';
 
 // Shared
 @import './components/shared/Cart.module.scss';
