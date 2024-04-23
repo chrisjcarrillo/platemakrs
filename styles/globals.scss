@@ -4,6 +4,11 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import 'animate.css';
 
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+// // @import './base.css';
+@import 'tailwindcss/utilities';
+
 // Font
 @import './font/font.scss';
 
