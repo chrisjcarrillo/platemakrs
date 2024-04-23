@@ -17,7 +17,7 @@ export async function getOrders() {
     };
     const query = `
                 query Orders($cursor: String){
-                        orders(first: 250, after: $cursor) {
+                        orders(first: 250, after: $cursor, reverse: true) {
                         pageInfo{
                             hasNextPage
                             endCursor

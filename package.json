@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "chmod u+r+x setup.sh && ./setup.sh && next build",
     "start": "next start",
     "lint": "next lint",
     "vercel-build": "yum install gcc-c++ cairo-devel pango-devel libjpeg-turbo-devel giflib-devel"
@@ -48,6 +48,7 @@
     "html2canvas": "^1.4.1",
     "js-cookie": "^3.0.5",
     "konva": "^9.2.0",
+    "mongodb": "^6.5.0",
     "next": "13.2.4",
     "postcss": "^8.4.38",
     "rc-animate": "^3.1.1",
@@ -64,6 +65,7 @@
     "sharp": "^0.31.3",
     "shopify-buy": "^2.20.1",
     "swiper": "^8.4.7",
+    "swr": "^2.2.5",
     "typescript": "4.9.4",
     "use-image": "^1.1.1",
     "uuid": "^9.0.0",
