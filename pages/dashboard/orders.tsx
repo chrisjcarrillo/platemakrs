@@ -153,7 +153,12 @@ const IndexPage = () => {
             case 'licensePlatePreview':
                 return (
                     <div className="">
-                        <img alt="licensePlate" width={331} height={156} src={data.preview === nonPreview || undefined ?  '/images/resources/misc/preview-na.png' : data.preview} />
+                        <img 
+                            alt="licensePlate" 
+                            width={200} 
+                            height={65} 
+                            src={data.preview === nonPreview || undefined || null || '' ?  '/images/resources/misc/preview-na.png' : data.preview} 
+                        />
                     </div>
                 )
             case 'licensePlateCharacter':
