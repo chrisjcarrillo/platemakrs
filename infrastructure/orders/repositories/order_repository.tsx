@@ -1,6 +1,7 @@
 import {getOrders} from "../datasources/remote";
 import clientPromise from "../../../lib/mongo/mongodb";
 import {getLicensePlateFirebase} from "../../../lib/firebase/firebase";
+import {ObjectId} from "mongodb";
 
 interface LineItemNode {
     customAttributes: Array<{ key: string; value: string }>;
@@ -126,6 +127,27 @@ class OrderRepository {
         const plate = await plateCollection.insertOne({...licencePlate.plate, customTemplateId: customTemplate.insertedId});
         return {plate, customTemplate};
     }
+
+    async updateLicensePlate(licencePlateId: any, licencePlate: any) {
+        let dbClient = await clientPromise;
+        const db = dbClient.db();
+        const plateCollection = db.collection('licensePlates');
+        await plateCollection.updateOne({_id: new ObjectId(licencePlateId)}, {
+            $set: licencePlate
+        });
+        return plateCollection.findOne({_id: new ObjectId(licencePlateId)});
+    }
+
+    async updateCustomTemplate(customTemplateId: any, customTemplate: any) {
+        let dbClient = await clientPromise;
+        const db = dbClient.db();
+        const customTemplateCollection = db.collection('customTemplates');
+        await customTemplateCollection.updateOne({_id: new ObjectId(customTemplateId)}, {
+            $set: customTemplate
+        });
+        return customTemplateCollection.findOne({_id: new ObjectId(customTemplateId)});
+    }
+
 }
 
 export default OrderRepository;
