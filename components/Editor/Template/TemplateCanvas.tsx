@@ -97,6 +97,10 @@ const TemplateCanvas = (
         }
     }
 
+    const formatDisplayText = text => {
+        return text.replace(/-/g, '<span class="custom-dash">-</span>');
+    };
+
     return (
         <>
             <Container
@@ -223,13 +227,10 @@ const TemplateCanvas = (
                                         WebkitTextStrokeWidth: `${currentCustomTemplate?.plateNumber?.stroke?.enabled ? '2px' : ''}`,
                                         filter: `${currentCustomTemplate?.plateNumber?.shadow?.enabled ? 'drop-shadow(rgb(0, 0, 0) 3px 1px 2px)' : ''}`
                                     }}
-                                >
-                                    {
-                                        currentLicensePlate?.plateNumber ?
-                                            currentLicensePlate?.plateNumber :
-                                            currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate
-                                    }
-                                </a>
+                                    dangerouslySetInnerHTML={{ __html: currentLicensePlate?.plateNumber ?
+                                        formatDisplayText(currentLicensePlate?.plateNumber) :
+                                            currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate }}
+                                />
                             </div>
                         </div>
                         {/* END License Plate Digits*/}

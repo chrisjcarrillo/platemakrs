@@ -42,7 +42,7 @@
     "eslint": "8.30.0",
     "eslint-config-next": "13.1.1",
     "facebook-nodejs-business-sdk": "^18.0.1",
-    "firebase": "^9.17.1",
+    "firebase": "10.11.0",
     "framer-motion": "^11.1.7",
     "graphql": "^16.8.1",
     "html2canvas": "^1.4.1",

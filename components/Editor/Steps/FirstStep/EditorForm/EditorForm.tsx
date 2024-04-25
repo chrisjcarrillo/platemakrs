@@ -189,7 +189,6 @@ const EditorForm = (props: any) => {
                                     label="Enter your license plate letters"
                                     rules={[
                                         { required: true, message: 'License Plate letters are required' },
-                                        { pattern: regex, message: "Only authorized characters are letters, spaces, numbers and -" }
                                     ]}
                                     tooltip={
                                         <div

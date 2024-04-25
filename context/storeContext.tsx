@@ -242,7 +242,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                     quantity: 1,
                     customAttributes: [
                         {
-                            key: "Order ID", value: `${customTemplateId}`, // Template of Preset
+                            key: "Order ID", value: `${storeData.customTemplateId}`, // Template of Preset
                         }
                     ]
                 }
