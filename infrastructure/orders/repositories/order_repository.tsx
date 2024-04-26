@@ -24,6 +24,20 @@ interface Order {
     displayFulfillmentStatus: string;
 }
 
+async function getLicensePlate(plateId: any) {
+    const dbClient = await clientPromise;
+    const db = dbClient.db();
+    const licencePlates = db.collection('licensePlates');
+    return licencePlates.findOne({_id: new ObjectId(plateId)});
+}
+
+async function getCustomTemplate(customTemplateId: any) {
+    const dbClient = await clientPromise;
+    const db = dbClient.db();
+    const customTemplates = db.collection('customTemplates');
+    return customTemplates.findOne({_id: new ObjectId(customTemplateId)});
+}
+
 class OrderRepository {
     async seedOrders(): Promise<void> {
         const dbClient = await clientPromise;
@@ -50,9 +64,9 @@ class OrderRepository {
                     if (licencePlate) {
                         customTemplate = await getCustomTemplateFirebase(licencePlate.customTemplateId);
                     }
-                        const baseColor = lineItems[0]?.product?.title === "Add-on - Metallic Upgrade"
-                            ? lineItems[0]?.variant?.title
-                            : lineItems[0]?.product?.title === "Add-on - Color Match"
+                        const baseColor = lineItem?.product?.title === "Add-on - Metallic Upgrade"
+                            ? lineItem?.variant?.title
+                            : lineItem?.product?.title === "Add-on - Color Match"
                                 ? "Color Match - Ask Team"
                                 : (
                                     customTemplate?.backgroundSettings.color === '#ffffff' ||
@@ -216,6 +230,72 @@ class OrderRepository {
         return customTemplateCollection.findOne({_id: new ObjectId(customTemplateId)});
     }
 
+    async createOrder(data: any) {
+        let dbClient = await clientPromise;
+        const db = dbClient.db();
+        const ordersCollection = db.collection('orders');
+
+        const lineItems = data.line_items;
+        let plates = [];
+
+        for (const lineItem of lineItems) {
+            const plateIdAttribute = lineItem.properties.find(attr => attr.name === 'Plate ID');
+            const previewAttribute = lineItem.properties.find(attr => attr.name === 'Preview');
+
+            if (plateIdAttribute && previewAttribute) {
+                const plateId = plateIdAttribute.value;
+                const preview = previewAttribute.value;
+                let licencePlate;
+                let customTemplate;
+                if (plateId) {
+                    licencePlate = await getLicensePlate(plateId);
+                }
+                if (licencePlate) {
+                    customTemplate = await getCustomTemplate(licencePlate.customTemplateId);
+                }
+                const baseColor = lineItem?.product?.title === "Add-on - Metallic Upgrade"
+                    ? lineItem?.variant?.title
+                    : lineItem?.product?.title === "Add-on - Color Match"
+                        ? "Color Match - Ask Team"
+                        : (
+                            customTemplate?.backgroundSettings.color === '#ffffff' ||
+                            customTemplate?.backgroundSettings?.stroke?.color === '#ffffff' ||
+                            customTemplate?.state?.color === '#ffffff' ||
+                            customTemplate?.state?.stroke?.color === '#ffffff' ||
+                            customTemplate?.state?.glow?.color === '#ffffff' ||
+                            customTemplate?.plateNumber?.color === '#ffffff' ||
+                            customTemplate?.plateNumber?.stroke?.color === '#ffffff' ||
+                            (customTemplate?.bottomTextEnabled && customTemplate?.bottomText?.color === '#ffffff') ||
+                            (customTemplate?.bottomTextEnabled && customTemplate?.bottomText?.stroke?.color === '#ffffff') ||
+                            (customTemplate?.bottomTextEnabled && customTemplate?.bottomText?.glow?.color === '#ffffff')
+                        )
+                            ? 'WHITE'
+                            : 'SEALER';
+
+                const finish = lineItems.find((item: any) => (!item.product?.title?.includes("Add-on")))?.variant?.title;
+
+                plates.push({licencePlate, customTemplate, baseColor, finish, preview, productionStatus: 'ORDER_PLACED'});
+            }
+        }
+
+
+
+        const orderData = {
+            orderId: data.id,
+            createdAt: data.createdAt,
+            name: data.name,
+            customerName: data.customer?.displayName || data.billingAddress.name,
+            customerEmail: data.customer?.email || data.email,
+            customerPhone: data.customer?.phone || data.billingAddress.phone,
+            displayFinancialStatus: data.financial_status,
+            displayFulfillmentStatus: data.fulfillment_status || 'Unfulfilled',
+            plates: plates,
+            productionStatus: 'ORDER_PLACED',
+        }
+        const order = await ordersCollection.insertOne(orderData);
+        return order;
+
+    }
 }
 
 export default OrderRepository;
