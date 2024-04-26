@@ -29,14 +29,19 @@ import Image from 'next/image';
 const IndexPage = () => {
 
     const loadRows = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    const loadColumns = [1, 2, 3, 4, 5];
+    const loadColumns = [1, 2, 3];
 
     const columns = [
         { name: "Order", uid: "order" },
-        { name: "License Plate Preview", uid: "licensePlatePreview" },
-        { name: "License Plate #", uid: "licensePlateCharacter" },
         { name: 'Customer', uid: 'customer' },
         { name: "Production Status", uid: "productionStatus", sortable: true },
+    ];
+
+    const columnsLicensePlate = [
+        { name: "License Plate Preview", uid: "licensePlatePreview" },
+        { name: "License Plate #", uid: "licensePlateCharacter" },
+        { name: "Finsh", uid: 'finish' },
+        { name: "Base Color", uid: 'baseColor' },
     ];
 
     const [loading, setLoading] = useState<Boolean>(false);
@@ -126,7 +131,7 @@ const IndexPage = () => {
         )
     }, [currentPage, totalPages]);
 
-    const statusColorMap: Record<string, ChipProps["color"]>  = {
+    const statusColorMap: Record<string, ChipProps["color"]> = {
         ORDER_PLACED: "success",
         paused: "danger",
         vacation: "warning",
@@ -150,25 +155,6 @@ const IndexPage = () => {
                         <span className="text-bold text-sm capitalize text-default-400">{data._id}</span>
                     </div>
                 )
-            case 'licensePlatePreview':
-                return (
-                    <div className="">
-                        <img 
-                            alt="licensePlate" 
-                            width={200} 
-                            height={65} 
-                            src={data.preview === nonPreview || undefined || null || '' ?  '/images/resources/misc/preview-na.png' : data.preview} 
-                        />
-                    </div>
-                )
-            case 'licensePlateCharacter':
-                return (
-                    <div className=''>
-                        <p className="text-bold text-sm uppercase">
-                            {data?.plate?.plateNumber ?? 'NOT AVAILABLE'}
-                        </p>
-                    </div>
-                )
             case 'customer':
                 return (
                     <div className=''>
@@ -183,45 +169,41 @@ const IndexPage = () => {
                         {statusFormat(data.productionStatus)}
                     </Chip>
                 )
-            // case 'shippingStatus':
-            //     return (
-            //         <div className=''>
-            //             <p>{data.productionStatus}</p>
-            //         </div>
-            //     )
         }
     }
+    const nonPreview = 'https://cdn.shopify.com/s/files/1/0747/7565/8797/files/option-1_1dd37e57-7e70-432e-8234-a9c172c25019_160x160.png?v=1692480801';
+
 
     const onSearchChange = React.useCallback((value?: string) => {
         if (value) {
-          setFilterQuery(value);
-          setCurrentPage(1)
+            setFilterQuery(value);
+            setCurrentPage(1)
         } else {
-          setFilterQuery("");
+            setFilterQuery("");
         }
     }, []);
 
-    const onClear = React.useCallback(()=>{
+    const onClear = React.useCallback(() => {
         setFilterQuery("")
-    },[])
+    }, [])
 
     const topContent = React.useMemo(() => {
         return (
-          <div className="flex flex-col gap-4">
-            <div className="flex justify-between gap-3 items-end">
-                <Input
-                    isClearable
-                    className="w-full sm:max-w-[44%]"
-                    placeholder="Search by name..."
-                    // startContent={'HI'}
-                    value={filterQuery}
-                    onClear={() => onClear()}
-                    onValueChange={onSearchChange}
-                />
+            <div className="flex flex-col gap-4">
+                <div className="flex justify-between gap-3 items-end">
+                    <Input
+                        isClearable
+                        className="w-full sm:max-w-[44%]"
+                        placeholder="Search by name..."
+                        // startContent={'HI'}
+                        value={filterQuery}
+                        onClear={() => onClear()}
+                        onValueChange={onSearchChange}
+                    />
+                </div>
             </div>
-          </div>
         );
-      }, [filterQuery]);
+    }, [filterQuery]);
 
     return (
 
@@ -258,7 +240,106 @@ const IndexPage = () => {
                         {loading ? loadingTable : <TableBody items={data}>
                             {(item: any) => (
                                 <TableRow key={item._id}>
-                                    {(columnKey: any) => <TableCell className="text-white">{renderCell(item, columnKey)}</TableCell>}
+                                    {(columnKey: any) => (
+                                        <TableCell className="text-white">
+                                            {renderCell(item, columnKey)}
+                                            <Table
+                                                key={item._id}
+                                                isHeaderSticky
+                                                aria-label="Example table with dynamic content"
+                                                className='dark'
+                                            >
+                                                {(item?.plates?.map((plate, index) => {
+                                                    return (
+                                                        <>
+                                                            <TableHeader
+                                                                columns={columnsLicensePlate}
+                                                            >
+                                                                {(column: any) => (
+                                                                    <TableColumn
+                                                                        className="white-text"
+                                                                        key={column.uid}
+                                                                    >
+                                                                        {column.name}
+                                                                    </TableColumn>
+                                                                )}
+                                                            </TableHeader>
+                                                            <TableBody items={item.plates}>
+                                                                {(item: any) => (
+                                                                    <TableRow key={item.plateNumber}>
+                                                                        <TableCell className="text-white">
+                                                                            <div className="table__licensePlate-preview">
+                                                                                <img
+                                                                                    alt="licensePlate"
+                                                                                    width={200}
+                                                                                    height={65}
+                                                                                    src={plate.preview === nonPreview || undefined || null || '' ? '/images/resources/misc/preview-na.png' : data.preview}
+                                                                                />
+                                                                            </div>
+                                                                        </TableCell>
+                                                                        <TableCell className="text-white">
+                                                                            <div className=''>
+                                                                                <p className="text-bold text-sm uppercase">
+                                                                                    {plate?.plateNumber ?? 'NOT AVAILABLE'}
+                                                                                </p>
+                                                                            </div>
+                                                                        </TableCell>
+                                                                        <TableCell className="text-white">
+                                                                            <div className="table__finishType">
+                                                                                {data.finish === "Gloss" ?
+                                                                                    <Chip
+                                                                                        color="success"
+                                                                                        classNames={{
+                                                                                            base: "bg-gradient-to-br from-indigo-500 to-pink-500 border-small border-white/50 shadow-pink-500/30",
+                                                                                            content: "drop-shadow shadow-black text-white",
+                                                                                        }}
+                                                                                        variant="shadow">
+                                                                                        {data.finish}
+                                                                                    </Chip>
+                                                                                    : <Chip
+                                                                                        color="danger"
+                                                                                        variant="shadow">
+                                                                                        {data.finish}
+                                                                                    </Chip>
+                                                                                }
+                                                                            </div >
+                                                                        </TableCell>
+                                                                        <TableCell className="text-white">
+                                                                            <div className="table__baseColor">
+                                                                                {data.baseColor === "WHITE" ?
+                                                                                    <Chip
+                                                                                        color="success"
+                                                                                        classNames={{
+                                                                                            base: "bg-white",
+                                                                                            content: "drop-shadow shadow-black text-black",
+                                                                                        }}
+                                                                                        variant="shadow">
+                                                                                        {data.baseColor}
+                                                                                    </Chip>
+                                                                                    : data.baseColor === "SEALER" ? <Chip
+                                                                                        color="success"
+                                                                                        classNames={{
+                                                                                            base: "bg-cyan-400",
+                                                                                            content: "drop-shadow shadow-black text-black",
+                                                                                        }}
+                                                                                        variant="shadow">
+                                                                                        {data.baseColor}
+                                                                                    </Chip> : <Chip color="primary" variant="shadow">{data.baseColor}</Chip>
+                                                                                }
+                                                                            </div>
+                                                                        </TableCell>
+                                                                    </TableRow>
+                                                                )}
+                                                            </TableBody>
+                                                        </>
+
+
+                                                    )
+                                                })
+                                                )}
+                                            </Table>
+                                        </TableCell>
+                                    )}
                                 </TableRow>
                             )}
                         </TableBody>}
@@ -271,3 +352,10 @@ const IndexPage = () => {
 };
 
 export default IndexPage;
+
+
+{/* <TableRow key={index}>
+    <TableCell key={index} className="text-white">
+        
+    </TableCell>
+</TableRow> */}
