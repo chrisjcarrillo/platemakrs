@@ -74,6 +74,10 @@ export default function App({ Component, pageProps }: AppProps) {
 						`,
 					}}
 				/>
+				<Script
+					id="ze-snippet"
+					src="https://static.zdassets.com/ekr/snippet.js?key=38413c68-7fdf-406c-96fa-d229b41f678a"
+				/>
 				<StoreProvider>
 					<EditorProvider>
 						{/* { pageProps !== 'editor' && <Header {...pageProps} /> } */}

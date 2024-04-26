@@ -23,10 +23,6 @@ import { StoreContext, StoreContextType, client } from './storeContext';
 import { premadeTemplates } from '../utils/premadeTemplates';
 import { IShopifyVariant } from '../interfaces/shopify/variants.interface';
 
-
-////TODO
-// View Miro
-
 interface IEditorProps {
     children: React.ReactNode
 }
@@ -153,7 +149,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                         shopifyVariants: formatedVariants,
                         selectedVariant: formatedVariants[0],
                         finish: 'GLOSS'
-                    }))
+                    }));
 
                     localStorage.setItem( 'customTemplate', JSON.stringify({
                         ...customTemplate,
@@ -170,21 +166,23 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                     setLoading(false);
                 }
             }
+            
+            initProduct();
 
-            if (data === 'reload' && query.get('preset')) {
-                if (query.get('presetTemplate') && query.get('preset') && query.get('step') === "1" && window.location.pathname === "/editor") {
-                    initProduct();
-                    console.log('Google ads is present')
-                }
-            }
-            if (query.get('preset') && query.get('gclid')) {
-                initProduct();
-                console.log('Google ads is present')
-            }
-            if (query.get('pm_source') === 'fb') {
-                initProduct();
-                console.log('Google ads is present')
-            }
+            // if (data === 'reload' && query.get('preset')) {
+            //     if (query.get('presetTemplate') && query.get('preset') && query.get('step') === "1" && window.location.pathname === "/editor") {
+            //         initProduct();
+            //         console.log('Google ads is present')
+            //     }
+            // }
+            // if (query.get('preset') && query.get('gclid')) {
+            //     initProduct();
+            //     console.log('Google ads is present')
+            // }
+            // if (query.get('pm_source') === 'fb') {
+            //     initProduct();
+            //     console.log('Google ads is present')
+            // }
         }
     }, [])
 
@@ -193,7 +191,8 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         type: any,
         value: any
     ) => {
-        setCurrentCustomTemplate(currentCustomTemplates => ({
+        console.log(value);
+        setCurrentCustomTemplate(currentCustomTemplates  => ({
             ...currentCustomTemplates,
             [type]: value
         }))
