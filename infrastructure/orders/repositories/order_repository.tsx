@@ -33,38 +33,83 @@ class OrderRepository {
 
         for (const order of orders) {
             const lineItems = order.lineItems.edges.map((edge) => edge.node);
-            const plateId = lineItems[0].customAttributes.find((attr) => attr.key === "Plate ID")?.value;
-            const preview = lineItems[0].customAttributes.find((attr) => attr.key === "Preview")?.value || 'https://cdn.shopify.com/s/files/1/0747/7565/8797/files/option-1_1dd37e57-7e70-432e-8234-a9c172c25019_160x160.png?v=1692480801';
-            let licencePlate;
-            let customTemplate;
-                if (plateId) {
-                    console.log('PLATE ID', plateId);
-                    licencePlate = await getLicensePlateFirebase(plateId);
+            let plates = [];
+
+            for (const lineItem of lineItems) {
+                const plateIdAttribute = lineItem.customAttributes.find(attr => attr.key === 'Plate ID');
+                const previewAttribute = lineItem.customAttributes.find(attr => attr.key === 'Preview');
+
+                if (plateIdAttribute && previewAttribute) {
+                    const plateId = plateIdAttribute.value;
+                    const preview = previewAttribute.value;
+                    let licencePlate;
+                    let customTemplate;
+                    if (plateId) {
+                        licencePlate = await getLicensePlateFirebase(plateId);
+                    }
+                    if (licencePlate) {
+                        customTemplate = await getCustomTemplateFirebase(licencePlate.customTemplateId);
+                    }
+                        const baseColor = lineItems[0]?.product?.title === "Add-on - Metallic Upgrade"
+                            ? lineItems[0]?.variant?.title
+                            : lineItems[0]?.product?.title === "Add-on - Color Match"
+                                ? "Color Match - Ask Team"
+                                : (
+                                    customTemplate?.backgroundSettings.color === '#ffffff' ||
+                                    customTemplate?.backgroundSettings?.stroke?.color === '#ffffff' ||
+                                    customTemplate?.state?.color === '#ffffff' ||
+                                    customTemplate?.state?.stroke?.color === '#ffffff' ||
+                                    customTemplate?.state?.glow?.color === '#ffffff' ||
+                                    customTemplate?.plateNumber?.color === '#ffffff' ||
+                                    customTemplate?.plateNumber?.stroke?.color === '#ffffff' ||
+                                    (customTemplate?.bottomTextEnabled && customTemplate?.bottomText?.color === '#ffffff') ||
+                                    (customTemplate?.bottomTextEnabled && customTemplate?.bottomText?.stroke?.color === '#ffffff') ||
+                                    (customTemplate?.bottomTextEnabled && customTemplate?.bottomText?.glow?.color === '#ffffff')
+                                )
+                                      ? 'WHITE'
+                                        : 'SEALER';
+
+                        const finish = lineItems.find((item: any) => (!item.product?.title?.includes("Add-on")))?.variant?.title;
+
+                    plates.push({licencePlate, customTemplate, baseColor, finish, preview, productionStatus: 'ORDER_PLACED'});
                 }
-                if (licencePlate) {
-                    customTemplate = await getCustomTemplateFirebase(licencePlate.customTemplateId);
-                }
+            }
 
-                const baseColor = lineItems[0]?.product?.title === "Add-on - Metallic Upgrade"
-                    ? lineItems[0]?.variant?.title
-                    : lineItems[0]?.product?.title === "Add-on - Color Match"
-                        ? "Color Match - Ask Team"
-                        : (
-                            customTemplate?.backgroundSettings.color === '#ffffff' ||
-                            customTemplate?.backgroundSettings?.stroke?.color === '#ffffff' ||
-                            customTemplate?.state?.color === '#ffffff' ||
-                            customTemplate?.state?.stroke?.color === '#ffffff' ||
-                            customTemplate?.state?.glow?.color === '#ffffff' ||
-                            customTemplate?.plateNumber?.color === '#ffffff' ||
-                            customTemplate?.plateNumber?.stroke?.color === '#ffffff' ||
-                            customTemplate?.bottomText?.color === '#ffffff' ||
-                            customTemplate?.bottomText?.stroke?.color === '#ffffff' ||
-                            customTemplate?.bottomText?.glow?.color === '#ffffff')
-                              ? 'WHITE'
-                                : 'SEALER';
 
-                const finish = lineItems.find((item: any) => (!item.product?.title?.includes("Add-on")))?.variant?.title;
 
+            // const plateId = lineItems[0].customAttributes.find((attr) => attr.key === "Plate ID")?.value;
+            // const preview = lineItems[0].customAttributes.find((attr) => attr.key === "Preview")?.value || 'https://cdn.shopify.com/s/files/1/0747/7565/8797/files/option-1_1dd37e57-7e70-432e-8234-a9c172c25019_160x160.png?v=1692480801';
+            // let licencePlate;
+            // let customTemplate;
+            //     if (plateId) {
+            //         console.log('PLATE ID', plateId);
+            //         licencePlate = await getLicensePlateFirebase(plateId);
+            //     }
+            //     if (licencePlate) {
+            //         customTemplate = await getCustomTemplateFirebase(licencePlate.customTemplateId);
+            //     }
+            //
+            //     const baseColor = lineItems[0]?.product?.title === "Add-on - Metallic Upgrade"
+            //         ? lineItems[0]?.variant?.title
+            //         : lineItems[0]?.product?.title === "Add-on - Color Match"
+            //             ? "Color Match - Ask Team"
+            //             : (
+            //                 customTemplate?.backgroundSettings.color === '#ffffff' ||
+            //                 customTemplate?.backgroundSettings?.stroke?.color === '#ffffff' ||
+            //                 customTemplate?.state?.color === '#ffffff' ||
+            //                 customTemplate?.state?.stroke?.color === '#ffffff' ||
+            //                 customTemplate?.state?.glow?.color === '#ffffff' ||
+            //                 customTemplate?.plateNumber?.color === '#ffffff' ||
+            //                 customTemplate?.plateNumber?.stroke?.color === '#ffffff' ||
+            //                 (customTemplate?.bottomTextEnabled && customTemplate?.bottomText?.color === '#ffffff') ||
+            //                 (customTemplate?.bottomTextEnabled && customTemplate?.bottomText?.stroke?.color === '#ffffff') ||
+            //                 (customTemplate?.bottomTextEnabled && customTemplate?.bottomText?.glow?.color === '#ffffff')
+            //             )
+            //                   ? 'WHITE'
+            //                     : 'SEALER';
+            //
+            //     const finish = lineItems.find((item: any) => (!item.product?.title?.includes("Add-on")))?.variant?.title;
+            //
                 const orderId = order.id.split("/").pop();
                 const orderData = {
                     orderId,
@@ -75,11 +120,8 @@ class OrderRepository {
                     customerPhone: order.customer?.phone || order.billingAddress?.phone,
                     displayFinancialStatus: order.displayFinancialStatus,
                     displayFulfillmentStatus: order.displayFulfillmentStatus,
-                    finish: finish,
-                    baseColor: baseColor,
-                    preview,
+                    plates: plates,
                     productionStatus: 'ORDER_PLACED',
-                    plate: licencePlate || order.lineItems.edges[0].node,
                 };
                 await ordersCollection.insertOne(orderData);
         }
