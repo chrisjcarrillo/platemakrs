@@ -3,39 +3,28 @@ import clientPromise from "../../../lib/mongo/mongodb";
 import {getCustomTemplateFirebase, getLicensePlateFirebase} from "../../../lib/firebase/firebase";
 import {ObjectId} from "mongodb";
 
-interface LineItemNode {
-    customAttributes: Array<{ key: string; value: string }>;
-}
 
-interface Order {
-    id: string;
-    createdAt: string;
-    name: string;
-    customer: any;
-    displayFinancialStatus: string;
-    lineItems: {
-        edges: Array<{ node: LineItemNode }>;
-    };
-    currentTotalPriceSet?: {
-        presentmentMoney: {
-            amount: string;
-        };
-    };
-    displayFulfillmentStatus: string;
-}
 
 async function getLicensePlate(plateId: any) {
-    const dbClient = await clientPromise;
-    const db = dbClient.db();
-    const licencePlates = db.collection('licensePlates');
-    return licencePlates.findOne({_id: new ObjectId(plateId)});
+    try {
+        const dbClient = await clientPromise;
+        const db = dbClient.db();
+        const licencePlates = db.collection('licensePlates');
+        return licencePlates?.findOne({_id: new ObjectId(plateId)});
+    } catch (error) {
+        console.log('GET LICENSE PLATE' ,error);
+    }
 }
 
 async function getCustomTemplate(customTemplateId: any) {
-    const dbClient = await clientPromise;
-    const db = dbClient.db();
-    const customTemplates = db.collection('customTemplates');
-    return customTemplates.findOne({_id: new ObjectId(customTemplateId)});
+    try {
+        const dbClient = await clientPromise;
+        const db = dbClient.db();
+        const customTemplates = db.collection('customTemplates');
+        return customTemplates?.findOne({_id: new ObjectId(customTemplateId)});
+    } catch (error) {
+        console.log('GET CUSTOM TEMPLATE', error);
+    }
 }
 
 class OrderRepository {
@@ -239,12 +228,15 @@ class OrderRepository {
         let plates = [];
 
         for (const lineItem of lineItems) {
-            const plateIdAttribute = lineItem.properties.find(attr => attr.name === 'Plate ID');
-            const previewAttribute = lineItem.properties.find(attr => attr.name === 'Preview');
+            const plateIdAttribute = lineItem.properties?.find(attr => attr?.name === 'Plate ID');
+            const previewAttribute = lineItem.properties?.find(attr => attr?.name === 'Preview');
+
+
 
             if (plateIdAttribute && previewAttribute) {
                 const plateId = plateIdAttribute.value;
                 const preview = previewAttribute.value;
+
                 let licencePlate;
                 let customTemplate;
                 if (plateId) {
@@ -253,9 +245,9 @@ class OrderRepository {
                 if (licencePlate) {
                     customTemplate = await getCustomTemplate(licencePlate.customTemplateId);
                 }
-                const baseColor = lineItem?.product?.title === "Add-on - Metallic Upgrade"
-                    ? lineItem?.variant?.title
-                    : lineItem?.product?.title === "Add-on - Color Match"
+                const baseColor = lineItem?.name === "Add-on - Metallic Upgrade"
+                    ? lineItem?.variant_title
+                    : lineItem?.variant_title === "Add-on - Color Match"
                         ? "Color Match - Ask Team"
                         : (
                             customTemplate?.backgroundSettings.color === '#ffffff' ||
@@ -272,9 +264,10 @@ class OrderRepository {
                             ? 'WHITE'
                             : 'SEALER';
 
-                const finish = lineItems.find((item: any) => (!item.product?.title?.includes("Add-on")))?.variant?.title;
+                const finish = lineItems.find((item: any) => (!item.name.includes("Add-on")))?.variant_title;
+                console.log('FINISH', finish);
 
-                plates.push({licencePlate, customTemplate, baseColor, finish, preview, productionStatus: 'ORDER_PLACED'});
+                plates.push({licencePlate: licencePlate, customTemplate: customTemplate, baseColor: baseColor, finish: finish, preview: preview, productionStatus: 'ORDER_PLACED'});
             }
         }
 
@@ -282,11 +275,11 @@ class OrderRepository {
 
         const orderData = {
             orderId: data.id,
-            createdAt: data.createdAt,
+            createdAt: data.created_at,
             name: data.name,
-            customerName: data.customer?.displayName || data.billingAddress.name,
+            customerName: data.customer?.displayName || data.billing_address.first_name + ' ' + data.billing_address.last_name,
             customerEmail: data.customer?.email || data.email,
-            customerPhone: data.customer?.phone || data.billingAddress.phone,
+            customerPhone: data.customer?.phone || data.billing_address.phone,
             displayFinancialStatus: data.financial_status,
             displayFulfillmentStatus: data.fulfillment_status || 'Unfulfilled',
             plates: plates,
@@ -294,7 +287,6 @@ class OrderRepository {
         }
         const order = await ordersCollection.insertOne(orderData);
         return order;
-
     }
 }
 
