@@ -33,6 +33,7 @@ export type StoreContextType = {
 
     addon?: any;
     setAddon?: (e: any) => void;
+    
 
     addVariantDesigner: (product: any, id: string, notes: string) => void;
 
@@ -51,6 +52,9 @@ export type StoreContextType = {
 
     extras?: boolean;
     setExtras: (e: boolean) => void;
+
+    extrasPremade?: boolean;
+    setExtrasPremade: (e: boolean) => void;
 }
 
 export const client = Client?.buildClient({
@@ -69,6 +73,8 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         designUrl
     } = useContext(InterfaceContext) as InterfaceContextType;
 
+
+    const [extrasPremade, setExtrasPremade] = useState<boolean>(false);
     const [ad, setAd] = useState<string | undefined>(undefined);
     const [cart, setCart] = useState([])
     const [addon, setAddon] = useState(undefined);
@@ -487,7 +493,8 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 addToCartEvent,
                 addVariantDesigner,
                 removeVariant,
-
+                extrasPremade,
+                setExtrasPremade,
                 hasDesigner,
                 setHasDesigner,
 

@@ -30,12 +30,14 @@ export default function Editor(props: any) {
     } = useContext(EditorContext) as EditorContextType;
 
     const {
+        
         isPreset
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const {
         setAddon,
-        extras
+        extras,
+        extrasPremade
     } = useContext(StoreContext) as StoreContextType
 
     setAddon?.(props?.addons)
@@ -61,6 +63,40 @@ export default function Editor(props: any) {
                 }
             </Container>
             {currentEditorStep?.currentStep === 3 && <PlaceOrder canvasRef={canvasRef} presetTemplate={isPreset} />}
+            {
+                extrasPremade && (
+                    <Container fluid style={{
+                        paddingBottom: extrasPremade ? '2rem' : '0rem'
+                    }}>
+                        {
+                            !extrasPremade && (
+                                <div className='pm__search'>
+                                    <div className='pm__search-title'>
+                                        Search
+                                    </div>
+                                    <div className='pm__search-container'>
+        
+                                        <Search
+                                            className='pm__search-bar'
+                                            placeholder="Type to search"
+                                            allowClear={{ clearIcon: <CloseSquareFilled rev={''} color='white' /> }}
+                                            onSearch={
+                                                (e) => onSearch(e)
+                                            }
+                                            style={{ width: '100%' }}
+                                            bordered={false}
+                                        />
+                                    </div>
+                                </div>
+                            )
+                        }
+                        <TemplateList
+                            products={props?.productList?.products}
+                            customTemplate={false}
+                        />
+                    </Container>
+                )
+            }
             {extras && (
                 <PlateComparison
                     plates={props.extras.plateComparison}
@@ -98,7 +134,7 @@ export default function Editor(props: any) {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    const currentProduct = await client.collection.fetchWithProducts('gid://shopify/Collection/459770659117', { productsFirst: 100 })
+    const currentProduct = await client.collection.fetchWithProducts('gid://shopify/Collection/456849490221', { productsFirst: 100 })
     const getAddon = await client.product.fetchByHandle('add-on-work-with-a-designer');
 
     const filePath = path.join(process.cwd(), 'settings.json');
