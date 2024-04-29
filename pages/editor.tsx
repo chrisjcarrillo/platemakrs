@@ -6,7 +6,7 @@ import { EditorContext } from '../context/editorContext';
 import { EditorContainer } from '../components/Editor/EditorContainer/EditorContainer';
 import { GetStaticProps } from "next";
 import { StoreContext, StoreContextType, client } from '../context/storeContext';
-import { Container } from 'react-bootstrap';
+import { Container, Col, Row } from 'react-bootstrap';
 import { EditorPresetContainer } from '../components/Editor/EditorPresetContainer/EditorPresetContainer';
 import { InterfaceContext, InterfaceContextType } from '../context/interfaceContext';
 import { PlaceOrder } from '../components/Editor/BottomButton/PlaceOrder';
@@ -68,6 +68,18 @@ export default function Editor(props: any) {
                     <Container fluid style={{
                         paddingBottom: extrasPremade ? '2rem' : '0rem'
                     }}>
+                    <Row
+                            className="designer-form__row-title"
+                        >
+                            <Col xs={12} sm={12} md={12} lg={12}>
+                                <h1
+
+                                    className='designer-form__title'
+                                >
+                                    Pre-Made Templates
+                                </h1>
+                            </Col>
+                        </Row>
                         <TemplateList
                             products={props?.productList?.products}
                             customTemplate={false}

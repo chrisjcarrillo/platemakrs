@@ -9,8 +9,14 @@ import Image from 'next/image';
 import { ProductSkeleton } from '../../shared/ProductSkeleton/ProductSkeleton';
 import { ICustomPlateTemplate } from '../../../interfaces/customTemplate.interface';
 import { Badge } from 'antd';
+import { StoreContext, StoreContextType } from '../../../context/storeContext';
 
 export const TemplateList = (props: any) => {
+
+
+    const {
+        extrasPremade
+    } = useContext(StoreContext) as StoreContextType;
 
     const {
         selectPresetTemplate
@@ -50,9 +56,14 @@ export const TemplateList = (props: any) => {
                 </Row>
             )}
 
-
-            <Row className={`templatePreview__title-container`}>
+            <Row className={`templatePreview__title-container`} style={ extrasPremade ? {
+                marginBottom: 0,
+                paddingTop: '0.5rem',
+                paddingBottom: 0
+            } : {}}>
             </Row>
+        
+
             <Row
                 className={`templatePreview__row g-4`}
             >

@@ -22,6 +22,9 @@ import { StoreContext, StoreContextType } from '../../../context/storeContext';
 import html2canvas from 'html2canvas';
 import { ref, uploadBytes, getDownloadURL, getStorage, deleteObject, uploadString } from 'firebase/storage';
 import { TopActions } from '../../../utils/actions/TopActions';
+import { premadeTemplates } from '../../../utils/premadeTemplates';
+import { IShopifyVariant } from '../../../interfaces/shopify/variants.interface';
+import { ICustomPlateTemplate } from '../../../interfaces/customTemplate.interface';
 
 const TemplateCanvas = (
     props: {
@@ -34,7 +37,8 @@ const TemplateCanvas = (
 
     const {
         acceptTerms,
-        extras
+        extras,
+        extrasPremade
     } = useContext(StoreContext) as StoreContextType;
 
     const {
@@ -53,7 +57,7 @@ const TemplateCanvas = (
         setCurrentCustomTemplate,
     } = useContext(EditorContext) as EditorContextType;
 
-    const { popupPreview, canvasRef} = props;
+    const { popupPreview, canvasRef } = props;
 
     const editLogoButtonSettings = {
         xs: 12,
@@ -83,17 +87,26 @@ const TemplateCanvas = (
     const stepDecision = (
         stepType: 'BACK' | 'NEXT'
     ) => {
-        const currentDecision = TopActions(stepType, currentEditorStep, isPreset)
-        if (currentDecision?.updateStep) {
-            updateStep?.(currentDecision?.step)
-        }
-        if (!currentDecision?.updateStep) {
-            if (stepType === "BACK") {
-                if (currentEditorStep?.currentStep === 1) {
-                    setCurrentCustomTemplate?.(undefined)
-                }
+        if (extrasPremade && stepType === "BACK") {
+            let currentTemp = JSON.parse(localStorage.getItem('previousTemplate'))
+            setCurrentCustomTemplate(template => ({
+                ...template,
+                ...currentTemp
+            }))
+        } else {
+            // TODO: If extraPremade is true, set the previous localStorage(customTemplateId)
+            const currentDecision = TopActions(stepType, currentEditorStep, isPreset)
+            if (currentDecision?.updateStep) {
+                updateStep?.(currentDecision?.step)
             }
-            router.push(currentDecision?.page)
+            if (!currentDecision?.updateStep) {
+                if (stepType === "BACK") {
+                    if (currentEditorStep?.currentStep === 1) {
+                        setCurrentCustomTemplate?.(undefined)
+                    }
+                }
+                router.push(currentDecision?.page)
+            }
         }
     }
 
@@ -227,9 +240,11 @@ const TemplateCanvas = (
                                         WebkitTextStrokeWidth: `${currentCustomTemplate?.plateNumber?.stroke?.enabled ? '2px' : ''}`,
                                         filter: `${currentCustomTemplate?.plateNumber?.shadow?.enabled ? 'drop-shadow(rgb(0, 0, 0) 3px 1px 2px)' : ''}`
                                     }}
-                                    dangerouslySetInnerHTML={{ __html: currentLicensePlate?.plateNumber ?
-                                        formatDisplayText(currentLicensePlate?.plateNumber) :
-                                            currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate }}
+                                    dangerouslySetInnerHTML={{
+                                        __html: currentLicensePlate?.plateNumber ?
+                                            formatDisplayText(currentLicensePlate?.plateNumber) :
+                                            currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate
+                                    }}
                                 />
                             </div>
                         </div>
@@ -304,10 +319,10 @@ const TemplateCanvas = (
             </Container>
 
             {
-                (currentCustomTemplate?.mainLogo?.enabled 
-                    || currentCustomTemplate?.bottomLogo?.enabled 
-                        || currentCustomTemplate?.detailLogo1?.enabled 
-                        || currentCustomTemplate?.detailLogo2?.enabled) && (
+                (currentCustomTemplate?.mainLogo?.enabled
+                    || currentCustomTemplate?.bottomLogo?.enabled
+                    || currentCustomTemplate?.detailLogo1?.enabled
+                    || currentCustomTemplate?.detailLogo2?.enabled) && (
                     <Container
                         className={`editLogo__main-action`}
                     >

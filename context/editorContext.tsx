@@ -84,7 +84,9 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
 
     const {
         addToCartEvent,
-        setExtras
+        setExtras,
+        extrasPremade,
+        setExtrasPremade
     } = useContext(StoreContext) as StoreContextType;
 
     // Messages Start
@@ -217,6 +219,10 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             const templateFilter = premadeTemplates?.filter(template => template?.shopifyHandle === handle);
             const customTemplate = templateFilter[0] as ICustomPlateTemplate;
             const formatedVariants: IShopifyVariant[] = [];
+            const query = new URLSearchParams(window.location.search);
+
+            // if extraPremade is true, add a localStorage with the current templateId
+
 
             if (variant?.length !== 0) {
                 variant?.map( (item: any) => {
@@ -248,6 +254,17 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 selectedVariant: variant[0],
                 finish: 'GLOSS'
             }))
+
+            if(extrasPremade && window.location?.pathname.includes('/products')){
+                localStorage.setItem('previousTemplate', JSON.stringify({
+                    ...customTemplate,
+                    title: title,
+                    description: description,
+                    shopifyVariants: variant,
+                    selectedVariant: variant[0],
+                    finish: 'GLOSS'
+                }));
+            }
 
             if (!customPresetTemplate) {
                 setPreset(true);
