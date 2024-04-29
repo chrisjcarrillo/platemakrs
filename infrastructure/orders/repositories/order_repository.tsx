@@ -4,7 +4,6 @@ import {getCustomTemplateFirebase, getLicensePlateFirebase} from "../../../lib/f
 import {ObjectId} from "mongodb";
 
 
-
 async function getLicensePlate(plateId: any) {
     try {
         const dbClient = await clientPromise;
@@ -24,6 +23,28 @@ async function getCustomTemplate(customTemplateId: any) {
         return customTemplates?.findOne({_id: new ObjectId(customTemplateId)});
     } catch (error) {
         console.log('GET CUSTOM TEMPLATE', error);
+    }
+}
+
+async function generateQRCode(url: any) {
+    try {
+        const QRCode = require('qrcode');
+        console.log('LICENSE PLATE STRING', url);
+        const qrDataUrl = await new Promise((resolve, reject) => {
+            QRCode.toDataURL( `${url}`
+                , (err: any, url: any) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(url);
+                }
+            });
+        });
+        const base64 = qrDataUrl.split(',')[1];
+        return base64;
+    } catch (error) {
+        console.error('Error generating QR code:', error);
+        return null;
     }
 }
 
@@ -47,6 +68,7 @@ class OrderRepository {
                     const preview = previewAttribute.value;
                     let licencePlate;
                     let customTemplate;
+                    let qrCode;
                     if (plateId) {
                         licencePlate = await getLicensePlateFirebase(plateId);
                     }
@@ -74,7 +96,12 @@ class OrderRepository {
 
                         const finish = lineItems.find((item: any) => (!item.product?.title?.includes("Add-on")))?.variant?.title;
 
-                    plates.push({licencePlate, customTemplate, baseColor, finish, preview, productionStatus: 'ORDER_PLACED'});
+                        if (plateId && order.legacyResourceId) {
+                            const plateToQr = `${process.env.HOST}/dashboard/orders/${order.legacyResourceId}?plateId=${plateId}`;
+                            qrCode = await generateQRCode(plateToQr);
+                        }
+
+                    plates.push({plateId: plateId, plateData: licencePlate, customTemplateData: customTemplate, baseColor, finish, preview, productionStatus: 'ORDER_PLACED', qrCode: qrCode});
                 }
             }
 
@@ -239,6 +266,7 @@ class OrderRepository {
 
                 let licencePlate;
                 let customTemplate;
+                let qrCode;
                 if (plateId) {
                     licencePlate = await getLicensePlate(plateId);
                 }
@@ -267,7 +295,12 @@ class OrderRepository {
                 const finish = lineItems.find((item: any) => (!item.name.includes("Add-on")))?.variant_title;
                 console.log('FINISH', finish);
 
-                plates.push({licencePlate: licencePlate, customTemplate: customTemplate, baseColor: baseColor, finish: finish, preview: preview, productionStatus: 'ORDER_PLACED'});
+                if (licencePlate) {
+                    const plateToQr = `${process.env.HOST}/dashboard/orders/${data.id}?plateId=${plateId}`;
+                    qrCode = await generateQRCode(plateToQr);
+                }
+
+                plates.push({licencePlate: licencePlate, customTemplate: customTemplate, baseColor: baseColor, finish: finish, preview: preview, productionStatus: 'ORDER_PLACED', qrCode: qrCode});
             }
         }
 
