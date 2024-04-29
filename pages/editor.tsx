@@ -12,7 +12,7 @@ import { InterfaceContext, InterfaceContextType } from '../context/interfaceCont
 import { PlaceOrder } from '../components/Editor/BottomButton/PlaceOrder';
 import { TemplateList } from '../components/Editor/TemplateList/TemplateList';
 import { EditLogo } from '../components/Editor/EditLogo/EditLogo';
-
+import { Input } from 'antd';
 import PlateComparison from "../components/PlateComparison/PlateComparison";
 import { ImageAndText } from "../components/shared/ImageAndText/ImageAndText";
 import MainSlider from "../components/MainSlider/MainSlider";
@@ -22,7 +22,7 @@ import path from 'path';
 import { StickyEditor } from '../components/shared/StickyButtons/StickyEditor';
 
 export default function Editor(props: any) {
-
+    const { Search } = Input
     const canvasRef = useRef(null);
 
     const {
