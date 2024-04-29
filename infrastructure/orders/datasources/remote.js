@@ -25,6 +25,7 @@ export async function getOrders() {
                         edges {
                           node {
                             id
+                            legacyResourceId
                             createdAt
                             displayFinancialStatus
                             name
