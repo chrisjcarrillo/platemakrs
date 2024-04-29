@@ -68,28 +68,6 @@ export default function Editor(props: any) {
                     <Container fluid style={{
                         paddingBottom: extrasPremade ? '2rem' : '0rem'
                     }}>
-                        {
-                            !extrasPremade && (
-                                <div className='pm__search'>
-                                    <div className='pm__search-title'>
-                                        Search
-                                    </div>
-                                    <div className='pm__search-container'>
-        
-                                        <Search
-                                            className='pm__search-bar'
-                                            placeholder="Type to search"
-                                            allowClear={{ clearIcon: <CloseSquareFilled rev={''} color='white' /> }}
-                                            onSearch={
-                                                (e) => onSearch(e)
-                                            }
-                                            style={{ width: '100%' }}
-                                            bordered={false}
-                                        />
-                                    </div>
-                                </div>
-                            )
-                        }
                         <TemplateList
                             products={props?.productList?.products}
                             customTemplate={false}
