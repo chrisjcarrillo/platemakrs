@@ -321,6 +321,13 @@ class OrderRepository {
         const order = await ordersCollection.insertOne(orderData);
         return order;
     }
+
+    async getOrder(orderId: any | string) {
+        let dbClient = await clientPromise;
+        const db = dbClient.db();
+        const ordersCollection = db.collection('orders');
+        return ordersCollection.findOne({orderId: orderId});
+    }
 }
 
 export default OrderRepository;
