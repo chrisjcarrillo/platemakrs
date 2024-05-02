@@ -221,7 +221,7 @@ const EditorForm = (props: any) => {
                                         disabled={!form.getFieldValue('state')}
                                         maxLength={8}
                                         ref={inputRef}
-                                        onChange={(e) => updateLicensePlate('plateNumber', e.target.value)}
+                                        onChange={(e) => updateLicensePlate('plateNumber', e.target.value.toUpperCase())}
                                         placeholder='Enter your license plate letters...'
                                     />
                                 </FormItem>

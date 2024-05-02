@@ -12,7 +12,7 @@ import {
 import {  IFileLogo } from './helpers/file.interface';
 
 export interface ICustomPlateTemplate{
-    id: string // ID Created by system
+    id?: string // ID Created by system
     templateId?: string; // PresetId
 
     fadeType?: 'FADE-UP' | 'FADE-DOWN' | 'FULL-BG';
