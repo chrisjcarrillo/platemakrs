@@ -171,7 +171,7 @@ class OrderRepository {
                     }
                 },
                 {
-                    "plate.plateNumber": {
+                    "plates.licencePlate.plateNumber": {
                         $regex: query || '',
                         $options: 'i'
                     }
