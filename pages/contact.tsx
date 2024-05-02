@@ -15,6 +15,7 @@ import { app, database, storage } from '../firebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useState } from 'react';
+import Link from 'next/link';
 
 const dbInstance = collection(database, 'contacts');
 
@@ -311,6 +312,19 @@ const Contact = () => {
                                         href='tel:954-639-7331'
                                     >
                                         954-639-7331
+                                    </a>
+                                </div>
+                            </div>
+                            <div className="contact-form__company-info">
+                                <h3 className='contact-form__row-info-text contact-form__dm-text'>
+                                    If you have any questions or comments, fastest way to contact us below:<br></br>
+                                </h3>
+                                <div className="contact-form__dm-container">
+                                    <a className='contact-form__dm-button' href="https://ig.me/m/platemakrs">
+                                        Instagram DM <img width={20} height={20} src="images/social-media/instagram-color.png" />
+                                    </a>
+                                    <a className='contact-form__dm-button' href="http://m.me/platemakrss">
+                                        Facebook DM <img width={20} height={20} src="images/social-media/messenger-icon-color.png" />
                                     </a>
                                 </div>
                             </div>
