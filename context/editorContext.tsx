@@ -23,10 +23,6 @@ import { StoreContext, StoreContextType, client } from './storeContext';
 import { premadeTemplates } from '../utils/premadeTemplates';
 import { IShopifyVariant } from '../interfaces/shopify/variants.interface';
 
-
-////TODO
-// View Miro
-
 interface IEditorProps {
     children: React.ReactNode
 }
@@ -88,7 +84,9 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
 
     const {
         addToCartEvent,
-        setExtras
+        setExtras,
+        extrasPremade,
+        setExtrasPremade
     } = useContext(StoreContext) as StoreContextType;
 
     // Messages Start
@@ -153,7 +151,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                         shopifyVariants: formatedVariants,
                         selectedVariant: formatedVariants[0],
                         finish: 'GLOSS'
-                    }))
+                    }));
 
                     localStorage.setItem( 'customTemplate', JSON.stringify({
                         ...customTemplate,
@@ -170,21 +168,23 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                     setLoading(false);
                 }
             }
+            
+            initProduct();
 
-            if (data === 'reload' && query.get('preset')) {
-                if (query.get('presetTemplate') && query.get('preset') && query.get('step') === "1" && window.location.pathname === "/editor") {
-                    initProduct();
-                    console.log('Google ads is present')
-                }
-            }
-            if (query.get('preset') && query.get('gclid')) {
-                initProduct();
-                console.log('Google ads is present')
-            }
-            if (query.get('pm_source') === 'fb') {
-                initProduct();
-                console.log('Google ads is present')
-            }
+            // if (data === 'reload' && query.get('preset')) {
+            //     if (query.get('presetTemplate') && query.get('preset') && query.get('step') === "1" && window.location.pathname === "/editor") {
+            //         initProduct();
+            //         console.log('Google ads is present')
+            //     }
+            // }
+            // if (query.get('preset') && query.get('gclid')) {
+            //     initProduct();
+            //     console.log('Google ads is present')
+            // }
+            // if (query.get('pm_source') === 'fb') {
+            //     initProduct();
+            //     console.log('Google ads is present')
+            // }
         }
     }, [])
 
@@ -193,7 +193,8 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         type: any,
         value: any
     ) => {
-        setCurrentCustomTemplate(currentCustomTemplates => ({
+        console.log(value);
+        setCurrentCustomTemplate(currentCustomTemplates  => ({
             ...currentCustomTemplates,
             [type]: value
         }))
@@ -218,6 +219,10 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             const templateFilter = premadeTemplates?.filter(template => template?.shopifyHandle === handle);
             const customTemplate = templateFilter[0] as ICustomPlateTemplate;
             const formatedVariants: IShopifyVariant[] = [];
+            const query = new URLSearchParams(window.location.search);
+
+            // if extraPremade is true, add a localStorage with the current templateId
+
 
             if (variant?.length !== 0) {
                 variant?.map( (item: any) => {
@@ -249,6 +254,17 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 selectedVariant: variant[0],
                 finish: 'GLOSS'
             }))
+
+            if(extrasPremade && window.location?.pathname.includes('/products')){
+                localStorage.setItem('previousTemplate', JSON.stringify({
+                    ...customTemplate,
+                    title: title,
+                    description: description,
+                    shopifyVariants: variant,
+                    selectedVariant: variant[0],
+                    finish: 'GLOSS'
+                }));
+            }
 
             if (!customPresetTemplate) {
                 setPreset(true);

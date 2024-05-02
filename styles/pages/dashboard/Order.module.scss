@@ -1,0 +1,13 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.table{
+    &__licensePlate{
+        &-preview{
+            img{
+                border-radius: 8px;
+            }
+        }
+    }
+}

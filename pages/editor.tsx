@@ -6,13 +6,13 @@ import { EditorContext } from '../context/editorContext';
 import { EditorContainer } from '../components/Editor/EditorContainer/EditorContainer';
 import { GetStaticProps } from "next";
 import { StoreContext, StoreContextType, client } from '../context/storeContext';
-import { Container } from 'react-bootstrap';
+import { Container, Col, Row } from 'react-bootstrap';
 import { EditorPresetContainer } from '../components/Editor/EditorPresetContainer/EditorPresetContainer';
 import { InterfaceContext, InterfaceContextType } from '../context/interfaceContext';
 import { PlaceOrder } from '../components/Editor/BottomButton/PlaceOrder';
 import { TemplateList } from '../components/Editor/TemplateList/TemplateList';
 import { EditLogo } from '../components/Editor/EditLogo/EditLogo';
-
+import { Input } from 'antd';
 import PlateComparison from "../components/PlateComparison/PlateComparison";
 import { ImageAndText } from "../components/shared/ImageAndText/ImageAndText";
 import MainSlider from "../components/MainSlider/MainSlider";
@@ -22,7 +22,7 @@ import path from 'path';
 import { StickyEditor } from '../components/shared/StickyButtons/StickyEditor';
 
 export default function Editor(props: any) {
-
+    const { Search } = Input
     const canvasRef = useRef(null);
 
     const {
@@ -30,12 +30,14 @@ export default function Editor(props: any) {
     } = useContext(EditorContext) as EditorContextType;
 
     const {
+        
         isPreset
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const {
         setAddon,
-        extras
+        extras,
+        extrasPremade
     } = useContext(StoreContext) as StoreContextType
 
     setAddon?.(props?.addons)
@@ -61,6 +63,30 @@ export default function Editor(props: any) {
                 }
             </Container>
             {currentEditorStep?.currentStep === 3 && <PlaceOrder canvasRef={canvasRef} presetTemplate={isPreset} />}
+            {
+                extrasPremade && (
+                    <Container fluid style={{
+                        paddingBottom: extrasPremade ? '2rem' : '0rem'
+                    }}>
+                    <Row
+                            className="designer-form__row-title"
+                        >
+                            <Col xs={12} sm={12} md={12} lg={12}>
+                                <h1
+
+                                    className='designer-form__title'
+                                >
+                                    Pre-Made Templates
+                                </h1>
+                            </Col>
+                        </Row>
+                        <TemplateList
+                            products={props?.productList?.products}
+                            customTemplate={false}
+                        />
+                    </Container>
+                )
+            }
             {extras && (
                 <PlateComparison
                     plates={props.extras.plateComparison}
@@ -98,7 +124,7 @@ export default function Editor(props: any) {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    const currentProduct = await client.collection.fetchWithProducts('gid://shopify/Collection/459770659117', { productsFirst: 100 })
+    const currentProduct = await client.collection.fetchWithProducts('gid://shopify/Collection/456849490221', { productsFirst: 100 })
     const getAddon = await client.product.fetchByHandle('add-on-work-with-a-designer');
 
     const filePath = path.join(process.cwd(), 'settings.json');

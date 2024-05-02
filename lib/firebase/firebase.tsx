@@ -15,6 +15,7 @@ export const licensePlateInstance = collection(
 );
 
 export const licensePlateGetDoc = (id: string) => doc(database, LICENSE_PLATES, id)
+export const customTemplateDoc = (id: string) => doc(database, CUSTOM_PLATES, id)
 
 export const customTemplateInstance = collection(
     database,
@@ -41,6 +42,17 @@ export const getLicensePlateFirebase = async (
 ) => {
     try {
         const getDocument = await getDoc(licensePlateGetDoc(licensePlateId))
+        return getDocument.data();
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getCustomTemplateFirebase = async (
+    customTemplateId: string
+) => {
+    try {
+        const getDocument = await getDoc(customTemplateDoc(customTemplateId))
         return getDocument.data();
     } catch (error) {
         console.log(error)

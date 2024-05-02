@@ -15,6 +15,7 @@ import { LoadingSpinner } from '../components/shared/LoadingSpinner/LoadingSpinn
 import { Cart } from '../components/shared/Cart/Cart';
 import Hotjar from '@hotjar/browser';
 import Footer from '../components/shared/Footer/Footer';
+import { NextUIProvider } from '@nextui-org/react';
 
 export default function App({ Component, pageProps }: AppProps) {
 
@@ -53,38 +54,44 @@ export default function App({ Component, pageProps }: AppProps) {
 	}, []);
 
 	return (
-		<InterfaceProvider>
-			<Main />
-			<Script
-				id="facebook"
-				strategy="afterInteractive"
-				dangerouslySetInnerHTML={{
-					__html: `
-						!function(f,b,e,v,n,t,s)
-						{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-						n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-						if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-						n.queue=[];t=b.createElement(e);t.async=!0;
-						t.src=v;s=b.getElementsByTagName(e)[0];
-						s.parentNode.insertBefore(t,s)}(window, document,'script',
-						'https://connect.facebook.net/en_US/fbevents.js');
-						fbq('init', ${fbq.FB_PIXEL_ID});
-					`,
-				}}
-			/>
-			<StoreProvider>
-				<EditorProvider>
-					{/* { pageProps !== 'editor' && <Header {...pageProps} /> } */}
-					<EditorHeader />
-						<LoadingSpinner>
-							<Cart />
-							<Component {...pageProps} />
-						</LoadingSpinner>
+		<NextUIProvider>
+			<InterfaceProvider>
+				<Main />
+				<Script
+					id="facebook"
+					strategy="afterInteractive"
+					dangerouslySetInnerHTML={{
+						__html: `
+							!function(f,b,e,v,n,t,s)
+							{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+							n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+							if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+							n.queue=[];t=b.createElement(e);t.async=!0;
+							t.src=v;s=b.getElementsByTagName(e)[0];
+							s.parentNode.insertBefore(t,s)}(window, document,'script',
+							'https://connect.facebook.net/en_US/fbevents.js');
+							fbq('init', ${fbq.FB_PIXEL_ID});
+						`,
+					}}
+				/>
+				<Script
+					id="ze-snippet"
+					src="https://static.zdassets.com/ekr/snippet.js?key=38413c68-7fdf-406c-96fa-d229b41f678a"
+				/>
+				<StoreProvider>
+					<EditorProvider>
+						{/* { pageProps !== 'editor' && <Header {...pageProps} /> } */}
+						<EditorHeader />
+							<LoadingSpinner>
+								<Cart />
+								<Component {...pageProps} />
+							</LoadingSpinner>
 
-					<Footer />
-					<Analytics />
-				</EditorProvider>
-			</StoreProvider>
-		</InterfaceProvider>
+						<Footer />
+						<Analytics />
+					</EditorProvider>
+				</StoreProvider>
+			</InterfaceProvider>
+		</NextUIProvider>
 	)
 }

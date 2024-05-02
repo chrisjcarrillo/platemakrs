@@ -6716,7 +6716,7 @@ export const premadeTemplates = [
             },
             stroke: { enabled: false},
         }
-    }, //Corvette #1  - [Done]
+    }, //Corvette #3  - [Done]
 
     {
         detailLogo1: { enabled: false},
@@ -6785,6 +6785,77 @@ export const premadeTemplates = [
                 enabled: true,
                 color: '#ffffff'
             }
+        },
+        state:{
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { enabled: false},
+        },
+        plateNumber: {
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { enabled: false},
+        },
+        bottomText: {
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { enabled: false},
+        }
+    }, //Corvette #1  - [Done]
+
+    {
+        detailLogo1: { enabled: false},
+        detailLogo2: {enabled: false},
+        templateId: '71',
+        shopifyHandle: 'corvette-4-template',
+        startPlatePosition: 'center',
+        startPlateText: 'SAM PLE',
+        patternSettings: { enabled: false },
+        fadeSettings: { enabled: false },
+        backgroundLogo: { enabled: false },
+        bottomLogo: { enabled: false },
+        mainLogo: {
+            enabled: true,
+            name: "mercedes.svg",
+            url: '/images/resources/cars/corvette/logo/logo.png',
+            leftCoordinates: {
+                x: 26,
+                y: 32
+            },
+            centerCoordinates: {
+                x: 115,
+                y: 35
+            },
+            rightCoordinates: {
+                x: 230,
+                y: 32
+            },
+            width: 120,
+            height: 100,
+            glow: {
+                enabled: false,
+            }
+        },
+        backgroundSettings: {
+            color: '#000000',
+            background: {
+                enabled: false,
+            },
         },
         state:{
             color: '#ffffff',

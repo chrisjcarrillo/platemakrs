@@ -1,6 +1,9 @@
 .preview{
     opacity: 0.3;
 }
+.custom-dash{
+    font-family: 'Poppins';
+}
 
 .canvas{
     &__extra{
@@ -22,7 +25,9 @@
         &-main{
             z-index: 8;
             position: sticky;
-            top: 3.25rem;
+            // top: 3.25rem;
+            top: 2.5rem;
+            padding-bottom: 0.5rem;
             overflow: hidden;
             max-width: 600px;
             background-color: #000000;

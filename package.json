@@ -4,10 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "chmod u+r+x setup.sh && ./setup.sh && next build",
     "start": "next start",
     "lint": "next lint",
     "vercel-build": "yum install gcc-c++ cairo-devel pango-devel libjpeg-turbo-devel giflib-devel"
+  },
+  "resolutions": {
+    "next/@swc/helpers": "0.4.36"
   },
   "dependencies": {
     "@ant-design/icons": "^5.1.4",
@@ -20,6 +23,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@hotjar/browser": "^1.0.9",
     "@next/font": "13.1.1",
+    "@nextui-org/react": "^2.3.5",
     "@sendgrid/mail": "^7.7.0",
     "@types/node": "18.11.18",
     "@types/react": "18.0.26",
@@ -32,17 +36,22 @@
     "algoliasearch": "^4.19.1",
     "animate.css": "^4.1.1",
     "antd": "^5.6.3",
+    "autoprefixer": "^10.4.19",
     "bootstrap": "^5.2.3",
-    "canvas": "2.8.0",
+    "canvas": "^2.11.2",
     "eslint": "8.30.0",
     "eslint-config-next": "13.1.1",
     "facebook-nodejs-business-sdk": "^18.0.1",
-    "firebase": "^9.17.1",
+    "firebase": "10.11.0",
+    "framer-motion": "^11.1.7",
     "graphql": "^16.8.1",
     "html2canvas": "^1.4.1",
     "js-cookie": "^3.0.5",
     "konva": "^9.2.0",
-    "next": "13.1.1",
+    "mongodb": "^6.5.0",
+    "next": "13.2.4",
+    "postcss": "^8.4.38",
+    "qrcode": "^1.5.3",
     "rc-animate": "^3.1.1",
     "rc-queue-anim": "^2.0.0",
     "react": "18.2.0",
@@ -57,12 +66,14 @@
     "sharp": "^0.31.3",
     "shopify-buy": "^2.20.1",
     "swiper": "^8.4.7",
+    "swr": "^2.2.5",
     "typescript": "4.9.4",
     "use-image": "^1.1.1",
     "uuid": "^9.0.0",
     "yarn": "^1.22.19"
   },
   "devDependencies": {
-    "@types/react-resizable": "^3.0.4"
+    "@types/react-resizable": "^3.0.4",
+    "tailwindcss": "^3.4.3"
   }
 }
