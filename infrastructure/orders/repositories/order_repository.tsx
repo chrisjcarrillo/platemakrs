@@ -155,7 +155,6 @@ class OrderRepository {
                 };
                 await ordersCollection.insertOne(orderData);
         }
-        console.log('ORDERRRRRRS', orders.length);
     }
 
     async getOrders(query: any, count: any = 50, cursor: any = 1) {
@@ -171,7 +170,7 @@ class OrderRepository {
                     }
                 },
                 {
-                    "plates.licencePlate.plateNumber": {
+                    "plates.plateData.plateNumber": {
                         $regex: query || '',
                         $options: 'i'
                     }
