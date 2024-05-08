@@ -4,12 +4,14 @@ const crypto = require('crypto');
 
 export default async (req, res) => {
     const apiKey = req.headers['x-api-key'];
+    console.log('API Key:', apiKey);
+    console.log('API Key:', process.env.PLATEMAKRS_API_KEY);
     const orderRepository = new OrderRepository();
     try {
         if (!apiKey) {
             return res.status(401).send('Unauthorized');
         }
-        if (apiKey !== process.env.PALTEMAKRS_API_KEY) {
+        if (apiKey !== process.env.PLATEMAKRS_API_KEY) {
             return res.status(403).send('Forbidden');
         }
         await orderRepository.seedOrders();
