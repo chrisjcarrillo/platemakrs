@@ -356,11 +356,12 @@ class OrderRepository {
                 if (plateIds.includes(plate.plateId)) {
                     plate.productionStatus = status;
                 }
+                return plate;
             });
             //Update order productionStatus if all plates are in the same status
             const allPlates = order.plates;
             const allPlatesStatus = allPlates.map((plate: any) => plate.productionStatus);
-            const uniqueStatus = [new Set(allPlatesStatus)];
+            const uniqueStatus = [...new Set(allPlatesStatus)];
             console.log('UNIQUE STATUS', uniqueStatus);
             if (uniqueStatus.length === 1) {
                 order.productionStatus = status;
