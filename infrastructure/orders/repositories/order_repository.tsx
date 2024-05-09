@@ -70,17 +70,17 @@ class OrderRepository {
                     let customTemplate;
                     let qrCode;
                     if (plateId) {
-                        licencePlate = await getLicensePlateFirebase(plateId);
+                        licencePlate = await getLicensePlateFirebase(plateId) || await getLicensePlate(plateId);
                     }
                     if (licencePlate) {
-                        customTemplate = await getCustomTemplateFirebase(licencePlate.customTemplateId);
+                        customTemplate = await getCustomTemplateFirebase(licencePlate.customTemplateId) || await getCustomTemplate(licencePlate.customTemplateId);
                     }
                         const baseColor = lineItem?.product?.title === "Add-on - Metallic Upgrade"
                             ? lineItem?.variant?.title
                             : lineItem?.product?.title === "Add-on - Color Match"
                                 ? "Color Match - Ask Team"
                                 : (
-                                    customTemplate?.backgroundSettings.color === '#ffffff' ||
+                                    customTemplate?.backgroundSettings?.color === '#ffffff' ||
                                     customTemplate?.backgroundSettings?.stroke?.color === '#ffffff' ||
                                     customTemplate?.state?.color === '#ffffff' ||
                                     customTemplate?.state?.stroke?.color === '#ffffff' ||
@@ -96,12 +96,7 @@ class OrderRepository {
 
                         const finish = lineItems.find((item: any) => (!item.product?.title?.includes("Add-on")))?.variant?.title;
 
-                        if (plateId && order.legacyResourceId) {
-                            const plateToQr = `${process.env.HOST}/dashboard/orders/${order.legacyResourceId}?plateId=${plateId}`;
-                            qrCode = await generateQRCode(plateToQr);
-                        }
-
-                    plates.push({plateId: plateId, plateData: licencePlate, customTemplateData: customTemplate, baseColor, finish, preview, productionStatus: 'ORDER_PLACED', qrCode: qrCode});
+                    plates.push({plateId: plateId, plateData: licencePlate, customTemplateData: customTemplate, baseColor, finish, preview, productionStatus: 'ORDER_PLACED'});
                 }
             }
 
@@ -155,7 +150,6 @@ class OrderRepository {
                 };
                 await ordersCollection.insertOne(orderData);
         }
-        console.log('ORDERRRRRRS', orders.length);
     }
 
     async getOrders(query: any, count: any = 50, cursor: any = 1) {
@@ -171,7 +165,7 @@ class OrderRepository {
                     }
                 },
                 {
-                    "plates.licencePlate.plateNumber": {
+                    "plates.plateData.plateNumber": {
                         $regex: query || '',
                         $options: 'i'
                     }
@@ -205,7 +199,7 @@ class OrderRepository {
 
         const skip = (cursor - 1) * count;
 
-        const orders = await ordersCollection.find(filterQuery).toArray();
+        const orders = await ordersCollection.find(filterQuery).sort({'createdAt': -1}).toArray();
         const indexOrders = orders.slice(skip, skip + count);
         console.log('ORDERS', orders.length);
         const response = {
@@ -233,6 +227,20 @@ class OrderRepository {
         await plateCollection.updateOne({_id: new ObjectId(licencePlateId)}, {
             $set: licencePlate
         });
+        //Update license plate in order
+        const ordersCollection = db.collection('orders');
+        const orders = await ordersCollection.find({'plates.plateId': licencePlateId}).toArray();
+        for (const order of orders) {
+            const plates = order.plates.map((plate: any) => {
+                if (plate.plateId === licencePlateId) {
+                    plate.plateData = licencePlate;
+                }
+                return plate;
+            });
+            await ordersCollection.updateOne({orderId: order.orderId}, {
+                $set: {plates: plates}
+            });
+        }
         return plateCollection.findOne({_id: new ObjectId(licencePlateId)});
     }
 
@@ -243,6 +251,20 @@ class OrderRepository {
         await customTemplateCollection.updateOne({_id: new ObjectId(customTemplateId)}, {
             $set: customTemplate
         });
+        //Update custom template in order
+        const ordersCollection = db.collection('orders');
+        const orders = await ordersCollection.find({'plates.customTemplateData._id': customTemplateId}).toArray();
+        for (const order of orders) {
+            const plates = order.plates.map((plate: any) => {
+                if (plate.customTemplateData._id === customTemplateId) {
+                    plate.customTemplateData = customTemplate;
+                }
+                return plate;
+            });
+            await ordersCollection.updateOne({orderId: order.orderId}, {
+                $set: {plates: plates}
+            });
+        }
         return customTemplateCollection.findOne({_id: new ObjectId(customTemplateId)});
     }
 
@@ -295,12 +317,7 @@ class OrderRepository {
                 const finish = lineItems.find((item: any) => (!item.name.includes("Add-on")))?.variant_title;
                 console.log('FINISH', finish);
 
-                if (licencePlate) {
-                    const plateToQr = `${process.env.HOST}/dashboard/orders/${data.id}?plateId=${plateId}`;
-                    qrCode = await generateQRCode(plateToQr);
-                }
-
-                plates.push({licencePlate: licencePlate, customTemplate: customTemplate, baseColor: baseColor, finish: finish, preview: preview, productionStatus: 'ORDER_PLACED', qrCode: qrCode});
+                plates.push({plateId: plateId, plateData: licencePlate, customTemplateData: customTemplate, baseColor: baseColor, finish: finish, preview: preview, productionStatus: 'ORDER_PLACED'});
             }
         }
 
@@ -327,6 +344,33 @@ class OrderRepository {
         const db = dbClient.db();
         const ordersCollection = db.collection('orders');
         return ordersCollection.findOne({orderId: orderId});
+    }
+
+    async updateLicensePlateStatus(plateIds: any, status: any, orderId: any) {
+        let dbClient = await clientPromise;
+        const db = dbClient.db();
+        const ordersCollection = db.collection('orders');
+        const order = await ordersCollection.findOne({orderId: orderId});
+        if (order) {
+            const plates = order.plates.map((plate: any) => {
+                if (plateIds.includes(plate.plateId)) {
+                    plate.productionStatus = status;
+                }
+                return plate;
+            });
+            //Update order productionStatus if all plates are in the same status
+            const allPlates = order.plates;
+            const allPlatesStatus = allPlates.map((plate: any) => plate.productionStatus);
+            const uniqueStatus = [...new Set(allPlatesStatus)];
+            console.log('UNIQUE STATUS', uniqueStatus);
+            if (uniqueStatus.length === 1) {
+                order.productionStatus = status;
+            }
+            await ordersCollection.updateOne({orderId: orderId}, {
+                $set: order
+            });
+        }
+        return order;
     }
 }
 

@@ -1,13 +1,50 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-
-.table{
-    &__licensePlate{
-        &-preview{
-            img{
-                border-radius: 8px;
-            }
+.order{
+    &-name{
+        font-weight: 600;
+        font-family: 'Roboto';
+        font-size: 1rem;
+        margin: 0;
+        color: black;
+    }
+    &-id{
+        font-size: 0.65rem;
+        margin: 0;
+        color: #848484;
+    }
+    &-customer{
+        &-name{
+            font-weight: 600;
+            font-family: 'Roboto';
+            font-size: 1rem;
+            margin: 0;
+            color: black;
+        } 
+        &-email{
+            display: block;
+        }
+        &-phone{
+            display: block;
         }
     }
+    &-plate{
+        &-number{
+            background-color: rgb(255, 255, 0);
+            font-weight: 600;
+            font-family: 'Roboto';
+            font-size: 1rem;
+            margin: 0;
+            color: black;
+        }
+        &-id{
+            font-size: 0.65rem;
+            margin: 0;
+            color: #848484;
+        }
+    }
+}
+:where(.css-dev-only-do-not-override-mzwlov).ant-pagination .ant-pagination-prev, :where(.css-dev-only-do-not-override-mzwlov).ant-pagination .ant-pagination-next, :where(.css-dev-only-do-not-override-mzwlov).ant-pagination .ant-pagination-jump-prev, :where(.css-dev-only-do-not-override-mzwlov).ant-pagination .ant-pagination-jump-next{
+    background-color: #ffffff !important;
+}
+:where(.css-dev-only-do-not-override-mzwlov).ant-pagination .ant-pagination-item{
+    background-color: #ffffff !important;
 }

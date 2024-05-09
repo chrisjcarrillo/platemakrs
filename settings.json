@@ -17,7 +17,11 @@
     ],
     "howItWorks": {
         "title": "How it works",
-        "image": "/images/hiw-1.png"
+        "image": "/images/how-it-works/hiw-home.png"
+    },
+    "howItWorksDesigner": {
+      "title": "How it works",
+      "image": "/images/how-it-works/hiw-designer.png"
     },
     "showcaseSlider": {
         "title": "Make it Official and Tag Us On Instagram",

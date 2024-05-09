@@ -9,7 +9,7 @@ export default async (req, res) => {
         if (!apiKey) {
             return res.status(401).send('Unauthorized');
         }
-        if (apiKey !== process.env.PALTEMAKRS_API_KEY) {
+        if (apiKey !== process.env.PLATEMAKRS_API_KEY) {
             return res.status(403).send('Forbidden');
         }
         const plate = await orderRepository.updateLicensePlate(licenseId, req.body);

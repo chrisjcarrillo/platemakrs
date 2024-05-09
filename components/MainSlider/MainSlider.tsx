@@ -38,18 +38,6 @@ const MainSlider = (
             className="slider__container slider__images"
         >
             <Row
-                className="slider__row-title"
-            >
-                <Col {...colSettings}>
-                     <Image
-                        className="it__image"
-                        alt="How it works image"
-                        fill
-                        src={props.image} 
-                    />
-                </Col>
-            </Row>
-            <Row
                 className="slider__row"
             >
                 <Col className='slider__cars'>
