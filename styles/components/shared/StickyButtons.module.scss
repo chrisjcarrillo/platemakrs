@@ -18,16 +18,22 @@
         }
     }
     &__buttons{
-        flex: 1 1;
-        // width: 50%;
-        background-color: #FFD800;
-        color: black;
+        width: 50%;
         text-align: center;
-        padding: 0.5rem 1rem;
-        text-decoration: none;
-        border-radius: 2rem;
-        border: 3px solid;
-        font-size: 0.85rem;
-        font-weight: 700;
+        box-shadow: 0 0 10px 2px #000000;
+        background: linear-gradient(108deg, #dfb450, #f02c2c00 83.15%);
+        text-transform: uppercase;
+        text-decoration: none !important;
+        font-weight: 600;
+        color: #ffffff;
+        /* border-top-left-radius: 20px; */
+        /* border-bottom-right-radius: 20px; */
+        padding: 0.65rem;
+        /* border: 1px solid #747474; */
+        border-radius: 5px;
+        border: 1px solid;
+        font-size: 0.75rem;
+        border-image-slice: 1;
+        border-image-source: linear-gradient(118.14deg, #d1a94b 1.68%, rgb(255 10 10 / 1%) 85.78%, rgba(255, 255, 255, 0) 88.3%);
     }
 }

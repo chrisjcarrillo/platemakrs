@@ -251,23 +251,29 @@ const IndexPage = () => {
                 </Col>
                 <Col xs={12} sm={12} md={4} lg={4} xl={4}>
                     <Search
-                            variant='outline'
-                            placeholder="Search by Plate #, Order #, Email, Name, Phone"
-                            loading={loading}
-                            // placeholder={`Search ${dataIndex}`}
-                            // value={selectedKeys[0]}
-                            onSearch={(e) => setFilterQuery(e?.toUpperCase())}
-                            onPressEnter={(e) => setFilterQuery(e?.target?.value?.toUpperCase())}
-                            style={{ marginBottom: 8, display: 'block' }}
-                        />
+                        variant='outline'
+                        placeholder="Search by Plate #, Order #, Email, Name, Phone"
+                        loading={loading}
+                        onSearch={(e) => {
+                            setFilterQuery(e?.toUpperCase())
+                        }}
+                        onPressEnter={(e) => {
+                            setFilterQuery(e?.target?.value?.toUpperCase())
+                        }}
+                        style={{ 
+                            marginBottom: 8, 
+                            display: 'block' 
+                        }}
+                    />
                 </Col>
             </Row>
             <Row>
                 <Col>
                     <Table
+                        scroll={{ x: 1000 }}
                         columns={columns}
                         expandable={{ expandedRowRender }}
-                        rowKey={(record) => record._id}
+                        rowKey={(record) => record?._id}
                         dataSource={data}
                         showSizeChanger={false}
                         pagination={{

@@ -5,6 +5,30 @@
 // Adjust Button Hiearchy
 
 .hero{
+    &__button{
+        font-size: 1.25rem;
+        box-shadow: 0 0 10px 2px #000000;
+        background: linear-gradient(108deg, #dfb450, rgb(0 0 0) 83.15%);
+        text-transform: uppercase;
+        text-decoration: none !important;
+        font-weight: 600;
+        color: #ffffff;
+        /* border-top-left-radius: 20px; */
+        /* border-bottom-right-radius: 20px; */
+        padding: 0.65rem;
+        /* border: 1px solid #747474; */
+        border-radius: 5px;
+        border: 1px solid;
+        @media screen and (max-width: 768px) {
+            font-size: 0.75rem;   
+        }
+        border-image-slice: 1;
+        border-image-source: linear-gradient(118.14deg, #d1a94b 1.68%, rgba(255, 10, 10, 0.01) 85.78%, rgba(255, 255, 255, 0) 88.3%);
+
+        span{
+            margin-left: 0.25rem;
+        }
+    }
     &__row{
         position: absolute;
         width: 100%;
@@ -50,21 +74,20 @@
         &-button{
             text-align: center;
             margin: 2rem;
+            display: flex;
+            flex-flow: row;
+            justify-content: center;
             @media screen and (max-width: 768px) {
                 margin: 0;
-                display: flex;
-                flex-flow: column;
+                margin-top: 2.5rem;
+                // display: flex;
+                // flex-flow: column;
                 a{
-                    width: 50% !important;
+                    // width: 50% !important;
                     margin-left: auto !important;
                     margin-right: auto !important;
                     margin-bottom: 5px;
                 }
-            }
-            @media screen and (max-width: 414px) {
-                // margin: 1rem;
-                display: flex;
-                flex-flow: column;
             }
         }
         // padding: 10rem;
@@ -94,5 +117,6 @@
         color: white;
         font-weight: 800;
         text-transform: uppercase;
+        text-shadow: 0px 5px 8px black;
     }
 }

@@ -15,6 +15,11 @@
         color: white !important;
     }
 }
+@media screen and (min-width: 768px) {
+    .designer-form__container .row > *{
+        padding: 0 !important;
+    }    
+}
 .designer-form{
     &__main{
         width: 65%;
@@ -27,7 +32,7 @@
             padding: 0 !important;
             text-align: center !important;
             font-weight: 700;
-            font-family: 'Poppins', sans-serif !important;
+            font-family: 'Roboto', sans-serif !important;
             text-transform: uppercase;
             label{
                 height: auto !important;
@@ -182,28 +187,53 @@
         margin-right: auto;
         &--button{
             display: block;
-            padding: 0.85rem 0.5rem;
-            text-decoration: none;
-            font-family: 'Poppins', sans-serif !important;
-            background-color: #FFD800;
-            border-radius: 20px;
-            font-size: 1.25rem;
-            color: #000000;
-            height: auto;
-            width: 100%;
+            // padding: 0.85rem 0.5rem;
+            // text-decoration: none;
+            // font-family: 'Roboto', sans-serif !important;
+            // background-color: #FFD800;
+            // border-radius: 20px;
+            // font-size: 1.25rem;
+            // color: #000000;
+            // height: auto;
+            width: 45%;
+            @media screen and (max-width: 768px) {
+                width: 70%;
+            }
+
             font-weight: 700;
             text-transform: uppercase;
             align-self: center;
             text-align: center;
+
+            margin: auto;
+            font-size: 1.25rem;
+            box-shadow: 0 0 10px 2px #000000;
+            background: linear-gradient(108deg, #dfb450, rgb(0 0 0) 83.15%);
+            text-transform: uppercase;
+            text-decoration: none !important;
+            font-weight: 600;
+            color: #ffffff;
+            /* border-top-left-radius: 20px; */
+            /* border-bottom-right-radius: 20px; */
+            padding: 0.65rem;
+            /* border: 1px solid #747474; */
+            border-radius: 5px;
+            border: 1px solid;
+            @media screen and (max-width: 768px) {
+                font-size: 0.75rem;   
+            }
+            border-image-slice: 1;
+            border-image-source: linear-gradient(118.14deg, #d1a94b 1.68%, rgba(255, 10, 10, 0.01) 85.78%, rgba(255, 255, 255, 0) 88.3%);
+    
             &.disabled{
                 color: #ffffff;
-                background-color: #000000;
+                background: #000000;
                 pointer-events: none !important;
                 border: 1px solid #ffffff;
                 cursor: not-allowed;
             }
             &-final{
-                font-family: 'Poppins', sans-serif !important;
+                font-family: 'Roboto', sans-serif !important;
                 background-color: #FFD800;
                 border-radius: 20px;
                 font-size: 1.25rem;
