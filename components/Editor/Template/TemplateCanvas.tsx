@@ -36,7 +36,6 @@ const TemplateCanvas = (
     const router = useRouter();
 
     const {
-        acceptTerms,
         extras,
         extrasPremade
     } = useContext(StoreContext) as StoreContextType;
@@ -44,9 +43,7 @@ const TemplateCanvas = (
     const {
         editLogoUi,
         setEditLogoUi,
-        showDecision,
         isPreset,
-        takeDesignScreenshot,
     } = useContext(InterfaceContext) as InterfaceContextType
 
     const {
@@ -66,7 +63,6 @@ const TemplateCanvas = (
         lg: 12,
         xl: 12
     }
-
 
     const actionSettings = {
         xs: 2,
@@ -171,9 +167,6 @@ const TemplateCanvas = (
                 <div
                     className="canvas__main-container"
                 >
-                    <FinishEffect
-                        customTemplate={currentCustomTemplate}
-                    />
                     <div
                         ref={canvasRef}
                         className={`canvas__main-inner-container`}
