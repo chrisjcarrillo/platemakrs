@@ -2,7 +2,11 @@
     &__container{
         padding: 4rem 0;
         @media screen and (max-width: 414px) {
-            padding: 1rem 0;
+            // padding: 1rem 0;
+            padding-right: unset;
+            padding-top: 2rem;
+            padding-bottom: 1rem;
+            padding-left: unset;
         }
     }
     &__title{
@@ -12,7 +16,7 @@
         &-container{
             margin-bottom: 3rem; 
             @media screen and (max-width: 414px) {
-                margin-bottom: 1.5rem;
+                margin-bottom: 1rem;
             }
         }
     }
@@ -38,8 +42,8 @@
                     height: 105px;
                 }
                 @media screen and (max-width: 432px) {
-                    width: 145px;
-                    height: 80px;
+                    width: 125px;
+                    height: 65px;
                 }
             }
             :last-child{
