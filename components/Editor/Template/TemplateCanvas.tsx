@@ -159,7 +159,7 @@ const TemplateCanvas = (
             </Container>
 
             <Container
-                className={`canvas__main animate__animated animate__fadeIn ${editLogoUi ? 'zIndexHigh' : ''} ${extras ? 'remove--sticky' : ''}`}
+                className={`canvas__main animate__animated animate__fadeIn ${editLogoUi ? 'zIndexHigh add--sticky' : ''} ${extras ? 'remove--sticky' : ''}`}
                 style={
                     popupPreview ? { backgroundColor: '#ffffff' } : {}
                 }
