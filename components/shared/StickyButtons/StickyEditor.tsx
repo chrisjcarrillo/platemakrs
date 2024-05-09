@@ -31,7 +31,7 @@ export const StickyEditor = () => {
     return(
         <div className={'sticky__container hide'}>
             <div className={'sticky__container-inner'}>
-                <Link className="sticky__buttons" href="#__next">GET STARTED</Link>
+                <Link className="sticky__buttons sticky__getstarted" href="#__next">GET STARTED</Link>
             </div>
         </div>
     )
