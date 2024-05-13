@@ -53,23 +53,21 @@ async function create(params) {
 
     // save user
     await user.save();
+    return user;
 }
 
 async function update(id, params) {
     const user = await User.findById(id);
 
-    // validate
     if (!user) throw 'User not found';
     if (user.username !== params.username && await User.findOne({ username: params.username })) {
         throw 'Username "' + params.username + '" is already taken';
     }
 
-    // hash password if it was entered
     if (params.password) {
         params.hash = bcrypt.hashSync(params.password, 10);
     }
 
-    // copy params properties to user
     Object.assign(user, params);
 
     await user.save();
