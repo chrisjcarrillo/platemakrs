@@ -49,6 +49,7 @@
     "js-cookie": "^3.0.5",
     "konva": "^9.2.0",
     "mongodb": "^6.5.0",
+    "mongoose": "^8.3.3",
     "next": "13.2.4",
     "postcss": "^8.4.38",
     "qrcode": "^1.5.3",
@@ -70,7 +71,11 @@
     "typescript": "4.9.4",
     "use-image": "^1.1.1",
     "uuid": "^9.0.0",
-    "yarn": "^1.22.19"
+    "yarn": "^1.22.19",
+    "rxjs": "^7.8.1",
+    "express-jwt": "^8.4.1",
+    "jsonwebtoken": "^9.0.2",
+    "bcryptjs": "^2.4.3"
   },
   "devDependencies": {
     "@types/react-resizable": "^3.0.4",
