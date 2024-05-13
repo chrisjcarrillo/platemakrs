@@ -6,6 +6,8 @@ export default apiHandler({
 
 async function register(req, res) {
     console.log('register');
-    await usersRepo.create(req.body);
-    return res.status(200).json({});
+    const user = await usersRepo.create(req.body);
+    return res.status(200).json({
+        user
+    });
 }
