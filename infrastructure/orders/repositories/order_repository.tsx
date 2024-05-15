@@ -372,6 +372,17 @@ class OrderRepository {
         }
         return order;
     }
+
+    async getStatusAllowed(orderId: any | string, userId: string) {
+        let dbClient = await clientPromise;
+        const db = dbClient.db();
+        const userCollection = db.collection('users');
+        const rolesCollection = db.collection('roles');
+        const user = await userCollection.findOne({_id: new ObjectId(userId)});
+        const role = await rolesCollection.findOne({roleType: user?.role});
+        console.log('USER', role);
+        return role?.roleStatuses;
+    }
 }
 
 export default OrderRepository;

@@ -1,9 +1,17 @@
 import OrderRepository from "../../../../infrastructure/orders/repositories/order_repository";
+import {apiHandler} from "../../../../helpers/api";
+import {jwtDecode} from "jwt-decode";
 
-export default async (req, res) => {
+export default apiHandler({
+    get: getOrder
+});
+ async function getOrder(req, res) {
     const orderRepository = new OrderRepository();
     const apiKey = req.headers['x-api-key'];
     const orderId = req.query.orderId;
+    const token = req.headers.authorization.split(' ')[1];
+    const decoded = jwtDecode(token);
+    const userId = decoded.sub;
     try {
             if (!apiKey) {
                 return res.status(401).send('Unauthorized');
@@ -20,4 +28,4 @@ export default async (req, res) => {
         console.error('Error processing Shopify webhook:', error);
         res.status(500).send('Internal Server Error');
     }
-};
+}
