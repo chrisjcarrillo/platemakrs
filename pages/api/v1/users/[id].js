@@ -15,8 +15,8 @@ async function getById(req, res) {
 }
 
 async function update(req, res) {
-    await usersRepo.update(req.query.id, req.body);
-    return res.status(200).json({});
+    const user = await usersRepo.update(req.query.id, req.body);
+    return res.status(200).json({user});
 }
 
 async function _delete(req, res) {
