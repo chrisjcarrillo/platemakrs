@@ -87,11 +87,12 @@ const EditorMotoNew = (props: any) => {
         
     }, []);
 
-    const convertHoles = () => {
-        const [holesImage] = useImage(
-            currentCustomTemplate?.backgroundSettings?.color === "#ffffff" ?
-                '../../images/resources/holes/holes-black-moto.png' : '../../images/resources/holes/holes-white-moto.png', 'anonymous'
-        );
+    const [holesImage] = useImage(
+        currentCustomTemplate?.backgroundSettings?.color === "#ffffff" ?
+            '../../images/resources/holes/holes-black-moto.png' : '../../images/resources/holes/holes-white-moto.png', 'anonymous'
+    );
+
+    const convertHoles = () => {    
         return <Image listening={false} perfectDrawEnabled={false} x={0} y={0} width={plateWidth} height={plateHeight} image={holesImage} />;
     };
 

@@ -108,11 +108,12 @@ function EditorNew(props: any) {
         
     }, []);
 
+    const [holesImage] = useImage(
+        currentCustomTemplate?.backgroundSettings?.color === "#ffffff" ?
+            '../../images/resources/holes/holes-black.png' : '../../images/resources/holes/holes-white.png', 'anonymous'
+    );
+
     const convertHoles = () => {
-        const [holesImage] = useImage(
-            currentCustomTemplate?.backgroundSettings?.color === "#ffffff" ?
-                '../../images/resources/holes/holes-black.png' : '../../images/resources/holes/holes-white.png', 'anonymous'
-        );
         return <Image zIndex={5} x={0} y={0} width={plateWidth} height={plateHeight} image={holesImage} />;
     };
 
