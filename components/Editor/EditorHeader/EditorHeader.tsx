@@ -12,6 +12,7 @@ import { menuLayout } from "../../../utils/helpers";
 import { isMobile } from 'react-device-detect';
 import { Cart } from "../../shared/Cart/Cart";
 import { useRouter } from "next/navigation";
+import { NavDropdown } from "react-bootstrap";
 
 // import Link from 'next/link';
 
@@ -101,16 +102,23 @@ export const EditorHeader = (
                             </Offcanvas.Header>
                             <Offcanvas.Body>
                                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                                    {menuLayout.map((menuItem, index) => {
-                                        return (
-                                            <Link key={index} onClick={
-                                                () => {
-                                                    router.push(`${menuItem.link}`)
-                                                    setMenu(false);
-                                                }
-                                        } className="header__link">{menuItem.text}</Link>
-                                        )
-                                    })}
+                                {menuLayout.map((menuItem, index) => {
+                                if (menuItem?.subLinks) {
+                                    return(
+                                        <NavDropdown key={index} title={`${menuItem?.text}`} id={`${menuItem?.id}`}>
+                                        {menuItem?.subLinks.map((item, index) => {
+                                            return(
+                                                <Link key={index} onClick={() => router.push(`${item.link}`)} className="header__link">{item.text}</Link>
+                                            )
+                                        })}
+                                        </NavDropdown>
+                                    ) 
+                                } else {
+                                    return (
+                                        <Link key={index} onClick={() => router.push(`${menuItem.link}`)} className="header__link">{menuItem.text}</Link>
+                                    )
+                                }
+                            })}
                                 </Nav>
                             </Offcanvas.Body>
                         </Navbar.Offcanvas>
@@ -122,9 +130,21 @@ export const EditorHeader = (
                     <Container fluid>
                         <Navbar.Collapse className={'header__link--container'}>
                             {menuLayout.map((menuItem, index) => {
-                                return (
-                                    <Link key={index} onClick={() => router.push(`${menuItem.link}`)} className="header__link">{menuItem.text}</Link>
-                                )
+                                if (menuItem?.subLinks) {
+                                    return(
+                                        <NavDropdown key={index} title={`${menuItem?.text}`} id={`${menuItem?.id}`}>
+                                        {menuItem?.subLinks.map((item, index) => {
+                                            return(
+                                                <Link key={index} onClick={() => router.push(`${item.link}`)} className="header__link">{item.text}</Link>
+                                            )
+                                        })}
+                                        </NavDropdown>
+                                    ) 
+                                } else {
+                                    return (
+                                        <Link key={index} onClick={() => router.push(`${menuItem.link}`)} className="header__link">{menuItem.text}</Link>
+                                    )
+                                }
                             })}
                         </Navbar.Collapse>
                     </Container>

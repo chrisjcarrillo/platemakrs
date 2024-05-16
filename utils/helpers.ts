@@ -281,7 +281,14 @@ export const menuLayout = [
     },
     {
         text: 'Pre-Made Designs',
-        link: '/products'
+        id: '#pre-made',
+        subLinks: [{
+            text: 'Car Templates',
+            link: '/products'
+        },{
+            text: 'Motorcycle Templates',
+            link: '/products/motorcycles'
+        }],
     },
     {
         text: 'Customize Your Own',

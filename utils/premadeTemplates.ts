@@ -325,12 +325,103 @@ export const premadeTemplates = [
             },
         }
     }, //Corvette #1  - [Done]
+    {
+        vehicleType: 'Motorcycle',
+        detailLogo1: { enabled: false},
+        detailLogo2: {enabled: false},
+        templateId: '4',
+        shopifyHandle: 'motorcycle-harley-davidson-4-template',
+        startPlatePosition: 'center',
+        startPlateText: 'SAM PLE',
+        patternSettings: { enabled: false },
+        fadeSettings: { enabled: false },
+        backgroundLogo:{
+            enabled: false,
+        },
+        bottomLogo: { enabled: false },
+        mainLogo: {
+            enabled: true,
+            hasColor: true,
+            imageType: 'svg',
+            name: "mercedes.svg",
+            filePath: '/images/resources/motorcycles/harley/logos/main/colors',
+            url: '/images/resources/motorcycles/harley/logos/main/colors/black.svg',
+            leftCoordinates: {
+                x: 525,
+                y: 250
+            },
+            centerCoordinates: {
+                x: 525,
+                y: 250
+            },
+            rightCoordinates: {
+                x: 525,
+                y: 250
+            },
+            width: 1050,
+            height: 850,
+            glow:{ enabled: true, color: '#ff7200' }
+        },
+        backgroundSettings: {
+            color: '#000000',
+            background: {
+                enabled: true,
+                file: {
+                    hasMainColor: true,
+                    hasColor: true,
+                    enabled: true,
+                    name: 'gray.png',
+                    imageType: 'png',
+                    filePath: '/images/resources/motorcycles/harley/backgrounds/hexagons-moto/1/colors',
+                    url: '/images/resources/motorcycles/harley/backgrounds/hexagons-moto/1/colors/gray.png',
+                }
+            },
+            stroke: { enabled: false }
+        },
+        state:{
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { 
+                enabled: false
+            },
+        },
+        plateNumber: {
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { 
+                enabled: false
+            },
+        },
+        bottomText: {
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { 
+                enabled: false,
+            },
+        }
+    }, //Corvette #1  - [Done]
 
 
 
 
     //Car
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '1',
@@ -351,19 +442,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/mercedes/logos/solid/colors',
             url: '/images/resources/cars/mercedes/logos/solid/colors/black.svg',
             leftCoordinates: {
-                x: 26,
-                y: 32
+                x: 375,
+                y: 550
             },
             centerCoordinates: {
-                x: 115,
-                y: 32
+                x: 1475,
+                y: 550
             },
             rightCoordinates: {
-                x: 230,
-                y: 32
+                x: 2425,
+                y: 550
             },
-            width: 100,
-            height: 100,
+            width: 700,
+            height: 700,
             glow:{
                 enabled: false 
             }
@@ -376,19 +467,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/mercedes/patterns/option-1',
             url: '/images/resources/cars/mercedes/patterns/option-1/gray.png',
             leftCoordinates: {
-                x: 26,
-                y: 41
+                x: 300,
+                y: 50
             },
             centerCoordinates: {
-                x: 140,
-                y: 41
+                x: 1425,
+                y: 50
             },
             rightCoordinates: {
-                x: 230,
-                y: 41
+                x: 2350,
+                y: 50
             },
-            width: 65,
-            height: 110,
+            width: 800,
+            height: 1700,
         },
         backgroundSettings: {
             color: '#bebdc2',
@@ -439,6 +530,7 @@ export const premadeTemplates = [
     }, // AMG 1 - [DONE]
     
     {
+        vehicleType: 'Car',
         shopifyHandle: 'mercedes-amg-2',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -456,19 +548,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/mercedes/logos/solid/colors',
             url: '/images/resources/cars/mercedes/logos/solid/colors/black.svg',
             leftCoordinates: {
-                x: 26,
-                y: 32
+                x: 375,
+                y: 550
             },
             centerCoordinates: {
-                x: 115,
-                y: 35
+                x: 1475,
+                y: 550
             },
             rightCoordinates: {
-                x: 230,
-                y: 32
+                x: 2425,
+                y: 550
             },
-            width: 100,
-            height: 100,
+            width: 700,
+            height: 700,
             glow:{ enabled: false }
         },
 
@@ -479,12 +571,20 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             filePath: '/images/resources/cars/mercedes/logos/amg/colors',
             url: '/images/resources/cars/mercedes/logos/amg/colors/black.svg',
-            centerCoordinates: {
-                x: 106,
-                y: 140
+            leftCoordinates: {
+                x: 1200,
+                y: 1500
             },
-            width: 125,
-            height: 20,
+            centerCoordinates: {
+                x: 1200,
+                y: 1500
+            },
+            rightCoordinates: {
+                x: 1200,
+                y: 1500
+            },
+            width: 1250,
+            height: 175,
         },
         backgroundLogo:{
             enabled: true,
@@ -494,19 +594,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/mercedes/patterns/option-2',
             url: '/images/resources/cars/mercedes/patterns/option-2/gray.png',
             leftCoordinates: {
-                x: 10,
-                y: 8
+                x: 100,
+                y: 50
             },
             centerCoordinates: {
-                x: 135,
-                y: 8
+                x: 1425,
+                y: 50
             },
             rightCoordinates: {
-                x: 265,
-                y: 8
+                x: 2575,
+                y: 50
             },
-            width: 65,
-            height: 150,
+            width: 800,
+            height: 1700,
         },
         backgroundSettings: {
             color: '#ffffff',
@@ -558,6 +658,7 @@ export const premadeTemplates = [
     }, // AMG 2 - [DONE]
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'ferrari-miami-heat',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -689,6 +790,7 @@ export const premadeTemplates = [
     }, // White Miami Heat - [NOT DONE] (Ask Johnny/Clay what preset Colors this should have)
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'mustang-1-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -711,19 +813,19 @@ export const premadeTemplates = [
                 color: '#c0ff00'
             },
             leftCoordinates: {
-                x: 26,
-                y: 65
+                x: 260,
+                y: 750
             },
             centerCoordinates: {
-                x: 115,
-                y: 65
+                x: 1400,
+                y: 750
             },
             rightCoordinates: {
-                x: 230,
-                y: 65
+                x: 2400,
+                y: 750
             },
-            width: 100,
-            height: 35,
+            width: 850,
+            height: 325,
         },
 
         backgroundSettings: {
@@ -790,6 +892,7 @@ export const premadeTemplates = [
     }, // MUSTANG - [Done]
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'dolphins-1-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -810,19 +913,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/sports/football/dolphins/logos/colors',
             url: '/images/resources/sports/football/dolphins/logos/colors/regular.png',
             leftCoordinates: {
-                x: 10,
-                y: 32
+                x: 100,
+                y: 550
             },
             centerCoordinates: {
-                x: 115,
-                y: 35
+                x: 1375,
+                y: 550
             },
             rightCoordinates: {
-                x: 210,
-                y: 32
+                x: 2385,
+                y: 550
             },
-            width: 125,
-            height: 100,
+            width: 900,
+            height: 700,
             glow:{ enabled: true, color: '#008f99' }
         },
 
@@ -888,6 +991,7 @@ export const premadeTemplates = [
     }, //DOLPHINS - [DONE]
     
     {
+        vehicleType: 'Car',
         shopifyHandle: 'mclaren-1-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -905,19 +1009,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/sports/basketball/miami-heat/mclaren',
             url: '/images/resources/sports/basketball/miami-heat/mclaren/regular.svg',
             leftCoordinates: {
-                x: 26,
-                y: 32
+                x: 225,
+                y: 365
             },
             centerCoordinates: {
-                x: 115,
-                y: 35
+                x: 1250,
+                y: 365
             },
             rightCoordinates: {
-                x: 230,
-                y: 32
+                x: 2300,
+                y: 365
             },
-            width: 100,
-            height: 100,
+            width: 1000,
+            height: 1000,
             glow:{ enabled: true, color: '#000000' }
         },
         bottomLogo: {
@@ -927,12 +1031,20 @@ export const premadeTemplates = [
             imageType: 'svg',
             filePath: '/images/resources/cars/mclaren/text/option-1/colors',
             url: '/images/resources/cars/mclaren/text/option-1/colors/regular.svg',
-            centerCoordinates: {
-                x: 106,
-                y: 138
+            leftCoordinates: {
+                x: 1300,
+                y: 1550
             },
-            width: 125,
-            height: 20,
+            centerCoordinates: {
+                x: 1300,
+                y: 1550
+            },
+            rightCoordinates: {
+                x: 1300,
+                y: 1550
+            },
+            width: 950,
+            height: 125,
             glow:{ enabled: true, color: '#000000' }
         },
         backgroundLogo:{
@@ -954,8 +1066,8 @@ export const premadeTemplates = [
                 x: 0,
                 y: 0
             },
-            width: 350,
-            height: 200,
+            width: 3597,
+            height: 1800,
         },
         backgroundSettings: {
             color: '#000000',
@@ -1013,6 +1125,7 @@ export const premadeTemplates = [
     }, //MCLAREN - [NOT Done]
     
     {
+        vehicleType: 'Car',
         shopifyHandle: 'miami-heat-yellow-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -1033,19 +1146,19 @@ export const premadeTemplates = [
             imageType: 'svg',
             url: '/images/resources/sports/basketball/miami-heat/ruzy/regular.svg',
             leftCoordinates: {
-                x: 26,
-                y: 32
+                x: 225,
+                y: 365
             },
             centerCoordinates: {
-                x: 115,
-                y: 35
+                x: 1250,
+                y: 365
             },
             rightCoordinates: {
-                x: 230,
-                y: 32
+                x: 2300,
+                y: 365
             },
-            width: 100,
-            height: 100,
+            width: 1000,
+            height: 1000,
         },
         backgroundSettings: {
             color: '#000000',
@@ -1091,6 +1204,7 @@ export const premadeTemplates = [
     }, //RUZY - [NOT Done]
     
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '8',
@@ -1107,19 +1221,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/sports/hockey/panthers/logos/panther.png',
             leftCoordinates: {
-                x: 26,
-                y: 32
+                x: 50,
+                y: 365
             },
             centerCoordinates: {
-                x: 115,
-                y: 35
+                x: 1150,
+                y: 365
             },
             rightCoordinates: {
-                x: 230,
-                y: 32
+                x: 2050,
+                y: 365
             },
-            width: 100,
-            height: 100,
+            width: 1350,
+            height: 1150,
             glow:{ enabled: false }
         },
         backgroundLogo:{
@@ -1129,31 +1243,39 @@ export const premadeTemplates = [
             // filePath: '/images/resources/sports/hockey/panthers/logos',
             url: '/images/resources/sports/hockey/panthers/logos/stick-and-palm.png',
             leftCoordinates: {
-                x: 26,
-                y: 41
+                x: 150,
+                y: 100
             },
             centerCoordinates: {
-                x: 100,
-                y: 10
+                x: 1200,
+                y: 100
             },
             rightCoordinates: {
-                x: 230,
-                y: 41
+                x: 2185,
+                y: 100
             },
-            width: 140,
-            height: 140,
+            width: 1350,
+            height: 1550,
         },
         bottomLogo: {
             enabled: true,
             hasColor: false,
             name: "mercedes.svg",
             url: '/images/resources/sports/hockey/panthers/text/1.png',
-            centerCoordinates: {
-                x: 115,
-                y: 135
+            leftCoordinates: {
+                x: 1300,
+                y: 1445
             },
-            width: 100,
-            height: 25,
+            centerCoordinates: {
+                x: 1300,
+                y: 1445
+            },
+            rightCoordinates: {
+                x: 1300,
+                y: 1445
+            },
+            width: 950,
+            height: 265,
         },
         backgroundSettings: {
             color: '#ffffff',
@@ -1204,6 +1326,7 @@ export const premadeTemplates = [
     }, //Panthers - [Done]
    
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '9',
@@ -1219,19 +1342,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/cars/mercedes/logos/maybach/maybach.svg',
             leftCoordinates: {
-                x: 26,
-                y: 32
+                x: 375,
+                y: 575
             },
             centerCoordinates: {
-                x: 133,
-                y: 55
+                x: 1430,
+                y: 575
             },
             rightCoordinates: {
-                x: 230,
-                y: 32
+                x: 2425,
+                y: 575
             },
-            width: 75,
-            height: 55,
+            width: 750,
+            height: 600,
             glow:{ enabled: true, color: "#000000" }
         },
         bottomLogo: {
@@ -1241,12 +1364,20 @@ export const premadeTemplates = [
             imageType: 'svg',
             filePath: '/images/resources/cars/mercedes/text/maybach/colors',
             url: '/images/resources/cars/mercedes/text/maybach/colors/regular.svg',
-            centerCoordinates: {
-                x: 106,
-                y: 140
+            leftCoordinates: {
+                x: 1150,
+                y: 1525
             },
-            width: 135,
-            height: 15,
+            centerCoordinates: {
+                x: 1150,
+                y: 1525
+            },
+            rightCoordinates: {
+                x: 1150,
+                y: 1525
+            },
+            width: 1350,
+            height: 125,
         },
         backgroundSettings: {
             color: '#000000',
@@ -1306,6 +1437,7 @@ export const premadeTemplates = [
     }, //Maybach - [Done]
     
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         sportsTeam: true,
@@ -1325,19 +1457,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/sports/basketball/miami-heat/porsche',
             url: '/images/resources/sports/basketball/miami-heat/porsche/regular.svg',
             leftCoordinates: {
-                x: 26,
-                y: 32
+                x: 225,
+                y: 365
             },
             centerCoordinates: {
-                x: 115,
-                y: 35
+                x: 1300,
+                y: 365
             },
             rightCoordinates: {
-                x: 230,
-                y: 32
+                x: 2300,
+                y: 365
             },
-            width: 100,
-            height: 100,
+            width: 1000,
+            height: 1000,
         },
         bottomLogo: {
             hasColor: true,
@@ -1346,12 +1478,20 @@ export const premadeTemplates = [
             imageType: 'svg',
             filePath: '/images/resources/cars/porsche/text/porsche/colors',
             url: '/images/resources/cars/porsche/text/porsche/colors/regular.svg',
-            centerCoordinates: {
-                x: 106,
-                y: 135
+            leftCoordinates: {
+                x: 1095,
+                y: 1500
             },
-            width: 125,
-            height: 15,
+            centerCoordinates: {
+                x: 1095,
+                y: 1500
+            },
+            rightCoordinates: {
+                x: 1095,
+                y: 1500
+            },
+            width: 1450,
+            height: 150,
             glow:{ enabled: true, color: '#000000' }
         },
         backgroundSettings: {
@@ -1402,6 +1542,7 @@ export const premadeTemplates = [
     }, //Miami heat gray - [NOT Done]
    
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '11',
@@ -1419,19 +1560,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/logos/characters/the-joker.png',
             leftCoordinates: {
-                x: 26,
-                y: 65
+                x: 200,
+                y: 525
             },
             centerCoordinates: {
-                x: 115,
-                y: 20
+                x: 1325,
+                y: 325
             },
             rightCoordinates: {
-                x: 220,
-                y: 65
+                x: 2385,
+                y: 525
             },
-            width: 110,
-            height: 145,
+            width: 950,
+            height: 1350,
             glow:{ enabled: false }
         },
         backgroundSettings: {
@@ -1482,6 +1623,7 @@ export const premadeTemplates = [
     }, //Da Joker - [Done]
     
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         sportsTeam: true,
@@ -1498,19 +1640,19 @@ export const premadeTemplates = [
             enabled: true,
             url: '/images/resources/sports/football/um/logos/um-hands.png',
             leftCoordinates: {
-                x: 2,
-                y: 20
+                x: 50,
+                y: 365
             },
             centerCoordinates: {
-                x: 115,
-                y: 20
+                x: 1000,
+                y: 365
             },
             rightCoordinates: {
-                x: 250,
-                y: 20
+                x: 2050,
+                y: 365
             },
-            width: 150,
-            height: 120,
+            width: 1550,
+            height: 1150,
         },
         bottomLogo: {
             hasColor: true,
@@ -1519,12 +1661,20 @@ export const premadeTemplates = [
             imageType: 'svg',
             filePath: '/images/resources/sports/football/um/text/option-1/colors',
             url: '/images/resources/sports/football/um/text/option-1/colors/regular.svg',
-            centerCoordinates: {
-                x: 100,
-                y: 140
+            leftCoordinates: {
+                x: 935,
+                y: 1500
             },
-            width: 150,
-            height: 10,
+            centerCoordinates: {
+                x: 935,
+                y: 1500
+            },
+            rightCoordinates: {
+                x: 935,
+                y: 1500
+            },
+            width: 1750,
+            height: 125,
             glow:{
                 enabled: true,
                 color: "#000000"
@@ -1585,6 +1735,7 @@ export const premadeTemplates = [
     }, //UM - [Done]
     
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         sportsTeam: true,
@@ -1600,20 +1751,22 @@ export const premadeTemplates = [
             hasColor: false,
             enabled: true,
             url: '/images/resources/sports/football/um/logos/um-old-bird.png',
+            // width: 3597,
+
             leftCoordinates: {
-                x: 26,
-                y: 32
+                x: 225,
+                y: 365
             },
             centerCoordinates: {
-                x: 115,
-                y: 35
+                x: 1250,
+                y: 365
             },
             rightCoordinates: {
-                x: 230,
-                y: 32
+                x: 2300,
+                y: 365
             },
-            width: 85,
-            height: 85,
+            width: 1000,
+            height: 1000,
             glow: { enabled: false }
         },
         bottomLogo: {
@@ -1621,12 +1774,20 @@ export const premadeTemplates = [
             hasColor: false,
             name: "mercedes.svg",
             url: '/images/resources/sports/football/um/text/option-2.png',
-            centerCoordinates: {
-                x: 18,
-                y: 135
+            leftCoordinates: {
+                x: 20,
+                y: 1450
             },
-            width: 315,
-            height: 25,
+            centerCoordinates: {
+                x: 20,
+                y: 1450
+            },
+            rightCoordinates: {
+                x: 20,
+                y: 1450
+            },
+            width: 3550,
+            height: 250,
             glow:{
                 enabled: false
             }
@@ -1683,6 +1844,7 @@ export const premadeTemplates = [
     }, //UM - [Done]
     
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '14',
@@ -1711,19 +1873,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/lamborghini/logos/crest/solid-3d/colors',
             url: '/images/resources/cars/lamborghini/logos/crest/solid-3d/colors/regular.png',
             leftCoordinates: {
-                x: 26,
-                y: 32
+                x: 200,
+                y: 525
             },
             centerCoordinates: {
-                x: 125,
-                y: 35
+                x: 1425,
+                y: 525
             },
             rightCoordinates: {
-                x: 230,
-                y: 32
+                x: 2385,
+                y: 525
             },
-            width: 90,
-            height: 100,
+            width: 800,
+            height: 900,
             glow:{ enabled: true, color: '#ffffff' }
         },
         backgroundLogo:{
@@ -1769,6 +1931,7 @@ export const premadeTemplates = [
     }, //Diablo Lambo - [NOT DONE]
     
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '15',
@@ -1794,19 +1957,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/cars/porsche/logos/logo.png',
             leftCoordinates: {
-                x: 15,
-                y: 50
+                x: 450,
+                y: 525
             },
             centerCoordinates: {
-                x: 145,
-                y: 50
+                x: 1525,
+                y: 525
             },
             rightCoordinates: {
-                x: 275,
-                y: 50
+                x: 2465,
+                y: 525
             },
-            width: 55,
-            height: 65,
+            width: 600,
+            height: 750,
             glow:{ enabled: true, color: '#000000' }
         },
         backgroundLogo:{
@@ -1817,19 +1980,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/porsche/patterns/option-1/colors',
             url: '/images/resources/cars/porsche/patterns/option-1/colors/regular.png',
             leftCoordinates: {
-                x: 2,
-                y: 0
+                x: 100,
+                y: 150
             },
             centerCoordinates: {
-                x: 130,
-                y: 0
+                x: 1325,
+                y: 150
             },
             rightCoordinates: {
-                x: 252,
-                y: 0
+                x: 2575,
+                y: 150
             },
-            width: 95,
-            height: 165,
+            width: 950,
+            height: 1500,
         },
         state:{
             color: '#760e1b',
@@ -1870,6 +2033,7 @@ export const premadeTemplates = [
     }, //STCLYO - [Done]
 
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '16',
@@ -1889,19 +2053,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/porsche/logos/solid/colors/',
             url: '/images/resources/cars/porsche/logos/solid/colors/regular.svg',
             leftCoordinates: {
-                x: 40,
-                y: 50
+                x: 450,
+                y: 525
             },
             centerCoordinates: {
-                x: 140,
-                y: 50
+                x: 1525,
+                y: 525
             },
             rightCoordinates: {
-                x: 235,
-                y: 50
+                x: 2465,
+                y: 525
             },
-            width: 65,
-            height: 75,
+            width: 600,
+            height: 750,
             glow:{ enabled: false }
         },
         backgroundSettings: {
@@ -1954,6 +2118,7 @@ export const premadeTemplates = [
     }, //Porsche #2 - [Done]
     
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '17',
@@ -1972,19 +2137,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/logos/characters/messi-1.png',
             leftCoordinates: {
-                x: 0,
-                y: 1
+                x: 50,
+                y: 100
             },
             centerCoordinates: {
-                x: 80,
-                y: 1
+                x: 1000,
+                y: 100
             },
             rightCoordinates: {
-                x: 165,
-                y: 1
+                x: 1950,
+                y: 100
             },
-            width: 165,
-            height: 165,
+            width: 1600,
+            height: 1600,
             glow:{ enabled: false }
         },
 
@@ -2038,6 +2203,7 @@ export const premadeTemplates = [
     }, //Inter Miami Messi #1 - [Done]
     
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '18',
@@ -2136,6 +2302,7 @@ export const premadeTemplates = [
     }, //Aston Martin - [Done]
     
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '19',
@@ -2153,19 +2320,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/autism/logo/logo.png',
             leftCoordinates: {
-                x: 30,
-                y: 35
+                x: 275,
+                y: 525
             },
             centerCoordinates: {
-                x: 130,
-                y: 35
+                x: 1425,
+                y: 525
             },
             rightCoordinates: {
-                x: 250,
-                y: 35
+                x: 2385,
+                y: 525
             },
-            width: 90,
-            height: 100,
+            width: 800,
+            height: 900,
             glow: {
                 enabled: true,
                 color: '#000000'
@@ -2178,19 +2345,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/autism/pattern',
             url: '/images/resources/autism/pattern/pattern.png',
             leftCoordinates: {
-                x: 2,
+                x: 0,
                 y: 0
             },
             centerCoordinates: {
-                x: 100,
+                x: 1100,
                 y: 0
             },
             rightCoordinates: {
-                x: 200,
+                x: 2000,
                 y: 0
             },
-            width: 165,
-            height: 165,
+            width: 1600,
+            height: 1800,
         },
         backgroundSettings: {
             color: '#000000',
@@ -2241,6 +2408,7 @@ export const premadeTemplates = [
     }, //Autism, - [Done]
     
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '20',
@@ -2257,19 +2425,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/cars/porsche/logos/logo.png ',
             leftCoordinates: {
-                x: 50,
-                y: 45
+                x: 450,
+                y: 525
             },
             centerCoordinates: {
-                x: 140,
-                y: 50
+                x: 1525,
+                y: 525
             },
             rightCoordinates: {
-                x: 240,
-                y: 45
+                x: 2465,
+                y: 525
             },
-            width: 65,
-            height: 75,
+            width: 600,
+            height: 750,
             glow:{ enabled: true, color: '#ff0000' }
         },
 
@@ -2281,19 +2449,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/backgrounds/hexagon/option-3/colors',
             url: '/images/resources/backgrounds/hexagon/option-3/colors/regular.png',
             leftCoordinates: {
-                x: 12,
-                y: 0
+                x: 100,
+                y: 110
             },
             centerCoordinates: {
-                x: 100,
-                y: 0
+                x: 1150,
+                y: 110
             },
             rightCoordinates: {
-                x: 200,
-                y: 0
+                x: 2130,
+                y: 110
             },
-            width: 150,
-            height: 185,
+            width: 1400,
+            height: 1750,
         },
 
         bottomLogo: {
@@ -2303,12 +2471,20 @@ export const premadeTemplates = [
             imageType: 'svg',
             filePath: '/images/resources/cars/porsche/text/porsche/colors',
             url: '/images/resources/cars/porsche/text/porsche/colors/gray.svg',
-            centerCoordinates: {
-                x: 115,
-                y: 140
+            leftCoordinates: {
+                x: 1095,
+                y: 1500
             },
-            width: 125,
-            height: 15,
+            centerCoordinates: {
+                x: 1095,
+                y: 1500
+            },
+            rightCoordinates: {
+                x: 1095,
+                y: 1500
+            },
+            width: 1450,
+            height: 150,
             glow:{ enabled: true, color: '#000000' }
         },
         backgroundSettings: {
@@ -2355,6 +2531,7 @@ export const premadeTemplates = [
     }, //Porsche #3  - [Done]
 
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '21',
@@ -2484,6 +2661,7 @@ export const premadeTemplates = [
     }, //BMW #1 - [Done]
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'miami-heat-yellow-2-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -2504,19 +2682,19 @@ export const premadeTemplates = [
             imageType: 'svg',
             url: '/images/resources/sports/basketball/miami-heat/gray/regular.svg',
             leftCoordinates: {
-                x: 40,
-                y: 60
+                x: 225,
+                y: 365
             },
             centerCoordinates: {
-                x: 140,
-                y: 55
+                x: 1250,
+                y: 365
             },
             rightCoordinates: {
-                x: 230,
-                y: 60
+                x: 2300,
+                y: 365
             },
-            width: 65,
-            height: 65,
+            width: 1000,
+            height: 1000,
             glow:{ enabled: true, color: '#fee404' }
         },
 
@@ -2571,6 +2749,7 @@ export const premadeTemplates = [
     }, //Miami Heat Yellow - [NOT DONE]
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'porsche-4-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -2587,19 +2766,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/cars/porsche/logos/logo.png',
             leftCoordinates: {
-                x: 15,
-                y: 50
+                x: 450,
+                y: 525
             },
             centerCoordinates: {
-                x: 145,
-                y: 50
+                x: 1525,
+                y: 525
             },
             rightCoordinates: {
-                x: 275,
-                y: 50
+                x: 2465,
+                y: 525
             },
-            width: 55,
-            height: 65,
+            width: 600,
+            height: 750,
             glow:{ enabled: true, color: '#000000' }
         },
         backgroundLogo:{
@@ -2610,19 +2789,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/porsche/patterns/option-2/colors',
             url: '/images/resources/cars/porsche/patterns/option-2/colors/regular.png',
             leftCoordinates: {
-                x: 2,
-                y: 0
+                x: 100,
+                y: 150
             },
             centerCoordinates: {
-                x: 10,
-                y: 15
+                x: 1325,
+                y: 150
             },
             rightCoordinates: {
-                x: 252,
-                y: 0
+                x: 2575,
+                y: 150
             },
-            width: 85,
-            height: 135,
+            width: 950,
+            height: 1500,
         },
 
         backgroundSettings: {
@@ -2678,6 +2857,7 @@ export const premadeTemplates = [
     }, //Porsche #4 - [Done]
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'audi-1-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -2779,6 +2959,7 @@ export const premadeTemplates = [
     }, //Audi - [Done]
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'mustang-shelby-1-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -2798,19 +2979,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/ford/logos/cobra/option-1/colors',
             url: '/images/resources/cars/ford/logos/cobra/option-1/colors/regular.svg',
             leftCoordinates: {
-                x: 30,
-                y: 60
+                x: 450,
+                y: 525
             },
             centerCoordinates: {
-                x: 155,
-                y: 60
+                x: 1525,
+                y: 525
             },
             rightCoordinates: {
-                x: 250,
-                y: 60
+                x: 2465,
+                y: 525
             },
-            width: 35,
-            height: 50,
+            width: 550,
+            height: 750,
             glow:{ enabled: true, color: '#000000' }
         },
         backgroundLogo:{
@@ -2821,19 +3002,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/ford/patterns/gt500/option-1/colors',
             url: '/images/resources/cars/ford/patterns/gt500/option-1/colors/regular.png',
             leftCoordinates: {
-                x: 2,
-                y: 35
+                x: 100,
+                y: 50
             },
             centerCoordinates: {
-                x: 130,
-                y: 35
+                x: 1400,
+                y: 425
             },
             rightCoordinates: {
-                x: 252,
-                y: 35
+                x: 2575,
+                y: 50
             },
-            width: 85,
-            height: 100,
+            width: 850,
+            height: 950,
         },
 
         backgroundSettings: {
@@ -2890,6 +3071,7 @@ export const premadeTemplates = [
     }, //Shelby #1  - [Done]
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'porsche-5-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -2909,19 +3091,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/porsche/logos/solid/colors/',
             url: '/images/resources/cars/porsche/logos/solid/colors/regular.svg',
             leftCoordinates: {
-                x: 40,
-                y: 50
+                x: 450,
+                y: 525
             },
             centerCoordinates: {
-                x: 140,
-                y: 50
+                x: 1525,
+                y: 525
             },
             rightCoordinates: {
-                x: 235,
-                y: 50
+                x: 2465,
+                y: 525
             },
-            width: 65,
-            height: 75,
+            width: 600,
+            height: 750,
             glow:{ enabled: false }
         },
         backgroundSettings: {
@@ -2972,6 +3154,7 @@ export const premadeTemplates = [
     }, //Porsche White - [DONE]
 
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '27',
@@ -3069,6 +3252,7 @@ export const premadeTemplates = [
     }, //Aston Martin #1  - [Done]
 
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '28',
@@ -3170,6 +3354,7 @@ export const premadeTemplates = [
     }, //Aston Martin #2  - [Done]
 
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '29',
@@ -3276,6 +3461,7 @@ export const premadeTemplates = [
     }, //Ferrari #1  - [Done]
 
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '30',
@@ -3385,6 +3571,7 @@ export const premadeTemplates = [
     }, //Ferrari #2  - [Done]
 
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '31',
@@ -3405,19 +3592,19 @@ export const premadeTemplates = [
             url: '/images/resources/cars/lamborghini/logos/bull/solid/colors/regular.png',
             filePath: '/images/resources/cars/lamborghini/logos/bull/solid/colors',
             leftCoordinates: {
-                x: 30,
-                y: 50
+                x: 200,
+                y: 525
             },
             centerCoordinates: {
-                x: 145,
-                y: 50
+                x: 1425,
+                y: 525
             },
             rightCoordinates: {
-                x: 230,
-                y: 50
+                x: 2385,
+                y: 525
             },
-            width: 55,
-            height: 75,
+            width: 800,
+            height: 900,
             glow: {
                 enabled: false,
                 color: '#000000'
@@ -3431,12 +3618,20 @@ export const premadeTemplates = [
             imageType: 'png',
             filePath: '/images/resources/cars/lamborghini/text/old/red',
             url: '/images/resources/cars/lamborghini/text/old/red/regular.png',
-            centerCoordinates: {
-                x: 106,
-                y: 135
+            leftCoordinates: {
+                x: 1300,
+                y: 1475
             },
-            width: 125,
-            height: 20,
+            centerCoordinates: {
+                x: 1300,
+                y: 1475
+            },
+            rightCoordinates: {
+                x: 1300,
+                y: 1475
+            },
+            width: 950,
+            height: 265,
             glow:{ enabled: false }
         },
 
@@ -3499,6 +3694,7 @@ export const premadeTemplates = [
     }, //Lamborghini #2 SVJ  - [Done]
 
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         sportsTeam: true,
@@ -3518,19 +3714,19 @@ export const premadeTemplates = [
             enabled: true,
             url: '/images/resources/sports/football/um/logos/um-hands-gray.png',
             leftCoordinates: {
-                x: 15,
-                y: 35
+                x: 50,
+                y: 365
             },
             centerCoordinates: {
-                x: 115,
-                y: 35
+                x: 1000,
+                y: 365
             },
             rightCoordinates: {
-                x: 210,
-                y: 35
+                x: 2050,
+                y: 365
             },
-            width: 130,
-            height: 100,
+            width: 1550,
+            height: 1150,
         },
         bottomLogo: {
             hasColor: true,
@@ -3539,12 +3735,20 @@ export const premadeTemplates = [
             imageType: 'png',
             filePath: '/images/resources/sports/football/um/text/option-3/colors',
             url: '/images/resources/sports/football/um/text/option-3/colors/regular.png',
-            centerCoordinates: {
-                x: 125,
-                y: 135
+            leftCoordinates: {
+                x: 1300,
+                y: 1475
             },
-            width: 100,
-            height: 25,
+            centerCoordinates: {
+                x: 1300,
+                y: 1475
+            },
+            rightCoordinates: {
+                x: 1300,
+                y: 1475
+            },
+            width: 950,
+            height: 265,
             glow:{
                 enabled: true,
                 color: "#ff5a00"
@@ -3558,19 +3762,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/sports/football/um/patterns/option-1/colors',
             url: '/images/resources/sports/football/um/patterns/option-1/colors/gray.png',
             leftCoordinates: {
-                x: 0,
-                y: 8
+                x: 150,
+                y: 325
             },
             centerCoordinates: {
-                x: 90,
-                y: 8
+                x: 1000,
+                y: 325
             },
             rightCoordinates: {
-                x: 185,
-                y: 8
+                x: 2185,
+                y: 325
             },
-            width: 200,
-            height: 150,
+            width: 1500,
+            height: 1250,
         },
         backgroundSettings: {
             color: '#000000',
@@ -3625,6 +3829,7 @@ export const premadeTemplates = [
     }, //Ibis - [DONE]
 
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '33',
@@ -3643,19 +3848,19 @@ export const premadeTemplates = [
             url: '/images/resources/cars/lamborghini/logos/crest/solid-3d/red/colors/regular.png',
             imageType: 'png',
             leftCoordinates: {
-                x: 40,
-                y: 50
+                x: 200,
+                y: 525
             },
             centerCoordinates: {
-                x: 140,
-                y: 50
+                x: 1425,
+                y: 525
             },
             rightCoordinates: {
-                x: 250,
-                y: 50
+                x: 2385,
+                y: 525
             },
-            width: 70,
-            height: 70,
+            width: 800,
+            height: 900,
             glow: { enabled: false }
         },
         backgroundLogo:{
@@ -3713,6 +3918,7 @@ export const premadeTemplates = [
     }, // Lamborghini #3  - [Done]
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'miami-heat-red-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -3733,19 +3939,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/sports/basketball/miami-heat/miami-heat-red-black.svg',
             leftCoordinates: {
-                x: 40,
-                y: 60
+                x: 225,
+                y: 365
             },
             centerCoordinates: {
-                x: 140,
-                y: 55
+                x: 1250,
+                y: 365
             },
             rightCoordinates: {
-                x: 230,
-                y: 60
+                x: 2300,
+                y: 365
             },
-            width: 65,
-            height: 65,
+            width: 1000,
+            height: 1000,
             glow:{ enabled: false }
         },
         backgroundSettings: {
@@ -3799,9 +4005,10 @@ export const premadeTemplates = [
     }, //Miami Heat Red - [NOT DONE]
 
     {
+        vehicleType: 'Car',
             shopifyHandle: 'lamborghini-3-template',
             detailLogo1: { enabled: false},
-        detailLogo2: {enabled: false},
+            detailLogo2: {enabled: false},
             templateId: '35',
             preset: true,
             startPlatePosition: 'center',
@@ -3818,19 +4025,19 @@ export const premadeTemplates = [
                 filePath: '/images/resources/cars/lamborghini/logos/crest/solid-2d/colors',
                 url: '/images/resources/cars/lamborghini/logos/crest/solid-2d/colors/regular.png',
                 leftCoordinates: {
-                    x: 40,
-                    y: 50
+                    x: 200,
+                    y: 525
                 },
                 centerCoordinates: {
-                    x: 142,
-                    y: 60
+                    x: 1425,
+                    y: 525
                 },
                 rightCoordinates: {
-                    x: 250,
-                    y: 50
+                    x: 2385,
+                    y: 525
                 },
-                width: 60,
-                height: 65,
+                width: 800,
+                height: 900,
                 glow:{ enabled: false}
             },
             bottomLogo: {
@@ -3838,12 +4045,20 @@ export const premadeTemplates = [
                 enabled: true,
                 name: "mercedes.svg",
                 url: '/images/logos/flags/italian-rectangle-slanted.png',
-                centerCoordinates: {
-                    x: 100,
-                    y: 135
+                leftCoordinates: {
+                    x: 810,
+                    y: 1475
                 },
-                width: 150,
-                height: 3,
+                centerCoordinates: {
+                    x: 810,
+                    y: 1475
+                },
+                rightCoordinates: {
+                    x: 810,
+                    y: 1475
+                },
+                width: 2000,
+                height: 35,
             },
             backgroundSettings: {
                 color: '#ffffff',
@@ -3890,6 +4105,7 @@ export const premadeTemplates = [
     }, // Lamborghini #4 [NOT DONE]
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'lamborghini-4-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -3915,19 +4131,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/lamborghini/logos/crest/solid-3d/colors',
             url: '/images/resources/cars/lamborghini/logos/crest/solid-3d/colors/regular.png',
             leftCoordinates: {
-                x: 26,
-                y: 32
+                x: 200,
+                y: 525
             },
             centerCoordinates: {
-                x: 125,
-                y: 35
+                x: 1425,
+                y: 525
             },
             rightCoordinates: {
-                x: 230,
-                y: 32
+                x: 2385,
+                y: 525
             },
-            width: 90,
-            height: 100,
+            width: 800,
+            height: 900,
             glow:{ enabled: true, color: '#ffffff' }
         },
         backgroundLogo:{ enabled: false },
@@ -3987,6 +4203,7 @@ export const premadeTemplates = [
     }, // Lamborghini #5 [NOT DONE]
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'dodge-hellcat-1-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -4070,6 +4287,7 @@ export const premadeTemplates = [
     }, //Dodge Hellcat #1 - [DONE]
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'dolphins-2-template',
         sportsTeam: true,
         detailLogo1: { enabled: false},
@@ -4089,19 +4307,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/sports/football/dolphins/logos/colors',
             url: '/images/resources/sports/football/dolphins/logos/colors/gray.png',
             leftCoordinates: {
-                x: 10,
-                y: 32
+                x: 300,
+                y: 550
             },
             centerCoordinates: {
-                x: 100,
-                y: 35
+                x: 1375,
+                y: 550
             },
             rightCoordinates: {
-                x: 210,
-                y: 32
+                x: 2385,
+                y: 550
             },
-            width: 125,
-            height: 100,
+            width: 900,
+            height: 700,
             glow:{ enabled: true, color: '#000000' }
         },
 
@@ -4112,12 +4330,20 @@ export const premadeTemplates = [
             imageType: 'png',
             filePath: '/images/resources/sports/football/dolphins/text/colors',
             url: '/images/resources/sports/football/dolphins/text/colors/regular.png',
-            centerCoordinates: {
-                x: 106,
-                y: 140
+            leftCoordinates: {
+                x: 1300,
+                y: 1550
             },
-            width: 125,
-            height: 15,
+            centerCoordinates: {
+                x: 1300,
+                y: 1550
+            },
+            rightCoordinates: {
+                x: 1300,
+                y: 1550
+            },
+            width: 950,
+            height: 125,
         },
 
         backgroundLogo:{
@@ -4128,19 +4354,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/sports/football/dolphins/flags/option-1/colors',
             url: '/images/resources/sports/football/dolphins/flags/option-1/colors/regular.png',
             leftCoordinates: {
-                x: 50,
-                y: 0
+                x: 362,
+                y: 20
             },
             centerCoordinates: {
-                x: 143,
-                y: 0
+                x: 1425,
+                y: 20
             },
             rightCoordinates: {
-                x: 245,
-                y: 0
+                x: 2445,
+                y: 20
             },
-            width: 60,
-            height: 165,
+            width: 800,
+            height: 1785,
         },
 
         backgroundSettings: {
@@ -4194,6 +4420,7 @@ export const premadeTemplates = [
     }, //Dolphins #2 - [DONE]
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'dolphins-3-template-1',
         sportsTeam: true,
         detailLogo1: { enabled: false},
@@ -4214,19 +4441,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/sports/football/dolphins/logos/colors',
             url: '/images/resources/sports/football/dolphins/logos/colors/gray.png',
             leftCoordinates: {
-                x: 10,
-                y: 32
+                x: 300,
+                y: 550
             },
             centerCoordinates: {
-                x: 100,
-                y: 35
+                x: 1375,
+                y: 550
             },
             rightCoordinates: {
-                x: 210,
-                y: 32
+                x: 2385,
+                y: 550
             },
-            width: 125,
-            height: 100,
+            width: 900,
+            height: 700,
             glow:{ enabled: true, color: '#000000' }
         },
         bottomLogo: {
@@ -4236,12 +4463,20 @@ export const premadeTemplates = [
             imageType: 'png',
             filePath: '/images/resources/sports/football/dolphins/text/colors',
             url: '/images/resources/sports/football/dolphins/text/colors/gray.png',
-            centerCoordinates: {
-                x: 106,
-                y: 140
+            leftCoordinates: {
+                x: 1300,
+                y: 1550
             },
-            width: 125,
-            height: 15,
+            centerCoordinates: {
+                x: 1300,
+                y: 1550
+            },
+            rightCoordinates: {
+                x: 1300,
+                y: 1550
+            },
+            width: 950,
+            height: 125,
         },
         backgroundSettings: {
             color: '#000000',
@@ -4294,6 +4529,7 @@ export const premadeTemplates = [
     }, //Dolphins #3 - [DONE]
 
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '40',
@@ -4411,6 +4647,7 @@ export const premadeTemplates = [
     }, //Corvette #1  - [Done]
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'lamborghini-6-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -4430,19 +4667,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/lamborghini/logos/crest/solid-3d/colors',
             url: '/images/resources/cars/lamborghini/logos/crest/solid-3d/colors/regular.png',
             leftCoordinates: {
-                x: 40,
-                y: 50
+                x: 200,
+                y: 525
             },
             centerCoordinates: {
-                x: 142,
-                y: 55
+                x: 1425,
+                y: 525
             },
             rightCoordinates: {
-                x: 250,
-                y: 50
+                x: 2385,
+                y: 525
             },
-            width: 60,
-            height: 60,
+            width: 800,
+            height: 900,
             glow: { enabled: true, color: '#ffcc40' }
         },
         backgroundSettings: {
@@ -4499,6 +4736,7 @@ export const premadeTemplates = [
     }, // Lamborghini #6 [DONE]
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'copy-of-lamborghini-6-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -4516,19 +4754,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/cars/lamborghini/logos/bull/crest-bull.png',
             leftCoordinates: {
-                x: 26,
-                y: 32
+                x: 200,
+                y: 525
             },
             centerCoordinates: {
-                x: 128,
-                y: 35
+                x: 1425,
+                y: 525
             },
             rightCoordinates: {
-                x: 230,
-                y: 32
+                x: 2585,
+                y: 525
             },
-            width: 85,
-            height: 100,
+            width: 800,
+            height: 900,
             glow:{ enabled: true, color: '#000000' }
         },
         
@@ -4540,19 +4778,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/lamborghini/patterns/option-2',
             url: '/images/resources/cars/lamborghini/patterns/option-2/gray.png',
             leftCoordinates: {
-                x: -20,
-                y: 8
+                x: -200,
+                y: 325
             },
             centerCoordinates: {
-                x: 65,
-                y: 8
+                x: 1000,
+                y: 325
             },
             rightCoordinates: {
-                x: 175,
-                y: 8
+                x: 2185,
+                y: 325
             },
-            width: 200,
-            height: 150,
+            width: 1500,
+            height: 1250,
         },
 
         bottomLogo: {
@@ -4562,12 +4800,20 @@ export const premadeTemplates = [
             imageType: 'png',
             filePath: '/images/resources/cars/lamborghini/text/old/colors',
             url: '/images/resources/cars/lamborghini/text/old/colors/white.png',
-            centerCoordinates: {
-                x: 106,
-                y: 135
+            leftCoordinates: {
+                x: 1300,
+                y: 1425
             },
-            width: 125,
-            height: 20,
+            centerCoordinates: {
+                x: 1300,
+                y: 1425
+            },
+            rightCoordinates: {
+                x: 1300,
+                y: 1425
+            },
+            width: 950,
+            height: 265,
             glow:{ enabled: true, color: '#000000' }
         },
 
@@ -4622,6 +4868,7 @@ export const premadeTemplates = [
     }, // Lamborghini #7 [DONE] 
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'copy-of-ferrari-2-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -4707,6 +4954,7 @@ export const premadeTemplates = [
     }, // Ferrari italy #3 [DONE] 
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'ferrari-4-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -4822,6 +5070,7 @@ export const premadeTemplates = [
     }, // Ferrari #4 [DONE] 
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'rolls-royce-1-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -4840,19 +5089,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/rolls-royce/logo/rr/colors',
             url: '/images/resources/cars/rolls-royce/logo/rr/colors/regular.svg',
             leftCoordinates: {
-                x: 30,
-                y: 60
+                x: 450,
+                y: 525
             },
             centerCoordinates: {
-                x: 146,
-                y: 60
+                x: 1525,
+                y: 525
             },
             rightCoordinates: {
-                x: 250,
-                y: 60
+                x: 2465,
+                y: 525
             },
-            width: 50,
-            height: 50,
+            width: 650,
+            height: 750,
             glow:{ enabled: false, color: "#000000" }
         },
         bottomLogo: {
@@ -4910,6 +5159,7 @@ export const premadeTemplates = [
     }, // Rolls Royce #1 [DONE] 
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'rolls-royce-2-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -4928,19 +5178,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/rolls-royce/logo/crest/colors',
             url: '/images/resources/cars/rolls-royce/logo/crest/colors/regular.png',
             leftCoordinates: {
-                x: 40,
-                y: 45
+                x: 500,
+                y: 555
             },
             centerCoordinates: {
-                x: 150,
-                y: 45
+                x: 1615,
+                y: 555
             },
             rightCoordinates: {
-                x: 250,
-                y: 45
+                x: 2565,
+                y: 555
             },
-            width: 45,
-            height: 75,
+            width: 450,
+            height: 750,
             glow:{ enabled: true, color: "#000000" }
         },
         bottomLogo: {
@@ -4950,12 +5200,20 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/rolls-royce/text/rolls-royce/gray/colors',
             imageType: 'png',
             url: '/images/resources/cars/rolls-royce/text/rolls-royce/gray/colors/regular.png',
-            centerCoordinates: {
-                x: 108,
-                y: 135
+            leftCoordinates: {
+                x: 1275,
+                y: 1525
             },
-            width: 130,
-            height: 15,
+            centerCoordinates: {
+                x: 1275,
+                y: 1525
+            },
+            rightCoordinates: {
+                x: 1275,
+                y: 1525
+            },
+            width: 1050,
+            height: 125,
             glow:{ enabled: true, color: "#000000" }
         },
         backgroundSettings: {
@@ -5010,6 +5268,7 @@ export const premadeTemplates = [
     }, // Rolls Royce #2 [DONE] 
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'mercedes-1-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -5025,19 +5284,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/cars/mercedes/logos/original/mercedes-gray.png',
             leftCoordinates: {
-                x: 40,
-                y: 45
+                x: 375,
+                y: 550
             },
             centerCoordinates: {
-                x: 145,
-                y: 60
+                x: 1475,
+                y: 550
             },
             rightCoordinates: {
-                x: 250,
-                y: 45
+                x: 2425,
+                y: 550
             },
-            width: 55,
-            height: 55,
+            width: 700,
+            height: 700,
             glow:{ enabled: true, color: "#00a5b2" }
         },
         bottomLogo: {
@@ -5047,12 +5306,20 @@ export const premadeTemplates = [
             imageType: 'png',
             filePath: '/images/resources/cars/mercedes/text/mercedes/colors',
             url: '/images/resources/cars/mercedes/text/mercedes/colors/white.png',
-            centerCoordinates: {
-                x: 110,
-                y: 135
+            leftCoordinates: {
+                x: 1275,
+                y: 1525
             },
-            width: 125,
-            height: 15,
+            centerCoordinates: {
+                x: 1275,
+                y: 1525
+            },
+            rightCoordinates: {
+                x: 1275,
+                y: 1525
+            },
+            width: 1050,
+            height: 125,
             glow:{ enabled: true, color: "#000000" }
         },
 
@@ -5114,6 +5381,7 @@ export const premadeTemplates = [
     }, // Mercedes #1 [DONE] 
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'palm-trees-1-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -5194,6 +5462,7 @@ export const premadeTemplates = [
     }, // Palms #1 [DONE] 
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'porsche-6-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -5210,19 +5479,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/cars/porsche/logos/logo.png',
             leftCoordinates: {
-                x: 15,
-                y: 50
+                x: 450,
+                y: 525
             },
             centerCoordinates: {
-                x: 145,
-                y: 50
+                x: 1525,
+                y: 525
             },
             rightCoordinates: {
-                x: 275,
-                y: 50
+                x: 2465,
+                y: 525
             },
-            width: 55,
-            height: 65,
+            width: 600,
+            height: 750,
             glow:{ enabled: true, color: '#b07800' }
         },
         bottomLogo: {
@@ -5232,12 +5501,20 @@ export const premadeTemplates = [
             imageType: 'svg',
             filePath: '/images/resources/cars/porsche/text/turbo/colors',
             url: '/images/resources/cars/porsche/text/turbo/colors/white.svg',
-            centerCoordinates: {
-                x: 125,
-                y: 135
+            leftCoordinates: {
+                x: 1200,
+                y: 1400
             },
-            width: 100,
-            height: 20,
+            centerCoordinates: {
+                x: 1200,
+                y: 1400
+            },
+            rightCoordinates: {
+                x: 1200,
+                y: 1400
+            },
+            width: 1364,
+            height: 272,
             glow:{ enabled: true, color: '#000000' }
         },
         backgroundSettings: {
@@ -5294,6 +5571,7 @@ export const premadeTemplates = [
     }, //Porsche #6 - [Done]
     
     {
+        vehicleType: 'Car',
         shopifyHandle: 'porsche-7-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -5310,19 +5588,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/cars/porsche/logos/logo.png',
             leftCoordinates: {
-                x: 15,
-                y: 50
+                x: 450,
+                y: 525
             },
             centerCoordinates: {
-                x: 145,
-                y: 50
+                x: 1525,
+                y: 525
             },
             rightCoordinates: {
-                x: 275,
-                y: 50
+                x: 2465,
+                y: 525
             },
-            width: 55,
-            height: 65,
+            width: 600,
+            height: 750,
             glow:{ enabled: true, color: '#b07800' }
         },
         backgroundLogo:{
@@ -5333,19 +5611,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/porsche/patterns/option-3/colors',
             url: '/images/resources/cars/porsche/patterns/option-3/colors/regular.png',
             leftCoordinates: {
-                x: -20,
-                y: 8
+                x: 100,
+                y: 250
             },
             centerCoordinates: {
-                x: 65,
-                y: 8
+                x: 1000,
+                y: 250
             },
             rightCoordinates: {
-                x: 175,
-                y: 8
+                x: 2000,
+                y: 250
             },
-            width: 200,
-            height: 150,
+            width: 1500,
+            height: 1250,
         },
 
         backgroundSettings: {
@@ -5404,6 +5682,7 @@ export const premadeTemplates = [
     }, //Porsche #7 - [DONE]
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'tesla-x-stormtrooper-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -5422,19 +5701,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/tesla/logos/option-1/colors',
             url: '/images/resources/cars/tesla/logos/option-1/colors/black.png',
             leftCoordinates: {
-                x: 30,
-                y: 60
+                x: 450,
+                y: 575
             },
             centerCoordinates: {
-                x: 145,
-                y: 60
+                x: 1525,
+                y: 575
             },
             rightCoordinates: {
-                x: 250,
-                y: 60
+                x: 2495,
+                y: 575
             },
-            width: 50,
-            height: 50,
+            width: 600,
+            height: 700,
             glow:{ enabled: true, color: '#ffffff' }
         },
 
@@ -5444,12 +5723,20 @@ export const premadeTemplates = [
             imageType: 'png',
             filePath: '/images/resources/cars/tesla/text/stormtrooper/colors',
             url: '/images/resources/cars/tesla/text/stormtrooper/colors/white.png',
-            centerCoordinates: {
-                x: 110,
-                y: 140
+            leftCoordinates: {
+                x: 1100,
+                y: 1475
             },
-            width: 125,
-            height: 10,
+            centerCoordinates: {
+                x: 1100,
+                y: 1475
+            },
+            rightCoordinates: {
+                x: 1100,
+                y: 1475
+            },
+            width: 1450,
+            height: 150,
             glow:{ enabled: true, color: '#000000' }
         },
         backgroundSettings: {
@@ -5501,6 +5788,7 @@ export const premadeTemplates = [
     }, //Tesla #1 - [Done]
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'lamborghini-8-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -5519,19 +5807,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/lamborghini/logos/crest/solid-2d-outline/colors',
             url: '/images/resources/cars/lamborghini/logos/crest/solid-2d-outline/colors/regular.png',
             leftCoordinates: {
-                x: 30,
-                y: 55
+                x: 200,
+                y: 525
             },
             centerCoordinates: {
-                x: 142,
-                y: 55
+                x: 1425,
+                y: 525
             },
             rightCoordinates: {
-                x: 245,
-                y: 55
+                x: 2385,
+                y: 525
             },
-            width: 60,
-            height: 60,
+            width: 800,
+            height: 900,
             glow:{ enabled: true, color: '#fffc00' }
         },
         bottomLogo: {
@@ -5541,12 +5829,20 @@ export const premadeTemplates = [
             imageType: 'png',
             filePath: '/images/resources/cars/lamborghini/text/old/colors',
             url: '/images/resources/cars/lamborghini/text/old/colors/yellow.png',
-            centerCoordinates: {
-                x: 108,
-                y: 135
+            leftCoordinates: {
+                x: 1300,
+                y: 1425
             },
-            width: 125,
-            height: 20,
+            centerCoordinates: {
+                x: 1300,
+                y: 1425
+            },
+            rightCoordinates: {
+                x: 1300,
+                y: 1425
+            },
+            width: 950,
+            height: 265,
         },
 
         backgroundLogo:{
@@ -5610,6 +5906,7 @@ export const premadeTemplates = [
     }, //Lambo #8 - [Done]
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'forged-carbon-1-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -5677,6 +5974,7 @@ export const premadeTemplates = [
     }, //Forged Carbon Fiber #8 - [Done]
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'ferrari-5-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -5801,6 +6099,7 @@ export const premadeTemplates = [
     }, //Ferrari #5 - [Done]
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'bmw-2-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -5935,6 +6234,7 @@ export const premadeTemplates = [
     }, //BMW #2 - [Done]
 
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '56',
@@ -6037,6 +6337,7 @@ export const premadeTemplates = [
     }, //Ferrari #6  - [Done], Resizing
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'carbon-fiber-1-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -6104,6 +6405,7 @@ export const premadeTemplates = [
     }, //carbon fiber #2 - [Done]
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'mustang-shelby-2-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -6120,19 +6422,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/cars/ford/logos/cobra/cobra-silver.png',
             leftCoordinates: {
-                x: 30,
-                y: 60
+                x: 450,
+                y: 525
             },
             centerCoordinates: {
-                x: 145,
-                y: 45
+                x: 1525,
+                y: 525
             },
             rightCoordinates: {
-                x: 250,
-                y: 60
+                x: 2465,
+                y: 525
             },
-            width: 55,
-            height: 85,
+            width: 550,
+            height: 750,
             glow:{ enabled: true, color: '#ffffff' }
         },
         backgroundLogo:{
@@ -6143,19 +6445,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/ford/patterns/gt500/option-2',
             url: '/images/resources/cars/ford/patterns/gt500/option-2/gray.png',
             leftCoordinates: {
-                x: 10,
-                y: 5
+                x: 100,
+                y: 50
             },
             centerCoordinates: {
-                x: 265,
-                y: 5
+                x: 2675,
+                y: 50
             },
             rightCoordinates: {
-                x: 265,
-                y: 5
+                x: 2675,
+                y: 50
             },
-            width: 75,
-            height: 150,
+            width: 800,
+            height: 1700,
         },
 
         backgroundSettings: {
@@ -6205,6 +6507,7 @@ export const premadeTemplates = [
     }, //Shelby #1  - [Done]
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'lamborghini-9-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -6223,19 +6526,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/lamborghini/logos/crest/solid-3d/colors',
             url: '/images/resources/cars/lamborghini/logos/crest/solid-3d/colors/regular.png',
             leftCoordinates: {
-                x: 40,
-                y: 50
+                x: 200,
+                y: 525
             },
             centerCoordinates: {
-                x: 142,
-                y: 55
+                x: 1425,
+                y: 525
             },
             rightCoordinates: {
-                x: 250,
-                y: 50
+                x: 2385,
+                y: 525
             },
-            width: 60,
-            height: 60,
+            width: 800,
+            height: 900,
             glow: { enabled: true, color: '#000000' }
         },
         backgroundSettings: {
@@ -6293,6 +6596,7 @@ export const premadeTemplates = [
     }, //lambo #9 - [Done]
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'lamborghini-10-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -6313,19 +6617,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/lamborghini/logos/crest/solid-2d-outline/colors',
             url: '/images/resources/cars/lamborghini/logos/crest/solid-2d-outline/colors/regular.png',
             leftCoordinates: {
-                x: 30,
-                y: 55
+                x: 200,
+                y: 525
             },
             centerCoordinates: {
-                x: 142,
-                y: 55
+                x: 1425,
+                y: 525
             },
             rightCoordinates: {
-                x: 245,
-                y: 55
+                x: 2385,
+                y: 525
             },
-            width: 60,
-            height: 60,
+            width: 800,
+            height: 900,
             glow:{ enabled: true, color: '#ff0000' }
         },
 
@@ -6385,6 +6689,7 @@ export const premadeTemplates = [
     }, //Lambo #10 - [Done]
 
     {
+        vehicleType: 'Car',
         originalColor: '#ff9800',
         shopifyHandle: 'rolls-royce-3-template',
         templateId: '61',
@@ -6404,19 +6709,19 @@ export const premadeTemplates = [
             imageType: 'svg',
             url: '/images/resources/cars/rolls-royce/logo/rr/colors-orange/orange.svg',
             leftCoordinates: {
-                x: 30,
-                y: 32
+                x: 450,
+                y: 525
             },
             centerCoordinates: {
-                x: 130,
-                y: 35
+                x: 1525,
+                y: 525
             },
             rightCoordinates: {
-                x: 230,
-                y: 32
+                x: 2465,
+                y: 525
             },
-            width: 85,
-            height: 100,
+            width: 650,
+            height: 750,
             glow:{ enabled: true, color: '#000000' }
         },
 
@@ -6427,12 +6732,20 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/rolls-royce/text/rolls-royce/orange/colors',
             imageType: 'png',
             url: '/images/resources/cars/rolls-royce/text/rolls-royce/orange/colors/regular.png',
-            centerCoordinates: {
-                x: 108,
-                y: 135
+            leftCoordinates: {
+                x: 1275,
+                y: 1525
             },
-            width: 130,
-            height: 15,
+            centerCoordinates: {
+                x: 1275,
+                y: 1525
+            },
+            rightCoordinates: {
+                x: 1275,
+                y: 1525
+            },
+            width: 1050,
+            height: 125,
             glow:{ enabled: true, color: "#000000" }
         },
 
@@ -6442,19 +6755,19 @@ export const premadeTemplates = [
             name: 'gray.png',
             url: '/images/resources/cars/rolls-royce/overlay/option-1/gray.svg',
             leftCoordinates: {
-                x: 15,
-                y: 5
+                x: 325,
+                y: 375
             },
             centerCoordinates: {
-                x: 105,
-                y: 5
+                x: 1375,
+                y: 375
             },
             rightCoordinates: {
-                x: 215,
-                y: 5
+                x: 2350,
+                y: 375
             },
-            width: 125,
-            height: 150,
+            width: 950,
+            height: 1150,
         },
     
         backgroundSettings: {
@@ -6506,6 +6819,7 @@ export const premadeTemplates = [
     }, //rolls-royce #3 - [Done]
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'red-line-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -6575,6 +6889,7 @@ export const premadeTemplates = [
     }, //Red line - [Done]
 
     {
+        vehicleType: 'Car',
         shopifyHandle: 'dodge-hellcat-2-template',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -6657,6 +6972,7 @@ export const premadeTemplates = [
     }, //Red Eye - [Done]
 
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '65',
@@ -6777,6 +7093,7 @@ export const premadeTemplates = [
     }, //Corvette #1  - [Done]
 
     {
+        vehicleType: 'Car',
         originalColor: '#000e48',
         templateId: '66',
         shopifyHandle: 'mustang-shelby-3-template',
@@ -6796,19 +7113,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/ford/logos/cobra-2/colors',
             url: '/images/resources/cars/ford/logos/cobra-2/colors/regular.png',
             leftCoordinates: {
-                x: 30,
-                y: 60
+                x: 450,
+                y: 525
             },
             centerCoordinates: {
-                x: 140,
-                y: 45
+                x: 1525,
+                y: 525
             },
             rightCoordinates: {
-                x: 250,
-                y: 60
+                x: 2465,
+                y: 525
             },
-            width: 60,
-            height: 85,
+            width: 550,
+            height: 750,
             glow:{ enabled: false }
         },
 
@@ -6820,19 +7137,19 @@ export const premadeTemplates = [
             filePath: 'images/resources/cars/ford/patterns/gt500-2/colors',
             url: '/images/resources/cars/ford/patterns/gt500-2/colors/regular.png',
             leftCoordinates: {
-                x: 280,
-                y: 5
+                x: 100,
+                y: 50
             },
             centerCoordinates: {
-                x: 280,
-                y: 5
+                x: 2675,
+                y: 50
             },
             rightCoordinates: {
-                x: 280,
-                y: 5
+                x: 2675,
+                y: 50
             },
-            width: 65,
-            height: 150,
+            width: 800,
+            height: 1700,
         },
 
         detailLogo1:{
@@ -6843,19 +7160,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/ford/details/faded-stripe/colors',
             url: '/images/resources/cars/ford/details/faded-stripe/colors/regular.png',
             leftCoordinates: {
-                x: 40,
+                x: 2675,
                 y: 0
             },
             centerCoordinates: {
-                x: 40,
+                x: 475,
                 y: 0
             },
             rightCoordinates: {
-                x: 40,
+                x: 475,
                 y: 0
             },
-            width: 65,
-            height: 150,
+            width: 600,
+            height: 1700,
         },
 
         detailLogo2:{
@@ -6866,19 +7183,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/ford/logos/CS/colors',
             url: '/images/resources/cars/ford/logos/CS/colors/regular.png',
             leftCoordinates: {
-                x: 15,
-                y: 15
+                x: 150,
+                y: 125
             },
             centerCoordinates: {
-                x: 15,
-                y: 15
+                x: 150,
+                y: 125
             },
             rightCoordinates: {
-                x: 15,
-                y: 15
+                x: 150,
+                y: 125
             },
-            width: 15,
-            height: 10,
+            width: 200,
+            height: 150,
         },
     
         backgroundSettings: {
@@ -6925,6 +7242,7 @@ export const premadeTemplates = [
     }, //Shelby White  - [Done]
 
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '67',
@@ -7015,6 +7333,7 @@ export const premadeTemplates = [
     }, //Ram #1  - [Done]
 
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '68',
@@ -7093,6 +7412,7 @@ export const premadeTemplates = [
     }, //Corvette #3  - [Done]
 
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '69',
@@ -7141,6 +7461,7 @@ export const premadeTemplates = [
     }, //Corvette #1  - [Done]
 
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '70',
@@ -7193,6 +7514,7 @@ export const premadeTemplates = [
     }, //Corvette #1  - [Done]
 
     {
+        vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
         templateId: '71',
@@ -7265,6 +7587,7 @@ export const premadeTemplates = [
 
        // Template 1
        {
+        vehicleType: 'Car',
         templateId: '1',
         preset: false,
         shopifyHandle: 'two-colors-custom-template',
@@ -7323,6 +7646,7 @@ export const premadeTemplates = [
     },
     // Template 2
     {
+        vehicleType: 'Car',
         templateId: '2',
         preset: false,
         shopifyHandle: 'two-colors-and-logo-custom-template',
@@ -7405,6 +7729,7 @@ export const premadeTemplates = [
     },
     // Template 3
     {
+        vehicleType: 'Car',
         templateId: '3',
         fadeType: 'FADE-UP',
         preset: false,
@@ -7500,6 +7825,7 @@ export const premadeTemplates = [
     },
     // Template 4
     {
+        vehicleType: 'Car',
         templateId: '4',
         fadeType: 'FADE-UP',
         preset: false,
@@ -7609,6 +7935,7 @@ export const premadeTemplates = [
 
     // Template 5
     {
+        vehicleType: 'Car',
         templateId: '5',
         fadeType: 'FADE-DOWN',
         preset: false,
@@ -7719,6 +8046,7 @@ export const premadeTemplates = [
 
     // Template 6
     {
+        vehicleType: 'Car',
         templateId: '6',
         fadeType: 'FADE-DOWN',
         preset: false,
@@ -7824,6 +8152,7 @@ export const premadeTemplates = [
 
     // Template 7
     {
+        vehicleType: 'Car',
         templateId: '7',
         fadeType: 'FULL-BG',
         preset: false,
@@ -7929,6 +8258,7 @@ export const premadeTemplates = [
 
     // Template 8
     {
+        vehicleType: 'Car',
         templateId: '8',
         fadeType: 'FULL-BG',
         preset: false,
@@ -7945,19 +8275,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/preset/logos/logo.png',
             leftCoordinates: {
-                x: 26,
-                y: 32
+                x: 50,
+                y: 365
             },
             centerCoordinates: {
-                x: 135,
-                y: 65
+                x: 1000,
+                y: 365
             },
             rightCoordinates: {
-                x: 230,
-                y: 32
+                x: 2050,
+                y: 365
             },
-            width: 100,
-            height: 100,
+            width: 1550,
+            height: 1150,
             glow: {
                 enabled: false
             }
@@ -7967,12 +8297,20 @@ export const premadeTemplates = [
             enabled: true,
             name: "mercedes.svg",
             url: '/images/resources/preset/logos/bottom-logo.png',
-            centerCoordinates: {
-                x: 98,
-                y: 130
+            leftCoordinates: {
+                x: 1300,
+                y: 1475
             },
-            width: 145,
-            height: 10,
+            centerCoordinates: {
+                x: 1300,
+                y: 1475
+            },
+            rightCoordinates: {
+                x: 1300,
+                y: 1475
+            },
+            width: 950,
+            height: 265,
             glow: {
                 enabled: true,
                 color: "#000000"

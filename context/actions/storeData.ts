@@ -11,32 +11,43 @@ import {getApps} from "@firebase/app";
 
 const setImagePreview = async (node: any) => {
     try {
-        window.devicePixelRatio = 5;
-        const canvas = await html2canvas(node, {
-            useCORS: true,
-            // foreignObjectRendering: true,
-            // crossOrigin: 'anonymous',
-            allowTaint: true,
-            scale: 5
-        })
-        const croppedCanvas = document.createElement('canvas')
-        const croppedCanvasContext = croppedCanvas.getContext('2d')
-        croppedCanvasContext?.scale(5, 5)
+        
+        // window.devicePixelRatio = 5;
+        // const canvas = await html2canvas(node, {
+        //     useCORS: true,
+        //     // foreignObjectRendering: true,
+        //     // crossOrigin: 'anonymous',
+        //     allowTaint: true,
+        //     scale: 5
+        // })
+        // const croppedCanvas = document.createElement('canvas')
+        // const croppedCanvasContext = croppedCanvas.getContext('2d')
+        // croppedCanvasContext?.scale(5, 5)
 
-        const cropPositionTop = 0
-        const cropPositionLeft = 0
-        let cropWidth = canvas.width * 5;
-        let cropHeight = canvas.height * 5;
+        // const cropPositionTop = 0
+        // const cropPositionLeft = 0
+        // let cropWidth = canvas.width * 5;
+        // let cropHeight = canvas.height * 5;
 
-        croppedCanvas.width = canvas.width
-        croppedCanvas.height = canvas.height
+        // croppedCanvas.width = canvas.width
+        // croppedCanvas.height = canvas.height
 
-        croppedCanvasContext?.drawImage(
-            canvas,
-            cropPositionLeft,
-            cropPositionTop,
-        )
-        const base64Image = croppedCanvas.toDataURL('image/jpeg', 1)
+        // croppedCanvasContext?.drawImage(
+        //     canvas,
+        //     cropPositionLeft,
+        //     cropPositionTop,
+        // )
+        const stage = node.current;
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        stage?.setWidth(width);
+        stage?.setHeight(height);
+        stage?.setScaleX(0.35);
+        stage?.setScaleY(0.35);
+        stage?.draw();
+
+        const base64Image = stage.toDataURL();
         return base64Image;
     } catch (error) {
         console.log(error);
@@ -107,7 +118,7 @@ export const storeCheckout = async (
             currentLicensePlate
         );
         
-        const imagePrev = await setImagePreview(canvasRef.current);
+        const imagePrev = await setImagePreview(canvasRef);
         const storage = getStorage();
         const storageRef = ref(storage, `customTemplates/${plateResponse.customTemplate.insertedId}/design-preview/preview`);
         const upload = await uploadString( storageRef, imagePrev, 'data_url', {

@@ -80,7 +80,8 @@ export const TemplateList = (props: any) => {
                                     template?.title,
                                     template.handle,
                                     template.variants,
-                                    props?.customTemplate
+                                    props?.customTemplate,
+                                    template?.title.includes('Motorcycle') ?  'Motorcycle' : 'Car'
                                 )
                             }
                         >

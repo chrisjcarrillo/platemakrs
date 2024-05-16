@@ -1,5 +1,6 @@
 interface IPathSvg{
-	d: string
+	d: string,
+	type: string
 }
 interface IStateSvGProps {
 	stateId: string,
@@ -14,6 +15,8 @@ interface IStateProps {
 	textStrokeWidth: string
 	filter: string,
 	svg?: IStateSvGProps,
+	width: number,
+	height: number,
 }
 export const StateSvg = (
 	props: IStateProps
@@ -25,7 +28,9 @@ export const StateSvg = (
 		textStrokeWidth,
 		textStrokeColor,
 		filter,
-		svg
+		svg,
+		width,
+		height
 	} = props;
 
 	return (
@@ -47,15 +52,23 @@ export const StateSvg = (
 			x="0px" 
 			y="0px"
 			viewBox={`${svg?.viewBox}`}
-			width={"35%"}
-			height={"auto"}
+			width={width}
+			height={height}
 
 		>
 			{
 				svg?.paths.map((svg, index) => {
-					return(
-						<path key={index} d={`${svg.d}`} />
-					)
+					if(svg.type === "polygon") {
+						return(
+							<polygon key={index} points={`${svg.d}`} />
+						)		
+					}
+					if(svg.type === "path") {
+						return(
+							<path key={index} d={`${svg.d}`} />
+						)		
+					}
+					
 				})
 			}
 		</svg>

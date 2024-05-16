@@ -8,20 +8,15 @@ import React, {
 import {
     IEditorSteps
 } from '../interfaces/editor.interface';
-import { staticTemplates } from '../utils/templateHelpers';
-
-import { v4 as uuidv4 } from 'uuid';
-import { Modal, message } from 'antd';
-import { WarningOutlined } from '@ant-design/icons';
+import { message } from 'antd';
 import { ILicensePlate } from '../interfaces/licensePlate.interface';
-import { ITemplate } from '../interfaces/template.interface';
 import { ICustomPlateTemplate } from '../interfaces/customTemplate.interface';
 import { useRouter } from 'next/navigation'
 import { InterfaceContext, InterfaceContextType } from './interfaceContext';
-import { createLicensePlateFirebase, createTemplateFirebase, getLicensePlate, updateLicensePlateFirebase } from '../lib/firebase/firebase';
 import { StoreContext, StoreContextType, client } from './storeContext';
 import { premadeTemplates } from '../utils/premadeTemplates';
 import { IShopifyVariant } from '../interfaces/shopify/variants.interface';
+import { vehicleType } from '../utils/helpers';
 
 interface IEditorProps {
     children: React.ReactNode
@@ -57,7 +52,14 @@ export type EditorContextType = {
 
     // Template
     // setCurrentTemplate?: (template: any) => void;
-    selectPresetTemplate: (title: any, description: any, handle: string, variantId: string, customPresetTemplate: boolean) => void;
+    selectPresetTemplate: (
+        title: any, 
+        description: any, 
+        handle: string, 
+        variantId: string, 
+        customPresetTemplate: boolean,
+        vehicleType: string
+    ) => void;
     setCurrentCustomTemplate?: (template: any) => void;
 
     // Custom Template
@@ -114,8 +116,10 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                     console.log(query.get('preset'))
 
                     const templateFilter = premadeTemplates.filter(
-                        template => (template?.templateId === query.get('presetTemplate') && template?.preset === isPresetTemp )
-                    );
+                        template => (
+                            template?.templateId === query.get('presetTemplate') 
+                                && template?.preset === isPresetTemp
+                    ));
 
                     const shopifyProduct = await client.product.fetchByHandle(templateFilter[0].shopifyHandle);
                     const customTemplate = templateFilter[0] as ICustomPlateTemplate;
@@ -165,7 +169,10 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 } catch (error) {
                     setLoading(false);
                 } finally {
-                    setLoading(false);
+                    setTimeout( () => {
+                        setLoading(false);
+                    }, 2000)
+                    
                 }
             }
             
@@ -208,18 +215,18 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
 
     ///// START: Template Functions //////
     const selectPresetTemplate = async (
-        title?: any,
-        description?: any,
-        handle?: string,
-        variant?: any,
-        customPresetTemplate?: boolean
+        title: any,
+        description: any,
+        handle: string,
+        variant: any,
+        customPresetTemplate: boolean,
+        vehicleType: string,
     ) => {
         try {
             setLoading(true);
-            const templateFilter = premadeTemplates?.filter(template => template?.shopifyHandle === handle);
+            const templateFilter = premadeTemplates?.filter(template => template?.shopifyHandle === handle  );
             const customTemplate = templateFilter[0] as ICustomPlateTemplate;
             const formatedVariants: IShopifyVariant[] = [];
-            const query = new URLSearchParams(window.location.search);
 
             // if extraPremade is true, add a localStorage with the current templateId
 
@@ -269,21 +276,23 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             if (!customPresetTemplate) {
                 setPreset(true);
                 sessionStorage.setItem('preset', 'true')
-                router.push(`/editor?presetTemplate=${customTemplate?.templateId}&step=1&preset=true`)
+                router.push(`/editor-dev-car?presetTemplate=${customTemplate?.templateId}&step=1&preset=true&vehicleType=${'Car'}`)
             }
             if (customPresetTemplate) {
                 setPreset(false);
                 if (sessionStorage.getItem('preset')) {
                     sessionStorage.removeItem('preset')
                 }
-                router.push(`/editor?presetTemplate=${customTemplate?.templateId}&step=1`)
+                router.push(`/editor-dev-car?presetTemplate=${customTemplate?.templateId}&step=1&vehicleType=${'Car'}`)
             }
         } catch (error) {
             console.log(error);
             setLoading(false);
         } finally {
             updateStep(1);
-            setLoading(false);
+            setTimeout( () => {
+                setLoading(false);
+            }, 2000)
         }
     }
 

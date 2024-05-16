@@ -1,4 +1,9 @@
-import { Button, Checkbox, Modal, Tooltip } from 'antd';
+import { 
+    Button, 
+    Checkbox, 
+    Modal,
+    notification
+} from 'antd';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -7,8 +12,6 @@ import { EditorContext, EditorContextType } from '../../../context/editorContext
 import { StoreContext, StoreContextType } from '../../../context/storeContext';
 import { handleActions } from '../EditorPresetContainer/actions/HandleActions';
 import { Terms } from '../../shared/Terms/Terms';
-import { ICustomPlateTemplate } from '../../../interfaces/customTemplate.interface';
-import { storeCheckout } from '../../../context/actions/storeData';
 import { InterfaceContext, InterfaceContextType } from '../../../context/interfaceContext';
 
 export const PlaceOrder = (props:{
@@ -48,6 +51,8 @@ export const PlaceOrder = (props:{
         }
         return parseInt('0').toFixed(2)
     }
+
+    const [messageApi, contextHolder] = notification?.useNotification();
 
     const termsCols = {
         xs: 6,
@@ -92,7 +97,7 @@ export const PlaceOrder = (props:{
     const { presetTemplate } = props;
 
     const handlePlaceOrder = async () => {
-        if(currentCustomTemplate?.selectedVariant){
+        if(currentEditorStep?.currentSubStep === "selectFinish"){
             redirectCheckout?.(
                 currentCustomTemplate,
                 currentLicensePlate,
@@ -101,6 +106,10 @@ export const PlaceOrder = (props:{
             )
         
         } else{
+            messageApi['warning']({
+                message: 'Select a finish',
+                description: 'Please select a finish, before placing your order!',
+            });
             updateStep?.(
                 3,
                 'selectFinish',
@@ -167,6 +176,7 @@ export const PlaceOrder = (props:{
 
     return (
         <>
+        {contextHolder}
         <Modal 
             title={'Terms and Conditions'}
             open={terms}

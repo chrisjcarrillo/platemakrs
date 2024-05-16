@@ -3,7 +3,8 @@ import React, {
 } from 'react';
 
 import { ref, uploadBytes, getDownloadURL, getStorage, deleteObject, uploadString } from 'firebase/storage';
-import { EditorContext, EditorContextType } from './editorContext';
+import { EditorContext } from './editorContext';
+import { EditorContextType } from './EditorContextType';
 
 
 interface IStoreProps {

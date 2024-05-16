@@ -15,6 +15,8 @@ export interface ICustomPlateTemplate{
     id?: string // ID Created by system
     templateId?: string; // PresetId
 
+    vehicleType: 'Car' | 'Motorcycle';
+    
     fadeType?: 'FADE-UP' | 'FADE-DOWN' | 'FULL-BG';
 
     sportsTeam?: boolean;
