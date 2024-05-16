@@ -3,6 +3,7 @@
         height: auto !important;
     }
     &__container{
+        z-index: 99999999999999;
         background-color: #000000;
         border-radius: 20px;
         border-top: 2px solid #ffffff !important;
