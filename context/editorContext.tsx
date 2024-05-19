@@ -119,7 +119,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                     const templateFilter = premadeTemplates.filter(
                         template => (
                             template?.templateId === query.get('presetTemplate') 
-                                && template?.preset === isPresetTemp
+                                && template?.preset === isPresetTemp && template?.vehicleType === query.get('vehicleType')
                     ));
 
                     const shopifyProduct = await client.product.fetchByHandle(templateFilter[0].shopifyHandle);
@@ -225,7 +225,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
     ) => {
         try {
             setLoading(true);
-            const templateFilter = premadeTemplates?.filter(template => template?.shopifyHandle === handle  );
+            const templateFilter = premadeTemplates?.filter(template => template?.shopifyHandle === handle && template?.vehicleType === vehicleType );
             const customTemplate = templateFilter[0] as ICustomPlateTemplate;
             const formatedVariants: IShopifyVariant[] = [];
 
