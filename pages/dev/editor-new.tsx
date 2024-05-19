@@ -94,6 +94,7 @@ function EditorNew(props: any) {
     useEffect(() => {
         setIsLoaded(true);
         const stage = canvasReference.current;
+        const mainText = textRef.current;
         const width = window.innerWidth;
         const height = window.innerHeight;
 
@@ -101,6 +102,9 @@ function EditorNew(props: any) {
         stage?.setHeight(height);
 
         stage?.draw();
+        mainText?.draw();
+
+
         
         if(stage.getStage()){
             setIsLoaded(false);
