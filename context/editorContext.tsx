@@ -81,7 +81,8 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         setMoveLogo,
         setMoveBackgroundLogo,
         setMoveBottomLogo,
-        setPreset
+        setPreset,
+        setUpsellPopup
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const {
@@ -276,14 +277,24 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             if (!customPresetTemplate) {
                 setPreset(true);
                 sessionStorage.setItem('preset', 'true')
-                router.push(`/editor-dev-car?presetTemplate=${customTemplate?.templateId}&step=1&preset=true&vehicleType=${'Car'}`)
+                router.push(`/editor?presetTemplate=${customTemplate?.templateId}&step=1&preset=true&vehicleType=${customTemplate?.vehicleType}`)
+                if(!sessionStorage.getItem('showAdditionalPlatePopup')){
+                    setTimeout(() => {
+                        setUpsellPopup(true)
+                    }, 3500);
+                }
             }
             if (customPresetTemplate) {
                 setPreset(false);
                 if (sessionStorage.getItem('preset')) {
                     sessionStorage.removeItem('preset')
                 }
-                router.push(`/editor-dev-car?presetTemplate=${customTemplate?.templateId}&step=1&vehicleType=${'Car'}`)
+                if(!sessionStorage.getItem('showAdditionalPlatePopup')){
+                    setTimeout(() => {
+                        setUpsellPopup(true)
+                    }, 3500);
+                }
+                router.push(`/editor?presetTemplate=${customTemplate?.templateId}&step=1&vehicleType=${customTemplate?.vehicleType}`)
             }
         } catch (error) {
             console.log(error);

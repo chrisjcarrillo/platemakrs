@@ -91,7 +91,7 @@ export const EditLogo = () => {
                         setEditLogoUi(false)
                     }}
                 >
-                    Save
+                    Done
                 </Button>
             </Body>
         </Offcanvas>

@@ -1,20 +1,23 @@
-import { 
-    Button, 
-    Checkbox, 
+import {
+    Alert,
+    Button,
+    Checkbox,
+    Flex,
     Modal,
+    Space,
     notification
 } from 'antd';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useContext, useEffect, useRef, useState} from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { EditorContext, EditorContextType } from '../../../context/editorContext';
 import { StoreContext, StoreContextType } from '../../../context/storeContext';
 import { handleActions } from '../EditorPresetContainer/actions/HandleActions';
 import { Terms } from '../../shared/Terms/Terms';
 import { InterfaceContext, InterfaceContextType } from '../../../context/interfaceContext';
 
-export const PlaceOrder = (props:{
+export const PlaceOrder = (props: {
     canvasRef: any,
     presetTemplate?: boolean
 }) => {
@@ -23,7 +26,7 @@ export const PlaceOrder = (props:{
 
     const {
         setLoading
-    } =  useContext(InterfaceContext) as InterfaceContextType;
+    } = useContext(InterfaceContext) as InterfaceContextType;
 
     const {
         redirectCheckout,
@@ -89,7 +92,7 @@ export const PlaceOrder = (props:{
     const checkboxReference = useRef<any>();
 
     useEffect(() => {
-        if(currentEditorStep?.currentSubStep === "termsAndConditions"){
+        if (currentEditorStep?.currentSubStep === "termsAndConditions") {
             checkboxReference.current.focus();
         }
     }, [checkboxReference])
@@ -97,15 +100,24 @@ export const PlaceOrder = (props:{
     const { presetTemplate } = props;
 
     const handlePlaceOrder = async () => {
-        if(currentEditorStep?.currentSubStep === "selectFinish"){
+        if(!acceptTerms){
+            messageApi['warning']({
+                message: 'Terms and Conditions',
+                description: 'Please accepts the terms and conditions!',
+            });
+            console.log(checkboxReference)
+            checkboxReference.current.focus();
+            return;
+        }
+        if (currentEditorStep?.currentSubStep === "selectFinish") {
             redirectCheckout?.(
                 currentCustomTemplate,
                 currentLicensePlate,
                 false,
                 props.canvasRef
             )
-        
-        } else{
+
+        } else {
             messageApi['warning']({
                 message: 'Select a finish',
                 description: 'Please select a finish, before placing your order!',
@@ -132,7 +144,7 @@ export const PlaceOrder = (props:{
             extras
         )
 
-        if(presetTemplate){
+        if (presetTemplate) {
             if (handle?.step === undefined) {
                 updateStep?.(
                     1,
@@ -171,20 +183,20 @@ export const PlaceOrder = (props:{
                 )
             }
         }
-        
+
     }
 
     return (
         <>
-        {contextHolder}
-        <Modal 
-            title={'Terms and Conditions'}
-            open={terms}
-            onOk={() => setTerms(false)} 
-            onCancel={() => setTerms(false)}
-        >
-            <Terms />
-        </Modal>
+            {contextHolder}
+            <Modal
+                title={'Terms and Conditions'}
+                open={terms}
+                onOk={() => setTerms(false)}
+                onCancel={() => setTerms(false)}
+            >
+                <Terms />
+            </Modal>
             {/* Details? */}
             {
                 currentEditorStep?.currentSubStep && currentEditorStep?.currentSubStep !== "termsAndConditions" &&
@@ -277,7 +289,7 @@ export const PlaceOrder = (props:{
                                 <Button
                                     disabled={acceptTerms ? false : true}
                                     className={`placeOrder__button-final`}
-                                    onClick={() =>             redirectCheckout?.(
+                                    onClick={() => redirectCheckout?.(
                                         currentCustomTemplate,
                                         currentLicensePlate,
                                         false,
@@ -301,6 +313,7 @@ export const PlaceOrder = (props:{
                         >
                             <Checkbox
                                 className='placeOrder__terms'
+                                ref={checkboxReference}
                                 onChange={(e) => {
                                     setAcceptTerms(e.target.checked)
                                 }}>
@@ -323,7 +336,7 @@ export const PlaceOrder = (props:{
                         <Col {...placeOrderCols} className={`placeOrder__action`}>
                             <a
                                 className={`placeOrder__button ${currentEditorStep?.currentSubStep === 'selectFinish' && currentCustomTemplate?.selectedVariant === undefined ? 'disabled' : ''} 
-                                    ${acceptTerms ? '' : 'disabled' }`}
+                                    ${acceptTerms ? '' : 'disabled'}`}
                                 onClick={
                                     () => handlePlaceOrder()
                                 }

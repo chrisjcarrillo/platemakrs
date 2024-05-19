@@ -1,4 +1,4 @@
-import { useContext, useRef } from 'react';
+import { useContext, useRef, useState } from 'react';
 import EditorForm from '../components/Editor/Steps/FirstStep/EditorForm/EditorForm';
 import TemplateCanvas from '../components/Editor/Template/TemplateCanvas';
 import { EditorContextType } from '../context/editorContext';
@@ -12,63 +12,357 @@ import { InterfaceContext, InterfaceContextType } from '../context/interfaceCont
 import { PlaceOrder } from '../components/Editor/BottomButton/PlaceOrder';
 import { TemplateList } from '../components/Editor/TemplateList/TemplateList';
 import { EditLogo } from '../components/Editor/EditLogo/EditLogo';
-import { Input } from 'antd';
+import { Button, ConfigProvider, Flex, Input, Modal } from 'antd';
 import PlateComparison from "../components/PlateComparison/PlateComparison";
 import { ImageAndText } from "../components/shared/ImageAndText/ImageAndText";
 import MainSlider from "../components/MainSlider/MainSlider";
-
 import fsPromises from 'fs/promises';
 import path from 'path';
 import { StickyEditor } from '../components/shared/StickyButtons/StickyEditor';
+import EditorNew from './dev/editor-new';
+import { ArrowLeftOutlined, ArrowRightOutlined, DownloadOutlined, EditOutlined, FullscreenOutlined, QuestionCircleFilled } from '@ant-design/icons';
+import { TopActions } from '../utils/actions/TopActions';
+import { useRouter } from 'next/navigation';
+import { isMobile } from 'react-device-detect';
+import EditorMotoNew from './dev/editor-moto-new';
 
 export default function Editor(props: any) {
-    const { Search } = Input
-    const canvasRef = useRef(null);
+
+    const canvasRef = useRef<any>();
+
+    const actionSettings = {
+        xs: 2,
+        sm: 2,
+        md: 2,
+        lg: 2,
+        xl: 2
+    }
+    const headerSettings = {
+        xs: 8,
+        sm: 8,
+        md: 8,
+        lg: 8,
+        xl: 8
+    }
+
+    const router = useRouter();
+
+    const [upsellStep, setUpsellStep] = useState<number>(1);
 
     const {
         currentEditorStep,
+        setCurrentCustomTemplate,
+        updateStep,
+        currentCustomTemplate
     } = useContext(EditorContext) as EditorContextType;
 
     const {
-        
-        isPreset
+        upsellPopup, setUpsellPopup,
+        setEditLogoUi,
+        isPreset,
+        loading
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const {
         setAddon,
         extras,
-        extrasPremade
+        extrasPremade,
+        setAddonPlate
     } = useContext(StoreContext) as StoreContextType
 
     setAddon?.(props?.addons)
 
+    function downloadURI(uri, name) {
+        var link = document.createElement('a');
+        link.download = name;
+        link.href = uri;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    const setImagePreview = async () => {
+        try {
+            const stage = canvasRef.current;
+            const width = 3597;
+            const height = 1800;
+
+            stage?.setWidth(width);
+            stage?.setHeight(height);
+            stage?.setX(0)
+            stage?.setY(0)
+            stage?.setScaleX(0.75);
+            stage?.setScaleY(0.75);
+            stage?.draw();
+
+            const base64Image = stage.toDataURL();
+            return downloadURI(base64Image, 'stage.png');
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const stepDecision = (
+        stepType: 'BACK' | 'NEXT'
+    ) => {
+        if (extrasPremade && stepType === "BACK") {
+            let currentTemp = JSON.parse(localStorage.getItem('previousTemplate'))
+            setCurrentCustomTemplate(template => ({
+                ...template,
+                ...currentTemp
+            }))
+        } else {
+            // TODO: If extraPremade is true, set the previous localStorage(customTemplateId)
+            const currentDecision = TopActions(stepType, currentEditorStep, isPreset)
+            if (currentDecision?.updateStep) {
+                updateStep?.(currentDecision?.step)
+            }
+            if (!currentDecision?.updateStep) {
+                if (stepType === "BACK") {
+                    if (currentEditorStep?.currentStep === 1) {
+                        setCurrentCustomTemplate?.(undefined)
+                    }
+                }
+                router.push(currentDecision?.page)
+            }
+        }
+    }
+
     return (
         <>
-            <EditLogo />
-            <TemplateCanvas
-                canvasRef={
-                    canvasRef
-                }
-            />
-            <Container fluid className="app__container">
+            {/* After you load the plate, show this */}
+            <Modal
+                classNames={{
+                    header: '',
+                    body: 'addon_modal',
+                    footer: '',
+                    mask: '',
+                    wrapper: '',
+                }}
+                open={upsellPopup}
+                centered
+                title={'Additional Plate'}
+                footer={null}
+            >
+                {upsellStep === 1 && (
+                    <div>
+                        <p className='addon-description'>
+                            Do you have a front and back plate?
+                        </p>
+                        <Flex wrap gap="small" justify='flex-end'>
+                            <Button loading={loading} shape="round" block onClick={() => {
+                                sessionStorage.setItem('hasAdditionalPlate', 'false');
+                                setUpsellStep(1)
+                                setUpsellPopup(false)
+                            }}>
+                                No
+                            </Button>
+                            <ConfigProvider
+                                theme={{
+                                    components: {
+                                        Button: {
+                                            colorPrimary: `linear-gradient(135deg, #6253E1, #04BEFE)`,
+                                            colorPrimaryHover: `linear-gradient(135deg, #6253E1, #04BEFE)`,
+                                            colorPrimaryActive: `linear-gradient(135deg, #6253E1, #04BEFE)`,
+                                            lineWidth: 0,
+                                        },
+                                    },
+                                }}
+                            >
+                                <Button type="primary" shape="round" block loading={loading} type='primary'
+                                    onClick={() => {
+                                        setUpsellStep(2)
+                                    }}>
+                                    Yes
+                                </Button>
+                            </ConfigProvider>
+                        </Flex>
+                    </div>
+                )}
 
-                {currentEditorStep?.currentStep === 1 &&
-                    <EditorForm />
-                }
-                {
-                    currentEditorStep?.currentStep === 3 && isPreset && <EditorPresetContainer />
-                }
-                {currentEditorStep?.currentStep === 3 && !isPreset &&
-                    <EditorContainer presetTemplate={isPreset} />
-                }
+                {upsellStep === 2 && (
+                    <div>
+                        <p className='addon-description'>
+                            Add an additional plate for <strong>only $100.00</strong>
+                        </p>
+                        <Flex wrap gap="small" justify='flex-end'>
+                            <Button
+                                shape='round'
+                                block
+                                onClick={() => {
+                                    sessionStorage.setItem('showAdditionalPlatePopup', 'false');
+                                    setUpsellPopup(false)
+                                    setUpsellStep(1)
+                                }}>
+                                No
+                            </Button>
+                            <ConfigProvider
+                                theme={{
+                                    components: {
+                                        Button: {
+                                            colorPrimary: `linear-gradient(135deg, #6253E1, #04BEFE)`,
+                                            colorPrimaryHover: `linear-gradient(135deg, #6253E1, #04BEFE)`,
+                                            colorPrimaryActive: `linear-gradient(135deg, #6253E1, #04BEFE)`,
+                                            lineWidth: 0,
+                                        },
+                                    },
+                                }}
+                            >
+                                <Button
+                                    shape='round'
+                                    block
+                                    type='primary'
+                                    onClick={(e) => {
+                                        sessionStorage.setItem('showAdditionalPlatePopup', 'false');
+                                        setUpsellPopup(false)
+                                        setAddonPlate(e)
+                                        setUpsellStep(1)
+                                    }}
+                                >
+                                    Yes
+                                </Button>
+                            </ConfigProvider>
+
+                        </Flex>
+                    </div>
+                )}
+
+            </Modal>
+
+            <EditLogo />
+            <Container fluid className="app__container">
+                {isMobile && (
+                    <Row className="canvas__tools">
+                        <Col {...actionSettings}>
+                            {(!isPreset || isPreset && currentEditorStep?.currentStep === 1) && (
+                                <div className='header__tools-left-back'>
+                                    <Button
+                                        size='small'
+                                        className='header__tools-left-back-button'
+                                        shape="circle"
+                                        icon={<ArrowLeftOutlined rev={''} />}
+                                        onClick={() =>
+                                            stepDecision('BACK')
+                                        }
+                                    />
+                                </div>
+                            )}
+                        </Col>
+                        <Col {...headerSettings}>
+                            <div className="editor__title">
+                                <h2 className="editor__title-text">{ } Plate Preview</h2>
+                            </div>
+                        </Col>
+                        <Col {...actionSettings}>
+                            {(!isPreset || isPreset && currentEditorStep?.currentStep === 1) && (
+                                <div className="header__tools-right-forward">
+                                    <Button
+                                        size='small'
+                                        disabled={
+                                            currentEditorStep?.currentStep === 1
+                                                || currentEditorStep?.currentStep === 3
+                                                || currentEditorStep?.currentStep === 2 ? true : false}
+                                        className="header__tools-right-forward-button"
+                                        shape="circle"
+                                        icon={<ArrowRightOutlined rev={''} />}
+                                        onClick={() => stepDecision('NEXT')}
+                                    />
+                                </div>
+                            )}
+                        </Col>
+                    </Row>
+                )}
+                <Row>
+                    <Col
+                        xs={12}
+                        sm={12}
+                        md={7}
+                        lg={7}
+                        xl={7}
+                        className="canvas__plate-display"
+                    >
+                        {!isMobile && (
+                            <Row className="canvas__tools">
+                                <Col {...actionSettings}>
+                                    {(!isPreset || isPreset && currentEditorStep?.currentStep === 1) && (
+                                        <div className='header__tools-left-back'>
+                                            <Button
+                                                size='small'
+                                                className='header__tools-left-back-button'
+                                                shape="circle"
+                                                icon={<ArrowLeftOutlined rev={''} />}
+                                                onClick={() =>
+                                                    stepDecision('BACK')
+                                                }
+                                            />
+                                        </div>
+                                    )}
+                                </Col>
+                                <Col {...headerSettings}>
+                                    <div className="editor__title">
+                                        <h2 className="editor__title-text">
+                                            {currentCustomTemplate?.vehicleType === "Car" && 'License Plate Preview'}
+                                            {currentCustomTemplate?.vehicleType === "Motorcycle" && 'Motorcycle Plate Preview'}
+                                        </h2>
+                                    </div>
+                                </Col>
+                                <Col {...actionSettings}>
+                                    {(!isPreset || isPreset && currentEditorStep?.currentStep === 1) && (
+                                        <div className="header__tools-right-forward">
+                                            <Button
+                                                size='small'
+                                                disabled={
+                                                    currentEditorStep?.currentStep === 1
+                                                        || currentEditorStep?.currentStep === 3
+                                                        || currentEditorStep?.currentStep === 2 ? true : false}
+                                                className="header__tools-right-forward-button"
+                                                shape="circle"
+                                                icon={<ArrowRightOutlined rev={''} />}
+                                                onClick={() => stepDecision('NEXT')}
+                                            />
+                                        </div>
+                                    )}
+                                </Col>
+                            </Row>
+                        )}
+                        {currentCustomTemplate?.vehicleType === "Car" && <EditorNew canvasReference={canvasRef} />}
+                        {currentCustomTemplate?.vehicleType === "Motorcycle" && <EditorMotoNew canvasReference={canvasRef} />}
+                        {currentCustomTemplate?.mainLogo?.enabled && (
+                            <div className="canvas-bottom-section">
+                                <Button className={`canvas-action-button`} onClick={() => setEditLogoUi(true)}>
+                                    Edit Logo<EditOutlined />
+                                </Button>
+                                {/* <Button onClick={() => setAddonPlate()}>
+                                    Load the addon product
+                                </Button> */}
+                            </div>
+                        )}
+                    </Col>
+                    <Col
+                        xs={12} sm={12} md={5} lg={5} xl={5}
+                        className="canvas__editor"
+                    >
+                        {currentEditorStep?.currentStep === 1 &&
+                            <EditorForm />
+                        }
+                        {
+                            currentEditorStep?.currentStep === 3 && isPreset && <EditorPresetContainer />
+                        }
+                        {currentEditorStep?.currentStep === 3 && !isPreset &&
+                            <EditorContainer presetTemplate={isPreset} />
+                        }
+                        {currentEditorStep?.currentStep === 3 && <PlaceOrder canvasRef={canvasRef} presetTemplate={isPreset} />}
+                    </Col>
+                </Row>
+
             </Container>
-            {currentEditorStep?.currentStep === 3 && <PlaceOrder canvasRef={canvasRef} presetTemplate={isPreset} />}
             {
                 extrasPremade && (
                     <Container fluid style={{
                         paddingBottom: extrasPremade ? '2rem' : '0rem'
                     }}>
-                    <Row
+                        <Row
                             className="designer-form__row-title"
                         >
                             <Col xs={12} sm={12} md={12} lg={12}>
@@ -116,7 +410,7 @@ export default function Editor(props: any) {
             }
             {
                 extras && (
-                    <StickyEditor/>
+                    <StickyEditor />
                 )
             }
         </>

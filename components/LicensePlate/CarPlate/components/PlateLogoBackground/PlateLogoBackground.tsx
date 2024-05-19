@@ -225,6 +225,9 @@ const PlateLogoBackground = (props: {
             {
                 moveBackgroundLogo && 
                 <Transformer
+                    width={image?.width}
+                    height={image?.height}
+                    borderStrokeWidth={3}
                     keepRatio
                     ref={imageTransformerRef} 
                 />

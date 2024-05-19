@@ -225,16 +225,12 @@ const PlateLogoBottom = (props: {
             {
                 moveBottomLogo &&
                 <Transformer
-                onDragEnd={(e)=> {
-                    console.info('X: ', e.target.x());
-                    console.info('Y: ', e.target.y());
-                    console.info('Width: ', e.target.width() / 0.2);
-                    console.info('Height: ', e.target.height() / 0.2);
-                }}
-                // flipEnabled={false}
-                keepRatio
-                ref={imageTransformerRef} 
-            />
+                    width={image?.width}
+                    height={image?.height}
+                    borderStrokeWidth={3}
+                    clearBeforeDraw
+                    ref={imageTransformerRef} 
+                />
             }
             
         </>

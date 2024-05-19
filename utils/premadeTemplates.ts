@@ -7530,19 +7530,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/cars/corvette/logo/logo.png',
             leftCoordinates: {
-                x: 26,
-                y: 32
+                x: 215,
+                y: 315
             },
             centerCoordinates: {
-                x: 115,
-                y: 35
+                x: 1250,
+                y: 315
             },
             rightCoordinates: {
-                x: 230,
-                y: 32
+                x: 2250,
+                y: 315
             },
-            width: 120,
-            height: 100,
+            width: 1150,
+            height: 1150,
             glow: {
                 enabled: false,
             }
@@ -7663,22 +7663,22 @@ export const premadeTemplates = [
             enabled: true,
             hasColor: false,
             imageType: 'svg',
-            name: "mercedes.svg",
+            name: "logo.png",
             url: '/images/resources/preset/logos/logo.png',
             leftCoordinates: {
-                x: 26,
-                y: 65
+                x: 225,
+                y: 365
             },
             centerCoordinates: {
-                x: 135,
-                y: 65
+                x: 1325,
+                y: 365
             },
             rightCoordinates: {
-                x: 230,
-                y: 65
+                x: 2300,
+                y: 365
             },
-            width: 100,
-            height: 100,
+            width: 1000,
+            height: 1000,
             glow: {
                 enabled: false
             }
@@ -7748,19 +7748,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/preset/logos/logo.png',
             leftCoordinates: {
-                x: 26,
-                y: 32
+                x: 225,
+                y: 365
             },
             centerCoordinates: {
-                x: 135,
-                y: 65
+                x: 1325,
+                y: 365
             },
             rightCoordinates: {
-                x: 230,
-                y: 32
+                x: 2300,
+                y: 365
             },
-            width: 100,
-            height: 100,
+            width: 1000,
+            height: 1000,
             glow: {
                 enabled: false
             }
@@ -7842,19 +7842,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/preset/logos/logo.png',
             leftCoordinates: {
-                x: 26,
-                y: 32
+                x: 225,
+                y: 365
             },
             centerCoordinates: {
-                x: 135,
-                y: 65
+                x: 1325,
+                y: 365
             },
             rightCoordinates: {
-                x: 230,
-                y: 32
+                x: 2300,
+                y: 365
             },
-            width: 100,
-            height: 100,
+            width: 1000,
+            height: 1000,
             glow: {
                 enabled: false
             }
@@ -7864,12 +7864,20 @@ export const premadeTemplates = [
             enabled: true,
             name: "mercedes.svg",
             url: '/images/resources/preset/logos/bottom-logo.png',
-            centerCoordinates: {
-                x: 98,
-                y: 130
+            leftCoordinates: {
+                x: 935,
+                y: 1500
             },
-            width: 145,
-            height: 10,
+            centerCoordinates: {
+                x: 935,
+                y: 1500
+            },
+            rightCoordinates: {
+                x: 935,
+                y: 1500
+            },
+            width: 1750,
+            height: 125,
             glow: {
                 enabled: true,
                 color: "#000000"
@@ -7953,19 +7961,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/preset/logos/logo.png',
             leftCoordinates: {
-                x: 26,
-                y: 32
+                x: 225,
+                y: 365
             },
             centerCoordinates: {
-                x: 135,
-                y: 65
+                x: 1325,
+                y: 365
             },
             rightCoordinates: {
-                x: 230,
-                y: 32
+                x: 2300,
+                y: 365
             },
-            width: 100,
-            height: 100,
+            width: 1000,
+            height: 1000,
             glow: {
                 enabled: false
             }
@@ -7975,12 +7983,20 @@ export const premadeTemplates = [
             enabled: false,
             name: "mercedes.svg",
             url: '/images/resources/preset/logos/bottom-logo.png',
-            centerCoordinates: {
-                x: 98,
-                y: 130
+            leftCoordinates: {
+                x: 935,
+                y: 1500
             },
-            width: 145,
-            height: 10,
+            centerCoordinates: {
+                x: 935,
+                y: 1500
+            },
+            rightCoordinates: {
+                x: 935,
+                y: 1500
+            },
+            width: 1750,
+            height: 125,
             glow: {
                 enabled: true,
                 color: "#000000"
@@ -8060,22 +8076,22 @@ export const premadeTemplates = [
             enabled: true,
             hasColor: false,
             imageType: 'svg',
-            name: "mercedes.svg",
+            name: "logo.png",
             url: '/images/resources/preset/logos/logo.png',
             leftCoordinates: {
-                x: 26,
-                y: 32
+                x: 225,
+                y: 365
             },
             centerCoordinates: {
-                x: 135,
-                y: 65
+                x: 1325,
+                y: 365
             },
             rightCoordinates: {
-                x: 230,
-                y: 32
+                x: 2300,
+                y: 365
             },
-            width: 100,
-            height: 100,
+            width: 1000,
+            height: 1000,
             glow: {
                 enabled: false
             }
@@ -8083,14 +8099,22 @@ export const premadeTemplates = [
         bottomLogo: {
             hasColor: false,
             enabled: true,
-            name: "mercedes.svg",
+            name: "logo.png",
             url: '/images/resources/preset/logos/bottom-logo.png',
-            centerCoordinates: {
-                x: 98,
-                y: 130
+            leftCoordinates: {
+                x: 935,
+                y: 1500
             },
-            width: 145,
-            height: 10,
+            centerCoordinates: {
+                x: 935,
+                y: 1500
+            },
+            rightCoordinates: {
+                x: 935,
+                y: 1500
+            },
+            width: 1750,
+            height: 125,
             glow: {
                 enabled: true,
                 color: "#000000"
@@ -8166,22 +8190,22 @@ export const premadeTemplates = [
             enabled: true,
             hasColor: false,
             imageType: 'svg',
-            name: "mercedes.svg",
+            name: "logo.png",
             url: '/images/resources/preset/logos/logo.png',
             leftCoordinates: {
-                x: 26,
-                y: 32
+                x: 225,
+                y: 365
             },
             centerCoordinates: {
-                x: 135,
-                y: 65
+                x: 1325,
+                y: 365
             },
             rightCoordinates: {
-                x: 230,
-                y: 32
+                x: 2300,
+                y: 365
             },
-            width: 100,
-            height: 100,
+            width: 1000,
+            height: 1000,
             glow: {
                 enabled: false
             }
@@ -8189,14 +8213,22 @@ export const premadeTemplates = [
         bottomLogo: {
             hasColor: false,
             enabled: false,
-            name: "mercedes.svg",
+            name: "logo.png",
             url: '/images/resources/preset/logos/bottom-logo.png',
-            centerCoordinates: {
-                x: 98,
-                y: 130
+            leftCoordinates: {
+                x: 935,
+                y: 1500
             },
-            width: 145,
-            height: 10,
+            centerCoordinates: {
+                x: 935,
+                y: 1500
+            },
+            rightCoordinates: {
+                x: 935,
+                y: 1500
+            },
+            width: 1750,
+            height: 125,
             glow: {
                 enabled: true,
                 color: "#000000"
@@ -8275,19 +8307,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/preset/logos/logo.png',
             leftCoordinates: {
-                x: 50,
+                x: 225,
                 y: 365
             },
             centerCoordinates: {
-                x: 1000,
+                x: 1325,
                 y: 365
             },
             rightCoordinates: {
-                x: 2050,
+                x: 2300,
                 y: 365
             },
-            width: 1550,
-            height: 1150,
+            width: 1000,
+            height: 1000,
             glow: {
                 enabled: false
             }
@@ -8295,22 +8327,22 @@ export const premadeTemplates = [
         bottomLogo: {
             hasColor: false,
             enabled: true,
-            name: "mercedes.svg",
+            name: "logo.png",
             url: '/images/resources/preset/logos/bottom-logo.png',
             leftCoordinates: {
-                x: 1300,
-                y: 1475
+                x: 935,
+                y: 1500
             },
             centerCoordinates: {
-                x: 1300,
-                y: 1475
+                x: 935,
+                y: 1500
             },
             rightCoordinates: {
-                x: 1300,
-                y: 1475
+                x: 935,
+                y: 1500
             },
-            width: 950,
-            height: 265,
+            width: 1750,
+            height: 125,
             glow: {
                 enabled: true,
                 color: "#000000"

@@ -109,9 +109,6 @@ const PlateLogo = (props: {
                 ref={imageGroupRef}
                 draggable
                 listening={moveLogo}
-                onDragEnd={(e) => {
-                    e.currentTarget.zIndex(10)
-                }}
             >
                 <Image
                     key={1}
@@ -243,8 +240,8 @@ const PlateLogo = (props: {
                         width={image?.width}
                         height={image?.height}
                         flipEnabled={false}
-                        borderStroke="red"
-                        borderStrokeWidth={4}
+                        // borderStroke="red"
+                        borderStrokeWidth={3}
                         // keepRatio
                         ref={imageTransformerRef} 
                     />

@@ -226,15 +226,9 @@ const PlateExtraLogo = (props: {
             {
                 moveDetail2 && 
                 <Transformer
-                    onDragEnd={(e)=> {
-                        console.info('X: ', e.target.x());
-                        console.info('Y: ', e.target.y());
-                    }}
-                    onTransformEnd={(e) => {
-                        console.info('X: ', e.target.x());
-                        console.info('Y: ', e.target.y());
-                    }}
-                    keepRatio
+                    width={image?.width}
+                    height={image?.height}
+                    borderStrokeWidth={3}
                     ref={imageTransformerRef} 
                 />
             }

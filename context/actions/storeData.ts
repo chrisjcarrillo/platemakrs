@@ -7,6 +7,7 @@ import { useContext } from 'react';
 import { InterfaceContext, InterfaceContextType } from '../interfaceContext';
 import {app, storage} from '../../firebaseConfig';
 import {getApps} from "@firebase/app";
+import { isMobile } from 'react-device-detect';
 
 
 const setImagePreview = async (node: any) => {
@@ -43,8 +44,8 @@ const setImagePreview = async (node: any) => {
 
         stage?.setWidth(width);
         stage?.setHeight(height);
-        stage?.setScaleX(0.35);
-        stage?.setScaleY(0.35);
+        stage?.setScaleX(isMobile ? 0.1 : 0.2);
+        stage?.setScaleY(isMobile ? 0.1 : 0.2);
         stage?.draw();
 
         const base64Image = stage.toDataURL();
