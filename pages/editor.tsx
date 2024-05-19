@@ -57,7 +57,8 @@ export default function Editor(props: any) {
     } = useContext(EditorContext) as EditorContextType;
 
     const {
-        upsellPopup, setUpsellPopup,
+        upsellPopup, 
+        setUpsellPopup,
         setEditLogoUi,
         isPreset,
         loading
@@ -170,7 +171,7 @@ export default function Editor(props: any) {
                                     },
                                 }}
                             >
-                                <Button type="primary" shape="round" block loading={loading} type='primary'
+                                <Button type="primary" shape="round" block loading={loading}
                                     onClick={() => {
                                         setUpsellStep(2)
                                     }}>
