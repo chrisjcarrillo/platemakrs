@@ -9,10 +9,13 @@
     }
 }
 .dropdown-menu{
-    border: unset !important;
+    min-width: unset !important;
+    border: #deb251 2px solid;
+    background: #000000;
     .header__link{
         color: #deb251 !important;
         font-size: 0.75rem;
+        min-width: unset !important;
         
     }
 }
