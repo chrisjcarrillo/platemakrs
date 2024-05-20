@@ -93,13 +93,14 @@ function EditorNew(props: any) {
 
     useEffect(() => {
         setIsLoaded(true);
-        const stage = canvasReference.current;
-        const mainText = textRef.current;
+        const stage = canvasReference?.current;
+        const mainText = textRef?.current;
+
         const width = window.innerWidth;
         const height = window.innerHeight;
 
-        stage?.setWidth(plateWidth);
-        stage?.setHeight(plateHeight);
+        stage?.setWidth(width);
+        stage?.setHeight(height);
         mainText?.setY(plateHeight * 0.5 - plateHeight * 0.085);
         mainText?.setX(plateWidth * 0.05 / 2);
         mainText?.setWidth(plateWidth * 0.955)

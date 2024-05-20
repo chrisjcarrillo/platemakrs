@@ -72,12 +72,15 @@ const EditorMotoNew = (props: any) => {
 
     useEffect(() => {
         setIsLoaded(true);
-        // const stage = canvasReference.current;
-        const mainText = textRef.current;
+        const stage = canvasReference?.current;
+        const mainText = textRef?.current;
 
-        // stage?.width(plateWidth);
-        // stage?.height(plateHeight);
-        // stage?.draw();
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        stage?.setWidth(width);
+        stage?.setHeight(height);
+        stage?.draw();
 
         mainText?.x(plateWidth * 0.14 / 2);
         mainText?.y(plateHeight * 0.55 - plateHeight * 0.085);
