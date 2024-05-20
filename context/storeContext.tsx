@@ -87,7 +87,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
     const [hasDesigner, setHasDesigner] = useState<boolean>(false);
     const [acceptTerms, setAcceptTerms] = useState<boolean>(false);
     const [notes, setNotes] = useState<string | undefined>(undefined);
-    const [extras, setExtras] = useState<boolean>(false);
+    const [extras, setExtras] = useState<boolean>(true);
 
     const onStorageUpdate = (e: any) => {
         const { key, newValue } = e;
