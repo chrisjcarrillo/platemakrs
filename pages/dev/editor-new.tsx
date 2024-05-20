@@ -97,10 +97,9 @@ function EditorNew(props: any) {
         const stage = canvasReference?.current;
         const mainText = textRef?.current;
 
+        stage?.clearCache();
         stage?.setWidth(plateWidth);
         stage?.setHeight(plateHeight);
-        stage?.scaleX(isMobile ? 1 / 10 : 1 / 5);
-        stage?.scaleY(isMobile ? 1 / 10 : 1 / 5);
         stage?.draw();
 
         mainText?.clearCache();
