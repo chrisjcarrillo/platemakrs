@@ -108,7 +108,7 @@ export const EditorHeader = (
                                         <NavDropdown key={index} title={`${menuItem?.text}`} id={`${menuItem?.id}`}>
                                         {menuItem?.subLinks.map((item, index) => {
                                             return(
-                                                <Link key={index} onClick={() => router.push(`${item.link}`)} className="header__link">{item.text}</Link>
+                                                <Link key={index} onClick={() => router.push(`${item.link}`)} className="header__link animate__animated animate__fadeInRight animate__delay-0.5s">{item.text}</Link>
                                             )
                                         })}
                                         </NavDropdown>
@@ -157,11 +157,39 @@ export const EditorHeader = (
                             className="header__links"
                         >
                             <div className="header__links-container">
-                                <Link
+                            <NavDropdown className="header__links-link" title='Pre-Made Designs' id={'premadeTemplates2'}>
+                                <Link 
+                                    key={1} 
+                                    onClick={() => router.push('/products')}
+                                    className="header__link animate__animated animate__fadeInRight animate__delay-0.5s">
+                                        Car Templates
+                                </Link>
+                                <Link 
+                                    key={2} 
+                                    onClick={() => router.push('/products/motorcycles')}
+                                    className="header__link animate__animated animate__fadeInRight animate__delay-0.5s">
+                                        Moto Templates
+                                </Link>
+                            </NavDropdown>
+                            </div>
+                            <div className="header__links-container">
+                            <NavDropdown
+                                className="header__links-link"
+                                title='Build your plate' 
+                                id={'buildYourOwn2'}>
+                                <Link 
+                                    key={1} 
+                                    onClick={() => router.push(`/products-custom`)} 
+                                    className="header__link animate__animated animate__fadeInRight animate__delay-0.5s">
+                                        Car Templates
+                                </Link>
+                            </NavDropdown>
+                            </div>
+                                {/* <Link
                                     className="header__links-link"
                                     onClick={() => router.push('/products-custom')}
                                 >
-                                    Customize your own
+                                    Build your plate
                                 </Link>
                             </div>
                             <div className="header__links-container">
@@ -171,7 +199,7 @@ export const EditorHeader = (
                                 >
                                     Pre-Made Designs
                                 </Link>
-                            </div>
+                            </div> */}
                         </Container>
                     )
                 }

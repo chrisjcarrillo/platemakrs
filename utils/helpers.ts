@@ -291,7 +291,7 @@ export const menuLayout = [
         }],
     },
     {
-        text: 'Customize Your Own',
+        text: 'Build your plate',
         link: '/products-custom'
     },
     {
@@ -319,7 +319,7 @@ export const footerLinksOne = [
         link: '/products'
     },
     {
-        text: 'Customize Your Own',
+        text: 'Build your plate',
         link: '/products-custom'
     },
     {

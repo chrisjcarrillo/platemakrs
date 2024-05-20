@@ -4,6 +4,9 @@ import Row from 'react-bootstrap/Row';
 import Image from 'next/image';
 import Link from 'next/link';
 import { RightCircleFilled, RightCircleOutlined } from '@ant-design/icons';
+import { Dropdown, NavDropdown } from 'react-bootstrap';
+import { useRouter } from "next/navigation";
+
 
 type HeroBannerProps = {
     mainText: string,
@@ -16,6 +19,7 @@ const HeroBanner = (
     { mainText, backgroundUrl, buttonText, buttonLink }: HeroBannerProps
 ) => {
 
+    const router = useRouter();
     return (
         <Container
             id='heroc'
@@ -39,24 +43,48 @@ const HeroBanner = (
                         <div
                             className='hero__container-button'
                         >
-                            <Link 
-                                style={{
-                                    marginRight: '0.5rem'
-                                }} 
-                                className="hero__button" 
-                                href='/products-custom'>
-                                Build your plate
-                                <RightCircleOutlined />
-                            </Link>
-                            <Link 
-                                style={{
-                                    marginLeft: '0.5rem'
-                                }} 
-                                className="hero__button" 
-                                href='/products'>
-                                Pre-Made Designs
-                                <RightCircleOutlined />
-                            </Link>
+                            <Dropdown style={{
+                                marginRight: '0.5rem'
+                            }}>
+                                <Dropdown.Toggle id="premadeDesigns" className='hero__button'>
+                                    Pre-Made Designs
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                    <Link
+                                        href={'/products'}
+                                        key={1} 
+                                        className="header__link animate__animated animate__fadeInRight animate__delay-0.5s">
+                                            Car Templates
+                                    </Link>
+                                    <Link
+                                        href={'/products/motorcycles'}
+                                        key={2} 
+                                        className="header__link animate__animated animate__fadeInRight animate__delay-0.5s">
+                                            Motorcycle Templates
+                                    </Link>
+                                </Dropdown.Menu>
+                            </Dropdown>
+
+                            <Dropdown
+                            style={{
+                                marginLeft: '0.5rem'
+                            }}
+                            >
+                                <Dropdown.Toggle id="buildYourPlate" className='hero__button'>
+                                    Build your plate
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                <Link
+                                        key={1}
+                                        href={'/products-custom'}
+                                        className="header__link animate__animated animate__fadeInRight animate__delay-0.5s"
+                                    >
+                                            Car Templates
+                                    </Link>
+                                </Dropdown.Menu>
+                            </Dropdown>
                         </div>
 
                     </Col>
