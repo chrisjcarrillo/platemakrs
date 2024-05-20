@@ -47,8 +47,8 @@ const EditorMotoNew = (props: any) => {
     const initialLicensePlate = "SAM PLE";
 
     // Reference
-    const stageRef = useRef(null);
-    const textRef = useRef(null);
+    const textRef = useRef<any>();
+    const plateRef = useRef<any>();
 
     // Internal State
     const [isLoaded, setIsLoaded] = useState(false);
@@ -73,15 +73,19 @@ const EditorMotoNew = (props: any) => {
     useEffect(() => {
         setIsLoaded(true);
         const stage = canvasReference.current;
-        const width = window.innerWidth;
-        const height = window.innerHeight;
+        const mainText = textRef.current;
 
-        stage?.setWidth(width);
-        stage?.setHeight(height);
-
+        stage?.width(plateWidth);
+        stage?.height(plateHeight);
         stage?.draw();
-    
-        if(stage){
+        mainText?.x(plateWidth * 0.14 / 2);
+        mainText?.y(plateHeight * 0.55 - plateHeight * 0.085);
+        mainText?.width(plateWidth * 0.875)
+        mainText?.align('center')
+        mainText?.draw();
+
+
+        if(stage.getStage()){        
             setIsLoaded(false);
         }
         
@@ -160,8 +164,7 @@ const EditorMotoNew = (props: any) => {
     const textAlignment = () => {
         if (currentLicensePlate?.platePosition) {
             return currentLicensePlate?.platePosition
-        }
-        if (currentCustomTemplate?.startPlatePosition) {
+        } else if (currentCustomTemplate?.startPlatePosition) {
             return currentCustomTemplate?.startPlatePosition
         }
         return 'center'
@@ -175,9 +178,10 @@ const EditorMotoNew = (props: any) => {
     }
 
     const middleText = (
-        <Group>
+        <Group
+        >
             <Text
-                listening={false} 
+                // listening={false} 
                 // Reference
                 ref={textRef}
                 align={textAlignment()}
@@ -217,7 +221,7 @@ const EditorMotoNew = (props: any) => {
                 shadowOffsetY={5}
             />
             <Text
-                listening={false} 
+                // listening={false} 
                 // Reference
                 ref={textRef}
                 align={textAlignment()}

@@ -98,11 +98,13 @@ function EditorNew(props: any) {
         const width = window.innerWidth;
         const height = window.innerHeight;
 
-        stage?.setWidth(width);
-        stage?.setHeight(height);
-
-        stage?.draw();
+        stage?.setWidth(plateWidth);
+        stage?.setHeight(plateHeight);
+        mainText?.setY(plateHeight * 0.5 - plateHeight * 0.085);
+        mainText?.setX(plateWidth * 0.05 / 2);
+        mainText?.setWidth(plateWidth * 0.955)
         mainText?.draw();
+        stage?.draw();
 
 
         

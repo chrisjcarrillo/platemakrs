@@ -1,6 +1,7 @@
 export const premadeTemplates = [
    //Motorcycle
     {
+        preset: true,
         vehicleType: 'Motorcycle',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -49,6 +50,7 @@ export const premadeTemplates = [
         }
     }, //Corvette #1  - [Done]
     {
+        preset: true,
         vehicleType: 'Motorcycle',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -119,6 +121,7 @@ export const premadeTemplates = [
         }
     }, //Corvette #1  - [Done]
     {
+        preset: true,
         vehicleType: 'Motorcycle',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -236,6 +239,7 @@ export const premadeTemplates = [
         }
     }, //Corvette #1  - [Done]
     {
+        preset: true,
         vehicleType: 'Motorcycle',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -326,6 +330,7 @@ export const premadeTemplates = [
         }
     }, //Corvette #1  - [Done]
     {
+        preset: true,
         vehicleType: 'Motorcycle',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},

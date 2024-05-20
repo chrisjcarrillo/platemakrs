@@ -114,12 +114,12 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                     setLoading(true);
 
                     const isPresetTemp = query.get('preset') === null ? false : true
-                    console.log(query.get('preset'))
 
                     const templateFilter = premadeTemplates.filter(
                         template => (
                             template?.templateId === query.get('presetTemplate') 
-                                && template?.preset === isPresetTemp && template?.vehicleType === query.get('vehicleType')
+                                && template?.preset === isPresetTemp 
+                                    && template?.vehicleType === query.get('vehicleType')
                     ));
 
                     const shopifyProduct = await client.product.fetchByHandle(templateFilter[0].shopifyHandle);

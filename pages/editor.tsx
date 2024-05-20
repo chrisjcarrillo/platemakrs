@@ -151,7 +151,7 @@ export default function Editor(props: any) {
                         <p className='addon-description'>
                             Do you have a front and back plate?
                         </p>
-                        <Flex wrap gap="small" justify='flex-end'>
+                        <Flex gap="small" justify='flex-end'>
                             <Button loading={loading} shape="round" block onClick={() => {
                                 sessionStorage.setItem('hasAdditionalPlate', 'false');
                                 setUpsellStep(1)
@@ -187,7 +187,7 @@ export default function Editor(props: any) {
                         <p className='addon-description'>
                             Add an additional plate for <strong>only $100.00</strong>
                         </p>
-                        <Flex wrap gap="small" justify='flex-end'>
+                        <Flex gap="small" justify='flex-end'>
                             <Button
                                 shape='round'
                                 block
@@ -303,7 +303,7 @@ export default function Editor(props: any) {
                                 <Col {...headerSettings}>
                                     <div className="editor__title">
                                         <h2 className="editor__title-text">
-                                            {currentCustomTemplate?.vehicleType === "Car" && 'License Plate Preview'}
+                                            {currentCustomTemplate?.vehicleType === "Car" && 'Car Plate Preview'}
                                             {currentCustomTemplate?.vehicleType === "Motorcycle" && 'Motorcycle Plate Preview'}
                                         </h2>
                                     </div>
