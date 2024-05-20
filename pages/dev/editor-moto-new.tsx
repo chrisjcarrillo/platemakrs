@@ -75,8 +75,8 @@ const EditorMotoNew = (props: any) => {
         const stage = canvasReference?.current;
         const mainText = textRef?.current;
 
-        stage?.setWidth(plateWidth);
-        stage?.setHeight(plateHeight);
+        stage?.setWidth(window.innerWidth);
+        stage?.setHeight(window.innerHeight);
         stage?.scaleX(isMobile ? 1 / 6.5 : 1 / 3);
         stage?.scaleY(isMobile ? 1 / 6.5 : 1 / 3);
         stage?.draw();

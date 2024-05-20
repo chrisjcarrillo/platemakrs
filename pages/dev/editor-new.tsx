@@ -98,8 +98,8 @@ function EditorNew(props: any) {
         const mainText = textRef?.current;
 
         // stage?.clearCache();
-        stage?.setWidth(plateWidth / 2);
-        stage?.setHeight(plateHeight / 2);
+        stage?.setWidth(window.innerWidth);
+        stage?.setHeight(window.innerHeight);
         stage?.scaleX(isMobile ? 1 / 10 : 1 / 5);
         stage?.scaleY(isMobile ? 1 / 10 : 1 / 5);
         stage?.draw();
