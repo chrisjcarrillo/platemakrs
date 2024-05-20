@@ -6,6 +6,10 @@ export default async (req, res) => {
     const upsRepository = new UPSRepository();
     try {
         const data = await req.body;
+        const existingOrder = await orderRepository.findOrder(data.orderId);
+        if (existingOrder) {
+            return res.status(200).send('Order already exists');
+        }
         const order = await orderRepository.createOrder(data);
         await upsRepository.createReturnLabel(data);
         res.status(200).json(order);

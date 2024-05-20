@@ -114,15 +114,9 @@ export async function createShippingLabel(token, shippingData, shippingType) {
                     RequestOption: 'nonvalidate',
                 },
                 Shipment: {
-                    Shipper: {
-                        shipperData
-                    },
-                    ShipTo: {
-                         customerData
-                    },
-                    ShipFrom: {
-                        companyData
-                    },
+                    Shipper: shipperData,
+                    ShipTo: customerData,
+                    ShipFrom: companyData,
                     PaymentInformation: {
                         ShipmentCharge: {
                             Type: "01",
@@ -178,27 +172,6 @@ export async function createShippingLabel(token, shippingData, shippingType) {
     const data = await resp.json();
     console.log(data);
     return data;
-}
-
-export async function createReturnLabel() {
-    const formData = {
-        grant_type: 'client_credentials'
-    };
-
-    const resp = await fetch(
-        `https://wwwcie.ups.com/security/v1/oauth/token`,
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'x-merchant-id': 'string',
-                Authorization: 'Basic ' + Buffer.from(`${process.env.UPS_CLIENT_ID}:${process.env.UPS_CLIENT_SECRET}`).toString('base64')
-            },
-            body: new URLSearchParams(formData).toString()
-        }
-    );
-
-    return await resp.json();
 }
 
 export async function trackShipping(trackingNumber, token) {
