@@ -96,15 +96,12 @@ function EditorNew(props: any) {
         setIsLoaded(true);
         const stage = canvasReference?.current;
         const mainText = textRef?.current;
-        const layerRef = layerReference?.current;
-
 
         stage?.setWidth(plateWidth);
         stage?.setHeight(plateHeight);
         stage?.scaleX(isMobile ? 1 / 10 : 1 / 5);
         stage?.scaleY(isMobile ? 1 / 10 : 1 / 5);
         stage?.draw();
-        stage?.clearCache();
 
         mainText?.clearCache();
         mainText?.width(plateWidth * 0.955)

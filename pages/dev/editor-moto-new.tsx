@@ -80,7 +80,6 @@ const EditorMotoNew = (props: any) => {
         stage?.scaleX(isMobile ? 1 / 6.5 : 1 / 3);
         stage?.scaleY(isMobile ? 1 / 6.5 : 1 / 3);
         stage?.draw();
-        stage?.clearCache();
 
         mainText?.clearCache();
         mainText?.fontSize(plateHeight * 0.35)
@@ -88,7 +87,6 @@ const EditorMotoNew = (props: any) => {
         mainText?.y(plateHeight * 0.55 - plateHeight * 0.085);
         mainText?.x(plateWidth * 0.14 / 2);
         mainText?.width(plateWidth * 0.875);
-        mainText?.fontFamily("'License Plate USA'")
         mainText?.wrap('none')
         mainText?.align(currentLicensePlate?.platePosition ?
             currentLicensePlate?.platePosition :
@@ -100,9 +98,7 @@ const EditorMotoNew = (props: any) => {
             currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate);
         mainText?.draw();
         
-        if(stage.isVisible()){
-            setIsLoaded(false);
-        }
+        setIsLoaded(false);
         
     }, []);
 
