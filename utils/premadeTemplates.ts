@@ -1,335 +1,4 @@
 export const premadeTemplates = [
-   //Motorcycle
-    {
-        vehicleType: 'Motorcycle',
-        detailLogo1: { enabled: false},
-        detailLogo2: {enabled: false},
-        templateId: '1',
-        shopifyHandle: 'motorcycle-two-colors-template',
-        startPlatePosition: 'center',
-        startPlateText: 'SAMPLE',
-        patternSettings: { enabled: false },
-        fadeSettings: { enabled: false },
-        backgroundLogo: { enabled: false },
-        bottomLogo: { enabled: false },
-        mainLogo: { enabled: false },
-        backgroundSettings: {
-            color: '#000000',
-            background: { enabled: false },
-        },
-        state:{
-            color: '#ffffff',
-            glow: {
-                enabled: false
-            },
-            shadow: {
-                enabled: false
-            },
-            stroke: { enabled: false},
-        },
-        plateNumber: {
-            color: '#ffffff',
-            glow: {
-                enabled: false
-            },
-            shadow: {
-                enabled: false
-            },
-            stroke: { enabled: false},
-        },
-        bottomText: {
-            color: '#ffffff',
-            glow: {
-                enabled: false
-            },
-            shadow: {
-                enabled: false
-            },
-            stroke: { enabled: false},
-        }
-    }, //Corvette #1  - [Done]
-    {
-        vehicleType: 'Motorcycle',
-        detailLogo1: { enabled: false},
-        detailLogo2: {enabled: false},
-        templateId: '2',
-        shopifyHandle: 'motorcycle-harley-davidson-1-template',
-        startPlatePosition: 'center',
-        startPlateText: 'SAM PLE',
-        patternSettings: { enabled: false },
-        fadeSettings: { enabled: false },
-        backgroundLogo: { enabled: false },
-        bottomLogo: { enabled: false },
-        mainLogo: {
-            enabled: true,
-            hasColor: true,
-            imageType: 'svg',
-            name: "mercedes.svg",
-            filePath: '/images/resources/motorcycles/harley/logos/main/colors',
-            url: '/images/resources/motorcycles/harley/logos/main/colors/black.svg',
-            leftCoordinates: {
-                x: 525,
-                y: 250
-            },
-            centerCoordinates: {
-                x: 525,
-                y: 250
-            },
-            rightCoordinates: {
-                x: 525,
-                y: 250
-            },
-            width: 1050,
-            height: 850,
-            glow:{ enabled: true, color: '#acacac' }
-        },
-        backgroundSettings: {
-            color: '#000000',
-            background: { enabled: false },
-        },
-        state:{
-            color: '#ffffff',
-            glow: {
-                enabled: false
-            },
-            shadow: {
-                enabled: false
-            },
-            stroke: { enabled: false},
-        },
-        plateNumber: {
-            color: '#ffffff',
-            glow: {
-                enabled: false
-            },
-            shadow: {
-                enabled: false
-            },
-            stroke: { enabled: false},
-        },
-        bottomText: {
-            color: '#ffffff',
-            glow: {
-                enabled: false
-            },
-            shadow: {
-                enabled: false
-            },
-            stroke: { enabled: false},
-        }
-    }, //Corvette #1  - [Done]
-    {
-        vehicleType: 'Motorcycle',
-        detailLogo1: { enabled: false},
-        detailLogo2: {enabled: false},
-        templateId: '3',
-        shopifyHandle: 'motorcycle-harley-davidson-2-template',
-        startPlatePosition: 'center',
-        startPlateText: 'SAM PLE',
-        patternSettings: { enabled: false },
-        fadeSettings: { enabled: false },
-        backgroundLogo:{
-            hasColor: true,
-            enabled: true,
-            name: 'gray.png',
-            imageType: 'png',
-            filePath: '/images/resources/motorcycles/harley/stripe/colors',
-            url: '/images/resources/motorcycles/harley/stripe/colors/regular.png',
-            leftCoordinates: {
-                x: 50,
-                y: 0
-            },
-            centerCoordinates: {
-                x: 800,
-                y: 0
-            },
-            rightCoordinates: {
-                x: 245,
-                y: 0
-            },
-            width: 500,
-            height: 1200,
-        },
-        bottomLogo: { enabled: false },
-        mainLogo: {
-            enabled: true,
-            hasColor: true,
-            imageType: 'svg',
-            name: "mercedes.svg",
-            filePath: '/images/resources/motorcycles/harley/logos/main/colors',
-            url: '/images/resources/motorcycles/harley/logos/main/colors/gray.svg',
-            leftCoordinates: {
-                x: 525,
-                y: 250
-            },
-            centerCoordinates: {
-                x: 525,
-                y: 250
-            },
-            rightCoordinates: {
-                x: 525,
-                y: 250
-            },
-            width: 1050,
-            height: 850,
-            glow:{ enabled: true, color: '#000000' }
-        },
-        backgroundSettings: {
-            color: '#000000',
-            background: {
-                enabled: true,
-                file:{
-                    hasColor: false,
-                    hasMainColor: false,
-                    name: 'green-hexagons.png',
-                    imageType: 'png',
-                    filePath: '/images/resources/motorcycles/harley/backgrounds/',
-                    url: '/images/resources/motorcycles/harley/backgrounds/hexagon-mesh.png',
-                },
-                stroke: {
-                    enabled: true,
-                    color: '#ff0000'
-                }
-            },
-        },
-        state:{
-            color: '#ffffff',
-            glow: {
-                enabled: false
-            },
-            shadow: {
-                enabled: false
-            },
-            stroke: { 
-                enabled: true,
-                color: '#ff6600'
-
-            },
-        },
-        plateNumber: {
-            color: '#ffffff',
-            glow: {
-                enabled: false
-            },
-            shadow: {
-                enabled: false
-            },
-            stroke: { 
-                enabled: true,
-                color: '#ff6600'
-
-            },
-        },
-        bottomText: {
-            color: '#ffffff',
-            glow: {
-                enabled: false
-            },
-            shadow: {
-                enabled: false
-            },
-            stroke: { 
-                enabled: true,
-                color: '#ff6600'
-
-            },
-        }
-    }, //Corvette #1  - [Done]
-    {
-        vehicleType: 'Motorcycle',
-        detailLogo1: { enabled: false},
-        detailLogo2: {enabled: false},
-        templateId: '3',
-        shopifyHandle: 'motorcycle-harley-davidson-3-template',
-        startPlatePosition: 'center',
-        startPlateText: 'SAM PLE',
-        patternSettings: { enabled: false },
-        fadeSettings: { enabled: false },
-        backgroundLogo:{
-            enabled: false,
-        },
-        bottomLogo: { enabled: false },
-        mainLogo: {
-            enabled: true,
-            hasColor: true,
-            imageType: 'svg',
-            name: "mercedes.svg",
-            filePath: '/images/resources/motorcycles/harley/logos/main/colors',
-            url: '/images/resources/motorcycles/harley/logos/main/colors/black.svg',
-            leftCoordinates: {
-                x: 525,
-                y: 250
-            },
-            centerCoordinates: {
-                x: 525,
-                y: 250
-            },
-            rightCoordinates: {
-                x: 525,
-                y: 250
-            },
-            width: 1050,
-            height: 850,
-            glow:{ enabled: true, color: 'red' }
-        },
-        backgroundSettings: {
-            color: '#000000',
-            background: {
-                enabled: true,
-                file: {
-                    hasMainColor: true,
-                    hasColor: true,
-                    enabled: true,
-                    name: 'gray.png',
-                    imageType: 'png',
-                    filePath: '/images/resources/motorcycles/harley/backgrounds/hexagons-moto/1/colors',
-                    url: '/images/resources/motorcycles/harley/backgrounds/hexagons-moto/1/colors/gray.png',
-                }
-            },
-            stroke: { enabled: false }
-        },
-        state:{
-            color: '#ffffff',
-            glow: {
-                enabled: false
-            },
-            shadow: {
-                enabled: false
-            },
-            stroke: { 
-                enabled: false
-            },
-        },
-        plateNumber: {
-            color: '#ffffff',
-            glow: {
-                enabled: false
-            },
-            shadow: {
-                enabled: false
-            },
-            stroke: { 
-                enabled: false
-            },
-        },
-        bottomText: {
-            color: '#ffffff',
-            glow: {
-                enabled: false
-            },
-            shadow: {
-                enabled: false
-            },
-            stroke: { 
-                enabled: false,
-            },
-        }
-    }, //Corvette #1  - [Done]
-
-
-
-
-    //Car
     {
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -695,7 +364,7 @@ export const premadeTemplates = [
         templateId: '4',
         preset: true,
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
 
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
@@ -1408,7 +1077,7 @@ export const premadeTemplates = [
         shopifyHandle: 'the-joker-template',
         preset: true,
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
         bottomLogo: { enabled: false },
@@ -1875,7 +1544,7 @@ export const premadeTemplates = [
         templateId: '16',
         shopifyHandle: 'porsche-2-template',
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         preset: true,
         fadeSettings: {enabled: false},
         patternSettings: {enabled: false},
@@ -2043,7 +1712,7 @@ export const premadeTemplates = [
         templateId: '18',
         shopifyHandle: 'astom-martin-1-template',
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         preset: true,
 
         fadeSettings: {enabled: false},
@@ -2065,31 +1734,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/aston-martin/logos/option-1/colors',
             url: '/images/resources/cars/aston-martin/logos/option-1/colors/regular.svg',
             leftCoordinates: {
-                x: 150,
-                y: 735
+                x: 26,
+                y: 65
             },
             centerCoordinates: {
-                x: 1085,
-                y: 735
+                x: 105,
+                y: 65
             },
             rightCoordinates: {
-                x: 2025,
-                y: 735
+                x: 210,
+                y: 65
             },
-            // leftCoordinates: {
-            //     x: 26,
-            //     y: 65
-            // },
-            // centerCoordinates: {
-            //     x: 105,
-            //     y: 65
-            // },
-            // rightCoordinates: {
-            //     x: 210,
-            //     y: 65
-            // },
-            width: 1500,
-            height: 375,
+            width: 125,
+            height: 35,
             glow: {
                 enabled: true,
                 color: '#bbda01'
@@ -2360,7 +2017,7 @@ export const premadeTemplates = [
         templateId: '21',
         shopifyHandle: 'bmw-1-template',
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         preset: true,
         patternSettings: { enabled: false },
         fadeSettings: { enabled: false },
@@ -2370,19 +2027,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/cars/bmw/logos/logo.png',
             leftCoordinates: {
-                x: 350,
-                y: 590
+                x: 50,
+                y: 32
             },
             centerCoordinates: {
-                x: 1505,
-                y: 590
+                x: 145,
+                y: 60
             },
             rightCoordinates: {
-                x: 2650,
-                y: 590
+                x: 240,
+                y: 32
             },
-            width: 650,
-            height: 650,
+            width: 55,
+            height: 55,
             glow:{ enabled: true, color: '#0080ff'}
         },
         backgroundLogo:{
@@ -2392,39 +2049,31 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/bmw/patterns/m/option-1',
             url: '/images/resources/cars/bmw/patterns/m/option-1/1.png',
             leftCoordinates: {
-                x: 100,
-                y: 50
+                x: 2,
+                y: 0
             },
             centerCoordinates: {
-                x: 50,
-                y: 50
+                x: 2,
+                y: 0
             },
             rightCoordinates: {
-                x: 2575,
-                y: 50
+                x: 245,
+                y: 0
             },
-            width: 800,
-            height: 1700,
+            width: 95,
+            height: 165,
         },
         bottomLogo: {
             hasColor: false,
             enabled: true,
             name: "mercedes.svg",
             url: '/images/resources/cars/bmw/logos/logo-m.svg',
-            leftCoordinates: {
-                x: 3100,
-                y: 1515
-            },
             centerCoordinates: {
-                x: 3100,
-                y: 1515
+                x: 285,
+                y: 140
             },
-            rightCoordinates: {
-                x: 3100,
-                y: 1515
-            },
-            width: 300,
-            height: 200,
+            width: 45,
+            height: 15,
             glow:{ enabled: true, color: '#000000' }
         },
         backgroundSettings: {
@@ -2491,7 +2140,7 @@ export const premadeTemplates = [
         templateId: '22',
         preset: true,
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
         bottomLogo: { enabled: false },
@@ -2577,7 +2226,7 @@ export const premadeTemplates = [
         templateId: '23',
         preset: true,
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
         bottomLogo: { enabled: false },
@@ -2684,7 +2333,7 @@ export const premadeTemplates = [
         templateId: '24',
         preset: true,
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
         bottomLogo: { enabled: false },
@@ -2694,19 +2343,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/cars/audi/logos/logo-with-text.svg',
             leftCoordinates: {
-                x: 350,
-                y: 725
+                x: 15,
+                y: 60
             },
             centerCoordinates: {
-                x: 1450,
-                y: 725
+                x: 140,
+                y: 60
             },
             rightCoordinates: {
-                x: 2500,
-                y: 725
+                x: 275,
+                y: 60
             },
-            width: 750,
-            height: 400,
+            width: 65,
+            height: 45,
             glow:{ enabled: false }
         },
         backgroundLogo:{
@@ -2716,19 +2365,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/audi/backgrounds/option-1',
             url: '/images/resources/cars/audi/backgrounds/option-1/1.png',
             leftCoordinates: {
-                x: 175,
-                y: 350
+                x: 10,
+                y: 35
             },
             centerCoordinates: {
-                x: 175,
-                y: 350
+                x: 10,
+                y: 35
             },
             rightCoordinates: {
-                x: 175,
-                y: 350
+                x: 10,
+                y: 35
             },
-            width: 3250,
-            height: 1150,
+            width: 325,
+            height: 100,
         },
 
         backgroundSettings: {
@@ -2784,7 +2433,7 @@ export const premadeTemplates = [
         detailLogo2: {enabled: false},
         templateId: '25',
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         preset: true,
         patternSettings: { enabled: false },
         fadeSettings: { enabled: false },
@@ -2896,7 +2545,7 @@ export const premadeTemplates = [
         templateId: '26',
         preset: true,
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         fadeSettings: {enabled: false},
         patternSettings: {enabled: false},
         bottomLogo: { enabled: false },
@@ -2977,7 +2626,7 @@ export const premadeTemplates = [
         templateId: '27',
         shopifyHandle: 'aston-martin-2-template',
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         preset: true,
         bottomLogo: { enabled: false },
         patternSettings: { enabled: false },
@@ -2992,19 +2641,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/aston-martin/logos/option-1/colors',
             url: '/images/resources/cars/aston-martin/logos/option-1/colors/regular.svg',
             leftCoordinates: {
-                x: 150,
-                y: 735
+                x: 26,
+                y: 65
             },
             centerCoordinates: {
-                x: 1085,
-                y: 735
+                x: 105,
+                y: 65
             },
             rightCoordinates: {
-                x: 2025,
-                y: 735
+                x: 210,
+                y: 65
             },
-            width: 1500,
-            height: 375,
+            width: 125,
+            height: 35,
             glow: {
                 enabled: true,
                 color: '#ffffff'
@@ -3074,7 +2723,7 @@ export const premadeTemplates = [
         templateId: '28',
         shopifyHandle: 'aston-martin-3-template',
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         preset: true,
 
         bottomLogo: { enabled: false },
@@ -3089,19 +2738,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/aston-martin/logos/option-1/colors',
             url: '/images/resources/cars/aston-martin/logos/option-1/colors/regular.svg',
             leftCoordinates: {
-                x: 150,
-                y: 735
+                x: 26,
+                y: 65
             },
             centerCoordinates: {
-                x: 1085,
-                y: 735
+                x: 105,
+                y: 65
             },
             rightCoordinates: {
-                x: 2025,
-                y: 735
+                x: 210,
+                y: 65
             },
-            width: 1500,
-            height: 375,
+            width: 125,
+            height: 35,
             glow: {
                 enabled: true,
                 color: '#ffffff'
@@ -3175,7 +2824,7 @@ export const premadeTemplates = [
         templateId: '29',
         shopifyHandle: 'ferrari-1-template',
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         preset: true,
         bottomLogo: { enabled: false },
         fadeSettings: { enabled: false },
@@ -3281,7 +2930,7 @@ export const premadeTemplates = [
         templateId: '30',
         shopifyHandle: 'ferrari-2-template',
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         preset: true,
         bottomLogo: { enabled: false },
         fadeSettings: { enabled: false },
@@ -3390,7 +3039,7 @@ export const premadeTemplates = [
         templateId: '31',
         shopifyHandle: 'lamborghini-2-template',
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         preset: true,
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
@@ -4006,19 +3655,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/cars/dodge/logos/hellcat/colors',
             url: '/images/resources/cars/dodge/logos/hellcat/colors/black.svg',
             leftCoordinates: {
-                x: 10,
-                y: 150
+                x: -30,
+                y: 5
             },
             centerCoordinates: {
-                x: 1050,
-                y: 150
+                x: 110,
+                y: 5
             },
             rightCoordinates: {
-                x: 2075,
-                y: 150
+                x: 200,
+                y: 5
             },
-            width: 1500,
-            height: 1500,
+            width: 145,
+            height: 145,
             glow:{ enabled: true, color: "#929292" }
         },
         backgroundSettings: {
@@ -4299,7 +3948,7 @@ export const premadeTemplates = [
         templateId: '40',
         shopifyHandle: 'corvette-1-template-1',
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
 
         patternSettings: { enabled: false },
         fadeSettings: { enabled: false },
@@ -4311,19 +3960,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/cars/corvette/logo/logo.png',
             leftCoordinates: {
-                x: 215,
-                y: 315
+                x: 26,
+                y: 32
             },
             centerCoordinates: {
-                x: 1250,
-                y: 315
+                x: 115,
+                y: 35
             },
             rightCoordinates: {
-                x: 2250,
-                y: 315
+                x: 230,
+                y: 32
             },
-            width: 1150,
-            height: 1150,
+            width: 120,
+            height: 100,
             glow: {
                 enabled: true,
                 color: '#000000'
@@ -4337,20 +3986,12 @@ export const premadeTemplates = [
             imageType: 'svg',
             filePath: '/images/resources/cars/corvette/text/colors',
             url: '/images/resources/cars/corvette/text/colors/red.svg',
-            leftCoordinates: {
-                x: 1115,
-                y: 1515
-            },
             centerCoordinates: {
-                x: 1115,
-                y: 1515
+                x: 104,
+                y: 140
             },
-            rightCoordinates: {
-                x: 1115,
-                y: 1515
-            },
-            width: 1450,
-            height: 100,
+            width: 145,
+            height: 10,
             glow: {
                 enabled: true,
                 color: "#000000"
@@ -4505,7 +4146,7 @@ export const premadeTemplates = [
         templateId: '42',
         preset: true,
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
@@ -4628,7 +4269,7 @@ export const premadeTemplates = [
         templateId: '43',
         preset: true,
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         fadeSettings: { enabled: false, },
         bottomLogo: { enabled: false },
         patternSettings: { enabled: false },
@@ -4713,7 +4354,7 @@ export const premadeTemplates = [
         templateId: '44',
         preset: true,
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         fadeSettings: { enabled: false, },
         patternSettings: { enabled: false },
 
@@ -5134,19 +4775,19 @@ export const premadeTemplates = [
             filePath: '/images/resources/misc/palm-tree/colors',
             url: '/images/resources/misc/palm-tree/colors/regular.png',
             leftCoordinates: {
-                x: 225,
-                y: 400
+                x: 40,
+                y: 45
             },
             centerCoordinates: {
-                x: 1295,
-                y: 400
+                x: 140,
+                y: 50
             },
             rightCoordinates: {
-                x: 2250,
-                y: 400
+                x: 250,
+                y: 45
             },
-            width: 1000,
-            height: 1000,
+            width: 65,
+            height: 65,
             glow:{ enabled: true, color: "#959595" }
         },
         backgroundSettings: {
@@ -5200,7 +4841,7 @@ export const premadeTemplates = [
         templateId: '49',
         preset: true,
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
         backgroundLogo: { enabled: false },
@@ -5300,7 +4941,7 @@ export const premadeTemplates = [
         templateId: '50',
         preset: true,
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
         bottomLogo: { enabled: false },
@@ -5410,7 +5051,7 @@ export const premadeTemplates = [
         templateId: '51',
         preset: true,
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
         backgroundLogo: { enabled: false },
@@ -5507,7 +5148,7 @@ export const premadeTemplates = [
         templateId: '52',
         preset: true,
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
 
@@ -5616,7 +5257,7 @@ export const premadeTemplates = [
         templateId: '53',
         preset: true,
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
         mainLogo: { enabled: false },
@@ -5683,7 +5324,7 @@ export const premadeTemplates = [
         templateId: '54',
         preset: true,
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
         mainLogo: {
@@ -5816,19 +5457,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/cars/bmw/logos/logo-new.png',
             leftCoordinates: {
-                x: 300,
-                y: 475
+                x: 26,
+                y: 40
             },
             centerCoordinates: {
-                x: 1395,
-                y: 475
+                x: 115,
+                y: 40
             },
             rightCoordinates: {
-                x: 2440,
-                y: 475
+                x: 230,
+                y: 40
             },
-            width: 850,
-            height: 850,
+            width: 85,
+            height: 85,
             glow:{ enabled: true, color: '#000000' }
         },
         bottomLogo: {
@@ -5836,20 +5477,12 @@ export const premadeTemplates = [
             enabled: true,
             name: "mercedes.svg",
             url: '/images/resources/cars/bmw/flag/bottom/option-1.png',
-            leftCoordinates: {
-                x: 0,
-                y: 1432
-            },
             centerCoordinates: {
                 x: 0,
-                y: 1432
+                y: 130
             },
-            rightCoordinates: {
-                x: 0,
-                y: 1432
-            },
-            width: 3597,
-            height: 300,
+            width: 350,
+            height: 30,
             glow:{ enabled: true, color: '#000000' }
         },
 
@@ -5872,8 +5505,8 @@ export const premadeTemplates = [
                 x: 0,
                 y: 0
             },
-            width: 3597,
-            height: 1800,
+            width: 350,
+            height: 200,
         },
 
 
@@ -6043,7 +5676,7 @@ export const premadeTemplates = [
         templateId: '57',
         preset: true,
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
         mainLogo: { enabled: false },
@@ -6110,7 +5743,7 @@ export const premadeTemplates = [
         templateId: '58',
         preset: true,
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         patternSettings: { enabled: false },
         fadeSettings: { enabled: false },
         bottomLogo: { enabled: false },
@@ -6299,7 +5932,7 @@ export const premadeTemplates = [
         templateId: '60',
         preset: true,
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         fadeSettings: { enabled: false },
         patternSettings: { enabled: false },
         bottomLogo: { enabled: false },
@@ -6594,18 +6227,18 @@ export const premadeTemplates = [
             url: '/images/logos/brands/cars/dodge/redeye-logo.png',
             leftCoordinates: {
                 x: 10,
-                y: 150
+                y: 15
             },
             centerCoordinates: {
-                x: 1050,
-                y: 150
+                x: 95,
+                y: 15
             },
             rightCoordinates: {
-                x: 2075,
-                y: 150
+                x: 200,
+                y: 15
             },
-            width: 1500,
-            height: 1500,
+            width: 135,
+            height: 135,
             glow:{ enabled: true, color: "#e90001" }
         },
 
@@ -6673,19 +6306,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/cars/corvette/logo/logo.png',
             leftCoordinates: {
-                x: 215,
-                y: 315
+                x: 26,
+                y: 32
             },
             centerCoordinates: {
-                x: 1250,
-                y: 315
+                x: 115,
+                y: 35
             },
             rightCoordinates: {
-                x: 2250,
-                y: 315
+                x: 230,
+                y: 32
             },
-            width: 1150,
-            height: 1150,
+            width: 120,
+            height: 100,
             glow: {
                 enabled: true,
                 color: '#ffffff'
@@ -6698,20 +6331,12 @@ export const premadeTemplates = [
             imageType: 'svg',
             filePath: '/images/resources/cars/corvette/text/colors',
             url: '/images/resources/cars/corvette/text/colors/red.svg',
-            leftCoordinates: {
-                x: 1115,
-                y: 1515
-            },
             centerCoordinates: {
-                x: 1115,
-                y: 1515
+                x: 104,
+                y: 135
             },
-            rightCoordinates: {
-                x: 1115,
-                y: 1515
-            },
-            width: 1450,
-            height: 100,
+            width: 145,
+            height: 10,
             glow: {
                 enabled: true,
                 color: "#000000"
@@ -6745,7 +6370,8 @@ export const premadeTemplates = [
                 enabled: false
             },
             stroke: {
-                enabled: false,
+                enabled: true,
+                color: 'red'
             },
         },
         plateNumber: {
@@ -6781,7 +6407,7 @@ export const premadeTemplates = [
         templateId: '66',
         shopifyHandle: 'mustang-shelby-3-template',
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         preset: true,
         patternSettings: { enabled: false },
         fadeSettings: { enabled: false },
@@ -6930,7 +6556,7 @@ export const premadeTemplates = [
         templateId: '67',
         shopifyHandle: 'dodge-ram-1-template',
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         preset: true,
         patternSettings: { enabled: false },
         fadeSettings: { enabled: false },
@@ -6942,19 +6568,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/cars/dodge/logos/ram/1.png',
             leftCoordinates: {
-                x: 350,
-                y: 315
+                x: 142,
+                y: 55
             },
             centerCoordinates: {
-                x: 1515,
-                y: 600
+                x: 142,
+                y: 55
             },
             rightCoordinates: {
-                x: 2475,
-                y: 315
+                x: 142,
+                y: 55
             },
-            width: 650,
-            height: 650,
+            width: 60,
+            height: 60,
             glow: {
                 enabled: true,
                 color: '#000000'
@@ -7020,7 +6646,7 @@ export const premadeTemplates = [
         templateId: '68',
         shopifyHandle: 'corvette-3-template',
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         patternSettings: { enabled: false },
         fadeSettings: { enabled: false },
         backgroundLogo: { enabled: false },
@@ -7030,19 +6656,19 @@ export const premadeTemplates = [
             name: "mercedes.svg",
             url: '/images/resources/cars/corvette/logo/logo.png',
             leftCoordinates: {
-                x: 215,
-                y: 315
+                x: 26,
+                y: 32
             },
             centerCoordinates: {
-                x: 1250,
-                y: 315
+                x: 115,
+                y: 35
             },
             rightCoordinates: {
-                x: 2250,
-                y: 315
+                x: 230,
+                y: 32
             },
-            width: 1150,
-            height: 1150,
+            width: 120,
+            height: 100,
             glow: {
                 enabled: true,
                 color: '#ffffff'
@@ -7098,7 +6724,7 @@ export const premadeTemplates = [
         templateId: '69',
         shopifyHandle: 'two-colors-simple-template',
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         patternSettings: { enabled: false },
         fadeSettings: { enabled: false },
         backgroundLogo: { enabled: false },
@@ -7146,7 +6772,7 @@ export const premadeTemplates = [
         templateId: '70',
         shopifyHandle: 'pinstripe-template',
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         patternSettings: { enabled: false },
         fadeSettings: { enabled: false },
         backgroundLogo: { enabled: false },
@@ -7198,7 +6824,7 @@ export const premadeTemplates = [
         templateId: '71',
         shopifyHandle: 'corvette-4-template',
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         patternSettings: { enabled: false },
         fadeSettings: { enabled: false },
         backgroundLogo: { enabled: false },
@@ -7275,8 +6901,6 @@ export const premadeTemplates = [
         bottomLogo: { enabled: false },
         detailLogo1: { enabled: false },
         detailLogo2: { enabled: false },
-        startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
         backgroundSettings: {
             color: '#000000',
             pinstripe: {
@@ -7332,8 +6956,6 @@ export const premadeTemplates = [
         bottomLogo: { enabled: false },
         detailLogo1: { enabled: false },
         detailLogo2: { enabled: false },
-        startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
 
         mainLogo: {
             enabled: true,
@@ -7343,15 +6965,15 @@ export const premadeTemplates = [
             url: '/images/resources/preset/logos/logo.png',
             leftCoordinates: {
                 x: 26,
-                y: 65
+                y: 32
             },
             centerCoordinates: {
-                x: 135,
-                y: 65
+                x: 115,
+                y: 32
             },
             rightCoordinates: {
                 x: 230,
-                y: 65
+                y: 32
             },
             width: 100,
             height: 100,
@@ -7427,8 +7049,8 @@ export const premadeTemplates = [
                 y: 32
             },
             centerCoordinates: {
-                x: 135,
-                y: 65
+                x: 115,
+                y: 32
             },
             rightCoordinates: {
                 x: 230,
@@ -7520,8 +7142,8 @@ export const premadeTemplates = [
                 y: 32
             },
             centerCoordinates: {
-                x: 135,
-                y: 65
+                x: 115,
+                y: 32
             },
             rightCoordinates: {
                 x: 230,
@@ -7630,8 +7252,8 @@ export const premadeTemplates = [
                 y: 32
             },
             centerCoordinates: {
-                x: 135,
-                y: 65
+                x: 115,
+                y: 32
             },
             rightCoordinates: {
                 x: 230,
@@ -7739,8 +7361,8 @@ export const premadeTemplates = [
                 y: 32
             },
             centerCoordinates: {
-                x: 135,
-                y: 65
+                x: 115,
+                y: 32
             },
             rightCoordinates: {
                 x: 230,
@@ -7844,8 +7466,8 @@ export const premadeTemplates = [
                 y: 32
             },
             centerCoordinates: {
-                x: 135,
-                y: 65
+                x: 115,
+                y: 32
             },
             rightCoordinates: {
                 x: 230,
@@ -7949,8 +7571,8 @@ export const premadeTemplates = [
                 y: 32
             },
             centerCoordinates: {
-                x: 135,
-                y: 65
+                x: 115,
+                y: 32
             },
             rightCoordinates: {
                 x: 230,
