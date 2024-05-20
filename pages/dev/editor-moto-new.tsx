@@ -72,22 +72,20 @@ const EditorMotoNew = (props: any) => {
 
     useEffect(() => {
         setIsLoaded(true);
-        const stage = canvasReference.current;
+        // const stage = canvasReference.current;
         const mainText = textRef.current;
 
-        stage?.width(plateWidth);
-        stage?.height(plateHeight);
-        stage?.draw();
+        // stage?.width(plateWidth);
+        // stage?.height(plateHeight);
+        // stage?.draw();
+
         mainText?.x(plateWidth * 0.14 / 2);
         mainText?.y(plateHeight * 0.55 - plateHeight * 0.085);
         mainText?.width(plateWidth * 0.875)
         mainText?.align('center')
         mainText?.draw();
 
-
-        if(stage.getStage()){        
-            setIsLoaded(false);
-        }
+        setIsLoaded(false);
         
     }, []);
 
