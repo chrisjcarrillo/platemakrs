@@ -281,7 +281,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 if(!sessionStorage.getItem('showAdditionalPlatePopup')){
                     setTimeout(() => {
                         setUpsellPopup(true)
-                    }, 3500);
+                    }, 5000);
                 }
             }
             if (customPresetTemplate) {
@@ -292,7 +292,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 if(!sessionStorage.getItem('showAdditionalPlatePopup')){
                     setTimeout(() => {
                         setUpsellPopup(true)
-                    }, 3500);
+                    }, 5000);
                 }
                 router.push(`/editor?presetTemplate=${customTemplate?.templateId}&step=1&vehicleType=${customTemplate?.vehicleType}`)
             }

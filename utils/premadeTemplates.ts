@@ -8,7 +8,7 @@ export const premadeTemplates = [
         templateId: '1',
         shopifyHandle: 'motorcycle-two-colors-template',
         startPlatePosition: 'center',
-        startPlateText: 'SAMPLE',
+        startPlateText: 'SAM PLE',
         patternSettings: { enabled: false },
         fadeSettings: { enabled: false },
         backgroundLogo: { enabled: false },
