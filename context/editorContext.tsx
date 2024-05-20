@@ -278,23 +278,18 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 setPreset(true);
                 sessionStorage.setItem('preset', 'true')
                 router.push(`/editor?presetTemplate=${customTemplate?.templateId}&step=1&preset=true&vehicleType=${customTemplate?.vehicleType}`)
-                if(!sessionStorage.getItem('showAdditionalPlatePopup') && customTemplate?.vehicleType === "Car"){
-                    setTimeout(() => {
-                        setUpsellPopup(true)
-                    }, 5000);
-                }
             }
             if (customPresetTemplate) {
                 setPreset(false);
                 if (sessionStorage.getItem('preset')) {
                     sessionStorage.removeItem('preset')
                 }
-                if(!sessionStorage.getItem('showAdditionalPlatePopup') && customTemplate?.vehicleType === "Car"){
-                    setTimeout(() => {
-                        setUpsellPopup(true)
-                    }, 5000);
-                }
                 router.push(`/editor?presetTemplate=${customTemplate?.templateId}&step=1&vehicleType=${customTemplate?.vehicleType}`)
+            }
+            if(!sessionStorage.getItem('showAdditionalPlatePopup') && customTemplate?.vehicleType === "Car"){
+                setTimeout(() => {
+                    setUpsellPopup(true)
+                }, 5000);
             }
         } catch (error) {
             console.log(error);
