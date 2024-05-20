@@ -143,59 +143,18 @@ export default function Editor(props: any) {
                 }}
                 open={upsellPopup}
                 centered
-                title={'Additional Plate'}
+                title={'Do you have a front and back plate?'}
                 footer={null}
             >
-                {upsellStep === 1 && (
-                    <div>
+                <div>
                         <p className='addon-description'>
-                            Do you have a front and back plate?
+                        Add the 2nd Plate for $100
                         </p>
                         <Flex gap="small" justify='flex-end'>
                             <Button loading={loading} shape="round" block onClick={() => {
                                 sessionStorage.setItem('hasAdditionalPlate', 'false');
-                                setUpsellStep(1)
                                 setUpsellPopup(false)
                             }}>
-                                No
-                            </Button>
-                            <ConfigProvider
-                                theme={{
-                                    components: {
-                                        Button: {
-                                            colorPrimary: `linear-gradient(135deg, #6253E1, #04BEFE)`,
-                                            colorPrimaryHover: `linear-gradient(135deg, #6253E1, #04BEFE)`,
-                                            colorPrimaryActive: `linear-gradient(135deg, #6253E1, #04BEFE)`,
-                                            lineWidth: 0,
-                                        },
-                                    },
-                                }}
-                            >
-                                <Button type="primary" shape="round" block loading={loading}
-                                    onClick={() => {
-                                        setUpsellStep(2)
-                                    }}>
-                                    Yes
-                                </Button>
-                            </ConfigProvider>
-                        </Flex>
-                    </div>
-                )}
-
-                {upsellStep === 2 && (
-                    <div>
-                        <p className='addon-description'>
-                            Add an additional plate for <strong>only $100.00</strong>
-                        </p>
-                        <Flex gap="small" justify='flex-end'>
-                            <Button
-                                shape='round'
-                                block
-                                onClick={() => {
-                                    sessionStorage.setItem('showAdditionalPlatePopup', 'false');
-                                    setUpsellPopup(false)
-                                    setUpsellStep(1)
-                                }}>
                                 No
                             </Button>
                             <ConfigProvider
@@ -218,17 +177,13 @@ export default function Editor(props: any) {
                                         sessionStorage.setItem('showAdditionalPlatePopup', 'false');
                                         setUpsellPopup(false)
                                         setAddonPlate(e)
-                                        setUpsellStep(1)
                                     }}
                                 >
                                     Yes
                                 </Button>
                             </ConfigProvider>
-
                         </Flex>
                     </div>
-                )}
-
             </Modal>
 
             <EditLogo />
