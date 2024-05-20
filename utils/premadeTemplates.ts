@@ -7604,7 +7604,7 @@ export const premadeTemplates = [
         detailLogo1: { enabled: false },
         detailLogo2: { enabled: false },
         startPlatePosition: 'center',
-        startPlateText: 'SAM  PLE',
+        startPlateText: 'SAM PLE',
         backgroundSettings: {
             color: '#000000',
             pinstripe: {

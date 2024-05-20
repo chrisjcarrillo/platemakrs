@@ -104,6 +104,7 @@ function EditorNew(props: any) {
         stage?.scaleX(isMobile ? 1 / 10 : 1 / 5);
         stage?.scaleY(isMobile ? 1 / 10 : 1 / 5);
         stage?.draw();
+        stage?.clearCache();
 
         mainText?.clearCache();
         mainText?.width(plateWidth * 0.955)
@@ -117,13 +118,10 @@ function EditorNew(props: any) {
             currentLicensePlate?.platePosition :
             currentCustomTemplate?.startPlatePosition ?
                 currentCustomTemplate?.startPlatePosition : 'center');
-        console.log(mainText?.getTextWidth());
-        console.log(mainText?.size());
         // mainText?.verticalAlign('middle')
         mainText?.text(currentLicensePlate?.plateNumber ?
             currentLicensePlate?.plateNumber :
             currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate);
-        mainText?.visible('true');
         mainText?.draw();
         
         setIsLoaded(false);
