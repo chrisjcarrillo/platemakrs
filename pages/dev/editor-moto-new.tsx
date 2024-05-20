@@ -75,20 +75,25 @@ const EditorMotoNew = (props: any) => {
         const stage = canvasReference?.current;
         const mainText = textRef?.current;
 
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-
-        stage?.setWidth(width);
-        stage?.setHeight(height);
+        stage?.setWidth(plateWidth);
+        stage?.setHeight(plateHeight);
+        stage?.scaleX(isMobile ? 1 / 6.5 : 1 / 3);
+        stage?.scaleY(isMobile ? 1 / 6.5 : 1 / 3);
         stage?.draw();
 
-        mainText?.x(plateWidth * 0.14 / 2);
+        mainText?.clearCache();
+        mainText?.fontSize(plateHeight * 0.35)
+        mainText?.fontFamily("'License Plate USA'")
         mainText?.y(plateHeight * 0.55 - plateHeight * 0.085);
-        mainText?.width(plateWidth * 0.875)
-        mainText?.align('center')
+        mainText?.x(plateWidth * 0.14 / 2);
+        mainText?.width(plateWidth * 0.875);
+        // mainText?.align('center')
+        // mainText?.text('SAMPLE');
         mainText?.draw();
-
-        setIsLoaded(false);
+        
+        if(stage.isVisible()){
+            setIsLoaded(false);
+        }
         
     }, []);
 
@@ -185,7 +190,11 @@ const EditorMotoNew = (props: any) => {
                 // listening={false} 
                 // Reference
                 ref={textRef}
-                align={textAlignment()}
+                                align={
+                    currentLicensePlate?.platePosition ?
+                        currentLicensePlate?.platePosition :
+                        currentCustomTemplate?.startPlatePosition ?
+                            currentCustomTemplate?.startPlatePosition : 'center'}
 
                 verticalAlign="middle"
                 x={plateWidth * 0.14 / 2}
@@ -225,7 +234,11 @@ const EditorMotoNew = (props: any) => {
                 // listening={false} 
                 // Reference
                 ref={textRef}
-                align={textAlignment()}
+                                align={
+                    currentLicensePlate?.platePosition ?
+                        currentLicensePlate?.platePosition :
+                        currentCustomTemplate?.startPlatePosition ?
+                            currentCustomTemplate?.startPlatePosition : 'center'}
 
                 verticalAlign="middle"
                 x={plateWidth * 0.14 / 2}

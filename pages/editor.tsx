@@ -207,7 +207,11 @@ export default function Editor(props: any) {
                         </Col>
                         <Col {...headerSettings}>
                             <div className="editor__title">
-                                <h2 className="editor__title-text">{ } Plate Preview</h2>
+                                
+                                <h2 className="editor__title-text">
+                                    {currentCustomTemplate?.vehicleType === "Car" && 'Car Plate Preview'}
+                                    {currentCustomTemplate?.vehicleType === "Motorcycle" && 'Motorcycle Plate Preview'}
+                                </h2>
                             </div>
                         </Col>
                         <Col {...actionSettings}>

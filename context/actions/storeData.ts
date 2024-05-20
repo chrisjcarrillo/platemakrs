@@ -39,13 +39,15 @@ const setImagePreview = async (node: any) => {
         //     cropPositionTop,
         // )
         const stage = node.current;
-        const width = window.innerWidth;
-        const height = window.innerHeight;
+        const width = 3597;
+        const height = 1800;
 
         stage?.setWidth(width);
         stage?.setHeight(height);
-        stage?.setScaleX(isMobile ? 0.1 : 0.2);
-        stage?.setScaleY(isMobile ? 0.1 : 0.2);
+        stage?.setX(0)
+        stage?.setY(0)
+        stage?.setScaleX(0.75);
+        stage?.setScaleY(0.75);
         stage?.draw();
 
         const base64Image = stage.toDataURL();

@@ -57,6 +57,7 @@ function EditorNew(props: any) {
     // const stageRef = useRef<any>();
     const textRef = useRef<any>();
     const plateRef = useRef<any>();
+    const layerReference = useRef<any>();
 
     // Internal State
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
@@ -95,23 +96,37 @@ function EditorNew(props: any) {
         setIsLoaded(true);
         const stage = canvasReference?.current;
         const mainText = textRef?.current;
+        const layerRef = layerReference?.current;
 
-        const width = window.innerWidth;
-        const height = window.innerHeight;
 
-        stage?.setWidth(width);
-        stage?.setHeight(height);
-        mainText?.setY(plateHeight * 0.5 - plateHeight * 0.085);
-        mainText?.setX(plateWidth * 0.05 / 2);
-        mainText?.setWidth(plateWidth * 0.955)
-        mainText?.draw();
+        stage?.setWidth(plateWidth);
+        stage?.setHeight(plateHeight);
+        stage?.scaleX(isMobile ? 1 / 10 : 1 / 5);
+        stage?.scaleY(isMobile ? 1 / 10 : 1 / 5);
         stage?.draw();
 
+        mainText?.clearCache();
+        mainText?.width(plateWidth * 0.955)
+        mainText?.setAttr('fontSize', plateHeight * 0.45)
+        mainText?.x(plateWidth * 0.05 / 2)
+        mainText?.y(plateHeight * 0.5 - plateHeight * 0.085)
 
+        mainText?.fontFamily("'License Plate USA'")
+        mainText?.wrap('none')
+        mainText?.align(currentLicensePlate?.platePosition ?
+            currentLicensePlate?.platePosition :
+            currentCustomTemplate?.startPlatePosition ?
+                currentCustomTemplate?.startPlatePosition : 'center');
+        console.log(mainText?.getTextWidth());
+        console.log(mainText?.size());
+        // mainText?.verticalAlign('middle')
+        mainText?.text(currentLicensePlate?.plateNumber ?
+            currentLicensePlate?.plateNumber :
+            currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate);
+        mainText?.visible('true');
+        mainText?.draw();
         
-        if(stage.getStage()){
-            setIsLoaded(false);
-        }
+        setIsLoaded(false);
         
     }, []);
 
@@ -176,55 +191,15 @@ function EditorNew(props: any) {
             <Text
                 // Reference
                 ref={textRef}
+
                 // Alignment
                 align={
                     currentLicensePlate?.platePosition ?
                         currentLicensePlate?.platePosition :
                         currentCustomTemplate?.startPlatePosition ?
                             currentCustomTemplate?.startPlatePosition : 'center'}
+
                 verticalAlign="middle"
-                x={plateWidth * 0.05 / 2}
-                y={plateHeight * 0.5 - plateHeight * 0.085}
-                width={plateWidth * 0.955}
-
-                // TEXT
-                text={currentLicensePlate?.plateNumber ?
-                    currentLicensePlate?.plateNumber :
-                    currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate}
-
-                // Font
-                fontSize={plateHeight * 0.45}
-                fontFamily={isLoaded ? "'License Plate USA'" : "'License Plate USA'"}
-
-
-                // Text Color
-                fill={currentCustomTemplate?.plateNumber?.color ?? '#ffffff'}
-
-                // Stroke
-                strokeEnabled={currentCustomTemplate?.plateNumber?.stroke?.enabled}
-                stroke={currentCustomTemplate?.plateNumber?.stroke?.enabled ?
-                    `${currentCustomTemplate?.plateNumber?.stroke?.color ?? '#000000'}` : ''}
-                strokeWidth={currentCustomTemplate?.plateNumber?.stroke?.enabled ? plateWidth / 100 * 0.45 : 0}
-                shadowColor='#000000'
-                shadowBlur={40}
-                shadowOffsetY={5}
-            />
-            <Text
-                // Reference
-                ref={textRef}
-                // Alignment
-                align={
-                    currentLicensePlate?.platePosition ?
-                        currentLicensePlate?.platePosition :
-                        currentCustomTemplate?.startPlatePosition ?
-                            currentCustomTemplate?.startPlatePosition : 'center'}
-                verticalAlign="middle"
-                // // Position
-                // x={plateWidth * 0.05 / 7}
-                // y={plateHeight * 0.5 - plateHeight * 0.085}
-                // // Width
-                // width={plateWidth * 0.985}
-
                 x={plateWidth * 0.05 / 2}
                 y={plateHeight * 0.5 - plateHeight * 0.085}
                 width={plateWidth * 0.955}
@@ -366,8 +341,10 @@ function EditorNew(props: any) {
     // Create the layer and add the license plate
     const layer = (
         <Layer
+        
             x={isMobile ? plateWidth / plateHeight * 35 : plateWidth / 5}
             y={isMobile ? plateHeight / 8 : plateHeight / 5}
+            ref={layerReference}
         >
             {licensePlate}
             <PlateBackground plateHeight={plateHeight} plateWidth={plateWidth} />
