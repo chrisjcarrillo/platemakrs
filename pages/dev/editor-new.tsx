@@ -97,12 +97,12 @@ function EditorNew(props: any) {
         const stage = canvasReference?.current;
         const mainText = textRef?.current;
 
-        stage?.clearCache();
+        // stage?.clearCache();
         stage?.setWidth(plateWidth);
         stage?.setHeight(plateHeight);
         stage?.draw();
 
-        mainText?.clearCache();
+        // mainText?.clearCache();
         mainText?.width(plateWidth * 0.955)
         mainText?.setAttr('fontSize', plateHeight * 0.45)
         mainText?.x(plateWidth * 0.05 / 2)
