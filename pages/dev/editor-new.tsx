@@ -98,11 +98,13 @@ function EditorNew(props: any) {
         const mainText = textRef?.current;
 
         // stage?.clearCache();
-        stage?.setWidth(plateWidth);
-        stage?.setHeight(plateHeight);
+        stage?.setWidth(plateWidth / 2);
+        stage?.setHeight(plateHeight / 2);
+        stage?.scaleX(isMobile ? 1 / 10 : 1 / 5);
+        stage?.scaleY(isMobile ? 1 / 10 : 1 / 5);
         stage?.draw();
 
-        // mainText?.clearCache();
+        mainText?.clearCache();
         mainText?.width(plateWidth * 0.955)
         mainText?.setAttr('fontSize', plateHeight * 0.45)
         mainText?.x(plateWidth * 0.05 / 2)

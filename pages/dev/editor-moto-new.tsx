@@ -75,13 +75,13 @@ const EditorMotoNew = (props: any) => {
         const stage = canvasReference?.current;
         const mainText = textRef?.current;
 
-        // stage?.clearCache();
         stage?.setWidth(plateWidth);
         stage?.setHeight(plateHeight);
+        stage?.scaleX(isMobile ? 1 / 6.5 : 1 / 3);
+        stage?.scaleY(isMobile ? 1 / 6.5 : 1 / 3);
         stage?.draw();
 
-
-        // mainText?.clearCache();
+        mainText?.clearCache();
         mainText?.fontSize(plateHeight * 0.35)
         mainText?.fontFamily("'License Plate USA'")
         mainText?.y(plateHeight * 0.55 - plateHeight * 0.085);
