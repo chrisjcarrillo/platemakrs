@@ -108,14 +108,20 @@ export const EditorHeader = (
                                         <NavDropdown key={index} title={`${menuItem?.text}`} id={`${menuItem?.id}`}>
                                         {menuItem?.subLinks.map((item, index) => {
                                             return(
-                                                <Link key={index} onClick={() => router.push(`${item.link}`)} className="header__link animate__animated animate__fadeInRight animate__delay-0.5s">{item.text}</Link>
+                                                <Link key={index} onClick={() => {
+                                                    router.push(`${item.link}`)
+                                                    setMenu(false)
+                                                }} className="header__link animate__animated animate__fadeInRight animate__delay-0.5s">{item.text}</Link>
                                             )
                                         })}
                                         </NavDropdown>
                                     ) 
                                 } else {
                                     return (
-                                        <Link key={index} onClick={() => router.push(`${menuItem.link}`)} className="header__link">{menuItem.text}</Link>
+                                        <Link key={index} onClick={() => {
+                                            router.push(`${menuItem.link}`)
+                                            setMenu(false)
+                                        }} className="header__link">{menuItem.text}</Link>
                                     )
                                 }
                             })}
@@ -135,14 +141,20 @@ export const EditorHeader = (
                                         <NavDropdown key={index} title={`${menuItem?.text}`} id={`${menuItem?.id}`}>
                                         {menuItem?.subLinks.map((item, index) => {
                                             return(
-                                                <Link key={index} onClick={() => router.push(`${item.link}`)} className="header__link">{item.text}</Link>
+                                                <Link key={index} onClick={() => {
+                                                    router.push(`${item.link}`)
+                                                    setMenu(false)
+                                                }} className="header__link">{item.text}</Link>
                                             )
                                         })}
                                         </NavDropdown>
                                     ) 
                                 } else {
                                     return (
-                                        <Link key={index} onClick={() => router.push(`${menuItem.link}`)} className="header__link">{menuItem.text}</Link>
+                                        <Link key={index} onClick={() => {
+                                            router.push(`${menuItem.link}`)
+                                            setMenu(false)
+                                        }} className="header__link">{menuItem.text}</Link>
                                     )
                                 }
                             })}
