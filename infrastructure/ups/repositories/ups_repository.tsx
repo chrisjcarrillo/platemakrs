@@ -34,7 +34,8 @@ class UPSRepository {
         const db = dbClient.db();
         const systemCollection = db.collection('system');
         let upsToken = await systemCollection.findOne({name: 'upsToken'});
-        const expDate = new Date(parseInt(upsToken?.issued_at)).getTime() + parseInt(upsToken?.expire_in);
+        const issuedDate = new Date(parseInt(upsToken?.issued_at)).getTime();
+        const expDate = new Date(issuedDate + parseInt(upsToken?.expires_in) * 1000).getTime();
         if (expDate <= new Date().getTime()) {
             await this.authenticate();
             upsToken = await systemCollection.findOne({name: 'upsToken'});
