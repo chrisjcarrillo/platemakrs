@@ -31,7 +31,7 @@ class UPSRepository {
         const shippingLabel = await createShippingLabel(upsToken?.access_token, orderData.order, type);
         const ordersCollection = db.collection('orders');
         const shippingCollection = db.collection('shipping');
-        const shipping = type === 'RETURN' ? {returnShippingLabel: shippingLabel} : {shippingLabel: shippingLabel};
+        const shipping = type === 'RETURN' ? {returnShippingLabel: shippingLabel, productionStatus: 'RETURN_LABEL_SENT'} : {shippingLabel: shippingLabel, productionStatus: 'ORDER_SHIPPED'};
         await ordersCollection.updateOne({orderId: orderId}, {$set: shipping});
         await shippingCollection.insertOne({orderId: orderData.id, shippingData: shippingLabel?.ShipmentResponse?.ShipmentResults, type: type});
         return shippingLabel;
