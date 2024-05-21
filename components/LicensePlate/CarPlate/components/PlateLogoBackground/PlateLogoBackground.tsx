@@ -98,13 +98,7 @@ const PlateLogoBackground = (props: {
                 zIndex={6}
                 ref={imageGroupRef}
                 draggable
-                onClick={() => {
-                    if(moveBackgroundLogo){
-                        setMoveBackgroundLogo(false)
-                    } else {
-                        setMoveBackgroundLogo(true)
-                    }
-                }}
+                listening={moveBackgroundLogo}
             >
                 <Image
                     key={1}
