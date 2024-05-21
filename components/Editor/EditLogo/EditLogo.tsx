@@ -4,6 +4,7 @@ import { Button, Offcanvas } from "react-bootstrap";
 import { StoreContext, StoreContextType } from "../../../context/storeContext";
 import { EditorContext, EditorContextType } from "../../../context/editorContext";
 import { MoveSwitcher } from "../EditorActions/MoveSwitcher/MoveSwitcher";
+import { isMobile } from "react-device-detect";
 
 export const EditLogo = () => {
 
@@ -32,7 +33,7 @@ export const EditLogo = () => {
             onClose={() => setEditLogoUi(false)}
             show={editLogoUi}
             className='decision__container'
-            placement='bottom'
+            placement={isMobile ? 'bottom' : 'end'}
 
         >
             <Body className="decision__main-container">
@@ -90,7 +91,7 @@ export const EditLogo = () => {
                         setEditLogoUi(false)
                     }}
                 >
-                    Save
+                    Done
                 </Button>
             </Body>
         </Offcanvas>

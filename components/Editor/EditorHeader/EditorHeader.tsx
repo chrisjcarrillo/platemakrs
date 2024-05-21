@@ -12,6 +12,7 @@ import { menuLayout } from "../../../utils/helpers";
 import { isMobile } from 'react-device-detect';
 import { Cart } from "../../shared/Cart/Cart";
 import { useRouter } from "next/navigation";
+import { NavDropdown } from "react-bootstrap";
 
 // import Link from 'next/link';
 
@@ -101,16 +102,29 @@ export const EditorHeader = (
                             </Offcanvas.Header>
                             <Offcanvas.Body>
                                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                                    {menuLayout.map((menuItem, index) => {
-                                        return (
-                                            <Link key={index} onClick={
-                                                () => {
-                                                    router.push(`${menuItem.link}`)
-                                                    setMenu(false);
-                                                }
-                                        } className="header__link">{menuItem.text}</Link>
-                                        )
-                                    })}
+                                {menuLayout.map((menuItem, index) => {
+                                if (menuItem?.subLinks) {
+                                    return(
+                                        <NavDropdown key={index} title={`${menuItem?.text}`} id={`${menuItem?.id}`}>
+                                        {menuItem?.subLinks.map((item, index) => {
+                                            return(
+                                                <Link key={index} onClick={() => {
+                                                    router.push(`${item.link}`)
+                                                    setMenu(false)
+                                                }} className="header__link animate__animated animate__fadeInRight animate__delay-0.5s">{item.text}</Link>
+                                            )
+                                        })}
+                                        </NavDropdown>
+                                    ) 
+                                } else {
+                                    return (
+                                        <Link key={index} onClick={() => {
+                                            router.push(`${menuItem.link}`)
+                                            setMenu(false)
+                                        }} className="header__link">{menuItem.text}</Link>
+                                    )
+                                }
+                            })}
                                 </Nav>
                             </Offcanvas.Body>
                         </Navbar.Offcanvas>
@@ -122,9 +136,27 @@ export const EditorHeader = (
                     <Container fluid>
                         <Navbar.Collapse className={'header__link--container'}>
                             {menuLayout.map((menuItem, index) => {
-                                return (
-                                    <Link key={index} onClick={() => router.push(`${menuItem.link}`)} className="header__link">{menuItem.text}</Link>
-                                )
+                                if (menuItem?.subLinks) {
+                                    return(
+                                        <NavDropdown key={index} title={`${menuItem?.text}`} id={`${menuItem?.id}`}>
+                                        {menuItem?.subLinks.map((item, index) => {
+                                            return(
+                                                <Link key={index} onClick={() => {
+                                                    router.push(`${item.link}`)
+                                                    setMenu(false)
+                                                }} className="header__link">{item.text}</Link>
+                                            )
+                                        })}
+                                        </NavDropdown>
+                                    ) 
+                                } else {
+                                    return (
+                                        <Link key={index} onClick={() => {
+                                            router.push(`${menuItem.link}`)
+                                            setMenu(false)
+                                        }} className="header__link">{menuItem.text}</Link>
+                                    )
+                                }
                             })}
                         </Navbar.Collapse>
                     </Container>
@@ -137,11 +169,45 @@ export const EditorHeader = (
                             className="header__links"
                         >
                             <div className="header__links-container">
-                                <Link
+                            <NavDropdown className="header__links-link" title='Pre-Made Designs' id={'premadeTemplates2'}>
+                                <Link 
+                                    key={1} 
+                                    onClick={() => router.push('/products')}
+                                    className="header__link animate__animated animate__fadeInRight animate__delay-0.5s">
+                                        Car Templates
+                                </Link>
+                                <Link 
+                                    key={2} 
+                                    onClick={() => router.push('/products/motorcycles')}
+                                    className="header__link animate__animated animate__fadeInRight animate__delay-0.5s">
+                                        Motorcycle Templates
+                                </Link>
+                            </NavDropdown>
+                            </div>
+                            <div className="header__links-container">
+                            <NavDropdown
+                                className="header__links-link"
+                                title='Build your plate' 
+                                id={'buildYourOwn2'}>
+                                <Link 
+                                    key={1} 
+                                    onClick={() => router.push(`/products-custom`)} 
+                                    className="header__link animate__animated animate__fadeInRight animate__delay-0.5s">
+                                        Car Templates
+                                </Link>
+                                <Link 
+                                    key={1} 
+                                    onClick={() => router.push(`/products/motorcycles/products-custom`)} 
+                                    className="header__link animate__animated animate__fadeInRight animate__delay-0.5s">
+                                        Motorcycle Templates
+                                </Link>
+                            </NavDropdown>
+                            </div>
+                                {/* <Link
                                     className="header__links-link"
                                     onClick={() => router.push('/products-custom')}
                                 >
-                                    Customize your own
+                                    Build your plate
                                 </Link>
                             </div>
                             <div className="header__links-container">
@@ -151,7 +217,7 @@ export const EditorHeader = (
                                 >
                                     Pre-Made Designs
                                 </Link>
-                            </div>
+                            </div> */}
                         </Container>
                     )
                 }

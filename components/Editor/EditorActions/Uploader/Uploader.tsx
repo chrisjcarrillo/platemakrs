@@ -1,6 +1,7 @@
+
 import React, { useContext, useState } from 'react';
 import { UploadOutlined } from '@ant-design/icons';
-import { Button, message, Upload } from 'antd';
+import { Button, message, Modal, Upload } from 'antd';
 import { ref, uploadBytes, getDownloadURL, getStorage, deleteObject, uploadString } from 'firebase/storage';
 import { EditorContext, EditorContextType } from '../../../../context/editorContext';
 import { InterfaceContext, InterfaceContextType } from '../../../../context/interfaceContext';
@@ -14,6 +15,8 @@ export const Uploader = (
 ) => {
     const { type, title } = props;
 
+    const {confirm} = Modal;
+
     const {
         setLoading
     } = useContext(InterfaceContext) as InterfaceContextType;
@@ -23,6 +26,9 @@ export const Uploader = (
         updateCustomTemplateSelection,
         currentCustomTemplate
     } = useContext(EditorContext) as EditorContextType;
+
+    const [openModal, setOpenModal] = useState<boolean>(false)
+    const [removeBackground, setRemoveBackground] = useState<boolean>(false)
 
 
     async function removeUpload(file: any) {
@@ -39,13 +45,25 @@ export const Uploader = (
         }
     }
 
-    async function customUpload({ onError: onError, onSuccess, file }: any) {
+    const getBase64 = (file: any) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = (error) => reject(error);
+        });
+    };
+
+    async function uploadLogo({ onError: onError, onSuccess, file }: any){
         setLoading(true);
         try {
+            console.log(file);
             let formdata = new FormData(); // Form data for API
             formdata.append("image_file", file, file.name); // Form data for API 
             formdata.append('size', 'preview'); // Form data for API
-            const uploadFile = await fetch("https://sdk.photoroom.com/v1/segment",
+            const uploadType = type === "mainLogo" ? currentCustomTemplate?.mainLogo : currentCustomTemplate?.bottomLogo;
+            if(removeBackground){
+                const uploadFile = await fetch("https://sdk.photoroom.com/v1/segment",
                 {
                     body: formdata,
                     method: 'POST',
@@ -54,26 +72,74 @@ export const Uploader = (
                         'x-api-key': 'ee24580237e68f316717873372a2dbe1d1e8abf7'
                     }
                 }
-            ); // Upload to API
-            const response = await uploadFile.json(); // Upload to API
-            const uploadType = type === "mainLogo" ? currentCustomTemplate?.mainLogo : currentCustomTemplate?.bottomLogo;
+                ); // Upload to API
+                const responseFile = await uploadFile.json(); // Upload to API
 
-            localStorage.setItem(
-                `${type === "mainLogo" ? 'mainCustomLogo' : 'bottomCustomLogo'}`, 
-                JSON.stringify({
-                    name: file.name,
-                    type: file.type,
-                    b64: response.result_b64
+                localStorage.setItem(
+                    `${type === "mainLogo" ? 'mainCustomLogo' : 'bottomCustomLogo'}`, 
+                    JSON.stringify({
+                        name: file.name,
+                        type: file.type,
+                        b64: responseFile.result_b64
+                    })
+                );
+    
+                updateCustomTemplateSelection?.(type, {
+                    ...uploadType,
+                    name: file?.name,
+                    url: `data:image/png;base64,${responseFile?.result_b64}`
                 })
-            );
+                setLoading(false);
+                onSuccess(null, responseFile);
+            } else {
+                // Get base64
+                const currentImage = await getBase64(file);
 
-            updateCustomTemplateSelection?.(type, {
-                ...uploadType,
-                name: file.name,
-                url: `data:image/png;base64,${response.result_b64}`
-            })
+                localStorage.setItem(
+                    `${type === "mainLogo" ? 'mainCustomLogo' : 'bottomCustomLogo'}`, 
+                    JSON.stringify({
+                        name: file.name,
+                        type: file.type,
+                        b64: currentImage
+                    })
+                );
+    
+                updateCustomTemplateSelection?.(type, {
+                    ...uploadType,
+                    name: file?.name,
+                    url: currentImage
+                })
+                setLoading(false);
+                onSuccess(null, currentImage);
+            }
+        } catch (e) {
+            onError(e);
             setLoading(false);
-            onSuccess(null, response);
+        }
+    }
+
+
+    async function customUpload({ onError: onError, onSuccess, file }: any) {
+        setLoading(true);
+        try {
+            confirm({
+                centered: true,
+                title: 'Remove logo Background?',
+                content: 'Would you like to make your logo transperant for a better design look?',
+                okText: 'Yes',
+                cancelText: 'No',
+                open: openModal,
+                onCancel(){
+                    Modal.destroyAll()
+                    setOpenModal(false)
+                    setRemoveBackground(false)
+                    uploadLogo({ onError, onSuccess, file })
+                },
+                onOk(){
+                    setRemoveBackground(true)
+                    uploadLogo({ onError, onSuccess, file })
+                }
+            })
         } catch (e) {
             onError(e);
             setLoading(false);

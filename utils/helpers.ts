@@ -281,11 +281,26 @@ export const menuLayout = [
     },
     {
         text: 'Pre-Made Designs',
-        link: '/products'
+        id: '#pre-made',
+        subLinks: [{
+            text: 'Car Templates',
+            link: '/products'
+        },{
+            text: 'Motorcycle Templates',
+            link: '/products/motorcycles'
+        }],
     },
     {
-        text: 'Customize Your Own',
-        link: '/products-custom'
+        text: 'Build your plate',
+        link: '/products-custom',
+        id: '#build-your-own',
+        subLinks: [{
+            text: 'Car Templates',
+            link: '/products-custom'
+        },{
+            text: 'Motorcycle Templates',
+            link: '/products/motorcycles/products-custom'
+        }],
     },
     {
         text: 'Work with a designer',
@@ -312,7 +327,7 @@ export const footerLinksOne = [
         link: '/products'
     },
     {
-        text: 'Customize Your Own',
+        text: 'Build your plate',
         link: '/products-custom'
     },
     {

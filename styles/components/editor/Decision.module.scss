@@ -3,6 +3,7 @@
         height: auto !important;
     }
     &__container{
+        z-index: 99999999999999;
         background-color: #000000;
         border-radius: 20px;
         border-top: 2px solid #ffffff !important;
@@ -19,7 +20,7 @@
         -webkit-box-direction: normal;
         -ms-flex-direction: column;
         flex-direction: column;
-        height: 100%;
+        // height: 100%;
         padding: 2.5rem 0;
         &-divider{
             padding: 0.65rem;

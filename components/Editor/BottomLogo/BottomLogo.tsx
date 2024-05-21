@@ -23,7 +23,7 @@ export const BottomLogo = (props: ILogo) => {
         currentCustomTemplate,
     } = useContext(EditorContext) as EditorContextType;
 
-    const { type, logoType, canvasReference } = props;
+    const { canvasReference } = props;
 
     const imageSource = () => {
         return currentCustomTemplate?.bottomLogo?.url

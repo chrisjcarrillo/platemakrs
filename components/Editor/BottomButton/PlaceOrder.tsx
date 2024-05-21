@@ -1,17 +1,24 @@
-import { Button, Checkbox, Modal, Tooltip } from 'antd';
+import {
+    Alert,
+    Button,
+    Checkbox,
+    Flex,
+    Modal,
+    Popconfirm,
+    Space,
+    notification
+} from 'antd';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useContext, useEffect, useRef, useState} from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { EditorContext, EditorContextType } from '../../../context/editorContext';
 import { StoreContext, StoreContextType } from '../../../context/storeContext';
 import { handleActions } from '../EditorPresetContainer/actions/HandleActions';
 import { Terms } from '../../shared/Terms/Terms';
-import { ICustomPlateTemplate } from '../../../interfaces/customTemplate.interface';
-import { storeCheckout } from '../../../context/actions/storeData';
 import { InterfaceContext, InterfaceContextType } from '../../../context/interfaceContext';
 
-export const PlaceOrder = (props:{
+export const PlaceOrder = (props: {
     canvasRef: any,
     presetTemplate?: boolean
 }) => {
@@ -20,7 +27,7 @@ export const PlaceOrder = (props:{
 
     const {
         setLoading
-    } =  useContext(InterfaceContext) as InterfaceContextType;
+    } = useContext(InterfaceContext) as InterfaceContextType;
 
     const {
         redirectCheckout,
@@ -48,6 +55,8 @@ export const PlaceOrder = (props:{
         }
         return parseInt('0').toFixed(2)
     }
+
+    const [messageApi, contextHolder] = notification?.useNotification();
 
     const termsCols = {
         xs: 6,
@@ -84,23 +93,35 @@ export const PlaceOrder = (props:{
     const checkboxReference = useRef<any>();
 
     useEffect(() => {
-        if(currentEditorStep?.currentSubStep === "termsAndConditions"){
+        if (currentEditorStep?.currentSubStep === "termsAndConditions") {
             checkboxReference.current.focus();
         }
     }, [checkboxReference])
 
+    console.log(checkboxReference)
     const { presetTemplate } = props;
 
+    const [termsPopup, setTermsPopup] = useState<boolean>(false)
+
     const handlePlaceOrder = async () => {
-        if(currentCustomTemplate?.selectedVariant){
+        if(!acceptTerms){
+            checkboxReference.current.focus();
+            setTermsPopup(true);
+            return;
+        }
+        if (currentEditorStep?.currentSubStep === "selectFinish") {
             redirectCheckout?.(
                 currentCustomTemplate,
                 currentLicensePlate,
                 false,
                 props.canvasRef
             )
-        
-        } else{
+
+        } else {
+            messageApi['warning']({
+                message: 'Select a finish',
+                description: 'Please select a finish, before placing your order!',
+            });
             updateStep?.(
                 3,
                 'selectFinish',
@@ -123,7 +144,7 @@ export const PlaceOrder = (props:{
             extras
         )
 
-        if(presetTemplate){
+        if (presetTemplate) {
             if (handle?.step === undefined) {
                 updateStep?.(
                     1,
@@ -162,19 +183,20 @@ export const PlaceOrder = (props:{
                 )
             }
         }
-        
+
     }
 
     return (
         <>
-        <Modal 
-            title={'Terms and Conditions'}
-            open={terms}
-            onOk={() => setTerms(false)} 
-            onCancel={() => setTerms(false)}
-        >
-            <Terms />
-        </Modal>
+            {contextHolder}
+            <Modal
+                title={'Terms and Conditions'}
+                open={terms}
+                onOk={() => setTerms(false)}
+                onCancel={() => setTerms(false)}
+            >
+                <Terms />
+            </Modal>
             {/* Details? */}
             {
                 currentEditorStep?.currentSubStep && currentEditorStep?.currentSubStep !== "termsAndConditions" &&
@@ -234,15 +256,30 @@ export const PlaceOrder = (props:{
                                 xl={12}
                                 className={`placeOrder__action`}
                             >
-                                <Checkbox
-                                    className='placeOrder__terms'
-                                    ref={checkboxReference}
-                                    autoFocus
-                                    onChange={(e) => {
-                                        setAcceptTerms(e.target.checked)
-                                    }}>
-                                    I Accept the <a href={'#'} onClick={() => setTerms(true)}> Terms and Conditions</a>
-                                </Checkbox>
+                                <Popconfirm
+                                    placement="topLeft"
+                                    title={'Terms and Conditions'}
+                                    description={'Please accept the terms and conditions!'}
+                                    okText="Yes"
+                                    cancelText="No"
+                                    open={termsPopup}
+                                    onConfirm={() => {
+                                        setTermsPopup(false)
+                                        setAcceptTerms(true)
+                                    }}
+                                >
+                                    <Checkbox
+                                        checked={acceptTerms}
+                                        className='placeOrder__terms'
+                                        ref={checkboxReference}
+                                        autoFocus
+                                        onChange={(e) => {
+                                            setAcceptTerms(e.target.checked)
+                                        }}>
+                                        I Accept the <a href={'#'} onClick={() => setTerms(true)}> Terms and Conditions</a>
+                                    </Checkbox>
+                                </Popconfirm>
+                                
                             </Col>
                         </Row>
 
@@ -267,7 +304,7 @@ export const PlaceOrder = (props:{
                                 <Button
                                     disabled={acceptTerms ? false : true}
                                     className={`placeOrder__button-final`}
-                                    onClick={() =>             redirectCheckout?.(
+                                    onClick={() => redirectCheckout?.(
                                         currentCustomTemplate,
                                         currentLicensePlate,
                                         false,
@@ -289,13 +326,30 @@ export const PlaceOrder = (props:{
                             {...termsCols}
                             className={`placeOrder__action`}
                         >
-                            <Checkbox
-                                className='placeOrder__terms'
-                                onChange={(e) => {
-                                    setAcceptTerms(e.target.checked)
-                                }}>
-                                <a href={'#'} onClick={() => setTerms(true)}>Terms and Conditions</a>
-                            </Checkbox>
+                             <Popconfirm
+                                    placement="topLeft"
+                                    title={'Terms and Conditions'}
+                                    description={'Please accept the terms and conditions!'}
+                                    okText="Accept"
+                                    cancelText="No"
+                                    onConfirm={() => {
+                                        setTermsPopup(false)
+                                        setAcceptTerms(true)
+                                    }}
+                                    showCancel={false}
+                                    open={termsPopup}
+                                >
+                                    <Checkbox
+                                        checked={acceptTerms}
+                                        className='placeOrder__terms'
+                                        ref={checkboxReference}
+                                        onChange={(e) => {
+                                            setAcceptTerms(e.target.checked)
+                                        }}>
+                                        <a href={'#'} onClick={() => setTerms(true)}>Terms and Conditions</a>
+                                    </Checkbox>
+                                </Popconfirm>
+
                         </Col>
 
                         <Col
@@ -313,7 +367,7 @@ export const PlaceOrder = (props:{
                         <Col {...placeOrderCols} className={`placeOrder__action`}>
                             <a
                                 className={`placeOrder__button ${currentEditorStep?.currentSubStep === 'selectFinish' && currentCustomTemplate?.selectedVariant === undefined ? 'disabled' : ''} 
-                                    ${acceptTerms ? '' : 'disabled' }`}
+                                    ${acceptTerms ? '' : 'disabled'}`}
                                 onClick={
                                     () => handlePlaceOrder()
                                 }

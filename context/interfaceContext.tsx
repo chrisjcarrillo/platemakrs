@@ -3,7 +3,8 @@ import React, {
 } from 'react';
 
 import { ref, uploadBytes, getDownloadURL, getStorage, deleteObject, uploadString } from 'firebase/storage';
-import { EditorContext, EditorContextType } from './editorContext';
+import { EditorContext } from './editorContext';
+import { EditorContextType } from './EditorContextType';
 
 
 interface IStoreProps {
@@ -57,6 +58,9 @@ export type InterfaceContextType = {
 
     googleDetails?: boolean;
     setGoogleDetails: (type: boolean)=> void;
+
+    upsellPopup?: boolean;
+    setUpsellPopup: (type: boolean)=> void;
 }
 
 export const InterfaceContext = createContext<InterfaceContextType | null>(null);
@@ -96,7 +100,9 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
     const [isPreset, setPreset] = useState<boolean>(false) // is the current template a preset
 
     const [showMenu, setMenu] = useState<boolean>(false) // show menu
-    const [googleDetails, setGoogleDetails] = useState<boolean>(false)
+    const [googleDetails, setGoogleDetails] = useState<boolean>(false);
+
+    const [ upsellPopup, setUpsellPopup ] = useState<boolean>(false); // show upsellPopup
 
 
     useEffect(() => {
@@ -168,7 +174,10 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
                 setMenu,
 
                 googleDetails, 
-                setGoogleDetails
+                setGoogleDetails,
+
+                upsellPopup,
+                setUpsellPopup
 
             }}
         >

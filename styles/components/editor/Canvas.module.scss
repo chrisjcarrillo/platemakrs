@@ -2,7 +2,7 @@
     opacity: 0.3;
 }
 .custom-dash{
-    font-family: 'Poppins';
+    font-family: 'Roboto';
 }
 
 .canvas{
@@ -22,6 +22,12 @@
         }
     }
     &__tools{
+        width: 75%;
+        margin: auto;
+        @media screen and (max-width: 768px) {
+            width: 100%;
+            margin: auto;
+        }
         &-main{
             z-index: 8;
             position: sticky;
@@ -232,4 +238,57 @@
 
 .remove--sticky{
     position: unset !important;
+}
+
+.konvajs-content{
+    height: 465px !important;
+    width: 1000px !important;
+    @media screen and (max-width: 768px) {
+        height: 230px !important;
+        width: 375px !important;
+        // width: auto !important;
+    }
+    // z-index: 99999;
+}
+.plate--zindex{
+    z-index: 999999999;
+}
+
+.canvas{
+    &__plate{
+        &-container{
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+    }
+    &__editor{
+        align-self: center;
+    }
+    &-top{
+        &-section{
+            position: absolute;
+            bottom: 0;
+            left: 10;
+            top: 0;
+            width: 375px;
+        }
+    }
+    &-bottom{
+        &-section{
+            display: flex;
+            justify-content: space-around;
+            z-index: 1;
+            position: relative;
+        }
+    }
+    &-action{
+        &-button{
+            // z-index: 9999999999999999;
+            // padding: 1rem;
+            // :first-child{
+            //     margin-right: 1rem;
+            // }
+        }
+    }
 }

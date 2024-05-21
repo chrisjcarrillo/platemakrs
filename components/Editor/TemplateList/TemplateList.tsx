@@ -10,6 +10,7 @@ import { ProductSkeleton } from '../../shared/ProductSkeleton/ProductSkeleton';
 import { ICustomPlateTemplate } from '../../../interfaces/customTemplate.interface';
 import { Badge } from 'antd';
 import { StoreContext, StoreContextType } from '../../../context/storeContext';
+import Link from 'next/link';
 
 export const TemplateList = (props: any) => {
 
@@ -44,7 +45,8 @@ export const TemplateList = (props: any) => {
             {props?.customTemplate && (
                 <Row className={`templatePreview__title-container`}>
                     <Col {...bigColumnSettings}>
-                        <span className={`templatePreview__title-text`}>Want to create a custom design? <a className={`templatePreview__title-action`}>Contact us.</a>
+                        <span className={`templatePreview__title-text`}>Want to create a custom design?  
+                        <Link href="/designer" className={`templatePreview__title-action`}>Contact us.</Link>
                         </span>
                     </Col>
                     <Col {...bigColumnSettings} className={`templatePreview__title-divider`}>
@@ -80,7 +82,8 @@ export const TemplateList = (props: any) => {
                                     template?.title,
                                     template.handle,
                                     template.variants,
-                                    props?.customTemplate
+                                    props?.customTemplate,
+                                    template?.title.includes('Motorcycle') ?  'Motorcycle' : 'Car'
                                 )
                             }
                         >

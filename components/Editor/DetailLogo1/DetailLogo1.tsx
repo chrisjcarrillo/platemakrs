@@ -99,15 +99,12 @@ export const DetailLogo1 = (props: ILogo) => {
     const setSize = (
         sizeType: string
     ) => {
-        if (type === "PREVIEW") {
+        if (sizeType === "width") {
+            return currentCustomTemplate?.detailLogo1?.width! as number
         }
-        if (type === "CANVAS") {
-            if (sizeType === "width") {
-                return currentCustomTemplate?.detailLogo1?.width! as number
-            }
-            if (sizeType === "height")
-                return currentCustomTemplate?.detailLogo1?.height as number
-        }
+        if (sizeType === "height"){
+            return currentCustomTemplate?.detailLogo1?.height as number
+        } 
     }
 
     return (

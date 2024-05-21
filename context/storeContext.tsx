@@ -9,6 +9,7 @@ import Cookies from 'js-cookie';
 import { v4 as uuidv4 } from 'uuid';
 import { ILicensePlate } from '../interfaces/licensePlate.interface';
 import { storeCheckout } from './actions/storeData';
+import {notification } from 'antd';
 
 interface IStoreProps {
     children: React.ReactNode
@@ -54,7 +55,8 @@ export type StoreContextType = {
     setExtras: (e: boolean) => void;
 
     extrasPremade?: boolean;
-    setExtrasPremade: (e: boolean) => void;
+    setExtrasPremade: (e: boolean) => void
+    setAddonPlate: (e: any) => void
 }
 
 export const client = Client?.buildClient({
@@ -73,6 +75,8 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         designUrl
     } = useContext(InterfaceContext) as InterfaceContextType;
 
+    const [messageApi, contextHolder] = notification?.useNotification();
+
 
     const [extrasPremade, setExtrasPremade] = useState<boolean>(false);
     const [ad, setAd] = useState<string | undefined>(undefined);
@@ -83,7 +87,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
     const [hasDesigner, setHasDesigner] = useState<boolean>(false);
     const [acceptTerms, setAcceptTerms] = useState<boolean>(false);
     const [notes, setNotes] = useState<string | undefined>(undefined);
-    const [extras, setExtras] = useState<boolean>(false);
+    const [extras, setExtras] = useState<boolean>(true);
 
     const onStorageUpdate = (e: any) => {
         const { key, newValue } = e;
@@ -97,6 +101,34 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
     const setCheckoutItem = (checkout: any) => {
         sessionStorage.setItem("checkout", checkout.id)
         setCheckout(checkout)
+    }
+
+    const setAddonPlate = async () => {
+        try {
+            setLoading(true);
+            const addonProduct = await client.product.fetchByHandle('add-on-additional-plate');
+            const checkoutId =  checkout?.id
+            const lineItemsToUpdate = [
+                {
+                    variantId: addonProduct?.variants[0].id,
+                    quantity: 1,
+                }
+            ]
+            
+            const checkoutResponse = await client?.checkout?.addLineItems(
+                checkoutId,
+                lineItemsToUpdate
+            );
+            setCart(JSON.parse(JSON.stringify(checkoutResponse.lineItems)));
+            setLoading(false)
+            messageApi['success']({
+                message: 'Added to Cart!',
+                description: (<><strong>Add On - Additional Plate</strong>, Added to your cart!</>)
+            });
+        } catch (error) {
+            console.log(error);
+            setLoading(false)
+        }
     }
 
     const redirectCheckout = async (
@@ -510,8 +542,11 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 setNotes,
 
                 addVariantGiftCard,
+
+                setAddonPlate
             }}
         >
+            {contextHolder}
             {children}
         </StoreContext.Provider>
     )
