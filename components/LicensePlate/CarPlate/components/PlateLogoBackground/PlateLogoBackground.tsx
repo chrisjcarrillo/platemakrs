@@ -35,9 +35,18 @@ const PlateLogoBackground = (props: {
     useEffect(() => {
         imageTransformerRef?.current?.nodes([imageGroupRef.current]);
         if (image) {
-            imageRef?.current?.cache({ pixelRatio: 5});
+            imageRef?.current?.cache({ pixelRatio: 10});
         }
     }, [image]);
+
+    useEffect(() => {
+        if (moveBackgroundLogo) {
+            imageGroupRef?.current?.moveToTop();
+        } else {
+            imageGroupRef?.current?.setZIndex(6);
+            imageGroupRef.current.getStage().batchDraw();
+        }
+    }, [moveBackgroundLogo]);
 
     
 
@@ -221,7 +230,7 @@ const PlateLogoBackground = (props: {
                 <Transformer
                     width={image?.width}
                     height={image?.height}
-                    borderStrokeWidth={3}
+                    borderStrokeWidth={1}
                     keepRatio
                     ref={imageTransformerRef} 
                 />

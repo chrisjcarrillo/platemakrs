@@ -39,6 +39,14 @@ const PlateLogoBottom = (props: {
         }
     }, [image]);
 
+    useEffect(() => {
+        if (moveBottomLogo) {
+            imageGroupRef?.current?.moveToTop();
+        } else {
+            imageGroupRef?.current?.setZIndex(9);
+            imageGroupRef.current.getStage().batchDraw();
+        }
+    }, [moveBottomLogo]);
     
 
     const calculateInitialPosition = (
@@ -98,13 +106,6 @@ const PlateLogoBottom = (props: {
                 zIndex={9}
                 ref={imageGroupRef}
                 draggable
-                onClick={() => {
-                    if(moveBottomLogo){
-                        setMoveBottomLogo(false)
-                    } else {
-                        setMoveBottomLogo(true)
-                    }
-                }}
             >
                 <Image
                     key={1}
