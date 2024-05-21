@@ -4,7 +4,7 @@ export default async (req, res) => {
     const apiKey = req.headers['x-api-key'];
     const upsRepository = new UPSRepository();
     const body = req.body;
-    const trackingNumber = body.orderId;
+    const trackingNumber = body.trackingNumber;
     if (!trackingNumber) {
         res.status(400).send('Bad Request');
         return;
