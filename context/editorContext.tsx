@@ -287,11 +287,6 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 }
                 router.push(`/editor?presetTemplate=${customTemplate?.templateId}&step=1&vehicleType=${customTemplate?.vehicleType}`)
             }
-            if(!sessionStorage.getItem('showAdditionalPlatePopup') && customTemplate?.vehicleType === "Car"){
-                setTimeout(() => {
-                    setUpsellPopup(true)
-                }, 5000);
-            }
         } catch (error) {
             console.log(error);
             setLoading(false);
@@ -358,6 +353,9 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                             currentCustomTemplate?.backgroundSettings?.background?.file?.name === "carbon-fiber" || currentCustomTemplate?.backgroundSettings?.background?.file?.name === 'black-plate'
                         ) {
                             console.log('here 1');
+                            if(!sessionStorage.getItem('showAdditionalPlatePopup') && currentCustomTemplate?.vehicleType === "Car"){
+                                setUpsellPopup(true)
+                            }
                             return updateStep?.(
                                 3,
                                 'presetCharacter',
@@ -371,6 +369,9 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                             && currentCustomTemplate?.backgroundSettings?.background?.file?.hasColor
                         ) {
                             console.log('here 2');
+                            if(!sessionStorage.getItem('showAdditionalPlatePopup') && currentCustomTemplate?.vehicleType === "Car"){
+                                setUpsellPopup(true)
+                            }
                             return updateStep?.(
                                 3,
                                 'presetBgImageColor',
@@ -378,6 +379,9 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                                 false,
                                 'Background Image'
                             )
+                        }
+                        if(!sessionStorage.getItem('showAdditionalPlatePopup') && currentCustomTemplate?.vehicleType === "Car"){
+                            setUpsellPopup(true)
                         }
                         
                         return updateStep?.(
@@ -391,6 +395,9 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                         if (
                             currentCustomTemplate?.backgroundSettings?.background?.enabled
                         ) {
+                            if(!sessionStorage.getItem('showAdditionalPlatePopup') && currentCustomTemplate?.vehicleType === "Car"){
+                                setUpsellPopup(true)
+                            }
                             return updateStep(
                                 3,
                                 'editorBgImage',
@@ -399,6 +406,9 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                                 'Background Image'
                             )
                         } else {
+                            if(!sessionStorage.getItem('showAdditionalPlatePopup') && currentCustomTemplate?.vehicleType === "Car"){
+                                setUpsellPopup(true)
+                            }
                             return updateStep(
                                 3,
                                 'editorBgColor',
