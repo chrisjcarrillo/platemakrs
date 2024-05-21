@@ -421,6 +421,124 @@ export const premadeTemplates = [
         }
     }, //Corvette #1  - [Done]
 
+    //Motorcycle - Premade
+    {
+        vehicleType: 'Motorcycle',
+        detailLogo1: { enabled: false},
+        detailLogo2: {enabled: false},
+        templateId: '1',
+        shopifyHandle: 'motorcycle-two-colors-custom-template',
+        startPlatePosition: 'center',
+        startPlateText: 'SAMPLE',
+        patternSettings: { enabled: false },
+        fadeSettings: { enabled: false },
+        backgroundLogo: { enabled: false },
+        bottomLogo: { enabled: false },
+        mainLogo: { enabled: false },
+        backgroundSettings: {
+            color: '#000000',
+            background: { enabled: false },
+        },
+        state:{
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { enabled: false},
+        },
+        plateNumber: {
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { enabled: false},
+        },
+        bottomText: {
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { enabled: false},
+        }
+    }, //Corvette #1  - [Done]
+    {
+        vehicleType: 'Motorcycle',
+        detailLogo1: { enabled: false},
+        detailLogo2: {enabled: false},
+        templateId: '2',
+        shopifyHandle: 'motorcycle-two-colors-logo-custom-template',
+        startPlatePosition: 'center',
+        startPlateText: 'SAM PLE',
+        patternSettings: { enabled: false },
+        fadeSettings: { enabled: false },
+        backgroundLogo: { enabled: false },
+        bottomLogo: { enabled: false },
+        mainLogo: {
+            enabled: true,
+            hasColor: false,
+            imageType: 'svg',
+            name: "logo.png",
+            url: '/images/resources/preset/logos/logo.png',
+            leftCoordinates: {
+                x: 525,
+                y: 250
+            },
+            centerCoordinates: {
+                x: 525,
+                y: 250
+            },
+            rightCoordinates: {
+                x: 525,
+                y: 250
+            },
+            width: 1050,
+            height: 850,
+            glow:{ enabled: true, color: '#acacac' }
+        },
+        backgroundSettings: {
+            color: '#000000',
+            background: { enabled: false },
+        },
+        state:{
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { enabled: false},
+        },
+        plateNumber: {
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { enabled: false},
+        },
+        bottomText: {
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { enabled: false},
+        }
+    }, //Corvette #1  - [Done]
 
 
 
@@ -1331,6 +1449,7 @@ export const premadeTemplates = [
     }, //Panthers - [Done]
    
     {
+        preset: true,
         vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -1849,6 +1968,7 @@ export const premadeTemplates = [
     }, //UM - [Done]
     
     {
+        preset: true,
         vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -4534,6 +4654,7 @@ export const premadeTemplates = [
     }, //Dolphins #3 - [DONE]
 
     {
+        preset: true,
         vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -7338,6 +7459,7 @@ export const premadeTemplates = [
     }, //Ram #1  - [Done]
 
     {
+        preset: true,
         vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -7417,6 +7539,7 @@ export const premadeTemplates = [
     }, //Corvette #3  - [Done]
 
     {
+        preset: true,
         vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -7466,6 +7589,7 @@ export const premadeTemplates = [
     }, //Corvette #1  - [Done]
 
     {
+        preset: true,
         vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},
@@ -7519,6 +7643,7 @@ export const premadeTemplates = [
     }, //Corvette #1  - [Done]
 
     {
+        preset: true,
         vehicleType: 'Car',
         detailLogo1: { enabled: false},
         detailLogo2: {enabled: false},

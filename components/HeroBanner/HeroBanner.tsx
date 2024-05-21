@@ -83,6 +83,14 @@ const HeroBanner = (
                                     >
                                             Car Templates
                                     </Link>
+                                    <Link
+                                        key={2}
+                                        href={'/products/motorcycles/products-custom'}
+                                        className="header__link animate__animated animate__fadeInRight animate__delay-0.5s"
+                                    >
+                                            Motorcycle Templates
+                                    </Link>
+                                    {/* /products/motorcycles/products-custom */}
                                 </Dropdown.Menu>
                             </Dropdown>
                         </div>

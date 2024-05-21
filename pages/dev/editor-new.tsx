@@ -98,28 +98,28 @@ function EditorNew(props: any) {
         const mainText = textRef?.current;
 
         // stage?.clearCache();
-        stage?.setWidth(window.innerWidth);
-        stage?.setHeight(window.innerHeight);
-        stage?.scaleX(isMobile ? 1 / 10 : 1 / 5);
-        stage?.scaleY(isMobile ? 1 / 10 : 1 / 5);
+        // stage?.setWidth(window.innerWidth);
+        // stage?.setHeight(window.innerHeight);
+        // stage?.scaleX(isMobile ? 1 / 10 : 1 / 5);
+        // stage?.scaleY(isMobile ? 1 / 10 : 1 / 5);
         stage?.draw();
 
-        mainText?.clearCache();
+        // mainText?.clearCache();
         mainText?.width(plateWidth * 0.955)
         mainText?.setAttr('fontSize', plateHeight * 0.45)
         mainText?.x(plateWidth * 0.05 / 2)
-        mainText?.y(plateHeight * 0.5 - plateHeight * 0.085)
+        // mainText?.y(plateHeight * 0.5 - plateHeight * 0.085)
 
-        mainText?.fontFamily("'License Plate USA'")
-        mainText?.wrap('none')
-        mainText?.align(currentLicensePlate?.platePosition ?
-            currentLicensePlate?.platePosition :
-            currentCustomTemplate?.startPlatePosition ?
-                currentCustomTemplate?.startPlatePosition : 'center');
-        // mainText?.verticalAlign('middle')
-        mainText?.text(currentLicensePlate?.plateNumber ?
-            currentLicensePlate?.plateNumber :
-            currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate);
+        // mainText?.fontFamily("'License Plate USA'")
+        // mainText?.wrap('none')
+        // mainText?.align(currentLicensePlate?.platePosition ?
+        //     currentLicensePlate?.platePosition :
+        //     currentCustomTemplate?.startPlatePosition ?
+        //         currentCustomTemplate?.startPlatePosition : 'center');
+        // // mainText?.verticalAlign('middle')
+        // mainText?.text(currentLicensePlate?.plateNumber ?
+        //     currentLicensePlate?.plateNumber :
+        //     currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate);
         mainText?.draw();
         
         setIsLoaded(false);

@@ -180,7 +180,7 @@ export const EditorHeader = (
                                     key={2} 
                                     onClick={() => router.push('/products/motorcycles')}
                                     className="header__link animate__animated animate__fadeInRight animate__delay-0.5s">
-                                        Moto Templates
+                                        Motorcycle Templates
                                 </Link>
                             </NavDropdown>
                             </div>
@@ -194,6 +194,12 @@ export const EditorHeader = (
                                     onClick={() => router.push(`/products-custom`)} 
                                     className="header__link animate__animated animate__fadeInRight animate__delay-0.5s">
                                         Car Templates
+                                </Link>
+                                <Link 
+                                    key={1} 
+                                    onClick={() => router.push(`/products/motorcycles/products-custom`)} 
+                                    className="header__link animate__animated animate__fadeInRight animate__delay-0.5s">
+                                        Motorcycle Templates
                                 </Link>
                             </NavDropdown>
                             </div>

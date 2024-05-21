@@ -75,27 +75,36 @@ const EditorMotoNew = (props: any) => {
         const stage = canvasReference?.current;
         const mainText = textRef?.current;
 
-        stage?.setWidth(window.innerWidth);
-        stage?.setHeight(window.innerHeight);
-        stage?.scaleX(isMobile ? 1 / 6.5 : 1 / 3);
-        stage?.scaleY(isMobile ? 1 / 6.5 : 1 / 3);
+        // stage?.setWidth(window.innerWidth);
+        // stage?.setHeight(window.innerHeight);
+        // stage?.scaleX(isMobile ? 1 / 6.5 : 1 / 3);
+        // stage?.scaleY(isMobile ? 1 / 6.5 : 1 / 3);
         stage?.draw();
 
-        mainText?.clearCache();
-        mainText?.fontSize(plateHeight * 0.35)
-        mainText?.fontFamily("'License Plate USA'")
-        mainText?.y(plateHeight * 0.55 - plateHeight * 0.085);
-        mainText?.x(plateWidth * 0.14 / 2);
+        // mainText?.clearCache();
+        // mainText?.fontSize(plateHeight * 0.35)
+        // mainText?.fontFamily("'License Plate USA'")
+        // mainText?.y(plateHeight * 0.55 - plateHeight * 0.085);
+
         mainText?.width(plateWidth * 0.875);
-        mainText?.wrap('none')
-        mainText?.align(currentLicensePlate?.platePosition ?
-            currentLicensePlate?.platePosition :
-            currentCustomTemplate?.startPlatePosition ?
-                currentCustomTemplate?.startPlatePosition : 'center');
-        // mainText?.verticalAlign('middle')
-        mainText?.text(currentLicensePlate?.plateNumber ?
-            currentLicensePlate?.plateNumber :
-            currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate);
+        mainText?.setAttr('fontSize', plateHeight * 0.35)
+        mainText?.x(plateWidth * 0.14 / 2);
+        // mainText?.wrap('none')
+        // mainText.setAttrs({
+        //     fontSize: plateHeight * 0.35,
+        //     fontFamily: "'License Plate USA'",
+        //     x: plateWidth * 0.1 / 2,
+        //     width: plateWidth * 0.875,
+        //     align: 'center'
+        // })
+        // mainText?.align(currentLicensePlate?.platePosition ?
+        //     currentLicensePlate?.platePosition :
+        //     currentCustomTemplate?.startPlatePosition ?
+        //         currentCustomTemplate?.startPlatePosition : 'center');
+        // // mainText?.verticalAlign('middle')
+        // mainText?.text(currentLicensePlate?.plateNumber ?
+        //     currentLicensePlate?.plateNumber :
+        //     currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate);
         mainText?.draw();
         
         setIsLoaded(false);
@@ -190,18 +199,20 @@ const EditorMotoNew = (props: any) => {
 
     const middleText = (
         <Group
+
         >
             <Text
                 // listening={false} 
                 // Reference
                 ref={textRef}
-                                align={
+                verticalAlign="middle"
+                align={
                     currentLicensePlate?.platePosition ?
                         currentLicensePlate?.platePosition :
                         currentCustomTemplate?.startPlatePosition ?
                             currentCustomTemplate?.startPlatePosition : 'center'}
 
-                verticalAlign="middle"
+
                 x={plateWidth * 0.14 / 2}
                 y={fixTextPosition()}
                 width={plateWidth * 0.875}
@@ -235,7 +246,7 @@ const EditorMotoNew = (props: any) => {
                 shadowBlur={40}
                 shadowOffsetY={5}
             />
-            <Text
+            {/* <Text
                 // listening={false} 
                 // Reference
                 ref={textRef}
@@ -278,7 +289,7 @@ const EditorMotoNew = (props: any) => {
                 shadowColor='#000000'
                 shadowBlur={40}
                 shadowOffsetY={5}
-            />
+            /> */}
         </Group>
     );
 
@@ -401,8 +412,8 @@ const EditorMotoNew = (props: any) => {
             }
             {/* {licensePlate2} */}
             {topText}
-            {middleText}
             {currentLicensePlate?.bottomTextEnabled ? bottomText : null}
+            {middleText}
         </Layer>
     );
 

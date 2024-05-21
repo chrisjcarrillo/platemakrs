@@ -141,6 +141,10 @@ export default function Editor(props: any) {
                     mask: '',
                     wrapper: '',
                 }}
+                onCancel={() => {
+                    sessionStorage.setItem('hasAdditionalPlate', 'false');
+                    setUpsellPopup(false)
+                }}
                 open={upsellPopup}
                 centered
                 title={'Do you have a front and back plate?'}

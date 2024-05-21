@@ -292,7 +292,15 @@ export const menuLayout = [
     },
     {
         text: 'Build your plate',
-        link: '/products-custom'
+        link: '/products-custom',
+        id: '#build-your-own',
+        subLinks: [{
+            text: 'Car Templates',
+            link: '/products-custom'
+        },{
+            text: 'Motorcycle Templates',
+            link: '/products/motorcycles/products-custom'
+        }],
     },
     {
         text: 'Work with a designer',
