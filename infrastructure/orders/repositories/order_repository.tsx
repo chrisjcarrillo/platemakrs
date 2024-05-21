@@ -1,4 +1,4 @@
-import {getOrders} from "../datasources/remote";
+import {getOrderById, getOrders} from "../datasources/remote";
 import clientPromise from "../../../lib/mongo/mongodb";
 import {getCustomTemplateFirebase, getLicensePlateFirebase} from "../../../lib/firebase/firebase";
 import {ObjectId} from "mongodb";
@@ -210,6 +210,10 @@ class OrderRepository {
         return response;
     }
 
+    async getOrderById(orderId: any) {
+        return await getOrderById(orderId);
+    }
+
     async createLicensePlate(licencePlate: any) {
         const dbClient = await clientPromise;
         const db = dbClient.db();
@@ -268,11 +272,17 @@ class OrderRepository {
         return customTemplateCollection.findOne({_id: new ObjectId(customTemplateId)});
     }
 
+    async findOrder(orderId: any) {
+        let dbClient = await clientPromise;
+        const db = dbClient.db();
+        const ordersCollection = db.collection('orders');
+        return ordersCollection.findOne({orderId: orderId});
+    }
+
     async createOrder(data: any) {
         let dbClient = await clientPromise;
         const db = dbClient.db();
         const ordersCollection = db.collection('orders');
-
         const lineItems = data.line_items;
         let plates = [];
 

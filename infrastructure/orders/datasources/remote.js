@@ -104,3 +104,17 @@ export async function getOrders() {
     }
 
 }
+export async function getOrderById(orderId) {
+
+    const resp = await fetch(
+        `https://platemakrs.myshopify.com/admin/api/2024-04/orders/${orderId}.json`,
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Shopify-Access-Token': process.env.SHOPIFY_ACCESS_TOKEN
+            },
+        }
+    );
+    return await resp.json();
+}
