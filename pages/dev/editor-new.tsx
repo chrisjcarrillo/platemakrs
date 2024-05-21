@@ -21,6 +21,7 @@ import { EditOutlined } from '@ant-design/icons';
 import {Container, Row, Col} from 'react-bootstrap';
 import { stateSvg } from '../../utils/helpers/stateSvg';
 import { StateSvg } from '../../components/shared/StateSvg/StateSvg';
+import FontFaceObserver from 'fontfaceobserver';
 
 // TODO - Car
 // [✅] Add Glow to Top Text
@@ -91,6 +92,23 @@ function EditorNew(props: any) {
 
     const plateWidth = 3597;
     const plateHeight = 1800;
+
+    const [fontsLoaded, setFontsLoaded] = useState(false);
+
+    useEffect(() => {
+        const loadFonts = async () => {
+        const font = new FontFaceObserver('License Plate USA');
+
+        try {
+            await font.load();
+            setFontsLoaded(true);
+        } catch (e) {
+            console.error('Font failed to load', e);
+        }
+        };
+
+        loadFonts();
+    }, []);
 
     useEffect(() => {
         setIsLoaded(true);
@@ -181,47 +199,86 @@ function EditorNew(props: any) {
     );
 
     const middleText = (
+         
         <Group
             zIndex={20}
         >
-            <Text
-                // Reference
-                ref={textRef}
-
-                // Alignment
-                align={
-                    currentLicensePlate?.platePosition ?
-                        currentLicensePlate?.platePosition :
-                        currentCustomTemplate?.startPlatePosition ?
-                            currentCustomTemplate?.startPlatePosition : 'center'}
-
-                verticalAlign="middle"
-                x={plateWidth * 0.05 / 2}
-                y={plateHeight * 0.5 - plateHeight * 0.085}
-                width={plateWidth * 0.955}
-
-                // TEXT
-                text={currentLicensePlate?.plateNumber ?
-                    currentLicensePlate?.plateNumber :
-                    currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate}
-
-                // Font
-                fontSize={plateHeight * 0.45}
-                fontFamily={isLoaded ? "'License Plate USA'" : "'License Plate USA'"}
-
-
-                // Text Color
-                fill={currentCustomTemplate?.plateNumber?.color ?? '#ffffff'}
-
-                // Stroke
-                strokeEnabled={currentCustomTemplate?.plateNumber?.stroke?.enabled}
-                stroke={currentCustomTemplate?.plateNumber?.stroke?.enabled ?
-                    `${currentCustomTemplate?.plateNumber?.stroke?.color ?? '#000000'}` : ''}
-                strokeWidth={currentCustomTemplate?.plateNumber?.stroke?.enabled ? plateWidth / 100 * 0.45 : 0}
-                shadowColor='#000000'
-                shadowBlur={40}
-                shadowOffsetY={5}
-            />
+            {
+                fontsLoaded ? (<Text
+                    // Reference
+                    ref={textRef}
+    
+                    // Alignment
+                    align={
+                        currentLicensePlate?.platePosition ?
+                            currentLicensePlate?.platePosition :
+                            currentCustomTemplate?.startPlatePosition ?
+                                currentCustomTemplate?.startPlatePosition : 'center'}
+    
+                    verticalAlign="middle"
+                    x={plateWidth * 0.05 / 2}
+                    y={plateHeight * 0.5 - plateHeight * 0.085}
+                    width={plateWidth * 0.955}
+    
+                    // TEXT
+                    text={currentLicensePlate?.plateNumber ?
+                        currentLicensePlate?.plateNumber :
+                        currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate}
+    
+                    // Font
+                    fontSize={plateHeight * 0.45}
+                    fontFamily={"'License Plate USA'"}
+    
+    
+                    // Text Color
+                    fill={currentCustomTemplate?.plateNumber?.color ?? '#ffffff'}
+    
+                    // Stroke
+                    strokeEnabled={currentCustomTemplate?.plateNumber?.stroke?.enabled}
+                    stroke={currentCustomTemplate?.plateNumber?.stroke?.enabled ?
+                        `${currentCustomTemplate?.plateNumber?.stroke?.color ?? '#000000'}` : ''}
+                    strokeWidth={currentCustomTemplate?.plateNumber?.stroke?.enabled ? plateWidth / 100 * 0.45 : 0}
+                    shadowColor='#000000'
+                    shadowBlur={40}
+                    shadowOffsetY={5}
+                />) : (<Text
+                    // Reference
+                    ref={textRef}
+    
+                    // Alignment
+                    align={
+                        currentLicensePlate?.platePosition ?
+                            currentLicensePlate?.platePosition :
+                            currentCustomTemplate?.startPlatePosition ?
+                                currentCustomTemplate?.startPlatePosition : 'center'}
+    
+                    verticalAlign="middle"
+                    x={plateWidth * 0.05 / 2}
+                    y={plateHeight * 0.5 - plateHeight * 0.085}
+                    width={plateWidth * 0.955}
+    
+                    // TEXT
+                    text={currentLicensePlate?.plateNumber ?
+                        currentLicensePlate?.plateNumber :
+                        currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate}
+    
+                    // Font
+                    fontSize={plateHeight * 0.45}
+    
+                    // Text Color
+                    fill={currentCustomTemplate?.plateNumber?.color ?? '#ffffff'}
+    
+                    // Stroke
+                    strokeEnabled={currentCustomTemplate?.plateNumber?.stroke?.enabled}
+                    stroke={currentCustomTemplate?.plateNumber?.stroke?.enabled ?
+                        `${currentCustomTemplate?.plateNumber?.stroke?.color ?? '#000000'}` : ''}
+                    strokeWidth={currentCustomTemplate?.plateNumber?.stroke?.enabled ? plateWidth / 100 * 0.45 : 0}
+                    shadowColor='#000000'
+                    shadowBlur={40}
+                    shadowOffsetY={5}
+                />)
+            }
+            
         </Group>
 
 

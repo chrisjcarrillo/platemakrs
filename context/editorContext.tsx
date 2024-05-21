@@ -121,6 +121,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                                 && template?.preset === isPresetTemp 
                                     && template?.vehicleType === query.get('vehicleType')
                     ));
+                    console.log(templateFilter)
 
                     const shopifyProduct = await client.product.fetchByHandle(templateFilter[0].shopifyHandle);
                     const customTemplate = templateFilter[0] as ICustomPlateTemplate;

@@ -18,6 +18,7 @@ import { isMobile } from 'react-device-detect';
 import * as ReactDOMServer from 'react-dom/server';
 import { stateSvg } from '../../utils/helpers/stateSvg';
 import { StateSvg } from '../../components/shared/StateSvg/StateSvg';
+import FontFaceObserver from 'fontfaceobserver';
 
 // TODO - Car
 // [✅] Add Glow to Top Text
@@ -62,13 +63,31 @@ const EditorMotoNew = (props: any) => {
         editLogoUi,
         isPreset
     } = useContext(InterfaceContext) as InterfaceContextType;
-    
+
     const {
         canvasReference
     } = props;
 
     const plateWidth = 2142;
     const plateHeight = 1200;
+
+
+    const [fontsLoaded, setFontsLoaded] = useState(false);
+
+    useEffect(() => {
+        const loadFonts = async () => {
+            const font = new FontFaceObserver('License Plate USA');
+
+            try {
+                await font.load();
+                setFontsLoaded(true);
+            } catch (e) {
+                console.error('Font failed to load', e);
+            }
+        };
+
+        loadFonts();
+    }, []);
 
     useEffect(() => {
         setIsLoaded(true);
@@ -106,9 +125,9 @@ const EditorMotoNew = (props: any) => {
         //     currentLicensePlate?.plateNumber :
         //     currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate);
         mainText?.draw();
-        
+
         setIsLoaded(false);
-        
+
     }, []);
 
     const [holesImage] = useImage(
@@ -116,7 +135,7 @@ const EditorMotoNew = (props: any) => {
             '../../images/resources/holes/holes-black-moto.png' : '../../images/resources/holes/holes-white-moto.png', 'anonymous'
     );
 
-    const convertHoles = () => {    
+    const convertHoles = () => {
         return <Image listening={false} perfectDrawEnabled={false} x={0} y={0} width={plateWidth} height={plateHeight} image={holesImage} />;
     };
 
@@ -130,11 +149,11 @@ const EditorMotoNew = (props: any) => {
             filter={`${currentCustomTemplate?.state?.shadow?.enabled ? 'drop-shadow(rgb(0, 0, 0) 3px 1px 2px)' : ''}`}
             width={plateWidth * 0.745}
             height={plateHeight * 0.35}
-            />)
+        />)
     );
 
     const [stateImage] = useImage(
-       `data:image/svg+xml,${svgString}`, 'anonymous'
+        `data:image/svg+xml,${svgString}`, 'anonymous'
     );
 
     const topText = (
@@ -201,51 +220,95 @@ const EditorMotoNew = (props: any) => {
         <Group
 
         >
-            <Text
-                // listening={false} 
-                // Reference
-                ref={textRef}
-                verticalAlign="middle"
-                align={
-                    currentLicensePlate?.platePosition ?
-                        currentLicensePlate?.platePosition :
-                        currentCustomTemplate?.startPlatePosition ?
-                            currentCustomTemplate?.startPlatePosition : 'center'}
+            {
+                fontsLoaded ? (<Text
+                    // listening={false} 
+                    // Reference
+                    ref={textRef}
+                    verticalAlign="middle"
+                    align={
+                        currentLicensePlate?.platePosition ?
+                            currentLicensePlate?.platePosition :
+                            currentCustomTemplate?.startPlatePosition ?
+                                currentCustomTemplate?.startPlatePosition : 'center'}
 
 
-                x={plateWidth * 0.14 / 2}
-                y={fixTextPosition()}
-                width={plateWidth * 0.875}
+                    x={plateWidth * 0.14 / 2}
+                    y={fixTextPosition()}
+                    width={plateWidth * 0.875}
 
-                // TEXT
-                text={
-                    currentLicensePlate?.plateNumber ?
-                        currentLicensePlate?.plateNumber :
-                        currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate
-                }
+                    // TEXT
+                    text={
+                        currentLicensePlate?.plateNumber ?
+                            currentLicensePlate?.plateNumber :
+                            currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate
+                    }
 
-                // Font
-                fontSize={plateHeight * 0.35}
-                fontFamily={
-                    isLoaded ? "'License Plate USA'" : "'License Plate USA'"
-                }
+                    // Font
+                    fontSize={plateHeight * 0.35}
+                    fontFamily={"'License Plate USA'"}
 
-                // Colors
-                fill={currentCustomTemplate?.plateNumber?.color ?? '#ffffff'}
+                    // Colors
+                    fill={currentCustomTemplate?.plateNumber?.color ?? '#ffffff'}
 
-                strokeEnabled={currentCustomTemplate?.plateNumber?.stroke?.enabled}
-                stroke={
-                    currentCustomTemplate?.plateNumber?.stroke?.enabled ?
-                        `${currentCustomTemplate?.plateNumber?.stroke?.color ?? '#000000'}` : ''
-                }
-                strokeWidth={
-                    currentCustomTemplate?.plateNumber?.stroke?.enabled ? plateWidth / 100 * 0.45 : 0
-                }
+                    strokeEnabled={currentCustomTemplate?.plateNumber?.stroke?.enabled}
+                    stroke={
+                        currentCustomTemplate?.plateNumber?.stroke?.enabled ?
+                            `${currentCustomTemplate?.plateNumber?.stroke?.color ?? '#000000'}` : ''
+                    }
+                    strokeWidth={
+                        currentCustomTemplate?.plateNumber?.stroke?.enabled ? plateWidth / 100 * 0.45 : 0
+                    }
 
-                shadowColor='#000000'
-                shadowBlur={40}
-                shadowOffsetY={5}
-            />
+                    shadowColor='#000000'
+                    shadowBlur={40}
+                    shadowOffsetY={5}
+                />) : (
+                    <Text
+                        // listening={false} 
+                        // Reference
+                        ref={textRef}
+                        verticalAlign="middle"
+                        align={
+                            currentLicensePlate?.platePosition ?
+                                currentLicensePlate?.platePosition :
+                                currentCustomTemplate?.startPlatePosition ?
+                                    currentCustomTemplate?.startPlatePosition : 'center'}
+
+
+                        x={plateWidth * 0.14 / 2}
+                        y={fixTextPosition()}
+                        width={plateWidth * 0.875}
+
+                        // TEXT
+                        text={
+                            currentLicensePlate?.plateNumber ?
+                                currentLicensePlate?.plateNumber :
+                                currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate
+                        }
+
+                        // Font
+                        fontSize={plateHeight * 0.35}
+
+                        // Colors
+                        fill={currentCustomTemplate?.plateNumber?.color ?? '#ffffff'}
+
+                        strokeEnabled={currentCustomTemplate?.plateNumber?.stroke?.enabled}
+                        stroke={
+                            currentCustomTemplate?.plateNumber?.stroke?.enabled ?
+                                `${currentCustomTemplate?.plateNumber?.stroke?.color ?? '#000000'}` : ''
+                        }
+                        strokeWidth={
+                            currentCustomTemplate?.plateNumber?.stroke?.enabled ? plateWidth / 100 * 0.45 : 0
+                        }
+
+                        shadowColor='#000000'
+                        shadowBlur={40}
+                        shadowOffsetY={5}
+                    />
+                )
+            }
+
             {/* <Text
                 // listening={false} 
                 // Reference
@@ -330,7 +393,7 @@ const EditorMotoNew = (props: any) => {
 
     const licensePlate = (
         <Rect
-            listening={false} 
+            listening={false}
             perfectDrawEnabled={false}
             zIndex={1}
             style={{
@@ -349,7 +412,7 @@ const EditorMotoNew = (props: any) => {
 
     const licensePlateBorder = (
         <Rect
-            listening={false} 
+            listening={false}
             perfectDrawEnabled={false}
             zIndex={3}
             fill={'transparent'}
@@ -421,7 +484,7 @@ const EditorMotoNew = (props: any) => {
     return (
         <div className={`canvas__plate-container ${editLogoUi ? 'plate--zindex' : ''}`}>
             <Stage
-            zIndex={999999999}
+                zIndex={999999999}
                 className='canvas__plate-container'
                 scaleX={isMobile ? 1 / 6.5 : 1 / 3}
                 scaleY={isMobile ? 1 / 6.5 : 1 / 3}
