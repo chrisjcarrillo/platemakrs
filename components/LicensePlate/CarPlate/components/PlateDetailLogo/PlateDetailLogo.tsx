@@ -98,14 +98,6 @@ const PlateDetailLogo = (props: {
                 zIndex={8}
                 ref={imageGroupRef}
                 draggable
-                onClick={() => {
-                    console.log('hey')
-                    if(moveDetail1){
-                        setMoveDetail1(false)
-                    } else {
-                        setMoveDetail1(true)
-                    }
-                }}
             >
                 <Image
                     key={1}

@@ -35,9 +35,18 @@ const PlateLogoBackground = (props: {
     useEffect(() => {
         imageTransformerRef?.current?.nodes([imageGroupRef.current]);
         if (image) {
-            imageRef?.current?.cache({ pixelRatio: 5});
+            imageRef?.current?.cache({ pixelRatio: 10});
         }
     }, [image]);
+
+    useEffect(() => {
+        if (moveBackgroundLogo) {
+            imageGroupRef?.current?.moveToTop();
+        } else {
+            imageGroupRef?.current?.setZIndex(6);
+            imageGroupRef.current.getStage().batchDraw();
+        }
+    }, [moveBackgroundLogo]);
 
     
 
@@ -98,13 +107,7 @@ const PlateLogoBackground = (props: {
                 zIndex={6}
                 ref={imageGroupRef}
                 draggable
-                onClick={() => {
-                    if(moveBackgroundLogo){
-                        setMoveBackgroundLogo(false)
-                    } else {
-                        setMoveBackgroundLogo(true)
-                    }
-                }}
+                listening={moveBackgroundLogo}
             >
                 <Image
                     key={1}
@@ -227,7 +230,7 @@ const PlateLogoBackground = (props: {
                 <Transformer
                     width={image?.width}
                     height={image?.height}
-                    borderStrokeWidth={3}
+                    borderStrokeWidth={1}
                     keepRatio
                     ref={imageTransformerRef} 
                 />

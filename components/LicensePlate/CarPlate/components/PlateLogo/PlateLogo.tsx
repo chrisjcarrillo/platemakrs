@@ -45,6 +45,15 @@ const PlateLogo = (props: {
         }
     }, [image]);
 
+    useEffect(() => {
+        if (moveLogo) {
+            imageGroupRef?.current?.moveToTop();
+        } else {
+            imageGroupRef?.current?.setZIndex(7);
+            imageGroupRef.current.getStage().batchDraw();
+        }
+    }, [moveLogo]);
+
     
 
     const calculateInitialPosition = (
@@ -97,15 +106,10 @@ const PlateLogo = (props: {
         } 
     }
 
-    const setIndex = () => {
-        if(moveLogo === true) return MAX_INDEX
-        return 10
-    }
-
     return (
         <>
             <Group
-                zIndex={10}
+                zIndex={9}
                 ref={imageGroupRef}
                 draggable
                 listening={moveLogo}
@@ -159,90 +163,17 @@ const PlateLogo = (props: {
                     shadowOffsetX={0}
                     shadowOffsetY={0}
                 />
-                {/* 
-                <Image
-                    key={3}
-                    listening={moveLogo}
-                    ref={imageRef}
-                    image={image}
-                    width={setSize?.('width')}
-                    height={setSize?.('height')}
-                    x={
-                        calculateInitialPosition('x')
-                    }
-                    y={
-                        calculateInitialPosition('y')
-                    }
-                    shadowEnabled={
-                        currentCustomTemplate?.mainLogo?.glow?.enabled ? true : false
-                    }
-                    shadowColor={
-                        currentCustomTemplate?.mainLogo?.glow?.enabled ? currentCustomTemplate?.mainLogo?.glow?.color : ''
-                    }
-                    shadowBlur={25}
-                    shadowOpacity={1}
-                    shadowOffsetX={0}
-                    shadowOffsetY={0}
-                />
-                <Image
-                    key={4}
-                    listening={moveLogo}
-                    ref={imageRef}
-                    image={image}
-                    width={setSize?.('width')}
-                    height={setSize?.('height')}
-                    x={
-                        calculateInitialPosition('x')
-                    }
-                    y={
-                        calculateInitialPosition('y')
-                    }
-                    shadowEnabled={
-                        currentCustomTemplate?.mainLogo?.glow?.enabled ? true : false
-                    }
-                    shadowColor={
-                        currentCustomTemplate?.mainLogo?.glow?.enabled ? currentCustomTemplate?.mainLogo?.glow?.color : ''
-                    }
-                    shadowBlur={25}
-                    shadowOpacity={1}
-                    shadowOffsetX={0}
-                    shadowOffsetY={0}
-                />
-                <Image
-                    key={5}
-                    listening={moveLogo}
-                    ref={imageRef}
-                    image={image}
-                    width={setSize?.('width')}
-                    height={setSize?.('height')}
-                    x={
-                        calculateInitialPosition('x')
-                    }
-                    y={
-                        calculateInitialPosition('y')
-                    }
-                    shadowEnabled={
-                        currentCustomTemplate?.mainLogo?.glow?.enabled ? true : false
-                    }
-                    shadowColor={
-                        currentCustomTemplate?.mainLogo?.glow?.enabled ? currentCustomTemplate?.mainLogo?.glow?.color : ''
-                    }
-                    shadowBlur={25}
-                    shadowOpacity={1}
-                    shadowOffsetX={0}
-                    shadowOffsetY={0}
-                /> */}
             </Group>
             {
                 moveLogo && (
                     <Transformer
-                        // centeredScaling
+                        centeredScaling
                         width={image?.width}
                         height={image?.height}
                         flipEnabled={false}
                         // borderStroke="red"
                         borderStrokeWidth={3}
-                        // keepRatio
+                        keepRatio
                         ref={imageTransformerRef} 
                     />
                 )
