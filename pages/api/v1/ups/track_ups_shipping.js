@@ -4,9 +4,8 @@ export default async (req, res) => {
     const apiKey = req.headers['x-api-key'];
     const upsRepository = new UPSRepository();
     const body = req.body;
-    const orderId = body.orderId;
-    const type = body.type;
-    if (!orderId || !type) {
+    const trackingNumber = body.trackingNumber;
+    if (!trackingNumber) {
         res.status(400).send('Bad Request');
         return;
     }
@@ -15,7 +14,7 @@ export default async (req, res) => {
         return;
     }
     try {
-        const shipping = await upsRepository.createShippingLabel(orderId, type);
+        const shipping = await upsRepository.trackShipping(trackingNumber);
         res.status(200).json(shipping);
     } catch (error) {
         console.error('Error processing Shopify webhook:', error);
