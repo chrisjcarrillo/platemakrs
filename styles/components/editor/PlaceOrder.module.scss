@@ -1,5 +1,9 @@
 .placeOrder{
     color: #0093FF;
+    &__sell{
+        font-size: 0.65rem;
+        text-align: right;
+    }
     &__container{
         background-color: #000000;
         position: sticky;

@@ -49,7 +49,7 @@ const PlateLogo = (props: {
         if (moveLogo) {
             imageGroupRef?.current?.moveToTop();
         } else {
-            imageGroupRef?.current?.setZIndex(7);
+            imageGroupRef?.current?.setZIndex(5);
             imageGroupRef.current.getStage().batchDraw();
         }
     }, [moveLogo]);
@@ -109,7 +109,7 @@ const PlateLogo = (props: {
     return (
         <>
             <Group
-                zIndex={9}
+                zIndex={7}
                 ref={imageGroupRef}
                 draggable
                 listening={moveLogo}

@@ -26,7 +26,8 @@ export const PlaceOrder = (props: {
     const [terms, setTerms] = useState<boolean>(false);
 
     const {
-        setLoading
+        setLoading,
+        setUpsellPopup
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const {
@@ -297,6 +298,7 @@ export const PlaceOrder = (props: {
                                 >
                                     Total: ${showTotal()}
                                 </h1>
+                                <a className="placeOrder__sell" onClick={() => setUpsellPopup(true)}>Do you have a front and back plate?</a>
                             </Col>
                         </Row>
                         <Row className={`placeOrder__row-order g-2`}>
@@ -361,6 +363,7 @@ export const PlaceOrder = (props: {
                             >
                                 Total: ${showTotal()}
                             </h1>
+                            <a className="placeOrder__sell" onClick={() => setUpsellPopup(true)}>Do you have a front and back plate?</a>
                         </Col>
                     </Row>
                     <Row className={`placeOrder__row-order g-2`}>
