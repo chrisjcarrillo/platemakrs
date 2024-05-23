@@ -57,7 +57,7 @@ export const premadeTemplates = [
         templateId: '2',
         shopifyHandle: 'motorcycle-harley-davidson-1-template',
         startPlatePosition: 'center',
-        startPlateText: 'SAM PLE',
+        startPlateText: 'SAM  PLE',
         patternSettings: { enabled: false },
         fadeSettings: { enabled: false },
         backgroundLogo: { enabled: false },
@@ -128,7 +128,7 @@ export const premadeTemplates = [
         templateId: '3',
         shopifyHandle: 'motorcycle-harley-davidson-2-template',
         startPlatePosition: 'center',
-        startPlateText: 'SAM PLE',
+        startPlateText: 'SAM  PLE',
         patternSettings: { enabled: false },
         fadeSettings: { enabled: false },
         backgroundLogo:{
@@ -246,7 +246,7 @@ export const premadeTemplates = [
         templateId: '3',
         shopifyHandle: 'motorcycle-harley-davidson-3-template',
         startPlatePosition: 'center',
-        startPlateText: 'SAM PLE',
+        startPlateText: 'SAM  PLE',
         patternSettings: { enabled: false },
         fadeSettings: { enabled: false },
         backgroundLogo:{
@@ -337,7 +337,7 @@ export const premadeTemplates = [
         templateId: '4',
         shopifyHandle: 'motorcycle-harley-davidson-4-template',
         startPlatePosition: 'center',
-        startPlateText: 'SAM PLE',
+        startPlateText: 'SAM  PLE',
         patternSettings: { enabled: false },
         fadeSettings: { enabled: false },
         backgroundLogo:{
@@ -479,7 +479,7 @@ export const premadeTemplates = [
         templateId: '2',
         shopifyHandle: 'motorcycle-two-colors-logo-custom-template',
         startPlatePosition: 'center',
-        startPlateText: 'SAM PLE',
+        startPlateText: 'SAM  PLE',
         patternSettings: { enabled: false },
         fadeSettings: { enabled: false },
         backgroundLogo: { enabled: false },
@@ -7731,7 +7731,7 @@ export const premadeTemplates = [
         detailLogo1: { enabled: false },
         detailLogo2: { enabled: false },
         startPlatePosition: 'center',
-        startPlateText: 'SAM PLE',
+        startPlateText: 'SAM  PLE',
         backgroundSettings: {
             color: '#000000',
             pinstripe: {

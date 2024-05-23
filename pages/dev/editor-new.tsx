@@ -126,7 +126,7 @@ function EditorNew(props: any) {
         mainText?.width(plateWidth * 0.955)
         mainText?.setAttr('fontSize', plateHeight * 0.45)
         mainText?.x(plateWidth * 0.05 / 2)
-        mainText?.y(plateHeight * 0.5 - plateHeight * 0.085)
+        mainText?.y(isMobile ? plateHeight * 0.5 - plateHeight * 0.15 : plateHeight * 0.5 - plateHeight * 0.085)
 
         // mainText?.fontFamily("'License Plate USA'")
         // mainText?.wrap('none')
@@ -218,7 +218,7 @@ function EditorNew(props: any) {
     
                     verticalAlign="middle"
                     x={plateWidth * 0.05 / 2}
-                    y={plateHeight * 0.5 - plateHeight * 0.085}
+                    y={isMobile ? plateHeight * 0.5 - plateHeight * 0.15 : plateHeight * 0.5 - plateHeight * 0.085}
                     width={plateWidth * 0.955}
     
                     // TEXT
@@ -252,7 +252,7 @@ function EditorNew(props: any) {
     
                     verticalAlign="middle"
                     x={plateWidth * 0.05 / 2}
-                    y={plateHeight * 0.5 - plateHeight * 0.085}
+                    y={isMobile ? plateHeight * 0.5 - plateHeight * 0.15 : plateHeight * 0.5 - plateHeight * 0.085}
                     width={plateWidth * 0.955}
                     // TEXT
                     text={currentLicensePlate?.plateNumber ?
