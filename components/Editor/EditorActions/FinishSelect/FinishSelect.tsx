@@ -58,7 +58,7 @@ export const FinishSelect = (
                 }}
                 open={showFinishPreviewGloss}
                 centered
-                title={`Finish Preview - ${previewType}`}
+                title={`Finish Preview - Gloss`}
                 footer={null}
             >
                 <div>
@@ -113,7 +113,7 @@ export const FinishSelect = (
                 }}
                 open={showFinishPreviewMatte}
                 centered
-                title={`Finish Preview - ${previewType}`}
+                title={`Finish Preview - Matte`}
                 footer={null}
             >
                 <div>
