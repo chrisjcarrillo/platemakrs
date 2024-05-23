@@ -42,16 +42,21 @@ const setImagePreview = async (node: any) => {
         const width = 3597;
         const height = 1800;
 
-        stage?.setWidth(width);
-        stage?.setHeight(height);
-        stage?.setX(0)
-        stage?.setY(0)
-        stage?.setScaleX(0.75);
-        stage?.setScaleY(0.75);
+        stage?.width(width);
+        stage?.height(height);
+        stage?.x(0)
+        stage?.y(0)
+        stage?.scaleX(0.75);
+        stage?.scaleY(0.75);
         stage?.draw();
 
-        const base64Image = stage.toDataURL();
-        return base64Image;
+        if(stage?.getStage()){
+            const base64Image = await stage.toDataURL();
+            return base64Image;            
+        } else {
+            const base64Image = await stage.toDataURL();
+            return base64Image;   
+        }  
     } catch (error) {
         console.log(error);
     }

@@ -28,7 +28,6 @@ export const Uploader = (
     } = useContext(EditorContext) as EditorContextType;
 
     const [openModal, setOpenModal] = useState<boolean>(false)
-    const [removeBackground, setRemoveBackground] = useState<boolean>(false)
 
 
     async function removeUpload(file: any) {
@@ -54,16 +53,14 @@ export const Uploader = (
         });
     };
 
-    async function uploadLogo({ onError: onError, onSuccess, file }: any){
+    async function uploadLogo({ onError: onError, onSuccess, file }: any, removeBackground: boolean){
         setLoading(true);
         try {
-            console.log(file);
             let formdata = new FormData(); // Form data for API
             formdata.append("image_file", file, file.name); // Form data for API 
             formdata.append('size', 'preview'); // Form data for API
             const uploadType = type === "mainLogo" ? currentCustomTemplate?.mainLogo : currentCustomTemplate?.bottomLogo;
-            if(removeBackground){
-                const uploadFile = await fetch("https://sdk.photoroom.com/v1/segment",
+            const uploadFile = await fetch("https://sdk.photoroom.com/v1/segment",
                 {
                     body: formdata,
                     method: 'POST',
@@ -72,46 +69,30 @@ export const Uploader = (
                         'x-api-key': 'ee24580237e68f316717873372a2dbe1d1e8abf7'
                     }
                 }
-                ); // Upload to API
-                const responseFile = await uploadFile.json(); // Upload to API
+            ); // Upload to API
+            const responseFile = await uploadFile.json(); // Upload to API
+            const currentImage = await getBase64(file);
 
+            responseFile;
+            currentImage;
+
+            setTimeout(() => {
                 localStorage.setItem(
                     `${type === "mainLogo" ? 'mainCustomLogo' : 'bottomCustomLogo'}`, 
                     JSON.stringify({
-                        name: file.name,
-                        type: file.type,
-                        b64: responseFile.result_b64
+                            name: file.name,
+                            type: file.type,
+                        b64: removeBackground ? responseFile.result_b64 : currentImage
                     })
                 );
-    
                 updateCustomTemplateSelection?.(type, {
                     ...uploadType,
                     name: file?.name,
-                    url: `data:image/png;base64,${responseFile?.result_b64}`
+                    url: removeBackground ? `data:image/png;base64,${responseFile?.result_b64}` : currentImage
                 })
                 setLoading(false);
-                onSuccess(null, responseFile);
-            } else {
-                // Get base64
-                const currentImage = await getBase64(file);
-
-                localStorage.setItem(
-                    `${type === "mainLogo" ? 'mainCustomLogo' : 'bottomCustomLogo'}`, 
-                    JSON.stringify({
-                        name: file.name,
-                        type: file.type,
-                        b64: currentImage
-                    })
-                );
-    
-                updateCustomTemplateSelection?.(type, {
-                    ...uploadType,
-                    name: file?.name,
-                    url: currentImage
-                })
-                setLoading(false);
-                onSuccess(null, currentImage);
-            }
+            }, 3000);
+            onSuccess(null, removeBackground ? responseFile : currentImage);
         } catch (e) {
             onError(e);
             setLoading(false);
@@ -129,15 +110,13 @@ export const Uploader = (
                 okText: 'Yes',
                 cancelText: 'No',
                 open: openModal,
-                onCancel(){
+                async onCancel(){
                     Modal.destroyAll()
                     setOpenModal(false)
-                    setRemoveBackground(false)
-                    uploadLogo({ onError, onSuccess, file })
+                    await uploadLogo({ onError, onSuccess, file }, false)
                 },
-                onOk(){
-                    setRemoveBackground(true)
-                    uploadLogo({ onError, onSuccess, file })
+                async onOk(){
+                    await uploadLogo({ onError, onSuccess, file }, true)
                 }
             })
         } catch (e) {

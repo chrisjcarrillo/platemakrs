@@ -209,44 +209,6 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         type: any,
         value: any
     ) => {
-        // console.log(type)
-        // if(type === "backgroundSettings"){            
-        //     // If Letters = same color as background size, let the system know it can't change the color
-        //     if(value.color === currentCustomTemplate?.plateNumber?.color){
-        //         notificationApi['warning']({
-        //             message: 'Background',
-        //             description: 'Select a different color, the background and plate number cant be the same colors.',
-        //         });
-        //         return;
-        //     }
-        // }
-        // if(type === "plateNumber"){
-        //     if(value.color === currentCustomTemplate?.backgroundSettings?.color){
-        //         notificationApi['warning']({
-        //             message: 'Plate Number',
-        //             description: 'Select a different color, the background and plate characters cant be the same colors.',
-        //         });
-        //         return;
-        //     }
-        // }
-        // if(type === "state"){
-        //     if(value.color === currentCustomTemplate?.backgroundSettings?.color){
-        //         notificationApi['warning']({
-        //             message: 'State',
-        //             description: 'Select a different color, the background and state cant be the same colors.',
-        //         });
-        //         return;
-        //     }
-        // }
-        // if(type === "bottomText"){
-        //     if(value.color === currentCustomTemplate?.backgroundSettings?.color){
-        //         notificationApi['warning']({
-        //             message: 'Bottom Text',
-        //             description: 'Select a different color, the background and bottom text cant be the same colors.',
-        //         });
-        //         return;
-        //     }
-        // }
         setCurrentCustomTemplate(currentCustomTemplates  => ({
             ...currentCustomTemplates,
             [type]: value

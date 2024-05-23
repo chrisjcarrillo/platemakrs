@@ -99,12 +99,12 @@ function EditorNew(props: any) {
         const loadFonts = async () => {
         const font = new FontFaceObserver('License Plate USA');
 
-        try {
-            await font.load();
-            setFontsLoaded(true);
-        } catch (e) {
-            console.error('Font failed to load', e);
-        }
+            try {
+                await font.load();
+                setFontsLoaded(true);
+            } catch (e) {
+                console.error('Font failed to load', e);
+            }
         };
 
         loadFonts();
@@ -126,7 +126,7 @@ function EditorNew(props: any) {
         mainText?.width(plateWidth * 0.955)
         mainText?.setAttr('fontSize', plateHeight * 0.45)
         mainText?.x(plateWidth * 0.05 / 2)
-        // mainText?.y(plateHeight * 0.5 - plateHeight * 0.085)
+        mainText?.y(plateHeight * 0.5 - plateHeight * 0.085)
 
         // mainText?.fontFamily("'License Plate USA'")
         // mainText?.wrap('none')
@@ -139,8 +139,9 @@ function EditorNew(props: any) {
         //     currentLicensePlate?.plateNumber :
         //     currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate);
         mainText?.draw();
-        
-        setIsLoaded(false);
+        if(stage?.getStage() && mainText.isVisible()){
+            setIsLoaded(false);
+        }
         
     }, []);
 
@@ -253,7 +254,6 @@ function EditorNew(props: any) {
                     x={plateWidth * 0.05 / 2}
                     y={plateHeight * 0.5 - plateHeight * 0.085}
                     width={plateWidth * 0.955}
-    
                     // TEXT
                     text={currentLicensePlate?.plateNumber ?
                         currentLicensePlate?.plateNumber :
