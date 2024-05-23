@@ -238,9 +238,6 @@ function EditorNew(props: any) {
                     stroke={currentCustomTemplate?.plateNumber?.stroke?.enabled ?
                         `${currentCustomTemplate?.plateNumber?.stroke?.color ?? '#000000'}` : ''}
                     strokeWidth={currentCustomTemplate?.plateNumber?.stroke?.enabled ? plateWidth / 100 * 0.45 : 0}
-                    shadowColor='#000000'
-                    shadowBlur={40}
-                    shadowOffsetY={5}
                 />) : (<Text
                     // Reference
                     ref={textRef}
@@ -273,9 +270,6 @@ function EditorNew(props: any) {
                     stroke={currentCustomTemplate?.plateNumber?.stroke?.enabled ?
                         `${currentCustomTemplate?.plateNumber?.stroke?.color ?? '#000000'}` : ''}
                     strokeWidth={currentCustomTemplate?.plateNumber?.stroke?.enabled ? plateWidth / 100 * 0.45 : 0}
-                    shadowColor='#000000'
-                    shadowBlur={40}
-                    shadowOffsetY={5}
                 />)
             }
             
