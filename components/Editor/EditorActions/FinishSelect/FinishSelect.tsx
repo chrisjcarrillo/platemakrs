@@ -179,7 +179,8 @@ export const FinishSelect = (
                     {/* View Preview for gloss */}
                     <div className="finishPreview_column">
                         <a className='' onClick={() => {
-                            setShowFinishPreviewGloss(true)
+                            setShowFinishPreviewGloss(true);
+                            videoReferenceGloss?.current?.play();
                         }}>
                             View Preview
                         </a>
@@ -187,7 +188,8 @@ export const FinishSelect = (
                     {/* View Preview for Matte */}
                     <div className="finishPreview_column">
                         <a className='' onClick={() => {
-                            setShowFinishPreviewMatte(true)
+                            setShowFinishPreviewMatte(true);
+                            videoReferenceMatte?.current?.play();
                         }}>
                             View Preview
                         </a>
