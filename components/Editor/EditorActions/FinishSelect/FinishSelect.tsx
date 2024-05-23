@@ -137,7 +137,10 @@ export const FinishSelect = (
                     <div className="finishPreview_column">
                         <a className='' onClick={() => {
                             setPreviewType('Gloss')
-                            setShowFinishPreview(true)
+                            setTimeout(() => {
+                                setShowFinishPreview(true)
+                            }, 100); // Delay to ensure the source change triggers a reload
+                            
                         }}>
                             View Preview
                         </a>
@@ -146,7 +149,9 @@ export const FinishSelect = (
                     <div className="finishPreview_column">
                         <a className='' onClick={() => {
                             setPreviewType('Matte');
-                            setShowFinishPreview(true)
+                            setTimeout(() => {
+                                setShowFinishPreview(true)
+                            }, 100); // Delay to ensure the source change triggers a reload
                         }}>
                             View Preview
                         </a>
