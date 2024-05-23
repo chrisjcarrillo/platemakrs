@@ -115,30 +115,17 @@ function EditorNew(props: any) {
         const stage = canvasReference?.current;
         const mainText = textRef?.current;
 
-        // stage?.clearCache();
         stage?.setWidth(window.innerWidth);
         stage?.setHeight(window.innerHeight);
-        // stage?.scaleX(isMobile ? 1 / 10 : 1 / 5);
-        // stage?.scaleY(isMobile ? 1 / 10 : 1 / 5);
         stage?.draw();
 
-        // mainText?.clearCache();
+
         mainText?.width(plateWidth * 0.955)
         mainText?.setAttr('fontSize', plateHeight * 0.45)
         mainText?.x(plateWidth * 0.05 / 2)
         mainText?.y(isMobile ? plateHeight * 0.5 - plateHeight * 0.15 : plateHeight * 0.5 - plateHeight * 0.085)
-
-        // mainText?.fontFamily("'License Plate USA'")
-        // mainText?.wrap('none')
-        // mainText?.align(currentLicensePlate?.platePosition ?
-        //     currentLicensePlate?.platePosition :
-        //     currentCustomTemplate?.startPlatePosition ?
-        //         currentCustomTemplate?.startPlatePosition : 'center');
-        // // mainText?.verticalAlign('middle')
-        // mainText?.text(currentLicensePlate?.plateNumber ?
-        //     currentLicensePlate?.plateNumber :
-        //     currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate);
         mainText?.draw();
+
         if(stage?.getStage() && mainText.isVisible()){
             setIsLoaded(false);
         }
@@ -200,7 +187,6 @@ function EditorNew(props: any) {
     );
 
     const middleText = (
-         
         <Group
             zIndex={20}
         >
@@ -225,7 +211,7 @@ function EditorNew(props: any) {
                     text={currentLicensePlate?.plateNumber ?
                         currentLicensePlate?.plateNumber :
                         currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate}
-    
+                    letterSpacing={0.5}
                     // Font
                     fontSize={plateHeight * 0.45}
                     fontFamily={"'License Plate USA'"}
@@ -242,7 +228,7 @@ function EditorNew(props: any) {
                 />) : (<Text
                     // Reference
                     ref={textRef}
-    
+                    letterSpacing={0.5}
                     // Alignment
                     align={
                         currentLicensePlate?.platePosition ?
