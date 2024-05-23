@@ -259,10 +259,6 @@ const EditorMotoNew = (props: any) => {
                     strokeWidth={
                         currentCustomTemplate?.plateNumber?.stroke?.enabled ? plateWidth / 100 * 0.45 : 0
                     }
-
-                    shadowColor='#000000'
-                    shadowBlur={40}
-                    shadowOffsetY={5}
                 />) : (
                     <Text
                         // listening={false} 
@@ -301,10 +297,6 @@ const EditorMotoNew = (props: any) => {
                         strokeWidth={
                             currentCustomTemplate?.plateNumber?.stroke?.enabled ? plateWidth / 100 * 0.45 : 0
                         }
-
-                        shadowColor='#000000'
-                        shadowBlur={40}
-                        shadowOffsetY={5}
                     />
                 )
             }
