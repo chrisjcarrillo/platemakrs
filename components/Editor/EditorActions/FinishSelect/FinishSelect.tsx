@@ -11,17 +11,14 @@ export const FinishSelect = (
     }
 ) => {
     const { type, title } = props;
-    const videoReference = useRef<any>();
+    const videoReferenceGloss = useRef<any>();
+    const videoReferenceMatte = useRef<any>();
     const { currentCustomTemplate, updateCustomTemplateSelection } = useContext(EditorContext) as EditorContextType;
 
-    const [showFinishPreview, setShowFinishPreview] = useState<boolean>(false)
-    const [previewType, setPreviewType] = useState<string>('Gloss')
+    const [showFinishPreviewGloss, setShowFinishPreviewGloss] = useState<boolean>(false)
+    const [showFinishPreviewMatte, setShowFinishPreviewMatte] = useState<boolean>(false)
 
-    useEffect(() => {
-        if (showFinishPreview) {
-            videoReference.current.load(); // Reloads the video
-        }
-    }, [showFinishPreview])
+    const [previewType, setPreviewType] = useState<string>('Gloss')
 
     const onChange = (e: RadioChangeEvent) => {
         if (e.target.value === "MATTE") {
@@ -55,30 +52,21 @@ export const FinishSelect = (
                     wrapper: '',
                 }}
                 onCancel={() => {
-                    videoReference.current.pause();
+                    videoReferenceGloss.current.pause();
                     Modal.destroyAll();
-                    setShowFinishPreview(false)
+                    setShowFinishPreviewGloss(false)
                 }}
-                open={showFinishPreview}
+                open={showFinishPreviewGloss}
                 centered
                 title={`Finish Preview - ${previewType}`}
                 footer={null}
             >
                 <div>
                     <div className='modalVideo_container'>
-                        {
-                            previewType === "Gloss" ? (
-                                <video ref={videoReference} className='modalVideo_video' controls>
+                    <video ref={videoReferenceGloss} className='modalVideo_video' controls>
                                     <source src={'/videos/gloss-video.mov'} type="video/mp4" />
                                     Your browser does not support the video tag.
                                 </video>
-                            ) : (
-                                <video ref={videoReference} className='modalVideo_video' controls>
-                                    <source src={'/videos/matte-video.mov'} type="video/mp4" />
-                                    Your browser does not support the video tag.
-                                </video>
-                            )
-                        }
                     </div>
                     <Flex gap="small" justify='flex-end'>
                         <ConfigProvider
@@ -98,9 +86,64 @@ export const FinishSelect = (
                                 block
                                 type='primary'
                                 onClick={(e) => {
-                                    videoReference.current.pause();
+                                    videoReferenceGloss.current.pause();
                                     Modal.destroyAll();
-                                    setShowFinishPreview(false)
+                                    setShowFinishPreviewGloss(false)
+                                }}
+                            >
+                                Continue
+                            </Button>
+                        </ConfigProvider>
+                    </Flex>
+                </div>
+            </Modal>
+
+            <Modal
+                classNames={{
+                    header: '',
+                    body: 'addon_modal',
+                    footer: '',
+                    mask: '',
+                    wrapper: '',
+                }}
+                onCancel={() => {
+                    videoReferenceMatte.current.pause();
+                    Modal.destroyAll();
+                    setShowFinishPreviewMatte(false)
+                }}
+                open={showFinishPreviewMatte}
+                centered
+                title={`Finish Preview - ${previewType}`}
+                footer={null}
+            >
+                <div>
+                    <div className='modalVideo_container'>
+                            <video ref={videoReferenceMatte} className='modalVideo_video' controls>
+                                <source src={'/videos/matte-video.mov'} type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                    </div>
+                    <Flex gap="small" justify='flex-end'>
+                        <ConfigProvider
+                            theme={{
+                                components: {
+                                    Button: {
+                                        colorPrimary: `linear-gradient(135deg, #6253E1, #04BEFE)`,
+                                        colorPrimaryHover: `linear-gradient(135deg, #6253E1, #04BEFE)`,
+                                        colorPrimaryActive: `linear-gradient(135deg, #6253E1, #04BEFE)`,
+                                        lineWidth: 0,
+                                    },
+                                },
+                            }}
+                        >
+                            <Button
+                                shape='round'
+                                block
+                                type='primary'
+                                onClick={(e) => {
+                                    videoReferenceMatte.current.pause();
+                                    Modal.destroyAll();
+                                    setShowFinishPreviewMatte(false)
                                 }}
                             >
                                 Continue
@@ -136,11 +179,7 @@ export const FinishSelect = (
                     {/* View Preview for gloss */}
                     <div className="finishPreview_column">
                         <a className='' onClick={() => {
-                            setPreviewType('Gloss')
-                            setTimeout(() => {
-                                setShowFinishPreview(true)
-                            }, 100); // Delay to ensure the source change triggers a reload
-                            
+                            setShowFinishPreviewGloss(true)
                         }}>
                             View Preview
                         </a>
@@ -148,10 +187,7 @@ export const FinishSelect = (
                     {/* View Preview for Matte */}
                     <div className="finishPreview_column">
                         <a className='' onClick={() => {
-                            setPreviewType('Matte');
-                            setTimeout(() => {
-                                setShowFinishPreview(true)
-                            }, 100); // Delay to ensure the source change triggers a reload
+                            setShowFinishPreviewMatte(true)
                         }}>
                             View Preview
                         </a>
