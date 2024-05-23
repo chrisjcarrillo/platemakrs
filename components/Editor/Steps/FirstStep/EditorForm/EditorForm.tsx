@@ -106,7 +106,35 @@ const EditorForm = (props: any) => {
         return text.replace(/-/g, '<span class="custom-dash">-</span>');
     };
 
-    
+    function customCharCountAndModify(str: string) {
+        let length = 0;
+        let modifiedStr = '';
+        // 3 SPACE 3
+
+        // Iterate through each character in the string
+        for (let i = 0; i < str.length; i++) {
+            if(str.length === 7 && str[i] === ' ' && i === 3){
+                // console.log('here')
+                length += 2; // Count space as two characters
+                modifiedStr += '  '; // Add two spaces to the modified string
+            } else {
+                // console.log('else')
+                length += 1; // Count other characters normally
+                modifiedStr += str[i]; // Add the character to the modified string
+            }
+        }
+        // Check if the string length including spaces is 6
+        // if (str.length === 7) {
+        //     // Check if the string contains exactly one space
+        //     let spaceCount = (str.split(' ').length - 1);
+        //     if (spaceCount === 1) {
+        //         return modifiedStr; // Return 2 if the string has 6 characters including one space
+        //     }
+        // }
+        return modifiedStr;
+    }
+
+
     return (
         <>
             <Container
@@ -221,7 +249,7 @@ const EditorForm = (props: any) => {
                                         disabled={!form.getFieldValue('state')}
                                         maxLength={8}
                                         ref={inputRef}
-                                        onChange={(e) => updateLicensePlate('plateNumber', e.target.value.toUpperCase())}
+                                        onChange={(e) => updateLicensePlate('plateNumber', customCharCountAndModify(e.target.value.toUpperCase()))}
                                         placeholder='Enter your license plate letters...'
                                     />
                                 </FormItem>
@@ -233,11 +261,11 @@ const EditorForm = (props: any) => {
                         {/* <Row
                             className={`${!form.getFieldValue('plateNumber') ? 'editor__disabled--input' : ''}`}
                         > */}
-                            {/* <Col {...columnSettings}> */}
-                                {/* <div className="editor__label-container">
+                        {/* <Col {...columnSettings}> */}
+                        {/* <div className="editor__label-container">
                                     <label className="editor__label-text">Select your vehicle type</label>
                                 </div> */}
-                                {/* <FormItem
+                        {/* <FormItem
 
                                     tooltip={'Select the vehicle type associated to your license plate'}
                                     name="vehicleType"
@@ -267,7 +295,7 @@ const EditorForm = (props: any) => {
                                         }
                                     />
                                 </FormItem> */}
-                            {/* </Col> */}
+                        {/* </Col> */}
                         {/* </Row> */}
                         {/* Vehicle Type END */}
 
