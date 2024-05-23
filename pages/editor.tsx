@@ -154,6 +154,7 @@ export default function Editor(props: any) {
                         <p className='addon-description'>
                         Add the 2nd Plate for $100
                         </p>
+                        
                         <Flex gap="small" justify='flex-end'>
                             <Button loading={loading} shape="round" block onClick={() => {
                                 sessionStorage.setItem('hasAdditionalPlate', 'false');

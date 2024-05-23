@@ -7872,7 +7872,8 @@ export const premadeTemplates = [
         bottomLogo: { enabled: false },
         detailLogo1: { enabled: false },
         detailLogo2: { enabled: false },
-
+        startPlatePosition: 'center',
+        startPlateText: 'SAM  PLE',
         mainLogo: {
             enabled: true,
             hasColor: false,
@@ -7967,6 +7968,8 @@ export const premadeTemplates = [
         backgroundLogo: { enabled: false },
         detailLogo1: { enabled: false },
         detailLogo2: { enabled: false },
+        startPlatePosition: 'center',
+        startPlateText: 'SAM  PLE',
         mainLogo: {
             enabled: true,
             hasColor: false,
@@ -8086,6 +8089,8 @@ export const premadeTemplates = [
         backgroundLogo: { enabled: false },
         detailLogo1: { enabled: false },
         detailLogo2: { enabled: false },
+        startPlatePosition: 'center',
+        startPlateText: 'SAM  PLE',
         mainLogo: {
             enabled: true,
             hasColor: false,
@@ -8204,6 +8209,8 @@ export const premadeTemplates = [
         backgroundLogo: { enabled: false },
         detailLogo1: { enabled: false },
         detailLogo2: { enabled: false },
+        startPlatePosition: 'center',
+        startPlateText: 'SAM  PLE',
         mainLogo: {
             enabled: true,
             hasColor: false,
@@ -8318,6 +8325,8 @@ export const premadeTemplates = [
         backgroundLogo: { enabled: false },
         detailLogo1: { enabled: false },
         detailLogo2: { enabled: false },
+        startPlatePosition: 'center',
+        startPlateText: 'SAM  PLE',
         mainLogo: {
             enabled: true,
             hasColor: false,
@@ -8432,6 +8441,8 @@ export const premadeTemplates = [
         backgroundLogo: { enabled: false },
         detailLogo1: { enabled: false },
         detailLogo2: { enabled: false },
+        startPlatePosition: 'center',
+        startPlateText: 'SAM  PLE',
         mainLogo: {
             enabled: true,
             hasColor: false,

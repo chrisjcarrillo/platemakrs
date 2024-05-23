@@ -105,6 +105,34 @@ export const PlaceOrder = (props: {
     const [termsPopup, setTermsPopup] = useState<boolean>(false)
 
     const handlePlaceOrder = async () => {
+        if(currentCustomTemplate?.backgroundSettings?.color === currentCustomTemplate?.plateNumber?.color){
+            messageApi['warning']({
+                message: 'Background',
+                description: 'Select a different color, the background and plate number cant be the same colors.',
+            });
+            updateStep?.(
+                3,
+                currentCustomTemplate?.preset ? 'presetBgColor' : 'editorBgColor',
+                'Select Color',
+                false,
+                'Background'
+            )
+            return;
+        }
+        if(currentCustomTemplate?.plateNumber?.color === currentCustomTemplate?.backgroundSettings?.color){
+            messageApi['warning']({
+                message: 'Plate Number',
+                description: 'Select a different color, the background and plate characters cant be the same colors.',
+            });
+            updateStep?.(
+                3,
+                currentCustomTemplate?.preset ? 'presetBgColor' : 'editorBgColor',
+                'Select Color',
+                false,
+                'Background'
+            )
+            return;
+        }
         if(!acceptTerms){
             checkboxReference.current.focus();
             setTermsPopup(true);

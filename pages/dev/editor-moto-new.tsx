@@ -125,8 +125,9 @@ const EditorMotoNew = (props: any) => {
         //     currentLicensePlate?.plateNumber :
         //     currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate);
         mainText?.draw();
-
-        setIsLoaded(false);
+        if(stage?.getStage() && mainText.isVisible()){
+            setIsLoaded(false);
+        }
 
     }, []);
 
@@ -270,8 +271,6 @@ const EditorMotoNew = (props: any) => {
                                 currentLicensePlate?.platePosition :
                                 currentCustomTemplate?.startPlatePosition ?
                                     currentCustomTemplate?.startPlatePosition : 'center'}
-
-
                         x={plateWidth * 0.14 / 2}
                         y={fixTextPosition()}
                         width={plateWidth * 0.875}

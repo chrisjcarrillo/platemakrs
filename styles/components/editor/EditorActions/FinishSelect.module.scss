@@ -1,3 +1,18 @@
+.finishPreview{
+    &_container{
+        display: flex;
+        width: 100%;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        margin-top: 0.5rem;
+    }
+    &_column{
+        a{
+            font-size: 0.75rem;
+            text-align: center;
+        }
+    }
+}
 .finishSelect{
     margin-top: 0.5rem;
     margin-bottom: 1rem;
@@ -15,6 +30,9 @@
         margin-left: auto;
         width: 100%;
         margin-right: auto;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
         label{
             margin-right: 10px;
         }
