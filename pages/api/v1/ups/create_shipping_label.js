@@ -6,16 +6,17 @@ export default async (req, res) => {
     const body = req.body;
     const orderId = body.orderId;
     const type = body.type;
+    const service = body.service;
     if (!orderId || !type) {
         res.status(400).send('Bad Request');
         return;
     }
-    if (apiKey !== process.env.API_KEY) {
+    if (apiKey !== process.env.PLATEMAKRS_API_KEY) {
         res.status(401).send('Unauthorized');
         return;
     }
     try {
-        const shipping = await upsRepository.createShippingLabel(orderId, type);
+        const shipping = await upsRepository.createShippingLabel(orderId, type, service);
         res.status(200).json(shipping);
     } catch (error) {
         console.error('Error processing Shopify webhook:', error);

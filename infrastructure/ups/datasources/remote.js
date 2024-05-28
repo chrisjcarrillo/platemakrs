@@ -19,7 +19,7 @@ export async function upsGenerateToken() {
     return await resp.json();
 }
 
-export async function createShippingLabel(token, shippingData, shippingType) {
+export async function createShippingLabel(token, shippingData, shippingType, service = null) {
 
     const shipperData = {
         Name: 'Platemakrs LLC',
@@ -38,6 +38,7 @@ export async function createShippingLabel(token, shippingData, shippingType) {
 
     const companyData = {
         Name: 'Platemakrs LLC',
+        AttentionName: 'Platemakrs LLC',
         Phone: {
             Number: '9546397331',
         },
@@ -52,6 +53,7 @@ export async function createShippingLabel(token, shippingData, shippingType) {
 
     const customerData = {
         Name: shippingData.shipping_address?.name || shippingData.billing_address?.name,
+        AttentionName: shippingData.shipping_address?.name || shippingData.billing_address?.name,
         Phone: {
             Number: shippingData.shipping_address?.phone || shippingData.billing_address?.phone,
         },
@@ -85,7 +87,7 @@ export async function createShippingLabel(token, shippingData, shippingType) {
                         }
                     },
                     Service: {
-                        Code: shippingData.shipping_lines[0].code
+                        Code: service ?? shippingData.shipping_lines[0].code
                     },
                     Package: {
                         Description: "License Plate",
@@ -126,7 +128,7 @@ export async function createShippingLabel(token, shippingData, shippingType) {
                         }
                     },
                     Service: {
-                        Code: shippingData.shipping_lines[0].code
+                        Code: service ?? shippingData.shipping_lines[0].code
                     },
                     Package: {
                         Description: "License Plate",
@@ -326,7 +328,7 @@ export async function getRatings(shippingData, shippingType, token) {
 
     const version = 'v2403';
     const resp = await fetch(
-        `https://wwwcie.ups.com/api/rating/${version}/Shoptimeintransit`,
+        `https://onlinetools.ups.com/api/rating/${version}/Shoptimeintransit`,
         {
             method: 'POST',
             headers: {

@@ -13,7 +13,7 @@ class UPSRepository {
         return token;
     }
 
-    async createShippingLabel(orderId: any, type: string) {
+    async createShippingLabel(orderId: any, type: string, service: any) {
         const dbClient = await clientPromise;
         const db = dbClient.db();
         const systemCollection = db.collection('system');
@@ -28,7 +28,7 @@ class UPSRepository {
         if (!orderData.order) {
             return {error: 'Order not found'};
         }
-        const shippingLabel = await createShippingLabel(upsToken?.access_token, orderData.order, type);
+        const shippingLabel = await createShippingLabel(upsToken?.access_token, orderData.order, type, service);
         const ordersCollection = db.collection('orders');
         const shippingCollection = db.collection('shipping');
         const shipping = type === 'RETURN' ? {returnShippingLabel: shippingLabel?.ShipmentResponse?.ShipmentResults?.PackageResults[0], productionStatus: 'RETURN_LABEL_SENT'} : {shippingLabel: shippingLabel?.ShipmentResponse?.ShipmentResults?.PackageResults[0], productionStatus: 'ORDER_SHIPPED'};
