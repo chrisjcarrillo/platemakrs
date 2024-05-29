@@ -4,7 +4,7 @@ export async function upsGenerateToken() {
     };
 
     const resp = await fetch(
-        `https://wwwcie.ups.com/security/v1/oauth/token`,
+        `${process.env.UPS_URL}/security/v1/oauth/token`,
         {
             method: 'POST',
             headers: {
@@ -157,7 +157,7 @@ export async function createShippingLabel(token, shippingData, shippingType, ser
 
     const version = 'v2';
     const resp = await fetch(
-        `https://wwwcie.ups.com/api/shipments/${version}/ship`,
+        `${process.env.UPS_URL}/api/shipments/${version}/ship`,
         {
             method: 'POST',
             headers: {
@@ -183,7 +183,7 @@ export async function trackShipping(trackingNumber, token) {
     // This is a random number that we are using as a transaction ID
     const r = Math.random().toString(36).substring(7);
     const resp = await fetch(
-        `https://wwwcie.ups.com/api/track/v1/details/${trackingNumber}`,
+        `${process.env.UPS_URL}/api/track/v1/details/${trackingNumber}`,
         {
             method: 'GET',
             headers: {
@@ -328,7 +328,7 @@ export async function getRatings(shippingData, shippingType, token) {
 
     const version = 'v2403';
     const resp = await fetch(
-        `https://onlinetools.ups.com/api/rating/${version}/Shoptimeintransit`,
+        `${process.env.UPS_URL}/api/rating/${version}/Shoptimeintransit`,
         {
             method: 'POST',
             headers: {
