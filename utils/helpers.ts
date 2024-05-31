@@ -349,6 +349,10 @@ export const footerLinksTwo = [
         text: "Refund Policy",
         link: "/refund-policy"
     },
+    {
+        text: "Privacy Policy",
+        link: "/privacy-policy"
+    },
 ]
 
 export const policyLinks = [

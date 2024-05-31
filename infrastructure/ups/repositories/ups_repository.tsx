@@ -1,4 +1,4 @@
-import {createShippingLabel, trackShipping, upsGenerateToken} from "../datasources/remote";
+import {createShippingLabel, getRatings, trackShipping, upsGenerateToken} from "../datasources/remote";
 import clientPromise from "../../../lib/mongo/mongodb";
 import OrderRepository from "../../orders/repositories/order_repository";
 
@@ -13,7 +13,7 @@ class UPSRepository {
         return token;
     }
 
-    async createShippingLabel(orderId: any, type: string) {
+    async createShippingLabel(orderId: any, type: string, service: any) {
         const dbClient = await clientPromise;
         const db = dbClient.db();
         const systemCollection = db.collection('system');
@@ -28,7 +28,7 @@ class UPSRepository {
         if (!orderData.order) {
             return {error: 'Order not found'};
         }
-        const shippingLabel = await createShippingLabel(upsToken?.access_token, orderData.order, type);
+        const shippingLabel = await createShippingLabel(upsToken?.access_token, orderData.order, type, service);
         const ordersCollection = db.collection('orders');
         const shippingCollection = db.collection('shipping');
         const shipping = type === 'RETURN' ? {returnShippingLabel: shippingLabel?.ShipmentResponse?.ShipmentResults?.PackageResults[0], productionStatus: 'RETURN_LABEL_SENT'} : {shippingLabel: shippingLabel?.ShipmentResponse?.ShipmentResults?.PackageResults[0], productionStatus: 'ORDER_SHIPPED'};
@@ -70,6 +70,25 @@ class UPSRepository {
             upsToken = await systemCollection.findOne({name: 'upsToken'});
         }
         return await trackShipping(trackingNumber, upsToken?.access_token);
+    }
+
+    async getRatings(orderId: string, type: string) {
+        const dbClient = await clientPromise;
+        const db = dbClient.db();
+        const systemCollection = db.collection('system');
+        let upsToken = await systemCollection.findOne({name: 'upsToken'});
+        const issuedDate = new Date(parseInt(upsToken?.issued_at)).getTime();
+        const expDate = new Date(issuedDate + parseInt(upsToken?.expires_in) * 1000).getTime();
+        if (expDate <= new Date().getTime()) {
+            await this.authenticate();
+            upsToken = await systemCollection.findOne({name: 'upsToken'});
+        }
+        const orderRepository = new OrderRepository();
+        const orderData = await orderRepository.getOrderById(orderId);
+        if (!orderData.order) {
+            return {error: 'Order not found'};
+        }
+        return await getRatings(orderData.order, type, upsToken?.access_token);
     }
 }
 
