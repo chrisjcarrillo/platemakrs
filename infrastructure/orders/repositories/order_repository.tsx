@@ -323,7 +323,7 @@ class OrderRepository {
         let dbClient = await clientPromise;
         const db = dbClient.db();
         const ordersCollection = db.collection('orders');
-        return ordersCollection.findOne({orderId: orderId});
+        return ordersCollection.findOne({orderId: parseInt(orderId, 10)});
     }
 
     async updateLicensePlateStatus(plateIds: any, status: any, orderId: any) {
