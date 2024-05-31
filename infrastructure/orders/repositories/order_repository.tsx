@@ -3,29 +3,6 @@ import clientPromise from "../../../lib/mongo/mongodb";
 import {getCustomTemplateFirebase, getLicensePlateFirebase} from "../../../lib/firebase/firebase";
 import {ObjectId} from "mongodb";
 
-
-async function getLicensePlate(plateId: any) {
-    try {
-        const dbClient = await clientPromise;
-        const db = dbClient.db();
-        const licencePlates = db.collection('licensePlates');
-        return licencePlates?.findOne({_id: new ObjectId(plateId)});
-    } catch (error) {
-        console.log('GET LICENSE PLATE' ,error);
-    }
-}
-
-async function getCustomTemplate(customTemplateId: any) {
-    try {
-        const dbClient = await clientPromise;
-        const db = dbClient.db();
-        const customTemplates = db.collection('customTemplates');
-        return customTemplates?.findOne({_id: new ObjectId(customTemplateId)});
-    } catch (error) {
-        console.log('GET CUSTOM TEMPLATE', error);
-    }
-}
-
 async function generateQRCode(url: any) {
     try {
         const QRCode = require('qrcode');
@@ -72,10 +49,10 @@ class OrderRepository {
                     if (plateId) {
                         licencePlate = await getLicensePlateFirebase(plateId);
                         if (!licencePlate) {
-                            licencePlate = await getLicensePlate(plateId);
+                            licencePlate = await this.getLicensePlate(plateId);
                             console.log('LICENCE PLATE', licencePlate);
                             if (licencePlate){
-                                customTemplate = await getCustomTemplate(licencePlate.customTemplateId);
+                                customTemplate = await this.getCustomTemplate(licencePlate.customTemplateId);
                             }
                         } else {
                             customTemplate = await getCustomTemplateFirebase(licencePlate.customTemplateId);
@@ -119,6 +96,42 @@ class OrderRepository {
                     productionStatus: 'ORDER_PLACED',
                 };
                 await ordersCollection.insertOne(orderData);
+        }
+    }
+
+    async getLicensePlate(plateId: any) {
+        try {
+            const dbClient = await clientPromise;
+            const db = dbClient.db();
+            const licencePlates = db.collection('licensePlates');
+            const customTemplates = db.collection('customTemplates');
+            let licensePlate;
+            let customTemplate;
+            licensePlate = await licencePlates.findOne({_id: new ObjectId(plateId)});
+            if (licensePlate) {
+                customTemplate = await customTemplates.findOne({_id: new ObjectId(licensePlate.customTemplateId)});
+                licensePlate.customTemplate = customTemplate;
+            } else {
+                licensePlate = await getLicensePlateFirebase(plateId);
+                if (licensePlate) {
+                    customTemplate = await getCustomTemplateFirebase(licensePlate.customTemplateId);
+                    licensePlate.customTemplate = customTemplate;
+                }
+            }
+            return licensePlate;
+        } catch (error) {
+            console.log('GET LICENSE PLATE' ,error);
+        }
+    }
+
+    async getCustomTemplate(customTemplateId: any) {
+        try {
+            const dbClient = await clientPromise;
+            const db = dbClient.db();
+            const customTemplates = db.collection('customTemplates');
+            return customTemplates?.findOne({_id: new ObjectId(customTemplateId)});
+        } catch (error) {
+            console.log('GET CUSTOM TEMPLATE', error);
         }
     }
 
