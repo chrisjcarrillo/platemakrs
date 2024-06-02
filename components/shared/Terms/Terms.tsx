@@ -57,17 +57,25 @@ export const Terms = () => {
             <ol>
                 <li style={{ fontWeight: "400" }}>
                     <span style={{ fontWeight: "900" }}>
-                    Color Matching Disclaimer:</span>
+                    We Do Not Manufacture Plates:</span>
                     <p>
-                    We strive to provide accurate representations of our products colors, but we cannot guarantee a 100% color match between the images displayed and the actual product due to variations in monitors, lighting, and materials. Minor color differences do not constitute defects.
+                    You understand we do not manufacture or make plates. We are just painting on top of an existing plate.
                     </p>
                 </li>
-                <br></br>
+                <br></br>     
                 <li style={{ fontWeight: "400" }}>
                     <span style={{ fontWeight: "900" }}>
                      All Sales Are Final:</span>
                     <p>
                     All sales are final, and we do not accept returns or exchanges unless the product is defective or damaged upon receipt.
+                    </p>
+                </li>
+                <br></br>               
+                <li style={{ fontWeight: "400" }}>
+                    <span style={{ fontWeight: "900" }}>
+                    Color Matching Disclaimer:</span>
+                    <p>
+                    We strive to provide accurate representations of our products colors, but we cannot guarantee a 100% color match between the images displayed and the actual product due to variations in monitors, lighting, and materials. Minor color differences do not constitute defects.
                     </p>
                 </li>
             </ol>
