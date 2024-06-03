@@ -36,7 +36,7 @@ export type StoreContextType = {
     setAddon?: (e: any) => void;
     
 
-    addVariantDesigner: (product: any, id: string, notes: string) => void;
+    addVariantDesigner: (product: any) => void;
 
     // Checkout
     redirectCheckout: (
@@ -57,6 +57,8 @@ export type StoreContextType = {
     extrasPremade?: boolean;
     setExtrasPremade: (e: boolean) => void
     setAddonPlate: (e: any) => void
+    updateCheckoutWithData: (e: Object) => void
+    updateCheckoutWithEmail: (e: string) => void
 }
 
 export const client = Client?.buildClient({
@@ -316,7 +318,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         }
     }
 
-    const addVariantDesigner = async (product: any, id: string, notes: string) => {
+    const addVariantDesigner = async (product: any) => {
         try {
             // console.log(variant);
             const checkoutId = checkout?.id;
@@ -324,14 +326,6 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 {
                     variantId: product?.variants[0].id,
                     quantity: 1,
-                    customAttributes: [
-                        {
-                            key: "Order ID", value: `${id}`, // Template of Preset
-                        },
-                        {
-                            key: "Notes", value: `${notes}`, // Template of Preset
-                        }
-                    ]
                 }
             ]
             const checkoutResponse = await client?.checkout?.addLineItems(
@@ -386,6 +380,26 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
             return "Google Campaign";
         }
         return "Organic Traffic";
+    }
+
+    const updateCheckoutWithData = async (values: Object) => {
+        try {
+            const checkoutId = checkout?.id;
+            const updateCheckoutWithValues = await client?.checkout?.updateShippingAddress(checkoutId, values)
+            return updateCheckoutWithValues;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const updateCheckoutWithEmail = async (value: string) => {
+        try {
+            const checkoutId = checkout?.id;
+            const updateCheckoutWithEmailData = await client?.checkout?.updateEmail(checkoutId, value)
+            return updateCheckoutWithEmailData;
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const updateCheckoutWithId = async (id) => {
@@ -543,7 +557,9 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
 
                 addVariantGiftCard,
 
-                setAddonPlate
+                setAddonPlate,
+                updateCheckoutWithData,
+                updateCheckoutWithEmail
             }}
         >
             {contextHolder}

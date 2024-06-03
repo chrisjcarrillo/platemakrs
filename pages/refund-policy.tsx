@@ -21,7 +21,7 @@ export default function RefundPolicy(props: any) {
                         <li>
                             In exceptional cases where a refund is deemed necessary by management, the following conditions apply:
                             <ul>
-                                <li>Lifetime Store credit will be offered!</li>
+                                <li>Lifetime Store credit will be Provided/Offered with a E Gift card!</li>
                                 <li>A refund may be approved at the discretion of the management based on the circumstances surrounding the transaction.</li>
                                 <li>Approved refunds are subject to a 15% processing fee, which is calculated based on the total purchase amount. This fee compensates for the administrative costs incurred in processing refunds.</li>
                             </ul>

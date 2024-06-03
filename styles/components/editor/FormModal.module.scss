@@ -1,0 +1,48 @@
+.form{
+    &_title{
+        padding-top: 1rem;
+        &-text{
+            color:#ffffff;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 900;
+            font-family: 'Roboto', sans-serif !important;
+            @media screen and (max-width: 768px) {
+                font-size: 1.25rem;
+            }
+        }
+    }
+    
+    &_modal{
+        .ant-modal-content{
+            background-color: #000000;
+            border: 2px solid #ffffff;
+        }
+        .ant-form-item-label{
+            padding: 0;
+        }
+    }
+    &_actions{
+        padding-top: 1rem;
+    }
+    &_container{
+
+    }
+    &-button{
+        display: block;
+        width: 100%;
+        font-weight: 800;
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 1.25rem;
+        background: linear-gradient(180deg, rgb(223, 180, 80), rgb(140, 113, 48) 83.15%);
+        text-decoration: none !important;
+        color: #ffffff;
+        padding: 0.65rem;
+        border-radius: 5px;
+        // border: 1px solid;
+        border-image-slice: 1;
+        border-image-source: linear-gradient(118.14deg, #d1a94b 1.68%, rgba(255, 10, 10, 0.01) 85.78%, rgba(255, 255, 255, 0) 88.3%);
+
+    }
+}

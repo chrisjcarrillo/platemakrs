@@ -15,11 +15,11 @@
         color: white !important;
     }
 }
-@media screen and (min-width: 768px) {
-    .designer-form__container .row > *{
-        padding: 0 !important;
-    }    
-}
+// @media screen and (max-width: 768px) {
+//     .designer-form__container .row > *{
+//         padding: 0 !important;
+//     }    
+// }
 .designer-form{
     &__main{
         width: 65%;
@@ -87,12 +87,17 @@
         }
     }
     &__container{
+        .slider__cars{
+            @media screen and (max-width: 768px) {
+                padding-top: 1.5rem;
+            }
+        }
         // width: 50%;
     }
     &__row{
         &-title{
-            text-align: center;
-            margin: 1rem 0;
+            // text-align: center;
+            margin: 1.5rem 0;
         }
         &-info{
             padding: 1rem 0;
@@ -112,16 +117,17 @@
     &__title{
         color: white;
         font-weight: 700;
+        text-transform: uppercase;
         @media screen and (max-width: 768px) {
             font-size: 1.5rem;
         }
-        border-bottom: 1px solid white;
-        padding-bottom: 0.5rem;
-        margin-bottom: 0.75rem;
+        // padding-bottom: 0.5rem;
+        // margin-bottom: 0.75rem;
     }
     &__text{
         font-size: 0.75rem;
         color: white;
+        margin-bottom: 0 !important;
     }
     &__submit{
         height: auto;
@@ -185,6 +191,9 @@
         right: 0;
         margin-left: auto;
         margin-right: auto;
+        @media screen and (max-width: 768px) {
+            padding-bottom: 1.5rem;
+        }
         &--button{
             display: block;
             // padding: 0.85rem 0.5rem;
@@ -277,20 +286,20 @@
     
         }
         &-row-details{
-            width: 60%;
-            margin-left: auto;
-            margin-right: auto;
-            @media screen and (max-width: 768px) {
-                width: 100%;            
-            }
+            // width: 60%;
+            // margin-left: auto;
+            // margin-right: auto;
+            // @media screen and (max-width: 768px) {
+            //     width: 100%;            
+            // }
         }
         &-row-order{
-            width: 60%;
-            margin-left: auto;
-            margin-right: auto;
-            @media screen and (max-width: 768px) {
-                width: 100%;            
-            }
+            // width: 60%;
+            // margin-left: auto;
+            // margin-right: auto;
+            // @media screen and (max-width: 768px) {
+            //     width: 100%;            
+            // }
         }
     }
 }
