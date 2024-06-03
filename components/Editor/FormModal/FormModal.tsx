@@ -17,6 +17,7 @@ import { StoreContext, StoreContextType, client } from '../../../context/storeCo
 import { InterfaceContext, InterfaceContextType } from '../../../context/interfaceContext';
 import { EditorContext, EditorContextType } from '../../../context/editorContext';
 import Image from 'next/image';
+import { isMobile } from 'react-device-detect';
 
 interface formProps {
     email: string,
@@ -130,8 +131,8 @@ export const FormModal = () => {
                 <Image                         
                     // className="it__image"
                     alt="How it works image"
-                    width={450}
-                    height={400}
+                    width={isMobile ? 350 : 450}
+                    height={isMobile ?  300 : 400}
                     // fill 
                     src={'/images/how-it-works/hiw-home.png'} 
                 />
