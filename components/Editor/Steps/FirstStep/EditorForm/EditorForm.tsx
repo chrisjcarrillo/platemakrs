@@ -26,6 +26,7 @@ import { Action } from '../../../Action/Action';
 import { InterfaceContext, InterfaceContextType } from '../../../../../context/interfaceContext';
 import Image from 'next/image';
 import { QuestionCircleOutlined } from '@ant-design/icons';
+import { FormModal } from '../../../FormModal/FormModal';
 
 // ToDo
 //// Validate Inputs
@@ -137,6 +138,7 @@ const EditorForm = (props: any) => {
 
     return (
         <>
+            <FormModal />
             <Container
                 className="editor__main-container animate__animated animate__fadeIn"
             >

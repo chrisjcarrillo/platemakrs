@@ -61,6 +61,9 @@ export type InterfaceContextType = {
 
     upsellPopup?: boolean;
     setUpsellPopup: (type: boolean)=> void;
+
+    detailsPopup?: boolean;
+    setDetailsPopup: (type: boolean)=> void;
 }
 
 export const InterfaceContext = createContext<InterfaceContextType | null>(null);
@@ -103,6 +106,8 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
     const [googleDetails, setGoogleDetails] = useState<boolean>(false);
 
     const [ upsellPopup, setUpsellPopup ] = useState<boolean>(false); // show upsellPopup
+
+    const [ detailsPopup, setDetailsPopup] = useState<boolean>(false); // show upsellPopup
 
 
     useEffect(() => {
@@ -177,8 +182,10 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
                 setGoogleDetails,
 
                 upsellPopup,
-                setUpsellPopup
+                setUpsellPopup,
 
+                detailsPopup,
+                setDetailsPopup
             }}
         >
             {children}

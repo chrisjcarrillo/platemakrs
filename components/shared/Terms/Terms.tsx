@@ -6,6 +6,24 @@ export const Terms = () => {
             <b>DISCLOSURE AND ACKNOWLEDGMENT</b>
             <br></br>
             <b>PLATEMAKRS, LLC.</b>
+            <ol>
+                <li style={{ fontWeight: "400" }}>
+                    <span style={{ fontWeight: "900" }}>
+                    We Do Not Manufacture Plates:</span>
+                    <p>
+                    You understand we do not manufacture or make plates. We are just painting on top of an existing plate.
+                    </p>
+                </li>
+                <br></br>     
+                <li style={{ fontWeight: "400" }}>
+                    <span style={{ fontWeight: "900" }}>
+                     All Sales Are Final:</span>
+                    <p>
+                    All sales are final, we do not offer refunds, and we do not accept returns or exchanges. Full store credit offered.
+                    </p>
+                </li>
+                <br></br>               
+            </ol>
             <br></br>
             <br></br>
             <b>Provision of enhancement and customization services to government issued license plates</b>
@@ -54,23 +72,7 @@ export const Terms = () => {
             <br></br>
             <b>By making a purchase from [Your Company Name], you agree to the following terms and conditions:</b>
             <p style={{ fontSize: "11px" }}></p>
-            <ol>
-                <li style={{ fontWeight: "400" }}>
-                    <span style={{ fontWeight: "900" }}>
-                    We Do Not Manufacture Plates:</span>
-                    <p>
-                    You understand we do not manufacture or make plates. We are just painting on top of an existing plate.
-                    </p>
-                </li>
-                <br></br>     
-                <li style={{ fontWeight: "400" }}>
-                    <span style={{ fontWeight: "900" }}>
-                     All Sales Are Final:</span>
-                    <p>
-                    All sales are final, and we do not accept returns or exchanges unless the product is defective or damaged upon receipt.
-                    </p>
-                </li>
-                <br></br>               
+            <ol>              
                 <li style={{ fontWeight: "400" }}>
                     <span style={{ fontWeight: "900" }}>
                     Color Matching Disclaimer:</span>

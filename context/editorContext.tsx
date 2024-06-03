@@ -77,6 +77,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
     const router = useRouter();
 
     const {
+        setDetailsPopup,
         setLoading,
         setMoveLogo,
         setMoveBackgroundLogo,
@@ -329,6 +330,10 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
     // Store the licensePlate in Local Storage 
     const initialStore = async () => {
         try {
+            if(!localStorage.getItem('detailsFilled')){
+                setDetailsPopup(true);
+                return;
+            }
             addToCartEvent('facebook');
             setLoading(true);
             
@@ -343,10 +348,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                     duration: 1,
                 })
             }, 2000);
-
-        } catch (error) {
-            console.log(error);
-        } finally {
+            
             const queryParams = new URLSearchParams(window.location.search);
             setTimeout(
                 () => {
@@ -427,6 +429,8 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 },
                 2000
             )
+        } catch (error) {
+            console.log(error);
         }
     }
 
