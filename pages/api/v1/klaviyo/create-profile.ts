@@ -8,7 +8,7 @@ async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
             headers: {
                 revision: '2024-05-15',
                 'content-type': 'application/json',
-                Authorization: 'Klaviyo-API-Key pk_b94e5665e081726687a678f8c8cc78e814'
+                Authorization: `Klaviyo-API-Key ${process.env.KLAVIYO_API_KEY}`
             },
             body: JSON.stringify({
                 data: {
