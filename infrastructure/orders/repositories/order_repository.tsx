@@ -283,10 +283,10 @@ class OrderRepository {
                 let customTemplate;
                 let qrCode;
                 if (plateId) {
-                    licencePlate = await getLicensePlate(plateId);
+                    licencePlate = await this.getLicensePlate(plateId);
                 }
                 if (licencePlate) {
-                    customTemplate = await getCustomTemplate(licencePlate.customTemplateId);
+                    customTemplate = await this.getCustomTemplate(licencePlate.customTemplateId);
                 }
                 const baseColor = lineItem?.name === "Add-on - Metallic Upgrade"
                     ? lineItem?.variant_title
