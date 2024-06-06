@@ -21,7 +21,69 @@
     },
     "howItWorksDesigner": {
       "title": "How it works",
-      "image": "/images/how-it-works/hiw-designer.png"
+      "image": "/images/how-it-works/hiw-designer-NEW.png"
+    },
+    "workWithADesignerSlider": {
+      "title": "Make it Official and Tag Us On Instagram",
+      "image": "/images/5-title.png",
+      "swipeText": "Swipe",
+      "swipeLogo": null,
+      "images": [
+        {
+          "imageUrl": "/images/designer/1-new.png"
+        },
+        {
+            "imageUrl": "/images/designer/1.png"
+          },
+          {
+            "imageUrl": "/images/designer/2.png"
+          },
+          {
+            "imageUrl": "/images/designer/3.png"
+          },
+          {
+            "imageUrl": "/images/designer/4.png"
+          },
+          {
+            "imageUrl": "/images/designer/5.png"
+          },
+          {
+            "imageUrl": "/images/designer/6.png"
+          },
+          {
+            "imageUrl": "/images/designer/7.png"
+          },
+          {
+            "imageUrl": "/images/designer/8.png"
+          },
+          {
+            "imageUrl": "/images/designer/9.png"
+          },
+          {
+            "imageUrl": "/images/designer/10.png"
+          },
+          {
+            "imageUrl": "/images/designer/2-new.png"
+          },
+          {
+            "imageUrl": "/images/designer/12.png"
+          },
+          {
+            "imageUrl": "/images/designer/13.png"
+          },
+          {
+            "imageUrl": "/images/designer/14.png"
+          },
+          {
+            "imageUrl": "/images/designer/15.png"
+          },
+          {
+            "imageUrl": "/images/designer/16.png"
+          },
+          {
+            "imageUrl": "/images/designer/17.png"
+          }
+      ]
     },
     "showcaseSlider": {
         "title": "Make it Official and Tag Us On Instagram",
@@ -124,4 +186,5 @@
             }
         ]
     }
+    
 }
