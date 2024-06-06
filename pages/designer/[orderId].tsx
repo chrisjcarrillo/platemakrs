@@ -24,6 +24,7 @@ import path from 'path';
 import { ImageAndText } from '../../components/shared/ImageAndText/ImageAndText';
 import MainSlider from '../../components/MainSlider/MainSlider';
 import Image from 'next/image';
+import { isMobile } from 'react-device-detect';
 
 const dbInstance = collection(database, 'contacts');
 
@@ -221,7 +222,7 @@ const WorkWithADesigner = (props: any) => {
                                     color: '#ffffff',
                                     display: 'block',
                                     margin: 'auto',
-                                    width: '50%',
+                                    width: isMobile ? '50%' : '100%',
                                     marginBottom: '1rem'
                                 }}
                             >
