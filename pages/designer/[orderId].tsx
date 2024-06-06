@@ -222,7 +222,7 @@ const WorkWithADesigner = (props: any) => {
                                     color: '#ffffff',
                                     display: 'block',
                                     margin: 'auto',
-                                    width: isMobile ? '50%' : '100%',
+                                    width: isMobile ? '100%' : '50%',
                                     marginBottom: '1rem'
                                 }}
                             >
