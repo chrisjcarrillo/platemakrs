@@ -8,7 +8,8 @@ import {
     Input,
     message,
     Select,
-    Upload
+    Upload,
+    Modal
 } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import { useContext, useState } from 'react';
@@ -210,7 +211,14 @@ const WorkWithADesigner = (props: any) => {
 
     return (
         <>
-            <Terms />
+            <Modal
+                title={'Terms and Conditions'}
+                open={terms}
+                onOk={() => setTerms(false)}
+                onCancel={() => setTerms(false)}
+            >
+                <Terms />
+            </Modal>
             {contextHolder}
             <Container
                 className="designer-form__container"
