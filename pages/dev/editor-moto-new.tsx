@@ -89,6 +89,13 @@ const EditorMotoNew = (props: any) => {
         loadFonts();
     }, []);
 
+    const fixTextPosition = () => {
+        if (currentLicensePlate?.state === "Florida") {
+            return plateHeight * 0.58 - plateHeight * 0.025
+        }
+        return plateHeight * 0.55 - plateHeight * 0.085
+    }
+
     useEffect(() => {
         setIsLoaded(true);
         const stage = canvasReference?.current;
@@ -108,6 +115,7 @@ const EditorMotoNew = (props: any) => {
         mainText?.width(plateWidth * 0.875);
         mainText?.setAttr('fontSize', plateHeight * 0.35)
         mainText?.x(plateWidth * 0.14 / 2);
+        mainText?.y(fixTextPosition())
         // mainText?.wrap('none')
         // mainText.setAttrs({
         //     fontSize: plateHeight * 0.35,
@@ -210,13 +218,6 @@ const EditorMotoNew = (props: any) => {
         return 'center'
     }
 
-    const fixTextPosition = () => {
-        if (currentLicensePlate?.state === "Florida") {
-            return plateHeight * 0.58 - plateHeight * 0.025
-        }
-        return plateHeight * 0.55 - plateHeight * 0.085
-    }
-
     const middleText = (
         <Group
 
@@ -233,7 +234,7 @@ const EditorMotoNew = (props: any) => {
                             currentCustomTemplate?.startPlatePosition ?
                                 currentCustomTemplate?.startPlatePosition : 'center'}
 
-
+                    letterSpacing={20}
                     x={plateWidth * 0.14 / 2}
                     y={fixTextPosition()}
                     width={plateWidth * 0.875}
@@ -264,6 +265,7 @@ const EditorMotoNew = (props: any) => {
                     <Text
                         // listening={false} 
                         // Reference
+                        letterSpacing={20}
                         ref={textRef}
                         verticalAlign="middle"
                         align={
@@ -418,7 +420,6 @@ const EditorMotoNew = (props: any) => {
         />
     );
 
-
     const licensePlate2 = (
         <Rect
             // fillPatternImage={textureImage}
@@ -433,7 +434,6 @@ const EditorMotoNew = (props: any) => {
         // stroke="black"
         />
     );
-
 
     // Create the layer and add the license plate and text elements
     const layer = (
@@ -457,7 +457,7 @@ const EditorMotoNew = (props: any) => {
                     <PlateDetailLogo plateHeight={plateHeight} plateWidth={plateWidth} /> : null
             }
             {
-                currentCustomTemplate?.bottomLogo?.enabled ?
+                currentCustomTemplate?.bottomLogo?.enabled && !currentLicensePlate?.bottomTextEnabled ?
                     <PlateLogoBottom plateHeight={plateHeight} plateWidth={plateWidth} /> : null
             }
             {
