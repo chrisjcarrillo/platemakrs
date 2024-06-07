@@ -29,6 +29,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { FreeMode, Navigation, Pagination, Thumbs } from "swiper";
+import { Terms } from '../../components/shared/Terms/Terms';
 
 const dbInstance = collection(database, 'contacts');
 
@@ -209,6 +210,7 @@ const WorkWithADesigner = (props: any) => {
 
     return (
         <>
+            <Terms />
             {contextHolder}
             <Container
                 className="designer-form__container"

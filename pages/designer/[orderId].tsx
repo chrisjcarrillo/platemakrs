@@ -327,7 +327,7 @@ const WorkWithADesigner = (props: any) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
 
     // Get Order from database?
-    const getOrderData = await fetch(`http://localhost:3000/api/v1/orders/${context?.params?.orderId}`, {
+    const getOrderData = await fetch(`https://www.platemakrs.com/api/v1/orders/${context?.params?.orderId}`, {
         headers: {
             'Content-Type': 'application/json',
             'x-api-key': '71a74a2638e4f36d7b8d3cacef96db045d6158628e463fbd33bec118605091ec068547b4b05883a06e23b9588b883ab1028b8d95fd842e0815947d5d58bbaa3eaba33b47d48bc81e6df6f8f8cb18e0a68056fce6e4be4870d1b972298fddfcc7a5f1ed253177adbfc2c38ddaf6f6872ef87bc9064c3b61fae0ac6b4242f52f9c443a2b14f99647b931aec1a57926f4018771c3eaf51508b6fba59ee13efc4103'
