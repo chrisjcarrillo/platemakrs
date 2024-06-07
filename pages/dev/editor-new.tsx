@@ -401,7 +401,7 @@ function EditorNew(props: any) {
                     <PlateDetailLogo plateHeight={plateHeight} plateWidth={plateWidth} /> : null
             }
             {
-                currentCustomTemplate?.bottomLogo?.enabled ?
+                currentCustomTemplate?.bottomLogo?.enabled && !currentLicensePlate?.bottomTextEnabled ?
                     <PlateLogoBottom plateHeight={plateHeight} plateWidth={plateWidth} /> : null
             }
             {
