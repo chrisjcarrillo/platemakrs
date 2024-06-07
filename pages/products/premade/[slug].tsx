@@ -29,6 +29,7 @@ export default function Editor(props: any) {
         const searchedProducts = products?.filter((product: any) => {
             return product?.title?.toUpperCase().indexOf(slug.toUpperCase()) !== -1;
         })
+        console.log(searchedProducts);
         setExtrasPremade(true)
         setProducts(searchedProducts)
     }, [])
@@ -77,13 +78,6 @@ export default function Editor(props: any) {
                     customTemplate={false}
                 />
             </Container>
-            {extrasPremade && (
-                <PlateComparison
-                    plates={props.extras.plateComparison}
-                />
-            )
-            }
-
             {
                 extrasPremade && (
                     <ImageAndText
@@ -91,6 +85,12 @@ export default function Editor(props: any) {
                         image={props.extras.howItWorks.image}
                     />
                 )
+            }
+            {extrasPremade && (
+                <PlateComparison
+                    plates={props.extras.plateComparison}
+                />
+            )
             }
             {
                 extrasPremade && (
@@ -121,7 +121,8 @@ export async function getStaticPaths() {
         { params: { slug: 'lamborghini' } },
         { params: { slug: 'bmw' } },
         { params: { slug: 'mercedes' } },
-        { params: { slug: 'porsche' } },  
+        { params: { slug: 'porsche' } },
+        { params: { slug: 'hellcat' } },
     ],
       fallback: false, // can also be true or 'blocking'
     }
@@ -137,7 +138,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
     return {
         props: {
-            slug: context.params.slug,
+            slug: context?.params?.slug,
             productList: JSON.parse(JSON.stringify(currentProduct)),
             extras: objectData
         },
