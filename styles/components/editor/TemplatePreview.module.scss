@@ -12,6 +12,7 @@
         padding-left: 6rem;
         padding-right: 6rem;
         @media screen and (max-width: 495px) {
+            padding-top: 2rem;
             padding-left: 1rem;
             padding-right: 1rem;
         }
@@ -32,6 +33,11 @@
     }
     &__column{
         border-bottom: 1px solid #ffffff;
+        @media screen and (max-width: 495px){
+            &:last-child{
+                padding-bottom: 4rem;
+            }   
+        }
         // border-left: 1px solid #ffffff;
         // border
         // position: relative;
@@ -40,6 +46,7 @@
         //     transform: scale(1);
         // }
         // padding-top: 1rem;
+        // padding-bottom: 4rem;
     }
     &__title{
         &-container{
