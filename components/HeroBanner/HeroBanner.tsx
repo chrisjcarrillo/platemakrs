@@ -72,7 +72,7 @@ const HeroBanner = (
                             }}
                             >
                                 <Dropdown.Toggle id="buildYourPlate" className='hero__button'>
-                                    Build your plate
+                                    Build Your Design
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>

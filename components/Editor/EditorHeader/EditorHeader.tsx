@@ -187,7 +187,7 @@ export const EditorHeader = (
                             <div className="header__links-container">
                             <NavDropdown
                                 className="header__links-link"
-                                title='Build your plate' 
+                                title='Build Your Design' 
                                 id={'buildYourOwn2'}>
                                 <Link 
                                     key={1} 
@@ -207,7 +207,7 @@ export const EditorHeader = (
                                     className="header__links-link"
                                     onClick={() => router.push('/products-custom')}
                                 >
-                                    Build your plate
+                                    Build Your Design
                                 </Link>
                             </div>
                             <div className="header__links-container">
