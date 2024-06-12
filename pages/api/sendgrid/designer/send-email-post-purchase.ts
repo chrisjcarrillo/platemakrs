@@ -7,8 +7,10 @@ sendgrid?.setApiKey(
 
 async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
 	try {
+		console.log(req?.body)
 		const filter = req?.body?.line_items?.filter((item: any) => item?.title === 'Add-on - Work with a Designer');
-		if(req?.body?.line_items?.length && filter){
+		console.log('WWAD length: ', filter.length);
+		if(filter?.length > 0){
 			const customerMessage = {
 				from: `info@platemakrs.com`, // your website email address here
 				templateId: 'd-889b538425fc43368db647cda9e39d56',
@@ -41,17 +43,13 @@ async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
 					}, 
 				}],
 			}
-			await sendgrid.send(customerMessage);
-			await sendgrid.send(adminMessage);
+			const customerEmail = await sendgrid.send(customerMessage);
+			const adminEmail = await sendgrid.send(adminMessage);
+			customerEmail;
+			adminEmail;
 			return res.status(200).json({ success: `Work with a designer - ${req?.body?.name}` });
 		}
-
 		return res.status(200).json({ success: "Not Work with a designer" });
-		// if(req?.body?.line_items?.length && filter ){
-			
-		// } else {
-		// 	return
-		// }
 		
 	} catch (error: any) {
 		return res.status(200).json({ error: error.message });
