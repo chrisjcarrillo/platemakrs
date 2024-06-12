@@ -10,7 +10,6 @@ async function resolver(
     req: NextRequest, 
     res: NextResponse
 ){
-    console.info('Headers: ', req.headers);
     console.info('Geo?: ', req.geo);
     if (req.method == 'POST') {
         try {
@@ -18,9 +17,9 @@ async function resolver(
                 JSON.stringify({                
                     ip: req?.headers.get('x-real-ip') || ipAddress(req) || "unknown",
                     userAgent: req.headers.get('user-agent'),
-                    state: req.headers.get('x-vercel-ip-country-region'),
-                    country: req.headers.get('x-vercel-ip-country-region'),
-                    city: req.headers.get('x-vercel-ip-city'),
+                    state: req.geo?.region || req.headers.get('x-vercel-ip-country-region') || 'FL',
+                    country: req.geo?.country || req.headers.get('x-vercel-ip-country') || 'US',
+                    city: req?.geo?.city || req.headers.get('x-vercel-ip-city') || 'Miami',
                 }),
                 {
                     status: 200,
