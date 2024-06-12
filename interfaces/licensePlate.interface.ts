@@ -1,6 +1,8 @@
 import { ICustomPlateTemplate } from "./customTemplate.interface";
 
 export interface ILicensePlate {
+    reverseText?: boolean; // This will revert the top text and bottom text
+
     id?: string;
     customTemplateId?: string;
 

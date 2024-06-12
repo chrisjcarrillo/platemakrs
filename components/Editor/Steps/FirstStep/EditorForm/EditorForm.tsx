@@ -27,6 +27,7 @@ import { InterfaceContext, InterfaceContextType } from '../../../../../context/i
 import Image from 'next/image';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { FormModal } from '../../../FormModal/FormModal';
+import { isReverseText } from '../../../../../utils/helpers/states/reverseText';
 
 // ToDo
 //// Validate Inputs
@@ -78,6 +79,7 @@ const EditorForm = (props: any) => {
 
 
     useEffect(() => {
+        console.log(form);
         form.validateFields().then(
             () => {
                 setSubmittable(true);
@@ -179,7 +181,10 @@ const EditorForm = (props: any) => {
                                     <Select
                                         labelInValue
                                         onSelect={(e) => {
+                                            const reverse = isReverseText(e.value.toUpperCase());
+                                            console.log(e.value.toUpperCase(), reverse)
                                             updateLicensePlate('state', e.label)
+                                            updateLicensePlate('reverseText', undefined, reverse)
                                         }}
                                         size="large"
                                         showSearch
@@ -393,7 +398,7 @@ const EditorForm = (props: any) => {
                                 <FormItem
                                     name="bottomTextEnabled"
                                     className="editor--text-right"
-                                    hasFeedback
+                                    // hasFeedback
                                 >
                                     <Switch
                                         // defaultChecked={}
@@ -419,6 +424,7 @@ const EditorForm = (props: any) => {
                                             <Input
                                                 name="bottomText"
                                                 ref={inputRef}
+                                                // required={}
                                                 onChange={(e) => updateLicensePlate('bottomText', e.target.value)}
                                                 placeholder='Enter Bottom Text...'
                                             />

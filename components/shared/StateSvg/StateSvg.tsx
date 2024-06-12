@@ -2,7 +2,7 @@ interface IPathSvg{
 	d: string,
 	type: string
 }
-interface IStateSvGProps {
+interface IStateSvgProps {
 	stateId: string,
 	viewBox: string,
 	paths: Array<IPathSvg>,
@@ -14,7 +14,7 @@ interface IStateProps {
 	textStrokeColor: string
 	textStrokeWidth: string
 	filter: string,
-	svg?: IStateSvGProps,
+	svg?: IStateSvgProps,
 	width: number,
 	height: number,
 }
