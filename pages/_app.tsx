@@ -16,8 +16,11 @@ import { Cart } from '../components/shared/Cart/Cart';
 import Hotjar from '@hotjar/browser';
 import Footer from '../components/shared/Footer/Footer';
 import { NextUIProvider } from '@nextui-org/react';
+import { useRouter } from 'next/router'
 
 export default function App({ Component, pageProps }: AppProps) {
+
+	const router = useRouter();
 
 	useEffect(() => {
 		Hotjar.init(3872346, 6);
@@ -35,11 +38,11 @@ export default function App({ Component, pageProps }: AppProps) {
 					const generateBaddID = uuidv4();
 					const eventId = "PM_" + generateBaddID;
 					const customId = uuidv4();
-
 					sessionStorage.setItem('customId', customId)
 					sessionStorage.setItem('page_fbEventId', eventId);
 					sessionStorage.setItem('ipAddress', eventData.ip);
 					sessionStorage.setItem('userAgent', eventData.userAgent);
+					sessionStorage.setItem('state', eventData.state);
 					if (
 						!urlQueryParamsMain.get("c")
 					) {
@@ -82,7 +85,6 @@ export default function App({ Component, pageProps }: AppProps) {
 								<Cart />
 								<Component {...pageProps} />
 							</LoadingSpinner>
-
 						<Footer />
 						<Analytics />
 					</EditorProvider>

@@ -43,7 +43,7 @@ const PlateLogoBackground = (props: {
         if (moveBackgroundLogo) {
             imageGroupRef?.current?.moveToTop();
         } else {
-            imageGroupRef?.current?.setZIndex(6);
+            imageGroupRef?.current?.setZIndex(5);
             imageGroupRef.current.getStage().batchDraw();
         }
     }, [moveBackgroundLogo]);
@@ -104,7 +104,7 @@ const PlateLogoBackground = (props: {
     return (
         <>
             <Group
-                zIndex={6}
+                zIndex={5}
                 ref={imageGroupRef}
                 draggable
                 listening={moveBackgroundLogo}

@@ -12,8 +12,8 @@ import { EditorContextType } from '../../../context/editorContext';
 import { useContext, useEffect, useState, useRef } from 'react';
 import { FinishEffect } from '../FinishEffect/FinishEffect';
 import { ArrowLeftOutlined, ArrowRightOutlined, EditOutlined } from '@ant-design/icons';
-import { StateSvg } from '../../shared/StateSvg/StateSvg';
-import { stateSvg } from '../../../utils/helpers/stateSvg';
+// import { topStateSvg } from '../../shared/topStateSvg/topStateSvg';
+// import { topStateSvg } from '../../../utils/helpers/toptopStateSvg';
 import { initialLicensePlate, initialState } from '../../../utils/helpers';
 import { InterfaceContext, InterfaceContextType } from '../../../context/interfaceContext';
 import { BottomLogo } from '../BottomLogo/BottomLogo';
@@ -25,6 +25,8 @@ import { TopActions } from '../../../utils/actions/TopActions';
 import { premadeTemplates } from '../../../utils/premadeTemplates';
 import { IShopifyVariant } from '../../../interfaces/shopify/variants.interface';
 import { ICustomPlateTemplate } from '../../../interfaces/customTemplate.interface';
+import { topStateSvg } from '../../../utils/helpers/topStateSvg';
+import { StateSvg } from '../../shared/StateSvg/StateSvg';
 
 const TemplateCanvas = (
     props: {
@@ -187,9 +189,9 @@ const TemplateCanvas = (
                             className={`canvas__state-container ${currentEditorStep?.currentStep === 2 && !popupPreview ? 'preview' : ''}`}
                         >
                             {
-                                stateSvg.find(state => state.stateId === currentLicensePlate?.state) && (
+                                topStateSvg.find(state => state.stateId === currentLicensePlate?.state) && (
                                     <StateSvg
-                                        svg={stateSvg.find(state => state.stateId === currentLicensePlate?.state)}
+                                        svg={topStateSvg.find(state => state.stateId === currentLicensePlate?.state)}
                                         color={`${currentCustomTemplate?.state?.color ?? '#ffffff'}`}
                                         textShadow={`${currentCustomTemplate?.state?.glow?.enabled ? `${currentCustomTemplate?.state.glow.color ?? '#000000'} 0px 0px 5px, ${currentCustomTemplate?.state?.glow?.color ?? '#000000'} 0px 0px 5px` : ``}`}
                                         textStrokeColor={`${currentCustomTemplate?.state?.stroke?.enabled ? `${currentCustomTemplate?.state?.stroke.color ?? '#000000'}` : `#000000`}`}
@@ -199,7 +201,7 @@ const TemplateCanvas = (
                                 )
                             }
                             {
-                                !stateSvg.find(state => state.stateId === currentLicensePlate?.state) && (
+                                !topStateSvg.find(state => state.stateId === currentLicensePlate?.state) && (
                                     <a
                                         className={`canvas__state-text ${currentEditorStep?.currentStep === 2 && !popupPreview ? 'add-shadow' : ''}`}
                                         style={{

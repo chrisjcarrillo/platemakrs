@@ -346,12 +346,6 @@ export default function Editor(props: any) {
                     </Container>
                 )
             }
-            {extras && (
-                <PlateComparison
-                    plates={props.extras.plateComparison}
-                />
-            )
-            }
 
             {
                 extras && (
@@ -361,6 +355,14 @@ export default function Editor(props: any) {
                     />
                 )
             }
+
+            {extras && (
+                <PlateComparison
+                    plates={props.extras.plateComparison}
+                />
+            )
+            }
+
             {
                 extras && (
                     <MainSlider

@@ -18,10 +18,13 @@ import { isMobile } from 'react-device-detect';
 import { Html } from 'react-konva-utils';
 import { Button } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
-import {Container, Row, Col} from 'react-bootstrap';
-import { stateSvg } from '../../utils/helpers/stateSvg';
-import { StateSvg } from '../../components/shared/StateSvg/StateSvg';
+import { Container, Row, Col } from 'react-bootstrap';
+import { topStateSvg } from '../../utils/helpers/topStateSvg';
 import FontFaceObserver from 'fontfaceobserver';
+import { adjustFontSize, adjustTopTextHeight, adjustTopTextWidth, adjustTopTextX, adjustTopTextY } from '../../utils/helpers/ui/car/topText/topText';
+import { bottomStateSvg } from '../../utils/helpers/bottomStateSvg';
+import { adjustBottomTextHeight, adjustBottomTextWidth, adjustBottomTextX, adjustBottomTextY } from '../../utils/helpers/ui/car/bottomText/bottomText';
+import { StateSvg } from '../../components/shared/StateSvg/StateSvg';
 
 // TODO - Car
 // [✅] Add Glow to Top Text
@@ -73,22 +76,37 @@ function EditorNew(props: any) {
         editLogoUi
     } = useContext(InterfaceContext) as InterfaceContextType;
 
-    const svgString = encodeURIComponent(
+    const topSvgString = encodeURIComponent(
         ReactDOMServer.renderToStaticMarkup(<StateSvg
-            svg={stateSvg.find(state => state.stateId === currentLicensePlate?.state)}
+            svg={topStateSvg.find(state => state.stateId === currentLicensePlate?.state)}
             color={`${currentCustomTemplate?.state?.color ?? '#ffffff'}`}
             textShadow={`${currentCustomTemplate?.state?.glow?.enabled ? `${currentCustomTemplate?.state.glow.color ?? '#000000'} 0px 0px 5px, ${currentCustomTemplate?.state?.glow?.color ?? '#000000'} 0px 0px 5px` : ``}`}
-            textStrokeColor={`${currentCustomTemplate?.state?.stroke?.enabled ? `${currentCustomTemplate?.state?.stroke.color ?? '#000000'}` : `#000000`}`}
+            textStrokeColor={`${currentCustomTemplate?.state?.stroke?.enabled ? `${currentCustomTemplate?.state?.stroke.color ?? ''}` : ``}`}
             textStrokeWidth={`${currentCustomTemplate?.state?.stroke?.enabled ? '1px' : ''}`}
             filter={`${currentCustomTemplate?.state?.shadow?.enabled ? 'drop-shadow(rgb(0, 0, 0) 3px 1px 2px)' : ''}`}
-            />)
+        />)
     );
 
-    const [stateImage] = useImage(
-       `data:image/svg+xml,${svgString}`, 'anonymous'
+    const bottomSvgString = encodeURIComponent(
+        ReactDOMServer.renderToStaticMarkup(<StateSvg
+            svg={bottomStateSvg.find(state => state.stateId === currentLicensePlate?.state)}
+            color={`${currentCustomTemplate?.state?.color ?? '#ffffff'}`}
+            textShadow={`${currentCustomTemplate?.state?.glow?.enabled ? `${currentCustomTemplate?.state.glow.color ?? '#000000'} 0px 0px 5px, ${currentCustomTemplate?.state?.glow?.color ?? '#000000'} 0px 0px 5px` : ``}`}
+            textStrokeColor={`${currentCustomTemplate?.state?.stroke?.enabled ? `${currentCustomTemplate?.state?.stroke.color ?? ''}` : ``}`}
+            textStrokeWidth={`${currentCustomTemplate?.state?.stroke?.enabled ? '1px' : ''}`}
+            filter={`${currentCustomTemplate?.state?.shadow?.enabled ? 'drop-shadow(rgb(0, 0, 0) 3px 1px 2px)' : ''}`}
+        />)
     );
 
-    console.log(stateImage?.width)
+    const [topStateImage] = useImage(
+        `data:image/svg+xml,${topSvgString}`, 'anonymous'
+    );
+
+    const [bottomStateImage] = useImage(
+        `data:image/svg+xml,${bottomSvgString}`, 'anonymous'
+    );
+
+    // console.log(stateImage?.width)
 
     const plateWidth = 3597;
     const plateHeight = 1800;
@@ -97,7 +115,7 @@ function EditorNew(props: any) {
 
     useEffect(() => {
         const loadFonts = async () => {
-        const font = new FontFaceObserver('License Plate USA');
+            const font = new FontFaceObserver('License Plate USA');
 
             try {
                 await font.load();
@@ -126,16 +144,16 @@ function EditorNew(props: any) {
         mainText?.y(isMobile ? plateHeight * 0.5 - plateHeight * 0.15 : plateHeight * 0.5 - plateHeight * 0.085)
         mainText?.draw();
 
-        if(stage?.getStage() && mainText.isVisible()){
+        if (stage?.getStage() && mainText.isVisible()) {
             setIsLoaded(false);
         }
-        
+
     }, []);
 
     const handleX = () => {
         // console.log(textRef.current.align())
-        if(currentLicensePlate?.platePosition === "left") return 30;
-        if(currentLicensePlate?.platePosition ===  "right") return -30;
+        if (currentLicensePlate?.platePosition === "left") return 30;
+        if (currentLicensePlate?.platePosition === "right") return -30;
         return 0;
     }
 
@@ -149,22 +167,23 @@ function EditorNew(props: any) {
     };
 
     const topText = (
-        stateSvg.find(state => state.stateId === currentLicensePlate?.state)) ? (
-            <Image 
-                width={plateWidth * 0.5 }
-                height={plateHeight * 0.205}
-                // width={plateWidth / stateImage?.width * 0.5 }
-                // height={plateHeight / stateImage?.height * 0.205}
-                image={stateImage}
-                x={plateWidth * 0.25}
-                y={plateHeight * 0.035}
-            />
-        ) : (
-            <Text
+        topStateSvg.find(state => state.stateId === currentLicensePlate?.state)) ? (
+        <Image
+            zIndex={11}
+            width={adjustTopTextWidth(currentLicensePlate?.state)}
+            height={adjustTopTextHeight(currentLicensePlate?.state)}
+            // width={plateWidth / stateImage?.width * 0.5 }
+            // height={plateHeight / stateImage?.height * 0.205}
+            image={topStateImage}
+            x={adjustTopTextX(currentLicensePlate?.state)}
+            y={adjustTopTextY(currentLicensePlate?.state)}
+        />
+    ) : (
+        <Text
             zIndex={11}
             // Position && Width && Wrap of State
             x={plateWidth * 0.235}
-            y={plateHeight * 0.075}
+            y={currentLicensePlate?.reverseText ? plateHeight * 0.95 - plateHeight * 0.125 : plateHeight * 0.075}
             width={plateWidth * 0.53}
             align="center"
             wrap='none'
@@ -174,7 +193,7 @@ function EditorNew(props: any) {
 
             // Font Start
             fontStyle='bold'
-            fontSize={plateHeight * 0.14}
+            fontSize={adjustFontSize(currentLicensePlate?.state ?? initialState)}
             fontFamily="Arial"
 
             // Font End
@@ -208,12 +227,12 @@ function EditorNew(props: any) {
                             currentLicensePlate?.platePosition :
                             currentCustomTemplate?.startPlatePosition ?
                                 currentCustomTemplate?.startPlatePosition : 'center'}
-    
+
                     verticalAlign="middle"
                     x={handleX()}
                     y={isMobile ? plateHeight * 0.5 - plateHeight * 0.15 : plateHeight * 0.5 - plateHeight * 0.085}
                     width={plateWidth}
-    
+
                     // TEXT
                     text={currentLicensePlate?.plateNumber ?
                         currentLicensePlate?.plateNumber :
@@ -221,11 +240,11 @@ function EditorNew(props: any) {
                     // Font
                     fontSize={plateHeight * 0.44}
                     fontFamily={"'License Plate USA'"}
-    
-    
+
+
                     // Text Color
                     fill={currentCustomTemplate?.plateNumber?.color ?? '#ffffff'}
-    
+
                     // Stroke
                     strokeEnabled={currentCustomTemplate?.plateNumber?.stroke?.enabled}
                     stroke={currentCustomTemplate?.plateNumber?.stroke?.enabled ?
@@ -241,7 +260,7 @@ function EditorNew(props: any) {
                             currentLicensePlate?.platePosition :
                             currentCustomTemplate?.startPlatePosition ?
                                 currentCustomTemplate?.startPlatePosition : 'center'}
-    
+
                     verticalAlign="middle"
                     x={handleX()}
                     y={isMobile ? plateHeight * 0.5 - plateHeight * 0.15 : plateHeight * 0.5 - plateHeight * 0.085}
@@ -250,13 +269,13 @@ function EditorNew(props: any) {
                     text={currentLicensePlate?.plateNumber ?
                         currentLicensePlate?.plateNumber :
                         currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate}
-    
+
                     // Font
                     fontSize={plateHeight * 0.44}
-    
+
                     // Text Color
                     fill={currentCustomTemplate?.plateNumber?.color ?? '#ffffff'}
-    
+
                     // Stroke
                     strokeEnabled={currentCustomTemplate?.plateNumber?.stroke?.enabled}
                     stroke={currentCustomTemplate?.plateNumber?.stroke?.enabled ?
@@ -264,45 +283,56 @@ function EditorNew(props: any) {
                     strokeWidth={currentCustomTemplate?.plateNumber?.stroke?.enabled ? plateWidth / 100 * 0.45 : 0}
                 />)
             }
-            
+
         </Group>
 
 
     );
 
     const bottomText = (
-        <Text
-            zIndex={12}
-            // Placement
-            x={plateWidth * 0.235}
-            y={plateHeight * 0.95 - plateHeight * 0.125}
-            width={plateWidth * 0.53}
-            wrap='none'
-            align="center"
-
-            // TEXT
-            text={currentLicensePlate?.bottomTextEnabled
-                && currentLicensePlate?.bottomText ? currentLicensePlate?.bottomText : ''}
-
-            // Font
-            fontSize={plateHeight * 0.12}
-            fontFamily="Arial"
-
-            // Color
-            fill={currentCustomTemplate?.bottomText?.color ?? '#ffffff'}
-
-            // Stroke
-            strokeEnabled={currentCustomTemplate?.bottomText?.stroke?.enabled}
-            stroke={currentCustomTemplate?.bottomText?.stroke?.enabled ? currentCustomTemplate?.bottomText?.stroke?.color : '#000000'}
-            strokeWidth={currentCustomTemplate?.bottomText?.stroke?.enabled ? plateWidth / 150 * 0.45 : 0}
-
-
-            // Shadow
-            shadowEnabled={currentCustomTemplate?.bottomText?.glow?.enabled}
-            shadowBlur={75}
-            shadowColor={currentCustomTemplate?.bottomText?.glow?.enabled ? currentCustomTemplate?.bottomText?.glow?.color : '#ffffff'}
+        !currentLicensePlate?.bottomTextEnabled && bottomStateSvg.find(state => state.stateId === currentLicensePlate?.state)) ? (
+        <Image
+            width={adjustBottomTextWidth(currentLicensePlate?.state)}
+            height={adjustBottomTextHeight(currentLicensePlate?.state)}
+            // width={plateWidth / stateImage?.width * 0.5 }
+            // height={plateHeight / stateImage?.height * 0.205}
+            image={bottomStateImage}
+            x={adjustBottomTextX(currentLicensePlate?.state)}
+            y={currentLicensePlate?.reverseText ? adjustBottomTextY(currentLicensePlate?.state) : plateHeight * 0.95 - plateHeight * 0.125}
         />
-    );
+    ) : (<Text
+        zIndex={12}
+        // Placement
+        x={plateWidth * 0.235}
+        y={currentLicensePlate?.reverseText ? plateHeight * 0.055 : plateHeight * 0.95 - plateHeight * 0.125}
+        width={plateWidth * 0.53}
+        wrap='none'
+        align="center"
+
+        // TEXT
+        text={currentLicensePlate?.bottomTextEnabled
+            && currentLicensePlate?.bottomText ? currentLicensePlate?.bottomText : '' }
+
+        // Font
+        fontStyle='bold'
+        fontSize={adjustFontSize(currentLicensePlate?.bottomTextEnabled
+            && currentLicensePlate?.bottomText ? currentLicensePlate?.bottomText : '') }
+        fontFamily="Arial"
+
+        // Color
+        fill={currentCustomTemplate?.bottomText?.color ?? '#ffffff'}
+
+        // Stroke
+        strokeEnabled={currentCustomTemplate?.bottomText?.stroke?.enabled}
+        stroke={currentCustomTemplate?.bottomText?.stroke?.enabled ? currentCustomTemplate?.bottomText?.stroke?.color : '#000000'}
+        strokeWidth={currentCustomTemplate?.bottomText?.stroke?.enabled ? plateWidth / 150 * 0.45 : 0}
+
+
+        // Shadow
+        shadowEnabled={currentCustomTemplate?.bottomText?.glow?.enabled}
+        shadowBlur={75}
+        shadowColor={currentCustomTemplate?.bottomText?.glow?.enabled ? currentCustomTemplate?.bottomText?.glow?.color : '#ffffff'}
+    />);
 
     const holesComponent = convertHoles();
 
@@ -362,25 +392,10 @@ function EditorNew(props: any) {
         />
     );
 
-    // const licensePlate2 = (
-    //     <Rect
-    //         // fillPatternImage={textureImage}
-    //         // key={2}
-    //         fill={'red'}
-    //         x={-30}
-    //         y={plateHeight * 0.5 - plateHeight * 0.085}
-    //         // Width
-    //         width={plateWidth}
-    //         height={1000}
-    //         // fill="white"
-    //         // stroke="black"
-    //     />
-    // );
-
     // Create the layer and add the license plate
     const layer = (
         <Layer
-        
+
             x={isMobile ? plateWidth / plateHeight * 35 : plateWidth / 5}
             y={isMobile ? plateHeight / 8 : plateHeight / 5}
             ref={layerReference}
@@ -401,7 +416,7 @@ function EditorNew(props: any) {
                     <PlateDetailLogo plateHeight={plateHeight} plateWidth={plateWidth} /> : null
             }
             {
-                currentCustomTemplate?.bottomLogo?.enabled && !currentLicensePlate?.bottomTextEnabled ?
+                currentCustomTemplate?.bottomLogo?.enabled && !currentLicensePlate?.bottomTextEnabled && !currentLicensePlate?.reverseText ?
                     <PlateLogoBottom plateHeight={plateHeight} plateWidth={plateWidth} /> : null
             }
             {
@@ -409,8 +424,9 @@ function EditorNew(props: any) {
                     <PlateLogo plateReference={plateRef} plateHeight={plateHeight} plateWidth={plateWidth} /> : null
             }
 
-            {topText}
-            {currentLicensePlate?.bottomTextEnabled ? bottomText : null}
+            {currentLicensePlate?.reverseText && !currentLicensePlate?.bottomTextEnabled ? bottomText : topText}
+            {currentLicensePlate?.bottomTextEnabled && !currentLicensePlate?.reverseText ? bottomText : null}
+            {currentLicensePlate?.reverseText && !currentLicensePlate?.bottomTextEnabled ? topText : bottomText}
             {middleText}
             {/* {licensePlate2} */}
         </Layer>

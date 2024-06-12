@@ -49,7 +49,7 @@ const PlateLogo = (props: {
         if (moveLogo) {
             imageGroupRef?.current?.moveToTop();
         } else {
-            imageGroupRef?.current?.setZIndex(5);
+            imageGroupRef?.current?.setZIndex(7);
             imageGroupRef.current.getStage().batchDraw();
         }
     }, [moveLogo]);

@@ -17,6 +17,7 @@ import { StoreContext, StoreContextType, client } from './storeContext';
 import { premadeTemplates } from '../utils/premadeTemplates';
 import { IShopifyVariant } from '../interfaces/shopify/variants.interface';
 import { vehicleType } from '../utils/helpers';
+import { isTwoPlateState } from '../utils/helpers/states/twoPlatesStates';
 
 interface IEditorProps {
     children: React.ReactNode
@@ -103,6 +104,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
     const [currentEditorStep, setStep] = useState<IEditorSteps>({ currentStep: 1, currentSubStep: undefined });// Current Step
     const [currentLicensePlate, setLicensePlate] = useState<ILicensePlate | undefined>(undefined)// Current License Plate
     const [currentCustomTemplate, setCurrentCustomTemplate] = useState<ICustomPlateTemplate | undefined>(undefined)// Current Custom Template
+    const [currentState, setCurrentState] = useState<String | undefined>(undefined);
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -355,13 +357,13 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                     setLoading(false);
                     if (queryParams.get("preset") && sessionStorage.getItem('preset')) {
                         setPreset(true)
+                        const twoPlatesState = isTwoPlateState(sessionStorage?.getItem('state'));
                         if (
                             currentCustomTemplate?.backgroundSettings?.background?.file?.name === "carbon-fiber-full-with-shadow" ||
                             currentCustomTemplate?.backgroundSettings?.background?.file?.name === "forged-carbon" ||
                             currentCustomTemplate?.backgroundSettings?.background?.file?.name === "carbon-fiber" || currentCustomTemplate?.backgroundSettings?.background?.file?.name === 'black-plate'
                         ) {
-                            console.log('here 1');
-                            if(!sessionStorage.getItem('showAdditionalPlatePopup') && currentCustomTemplate?.vehicleType === "Car"){
+                            if(twoPlatesState && !sessionStorage.getItem('showAdditionalPlatePopup') && currentCustomTemplate?.vehicleType === "Car"){
                                 setUpsellPopup(true)
                             }
                             return updateStep?.(
@@ -377,7 +379,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                             && currentCustomTemplate?.backgroundSettings?.background?.file?.hasColor
                         ) {
                             console.log('here 2');
-                            if(!sessionStorage.getItem('showAdditionalPlatePopup') && currentCustomTemplate?.vehicleType === "Car"){
+                            if(twoPlatesState && !sessionStorage.getItem('showAdditionalPlatePopup') && currentCustomTemplate?.vehicleType === "Car"){
                                 setUpsellPopup(true)
                             }
                             return updateStep?.(
@@ -388,7 +390,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                                 'Background Image'
                             )
                         }
-                        if(!sessionStorage.getItem('showAdditionalPlatePopup') && currentCustomTemplate?.vehicleType === "Car"){
+                        if(twoPlatesState && !sessionStorage.getItem('showAdditionalPlatePopup') && currentCustomTemplate?.vehicleType === "Car"){
                             setUpsellPopup(true)
                         }
                         
@@ -403,7 +405,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                         if (
                             currentCustomTemplate?.backgroundSettings?.background?.enabled
                         ) {
-                            if(!sessionStorage.getItem('showAdditionalPlatePopup') && currentCustomTemplate?.vehicleType === "Car"){
+                            if(twoPlatesState && !sessionStorage.getItem('showAdditionalPlatePopup') && currentCustomTemplate?.vehicleType === "Car"){
                                 setUpsellPopup(true)
                             }
                             return updateStep(
@@ -414,7 +416,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                                 'Background Image'
                             )
                         } else {
-                            if(!sessionStorage.getItem('showAdditionalPlatePopup') && currentCustomTemplate?.vehicleType === "Car"){
+                            if(twoPlatesState && !sessionStorage.getItem('showAdditionalPlatePopup') && currentCustomTemplate?.vehicleType === "Car"){
                                 setUpsellPopup(true)
                             }
                             return updateStep(
