@@ -74,14 +74,22 @@ export const FormModal = () => {
         setLoading(true)
         try {
 
-            // Send Data to shopify
-            updateCheckoutWithData({
+            const updateCheckout =updateCheckoutWithData({
                 firstName: values.firstName,
                 lastName: values.lastName,
-                phone: values.phone
+                phone: values.phone,
+                province: sessionStorage.getItem('state') || 'FL',
+                city: sessionStorage.getItem('city') || 'MIAMI',
+                country: sessionStorage.getItem('country') || 'US',
+                address1: 'Your Address',
+                zip: '33334',
+                company: null
             });
 
-            updateCheckoutWithEmail(values.email);
+            const updateEmail = updateCheckoutWithEmail(values.email);
+
+            updateCheckout;
+            updateEmail;
 
             setDetailsPopup(false);
 
