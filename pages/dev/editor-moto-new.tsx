@@ -16,9 +16,9 @@ import PlateLogoBottom from '../../components/LicensePlate/CarPlate/components/P
 import PlateLogo from '../../components/LicensePlate/CarPlate/components/PlateLogo/PlateLogo';
 import { isMobile } from 'react-device-detect';
 import * as ReactDOMServer from 'react-dom/server';
-import { stateSvg } from '../../utils/helpers/stateSvg';
-import { StateSvg } from '../../components/shared/StateSvg/StateSvg';
+import { topStateSvg } from '../../utils/helpers/topStateSvg';
 import FontFaceObserver from 'fontfaceobserver';
+import { StateSvg } from '../../components/shared/StateSvg/StateSvg';
 
 // TODO - Car
 // [✅] Add Glow to Top Text
@@ -150,7 +150,7 @@ const EditorMotoNew = (props: any) => {
 
     const svgString = encodeURIComponent(
         ReactDOMServer.renderToStaticMarkup(<StateSvg
-            svg={stateSvg.find(state => state.stateId === currentLicensePlate?.state)}
+            svg={topStateSvg.find(state => state.stateId === currentLicensePlate?.state)}
             color={`${currentCustomTemplate?.state?.color ?? '#ffffff'}`}
             textShadow={`${currentCustomTemplate?.state?.glow?.enabled ? `${currentCustomTemplate?.state.glow.color ?? '#000000'} 0px 0px 5px, ${currentCustomTemplate?.state?.glow?.color ?? '#000000'} 0px 0px 5px` : ``}`}
             textStrokeColor={`${currentCustomTemplate?.state?.stroke?.enabled ? `${currentCustomTemplate?.state?.stroke.color ?? '#000000'}` : `#000000`}`}
@@ -166,7 +166,7 @@ const EditorMotoNew = (props: any) => {
     );
 
     const topText = (
-        (stateSvg.find(state => state.stateId === currentLicensePlate?.state)) ? (
+        (topStateSvg.find(state => state.stateId === currentLicensePlate?.state)) ? (
             <Image
                 width={plateWidth * 0.5}
                 height={plateHeight * 0.205}
