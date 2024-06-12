@@ -169,6 +169,7 @@ function EditorNew(props: any) {
     const topText = (
         topStateSvg.find(state => state.stateId === currentLicensePlate?.state)) ? (
         <Image
+            zIndex={11}
             width={adjustTopTextWidth(currentLicensePlate?.state)}
             height={adjustTopTextHeight(currentLicensePlate?.state)}
             // width={plateWidth / stateImage?.width * 0.5 }

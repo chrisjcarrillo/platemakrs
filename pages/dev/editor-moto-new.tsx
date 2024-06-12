@@ -220,7 +220,7 @@ const EditorMotoNew = (props: any) => {
 
     const middleText = (
         <Group
-
+        zIndex={20}
         >
             {
                 fontsLoaded ? (<Text
