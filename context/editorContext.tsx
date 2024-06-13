@@ -352,12 +352,12 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             }, 2000);
             
             const queryParams = new URLSearchParams(window.location.search);
+            const twoPlatesState = isTwoPlateState(sessionStorage?.getItem('state'));
             setTimeout(
                 () => {
                     setLoading(false);
                     if (queryParams.get("preset") && sessionStorage.getItem('preset')) {
                         setPreset(true)
-                        const twoPlatesState = isTwoPlateState(sessionStorage?.getItem('state'));
                         if (
                             currentCustomTemplate?.backgroundSettings?.background?.file?.name === "carbon-fiber-full-with-shadow" ||
                             currentCustomTemplate?.backgroundSettings?.background?.file?.name === "forged-carbon" ||
