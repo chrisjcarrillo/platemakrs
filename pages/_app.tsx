@@ -43,6 +43,8 @@ export default function App({ Component, pageProps }: AppProps) {
 					sessionStorage.setItem('ipAddress', eventData.ip);
 					sessionStorage.setItem('userAgent', eventData.userAgent);
 					sessionStorage.setItem('state', eventData.state);
+					sessionStorage.setItem('city', eventData.city);
+					sessionStorage.setItem('country', eventData.country);
 					if (
 						!urlQueryParamsMain.get("c")
 					) {
@@ -55,6 +57,16 @@ export default function App({ Component, pageProps }: AppProps) {
 		}
 		setEventId();
 	}, []);
+	
+	if(router.pathname.includes('/admin')){
+		return(
+			<NextUIProvider>
+				<main className="dark text-foreground bg-background">
+					<Component {...pageProps} />
+				</main>
+			</NextUIProvider>
+		)
+	}
 
 	return (
 		<NextUIProvider>
