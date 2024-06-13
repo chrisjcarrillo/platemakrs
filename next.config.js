@@ -37,7 +37,7 @@ module.exports = withSentryConfig(
     // https://github.com/getsentry/sentry-webpack-plugin#options
 
     org: "platemakrs",
-    project: "javascript-nextjs",
+    project: "platemakrs-prod",
 
     // Only print logs for uploading source maps in CI
     silent: !process.env.CI,
