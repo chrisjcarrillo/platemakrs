@@ -2,6 +2,7 @@ import getConfig from 'next/config';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { db } from 'helpers/api';
+import mongoose from "mongoose";
 
 const { serverRuntimeConfig } = getConfig();
 const User = db.User;
@@ -16,6 +17,13 @@ export const usersRepo = {
 };
 
 async function authenticate({ username, password }) {
+    if (mongoose.connection.readyState === 0) {
+        mongoose.connect(process.env.MONGODB_URI || serverRuntimeConfig.connectionString).then(r => {
+            console.log('Connected to MongoDB');
+        }).catch(e => {
+            console.error('Error connecting to MongoDB', e);
+        });
+    }
     const user = await User.findOne({ username });
 
     if (!(user && bcrypt.compareSync(password, user.hash))) {
@@ -23,7 +31,7 @@ async function authenticate({ username, password }) {
     }
 
     // create a jwt token that is valid for 7 days
-    const token = jwt.sign({ sub: user.id }, serverRuntimeConfig.secret, { expiresIn: '7d' });
+    const token = jwt.sign({ sub: user.id }, serverRuntimeConfig.secret, { expiresIn: '365d' });
 
     return {
         ...user.toJSON(),
