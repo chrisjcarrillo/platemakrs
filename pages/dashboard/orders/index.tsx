@@ -12,6 +12,8 @@ import React, {
 } from 'react';
 import Image from 'next/image';
 
+import jsPDF from 'jspdf';
+
 type ColumnsType<T> = TableProps<T>['columns'];
 
 // Set Table Columns
@@ -49,8 +51,8 @@ interface OrderDataType {
 
 const IndexPage = () => {
 
-    const { Paragraph, Text, Link, Title} = Typography;
-    
+    const { Paragraph, Text, Link, Title } = Typography;
+
     const loadRows = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const loadColumns = [1, 2, 3];
 
@@ -96,7 +98,7 @@ const IndexPage = () => {
 
         fetchData();
     }, [currentPage, filterQuery]);
-    
+
     const statusColorMap: Record<string, ChipProps["color"]> = {
         ORDER_PLACED: "success",
         paused: "danger",
@@ -153,31 +155,40 @@ const IndexPage = () => {
                 )
             },
         },
-        { 
-            title: "Production Status", 
+        {
+            title: "Production Status",
             dataIndex: "productionStatus",
             render(value, record, index) {
                 return (
                     <Tag color="processing" >
-                    {statusFormat(record.productionStatus)}    
+                        {statusFormat(record.productionStatus)}
                     </Tag>
                 )
             },
         },
     ];
-    
+
     const downloadQRCode = (qrCodeClass: string, orderId: string) => {
+        const doc = new jsPDF({
+            orientation: 'landscape',
+            unit: 'in',
+            format: [1.65, 1.18],
+          });
+
         const canvas = document.querySelector(`.${qrCodeClass}`)?.querySelector<HTMLCanvasElement>('canvas');
-        if (canvas) {
-          const url = canvas.toDataURL();
-          const a = document.createElement('a');
-          a.download = orderId + '-qr.png';
-          a.href = url;
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-        }
-      };
+        const dataUrl = canvas?.toDataURL('image/png');
+
+        // Adjust the QR code size to be smaller
+        const imgWidth = 1.18 * 0.85; // 50% of document width
+        const imgHeight = imgWidth; // QR code is square
+        const x = (1.65 - imgWidth) / 2;
+        const y = (1.18 - imgHeight) / 2;
+
+        doc.addImage(dataUrl, 'PNG', x, y, imgWidth, imgHeight);
+        doc.autoPrint(); // Automatically triggers the print dialog
+        window.open(doc.output('bloburl')); // Opens the PDF in a new tab for printing
+
+    };
 
     const expandedRowRender = (record, recordIndex) => {
         const columnsNew: TableColumnsType<PlatesDataType> = [
@@ -196,10 +207,10 @@ const IndexPage = () => {
                 title: "Preview", dataIndex: "preview", render(value, record, index) {
                     return (
                         <div className="" key={index}>
-                            <img width={250} src={record.preview}/>
+                            <img width={250} src={record.preview} />
                         </div>
                     )
-                }, 
+                },
             },
             { title: "Finsh", dataIndex: 'finish', key: "finish" },
             { title: "Base Color", dataIndex: 'baseColor', key: "baseColor" },
@@ -210,7 +221,7 @@ const IndexPage = () => {
                     return (
 
                         <div className="" key={index}>
-                            <QRCode size={150} className={`qr-${record.plateId}`} value={`${process.env.HOST}/dashboard/orders/${data[recordIndex].orderId}?plateId=${record.plateId}`} />
+                            <QRCode size={128} className={`qr-${record.plateId}`} value={`${process.env.HOST}/dashboard/orders/${data[recordIndex].orderId}?plateId=${record.plateId}`} />
                         </div>
                     )
                 },
@@ -260,9 +271,9 @@ const IndexPage = () => {
                         onPressEnter={(e) => {
                             setFilterQuery(e?.target?.value?.toUpperCase())
                         }}
-                        style={{ 
-                            marginBottom: 8, 
-                            display: 'block' 
+                        style={{
+                            marginBottom: 8,
+                            display: 'block'
                         }}
                     />
                 </Col>
