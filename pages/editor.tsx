@@ -193,51 +193,6 @@ export default function Editor(props: any) {
 
             <EditLogo />
             <Container fluid className="app__container">
-                {isMobile && (
-                    <Row className="canvas__tools">
-                        <Col {...actionSettings}>
-                            {(!isPreset || isPreset && currentEditorStep?.currentStep === 1) && (
-                                <div className='header__tools-left-back'>
-                                    <Button
-                                        size='small'
-                                        className='header__tools-left-back-button'
-                                        shape="circle"
-                                        icon={<ArrowLeftOutlined rev={''} />}
-                                        onClick={() =>
-                                            stepDecision('BACK')
-                                        }
-                                    />
-                                </div>
-                            )}
-                        </Col>
-                        <Col {...headerSettings}>
-                            <div className="editor__title">
-                                
-                                <h2 className="editor__title-text">
-                                    {currentCustomTemplate?.vehicleType === "Car" && 'Car Plate Preview'}
-                                    {currentCustomTemplate?.vehicleType === "Motorcycle" && 'Motorcycle Plate Preview'}
-                                </h2>
-                            </div>
-                        </Col>
-                        <Col {...actionSettings}>
-                            {(!isPreset || isPreset && currentEditorStep?.currentStep === 1) && (
-                                <div className="header__tools-right-forward">
-                                    <Button
-                                        size='small'
-                                        disabled={
-                                            currentEditorStep?.currentStep === 1
-                                                || currentEditorStep?.currentStep === 3
-                                                || currentEditorStep?.currentStep === 2 ? true : false}
-                                        className="header__tools-right-forward-button"
-                                        shape="circle"
-                                        icon={<ArrowRightOutlined rev={''} />}
-                                        onClick={() => stepDecision('NEXT')}
-                                    />
-                                </div>
-                            )}
-                        </Col>
-                    </Row>
-                )}
                 <Row>
                     <Col
                         xs={12}
@@ -247,6 +202,7 @@ export default function Editor(props: any) {
                         xl={7}
                         className="canvas__plate-display"
                     >
+                        
                         {!isMobile && (
                             <Row className="canvas__tools">
                                 <Col {...actionSettings}>
