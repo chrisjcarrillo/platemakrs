@@ -46,8 +46,8 @@ const setImagePreview = async (node: any) => {
         stage?.height(height);
         stage?.x(0)
         stage?.y(0)
-        stage?.scaleX(0.75);
-        stage?.scaleY(0.75);
+        stage?.scaleX(0.25);
+        stage?.scaleY(0.25);
         stage?.draw();
 
         if(stage?.getStage()){
