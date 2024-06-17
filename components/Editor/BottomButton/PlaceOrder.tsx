@@ -138,27 +138,28 @@ export const PlaceOrder = (props: {
             setTermsPopup(true);
             return;
         }
-        if (currentEditorStep?.currentSubStep === "selectFinish") {
-            redirectCheckout?.(
-                currentCustomTemplate,
-                currentLicensePlate,
-                false,
-                props.canvasRef
-            )
+        redirectCheckout?.(
+            currentCustomTemplate,
+            currentLicensePlate,
+            false,
+            props.canvasRef
+        )
+        // if (currentEditorStep?.currentSubStep === "selectFinish") {
 
-        } else {
-            messageApi['warning']({
-                message: 'Select a finish',
-                description: 'Please select a finish, before placing your order!',
-            });
-            updateStep?.(
-                3,
-                'selectFinish',
-                '',
-                false,
-                'Finish'
-            )
-        }
+
+        // } else {
+        //     messageApi['warning']({
+        //         message: 'Select a finish',
+        //         description: 'Please select a finish, before placing your order!',
+        //     });
+        //     updateStep?.(
+        //         3,
+        //         'selectFinish',
+        //         '',
+        //         false,
+        //         'Finish'
+        //     )
+        // }
     }
 
     const handleAction = (
