@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/nextjs";
 import React, {
     createContext, useState, useEffect, useContext
 } from 'react';
@@ -129,6 +130,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
             });
         } catch (error) {
             console.log(error);
+            Sentry.captureException(`Shopify API - ${error}`);
             setLoading(false)
         }
     }
@@ -158,6 +160,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
 
         } catch (error) {
             console.log(error)
+            Sentry.captureException(`Shopify API - ${error}`);
         }
     }
 
@@ -240,9 +243,9 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
 
             // history.pushState('', '', `${process.env.STORE_URL}/${uri}`)
             window.location.replace(checkout?.webUrl)
-        } catch (e) {
-            console.error(e)
-            throw new Error(e)
+        } catch (error) {
+            console.log(error)
+            Sentry.captureException(`Shopify API - ${error}`);
         }
     }
 
@@ -312,9 +315,9 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
 
             // history.pushState('', '', `${process.env.STORE_URL}/${uri}`)
             window.location.replace(checkout?.webUrl)
-        } catch (e) {
-            console.error(e)
-            throw new Error(e)
+        } catch (error) {
+            console.error(error)
+            Sentry.captureException(`Shopify API - ${error}`);
         }
     }
 
@@ -338,9 +341,9 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
 
             // history.pushState('', '', `${process.env.STORE_URL}/${uri}`)
             window.location.replace(checkout?.webUrl)
-        } catch (e) {
-            console.error(e)
-            throw new Error(e)
+        } catch (error) {
+            console.error(error)
+            Sentry.captureException(`Shopify API - ${error}`);
         }
     }
 
@@ -358,9 +361,8 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
             );
             setCart(JSON.parse(JSON.stringify(removeItem.lineItems)));
         } catch (error) {
-            // setCartLoading(false);
             console.error(error);
-            throw new Error("Shopify API - Failed to remove Ticket to Checkout");
+            Sentry.captureException(`Shopify API - ${error}`);
         } finally {
             // setCartLoading(false);
             // if (cart.length === 0) setCartPopup(false)
@@ -385,10 +387,14 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
     const updateCheckoutWithData = async (values: Object) => {
         try {
             const checkoutId = checkout?.id;
-            const updateCheckoutWithValues = await client?.checkout?.updateShippingAddress(checkoutId, values)
+            const updateCheckoutWithValues = await client?.checkout?.updateShippingAddress(
+                checkoutId, values
+            )
+            console.log(updateCheckoutWithValues)
             return updateCheckoutWithValues;
         } catch (error) {
             console.log(error);
+            Sentry.captureException(`Shopify API - ${error}`);
         }
     }
 
@@ -399,6 +405,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
             return updateCheckoutWithEmailData;
         } catch (error) {
             console.log(error);
+            Sentry.captureException(`Shopify API - ${error}`);
         }
     }
 
@@ -467,6 +474,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
             return updateCheckout;
         } catch (error) {
             console.log(error);
+            Sentry.captureException(`Shopify API - ${error}`);
         }
 
     }
@@ -511,16 +519,24 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                         setLoading(false)
                         return;
                     }
-                } catch (e) {
+                } catch (error) {
                     setLoading(false)
                     sessionStorage.setItem("checkout", null)
-                    console.info('error', e)
-                    throw new Error("Shopify API - Failed to get Checkout");
+                    console.log(error);
+                    Sentry.captureException(`Shopify API - ${error}`);
                 }
             }
             const newCheckout = await client?.checkout?.create();
             if (newCheckout) {
-                updateCheckoutWithId(newCheckout.id);
+                try {
+                    console.log(`NEW CHECKOUT, IM HERE: ${newCheckout?.id}`)
+                    updateCheckoutWithId(newCheckout?.id);
+                } catch (error) {
+                    setLoading(false)
+                    sessionStorage.setItem("checkout", null)
+                    console.log(error)
+                    Sentry.captureException(`Shopify API - ${error}`);
+                }
             }
             setCheckoutItem(newCheckout)
             setLoading(false)
