@@ -28,7 +28,9 @@ const PlateLogoBottom = (props: {
 
     useEffect(() => {
         if (moveBottomLogo) {
+            imageTransformerRef?.current?.moveToTop();
             imageTransformerRef.current.nodes([imageGroupRef.current]);
+            imageTransformerRef?.current?.getLayer().batchDraw();
         }
     }, [moveBottomLogo]);
 
@@ -41,9 +43,11 @@ const PlateLogoBottom = (props: {
 
     useEffect(() => {
         if (moveBottomLogo) {
-            imageGroupRef?.current?.moveToTop();
+            imageGroupRef?.current?.zIndex(100);
+            imageGroupRef.current.getStage().batchDraw();
         } else {
             imageGroupRef?.current?.setZIndex(9);
+            imageGroupRef?.current?.moveDown();
             imageGroupRef.current.getStage().batchDraw();
         }
     }, [moveBottomLogo]);

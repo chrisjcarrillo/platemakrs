@@ -35,18 +35,22 @@ const PlateLogoBackground = (props: {
     useEffect(() => {
         imageTransformerRef?.current?.nodes([imageGroupRef.current]);
         if (image) {
+            imageTransformerRef?.current?.moveToTop();
             imageRef?.current?.cache({ pixelRatio: 10});
+            imageTransformerRef?.current?.getLayer().batchDraw();
         }
     }, [image]);
 
     useEffect(() => {
         if (moveBackgroundLogo) {
-            imageGroupRef?.current?.moveToTop();
+            imageGroupRef?.current?.zIndex(100);
+            imageGroupRef.current.getStage().batchDraw();
         } else {
-            imageGroupRef?.current?.setZIndex(5);
+            imageGroupRef?.current?.zIndex(5);
+            imageGroupRef?.current?.moveDown();
             imageGroupRef.current.getStage().batchDraw();
         }
-    }, [moveBackgroundLogo]);
+    }, []);
 
     
 
@@ -132,7 +136,7 @@ const PlateLogoBackground = (props: {
                     shadowOffsetX={0}
                     shadowOffsetY={0}
                 />
-                {/* <Image
+                <Image
                     key={2}
                     ref={imageRef}
                     image={image}
@@ -148,13 +152,14 @@ const PlateLogoBackground = (props: {
                         currentCustomTemplate?.backgroundLogo?.glow?.enabled ? true : false
                     }
                     shadowColor={
-                        currentCustomTemplate?.backgroundLogo?.glow?.enabled ? currentCustomTemplate?.backgroundLogo?.glow?.color : ''
+                        currentCustomTemplate?.backgroundLogo?.glow?.enabled ? currentCustomTemplate?.backgroundLogo?.glow?.color : '#000000'
                     }
-                    shadowBlur={5}
+                    shadowBlur={20}
                     shadowOpacity={1}
                     shadowOffsetX={0}
                     shadowOffsetY={0}
-                />
+                /> 
+                {/* 
                 <Image
                     key={3}
                     ref={imageRef}
