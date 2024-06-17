@@ -58,3 +58,15 @@
         border-left: unset !important;
     }
 }
+.finish--glow{
+    border: 2px solid #000000;
+    animation: glow 1s infinite alternate;   
+}
+@keyframes glow {
+    from {
+      box-shadow: 0 0 10px -10px #ff0000;
+    }
+    to {
+      box-shadow: 0 0 10px 10px #ff0000;
+    }
+  }

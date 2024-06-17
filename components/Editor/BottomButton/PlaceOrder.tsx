@@ -5,8 +5,11 @@ import {
     Flex,
     Modal,
     Popconfirm,
+    Radio,
+    RadioChangeEvent,
     Space,
-    notification
+    notification,
+    ConfigProvider 
 } from 'antd';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -17,6 +20,7 @@ import { StoreContext, StoreContextType } from '../../../context/storeContext';
 import { handleActions } from '../EditorPresetContainer/actions/HandleActions';
 import { Terms } from '../../shared/Terms/Terms';
 import { InterfaceContext, InterfaceContextType } from '../../../context/interfaceContext';
+import { CloseOutlined } from '@ant-design/icons';
 
 export const PlaceOrder = (props: {
     canvasRef: any,
@@ -42,7 +46,8 @@ export const PlaceOrder = (props: {
         currentCustomTemplate,
         currentEditorStep,
         updateStep,
-        currentLicensePlate
+        currentLicensePlate,
+        updateCustomTemplateSelection 
     } = useContext(EditorContext) as EditorContextType;
 
     const showTotal = () => {
@@ -103,9 +108,20 @@ export const PlaceOrder = (props: {
     const { presetTemplate } = props;
 
     const [termsPopup, setTermsPopup] = useState<boolean>(false)
+    const [finishPopup, setFinishPopup] = useState<boolean>(false)
+
+    const videoReferenceGloss = useRef<any>();
+    const videoReferenceMatte = useRef<any>();
+
+    const [showFinishPreviewGloss, setShowFinishPreviewGloss] = useState<boolean>(false)
+    const [showFinishPreviewMatte, setShowFinishPreviewMatte] = useState<boolean>(false)
+
+    const [finishSelected, setFinishSelected] = useState<boolean>(false);
+    const [finishAnimation, setFinishAnimation] = useState<boolean>(false);
+
 
     const handlePlaceOrder = async () => {
-        if(currentCustomTemplate?.backgroundSettings?.color === currentCustomTemplate?.plateNumber?.color){
+        if (currentCustomTemplate?.backgroundSettings?.color === currentCustomTemplate?.plateNumber?.color) {
             messageApi['warning']({
                 message: 'Background',
                 description: 'Select a different color, the background and plate number cant be the same colors.',
@@ -119,7 +135,7 @@ export const PlaceOrder = (props: {
             )
             return;
         }
-        if(currentCustomTemplate?.plateNumber?.color === currentCustomTemplate?.backgroundSettings?.color){
+        if (currentCustomTemplate?.plateNumber?.color === currentCustomTemplate?.backgroundSettings?.color) {
             messageApi['warning']({
                 message: 'Plate Number',
                 description: 'Select a different color, the background and plate characters cant be the same colors.',
@@ -133,33 +149,23 @@ export const PlaceOrder = (props: {
             )
             return;
         }
-        if(!acceptTerms){
+        if (!acceptTerms) {
             checkboxReference.current.focus();
             setTermsPopup(true);
             return;
         }
-        redirectCheckout?.(
-            currentCustomTemplate,
-            currentLicensePlate,
-            false,
-            props.canvasRef
-        )
-        // if (currentEditorStep?.currentSubStep === "selectFinish") {
+        if (finishPopup) {
+            setFinishPopup(false);
+            redirectCheckout?.(
+                currentCustomTemplate,
+                currentLicensePlate,
+                false,
+                props.canvasRef
+            )
 
-
-        // } else {
-        //     messageApi['warning']({
-        //         message: 'Select a finish',
-        //         description: 'Please select a finish, before placing your order!',
-        //     });
-        //     updateStep?.(
-        //         3,
-        //         'selectFinish',
-        //         '',
-        //         false,
-        //         'Finish'
-        //     )
-        // }
+        } else {
+            setFinishPopup(true);
+        }
     }
 
     const handleAction = (
@@ -216,9 +222,227 @@ export const PlaceOrder = (props: {
 
     }
 
+    const onChange = (e: RadioChangeEvent) => {
+        if (e.target.value === "MATTE") {
+
+            updateCustomTemplateSelection?.("finish",
+                e.target.value,
+            )
+            updateCustomTemplateSelection?.(
+                'selectedVariant',
+                currentCustomTemplate?.shopifyVariants?.[1] ?? ''
+            )
+            setFinishSelected(true)
+        }
+        if (e.target.value === "GLOSS") {
+            updateCustomTemplateSelection?.("finish",
+                e.target.value,
+            )
+            updateCustomTemplateSelection?.(
+                'selectedVariant',
+                currentCustomTemplate?.shopifyVariants?.[0] ?? ''
+            )
+            setFinishSelected(true)
+        }
+    };
+
+    const handleAnimation = () => {
+        setFinishAnimation(true);
+    
+        // Use setTimeout to simulate a delayed action
+        setTimeout(() => {
+          setFinishAnimation(false);
+        }, 5000);
+      };
+
     return (
         <>
             {contextHolder}
+            <Modal
+                classNames={{
+                    header: '',
+                    body: 'addon_modal',
+                    footer: '',
+                    mask: '',
+                    wrapper: '',
+                }}
+                onCancel={() => {
+                    videoReferenceGloss.current.pause();
+                    Modal.destroyAll();
+                    setShowFinishPreviewGloss(false)
+                }}
+                open={showFinishPreviewGloss}
+                centered
+                title={`Finish Preview - Gloss`}
+                footer={null}
+            >
+                <div>
+                    <div className='modalVideo_container'>
+                    <video ref={videoReferenceGloss} className='modalVideo_video' controls>
+                                    <source src={'/videos/gloss-video.mov'} type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
+                    </div>
+                    <Flex gap="small" justify='flex-end'>
+                        <ConfigProvider
+                            theme={{
+                                components: {
+                                    Button: {
+                                        colorPrimary: `linear-gradient(135deg, #6253E1, #04BEFE)`,
+                                        colorPrimaryHover: `linear-gradient(135deg, #6253E1, #04BEFE)`,
+                                        colorPrimaryActive: `linear-gradient(135deg, #6253E1, #04BEFE)`,
+                                        lineWidth: 0,
+                                    },
+                                },
+                            }}
+                        >
+                            <Button
+                                shape='round'
+                                block
+                                type='primary'
+                                onClick={(e) => {
+                                    videoReferenceGloss.current.pause();
+                                    Modal.destroyAll();
+                                    setShowFinishPreviewGloss(false)
+                                }}
+                            >
+                                Continue
+                            </Button>
+                        </ConfigProvider>
+                    </Flex>
+                </div>
+            </Modal>
+
+            <Modal
+                classNames={{
+                    header: '',
+                    body: 'addon_modal',
+                    footer: '',
+                    mask: '',
+                    wrapper: '',
+                }}
+                onCancel={() => {
+                    videoReferenceMatte.current.pause();
+                    Modal.destroyAll();
+                    setShowFinishPreviewMatte(false)
+                }}
+                open={showFinishPreviewMatte}
+                centered
+                title={`Finish Preview - Matte`}
+                footer={null}
+            >
+                <div>
+                    <div className='modalVideo_container'>
+                            <video ref={videoReferenceMatte} className='modalVideo_video' controls>
+                                <source src={'/videos/matte-video.mov'} type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                    </div>
+                    <Flex gap="small" justify='flex-end'>
+                        <ConfigProvider
+                            theme={{
+                                components: {
+                                    Button: {
+                                        colorPrimary: `linear-gradient(135deg, #6253E1, #04BEFE)`,
+                                        colorPrimaryHover: `linear-gradient(135deg, #6253E1, #04BEFE)`,
+                                        colorPrimaryActive: `linear-gradient(135deg, #6253E1, #04BEFE)`,
+                                        lineWidth: 0,
+                                    },
+                                },
+                            }}
+                        >
+                            <Button
+                                shape='round'
+                                block
+                                type='primary'
+                                onClick={(e) => {
+                                    videoReferenceMatte.current.pause();
+                                    Modal.destroyAll();
+                                    setShowFinishPreviewMatte(false)
+                                }}
+                            >
+                                Continue
+                            </Button>
+                        </ConfigProvider>
+                    </Flex>
+                </div>
+            </Modal>
+
+            <Modal
+                className='form_modal'
+                // title={'Select Finish'}
+                closable
+                destroyOnClose
+                closeIcon={<CloseOutlined style={{
+                    color: '#ffffff'
+                }} />}
+                footer={null}
+                centered
+                open={finishPopup}
+                onCancel={() => {
+                    setFinishPopup(false)
+                }}
+            >
+                <Row className="form_title">
+                    <Col
+                        xs={12}
+                        sm={12}
+                        md={12}
+                        lg={12}
+                        xl={12}
+                    >
+                        <h2 className='form_title-text'>Select Finish</h2>
+                    </Col>
+                </Row>
+                <div className={`finishSelect`}>
+                    <Radio.Group
+                        className={`finishSelect__group`}
+                        onChange={onChange}
+                        // value={currentCustomTemplate?.finish}
+                        // defaultValue={currentCustomTemplate?.finish}
+                        buttonStyle="solid"
+                    >
+                        <Radio.Button
+                            checked={currentCustomTemplate?.finish === "GLOSS"}
+                            className={`finishSelect__gloss ${finishAnimation ? 'finish--glow' : ''}`}
+                            value="GLOSS"
+                        >Gloss</Radio.Button>
+                        <Radio.Button
+                            checked={currentCustomTemplate?.finish === "MATTE"}
+                            className={`finishSelect__matte ${finishAnimation ? 'finish--glow' : ''}`}
+                            value="MATTE"
+                        >Matte</Radio.Button>
+                    </Radio.Group>
+                    <div className="finishPreview_container">
+                    {/* View Preview for gloss */}
+                    <div className="finishPreview_column" onClick={() => setShowFinishPreviewGloss(true)}>
+                        <a className=''>
+                            View Preview
+                        </a>
+                    </div>
+                    {/* View Preview for Matte */}
+                    <div className="finishPreview_column">
+                        <a className='' onClick={() => setShowFinishPreviewMatte(true)}>
+                            View Preview
+                        </a>
+                    </div>
+                </div>
+                </div>
+                <Row className={`placeOrder__row-order g-2`}>
+                        <Col {...placeOrderCols} className={`placeOrder__action`}>
+                            <a
+                                className={`placeOrder__button ${finishSelected ? '' : 'disabled'} `
+                                }
+                                onClick={
+                                    () => finishSelected ? handlePlaceOrder() : handleAnimation()
+                                }
+                            >
+                                Checkout
+                            </a>
+                        </Col>
+                    </Row>
+            </Modal>
+
             <Modal
                 title={'Terms and Conditions'}
                 open={terms}
@@ -309,7 +533,7 @@ export const PlaceOrder = (props: {
                                         I Accept the <a href={'#'} onClick={() => setTerms(true)}> Terms and Conditions</a>
                                     </Checkbox>
                                 </Popconfirm>
-                                
+
                             </Col>
                         </Row>
 
@@ -357,29 +581,29 @@ export const PlaceOrder = (props: {
                             {...termsCols}
                             className={`placeOrder__action`}
                         >
-                             <Popconfirm
-                                    placement="topLeft"
-                                    title={'Terms and Conditions'}
-                                    description={'Please accept the terms and conditions!'}
-                                    okText="Accept"
-                                    cancelText="No"
-                                    onConfirm={() => {
-                                        setTermsPopup(false)
-                                        setAcceptTerms(true)
-                                    }}
-                                    showCancel={false}
-                                    open={termsPopup}
-                                >
-                                    <Checkbox
-                                        checked={acceptTerms}
-                                        className='placeOrder__terms'
-                                        ref={checkboxReference}
-                                        onChange={(e) => {
-                                            setAcceptTerms(e.target.checked)
-                                        }}>
-                                        <a href={'#'} onClick={() => setTerms(true)}>Terms and Conditions</a>
-                                    </Checkbox>
-                                </Popconfirm>
+                            <Popconfirm
+                                placement="topLeft"
+                                title={'Terms and Conditions'}
+                                description={'Please accept the terms and conditions!'}
+                                okText="Accept"
+                                cancelText="No"
+                                onConfirm={() => {
+                                    setTermsPopup(false)
+                                    setAcceptTerms(true)
+                                }}
+                                showCancel={false}
+                                open={termsPopup}
+                            >
+                                <Checkbox
+                                    checked={acceptTerms}
+                                    className='placeOrder__terms'
+                                    ref={checkboxReference}
+                                    onChange={(e) => {
+                                        setAcceptTerms(e.target.checked)
+                                    }}>
+                                    <a href={'#'} onClick={() => setTerms(true)}>Terms and Conditions</a>
+                                </Checkbox>
+                            </Popconfirm>
 
                         </Col>
 
