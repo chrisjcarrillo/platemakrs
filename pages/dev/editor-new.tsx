@@ -133,8 +133,8 @@ function EditorNew(props: any) {
         const stage = canvasReference?.current;
         const mainText = textRef?.current;
 
-        stage?.setWidth(plateWidth);
-        stage?.setHeight(plateHeight);
+        stage?.setWidth(window.innerWidth);
+        stage?.setHeight(window.innerHeight);
         stage?.draw();
 
         mainText?.letterSpacing(50)
