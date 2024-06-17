@@ -12,31 +12,21 @@ const PlateLogo = (props: {
     plateReference: any
 }) => {
 
-    const MAX_INDEX = 99999999;
 
     const {
         currentLicensePlate,
         currentCustomTemplate,
-        currentEditorStep,
     } = useContext(EditorContext) as EditorContextType;
 
     const [image] = useImage(currentCustomTemplate?.mainLogo?.url ?? '', 'anonymous');
 
     const {
-        isPreset,
-        setMoveLogo,
         moveLogo
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const imageRef = useRef<any>();
     const imageTransformerRef = useRef<any>();
     const imageGroupRef = useRef<any>();
-
-    useEffect(() => {
-        if (moveLogo) {
-            imageTransformerRef?.current?.nodes([imageGroupRef?.current]);
-        }
-    }, [moveLogo]);
 
     useEffect(() => {
         imageTransformerRef?.current?.nodes([imageGroupRef.current]);
@@ -46,15 +36,25 @@ const PlateLogo = (props: {
     }, [image]);
 
     useEffect(() => {
-        if (moveLogo) {
-            imageGroupRef?.current?.moveToTop();
-        } else {
-            imageGroupRef?.current?.setZIndex(7);
+        if (moveLogo === true) {
+            // imageGroupRef?.current?.moveToTop();
+            imageGroupRef?.current?.zIndex(100);
+            imageGroupRef.current.getStage().batchDraw();
+        }
+        if (moveLogo === false) {
+            imageGroupRef?.current?.zIndex(7);
+            imageGroupRef?.current?.moveDown();
             imageGroupRef.current.getStage().batchDraw();
         }
     }, [moveLogo]);
 
-    
+    useEffect(() => {
+        if (moveLogo) {
+            imageTransformerRef?.current?.moveToTop();
+            imageTransformerRef?.current?.nodes([imageGroupRef?.current]);
+            imageTransformerRef?.current?.getLayer().batchDraw();
+        }
+    }, [moveLogo]);
 
     const calculateInitialPosition = (
         calcType?: string
@@ -108,11 +108,25 @@ const PlateLogo = (props: {
 
     return (
         <>
+        {
+                moveLogo && (
+                    <Transformer
+
+                        centeredScaling
+                        width={image?.width}
+                        height={image?.height}
+                        flipEnabled={false}
+                        // borderStroke="red"
+                        borderStrokeWidth={3}
+                        keepRatio
+                        ref={imageTransformerRef} 
+                    />
+                )
+            }
             <Group
                 zIndex={7}
                 ref={imageGroupRef}
                 draggable
-                listening={moveLogo}
             >
                 <Image
                     key={1}
@@ -164,20 +178,7 @@ const PlateLogo = (props: {
                     shadowOffsetY={0}
                 />
             </Group>
-            {
-                moveLogo && (
-                    <Transformer
-                        centeredScaling
-                        width={image?.width}
-                        height={image?.height}
-                        flipEnabled={false}
-                        // borderStroke="red"
-                        borderStrokeWidth={3}
-                        keepRatio
-                        ref={imageTransformerRef} 
-                    />
-                )
-            }
+            
             
         </>
     )

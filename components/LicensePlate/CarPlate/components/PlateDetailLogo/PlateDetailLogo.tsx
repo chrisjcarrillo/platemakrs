@@ -28,6 +28,7 @@ const PlateDetailLogo = (props: {
 
     useEffect(() => {
         if (moveDetail1) {
+            imageTransformerRef?.current?.moveToTop();
             imageTransformerRef.current.nodes([imageGroupRef.current]);
         }
     }, [moveDetail1]);

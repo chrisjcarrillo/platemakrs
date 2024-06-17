@@ -28,6 +28,7 @@ const PlateExtraLogo = (props: {
 
     useEffect(() => {
         if (moveDetail2) {
+            imageTransformerRef?.current?.moveToTop();
             imageTransformerRef.current.nodes([imageGroupRef.current]);
         }
     }, [moveDetail2]);

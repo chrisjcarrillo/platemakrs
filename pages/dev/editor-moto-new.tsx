@@ -116,6 +116,7 @@ const EditorMotoNew = (props: any) => {
         mainText?.setAttr('fontSize', plateHeight * 0.35)
         mainText?.x(plateWidth * 0.14 / 2);
         mainText?.y(fixTextPosition())
+        mainText?.zIndex(20);
         // mainText?.wrap('none')
         // mainText.setAttrs({
         //     fontSize: plateHeight * 0.35,
@@ -145,7 +146,7 @@ const EditorMotoNew = (props: any) => {
     );
 
     const convertHoles = () => {
-        return <Image listening={false} perfectDrawEnabled={false} x={0} y={0} width={plateWidth} height={plateHeight} image={holesImage} />;
+        return <Image zIndex={4} x={0} y={0} width={plateWidth} height={plateHeight} image={holesImage} />;
     };
 
     const svgString = encodeURIComponent(
@@ -168,6 +169,7 @@ const EditorMotoNew = (props: any) => {
     const topText = (
         (topStateSvg.find(state => state.stateId === currentLicensePlate?.state)) ? (
             <Image
+                zIndex={11}
                 width={plateWidth * 0.5}
                 height={plateHeight * 0.205}
                 // width={plateWidth / stateImage?.width * 0.5 }
@@ -177,6 +179,7 @@ const EditorMotoNew = (props: any) => {
                 y={plateHeight * 0.035}
             />) : (
             <Text
+                zIndex={11}
                 // Position && Width && Wrap of State
                 x={plateWidth * 0.125}
                 y={plateHeight * 0.075}
@@ -209,110 +212,59 @@ const EditorMotoNew = (props: any) => {
         )
     );
 
-    const textAlignment = () => {
-        if (currentLicensePlate?.platePosition) {
-            return currentLicensePlate?.platePosition
-        } else if (currentCustomTemplate?.startPlatePosition) {
-            return currentCustomTemplate?.startPlatePosition
-        }
-        return 'center'
-    }
-
     const middleText = (
-        <Group
-        zIndex={20}
-        >
-            {
-                fontsLoaded ? (<Text
-                    // listening={false} 
-                    // Reference
-                    ref={textRef}
-                    verticalAlign="middle"
-                    align={
-                        currentLicensePlate?.platePosition ?
-                            currentLicensePlate?.platePosition :
-                            currentCustomTemplate?.startPlatePosition ?
-                                currentCustomTemplate?.startPlatePosition : 'center'}
+        fontsLoaded ? (<Text
+            zIndex={20}
+            // listening={false} 
+            // Reference
+            ref={textRef}
+            verticalAlign="middle"
+            align={
+                currentLicensePlate?.platePosition ?
+                    currentLicensePlate?.platePosition :
+                    currentCustomTemplate?.startPlatePosition ?
+                        currentCustomTemplate?.startPlatePosition : 'center'}
 
-                    letterSpacing={20}
-                    x={plateWidth * 0.14 / 2}
-                    y={fixTextPosition()}
-                    width={plateWidth * 0.875}
+            letterSpacing={20}
+            x={plateWidth * 0.14 / 2}
+            y={fixTextPosition()}
+            width={plateWidth * 0.875}
 
-                    // TEXT
-                    text={
-                        currentLicensePlate?.plateNumber ?
-                            currentLicensePlate?.plateNumber :
-                            currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate
-                    }
-
-                    // Font
-                    fontSize={plateHeight * 0.35}
-                    fontFamily={"'License Plate USA'"}
-
-                    // Colors
-                    fill={currentCustomTemplate?.plateNumber?.color ?? '#ffffff'}
-
-                    strokeEnabled={currentCustomTemplate?.plateNumber?.stroke?.enabled}
-                    stroke={
-                        currentCustomTemplate?.plateNumber?.stroke?.enabled ?
-                            `${currentCustomTemplate?.plateNumber?.stroke?.color ?? '#000000'}` : ''
-                    }
-                    strokeWidth={
-                        currentCustomTemplate?.plateNumber?.stroke?.enabled ? plateWidth / 100 * 0.45 : 0
-                    }
-                />) : (
-                    <Text
-                        // listening={false} 
-                        // Reference
-                        letterSpacing={20}
-                        ref={textRef}
-                        verticalAlign="middle"
-                        align={
-                            currentLicensePlate?.platePosition ?
-                                currentLicensePlate?.platePosition :
-                                currentCustomTemplate?.startPlatePosition ?
-                                    currentCustomTemplate?.startPlatePosition : 'center'}
-                        x={plateWidth * 0.14 / 2}
-                        y={fixTextPosition()}
-                        width={plateWidth * 0.875}
-
-                        // TEXT
-                        text={
-                            currentLicensePlate?.plateNumber ?
-                                currentLicensePlate?.plateNumber :
-                                currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate
-                        }
-
-                        // Font
-                        fontSize={plateHeight * 0.35}
-
-                        // Colors
-                        fill={currentCustomTemplate?.plateNumber?.color ?? '#ffffff'}
-
-                        strokeEnabled={currentCustomTemplate?.plateNumber?.stroke?.enabled}
-                        stroke={
-                            currentCustomTemplate?.plateNumber?.stroke?.enabled ?
-                                `${currentCustomTemplate?.plateNumber?.stroke?.color ?? '#000000'}` : ''
-                        }
-                        strokeWidth={
-                            currentCustomTemplate?.plateNumber?.stroke?.enabled ? plateWidth / 100 * 0.45 : 0
-                        }
-                    />
-                )
+            // TEXT
+            text={
+                currentLicensePlate?.plateNumber ?
+                    currentLicensePlate?.plateNumber :
+                    currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate
             }
 
-            {/* <Text
+            // Font
+            fontSize={plateHeight * 0.35}
+            fontFamily={"'License Plate USA'"}
+
+            // Colors
+            fill={currentCustomTemplate?.plateNumber?.color ?? '#ffffff'}
+
+            strokeEnabled={currentCustomTemplate?.plateNumber?.stroke?.enabled}
+            stroke={
+                currentCustomTemplate?.plateNumber?.stroke?.enabled ?
+                    `${currentCustomTemplate?.plateNumber?.stroke?.color ?? '#000000'}` : ''
+            }
+            strokeWidth={
+                currentCustomTemplate?.plateNumber?.stroke?.enabled ? plateWidth / 100 * 0.45 : 0
+            }
+        />) : (
+            <Text
+            zIndex={20}
                 // listening={false} 
                 // Reference
+                letterSpacing={20}
                 ref={textRef}
-                                align={
+                verticalAlign="middle"
+                align={
                     currentLicensePlate?.platePosition ?
                         currentLicensePlate?.platePosition :
                         currentCustomTemplate?.startPlatePosition ?
                             currentCustomTemplate?.startPlatePosition : 'center'}
-
-                verticalAlign="middle"
                 x={plateWidth * 0.14 / 2}
                 y={fixTextPosition()}
                 width={plateWidth * 0.875}
@@ -326,9 +278,6 @@ const EditorMotoNew = (props: any) => {
 
                 // Font
                 fontSize={plateHeight * 0.35}
-                fontFamily={
-                    isLoaded ? "'License Plate USA'" : "'License Plate USA'"
-                }
 
                 // Colors
                 fill={currentCustomTemplate?.plateNumber?.color ?? '#ffffff'}
@@ -341,16 +290,13 @@ const EditorMotoNew = (props: any) => {
                 strokeWidth={
                     currentCustomTemplate?.plateNumber?.stroke?.enabled ? plateWidth / 100 * 0.45 : 0
                 }
-
-                shadowColor='#000000'
-                shadowBlur={40}
-                shadowOffsetY={5}
-            /> */}
-        </Group>
+            />
+        )
     );
 
     const bottomText = (
         <Text
+            zIndex={12}
             // Placement
             x={plateWidth * 0.125}
             y={plateHeight * 0.95 - plateHeight * 0.125}
@@ -445,7 +391,6 @@ const EditorMotoNew = (props: any) => {
             <PlateBackground plateHeight={plateHeight} plateWidth={plateWidth} />
             {licensePlateBorder}
             {holesComponent}
-            {/* {licensePlate2} */}
             {currentCustomTemplate?.backgroundLogo?.enabled ?
                 <PlateLogoBackground plateHeight={plateHeight} plateWidth={plateWidth} /> : null
             }
@@ -464,7 +409,6 @@ const EditorMotoNew = (props: any) => {
                 currentCustomTemplate?.mainLogo?.enabled ?
                     <PlateLogo plateHeight={plateHeight} plateWidth={plateWidth} /> : null
             }
-            {/* {licensePlate2} */}
             {topText}
             {currentLicensePlate?.bottomTextEnabled ? bottomText : null}
             {middleText}
