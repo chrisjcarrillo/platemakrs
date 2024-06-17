@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/nextjs";
 import React, {
     createContext,
     useContext,
@@ -108,7 +109,6 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
 
     useEffect(() => {
         if (typeof window !== "undefined") {
-            let data = window.performance.getEntriesByType("navigation")[0].type;
             const query = new URLSearchParams(window.location.search);
             if(query.get('pm_source') === "fb"){
                 setExtras(true)
@@ -180,6 +180,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
 
                 } catch (error) {
                     setLoading(false);
+                    Sentry.captureException(`Editor - ${error}`);
                 } finally {
                     setTimeout( () => {
                         setLoading(false);
@@ -189,21 +190,6 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             }
             
             initProduct();
-
-            // if (data === 'reload' && query.get('preset')) {
-            //     if (query.get('presetTemplate') && query.get('preset') && query.get('step') === "1" && window.location.pathname === "/editor") {
-            //         initProduct();
-            //         console.log('Google ads is present')
-            //     }
-            // }
-            // if (query.get('preset') && query.get('gclid')) {
-            //     initProduct();
-            //     console.log('Google ads is present')
-            // }
-            // if (query.get('pm_source') === 'fb') {
-            //     initProduct();
-            //     console.log('Google ads is present')
-            // }
         }
     }, [])
 
@@ -298,6 +284,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             }
         } catch (error) {
             console.log(error);
+            Sentry.captureException(`Editor - ${error}`);
             setLoading(false);
         } finally {
             updateStep(1);
@@ -433,6 +420,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             )
         } catch (error) {
             console.log(error);
+            Sentry.captureException(`Editor - ${error}`);
         }
     }
 
