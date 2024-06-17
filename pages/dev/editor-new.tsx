@@ -133,13 +133,13 @@ function EditorNew(props: any) {
         const stage = canvasReference?.current;
         const mainText = textRef?.current;
 
-        stage?.setWidth(window.innerWidth);
-        stage?.setHeight(window.innerHeight);
+        stage?.setWidth(plateWidth);
+        stage?.setHeight(plateHeight);
         stage?.draw();
 
-
+        mainText?.letterSpacing(50)
         mainText?.width(plateWidth)
-        mainText?.setAttr('fontSize', plateHeight * 0.44)
+        mainText?.fontSize(plateHeight * 0.43)
         mainText?.x(handleX())
         mainText?.y(isMobile ? plateHeight * 0.5 - plateHeight * 0.15 : plateHeight * 0.5 - plateHeight * 0.085)
         mainText?.draw();
@@ -238,7 +238,7 @@ function EditorNew(props: any) {
                         currentLicensePlate?.plateNumber :
                         currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate}
                     // Font
-                    fontSize={plateHeight * 0.44}
+                    fontSize={plateHeight * 0.43}
                     fontFamily={"'License Plate USA'"}
 
 
@@ -271,7 +271,7 @@ function EditorNew(props: any) {
                         currentCustomTemplate?.startPlateText ? currentCustomTemplate?.startPlateText : initialLicensePlate}
 
                     // Font
-                    fontSize={plateHeight * 0.44}
+                    fontSize={plateHeight * 0.43}
 
                     // Text Color
                     fill={currentCustomTemplate?.plateNumber?.color ?? '#ffffff'}
