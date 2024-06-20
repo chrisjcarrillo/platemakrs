@@ -8,7 +8,7 @@ sendgrid?.setApiKey(
 async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
 	try {
 		console.log(req?.body)
-		const filter = req?.body?.line_items?.filter((item: any) => item?.title === 'Add-on - Work with a Designer');
+		const filter = req?.body?.line_items?.filter((item: any) => ( item?.title === 'Add-on - Work with a Designer') || ( item?.title === 'Deposit Fee'));
 		console.log('WWAD length: ', filter.length);
 		if(filter?.length > 0){
 			const customerMessage = {
