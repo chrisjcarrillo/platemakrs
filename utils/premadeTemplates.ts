@@ -7717,8 +7717,210 @@ export const premadeTemplates = [
         }
     }, //Corvette #1  - [Done]
 
+    {
+        preset: true,
+        vehicleType: 'Car',
+        detailLogo1: { enabled: false},
+        detailLogo2: {enabled: false},
+        templateId: '72',
+        shopifyHandle: 'two-colors-1',
+        startPlatePosition: 'center',
+        startPlateText: 'SAM PLE',
+        patternSettings: { enabled: false },
+        fadeSettings: { enabled: false },
+        backgroundLogo: { enabled: false },
+        bottomLogo: { enabled: false },
+        mainLogo: { enabled: false },
+        backgroundSettings: {
+            color: '#000000',
+            background: { enabled: false },
+        },
+        state:{
+            color: '#ff0000',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { enabled: false},
+        },
+        plateNumber: {
+            color: '#ff0000',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { enabled: false},
+        },
+        bottomText: {
+            color: '#ff0000',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { enabled: false},
+        }
+    }, //Two Colors - Red  - [Done]
+
+    {
+        preset: true,
+        vehicleType: 'Car',
+        detailLogo1: { enabled: false},
+        detailLogo2: {enabled: false},
+        templateId: '73',
+        shopifyHandle: 'two-colors-2',
+        startPlatePosition: 'center',
+        startPlateText: 'SAM PLE',
+        patternSettings: { enabled: false },
+        fadeSettings: { enabled: false },
+        backgroundLogo: { enabled: false },
+        bottomLogo: { enabled: false },
+        mainLogo: { enabled: false },
+        backgroundSettings: {
+            color: '#000000',
+            background: { enabled: false },
+        },
+        state:{
+            color: '#fff000',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { enabled: false},
+        },
+        plateNumber: {
+            color: '#fff000',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { enabled: false},
+        },
+        bottomText: {
+            color: '#fff000',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { enabled: false},
+        }
+    }, //Two Colors - Yellow  - [Done]
+
+    {
+        preset: true,
+        vehicleType: 'Car',
+        detailLogo1: { enabled: false},
+        detailLogo2: {enabled: false},
+        templateId: '74',
+        shopifyHandle: 'two-colors-3',
+        startPlatePosition: 'center',
+        startPlateText: 'SAM PLE',
+        patternSettings: { enabled: false },
+        fadeSettings: { enabled: false },
+        backgroundLogo: { enabled: false },
+        bottomLogo: { enabled: false },
+        mainLogo: { enabled: false },
+        backgroundSettings: {
+            color: '#000000',
+            background: { enabled: false },
+        },
+        state:{
+            color: '#ff0000',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { enabled: false},
+        },
+        plateNumber: {
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { enabled: false},
+        },
+        bottomText: {
+            color: '#ff0000',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { enabled: false},
+        }
+    }, //Two Colors - Red / White / Red - [Done]
+
+    {
+        preset: true,
+        vehicleType: 'Car',
+        detailLogo1: { enabled: false},
+        detailLogo2: {enabled: false},
+        templateId: '75',
+        shopifyHandle: 'two-colors-4',
+        startPlatePosition: 'center',
+        startPlateText: 'SAM PLE',
+        patternSettings: { enabled: false },
+        fadeSettings: { enabled: false },
+        backgroundLogo: { enabled: false },
+        bottomLogo: { enabled: false },
+        mainLogo: { enabled: false },
+        backgroundSettings: {
+            color: '#000000',
+            background: { enabled: false },
+        },
+        state:{
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { enabled: false},
+        },
+        plateNumber: {
+            color: '#ff0000',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { enabled: false},
+        },
+        bottomText: {
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { enabled: false},
+        }
+    }, //Two Colors - White / Red / White - [Done]
+
+    
+
        // Template 1
-       {
+    {
         vehicleType: 'Car',
         templateId: '1',
         preset: false,
