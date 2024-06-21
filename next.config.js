@@ -21,6 +21,35 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  async redirects() {
+    return [
+      { 
+        source: '/black-white-car',
+        destination: '/editor?presetTemplate=69&step=1&preset=true&vehicleType=Car',
+        permanent: true,
+      },
+      { 
+        source: '/black-red-car',
+        destination: '/editor?presetTemplate=72&step=1&preset=true&vehicleType=Car',
+        permanent: true,
+      },
+      { 
+        source: '/black-yellow-car',
+        destination: '/editor?presetTemplate=73&step=1&preset=true&vehicleType=Car',
+        permanent: true,
+      },
+      { 
+        source: '/black-red-white-car',
+        destination: '/editor?presetTemplate=74&step=1&preset=true&vehicleType=Car',
+        permanent: true,
+      },
+      { 
+        source: '/black-white-red-car',
+        destination: '/editor?presetTemplate=75&step=1&preset=true&vehicleType=Car',
+        permanent: true,
+      },
+    ]
+  }
 }
 
 module.exports = nextConfig
