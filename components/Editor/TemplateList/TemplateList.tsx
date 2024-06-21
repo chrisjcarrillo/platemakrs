@@ -90,7 +90,7 @@ export const TemplateList = (props: any) => {
                             <div className="templatePreivew__card">
                                 <div className="templatePreview__image">
                                     <Image
-                                        src={template?.images.length > 0 ? template?.images[0].src : ''}
+                                        src={template?.images?.length > 0 ? template?.images[0]?.src : ''}
                                         alt={''}
                                         width={0}
                                         height={0}
@@ -109,7 +109,7 @@ export const TemplateList = (props: any) => {
                                     {
                                         (
                                             !template?.title?.includes('Miami') && !template?.title?.includes('Dolphins') && !template?.title?.includes('Panthers') &&
-                                            !template?.title?.includes('Carbon') && !template?.title?.includes('Pinstripe') && !template?.title?.includes('Two Colors') && !template?.title?.includes('Trees')
+                                            !template?.title?.includes('Carbon') && !template?.title?.includes('Pinstripe') && !template?.title?.includes('Colors Only') && !template?.title?.includes('Trees')
                                             && !template?.title?.includes('line') && !template?.title?.includes('Autism') && !template?.title?.includes('Joker')
                                         ) &&
                                         <Badge className="templatePreview__badge-details" count="Any Brand Available" />
