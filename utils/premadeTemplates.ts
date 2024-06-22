@@ -420,6 +420,55 @@ export const premadeTemplates = [
             },
         }
     }, //Corvette #1  - [Done]
+    {
+        preset: true,
+        vehicleType: 'Motorcycle',
+        detailLogo1: { enabled: false},
+        detailLogo2: {enabled: false},
+        templateId: '76',
+        shopifyHandle: 'motorcycle-any-colors-1',
+        startPlatePosition: 'center',
+        startPlateText: 'SAMPLE',
+        patternSettings: { enabled: false },
+        fadeSettings: { enabled: false },
+        backgroundLogo: { enabled: false },
+        bottomLogo: { enabled: false },
+        mainLogo: { enabled: false },
+        backgroundSettings: {
+            color: '#000000',
+            background: { enabled: false },
+        },
+        state:{
+            color: '#ff0000',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { enabled: false},
+        },
+        plateNumber: {
+            color: '#ff0000',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { enabled: false},
+        },
+        bottomText: {
+            color: '#ff0000',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: { enabled: false},
+        }
+    }, //Corvette #1  - [Done]
 
     //Motorcycle - Premade
     {

@@ -24,6 +24,16 @@ const nextConfig = {
   async redirects() {
     return [
       { 
+        source: '/black-red-moto',
+        destination: '/editor?presetTemplate=76&step=1&preset=true&vehicleType=Motorcycle',
+        permanent: true,
+      },
+      { 
+        source: '/black-white-moto',
+        destination: '/editor?presetTemplate=1&step=1&preset=true&vehicleType=Motorcycle',
+        permanent: true,
+      },
+      { 
         source: '/black-white-car',
         destination: '/editor?presetTemplate=69&step=1&preset=true&vehicleType=Car',
         permanent: true,
