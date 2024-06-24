@@ -64,6 +64,9 @@ export type InterfaceContextType = {
 
     detailsPopup?: boolean;
     setDetailsPopup: (type: boolean)=> void;
+
+    pathPopup?: boolean;
+    setPathPopup: (type: boolean)=> void;
 }
 
 export const InterfaceContext = createContext<InterfaceContextType | null>(null);
@@ -71,7 +74,7 @@ export const InterfaceContext = createContext<InterfaceContextType | null>(null)
 const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
 
     // Loading START
-    const [loading, setLoading] = useState<boolean>(false); // Show Loading
+    const [loading, setLoading] = useState<boolean>(true); // Show Loading
     const [editorLoading, setEditorLoading] = useState<boolean>(false); // Show Editor Loading
     // Loading End
     
@@ -86,7 +89,6 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
     // Cart
     const [showCart, setShowCart] = useState<boolean>(false) //Show Cart
     // Cart
-
 
     // MOVEABLES
     const [editLogoUi, setEditLogoUi] = useState<boolean>(false)
@@ -108,6 +110,8 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
     const [ upsellPopup, setUpsellPopup ] = useState<boolean>(false); // show upsellPopup
 
     const [ detailsPopup, setDetailsPopup] = useState<boolean>(false); // show upsellPopup
+
+    const [pathPopup, setPathPopup] = useState(false);
 
 
     useEffect(() => {
@@ -185,7 +189,10 @@ const InterfaceProvider = ({ children }: IStoreProps): JSX.Element => {
                 setUpsellPopup,
 
                 detailsPopup,
-                setDetailsPopup
+                setDetailsPopup,
+
+                pathPopup,
+                setPathPopup
             }}
         >
             {children}

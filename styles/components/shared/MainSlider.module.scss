@@ -29,6 +29,22 @@
         opacity: 1 !important;
     }
 }
+.hassle{
+    &-img{
+        // border: 2px solid #deb356;
+        display: block !important;
+        -o-object-fit: cover !important;
+        object-fit: cover !important;
+        position: relative !important;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        color: transparent;
+    }
+}
 .slider{
     &_designer{
         &-img{

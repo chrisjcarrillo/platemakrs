@@ -32,6 +32,14 @@
             position: relative !important;
             width: 100% !important;
             object-fit: cover;
+            margin-bottom: 1rem;
+            @media screen and (min-width: 768px) {
+                object-fit: contain;
+            }
+            @media screen and (max-width: 991px) {
+                // height: 100% !important;
+                // width: 100% !important;
+            }
             // @media screen and (max-width: 991px) {
             //     height: 100% !important;
             //     width: 100% !important;

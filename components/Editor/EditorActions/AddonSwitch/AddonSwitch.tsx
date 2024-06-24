@@ -23,7 +23,8 @@ export const AddonSwitch = () => {
     return (
         <div className={`addonSwitch`}>
             <div className={`addonSwitch__title`}>
-                <p className={`addonSwitch__text`}>Would you like to work on your plate with our designers?</p>
+                <p className={`addonSwitch__text`} style={{marginBottom: 0}}>Looking for more or not satisfied with what you see?</p>
+                <p className={`addonSwitch__text`}>Work with one of our designers directly!</p>
             </div>
             <Radio.Group
                 defaultValue={hasDesigner ? 'YES' : ''}

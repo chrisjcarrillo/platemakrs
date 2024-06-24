@@ -303,8 +303,8 @@ export const menuLayout = [
         }],
     },
     {
-        text: 'Work with a designer',
-        link: '/designer'
+        text: 'Hassle Free Experience',
+        link: '/hassle-free'
     },
     {
         text: 'Gift Card',
@@ -331,8 +331,8 @@ export const footerLinksOne = [
         link: '/products-custom'
     },
     {
-        text: 'Work with a designer',
-        link: '/designer'
+        text: 'Hassle Free Experience',
+        link: '/hassle-free'
     },
     {
         text: 'Gift Card',
