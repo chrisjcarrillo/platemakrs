@@ -12,7 +12,7 @@ import { InterfaceContext, InterfaceContextType } from '../context/interfaceCont
 import { PlaceOrder } from '../components/Editor/BottomButton/PlaceOrder';
 import { TemplateList } from '../components/Editor/TemplateList/TemplateList';
 import { EditLogo } from '../components/Editor/EditLogo/EditLogo';
-import { Button, ConfigProvider, Flex, Input, Modal } from 'antd';
+import { Button, ConfigProvider, Flex, Input, Modal, Tooltip } from 'antd';
 import PlateComparison from "../components/PlateComparison/PlateComparison";
 import { ImageAndText } from "../components/shared/ImageAndText/ImageAndText";
 import MainSlider from "../components/MainSlider/MainSlider";
@@ -20,7 +20,7 @@ import fsPromises from 'fs/promises';
 import path from 'path';
 import { StickyEditor } from '../components/shared/StickyButtons/StickyEditor';
 import EditorNew from './dev/editor-new';
-import { ArrowLeftOutlined, ArrowRightOutlined, DownloadOutlined, EditOutlined, FullscreenOutlined, QuestionCircleFilled } from '@ant-design/icons';
+import { ArrowLeftOutlined, ArrowRightOutlined, CloseOutlined, DownloadOutlined, EditOutlined, FullscreenOutlined, QuestionCircleFilled } from '@ant-design/icons';
 import { TopActions } from '../utils/actions/TopActions';
 import { useRouter } from 'next/navigation';
 import { isMobile } from 'react-device-detect';
@@ -53,15 +53,20 @@ export default function Editor(props: any) {
         currentEditorStep,
         setCurrentCustomTemplate,
         updateStep,
-        currentCustomTemplate
+        currentCustomTemplate,
+        initialStore
     } = useContext(EditorContext) as EditorContextType;
 
     const {
+        setLoading,
         upsellPopup, 
         setUpsellPopup,
         setEditLogoUi,
         isPreset,
-        loading
+        loading,
+        pathPopup,
+        setPathPopup,
+        setDetailsPopup
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const {
@@ -69,7 +74,7 @@ export default function Editor(props: any) {
         extras,
         extrasPremade,
         setAddonPlate
-    } = useContext(StoreContext) as StoreContextType
+    } = useContext(StoreContext) as StoreContextType;
 
     setAddon?.(props?.addons)
 
@@ -189,6 +194,148 @@ export default function Editor(props: any) {
                             </ConfigProvider>
                         </Flex>
                     </div>
+            </Modal>
+
+            <Modal
+                className='path_modal'
+                closable
+                destroyOnClose
+                open={pathPopup}
+                footer={null}
+                centered
+                onCancel={() => {
+                    setPathPopup(false)
+                }}
+            >
+                {/* <LoadingSpinner> */}
+                <Row className="path_title">
+                    <Col
+                        xs={12}
+                        sm={12}
+                        md={12}
+                        lg={12}
+                        xl={12}
+                    >
+                        <h2 className='path_title-text'>Select your path</h2>
+                    </Col>
+                </Row>
+                <Row className={`path_actions g-2`}>
+                    <Col
+                                            style={{
+                                                display: 'flex'
+                                            }}
+                        className={``}
+                        xs={12}
+                        sm={12}
+                        md={12}
+                        lg={12}
+                        xl={12}
+                    >
+                        <a
+                            // disabled={}
+                            // loading={loading}
+                            className={`path-customize-button`}
+                            onClick={() => {
+                                if(!localStorage?.getItem('detailsFilled')){
+                                    sessionStorage?.setItem('pathSelected', 'true');
+                                    setPathPopup(false)
+                                    setDetailsPopup(true);
+                                } else {
+                                    sessionStorage?.setItem('pathSelected', 'true'); 
+                                    setPathPopup(false);
+                                    initialStore();
+                                }
+                            }}
+                        >
+                            Continue Customizing
+                        </a>
+                        <Tooltip title={
+                                        <div
+                                            style={{
+                                                textAlign: 'center'
+                                            }}
+                                        >
+                                            <h6 style={{
+                                                textTransform: 'Uppercase'
+                                            }}>
+                                            Continue Customizing
+                                            </h6>
+                                            <p style={{
+                                                textAlign: 'center',
+                                                fontSize: '0.8rem',
+                                                marginBottom: 0
+                                            }}>Continue your process in our editor! You can select the hassle free option at any time!</p>
+                                        </div>
+                                    }>
+                                        <QuestionCircleFilled rev={''} style={{
+                                            color: '#ffffff',
+                                            fontSize: '1.5rem'
+                                        }} />
+                                    </Tooltip>
+                    </Col>
+                </Row>
+                <Row className={`form_actions g-2`}>
+                    <Col
+                        className={``}
+                        xs={12}
+                        sm={12}
+                        md={12}
+                        lg={12}
+                        xl={12}
+                    >
+                    <h2 className='form_title-text'>OR</h2>
+                    </Col>
+                </Row>
+                <Row className={`form_actions g-2`}>
+                    <Col
+                        style={{
+                            display: 'flex'
+                        }}
+                        xs={12}
+                        sm={12}
+                        md={12}
+                        lg={12}
+                        xl={12}
+                    >
+                        <a
+                            className={`path-hassle-button`}
+                            onClick={() =>  {
+                                sessionStorage.setItem('pathSelected', 'true');
+                                setPathPopup(false)
+                                setLoading(true)
+                                router.push(`/hassle-free`)
+                                setLoading(false)
+                            }}
+                        >
+                            Have our team<br></br>
+                            design it for you
+                        </a> <Tooltip title={
+                                        <div
+                                            style={{
+                                                textAlign: 'center'
+                                            }}
+                                        >
+                                            <h6 style={{
+                                                textTransform: 'Uppercase'
+                                            }}>
+                                            Have questions? or are a little unsure about something? 
+                                            </h6>
+                                            <p style={{
+                                                textAlign: 'center',
+                                                fontSize: '0.8rem',
+                                                marginBottom: 0
+                                            }}>This is your best option. We will answer all of your questions and send you a proof design before proceeding with paying your final invoice. This gives you the confidence to know you are getting exactly what you want free of charge!</p>
+                                        </div>
+                                    }>
+                                        <QuestionCircleFilled rev={''} style={{
+                                            color: '#ffffff',
+                                            fontSize: '1.5rem'
+                                        }} />
+                                    </Tooltip>
+                    </Col>
+                </Row>
+                {/* </LoadingSpinner> */}
+                {/* <Content */}
             </Modal>
 
             <EditLogo />

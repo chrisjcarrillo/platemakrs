@@ -85,7 +85,9 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
         setMoveBackgroundLogo,
         setMoveBottomLogo,
         setPreset,
-        setUpsellPopup
+        setUpsellPopup,
+        pathPopup,
+        setPathPopup
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const {
@@ -113,10 +115,8 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
             if(query.get('pm_source') === "fb"){
                 setExtras(true)
             }
-            
             const initProduct = async () => {
                 try {
-                    setLoading(true);
 
                     const isPresetTemp = query.get('preset') === null ? false : true
 
@@ -133,7 +133,7 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                     ));
                     console.log(templateFilter)
 
-                    const shopifyProduct = await client.product.fetchByHandle(templateFilter[0].shopifyHandle);
+                    const shopifyProduct = await client.product.fetchByHandle(templateFilter[0]?.shopifyHandle);
                     const customTemplate = templateFilter[0] as ICustomPlateTemplate;
 
                     const formatedVariants: IShopifyVariant[] = [];
@@ -181,11 +181,6 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 } catch (error) {
                     setLoading(false);
                     Sentry.captureException(`Editor - ${error}`);
-                } finally {
-                    setTimeout( () => {
-                        setLoading(false);
-                    }, 2000)
-                    
                 }
             }
             
@@ -319,7 +314,11 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
     // Store the licensePlate in Local Storage 
     const initialStore = async () => {
         try {
-            if(!localStorage.getItem('detailsFilled')){
+            if(!sessionStorage?.getItem('pathSelected')){
+                setPathPopup(true);
+                return;
+            }            
+            if(!localStorage?.getItem('detailsFilled')){
                 setDetailsPopup(true);
                 return;
             }

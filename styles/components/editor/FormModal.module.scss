@@ -46,3 +46,83 @@
 
     }
 }
+
+.path{
+    &_title{
+        padding-top: 1rem;
+        &-text{
+            color:#ffffff;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 900;
+            font-family: 'Roboto', sans-serif !important;
+            @media screen and (max-width: 768px) {
+                font-size: 1.25rem;
+            }
+        }
+    }
+    
+    &_modal{
+        .ant-modal-content{
+            background-color: #000000;
+            border: 2px solid #ffffff;
+            @media screen and (max-width: 768px) {
+                padding-top: 4rem;
+                padding-bottom: 4rem;                
+            }
+
+        }
+        .ant-form-item-label{
+            padding: 0;
+        }
+    }
+    &_actions{
+        padding-top: 1rem;
+    }
+    &_container{
+
+    }
+    &-customize{
+        &-button{
+            display: block;
+            width: 65%;
+            font-weight: 800;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 1;
+            font-size: 1rem;
+            text-decoration: none !important;
+            color: #ffffff;
+            padding: 0.85rem;
+            margin: auto;
+            border-radius: 50px; 
+            background: rgb(132,98,23);
+            background: -moz-linear-gradient(41deg, rgba(132,98,23,1) 10%, rgba(222,178,81,1) 100%);
+            background: -webkit-linear-gradient(41deg, rgba(132,98,23,1) 10%, rgba(222,178,81,1) 100%);
+            background: linear-gradient(41deg, rgba(132,98,23,1) 10%, rgba(222,178,81,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#846217",endColorstr="#deb251",GradientType=1);
+        }
+    }
+    &-hassle{
+        &-button{
+            display: block;
+            width: 65%;
+            font-weight: 800;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 1;
+            font-size: 1rem;
+            text-decoration: none !important;
+            color: #ffffff;
+            padding: 0.85rem;
+            margin: auto;
+            border-radius: 50px; 
+            background: rgb(255,85,170);
+            background: -moz-linear-gradient(41deg, rgba(255,85,170,1) 10%, rgba(255,137,80,1) 100%);
+            background: -webkit-linear-gradient(41deg, rgba(255,85,170,1) 10%, rgba(255,137,80,1) 100%);
+            background: linear-gradient(41deg, rgba(255,85,170,1) 10%, rgba(255,137,80,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff55aa",endColorstr="#ff8950",GradientType=1);
+        }
+    }
+    
+}

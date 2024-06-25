@@ -20,6 +20,131 @@
 //         padding: 0 !important;
 //     }    
 // }
+.hassle-disabled{
+    color: #ffffff !important;
+    background-color: #000000 !important;
+    pointer-events: none !important;
+    border: 1px solid #ffffff;
+    cursor: not-allowed;
+}
+.hassle-actions-disabled{
+    color: #ffffff !important;
+    background-color: #000000 !important;
+    pointer-events: none !important;
+    // border: 1px solid #ffffff;
+    cursor: not-allowed;
+}
+.hassle{
+    &_tc{
+        display: block;
+        margin: auto;
+        width: fit-content;
+        margin-top: 15px;
+    }
+    &_hiw{
+        &_row{
+            padding: 1rem;
+            @media screen and (max-width: 768px) {
+                .designer-form__title{
+                    text-align: center;
+                }                
+            }
+
+        }
+    }
+    &_button{
+        border-radius: 5px;
+        font-weight: 900;
+        font-size: 1.25rem;
+        font-family: 'Roboto', sans-serif !important;
+        background-color: #FFD800;
+        color: #000000;
+        text-decoration: none;
+        padding: 0.5rem;
+        display: block;
+        margin: auto;
+        margin-top: 1rem;
+        width: 75%;
+        text-align: center;
+    }
+    &_input{
+        margin: auto;
+        display: block;
+        width: 75%;
+    }
+    &_add{
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #ffffff;
+        text-decoration: none !important;
+    }
+    &_minus{
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #ffffff;
+        text-decoration: none !important;
+    }
+    &_container{
+        padding: 0;
+        .ant-input-number-input{
+            text-align: center;
+            font-size: 1.5rem !important;
+            font-weight: 700;
+        }
+
+    }
+    &-row{
+        &-dark{
+            background-color: #0f0f0f
+        }
+        &-pricing{
+            align-content: center;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+    }
+    &-card{
+        &-title{
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1rem;
+            margin: 0;
+            padding-top: 1.5rem;
+            &-quantity{
+                text-align: center;
+                // text-transform: uppercase;
+                font-size: 1rem;
+                margin: 0;
+            }
+        }
+        &-pricing{
+            display: block;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 2.25rem;
+            font-weight: 900;
+        }
+    }
+    &_card{
+        margin: auto;
+        color: #ffffff;
+        background-color: #000;
+        width: 50%;
+        @media screen and (max-width: 768px) {
+            width: 60%;
+        }
+        border: 1px solid #ffffff;
+        padding: 1rem;
+        padding-top: 0;
+        border-radius: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        text-decoration: none;
+        cursor: pointer !important;
+        transition: all .3s linear;
+    }
+}
 .designer-form{
     &__main{
         width: 65%;
