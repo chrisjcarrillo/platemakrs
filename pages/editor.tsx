@@ -53,7 +53,8 @@ export default function Editor(props: any) {
         currentEditorStep,
         setCurrentCustomTemplate,
         updateStep,
-        currentCustomTemplate
+        currentCustomTemplate,
+        initialStore
     } = useContext(EditorContext) as EditorContextType;
 
     const {
@@ -242,7 +243,7 @@ export default function Editor(props: any) {
                                 } else {
                                     sessionStorage?.setItem('pathSelected', 'true'); 
                                     setPathPopup(false);
-                                    
+                                    initialStore();
                                 }
                             }}
                         >

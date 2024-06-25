@@ -9,7 +9,8 @@ import {
     RadioChangeEvent,
     Space,
     notification,
-    ConfigProvider 
+    ConfigProvider,
+    Tooltip
 } from 'antd';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -20,18 +21,21 @@ import { StoreContext, StoreContextType } from '../../../context/storeContext';
 import { handleActions } from '../EditorPresetContainer/actions/HandleActions';
 import { Terms } from '../../shared/Terms/Terms';
 import { InterfaceContext, InterfaceContextType } from '../../../context/interfaceContext';
-import { CloseOutlined } from '@ant-design/icons';
+import { CloseOutlined, QuestionCircleFilled } from '@ant-design/icons';
+import { useRouter } from 'next/navigation';
 
 export const PlaceOrder = (props: {
     canvasRef: any,
     presetTemplate?: boolean
 }) => {
+    const router = useRouter();
 
     const [terms, setTerms] = useState<boolean>(false);
 
     const {
         setLoading,
-        setUpsellPopup
+        setUpsellPopup,
+        setDetailsPopup
     } = useContext(InterfaceContext) as InterfaceContextType;
 
     const {
@@ -47,7 +51,7 @@ export const PlaceOrder = (props: {
         currentEditorStep,
         updateStep,
         currentLicensePlate,
-        updateCustomTemplateSelection 
+        updateCustomTemplateSelection
     } = useContext(EditorContext) as EditorContextType;
 
     const showTotal = () => {
@@ -248,12 +252,12 @@ export const PlaceOrder = (props: {
 
     const handleAnimation = () => {
         setFinishAnimation(true);
-    
+
         // Use setTimeout to simulate a delayed action
         setTimeout(() => {
-          setFinishAnimation(false);
+            setFinishAnimation(false);
         }, 5000);
-      };
+    };
 
     return (
         <>
@@ -278,10 +282,10 @@ export const PlaceOrder = (props: {
             >
                 <div>
                     <div className='modalVideo_container'>
-                    <video ref={videoReferenceGloss} className='modalVideo_video' controls>
-                                    <source src={'/videos/gloss-video.mov'} type="video/mp4" />
-                                    Your browser does not support the video tag.
-                                </video>
+                        <video ref={videoReferenceGloss} className='modalVideo_video' controls>
+                            <source src={'/videos/gloss-video.mov'} type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                     <Flex gap="small" justify='flex-end'>
                         <ConfigProvider
@@ -333,10 +337,10 @@ export const PlaceOrder = (props: {
             >
                 <div>
                     <div className='modalVideo_container'>
-                            <video ref={videoReferenceMatte} className='modalVideo_video' controls>
-                                <source src={'/videos/matte-video.mov'} type="video/mp4" />
-                                Your browser does not support the video tag.
-                            </video>
+                        <video ref={videoReferenceMatte} className='modalVideo_video' controls>
+                            <source src={'/videos/matte-video.mov'} type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                     <Flex gap="small" justify='flex-end'>
                         <ConfigProvider
@@ -414,33 +418,38 @@ export const PlaceOrder = (props: {
                         >Matte</Radio.Button>
                     </Radio.Group>
                     <div className="finishPreview_container">
-                    {/* View Preview for gloss */}
-                    <div className="finishPreview_column" onClick={() => setShowFinishPreviewGloss(true)}>
-                        <a className=''>
-                            View Preview
-                        </a>
+                        {/* View Preview for gloss */}
+                        <div className="finishPreview_column" onClick={() => setShowFinishPreviewGloss(true)}>
+                            <a className=''>
+                                View Preview
+                            </a>
+                        </div>
+                        {/* View Preview for Matte */}
+                        <div className="finishPreview_column">
+                            <a className='' onClick={() => setShowFinishPreviewMatte(true)}>
+                                View Preview
+                            </a>
+                        </div>
                     </div>
-                    {/* View Preview for Matte */}
-                    <div className="finishPreview_column">
-                        <a className='' onClick={() => setShowFinishPreviewMatte(true)}>
-                            View Preview
-                        </a>
-                    </div>
-                </div>
                 </div>
                 <Row className={`placeOrder__row-order g-2`}>
-                        <Col {...placeOrderCols} className={`placeOrder__action`}>
-                            <a
-                                className={`placeOrder__button ${finishSelected ? '' : 'disabled'} `
-                                }
-                                onClick={
-                                    () => finishSelected ? handlePlaceOrder() : handleAnimation()
-                                }
-                            >
-                                Checkout
-                            </a>
-                        </Col>
-                    </Row>
+                    <Col {...placeOrderCols} className={`placeOrder__action`}>
+                        <a
+                            className={`placeOrder__button ${finishSelected ? '' : 'disabled'} `
+                            }
+                            onClick={
+                                () => finishSelected ? handlePlaceOrder() : handleAnimation()
+                            }
+                        >
+                            Checkout
+                        </a>
+                        <a class="placeOrder__sell hassle_bottom" onClick={() => {
+                                    router.push(`/hassle-free`)
+                        }}>Hassle free Experience 
+                        
+                        </a>
+                    </Col>
+                </Row>
             </Modal>
 
             <Modal
@@ -568,6 +577,9 @@ export const PlaceOrder = (props: {
                                 >
                                     Place Order
                                 </Button>
+                                <a class="placeOrder__sell hassle_bottom" onClick={() => {
+                                    router.push(`/hassle-free`)
+                                }}>Hassle free Experience</a>
                             </Col>
                         </Row>
                     </Container>
@@ -631,6 +643,7 @@ export const PlaceOrder = (props: {
                                 Place Order
                             </a>
                         </Col>
+                        <a class="placeOrder__sell hassle_bottom" onClick={() => router.push(`/hassle-free`)}>Hassle free Experience</a>
                     </Row>
                 </Container>
             )}

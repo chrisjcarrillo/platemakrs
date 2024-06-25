@@ -66,6 +66,11 @@
         .ant-modal-content{
             background-color: #000000;
             border: 2px solid #ffffff;
+            @media screen and (max-width: 768px) {
+                padding-top: 4rem;
+                padding-bottom: 4rem;                
+            }
+
         }
         .ant-form-item-label{
             padding: 0;
@@ -85,12 +90,10 @@
             text-transform: uppercase;
             text-align: center;
             line-height: 1;
-            font-size: 1.25rem;
+            font-size: 1rem;
             text-decoration: none !important;
             color: #ffffff;
             padding: 0.85rem;
-            padding-top: 1.25rem;
-            padding-bottom: 1.25rem;
             margin: auto;
             border-radius: 50px; 
             background: rgb(132,98,23);
@@ -108,7 +111,7 @@
             text-transform: uppercase;
             text-align: center;
             line-height: 1;
-            font-size: 1.25rem;
+            font-size: 1rem;
             text-decoration: none !important;
             color: #ffffff;
             padding: 0.85rem;

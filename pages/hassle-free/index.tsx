@@ -271,7 +271,7 @@ const WorkWithADesigner = (props: any) => {
                     >
                         {/* Group */}
                         <div className="hassle_card">
-                            <p className="hassle-card-title">Deposit</p>
+                            <p className="hassle-card-title">Deposit<br></br><span>(Will go to the final cost of your plate)</span></p>
                             <span className="hassle-card-pricing">${showTotal()}</span>
                             <p className="hassle-card-title-quantity">Quantity</p>
                             <InputNumber
