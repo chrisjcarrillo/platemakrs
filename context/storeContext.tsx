@@ -37,7 +37,7 @@ export type StoreContextType = {
     setAddon?: (e: any) => void;
     
 
-    addVariantDesigner: (product: any) => void;
+    addVariantDesigner: (product: any, quantity: any) => void;
 
     // Checkout
     redirectCheckout: (
@@ -273,7 +273,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                             key: "Plate ID", value: `${storeData.licensePlateId}`, // Template of Preset
                         },
                         {
-                            key: "Preview", value: `${storeData.previewUrl}`, // Template of Preset
+                            key: "", value: `${storeData.previewUrl}`, // Template of Preset
                         },
                         {
                             key: "Notes", value: `${notes ?? 'N/A'}`,
@@ -321,14 +321,14 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         }
     }
 
-    const addVariantDesigner = async (product: any) => {
+    const addVariantDesigner = async (product: any, quantity: any) => {
         try {
             // console.log(variant);
             const checkoutId = checkout?.id;
             const lineItemsToUpdate = [
                 {
                     variantId: product?.variants[0].id,
-                    quantity: 1,
+                    quantity: quantity,
                 }
             ]
             const checkoutResponse = await client?.checkout?.addLineItems(

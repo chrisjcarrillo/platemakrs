@@ -117,49 +117,9 @@ const WorkWithADesigner = (props: any) => {
     const onFinish = async (values: contactFormProps) => {
         setLoading(true)
         try {
-            // const createDocument = await addDoc(dbInstance, {
-            //     email: values.email,
-            //     firstName: values.firstName,
-            //     lastName: values.lastName,
-            //     phone: values.phone,
-            //     state: values.state,
-            //     summary: values.summary,
-            //     createdAt: Timestamp.fromMillis(Date.now())
-            // })
-            // const res = await fetch("/api/sendgrid/workWithADesigner", {
-            //     body: JSON.stringify({
-            //         toEmails: ['design@platemakrs.com'],
-            //         email: values.email,
-            //         firstName: values.firstName,
-            //         lastName: values.lastName,
-            //         phoneNumber: values.phone,
-            //         message: values.summary,
-            //         state: values.state,
-            //         licensePlate: licensePlate ?? null,
-            //         attachments: files,
-            //     }),
-            //     headers: {
-            //         "Content-Type": "application/json",
-            //     },
-            //     method: "POST",
-            // });
 
-            addVariantDesigner(props?.product)
+            addVariantDesigner(props?.product, quantity)
 
-            // const { error } = await res.json();
-            // if (error) {
-            //     setLoading(false)
-            //     setFormSubmitted(false)
-            //     console.log(error);
-            //     return;
-            // }
-            // else {
-            //     setLoading(false)
-            //     setFormSubmitted(true)
-            //     form.resetFields();
-
-            //     return createDocument;
-            // }
             setLoading(false)
             messageApi.open({
                 type: 'success',
@@ -437,7 +397,7 @@ How it works
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    const currentProduct = await client.product.fetchByHandle('add-on-work-with-a-designer');
+    const currentProduct = await client.product.fetchByHandle('deposit-fee');
     const filePath = path.join(process.cwd(), 'settings.json');
     const jsonData = await fsPromises.readFile(filePath);
     const objectData = JSON.parse(jsonData.toString());
