@@ -41,7 +41,7 @@ const Product = (props: any) => {
                     <Image
                         className="product__image"
                         alt='Product Image'
-                        src={product.images[0].src}
+                        src={product?.images[0]?.src}
                         width={0}
                         height={0}
                         quality="100"
@@ -72,7 +72,8 @@ const Product = (props: any) => {
                                 product?.title,
                                 product.handle,
                                 product.variants,
-                                true
+                                true,
+                                product?.title.includes('Motorcycle') ?  'Motorcycle' : 'Car'
                             )
                         }
                     >
