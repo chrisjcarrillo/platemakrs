@@ -17,10 +17,19 @@ export const Terms = () => {
                 <br></br>     
                 <li style={{ fontWeight: "400" }}>
                     <span style={{ fontWeight: "900" }}>
-                     All Sales Are Final:</span>
+                     All Sales Are Final:
+                    </span>
                     <p>
                     All sales are final, we do not offer refunds, and we do not accept returns or exchanges. Full store credit offered.
                     </p>
+                </li>
+                <li style={{ fontWeight: "400" }}>
+                    <span style={{ fontWeight: "900" }}>
+                     Registration Stickers:
+                    </span>
+                    <p>
+                        In the event your registration sticker is not salvageable, We are not responsible for the cost or damage of the sticker.
+                    </p> 
                 </li>
                 <br></br>               
             </ol>
@@ -70,7 +79,7 @@ export const Terms = () => {
             <p style={{ fontSize: "11px" }}></p>
             <b>The customer hereby indemnifies and holds harmless PLATEMKRS LLC., a Florida limited liability company  from any and all liability or ramification being monetary or injunctive relief from PLATEMKRS LLC. enhancing or customizing  license plates at the sole direction of Customer and utilizing images as supplied by the Customer</b>
             <br></br>
-            <b>By making a purchase from [Your Company Name], you agree to the following terms and conditions:</b>
+            <b>By making a purchase from Platemakrs LLC, you agree to the following terms and conditions:</b>
             <p style={{ fontSize: "11px" }}></p>
             <ol>              
                 <li style={{ fontWeight: "400" }}>
