@@ -40,6 +40,15 @@
                 // height: 100% !important;
                 // width: 100% !important;
             }
+            @media screen and (max-width: 768px){
+                position: relative !important;
+                width: 100% !important;
+                -o-object-fit: cover !important;
+                object-fit: contain !important;
+                margin-bottom: 1rem !important;
+                padding-bottom: 4rem !important;
+                width: 100% !important;
+            }
             // @media screen and (max-width: 991px) {
             //     height: 100% !important;
             //     width: 100% !important;
