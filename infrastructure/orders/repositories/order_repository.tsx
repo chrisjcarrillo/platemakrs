@@ -343,7 +343,7 @@ class OrderRepository {
         let dbClient = await clientPromise;
         const db = dbClient.db();
         const ordersCollection = db.collection('orders');
-        const order = await ordersCollection.findOne({orderId: orderId});
+        const order = await ordersCollection.findOne({orderId: parseInt(orderId, 10)});
         if (order) {
             const plates = order.plates.map((plate: any) => {
                 if (plateIds.includes(plate.plateId)) {
