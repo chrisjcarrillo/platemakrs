@@ -3,28 +3,6 @@ import clientPromise from "../../../lib/mongo/mongodb";
 import {getCustomTemplateFirebase, getLicensePlateFirebase} from "../../../lib/firebase/firebase";
 import {ObjectId} from "mongodb";
 
-async function generateQRCode(url: any) {
-    try {
-        const QRCode = require('qrcode');
-        console.log('LICENSE PLATE STRING', url);
-        const qrDataUrl = await new Promise((resolve, reject) => {
-            QRCode.toDataURL( `${url}`
-                , (err: any, url: any) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(url);
-                }
-            });
-        });
-        const base64 = qrDataUrl.split(',')[1];
-        return base64;
-    } catch (error) {
-        console.error('Error generating QR code:', error);
-        return null;
-    }
-}
-
 class OrderRepository {
     async seedOrders(): Promise<void> {
         const dbClient = await clientPromise;
@@ -343,8 +321,7 @@ class OrderRepository {
         let dbClient = await clientPromise;
         const db = dbClient.db();
         const ordersCollection = db.collection('orders');
-        const newOrderId = orderId;
-        const order = await ordersCollection.findOne({orderId: parseInt(newOrderId)});
+        const order = await ordersCollection.findOne({orderId: parseInt(orderId, 10)});
         if (order) {
             const plates = order.plates.map((plate: any) => {
                 if (plateIds.includes(plate.plateId)) {
