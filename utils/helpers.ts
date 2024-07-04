@@ -311,6 +311,10 @@ export const menuLayout = [
         link: '/giftcard'
     },
     {
+        text: 'FAQ',
+        link: '/faq'
+    },
+    {
         text: 'Contact',
         link: '/contact'
     },
@@ -344,6 +348,10 @@ export const footerLinksTwo = [
     {
         text: 'Contact',
         link: '/contact'
+    },
+    {
+        text: 'FAQ',
+        link: '/faq'
     },
     {
         text: "Refund Policy",
