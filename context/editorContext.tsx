@@ -183,8 +183,9 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                     Sentry.captureException(`Editor - ${error}`);
                 }
             }
-            
-            initProduct();
+            if(window?.location?.pathname.includes('editor')){
+                initProduct();
+            }
         }
     }, [])
 
