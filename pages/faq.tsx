@@ -131,7 +131,7 @@ export default function Faq(props: any) {
                         style={{
                             color: '#ffffff'
                         }}
-                        items={items} bordered={false} defaultActiveKey={['1']} />;
+                        items={items} bordered={false} />;
                 </Col>
             </Row>
         </Container>
