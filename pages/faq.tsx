@@ -107,7 +107,7 @@ export default function Faq(props: any) {
                     Yes!
                     </p>
                 <ul>
-                    <li>We have a <Link href={'/products/motorcycles'}>hassle free option</Link>, where we design the plate for you!</li>
+                    <li>We have a <Link href={'/hassle-free'}>hassle free option</Link>, where we design the plate for you!</li>
                     <li>This comes with a $50.00 deposit fee, that goes towards the final cost of your customization!</li>
                     <li><Link href={'/hassle-free'}>Click Here</Link></li>
                 </ul>
