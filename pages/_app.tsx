@@ -16,11 +16,16 @@ import { Cart } from '../components/shared/Cart/Cart';
 import Hotjar from '@hotjar/browser';
 import Footer from '../components/shared/Footer/Footer';
 import { NextUIProvider } from '@nextui-org/react';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
+import Intercom from '@intercom/messenger-js-sdk';
 
 export default function App({ Component, pageProps }: AppProps) {
 
 	const router = useRouter();
+
+	Intercom({
+		app_id: 'rxce4qwq',
+	});
 
 	useEffect(() => {
 		Hotjar.init(3872346, 6);
