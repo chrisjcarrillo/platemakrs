@@ -18,6 +18,7 @@ import Footer from '../components/shared/Footer/Footer';
 import { NextUIProvider } from '@nextui-org/react';
 import { useRouter } from 'next/router';
 import Intercom from '@intercom/messenger-js-sdk';
+import { FB_PIXEL_ID } from '../lib/facebook/pixel';
 
 export default function App({ Component, pageProps }: AppProps) {
 
@@ -53,7 +54,8 @@ export default function App({ Component, pageProps }: AppProps) {
 					if (
 						!urlQueryParamsMain.get("c")
 					) {
-						fbq.pageview(eventData.uuid);
+						fbq.pageview(eventData.uuid, 'pixel_v1');
+						fbq.pageview(eventData.uuid, 'pixel_v2');
 					}
 				}
 			} catch (error) {
@@ -62,26 +64,15 @@ export default function App({ Component, pageProps }: AppProps) {
 		}
 		setEventId();
 	}, []);
-	
-	if(router.pathname.includes('/admin')){
-		return(
-			<NextUIProvider>
-				<main className="dark text-foreground bg-background">
-					<Component {...pageProps} />
-				</main>
-			</NextUIProvider>
-		)
-	}
 
 	return (
-		<NextUIProvider>
-			<InterfaceProvider>
-				<Main />
-				<Script
-					id="facebook"
-					strategy="afterInteractive"
-					dangerouslySetInnerHTML={{
-						__html: `
+		<InterfaceProvider>
+			<Main />
+			<Script
+				id="facebook"
+				strategy="afterInteractive"
+				dangerouslySetInnerHTML={{
+					__html: `
 							!function(f,b,e,v,n,t,s)
 							{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 							n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -90,23 +81,40 @@ export default function App({ Component, pageProps }: AppProps) {
 							t.src=v;s=b.getElementsByTagName(e)[0];
 							s.parentNode.insertBefore(t,s)}(window, document,'script',
 							'https://connect.facebook.net/en_US/fbevents.js');
-							fbq('init', ${fbq.FB_PIXEL_ID});
+							fbq('init', ${fbq.FB_PIXEL_ID_V2}, {}, 'pixel_v2');
 						`,
-					}}
-				/>
-				<StoreProvider>
-					<EditorProvider>
-						{/* { pageProps !== 'editor' && <Header {...pageProps} /> } */}
-						<EditorHeader />
-							<LoadingSpinner>
-								<Cart />
-								<Component {...pageProps} />
-							</LoadingSpinner>
-						<Footer />
-						<Analytics />
-					</EditorProvider>
-				</StoreProvider>
-			</InterfaceProvider>
-		</NextUIProvider>
+				}}
+			/>
+			<Script
+				id="facebook"
+				strategy="afterInteractive"
+				dangerouslySetInnerHTML={{
+					__html: `
+							!function(f,b,e,v,n,t,s)
+							{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+							n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+							if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+							n.queue=[];t=b.createElement(e);t.async=!0;
+							t.src=v;s=b.getElementsByTagName(e)[0];
+							s.parentNode.insertBefore(t,s)}(window, document,'script',
+							'https://connect.facebook.net/en_US/fbevents.js');
+							fbq('init', ${fbq.FB_PIXEL_ID}, {}, 'pixel_v1');
+						`,
+				}}
+			/>
+
+			<StoreProvider>
+				<EditorProvider>
+					{/* { pageProps !== 'editor' && <Header {...pageProps} /> } */}
+					<EditorHeader />
+					<LoadingSpinner>
+						<Cart />
+						<Component {...pageProps} />
+					</LoadingSpinner>
+					<Footer />
+					<Analytics />
+				</EditorProvider>
+			</StoreProvider>
+		</InterfaceProvider>
 	)
 }
