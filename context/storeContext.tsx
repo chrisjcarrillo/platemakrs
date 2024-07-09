@@ -386,12 +386,12 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
     // Variants END
 
     const checkEventSource = () => {
-        const urlQueryParamsCheckout = new URLSearchParams(window.location.search);
-        if (Cookies.get('_fbc')) {
+        const urlQueryParams = new URLSearchParams(window?.location?.search)
+        if (Cookies.get('_fbc') || urlQueryParams.get('fbclid')) {
             return "Facebook Campaign";
         }
-        if (ad === "klaviyo" && urlQueryParamsCheckout.get("c")) {
-            return `Klaviyo Campaign: ${urlQueryParamsCheckout.get("c")}`
+        if (ad === "klaviyo" && urlQueryParams.get("c")) {
+            return `Klaviyo Campaign: ${urlQueryParams.get("c")}`
         }
         if (ad === "google") {
             return "Google Campaign";
@@ -426,6 +426,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
 
     const updateCheckoutWithId = async (id) => {
         try {
+            const urlQueryParams = new URLSearchParams(window?.location?.search)
             const generatePlatemakrsID = uuidv4();
             const checkoutEventId = "PM_" + generatePlatemakrsID;
             if (checkoutEventId) sessionStorage.setItem('checkout_fbEventId', checkoutEventId);
@@ -437,6 +438,32 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
             const cartEventId = "PM_" + generateCartPlatemakrsID;
 
             const customId = uuidv4();
+
+            if((urlQueryParams.get("fbclid") && !Cookies.get('_fbc'))){
+                console.info('cookie:', 'Platemakrs Bot created a Facebook ID');
+                const currentDate = Date.now()
+                const fbId = `fb.1.${currentDate}.${urlQueryParams.get("fbclid")}`
+                Cookies.set('_fbc', fbId, {
+                    expires: 7,
+                    // domain: 'localhost'
+                })
+                console.info('cookie:', 'The ID didnt get created in the cookies, but was in the url');
+                console.info('cookie:', `Facebook ID: ${fbId}`);
+            }
+
+            if(!Cookies.get('_fbp')){
+                console.info('cookie:', 'Platemakrs Bot created a Facebook Pixel ID');
+                // Create Facebook pixel
+                const currentDate = Date.now();
+                const randomNumber = Math.floor(Math.random() * Date.now())
+                const facebookId = `fb.1.${currentDate}.${randomNumber}`;
+                Cookies.set('_fbp', facebookId, {
+                    expires: 7,
+                    // domain: 'localhost'
+                })
+                console.info('cookie:', 'The Facebok Pixel ID didnt get created in the cookies, so it created it just in case');
+                console.info('cookie:', `Facebook ID: ${facebookId}`);
+            }
 
             const customAttributes = {
                 customAttributes: [
@@ -497,8 +524,8 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
     useEffect(() => {
         setLoading(true)
         window.addEventListener('storage', onStorageUpdate);
-        const urlQueryParams = new URLSearchParams(window.location.search)
-        if (urlQueryParams.get("fbclid") && !Cookies.get('_fbc')) {
+        const urlQueryParams = new URLSearchParams(window?.location?.search)
+        if (urlQueryParams.get("fbclid") || Cookies.get('_fbc')) {
             setAd('facebook');
         }
         if (urlQueryParams.get("c") === "sms" ||
