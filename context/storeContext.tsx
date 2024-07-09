@@ -445,7 +445,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 const fbId = `fb.1.${currentDate}.${urlQueryParams.get("fbclid")}`
                 Cookies.set('_fbc', fbId, {
                     expires: 7,
-                    // domain: 'localhost'
+                    domain: 'platemakrs.com'
                 })
                 console.info('cookie:', 'The ID didnt get created in the cookies, but was in the url');
                 console.info('cookie:', `Facebook ID: ${fbId}`);
@@ -459,7 +459,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 const facebookId = `fb.1.${currentDate}.${randomNumber}`;
                 Cookies.set('_fbp', facebookId, {
                     expires: 7,
-                    // domain: 'localhost'
+                    domain: 'platemakrs.com'
                 })
                 console.info('cookie:', 'The Facebok Pixel ID didnt get created in the cookies, so it created it just in case');
                 console.info('cookie:', `Facebook ID: ${facebookId}`);
