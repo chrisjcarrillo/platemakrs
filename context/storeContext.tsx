@@ -186,14 +186,23 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
             })
         }
         if (ad === "facebook") {
-            window?.fbq('track', 'AddToCart', {
+            window?.fbq?.('track', 'AddToCart', {
                 content_name: 'Custom License Plate',
                 value: currentCheckout.totalPrice,
                 content: content,
                 content_ids: contentIds
             }, {
                 eventID: cartEventId
-            });
+            }, 'pixel_v1');
+
+            window?.fbq?.('track', 'AddToCart', {
+                content_name: 'Custom License Plate',
+                value: currentCheckout.totalPrice,
+                content: content,
+                content_ids: contentIds
+            }, {
+                eventID: cartEventId
+            }, 'pixel_v2');
         }
         if (ad === "google") {
             window?.gtag("event", "begin_checkout", {
@@ -212,11 +221,17 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
 
     const initiateCheckoutEvent = (checkoutResponse) => {
         let fbCheckoutId = sessionStorage.getItem('checkout_fbEventId');
-        window.fbq('track', 'InitiateCheckout', {
-            value: JSON.parse(JSON.stringify(checkoutResponse.totalPrice)),
+        window?.fbq?.('track', 'InitiateCheckout', {
+            value: JSON.parse(JSON.stringify(parseInt(checkoutResponse?.totalPrice?.amount, 10))),
         }, {
             eventID: fbCheckoutId
-        })
+        }, 'pixel_v2');
+
+        window?.fbq?.('track', 'InitiateCheckout', {
+            value: JSON.parse(JSON.stringify(parseInt(checkoutResponse?.totalPrice?.amount, 10)))
+        }, {
+            eventID: fbCheckoutId
+        }, 'pixel_v1');
     }
 
     const addVariantGiftCard = async (
