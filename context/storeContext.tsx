@@ -318,6 +318,9 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                         {
                             key: "Preview", value: `${storeData.previewUrl}`, // Template of Preset
                         },
+                        {
+                            key: "Notes", value: `${notes ?? 'N/A'}`,
+                        }
                     ]
                 }
             ]
@@ -329,7 +332,8 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
             initiateCheckoutEvent(checkoutResponse);
 
             // history.pushState('', '', `${process.env.STORE_URL}/${uri}`)
-            window.location.replace(checkout?.webUrl)
+            // window.location.replace(checkout?.webUrl)
+            return;
         } catch (error) {
             console.error(error)
             Sentry.captureException(`Shopify API - ${error}`);
@@ -481,7 +485,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                     },
                     {
                         key: "origin_url",
-                        value: `${window.location.href ?? null}`
+                        value: `${window?.location?.href ?? null}`
                     },
                     {
                         key: "ip_address",
