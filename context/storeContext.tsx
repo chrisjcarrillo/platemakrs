@@ -332,8 +332,8 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
             initiateCheckoutEvent(checkoutResponse);
 
             // history.pushState('', '', `${process.env.STORE_URL}/${uri}`)
-            // window.location.replace(checkout?.webUrl)
-            return;
+            window.location.replace(checkout?.webUrl)
+            // return;
         } catch (error) {
             console.error(error)
             Sentry.captureException(`Shopify API - ${error}`);
