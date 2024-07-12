@@ -46,7 +46,7 @@ export const TemplateList = (props: any) => {
                 <Row className={`templatePreview__title-container`}>
                     <Col {...bigColumnSettings}>
                         <span className={`templatePreview__title-text`}>Want to create a custom design?  
-                        <Link href="/designer" className={`templatePreview__title-action`}>Contact us.</Link>
+                        <Link href="/hassle-free" className={`templatePreview__title-action`}>Contact us.</Link>
                         </span>
                     </Col>
                     <Col {...bigColumnSettings} className={`templatePreview__title-divider`}>
