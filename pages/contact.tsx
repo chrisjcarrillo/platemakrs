@@ -16,6 +16,7 @@ import { collection, addDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useState } from 'react';
 import Link from 'next/link';
+import { InlineWidget } from "react-calendly";
 
 const dbInstance = collection(database, 'contacts');
 
@@ -254,6 +255,22 @@ const Contact = () => {
                                 </Item>
                             </FormGroup>
                         </Form>
+                        <InlineWidget 
+                            styles={{
+                                height: '1200px',
+                                border: '5px solid dfb351',
+                                width: '100%'
+                            }}
+                            pageSettings={{
+                                backgroundColor: '000000',
+                                hideEventTypeDetails: false,
+                                hideLandingPageDetails: false,
+                                primaryColor: 'dfb351',
+                                textColor: 'ffffff'
+                              }}
+                            url="https://calendly.com/admin-platemakrs/15min" 
+                        
+                        />
                     </Col>
                     <Col {...infoSettings}>
                         <div className='contact-form__company'>
