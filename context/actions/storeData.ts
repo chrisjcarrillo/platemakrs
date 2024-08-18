@@ -12,32 +12,6 @@ import { isMobile } from 'react-device-detect';
 
 const setImagePreview = async (node: any) => {
     try {
-        
-        // window.devicePixelRatio = 5;
-        // const canvas = await html2canvas(node, {
-        //     useCORS: true,
-        //     // foreignObjectRendering: true,
-        //     // crossOrigin: 'anonymous',
-        //     allowTaint: true,
-        //     scale: 5
-        // })
-        // const croppedCanvas = document.createElement('canvas')
-        // const croppedCanvasContext = croppedCanvas.getContext('2d')
-        // croppedCanvasContext?.scale(5, 5)
-
-        // const cropPositionTop = 0
-        // const cropPositionLeft = 0
-        // let cropWidth = canvas.width * 5;
-        // let cropHeight = canvas.height * 5;
-
-        // croppedCanvas.width = canvas.width
-        // croppedCanvas.height = canvas.height
-
-        // croppedCanvasContext?.drawImage(
-        //     canvas,
-        //     cropPositionLeft,
-        //     cropPositionTop,
-        // )
         const stage = node.current;
         const width = 3597;
         const height = 1800;
@@ -125,10 +99,12 @@ export const storeCheckout = async (
             currentCustomTemplate,
             currentLicensePlate
         );
+
+        console.info('[checkout] customTemplateId:', plateResponse?.customTemplate?.insertedId)
         
         const imagePrev = await setImagePreview(canvasRef);
         const storage = getStorage();
-        const storageRef = ref(storage, `customTemplates/${plateResponse.customTemplate.insertedId}/design-preview/preview`);
+        const storageRef = ref(storage, `customTemplates/${plateResponse?.customTemplate?.insertedId}/design-preview/preview`);
         const upload = await uploadString( storageRef, imagePrev, 'data_url', {
                 contentType: 'image/png'
         });

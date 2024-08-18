@@ -27,6 +27,9 @@ export type StoreContextType = {
     acceptTerms?: boolean,
     setAcceptTerms: (e: boolean) => void;
 
+    acceptPmTerms?: boolean,
+     setAcceptPmTerms: (e: boolean) => void;
+
     addToCartEvent: (type: string) => void;
 
     removeVariant: (
@@ -89,6 +92,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
     const [showCart, setShowCart] = useState<boolean>(false);
     const [hasDesigner, setHasDesigner] = useState<boolean>(false);
     const [acceptTerms, setAcceptTerms] = useState<boolean>(false);
+    const [acceptPmTerms,  setAcceptPmTerms] = useState<boolean>(false);
     const [notes, setNotes] = useState<string | undefined>(undefined);
     const [extras, setExtras] = useState<boolean>(true);
 
@@ -608,6 +612,9 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
 
                 acceptTerms,
                 setAcceptTerms,
+
+                acceptPmTerms,
+                 setAcceptPmTerms,
 
                 redirectCheckout,
 

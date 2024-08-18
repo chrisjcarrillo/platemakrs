@@ -319,10 +319,6 @@ const EditorProvider = ({ children }: IEditorProps): JSX.Element => {
                 setPathPopup(true);
                 return;
             }            
-            if(!localStorage?.getItem('detailsFilled')){
-                setDetailsPopup(true);
-                return;
-            }
             addToCartEvent('facebook');
             setLoading(true);
             

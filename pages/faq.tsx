@@ -9,55 +9,38 @@ export default function Faq(props: any) {
     const items: CollapseProps['items'] = [
         {
             key: '1',
-            label: 'Turnaround Time',
+            label: 'Do you make plates?',
             children: (
                 <p style={{ paddingLeft: 24 }}>
-                    4-5 Business Days
+                    Yes and No.
+                    <br></br>
+                    <br></br>
+                    No, we don't manufacture or make state issued plates from scratch.<br></br>
+                    We are simply painting on top of any plate you send us.
+                    <br></br>
+                    <br></br>
+                    Yes, we offer a flat vanity plate option however we DO NOT put the state name at the top.<br></br>
                 </p>
             )
         },
         {
             key: '2',
-            label: 'What do you do with my registration sticker?',
+            label: 'Do I need to ship you a plate?',
             children: (
                 <p style={{ paddingLeft: 24 }}>
-                    We have a unique method to save your registration sticker, we carefully remove it and place it on the back of your plate, which can be easily reapplied after your plate is shipped back to you! In the event your registration sticker is not salvageable, We are not responsible for the cost or damage of the sticker.
+                    Yes, you need to ship us a plate so we can paint on top of it. 
+                    Unless you pick the vanity option in which you understand we DO NOT put the state name at the top.
                 </p>
             )
         },
+
+
         {
             key: '3',
-            label: 'What if my registration sticker is printed on my plate?',
+            label: 'Turnaround Time',
             children: (
                 <p style={{ paddingLeft: 24 }}>
-                        No worries, we paint around it.
-                </p>
-            )
-        },
-        {
-            key: '4',
-            label: 'Do I need to ship my plate?',
-            children: (
-                <p style={{ paddingLeft: 24 }}>
-                    Yes, you need to ship us your current plate! We don’t manufacture or make plates, we are simply painting on top of an existing plate. 
-                </p>
-            )
-        },
-        {
-            key: '5',
-            label: ' Can I do drop off and pick up?',
-            children: (
-                <p style={{ paddingLeft: 24 }}>
-                    Yes.
-                </p>
-            )
-        },
-        {
-            key: '6',
-            label: 'Can you do disable/handicap/veterans/police plates?',
-            children: (
-                <p style={{ paddingLeft: 24 }}>
-                    Yes, you would have to confirm the details you want us to keep on your current plate. (For Example: Medals, Text, etc)
+                    4-5 Business Days upon arrival at our facility
                 </p>
             )
         },
@@ -67,16 +50,6 @@ export default function Faq(props: any) {
             children: (
                 <p style={{ paddingLeft: 24 }}>
                     Yes, please provide us with the paint color code of your vehicle. (This is an additional cost)
-                </p>
-            )
-        },
-
-        {
-            key: '8',
-            label: 'How can I drive without my plate? // Can I drive without my plate?',
-            children: (
-                <p style={{ paddingLeft: 24 }}>
-                    We assure to hit our turn around time so your not long without your plate, however our customers do get creative in the interim time…
                 </p>
             )
         },

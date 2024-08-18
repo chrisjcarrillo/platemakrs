@@ -80,13 +80,6 @@ export default function Editor(props: any) {
                     customTemplate={false}
                 />
             </Container>
-            {extrasPremade && (
-                <PlateComparison
-                    plates={props.extras.plateComparison}
-                />
-            )
-            }
-
             {
                 extrasPremade && (
                     <ImageAndText
@@ -94,6 +87,12 @@ export default function Editor(props: any) {
                         image={props.extras.howItWorks.image}
                     />
                 )
+            }
+            {extrasPremade && (
+                <PlateComparison
+                    plates={props.extras.plateComparison}
+                />
+            )
             }
             {
                 extrasPremade && (

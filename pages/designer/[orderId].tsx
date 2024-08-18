@@ -161,10 +161,12 @@ const WorkWithADesigner = (props: any) => {
     }
 
     const customUpload = async (type: string, { onError: onError, onSuccess, file }: any) => {
-        const storageRef = ref(storage, `License Plate Uploads/${email}/${file.name}`);
+        const storageRef = ref(storage, `License Plate Uploads/${props?.order?.name}/${file.name}`);
         try {
             const upload = await uploadBytes(storageRef, file);
+            console.log(upload)
             const downloadUrl = await getDownloadURL(upload.ref)
+            console.log(downloadUrl)
             if (type === "details") addFile(file.name, downloadUrl);
             if (type === "licensePlate") {
                 setLicensePlate({
