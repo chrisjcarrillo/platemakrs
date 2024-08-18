@@ -501,6 +501,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
             addons: JSON.parse(JSON.stringify(getAddon)),
             extras: objectData
         },
-        revalidate: 10
+        revalidate: 2
     }
 }
