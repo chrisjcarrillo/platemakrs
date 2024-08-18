@@ -43,6 +43,8 @@ export const PlaceOrder = (props: {
         hasDesigner,
         acceptTerms,
         setAcceptTerms,
+        acceptPmTerms,
+        setAcceptPmTerms,
         extras
     } = useContext(StoreContext) as StoreContextType;
 
@@ -101,6 +103,7 @@ export const PlaceOrder = (props: {
     }
 
     const checkboxReference = useRef<any>();
+    const pmTermsReference = useRef<any>();
 
     useEffect(() => {
         if (currentEditorStep?.currentSubStep === "termsAndConditions") {
@@ -112,6 +115,7 @@ export const PlaceOrder = (props: {
     const { presetTemplate } = props;
 
     const [termsPopup, setTermsPopup] = useState<boolean>(false)
+    const [pmTermsPopup, setPmTermsPopup] = useState<boolean>(false)
     const [finishPopup, setFinishPopup] = useState<boolean>(false)
 
     const videoReferenceGloss = useRef<any>();
@@ -156,6 +160,11 @@ export const PlaceOrder = (props: {
         if (!acceptTerms) {
             checkboxReference.current.focus();
             setTermsPopup(true);
+            return;
+        }
+        if (!acceptPmTerms) {
+            pmTermsReference.current.focus();
+            setPmTermsPopup(true);
             return;
         }
         if (finishPopup) {
@@ -529,6 +538,10 @@ export const PlaceOrder = (props: {
                                     onConfirm={() => {
                                         setTermsPopup(false)
                                         setAcceptTerms(true)
+                                        if (!acceptPmTerms) {
+                                            pmTermsReference.current.focus();
+                                            setPmTermsPopup(true);
+                                        }
                                     }}
                                 >
                                     <Checkbox
@@ -543,6 +556,30 @@ export const PlaceOrder = (props: {
                                     </Checkbox>
                                 </Popconfirm>
 
+                                <Popconfirm
+                                placement="topLeft"
+                                title={'Platemakrs Terms'}
+                                description={'Please accept!'}
+                                okText="Accept"
+                                cancelText="No"
+                                onConfirm={() => {
+                                    setPmTermsPopup(false)
+                                    setAcceptPmTerms(true)
+  
+                                }}
+                                showCancel={false}
+                                open={pmTermsPopup}
+                            >
+                                <Checkbox
+                                    checked={acceptPmTerms}
+                                    className='placeOrder__terms'
+                                    ref={pmTermsReference}
+                                    onChange={(e) => {
+                                        setAcceptPmTerms(e.target.checked)
+                                    }}>
+                                    <a href={'#'}>I understand Platemakrs does not manufacture plates</a>
+                                </Checkbox>
+                            </Popconfirm>
                             </Col>
                         </Row>
 
@@ -566,7 +603,7 @@ export const PlaceOrder = (props: {
                         <Row className={`placeOrder__row-order g-2`}>
                             <Col {...placeOrderCols} className={`placeOrder__action`}>
                                 <Button
-                                    disabled={acceptTerms ? false : true}
+                                    disabled={acceptTerms && acceptPmTerms ? false : true}
                                     className={`placeOrder__button-final`}
                                     onClick={() => redirectCheckout?.(
                                         currentCustomTemplate,
@@ -602,6 +639,10 @@ export const PlaceOrder = (props: {
                                 onConfirm={() => {
                                     setTermsPopup(false)
                                     setAcceptTerms(true)
+                                    if (!acceptPmTerms) {
+                                        pmTermsReference.current.focus();
+                                        setPmTermsPopup(true);
+                                    }
                                 }}
                                 showCancel={false}
                                 open={termsPopup}
@@ -614,6 +655,30 @@ export const PlaceOrder = (props: {
                                         setAcceptTerms(e.target.checked)
                                     }}>
                                     <a href={'#'} onClick={() => setTerms(true)}>Terms and Conditions</a>
+                                </Checkbox>
+                            </Popconfirm>
+
+                            <Popconfirm
+                                placement="topLeft"
+                                title={'Platemakrs Terms'}
+                                description={'Please accept!'}
+                                okText="Accept"
+                                cancelText="No"
+                                onConfirm={() => {
+                                    setPmTermsPopup(false)
+                                    setAcceptPmTerms(true)
+                                }}
+                                showCancel={false}
+                                open={pmTermsPopup}
+                            >
+                                <Checkbox
+                                    checked={acceptPmTerms}
+                                    className='placeOrder__terms'
+                                    ref={pmTermsReference}
+                                    onChange={(e) => {
+                                        setAcceptPmTerms(e.target.checked)
+                                    }}>
+                                    <a href={'#'}>I understand Platemakrs does not manufacture plates</a>
                                 </Checkbox>
                             </Popconfirm>
 
@@ -635,7 +700,7 @@ export const PlaceOrder = (props: {
                         <Col {...placeOrderCols} className={`placeOrder__action`}>
                             <a
                                 className={`placeOrder__button ${currentEditorStep?.currentSubStep === 'selectFinish' && currentCustomTemplate?.selectedVariant === undefined ? 'disabled' : ''} 
-                                    ${acceptTerms ? '' : 'disabled'}`}
+                                    ${acceptTerms && acceptPmTerms ? '' : 'disabled'}`}
                                 onClick={
                                     () => handlePlaceOrder()
                                 }

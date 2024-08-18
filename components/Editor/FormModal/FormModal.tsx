@@ -73,8 +73,7 @@ export const FormModal = () => {
     const onFinish = async (values: formProps) => {
         setLoading(true)
         try {
-
-            const updateCheckout =updateCheckoutWithData({
+            const updateCheckout = updateCheckoutWithData({
                 firstName: values.firstName,
                 lastName: values.lastName,
                 phone: values.phone,
@@ -119,7 +118,6 @@ export const FormModal = () => {
     }
 
     const formItemLayout = { labelCol: { span: 24 }, wrapperCol: { span: 24 } }
-
 
     return (
         <>
