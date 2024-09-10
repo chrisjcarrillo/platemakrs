@@ -206,7 +206,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 eventID: cartEventId
             }, 'pixel_v2');
         }
-        if (ad === "google" || urlQueryParams.get('utm_source') === "google") {
+        if (ad === "google" || urlQueryParams.get('gad_source') || urlQueryParams.get('utm_source') === "google") {
             window?.gtag("event", "begin_checkout", {
                 currency: "USD",
                 send_to: 'AW-11418187763/KCSdCOKZ_v4YEPPvzsQq',
@@ -398,7 +398,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         if (ad === "klaviyo" && urlQueryParams.get("c")) {
             return `Klaviyo Campaign: ${urlQueryParams.get("c")}`
         }
-        if (urlQueryParams.get('utm_source') === "google" || ad === "google") {
+        if (urlQueryParams.get('gad_source') || urlQueryParams.get('utm_source') === "google" || ad === "google") {
             return "Google Campaign";
         }
         return "Organic Traffic";
@@ -538,7 +538,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         ) {
             setAd('klaviyo');
         }
-        if (urlQueryParams.get("utm_source") === "google" ) {
+        if (urlQueryParams.get('gad_source') || urlQueryParams.get("utm_source") === "google") {
             setAd('google');
         }
         const initializeCheckout = async () => {
