@@ -170,6 +170,8 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         let contentIds = [];
         const currentCheckout = JSON.parse(JSON.stringify(checkout));
         const currentCart = cart;
+        const urlQueryParams = new URLSearchParams(window?.location?.search)
+
         if (cartEventId === undefined) return;
         if (currentCart?.length !== 0) {
             currentCart?.map(item => {
@@ -204,13 +206,12 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 eventID: cartEventId
             }, 'pixel_v2');
         }
-        if (ad === "google") {
+        if (ad === "google" || urlQueryParams.get('utm_source') === "google") {
             window?.gtag("event", "begin_checkout", {
                 currency: "USD",
                 send_to: 'AW-11418187763/KCSdCOKZ_v4YEPPvzsQq',
                 value: currentCheckout?.totalPrice?.amount,
             });
-
             window?.gtag("event", "add_to_cart", {
                 currency: "USD",
                 value: currentCheckout?.totalPrice?.amount,
@@ -397,7 +398,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         if (ad === "klaviyo" && urlQueryParams.get("c")) {
             return `Klaviyo Campaign: ${urlQueryParams.get("c")}`
         }
-        if (ad === "google") {
+        if (urlQueryParams.get('utm_source') === "google" || ad === "google") {
             return "Google Campaign";
         }
         return "Organic Traffic";
@@ -537,7 +538,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         ) {
             setAd('klaviyo');
         }
-        if (urlQueryParams.get("utm_source") === "google") {
+        if (urlQueryParams.get("utm_source") === "google" ) {
             setAd('google');
         }
         const initializeCheckout = async () => {
