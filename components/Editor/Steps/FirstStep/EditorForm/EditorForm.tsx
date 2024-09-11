@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 import { EditorContext } from '../../../../../context/editorContext';
 
 import {
+    AutoComplete,
     Form,
     Input,
     InputRef,
@@ -25,7 +26,7 @@ import { EditorContextType } from '../../../../../context/editorContext';
 import { Action } from '../../../Action/Action';
 import { InterfaceContext, InterfaceContextType } from '../../../../../context/interfaceContext';
 import Image from 'next/image';
-import { QuestionCircleOutlined } from '@ant-design/icons';
+import { DeleteOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import { FormModal } from '../../../FormModal/FormModal';
 import { isReverseText } from '../../../../../utils/helpers/states/reverseText';
 
@@ -64,6 +65,8 @@ const EditorForm = (props: any) => {
     const [submittable, setSubmittable] = useState<boolean>(false);
     const [isInputValid, setIsInputValid] = useState<boolean>(true);
     const [formValues, setFormValues] = useState({});
+    const [newOptions, setNewOptions] = useState([]);
+    const [openDropdown, setOpenDropdwon] = useState<boolean>(false);
     const [form] = Form.useForm();
     const values = Form.useWatch([], form);
 
@@ -79,7 +82,7 @@ const EditorForm = (props: any) => {
 
 
     useEffect(() => {
-        console.log(form);
+        // console.log(form);
         form.validateFields().then(
             () => {
                 setSubmittable(true);
@@ -167,28 +170,79 @@ const EditorForm = (props: any) => {
                                 {...columnSettings}
 
                             >
+                            
                                 <FormItem
                                     name="state"
                                     hasFeedback
-                                    label="Select your state"
-                                    tooltip={'Select the State associated to your license plate'}
+                                    label="Type in your state"
+                                    tooltip={'Type in the state associated to your license plate'}
                                     rules={
                                         [
                                             { required: true, message: 'State is required' }
                                         ]
                                     }
                                 >
+                                    {/* <AutoComplete
+                                        size='lg'
+                                        style={{
+                                            width: "100%",
+                                        }}
+                                        onSearch={(input) => {
+                                            const filterArray = states?.filter(state => (state?.label).toLowerCase().includes(input.toLowerCase()))
+                                            if(filterArray.length === 1){
+                                                return setNewOptions(filterArray)
+                                            }
+                                        }}
+                                        dropdownRender={(option) => <>{option}</>}
+                                        onSelect={(e, option) => {
+                                            // console.log(e)
+                                            const reverse = isReverseText(e.toUpperCase());
+                                            setNewOptions([])
+                                            console.log(e.toUpperCase(), reverse)
+                                            updateLicensePlate('state', e)
+                                            updateLicensePlate('reverseText', undefined, reverse)
+                                        }}
+                                        // style={{ width: 200 }}
+                                        // onSearch={(e) => return (states?.label ?? '').toLowerCase().includes(e.toLowerCase())}
+                                        placeholder="input here"
+                                        options={newOptions}
+                                        onClear={() => {
+                                            setNewOptions([])
+                                        }}
+                                        allowClear
+                                    /> */}
                                     <Select
+                                        onClear={ () => {
+                                            setNewOptions([])
+                                            setOpenDropdwon(false)
+                                        }}
+                                        allowClear={
+                                            <DeleteOutlined style={{
+                                                color: '#ffffff !important'
+                                            }} />
+                                        }
                                         labelInValue
+                                        onSearch={(input) => {
+                                            const filterArray = states?.filter(state => (state?.label).toLowerCase().includes(input.toLowerCase()))
+                                            if(filterArray.length === 1){
+                                                setNewOptions(filterArray)
+                                                setOpenDropdwon(true)
+                                            
+                                            }
+                                        }}
+                                        open={openDropdown}
                                         onSelect={(e) => {
                                             const reverse = isReverseText(e.value.toUpperCase());
                                             console.log(e.value.toUpperCase(), reverse)
                                             updateLicensePlate('state', e.label)
                                             updateLicensePlate('reverseText', undefined, reverse)
+                                            setNewOptions([])
+                                            setOpenDropdwon(false)
                                         }}
+                                        notFoundContent={<>Type in your state</>}
                                         size="large"
                                         showSearch
-                                        placeholder="Select your state"
+                                        placeholder="Type in your state"
                                         optionFilterProp='children'
                                         filterOption={(input, option) =>
                                             (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
@@ -199,12 +253,8 @@ const EditorForm = (props: any) => {
                                         options={
                                             [
                                                 {
-                                                    label: 'Recomended States',
-                                                    options: recommendedStates
-                                                },
-                                                {
-                                                    label: 'States',
-                                                    options: states
+                                                    label: 'State',
+                                                    options: newOptions
                                                 }
                                             ]
                                         }

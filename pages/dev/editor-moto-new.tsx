@@ -19,6 +19,7 @@ import * as ReactDOMServer from 'react-dom/server';
 import { topStateSvg } from '../../utils/helpers/topStateSvg';
 import FontFaceObserver from 'fontfaceobserver';
 import { StateSvg } from '../../components/shared/StateSvg/StateSvg';
+import { adjustFontSize, adjustTopTextHeight, adjustTopTextWidth, adjustTopTextX, adjustTopTextY } from '../../utils/helpers/ui/moto/topText/topText';
 
 // TODO - Car
 // [✅] Add Glow to Top Text
@@ -170,20 +171,20 @@ const EditorMotoNew = (props: any) => {
         (topStateSvg.find(state => state.stateId === currentLicensePlate?.state)) ? (
             <Image
                 zIndex={11}
-                width={plateWidth * 0.5}
-                height={plateHeight * 0.205}
+                width={adjustTopTextWidth(currentLicensePlate?.state)}
+                height={adjustTopTextHeight(currentLicensePlate?.state)}
                 // width={plateWidth / stateImage?.width * 0.5 }
                 // height={plateHeight / stateImage?.height * 0.205}
                 image={stateImage}
-                x={plateWidth * 0.25}
-                y={plateHeight * 0.035}
+                x={adjustTopTextX(currentLicensePlate?.state)}
+                y={adjustTopTextY(currentLicensePlate?.state)}
             />) : (
             <Text
                 zIndex={11}
                 // Position && Width && Wrap of State
-                x={plateWidth * 0.125}
-                y={plateHeight * 0.075}
-                width={plateWidth * 0.745}
+                x={adjustTopTextX(currentLicensePlate?.state)}
+                y={adjustTopTextY(currentLicensePlate?.state)}
+                width={adjustTopTextWidth(currentLicensePlate?.state)}
                 align="center"
                 wrap='none'
 
@@ -192,7 +193,7 @@ const EditorMotoNew = (props: any) => {
 
                 // Font Start
                 fontStyle='bold'
-                fontSize={plateHeight * 0.14}
+                fontSize={adjustFontSize(currentLicensePlate?.state ?? initialState)}
                 fontFamily="Arial"
 
                 // Font End

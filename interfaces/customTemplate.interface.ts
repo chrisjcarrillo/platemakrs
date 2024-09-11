@@ -39,9 +39,9 @@ export interface ICustomPlateTemplate{
     font?: ICustomFont; // Font
 
     // Design Settings
-    mainLogo?: IFileLogo; // Logo Settings 
-    bottomLogo?: IFileLogo; // Bottom Logo Settings
-    backgroundLogo?: IFileLogo; // Background
+    mainLogo?: IFileLogo // Logo Settings 
+    bottomLogo?: IFileLogo // Bottom Logo Settings
+    backgroundLogo?: IFileLogo // Background
 
     detailLogo1?: IFileLogo // WORK ON MULTIPLE DETAIL LOGOS FOR SIDES ETC
     detailLogo2?: IFileLogo // WORK ON MULTIPLE DETAIL LOGOS FOR SIDES ETC

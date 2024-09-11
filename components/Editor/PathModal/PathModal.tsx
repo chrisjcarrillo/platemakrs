@@ -1,19 +1,15 @@
-import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import {
-    Checkbox,
     Button,
     Form,
     Input,
     Modal,
     message,
-    Select,
-    Upload
 } from 'antd';
-import { CloseOutlined, UploadOutlined } from '@ant-design/icons';
+import { CloseOutlined } from '@ant-design/icons';
 import { useContext, useState } from 'react';
-import { StoreContext, StoreContextType, client } from '../../../context/storeContext';
+import { StoreContext, StoreContextType } from '../../../context/storeContext';
 import { InterfaceContext, InterfaceContextType } from '../../../context/interfaceContext';
 import { EditorContext, EditorContextType } from '../../../context/editorContext';
 import Image from 'next/image';
@@ -26,7 +22,7 @@ interface formProps {
     phone: string,
 }
 
-export const FormModal = () => {
+export const PathModal = () => {
 
     const columnSettings = {
         xs: 12,
@@ -36,7 +32,8 @@ export const FormModal = () => {
         xl: 12
     }
 
-    const [terms, setTerms] = useState<boolean>(false);
+    const [path, setPath] = useState<boolean>(false);
+    // const []
 
     const {
         updateCheckoutWithData,
@@ -73,6 +70,7 @@ export const FormModal = () => {
     const onFinish = async (values: formProps) => {
         setLoading(true)
         try {
+
             const updateCheckout = updateCheckoutWithData({
                 firstName: values.firstName,
                 lastName: values.lastName,
@@ -118,6 +116,7 @@ export const FormModal = () => {
     }
 
     const formItemLayout = { labelCol: { span: 24 }, wrapperCol: { span: 24 } }
+
 
     return (
         <>

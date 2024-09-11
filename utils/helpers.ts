@@ -1,18 +1,3 @@
-export const recommendedStates = [
-    {
-        label: 'Florida',
-        value: "FL"
-    },
-    {
-        label: 'Georgia',
-        value: "GA"
-    },
-    {
-        label: 'Texas',
-        value: "TX"
-    }
-]
-
 export const states = [
     {
         "label": "Alabama",
@@ -57,6 +42,14 @@ export const states = [
     {
         "label": "Federated States Of Micronesia",
         "value": "FM"
+    },
+    {
+        label: 'Florida',
+        value: "FL"
+    },
+    {
+        label: 'Georgia',
+        value: "GA"
     },
     {
         "label": "Guam",
@@ -207,6 +200,10 @@ export const states = [
         "value": "TN"
     },
     {
+        label: 'Texas',
+        value: "TX"
+    },
+    {
         "label": "Utah",
         "value": "UT"
     },
@@ -311,10 +308,6 @@ export const menuLayout = [
         link: '/giftcard'
     },
     {
-        text: 'FAQ',
-        link: '/faq'
-    },
-    {
         text: 'Contact',
         link: '/contact'
     },
@@ -348,10 +341,6 @@ export const footerLinksTwo = [
     {
         text: 'Contact',
         link: '/contact'
-    },
-    {
-        text: 'FAQ',
-        link: '/faq'
     },
     {
         text: "Refund Policy",

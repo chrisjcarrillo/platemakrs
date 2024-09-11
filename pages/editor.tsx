@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import EditorForm from '../components/Editor/Steps/FirstStep/EditorForm/EditorForm';
 import TemplateCanvas from '../components/Editor/Template/TemplateCanvas';
 import { EditorContextType } from '../context/editorContext';
@@ -25,6 +25,7 @@ import { TopActions } from '../utils/actions/TopActions';
 import { useRouter } from 'next/navigation';
 import { isMobile } from 'react-device-detect';
 import EditorMotoNew from './dev/editor-moto-new';
+import { showNewMessage } from "@intercom/messenger-js-sdk";
 
 export default function Editor(props: any) {
 
@@ -236,15 +237,9 @@ export default function Editor(props: any) {
                             // loading={loading}
                             className={`path-customize-button`}
                             onClick={() => {
-                                if(!localStorage?.getItem('detailsFilled')){
-                                    sessionStorage?.setItem('pathSelected', 'true');
-                                    setPathPopup(false)
-                                    setDetailsPopup(true);
-                                } else {
-                                    sessionStorage?.setItem('pathSelected', 'true'); 
-                                    setPathPopup(false);
-                                    initialStore();
-                                }
+                                sessionStorage?.setItem('pathSelected', 'true'); 
+                                setPathPopup(false);
+                                initialStore();
                             }}
                         >
                             Continue Customizing
