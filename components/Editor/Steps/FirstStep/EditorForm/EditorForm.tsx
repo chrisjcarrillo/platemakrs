@@ -170,6 +170,7 @@ const EditorForm = (props: any) => {
                                 {...columnSettings}
 
                             >
+                            
                                 <FormItem
                                     name="state"
                                     hasFeedback
