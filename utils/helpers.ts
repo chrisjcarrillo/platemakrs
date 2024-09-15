@@ -1,250 +1,250 @@
 export const states = [
     {
-        "label": "Alabama",
-        "value": "AL"
+        "value": "Alabama",
+        "label": "AL"
     },
     {
-        "label": "Alaska",
-        "value": "AK"
+        "value": "Alaska",
+        "label": "AK"
     },
     {
-        "label": "American Samoa",
-        "value": "AS"
+        "value": "American Samoa",
+        "label": "AS"
     },
     {
-        "label": "Arizona",
-        "value": "AZ"
+        "value": "Arizona",
+        "label": "AZ"
     },
     {
-        "label": "Arkansas",
-        "value": "AR"
+        "value": "Arkansas",
+        "label": "AR"
     },
     {
-        "label": "California",
-        "value": "CA"
+        "value": "California",
+        "label": "CA"
     },
     {
-        "label": "Colorado",
-        "value": "CO"
+        "value": "Colorado",
+        "label": "CO"
     },
     {
-        "label": "Connecticut",
-        "value": "CT"
+        "value": "Connecticut",
+        "label": "CT"
     },
     {
-        "label": "Delaware",
-        "value": "DE"
+        "value": "Delaware",
+        "label": "DE"
     },
     {
-        "label": "District Of Columbia",
-        "value": "DC"
+        "value": "District Of Columbia",
+        "label": "DC"
     },
     {
-        "label": "Federated States Of Micronesia",
-        "value": "FM"
+        "value": "Federated States Of Micronesia",
+        "label": "FM"
     },
     {
-        label: 'Florida',
-        value: "FL"
+        "value": 'Florida',
+        "label": "FL"
     },
     {
-        label: 'Georgia',
-        value: "GA"
+        "value": 'Georgia',
+        "label": "GA"
     },
     {
-        "label": "Guam",
-        "value": "GU"
+        "value": "Guam",
+        "label": "GU"
     },
     {
-        "label": "Hawaii",
-        "value": "HI"
+        "value": "Hawaii",
+        "label": "HI"
     },
     {
-        "label": "Idaho",
-        "value": "ID"
+        "value": "Idaho",
+        "label": "ID"
     },
     {
-        "label": "Illinois",
-        "value": "IL"
+        "value": "Illinois",
+        "label": "IL"
     },
     {
-        "label": "Indiana",
-        "value": "IN"
+        "value": "Indiana",
+        "label": "IN"
     },
     {
-        "label": "Iowa",
-        "value": "IA"
+        "value": "Iowa",
+        "label": "IA"
     },
     {
-        "label": "Kansas",
-        "value": "KS"
+        "value": "Kansas",
+        "label": "KS"
     },
     {
-        "label": "Kentucky",
-        "value": "KY"
+        "value": "Kentucky",
+        "label": "KY"
     },
     {
-        "label": "Louisiana",
-        "value": "LA"
+        "value": "Louisiana",
+        "label": "LA"
     },
     {
-        "label": "Maine",
-        "value": "ME"
+        "value": "Maine",
+        "label": "ME"
     },
     {
-        "label": "Marshall Islands",
-        "value": "MH"
+        "value": "Marshall Islands",
+        "label": "MH"
     },
     {
-        "label": "Maryland",
-        "value": "MD"
+        "value": "Maryland",
+        "label": "MD"
     },
     {
-        "label": "Massachusetts",
-        "value": "MA"
+        "value": "Massachusetts",
+        "label": "MA"
     },
     {
-        "label": "Michigan",
-        "value": "MI"
+        "value": "Michigan",
+        "label": "MI"
     },
     {
-        "label": "Minnesota",
-        "value": "MN"
+        "value": "Minnesota",
+        "label": "MN"
     },
     {
-        "label": "Mississippi",
-        "value": "MS"
+        "value": "Mississippi",
+        "label": "MS"
     },
     {
-        "label": "Missouri",
-        "value": "MO"
+        "value": "Missouri",
+        "label": "MO"
     },
     {
-        "label": "Montana",
-        "value": "MT"
+        "value": "Montana",
+        "label": "MT"
     },
     {
-        "label": "Nebraska",
-        "value": "NE"
+        "value": "Nebraska",
+        "label": "NE"
     },
     {
-        "label": "Nevada",
-        "value": "NV"
+        "value": "Nevada",
+        "label": "NV"
     },
     {
-        "label": "New Hampshire",
-        "value": "NH"
+        "value": "New Hampshire",
+        "label": "NH"
     },
     {
-        "label": "New Jersey",
-        "value": "NJ"
+        "value": "New Jersey",
+        "label": "NJ"
     },
     {
-        "label": "New Mexico",
-        "value": "NM"
+        "value": "New Mexico",
+        "label": "NM"
     },
     {
-        "label": "New York",
-        "value": "NY"
+        "value": "New York",
+        "label": "NY"
     },
     {
-        "label": "North Carolina",
-        "value": "NC"
+        "value": "North Carolina",
+        "label": "NC"
     },
     {
-        "label": "North Dakota",
-        "value": "ND"
+        "value": "North Dakota",
+        "label": "ND"
     },
     {
-        "label": "Northern Mariana Islands",
-        "value": "MP"
+        "value": "Northern Mariana Islands",
+        "label": "MP"
     },
     {
-        "label": "Ohio",
-        "value": "OH"
+        "value": "Ohio",
+        "label": "OH"
     },
     {
-        "label": "Oklahoma",
-        "value": "OK"
+        "value": "Oklahoma",
+        "label": "OK"
     },
     {
-        "label": "Oregon",
-        "value": "OR"
+        "value": "Oregon",
+        "label": "OR"
     },
     {
-        "label": "Palau",
-        "value": "PW"
+        "value": "Palau",
+        "label": "PW"
     },
     {
-        "label": "Pennsylvania",
-        "value": "PA"
+        "value": "Pennsylvania",
+        "label": "PA"
     },
     {
-        "label": "Puerto Rico",
-        "value": "PR"
+        "value": "Puerto Rico",
+        "label": "PR"
     },
     {
-        "label": "Rhode Island",
-        "value": "RI"
+        "value": "Rhode Island",
+        "label": "RI"
     },
     {
-        "label": "South Carolina",
-        "value": "SC"
+        "value": "South Carolina",
+        "label": "SC"
     },
     {
-        "label": "South Dakota",
-        "value": "SD"
+        "value": "South Dakota",
+        "label": "SD"
     },
     {
-        "label": "Tennessee",
-        "value": "TN"
+        "value": "Tennessee",
+        "label": "TN"
     },
     {
-        label: 'Texas',
-        value: "TX"
+        "value": 'Texas',
+        "label": "TX"
     },
     {
-        "label": "Utah",
-        "value": "UT"
+        "value": "Utah",
+        "label": "UT"
     },
     {
-        "label": "Vermont",
-        "value": "VT"
+        "value": "Vermont",
+        "label": "VT"
     },
     {
-        "label": "Virgin Islands",
-        "value": "VI"
+        "value": "Virgin Islands",
+        "label": "VI"
     },
     {
-        "label": "Virginia",
-        "value": "VA"
+        "value": "Virginia",
+        "label": "VA"
     },
     {
-        "label": "Washington",
-        "value": "WA"
+        "value": "Washington",
+        "label": "WA"
     },
     {
-        "label": "West Virginia",
-        "value": "WV"
+        "value": "West Virginia",
+        "label": "WV"
     },
     {
-        "label": "Wisconsin",
-        "value": "WI"
+        "value": "Wisconsin",
+        "label": "WI"
     },
     {
-        "label": "Wyoming",
-        "value": "WY"
+        "value": "Wyoming",
+        "label": "WY"
     }
 ]
 
 export const vehicleType = [
     {     
-        "label": "Car",
-        "value": "car"
+        "value": "Car",
+        "label": "car"
     },
     // {
-    //     "label": "Motorcycle",
-    //     "value": "motorcycle"
+    //     "value": "Motorcycle",
+    //     "label": "motorcycle"
     // }
 ]
 

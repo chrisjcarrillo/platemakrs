@@ -62,6 +62,8 @@ const EditorForm = (props: any) => {
     } = useContext(EditorContext) as EditorContextType;
 
     const inputRef = useRef<InputRef>(null);
+
+    const [selectedValue, setSelectedValue] = useState('');
     const [submittable, setSubmittable] = useState<boolean>(false);
     const [isInputValid, setIsInputValid] = useState<boolean>(true);
     const [formValues, setFormValues] = useState({});
@@ -70,6 +72,8 @@ const EditorForm = (props: any) => {
     const [form] = Form.useForm();
     const values = Form.useWatch([], form);
 
+    const {Option} = AutoComplete;
+    
     const FormItem = Form.Item;
     const regex = /^[A-Za-z0-9\s-]+$/;
     const columnSettings = {
@@ -140,6 +144,18 @@ const EditorForm = (props: any) => {
         return modifiedStr;
     }
 
+    const handleSelect = (value, option) => {
+        const reverse = isReverseText(option?.label?.toUpperCase());
+        updateLicensePlate('state', option?.value)
+        updateLicensePlate('reverseText', undefined, reverse)
+        setSelectedValue(option?.value)
+        setNewOptions([])
+    }
+
+    const handleChange = (value) => {
+        console.log(value)
+        // setSelectedValue(value);           // Update input value when typing or selecting
+    };
 
     return (
         <>
@@ -182,83 +198,25 @@ const EditorForm = (props: any) => {
                                         ]
                                     }
                                 >
-                                    {/* <AutoComplete
-                                        size='lg'
-                                        style={{
-                                            width: "100%",
-                                        }}
+                                    <AutoComplete
+                                        autoFocus
+                                        value={selectedValue}
+                                        onChange={handleChange}
+                                        placeholder="Type in your state"
                                         onSearch={(input) => {
-                                            const filterArray = states?.filter(state => (state?.label).toLowerCase().includes(input.toLowerCase()))
-                                            if(filterArray.length === 1){
-                                                return setNewOptions(filterArray)
-                                            }
-                                        }}
-                                        dropdownRender={(option) => <>{option}</>}
-                                        onSelect={(e, option) => {
-                                            // console.log(e)
-                                            const reverse = isReverseText(e.toUpperCase());
-                                            setNewOptions([])
-                                            console.log(e.toUpperCase(), reverse)
-                                            updateLicensePlate('state', e)
-                                            updateLicensePlate('reverseText', undefined, reverse)
-                                        }}
-                                        // style={{ width: 200 }}
-                                        // onSearch={(e) => return (states?.label ?? '').toLowerCase().includes(e.toLowerCase())}
-                                        placeholder="input here"
-                                        options={newOptions}
-                                        onClear={() => {
-                                            setNewOptions([])
-                                        }}
-                                        allowClear
-                                    /> */}
-                                    <Select
-                                        onClear={ () => {
-                                            setNewOptions([])
-                                            setOpenDropdwon(false)
-                                        }}
-                                        allowClear={
-                                            <DeleteOutlined style={{
-                                                color: '#ffffff !important'
-                                            }} />
-                                        }
-                                        labelInValue
-                                        onSearch={(input) => {
-                                            const filterArray = states?.filter(state => (state?.label).toLowerCase().includes(input.toLowerCase()))
+                                            const filterArray = states?.filter(state => (state?.value).toLowerCase().includes(input.toLowerCase()))
                                             if(filterArray.length === 1){
                                                 setNewOptions(filterArray)
-                                                setOpenDropdwon(true)
-                                            
                                             }
                                         }}
-                                        open={openDropdown}
-                                        onSelect={(e) => {
-                                            const reverse = isReverseText(e.value.toUpperCase());
-                                            console.log(e.value.toUpperCase(), reverse)
-                                            updateLicensePlate('state', e.label)
-                                            updateLicensePlate('reverseText', undefined, reverse)
-                                            setNewOptions([])
-                                            setOpenDropdwon(false)
-                                        }}
-                                        notFoundContent={<>Type in your state</>}
-                                        size="large"
-                                        showSearch
-                                        placeholder="Type in your state"
-                                        optionFilterProp='children'
-                                        filterOption={(input, option) =>
-                                            (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
-                                        }
-                                        style={{
-                                            width: "100%",
-                                        }}
-                                        options={
-                                            [
-                                                {
-                                                    label: 'State',
-                                                    options: newOptions
-                                                }
-                                            ]
-                                        }
-                                    />
+                                        onSelect={handleSelect}
+                                    >
+                                        {newOptions.map((option) => (
+                                            <Option key={option.value} value={option.value} label={option.label}>
+                                                {`${option.value}`}
+                                            </Option>
+                                        ))}
+                                    </AutoComplete>
                                 </FormItem>
                             </Col>
                         </Row>
