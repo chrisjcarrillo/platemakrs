@@ -250,16 +250,16 @@ export const vehicleType = [
 
 export const platePosition = [
     {     
-        "value": "Center",
-        "label": "center"
+        "label": "Center",
+        "value": "center"
     },
     {
-        "value": "Left",
-        "label": "left"
+        "label": "Left",
+        "value": "left"
     },
     {
-        "value": "Right",
-        "label": "right"
+        "label": "Right",
+        "value": "right"
     }
 ]
 
