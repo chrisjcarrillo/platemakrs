@@ -66,7 +66,7 @@ export type StoreContextType = {
 }
 
 export const client = Client?.buildClient({
-    domain: 'platemakrs.myshopify.com',
+    domain: 'checkout.platemakrs.com',
     storefrontAccessToken: '2d259727a1658a93c475677f3591d3bf',
     apiVersion: '2023-07'
 });
