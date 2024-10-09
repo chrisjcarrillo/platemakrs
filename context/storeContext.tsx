@@ -477,6 +477,10 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
             const customAttributes = {
                 customAttributes: [
                     {
+                        key: "reference",
+                        value: `${document?.referrer ?? null}`
+                    },
+                    {
                         key: "click_id",
                         value: `${Cookies.get('_fbc') ?? null}`
                     },
