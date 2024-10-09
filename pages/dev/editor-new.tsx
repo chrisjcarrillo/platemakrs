@@ -152,8 +152,8 @@ function EditorNew(props: any) {
 
     const handleX = () => {
         // console.log(textRef.current.align())
-        if (currentLicensePlate?.platePosition === "left") return 30;
-        if (currentLicensePlate?.platePosition === "right") return -30;
+        if (currentLicensePlate?.platePosition === "left") return 125;
+        if (currentLicensePlate?.platePosition === "right") return -125;
         return 0;
     }
 
