@@ -396,7 +396,9 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
 
     const checkEventSource = () => {
         const urlQueryParams = new URLSearchParams(window?.location?.search)
-        if (Cookies.get('_fbc') || urlQueryParams.get('fbclid')) {
+        if (
+            Cookies.get('_fbc') || urlQueryParams.get('fbclid') || urlQueryParams.get("pm_source") === "fb" || document?.referrer?.includes('facebook') || document?.referrer?.includes('instagram')
+        ) {
             return "Facebook Campaign";
         }
         if (ad === "klaviyo" && urlQueryParams.get("c")) {
@@ -448,7 +450,39 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
 
             const customId = uuidv4();
 
-            if((urlQueryParams.get("fbclid") && !Cookies.get('_fbc'))){
+            if(
+                (urlQueryParams.get("fbclid") && !Cookies.get('_fbc'))
+            ){
+                console.info('cookie:', 'Platemakrs Bot created a Facebook ID');
+                const currentDate = Date.now()
+                const fbId = `fb.1.${currentDate}.${urlQueryParams.get("fbclid")}`
+                Cookies.set('_fbc', fbId, {
+                    expires: 7,
+                    domain: 'platemakrs.com'
+                })
+                console.info('cookie:', 'The ID didnt get created in the cookies, but was in the url');
+                console.info('cookie:', `Facebook ID: ${fbId}`);
+            }
+
+            if(
+                (urlQueryParams.get("pm_source") === "fb" && !Cookies.get('_fbc'))
+            ){
+                console.info('cookie:', 'Platemakrs Bot created a Facebook ID');
+                const currentDate = Date.now()
+                const fbId = `fb.1.${currentDate}.${urlQueryParams.get("fbclid")}`
+                Cookies.set('_fbc', fbId, {
+                    expires: 7,
+                    domain: 'platemakrs.com'
+                })
+                console.info('cookie:', 'The ID didnt get created in the cookies, but was in the url');
+                console.info('cookie:', `Facebook ID: ${fbId}`);
+            }
+
+            if(
+                (
+                    (document.referrer.includes('facebook') || document.referrer.includes('instagram')
+                ) && !Cookies.get('_fbc'))
+            ){
                 console.info('cookie:', 'Platemakrs Bot created a Facebook ID');
                 const currentDate = Date.now()
                 const fbId = `fb.1.${currentDate}.${urlQueryParams.get("fbclid")}`
@@ -538,7 +572,7 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
         setLoading(true)
         window.addEventListener('storage', onStorageUpdate);
         const urlQueryParams = new URLSearchParams(window?.location?.search)
-        if (urlQueryParams.get("fbclid") || Cookies.get('_fbc')) {
+        if (urlQueryParams.get("fbclid") || Cookies.get('_fbc') || urlQueryParams.get("pm_source") === "fb" || document?.referrer?.includes('facebook') || document?.referrer?.includes('instagram')) {
             setAd('facebook');
         }
         if (urlQueryParams.get("c") === "sms" ||
