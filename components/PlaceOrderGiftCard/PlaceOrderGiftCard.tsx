@@ -30,50 +30,24 @@ export const PlaceOrderGiftCard = (props) => {
         return parseInt('0').toFixed(2)
     }
 
-    // const checkboxReference = useRef<any>();
-
-    // useEffect(() => {
-    //     if (currentEditorStep?.currentSubStep === "termsAndConditions") {
-    //         checkboxReference.current.focus();
-    //     }
-    // }, [checkboxReference])
-
     const { presetTemplate } = props;
 
     return (
         <>
-            <Modal
-                title={'Terms and Conditions'}
-                open={terms}
-                onOk={() => setTerms(false)}
-                onCancel={() => setTerms(false)}
-            >
-                <Terms />
-            </Modal>
-            {/* Details? */}
 
             {/* Details */}
             <Container className={`placeOrder__container`}>
                 <Row className={`placeOrder__row-details g-2`}>
                     <Col
-                        {...termsCols}
-                        className={`placeOrder__action`}
-                    >
-                        <Checkbox
-                            className='placeOrder__terms'
-                            onChange={(e) => {
-                                setAcceptTerms(e.target.checked)
-                            }}>
-                            <a href={'#'} onClick={() => setTerms(true)}>Terms and Conditions</a>
-                        </Checkbox>
-                    </Col>
-
-                    <Col
                         className={`placeOrder__details`}
-                        {...priceDetailsCols}
+                        xs={12}
+                        sm={12}
+                        md={12}
+                        lg={12}
+                        xl={12}
                     >
                         <h1
-                            className={`placeOrder__price`}
+                            className={`placeOrder__price text-center`}
                         >
                             Total: ${showTotal()}
                         </h1>
@@ -82,7 +56,7 @@ export const PlaceOrderGiftCard = (props) => {
                 <Row className={`placeOrder__row-order g-2`}>
                     <Col {...placeOrderCols} className={`placeOrder__action`}>
                         <a
-                            className={`placeOrder__button ${acceptTerms ? '' : 'disabled'}`}
+                            className={`placeOrder__button`}
                             onClick={() => addVariantGiftCard(selectedItem, quantityAmount)}
                         >
                             Place Order

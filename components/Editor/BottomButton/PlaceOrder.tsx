@@ -41,10 +41,6 @@ export const PlaceOrder = (props: {
     const {
         redirectCheckout,
         hasDesigner,
-        acceptTerms,
-        setAcceptTerms,
-        acceptPmTerms,
-        setAcceptPmTerms,
         extras
     } = useContext(StoreContext) as StoreContextType;
 
@@ -70,14 +66,6 @@ export const PlaceOrder = (props: {
 
     const [messageApi, contextHolder] = notification?.useNotification();
 
-    const termsCols = {
-        xs: 6,
-        sm: 6,
-        md: 6,
-        lg: 6,
-        xl: 6
-    }
-
     const priceDetailsCols = {
         xs: 6,
         sm: 6,
@@ -102,16 +90,6 @@ export const PlaceOrder = (props: {
         xl: 6
     }
 
-    const checkboxReference = useRef<any>();
-    const pmTermsReference = useRef<any>();
-
-    useEffect(() => {
-        if (currentEditorStep?.currentSubStep === "termsAndConditions") {
-            checkboxReference.current.focus();
-        }
-    }, [checkboxReference])
-
-    console.log(checkboxReference)
     const { presetTemplate } = props;
 
     const [termsPopup, setTermsPopup] = useState<boolean>(false)
@@ -155,16 +133,6 @@ export const PlaceOrder = (props: {
                 false,
                 'Background'
             )
-            return;
-        }
-        if (!acceptTerms) {
-            checkboxReference.current.focus();
-            setTermsPopup(true);
-            return;
-        }
-        if (!acceptPmTerms) {
-            pmTermsReference.current.focus();
-            setPmTermsPopup(true);
             return;
         }
         if (finishPopup) {
@@ -519,70 +487,6 @@ export const PlaceOrder = (props: {
             {
                 currentEditorStep?.currentSubStep === "termsAndConditions" && (
                     <Container className={`placeOrder__container`} id={'order-actions'}>
-                        <Row className="placeOrder__row-terms-final">
-                            <Col
-                                xs={12}
-                                sm={12}
-                                md={12}
-                                lg={12}
-                                xl={12}
-                                className={`placeOrder__action`}
-                            >
-                                <Popconfirm
-                                    placement="topLeft"
-                                    title={'Terms and Conditions'}
-                                    description={'Please accept the terms and conditions!'}
-                                    okText="Yes"
-                                    cancelText="No"
-                                    open={termsPopup}
-                                    onConfirm={() => {
-                                        setTermsPopup(false)
-                                        setAcceptTerms(true)
-                                        if (!acceptPmTerms) {
-                                            pmTermsReference.current.focus();
-                                            setPmTermsPopup(true);
-                                        }
-                                    }}
-                                >
-                                    <Checkbox
-                                        checked={acceptTerms}
-                                        className='placeOrder__terms'
-                                        ref={checkboxReference}
-                                        autoFocus
-                                        onChange={(e) => {
-                                            setAcceptTerms(e.target.checked)
-                                        }}>
-                                        I Accept the <a href={'#'} onClick={() => setTerms(true)}> Terms and Conditions</a>
-                                    </Checkbox>
-                                </Popconfirm>
-
-                                <Popconfirm
-                                placement="topLeft"
-                                title={'Platemakrs Terms'}
-                                description={'Please accept!'}
-                                okText="Accept"
-                                cancelText="No"
-                                onConfirm={() => {
-                                    setPmTermsPopup(false)
-                                    setAcceptPmTerms(true)
-  
-                                }}
-                                showCancel={false}
-                                open={pmTermsPopup}
-                            >
-                                <Checkbox
-                                    checked={acceptPmTerms}
-                                    className='placeOrder__terms'
-                                    ref={pmTermsReference}
-                                    onChange={(e) => {
-                                        setAcceptPmTerms(e.target.checked)
-                                    }}>
-                                    <a href={'#'}>I understand Platemakrs does not manufacture plates</a>
-                                </Checkbox>
-                            </Popconfirm>
-                            </Col>
-                        </Row>
-
                         <Row className={`placeOrder__row-details-final g-2`}>
                             <Col
                                 className={`placeOrder__details-final`}
@@ -603,7 +507,6 @@ export const PlaceOrder = (props: {
                         <Row className={`placeOrder__row-order g-2`}>
                             <Col {...placeOrderCols} className={`placeOrder__action`}>
                                 <Button
-                                    disabled={acceptTerms && acceptPmTerms ? false : true}
                                     className={`placeOrder__button-final`}
                                     onClick={() => redirectCheckout?.(
                                         currentCustomTemplate,
@@ -625,82 +528,11 @@ export const PlaceOrder = (props: {
 
             {currentEditorStep?.currentSubStep !== "termsAndConditions" && (
                 <Container className={`placeOrder__container`} id={'order-actions'}>
-                    <Row className={`placeOrder__row-details g-2`}>
-                        <Col
-                            {...termsCols}
-                            className={`placeOrder__action`}
-                        >
-                            <Popconfirm
-                                placement="topLeft"
-                                title={'Terms and Conditions'}
-                                description={'Please accept the terms and conditions!'}
-                                okText="Accept"
-                                cancelText="No"
-                                onConfirm={() => {
-                                    setTermsPopup(false)
-                                    setAcceptTerms(true)
-                                    if (!acceptPmTerms) {
-                                        pmTermsReference.current.focus();
-                                        setPmTermsPopup(true);
-                                    }
-                                }}
-                                showCancel={false}
-                                open={termsPopup}
-                            >
-                                <Checkbox
-                                    checked={acceptTerms}
-                                    className='placeOrder__terms'
-                                    ref={checkboxReference}
-                                    onChange={(e) => {
-                                        setAcceptTerms(e.target.checked)
-                                    }}>
-                                    <a href={'#'} onClick={() => setTerms(true)}>Terms and Conditions</a>
-                                </Checkbox>
-                            </Popconfirm>
-
-                            <Popconfirm
-                                placement="topLeft"
-                                title={'Platemakrs Terms'}
-                                description={'Please accept!'}
-                                okText="Accept"
-                                cancelText="No"
-                                onConfirm={() => {
-                                    setPmTermsPopup(false)
-                                    setAcceptPmTerms(true)
-                                }}
-                                showCancel={false}
-                                open={pmTermsPopup}
-                            >
-                                <Checkbox
-                                    checked={acceptPmTerms}
-                                    className='placeOrder__terms'
-                                    ref={pmTermsReference}
-                                    onChange={(e) => {
-                                        setAcceptPmTerms(e.target.checked)
-                                    }}>
-                                    <a href={'#'}>I understand Platemakrs does not manufacture plates</a>
-                                </Checkbox>
-                            </Popconfirm>
-
-                        </Col>
-
-                        <Col
-                            className={`placeOrder__details`}
-                            {...priceDetailsCols}
-                        >
-                            <h1
-                                className={`placeOrder__price`}
-                            >
-                                Total: ${showTotal()}
-                            </h1>
-                            <a className="placeOrder__sell" onClick={() => setUpsellPopup(true)}>Do you have a front and back plate?</a>
-                        </Col>
-                    </Row>
                     <Row className={`placeOrder__row-order g-2`}>
                         <Col {...placeOrderCols} className={`placeOrder__action`}>
                             <a
                                 className={`placeOrder__button ${currentEditorStep?.currentSubStep === 'selectFinish' && currentCustomTemplate?.selectedVariant === undefined ? 'disabled' : ''} 
-                                    ${acceptTerms && acceptPmTerms ? '' : 'disabled'}`}
+                                    `}
                                 onClick={
                                     () => handlePlaceOrder()
                                 }

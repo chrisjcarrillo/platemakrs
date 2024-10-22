@@ -175,14 +175,6 @@ const WorkWithADesigner = (props: any) => {
 
     return (
         <>
-            <Modal
-                title={'Terms and Conditions'}
-                open={terms}
-                onOk={() => setTerms(false)}
-                onCancel={() => setTerms(false)}
-            >
-                <Terms />
-            </Modal>
             {contextHolder}
             <Container fluid
                 className="hassle_container"
@@ -255,18 +247,8 @@ const WorkWithADesigner = (props: any) => {
                                 defaultValue={quantity}
                                 min={1}
                             />
-                            <div className="hassle_tc">
-                                <Checkbox
-                                    className='designer-form__terms'
-                                    onChange={(e) => {
-                                        setAcceptTerms(e.target.checked)
-                                    }}>
-                                    <a href={'#'} onClick={() => setTerms(true)}>Terms and Conditions</a>
-                                </Checkbox>
-                            </div>
-                            
                             <a 
-                                className={`hassle_button ${acceptTerms ? '' : 'hassle-disabled'}`}
+                                className={`hassle_button`}
                                 onClick={() => onFinish()}
                             >CHECKOUT</a>
                         </div>
