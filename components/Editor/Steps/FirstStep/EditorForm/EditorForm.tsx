@@ -113,7 +113,7 @@ const EditorForm = (props: any) => {
 
 
     const formatDisplayText = (text: any) => {
-        return text.replace(/-/g, '<span class="custom-dash">-</span>');
+        return text.replace(/-/g, '<span className="custom-dash">-</span>');
     };
 
     function customCharCountAndModify(str: string) {
@@ -153,8 +153,16 @@ const EditorForm = (props: any) => {
     }
 
     const handleChange = (value) => {
-        console.log(value)
-        // setSelectedValue(value);           // Update input value when typing or selecting
+        const filterArray = states?.filter(state => (state?.value).toLowerCase().includes(value.toLowerCase()))
+        console.log(filterArray)
+        if(filterArray.length === 1){
+            setNewOptions(filterArray)
+            const reverse = isReverseText(filterArray[0]?.label?.toUpperCase());
+            updateLicensePlate('state', filterArray[0]?.value)
+            updateLicensePlate('reverseText', undefined, reverse)
+            setSelectedValue(filterArray[0]?.value)
+            setNewOptions([])
+        }
     };
 
     return (
@@ -204,16 +212,16 @@ const EditorForm = (props: any) => {
                                         onChange={handleChange}
                                         placeholder="Type in your state"
                                         onSearch={(input) => {
-                                            const filterArray = states?.filter(state => (state?.value).toLowerCase().includes(input.toLowerCase()))
-                                            if(filterArray.length === 1){
+                                            const filterArray = states?.filter(state => (state?.value).toLowerCase().includes(input?.toLowerCase()))
+                                            if(filterArray?.length === 1){
                                                 setNewOptions(filterArray)
                                             }
                                         }}
                                         onSelect={handleSelect}
                                     >
                                         {newOptions.map((option) => (
-                                            <Option key={option.value} value={option.value} label={option.label}>
-                                                {`${option.value}`}
+                                            <Option key={option?.value} value={option?.value} label={option?.label}>
+                                                {`${option?.value}`}
                                             </Option>
                                         ))}
                                     </AutoComplete>
