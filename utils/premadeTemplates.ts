@@ -8015,7 +8015,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             stroke: {
-                enabled: true,
+                enabled: false,
                 color: "#000000"
             },
         },
@@ -8028,7 +8028,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             stroke: {
-                enabled: true,
+                enabled: false,
                 color: "#000000"
             },
         },
@@ -8041,7 +8041,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             stroke: {
-                enabled: true,
+                enabled: false,
                 color: "#000000"
             },
         }
@@ -8096,7 +8096,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             stroke: {
-                enabled: true,
+                enabled: false,
                 color: "#000000"
             },
         },
@@ -8109,7 +8109,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             stroke: {
-                enabled: true,
+                enabled: false,
                 color: "#000000"
             },
         },
@@ -8122,7 +8122,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             stroke: {
-                enabled: true,
+                enabled: false,
                 color: "#000000"
             },
         }
@@ -8178,7 +8178,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             stroke: {
-                enabled: true,
+                enabled: false,
                 color: "#000000"
             },
         },
@@ -8191,7 +8191,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             stroke: {
-                enabled: true,
+                enabled: false,
                 color: "#000000"
             },
         },
@@ -8204,7 +8204,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             stroke: {
-                enabled: true,
+                enabled: false,
                 color: "#000000"
             },
         }
@@ -8260,7 +8260,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             stroke: {
-                enabled: true,
+                enabled: false,
                 color: "#000000"
             },
         },
@@ -8273,7 +8273,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             stroke: {
-                enabled: true,
+                enabled: false,
                 color: "#000000"
             },
         },
@@ -8286,7 +8286,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             stroke: {
-                enabled: true,
+                enabled: false,
                 color: "#000000"
             },
         }
@@ -8342,7 +8342,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             stroke: {
-                enabled: true,
+                enabled: false,
                 color: "#000000"
             },
         },
@@ -8355,7 +8355,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             stroke: {
-                enabled: true,
+                enabled: false,
                 color: "#000000"
             },
         },
@@ -8368,7 +8368,7 @@ export const premadeTemplates = [
                 enabled: false
             },
             stroke: {
-                enabled: true,
+                enabled: false,
                 color: "#000000"
             },
         }
