@@ -279,66 +279,149 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
             customTemplateId: string
         }
     ) => {
+
+        const trumpVariants = [
+            "gid://shopify/ProductVariant/50173197156653",
+            "gid://shopify/ProductVariant/50173197189421",
+            "gid://shopify/ProductVariant/50173304799533",
+            "gid://shopify/ProductVariant/50173304832301",
+            "gid://shopify/ProductVariant/50173306044717",
+            "gid://shopify/ProductVariant/50173306077485",
+            "gid://shopify/ProductVariant/50173307158829",
+            "gid://shopify/ProductVariant/50173307191597",
+            "gid://shopify/ProductVariant/50173308829997",
+            "gid://shopify/ProductVariant/50173308862765"
+        ]
         try {
             const checkoutId = checkout?.id;
-            const lineItemsToUpdate = hasDesigner ? [
-                {
-                    variantId,
-                    quantity: 1,
-                    customAttributes: [
-                        {
-                            key: "Order ID", value: `${storeData.customTemplateId}`, // Template of Preset
-                        },
-                        {
-                            key: "Plate ID", value: `${storeData.licensePlateId}`, // Template of Preset
-                        },
-                        {
-                            key: "", value: `${storeData.previewUrl}`, // Template of Preset
-                        },
-                        {
-                            key: "Notes", value: `${notes ?? 'N/A'}`,
-                        }
-                    ]
-                },
-                {
-                    variantId: addon?.variants[0]?.id,
-                    quantity: 1,
-                    customAttributes: [
-                        {
-                            key: "Order ID", value: `${storeData.customTemplateId}`, // Template of Preset
-                        }
-                    ]
-                }
-            ] : [
-                {
-                    variantId,
-                    quantity: 1,
-                    customAttributes: [
-                        {
-                            key: "Order ID", value: `${storeData.customTemplateId}`, // Template of Preset
-                        },
-                        {
-                            key: "Plate ID", value: `${storeData.licensePlateId}`, // Template of Preset
-                        },
-                        {
-                            key: "Preview", value: `${storeData.previewUrl}`, // Template of Preset
-                        },
-                        {
-                            key: "Notes", value: `${notes ?? 'N/A'}`,
-                        }
-                    ]
-                }
-            ]
-            const checkoutResponse = await client?.checkout?.addLineItems(
-                checkoutId,
-                lineItemsToUpdate
-            );
-            setCart(JSON.parse(JSON.stringify(checkoutResponse.lineItems)));
-            initiateCheckoutEvent(checkoutResponse);
-
-            // history.pushState('', '', `${process.env.STORE_URL}/${uri}`)
-            window.location.replace(checkout?.webUrl)
-            // return;
+            if(trumpVariants?.includes(variantId)){
+                const lineItemsToUpdate = hasDesigner ? [
+                    {
+                        variantId,
+                        quantity: 1,
+                        customAttributes: [
+                            {
+                                key: "Order ID", value: `${storeData.customTemplateId}`, // Template of Preset
+                            },
+                            {
+                                key: "Plate ID", value: `${storeData.licensePlateId}`, // Template of Preset
+                            },
+                            {
+                                key: "", value: `${storeData.previewUrl}`, // Template of Preset
+                            },
+                            {
+                                key: "Notes", value: `${notes ?? 'N/A'}`,
+                            }
+                        ]
+                    },
+                    {
+                        variantId: addon?.variants[0]?.id,
+                        quantity: 1,
+                        customAttributes: [
+                            {
+                                key: "Order ID", value: `${storeData.customTemplateId}`, // Template of Preset
+                            }
+                        ]
+                    },
+                    {
+                        variantId: 'gid://shopify/ProductVariant/50123708006701',
+                        quantity: 1
+                    }
+                ] : [
+                    {
+                        variantId,
+                        quantity: 1,
+                        customAttributes: [
+                            {
+                                key: "Order ID", value: `${storeData.customTemplateId}`, // Template of Preset
+                            },
+                            {
+                                key: "Plate ID", value: `${storeData.licensePlateId}`, // Template of Preset
+                            },
+                            {
+                                key: "Preview", value: `${storeData.previewUrl}`, // Template of Preset
+                            },
+                            {
+                                key: "Notes", value: `${notes ?? 'N/A'}`,
+                            }
+                        ]
+                    },
+                    {
+                        variantId: 'gid://shopify/ProductVariant/50123708006701',
+                        quantity: 1
+                    }
+                ]
+                const checkoutResponse = await client?.checkout?.addLineItems(
+                    checkoutId,
+                    lineItemsToUpdate
+                );
+                setCart(JSON.parse(JSON.stringify(checkoutResponse.lineItems)));
+                initiateCheckoutEvent(checkoutResponse);
+    
+                // history.pushState('', '', `${process.env.STORE_URL}/${uri}`)
+                window.location.replace(checkout?.webUrl)
+                // return;
+            } else {
+                const lineItemsToUpdate = hasDesigner ? [
+                    {
+                        variantId,
+                        quantity: 1,
+                        customAttributes: [
+                            {
+                                key: "Order ID", value: `${storeData.customTemplateId}`, // Template of Preset
+                            },
+                            {
+                                key: "Plate ID", value: `${storeData.licensePlateId}`, // Template of Preset
+                            },
+                            {
+                                key: "", value: `${storeData.previewUrl}`, // Template of Preset
+                            },
+                            {
+                                key: "Notes", value: `${notes ?? 'N/A'}`,
+                            }
+                        ]
+                    },
+                    {
+                        variantId: addon?.variants[0]?.id,
+                        quantity: 1,
+                        customAttributes: [
+                            {
+                                key: "Order ID", value: `${storeData.customTemplateId}`, // Template of Preset
+                            }
+                        ]
+                    }
+                ] : [
+                    {
+                        variantId,
+                        quantity: 1,
+                        customAttributes: [
+                            {
+                                key: "Order ID", value: `${storeData.customTemplateId}`, // Template of Preset
+                            },
+                            {
+                                key: "Plate ID", value: `${storeData.licensePlateId}`, // Template of Preset
+                            },
+                            {
+                                key: "Preview", value: `${storeData.previewUrl}`, // Template of Preset
+                            },
+                            {
+                                key: "Notes", value: `${notes ?? 'N/A'}`,
+                            }
+                        ]
+                    }
+                ]
+                const checkoutResponse = await client?.checkout?.addLineItems(
+                    checkoutId,
+                    lineItemsToUpdate
+                );
+                setCart(JSON.parse(JSON.stringify(checkoutResponse.lineItems)));
+                initiateCheckoutEvent(checkoutResponse);
+    
+                // history.pushState('', '', `${process.env.STORE_URL}/${uri}`)
+                window.location.replace(checkout?.webUrl)
+                // return;
+            }
+            
         } catch (error) {
             console.error(error)
             Sentry.captureException(`Shopify API - ${error}`);

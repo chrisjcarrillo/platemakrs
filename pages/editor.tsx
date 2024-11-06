@@ -74,10 +74,31 @@ export default function Editor(props: any) {
         setAddon,
         extras,
         extrasPremade,
-        setAddonPlate
+        setAddonPlate,
+        setExtrasPremade
     } = useContext(StoreContext) as StoreContextType;
 
     setAddon?.(props?.addons)
+
+    const productsList = () => {
+        const urlQueryParams = new URLSearchParams(window?.location?.search)
+        if(
+            urlQueryParams.get('presetTemplate') === "81" ||
+            urlQueryParams.get('presetTemplate') === "80" ||
+            urlQueryParams.get('presetTemplate') === "79" || 
+            urlQueryParams.get('presetTemplate') === "78" || 
+            urlQueryParams.get('presetTemplate') === "77"
+        ){
+            setExtrasPremade(true);
+            const searchedProducts = props?.productList?.products.filter((product: any) => {
+                return product?.title?.toUpperCase()?.indexOf('Trump'.toUpperCase()) !== -1;
+            })
+            return searchedProducts;
+        }else {
+            setExtrasPremade(false);
+            return props?.productList?.products;
+        }
+    }
 
     function downloadURI(uri, name) {
         var link = document.createElement('a');
@@ -135,6 +156,10 @@ export default function Editor(props: any) {
             }
         }
     }
+
+    useEffect(() => {
+        productsList()
+    }, [])
 
     return (
         <>
@@ -438,7 +463,9 @@ export default function Editor(props: any) {
                             </Col>
                         </Row>
                         <TemplateList
-                            products={props?.productList?.products}
+                            products={
+                                productsList()
+                            }
                             customTemplate={false}
                         />
                     </Container>
@@ -484,6 +511,7 @@ export default function Editor(props: any) {
 
 export const getStaticProps: GetStaticProps = async (context) => {
     const currentProduct = await client.collection.fetchWithProducts('gid://shopify/Collection/456849490221', { productsFirst: 100 })
+
     const getAddon = await client.product.fetchByHandle('add-on-work-with-a-designer');
 
     const filePath = path.join(process.cwd(), 'settings.json');

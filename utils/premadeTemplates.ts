@@ -7965,7 +7965,414 @@ export const premadeTemplates = [
             stroke: { enabled: false},
         }
     }, //Two Colors - White / Red / White - [Done]
+    {
+        vehicleType: 'Car',
+        detailLogo1: { enabled: false},
+        detailLogo2: {enabled: false},
+        templateId: '77',
+        startPlatePosition: 'right',
+        startPlateText: 'SAMPL',
+        shopifyHandle: 'trump-47-template',
+        preset: true,
+        fadeSettings: { enabled: false },
+        patternSettings: { enabled: false },
+        bottomLogo: { enabled: false },
+        mainLogo: { enabled: false, hasColor: false },
+        backgroundLogo:{
+            hasColor: false,
+            enabled: true,
+            name: 'gray.png',
+            filePath: '/images/resources/misc/trump',
+            url: '/images/resources/misc/trump/gray.png',
+            leftCoordinates: {
+                x: -650,
+                y: 0
+            },
+            centerCoordinates: {
+                x: 250,
+                y: 0
+            },
+            rightCoordinates: {
+                x: 950,
+                y: 0
+            },
+            width: 3000,
+            height: 1800,
+        },
+        backgroundSettings: {
+            color: '#000000',
+            background: { enabled: false },
+            stroke: {
+                enabled: false
+            }
+        },
+        state:{
+            color: '#aeaeae',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: {
+                enabled: true,
+                color: "#000000"
+            },
+        },
+        plateNumber: {
+            color: '#aeaeae',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: {
+                enabled: true,
+                color: "#000000"
+            },
+        },
+        bottomText: {
+            color: '#aeaeae',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: {
+                enabled: true,
+                color: "#000000"
+            },
+        }
+    }, //Trump 1, - [Done]
+    {
+        vehicleType: 'Car',
+        detailLogo1: { enabled: false},
+        detailLogo2: {enabled: false},
+        templateId: '78',
+        startPlatePosition: 'right',
+        startPlateText: 'SAMPL',
+        shopifyHandle: 'trump-47-template-2',
+        preset: true,
+        fadeSettings: { enabled: false },
+        patternSettings: { enabled: false },
+        bottomLogo: { enabled: false },
+        mainLogo: { enabled: false, hasColor: false },
+        backgroundLogo:{
+            hasColor: false,
+            enabled: true,
+            name: 'gray.png',
+            filePath: '/images/resources/misc/trump',
+            url: '/images/resources/misc/trump/gray-blood.png',
+            leftCoordinates: {
+                x: -650,
+                y: 0
+            },
+            centerCoordinates: {
+                x: 250,
+                y: 0
+            },
+            rightCoordinates: {
+                x: 950,
+                y: 0
+            },
+            width: 3000,
+            height: 1800,
+        },
+        backgroundSettings: {
+            color: '#000000',
+            background: { enabled: false },
+            stroke: {
+                enabled: false
+            }
+        },
+        state:{
+            color: '#aeaeae',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: {
+                enabled: true,
+                color: "#000000"
+            },
+        },
+        plateNumber: {
+            color: '#aeaeae',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: {
+                enabled: true,
+                color: "#000000"
+            },
+        },
+        bottomText: {
+            color: '#aeaeae',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: {
+                enabled: true,
+                color: "#000000"
+            },
+        }
+    }, //Trump 2, - [Done]
+    
+    {
+        vehicleType: 'Car',
+        detailLogo1: { enabled: false},
+        detailLogo2: {enabled: false},
+        templateId: '79',
+        startPlatePosition: 'right',
+        startPlateText: 'SAMPL',
+        shopifyHandle: 'trump-47-template-3',
+        preset: true,
+        fadeSettings: { enabled: false },
+        patternSettings: { enabled: false },
+        bottomLogo: { enabled: false },
+        mainLogo: { enabled: false, hasColor: false },
+        backgroundLogo:{
+            hasColor: false,
+            enabled: true,
+            name: 'gray.png',
+            filePath: '/images/resources/misc/trump',
+            url: '/images/resources/misc/trump/gray-blood.png',
+            leftCoordinates: {
+                x: -650,
+                y: 0
+            },
+            centerCoordinates: {
+                x: 250,
+                y: 0
+            },
+            rightCoordinates: {
+                x: 950,
+                y: 0
+            },
+            width: 3000,
+            height: 1800,
+        },
+        backgroundSettings: {
+            color: '#000000',
+            background: { enabled: false },
+            stroke: {
+                enabled: false
+            }
+        },
+        state:{
+            color: '#ff0000',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: {
+                enabled: true,
+                color: "#000000"
+            },
+        },
+        plateNumber: {
+            color: '#ff0000',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: {
+                enabled: true,
+                color: "#000000"
+            },
+        },
+        bottomText: {
+            color: '#ff0000',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: {
+                enabled: true,
+                color: "#000000"
+            },
+        }
+    }, //Trump 3, - [Done]
 
+    {
+        vehicleType: 'Car',
+        detailLogo1: { enabled: false},
+        detailLogo2: {enabled: false},
+        templateId: '80',
+        startPlatePosition: 'right',
+        startPlateText: 'SAMPL',
+        shopifyHandle: 'trump-47-template-4',
+        preset: true,
+        fadeSettings: { enabled: false },
+        patternSettings: { enabled: false },
+        bottomLogo: { enabled: false },
+        mainLogo: { enabled: false, hasColor: false },
+        backgroundLogo:{
+            hasColor: false,
+            enabled: true,
+            name: 'gray.png',
+            filePath: '/images/resources/misc/trump',
+            url: '/images/resources/misc/trump/gray.png',
+            leftCoordinates: {
+                x: -650,
+                y: 0
+            },
+            centerCoordinates: {
+                x: 250,
+                y: 0
+            },
+            rightCoordinates: {
+                x: 950,
+                y: 0
+            },
+            width: 3000,
+            height: 1800,
+        },
+        backgroundSettings: {
+            color: '#000000',
+            background: { enabled: false },
+            stroke: {
+                enabled: false
+            }
+        },
+        state:{
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: {
+                enabled: true,
+                color: "#000000"
+            },
+        },
+        plateNumber: {
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: {
+                enabled: true,
+                color: "#000000"
+            },
+        },
+        bottomText: {
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: {
+                enabled: true,
+                color: "#000000"
+            },
+        }
+    }, //Trump 4, - [Done]
+
+    {
+        vehicleType: 'Car',
+        detailLogo1: { enabled: false},
+        detailLogo2: {enabled: false},
+        templateId: '81',
+        startPlatePosition: 'right',
+        startPlateText: 'SAMPL',
+        shopifyHandle: 'trump-47-template-5',
+        preset: true,
+        fadeSettings: { enabled: false },
+        patternSettings: { enabled: false },
+        bottomLogo: { enabled: false },
+        mainLogo: { enabled: false, hasColor: false },
+        backgroundLogo:{
+            hasColor: false,
+            enabled: true,
+            name: 'gray.png',
+            filePath: '/images/resources/misc/trump',
+            url: '/images/resources/misc/trump/flag.png',
+            leftCoordinates: {
+                x: -650,
+                y: 0
+            },
+            centerCoordinates: {
+                x: 250,
+                y: 0
+            },
+            rightCoordinates: {
+                x: 950,
+                y: 0
+            },
+            width: 3000,
+            height: 1800,
+        },
+        backgroundSettings: {
+            color: '#000000',
+            background: { enabled: false },
+            stroke: {
+                enabled: false
+            }
+        },
+        state:{
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: {
+                enabled: true,
+                color: "#000000"
+            },
+        },
+        plateNumber: {
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: {
+                enabled: true,
+                color: "#000000"
+            },
+        },
+        bottomText: {
+            color: '#ffffff',
+            glow: {
+                enabled: false
+            },
+            shadow: {
+                enabled: false
+            },
+            stroke: {
+                enabled: true,
+                color: "#000000"
+            },
+        }
+    }, //Trump 5, - [Done]
     
 
        // Template 1
