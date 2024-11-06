@@ -58,6 +58,31 @@ const nextConfig = {
         destination: '/editor?presetTemplate=75&step=1&preset=true&vehicleType=Car',
         permanent: true,
       },
+      { 
+        source: '/trump-1',
+        destination: '/editor?presetTemplate=77&step=1&preset=true&vehicleType=Car',
+        permanent: true,
+      },
+      { 
+        source: '/trump-2',
+        destination: '/editor?presetTemplate=78&step=1&preset=true&vehicleType=Car',
+        permanent: true,
+      },
+      { 
+        source: '/trump-3',
+        destination: '/editor?presetTemplate=79&step=1&preset=true&vehicleType=Car',
+        permanent: true,
+      },
+      { 
+        source: '/trump-4',
+        destination: '/editor?presetTemplate=80&step=1&preset=true&vehicleType=Car',
+        permanent: true,
+      },
+      { 
+        source: '/trump-5',
+        destination: '/editor?presetTemplate=81&step=1&preset=true&vehicleType=Car',
+        permanent: true,
+      },
     ]
   }
 }
