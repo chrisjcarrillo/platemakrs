@@ -8098,7 +8098,7 @@ export const premadeTemplates = [
             stroke: {
                 enabled: false,
                 color: "#000000"
-            },
+            }
         },
         plateNumber: {
             color: '#aeaeae',
@@ -8111,7 +8111,7 @@ export const premadeTemplates = [
             stroke: {
                 enabled: false,
                 color: "#000000"
-            },
+            }
         },
         bottomText: {
             color: '#aeaeae',
@@ -8124,7 +8124,7 @@ export const premadeTemplates = [
             stroke: {
                 enabled: false,
                 color: "#000000"
-            },
+            }
         }
     }, //Trump 2, - [Done]
     
@@ -8180,7 +8180,7 @@ export const premadeTemplates = [
             stroke: {
                 enabled: false,
                 color: "#000000"
-            },
+            }
         },
         plateNumber: {
             color: '#ff0000',
@@ -8193,7 +8193,7 @@ export const premadeTemplates = [
             stroke: {
                 enabled: false,
                 color: "#000000"
-            },
+            }
         },
         bottomText: {
             color: '#ff0000',
@@ -8206,7 +8206,7 @@ export const premadeTemplates = [
             stroke: {
                 enabled: false,
                 color: "#000000"
-            },
+            }
         }
     }, //Trump 3, - [Done]
 
@@ -8262,7 +8262,7 @@ export const premadeTemplates = [
             stroke: {
                 enabled: false,
                 color: "#000000"
-            },
+            }
         },
         plateNumber: {
             color: '#ffffff',
@@ -8275,7 +8275,7 @@ export const premadeTemplates = [
             stroke: {
                 enabled: false,
                 color: "#000000"
-            },
+            }
         },
         bottomText: {
             color: '#ffffff',
@@ -8344,7 +8344,7 @@ export const premadeTemplates = [
             stroke: {
                 enabled: false,
                 color: "#000000"
-            },
+            }
         },
         plateNumber: {
             color: '#ffffff',
@@ -8357,7 +8357,7 @@ export const premadeTemplates = [
             stroke: {
                 enabled: false,
                 color: "#000000"
-            },
+            }
         },
         bottomText: {
             color: '#ffffff',
@@ -8370,7 +8370,7 @@ export const premadeTemplates = [
             stroke: {
                 enabled: false,
                 color: "#000000"
-            },
+            }
         }
     }, //Trump 5, - [Done]
     
