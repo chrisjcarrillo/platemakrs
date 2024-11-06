@@ -176,13 +176,21 @@ class OrderRepository {
     }
 
     async createLicensePlate(licencePlate: any) {
-        const dbClient = await clientPromise;
-        const db = dbClient.db();
-        const plateCollection = db.collection('licensePlates');
-        const customTemplateCollection = db.collection('customTemplates');
-        const customTemplate = await customTemplateCollection.insertOne(licencePlate.customTemplate);
-        const plate = await plateCollection.insertOne({...licencePlate.plate, customTemplateId: customTemplate.insertedId});
-        return {plate, customTemplate};
+        try {
+            const dbClient = await clientPromise;
+            const db = dbClient.db();
+            const plateCollection = db.collection('licensePlates');
+            const customTemplateCollection = db.collection('customTemplates');
+            const customTemplate = await customTemplateCollection.insertOne(licencePlate.customTemplate);
+            const plate = await plateCollection.insertOne({...licencePlate.plate, customTemplateId: customTemplate.insertedId});
+            return {
+                plate, customTemplate
+            };     
+        } catch (error) {
+            console.log(error);
+            return error;
+        }
+
     }
 
     async updateLicensePlate(licencePlateId: any, licencePlate: any) {
