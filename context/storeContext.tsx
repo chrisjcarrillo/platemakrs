@@ -157,7 +157,6 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
                 )
                 addVariant(
                     currentCustomTemplate?.selectedVariant?.id,
-                    currentCustomTemplate?.id,
                     storeData
                 )
             }
@@ -272,7 +271,6 @@ const StoreProvider = ({ children }: IStoreProps): JSX.Element => {
     // Variants START
     const addVariant = async (
         variantId: any,
-        customTemplateId: string,
         storeData: {
             previewUrl: string,
             licensePlateId: string,
