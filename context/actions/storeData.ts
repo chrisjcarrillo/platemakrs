@@ -33,6 +33,7 @@ const setImagePreview = async (node: any) => {
         }  
     } catch (error) {
         console.log(error);
+        return error;
     }
 }
 
@@ -56,6 +57,7 @@ const createPlateAndTemplate = async (
         return res;
     } catch (error) {
         console.log(error)
+        return error;
     }
 }
 
@@ -139,6 +141,7 @@ export const storeCheckout = async (
 
     } catch (error) {
         console.log(error);
+        return error;
     }
 }
 
@@ -155,6 +158,7 @@ export const storeMainLogoInFirebase = async () => {
         return upload;
     } catch (error) {
         console.info('Logo Error [Main]: ', error);
+        return error;
     }
 }
 
@@ -170,5 +174,6 @@ export const storeBottomLogoInFirebase = async () => {
         return upload;   
     } catch (error) {
         console.info('Logo Error [Bottom]: ', error);
+        return error;
     }
 }

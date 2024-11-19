@@ -14,6 +14,6 @@ export default async (req, res) => {
         res.status(200).json(plate);
     } catch (error) {
         console.error('Error processing Shopify webhook:', error);
-        res.status(500).send('Internal Server Error');
+        res.status(500).json({ error: error?.message });
     }
 };
