@@ -94,6 +94,8 @@ export const storeCheckout = async (
     try {
 
         if(getApps().length === 0) app;
+
+        const imagePrev = await setImagePreview(canvasRef);
         
         const plateResponse = await createPlateAndTemplate(
             currentCustomTemplate,
@@ -102,7 +104,6 @@ export const storeCheckout = async (
 
         console.info('[checkout] customTemplateId:', plateResponse?.customTemplate?.insertedId)
         
-        const imagePrev = await setImagePreview(canvasRef);
         const storage = getStorage();
         const storageRef = ref(storage, `customTemplates/${plateResponse?.customTemplate?.insertedId}/design-preview/preview`);
         const upload = await uploadString( storageRef, imagePrev, 'data_url', {
@@ -135,7 +136,6 @@ export const storeCheckout = async (
             licensePlateId: plateResponse.plate.insertedId,
             customTemplateId: plateResponse.customTemplate.insertedId
         }
-
 
     } catch (error) {
         console.log(error);
