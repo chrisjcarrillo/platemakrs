@@ -343,13 +343,17 @@ export const footerLinksTwo = [
         link: '/contact'
     },
     {
+        text: "Terms Conditions & Disclaimer ",
+        link: "/terms"
+    },
+    {
         text: "Refund Policy",
         link: "/refund-policy"
     },
     {
         text: "Privacy Policy",
         link: "/privacy-policy"
-    },
+    }
 ]
 
 export const policyLinks = [
