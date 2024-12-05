@@ -60,7 +60,6 @@ export default function RefundPolicy(props: any) {
                             If you have questions or need further information regarding our refund policy, please contact us at:
                             <ul>
                                 <li>Email: support@platemakrs.com</li>
-                                <li>Phone: 954-639-7331</li>
                                 <li>Address: 4023 NE 6th Ave, Oakland Park, FL 33334</li>
                             </ul>
                         </li>
