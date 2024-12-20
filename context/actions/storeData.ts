@@ -103,8 +103,6 @@ export const storeCheckout = async (
             currentCustomTemplate,
             currentLicensePlate
         );
-
-        console.info('[checkout] customTemplateId:', plateResponse?.customTemplate?.insertedId)
         
         const storage = getStorage();
         const storageRef = ref(storage, `customTemplates/${plateResponse?.customTemplate?.insertedId}/design-preview/preview`);
@@ -128,9 +126,9 @@ export const storeCheckout = async (
             }));
         }
 
-        if(localStorage.getItem('mainLogo')) await storeMainLogoInFirebase();
+        if(sessionStorage.getItem('mainLogo')) await storeMainLogoInFirebase();
 
-        if(localStorage.getItem('bottomLogo')) await storeBottomLogoInFirebase();
+        if(sessionStorage.getItem('bottomLogo')) await storeBottomLogoInFirebase();
         
         // return;
         return {
@@ -150,7 +148,7 @@ export const storeMainLogoInFirebase = async () => {
     try {
         const storage = getStorage();
         const customTemplate = JSON.parse(localStorage.getItem('customTemplate'));
-        const file = JSON.parse(localStorage.getItem('mainCustomLogo'));
+        const file = JSON.parse(sessionStorage.getItem('mainCustomLogo'));
         const storageRef = ref(storage, `customTemplates/${customTemplate?.id}/mainLogo/${file.name}`); // Create storage reference
         const upload = await uploadString(storageRef, file.b64, 'base64', {
             contentType: file.type
@@ -166,7 +164,7 @@ export const storeBottomLogoInFirebase = async () => {
     try {
         const storage = getStorage();
         const customTemplate = JSON.parse(localStorage.getItem('customTemplate'));
-        const file = JSON.parse(localStorage.getItem('bottomCustomLogo'));
+        const file = JSON.parse(sessionStorage.getItem('bottomCustomLogo'));
         const storageRef = ref(storage, `customTemplates/${customTemplate?.id}/bottomLogo/${file.name}`); // Create storage reference
         const upload = await uploadString(storageRef, file.b64, 'base64', {
             contentType: file.type

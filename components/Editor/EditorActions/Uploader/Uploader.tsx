@@ -77,7 +77,7 @@ export const Uploader = (
             currentImage;
 
             setTimeout(() => {
-                localStorage.setItem(
+                sessionStorage.setItem(
                     `${type === "mainLogo" ? 'mainCustomLogo' : 'bottomCustomLogo'}`, 
                     JSON.stringify({
                             name: file.name,
