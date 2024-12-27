@@ -16,6 +16,107 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      {
+        source: '/editor',
+        has: [
+          {
+            type: 'query',
+            key: 'presetTemplate',
+            // the page value will not be available in the
+            // destination since value is provided and doesn't
+            // use a named capture group e.g. (?<page>home)
+            value: '1',
+          },
+          {
+            type: 'query',
+            key: 'step',
+            // the page value will not be available in the
+            // destination since value is provided and doesn't
+            // use a named capture group e.g. (?<page>home)
+            value: '1',
+          },
+          {
+            type: 'query',
+            key: 'pm_source',
+            // the page value will not be available in the
+            // destination since value is provided and doesn't
+            // use a named capture group e.g. (?<page>home)
+            value: 'fb',
+          },
+        ],
+        destination: 'https://v2.platemakrs.com/editor/plates/car/premade',
+        permanent: true,
+      },
+      {
+        source: '/editor',
+        has: [
+          {
+            type: 'query',
+            key: 'presetTemplate',
+            // the page value will not be available in the
+            // destination since value is provided and doesn't
+            // use a named capture group e.g. (?<page>home)
+            value: '69',
+          },
+          {
+            type: 'query',
+            key: 'step',
+            // the page value will not be available in the
+            // destination since value is provided and doesn't
+            // use a named capture group e.g. (?<page>home)
+            value: '1',
+          },
+          {
+            type: 'query',
+            key: 'preset',
+            // the page value will not be available in the
+            // destination since value is provided and doesn't
+            // use a named capture group e.g. (?<page>home)
+            value: 'true',
+          },
+          {
+            type: 'query',
+            key: 'vehicleType',
+            // the page value will not be available in the
+            // destination since value is provided and doesn't
+            // use a named capture group e.g. (?<page>home)
+            value: 'Car',
+          },
+        ],
+        destination: 'https://v2.platemakrs.com/editor/plates/car/premade',
+        permanent: true,
+      },
+      {
+        source: '/editor',
+        has: [
+          {
+            type: 'query',
+            key: 'presetTemplate',
+            // the page value will not be available in the
+            // destination since value is provided and doesn't
+            // use a named capture group e.g. (?<page>home)
+            value: '1',
+          },
+          {
+            type: 'query',
+            key: 'step',
+            // the page value will not be available in the
+            // destination since value is provided and doesn't
+            // use a named capture group e.g. (?<page>home)
+            value: '1',
+          },
+          {
+            type: 'query',
+            key: 'vehicleType',
+            // the page value will not be available in the
+            // destination since value is provided and doesn't
+            // use a named capture group e.g. (?<page>home)
+            value: 'Car',
+          },
+        ],
+        destination: 'https://v2.platemakrs.com/editor/plates/car/premade',
+        permanent: true,
+      },
       { 
         source: '/black-red-moto',
         destination: '/editor?presetTemplate=76&step=1&preset=true&vehicleType=Motorcycle',
