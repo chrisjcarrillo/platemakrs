@@ -77,14 +77,24 @@ export const TemplateList = (props: any) => {
                             {...columnSettings}
                             className={`templatePreview__column animate__animated animate__fadeIn`}
                             onClick={
-                                () => selectPresetTemplate(
-                                    template?.description ?? null,
-                                    template?.title,
-                                    template.handle,
-                                    template.variants,
-                                    props?.customTemplate,
-                                    template?.title.includes('Motorcycle') ?  'Motorcycle' : 'Car'
-                                )
+                                () => {
+                                    console.log(template.handle)
+                                    if(template?.handle === "two-colors-simple-template" ||
+                                        template?.handle === "two-colors-custom-template"
+                                    ){
+                                        window.location.replace(`https://v2.platemakrs.com/editor/plates/car/premade?productId=two-colors-simple-template&colorsOnly=true`)
+                                    } else{
+                                        selectPresetTemplate(
+                                            template?.description ?? null,
+                                            template?.title,
+                                            template.handle,
+                                            template.variants,
+                                            props?.customTemplate,
+                                            template?.title.includes('Motorcycle') ?  'Motorcycle' : 'Car'
+                                            )
+                                    }
+                                    
+                                }
                             }
                         >
                             <div className="templatePreivew__card">
