@@ -27,6 +27,16 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/products',
+        destination: 'https://v2.platemakrs.com/editor/plates/car/premade',
+        permanent: true,
+      },
+      {
+        source: '/contact',
+        destination: 'https://v2.platemakrs.com/contact',
+        permanent: true,
+      },
+      {
         source: '/editor',
         has: [
           {

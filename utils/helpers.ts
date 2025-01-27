@@ -309,7 +309,7 @@ export const menuLayout = [
     },
     {
         text: 'Contact',
-        link: '/contact'
+        link: 'https://v2.platemakrs.com/contact'
     },
 ]
 
