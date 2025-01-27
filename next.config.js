@@ -18,11 +18,13 @@ const nextConfig = {
     return [
       {
         source: '/',
-        destination: 'https://v2.platemakrs.com/'
+        destination: 'https://v2.platemakrs.com/',
+        permanent: true,
       },
       {
         source: '/hassle-free',
-        destination: 'https://v2.platemakrs.com/we-design-it'
+        destination: 'https://v2.platemakrs.com/we-design-it',
+        permanent: true,
       },
       {
         source: '/editor',
