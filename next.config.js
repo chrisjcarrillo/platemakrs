@@ -17,6 +17,14 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/',
+        destination: 'https://v2.platemakrs.com/'
+      },
+      {
+        source: '/hassle-free',
+        destination: 'https://v2.platemakrs.com/we-design-it'
+      },
+      {
         source: '/editor',
         has: [
           {

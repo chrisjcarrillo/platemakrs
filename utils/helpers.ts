@@ -274,7 +274,7 @@ export const initialLicensePlate = "SAM PLE";
 export const menuLayout = [
     {
         text: 'Home',
-        link: '/'
+        link: 'https://v2.platemakrs.com/'
     },
     {
         text: 'Pre-Made Designs',
@@ -301,7 +301,7 @@ export const menuLayout = [
     },
     {
         text: 'Hassle Free Experience',
-        link: '/hassle-free'
+        link: 'https://v2.platemakrs.com/we-design-it'
     },
     {
         text: 'Gift Card',
