@@ -1,6 +1,7 @@
 import { Html, Head, Main, NextScript } from 'next/document'
 import Script from 'next/script';
 import { GoogleAnalytics, GoogleTag } from '../lib/pixels/google';
+import { TikTokPixel } from '../lib/pixels/tiktok';
 
 export default function Document() {
     return (
@@ -19,6 +20,7 @@ export default function Document() {
                 <script async src="https://www.googletagmanager.com/gtag/js?id=G-52EHMW9BFY"></script>
                 <meta name="google-site-verification" content="4sUNv0Dw_cKFHDBTv8wq773BltPcNtArXWHnLQCsoa4" />
                 <GoogleAnalytics />
+                <TikTokPixel />
             </Head>
             <body>
 
