@@ -281,10 +281,10 @@ export const menuLayout = [
         id: '#pre-made',
         subLinks: [{
             text: 'Car Templates',
-            link: '/products'
+            link: 'https://v2.platemakrs.com/editor/plates/car/premade'
         },{
             text: 'Motorcycle Templates',
-            link: '/products/motorcycles'
+            link: 'https://v2.platemakrs.com/editor/plates/motorcycle/premade'
         }],
     },
     {
@@ -317,11 +317,11 @@ export const menuLayout = [
 export const footerLinksOne = [
     {
         text: 'Home',
-        link: '/'
+        link: 'https://v2.platemakrs.com/'
     },
     {
         text: 'Pre-Made Designs',
-        link: '/products'
+        link: 'https://v2.platemakrs.com/editor/plates/car/premade'
     },
     {
         text: 'Build Your Design',
@@ -329,7 +329,7 @@ export const footerLinksOne = [
     },
     {
         text: 'Hassle Free Experience',
-        link: '/hassle-free'
+        link: 'https://v2.platemakrs.com/we-design-it'
     },
     {
         text: 'Gift Card',
@@ -340,19 +340,19 @@ export const footerLinksOne = [
 export const footerLinksTwo = [
     {
         text: 'Contact',
-        link: '/contact'
+        link: 'https://v2.platemakrs.com/contact'
     },
     {
         text: "Terms Conditions & Disclaimer ",
-        link: "/terms"
+        link: "https://v2.platemakrs.com/terms"
     },
     {
         text: "Refund Policy",
-        link: "/refund-policy"
+        link: "https://v2.platemakrs.com/refund-policy"
     },
     {
         text: "Privacy Policy",
-        link: "/privacy-policy"
+        link: "https://v2.platemakrs.com/privacy-policy"
     }
 ]
 

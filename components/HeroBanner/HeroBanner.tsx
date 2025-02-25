@@ -52,13 +52,13 @@ const HeroBanner = (
 
                                 <Dropdown.Menu>
                                     <Link
-                                        href={'/products'}
+                                        href={'https://v2.platemakrs.com/editor/plates/car/premade'}
                                         key={1} 
                                         className="header__link animate__animated animate__fadeInRight animate__delay-0.5s">
                                             Car Templates
                                     </Link>
                                     <Link
-                                        href={'/products/motorcycles'}
+                                        href={'https://v2.platemakrs.com/editor/plates/motorcycle/premade'}
                                         key={2} 
                                         className="header__link animate__animated animate__fadeInRight animate__delay-0.5s">
                                             Motorcycle Templates
